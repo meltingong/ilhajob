@@ -13,7 +13,7 @@ public interface CvMapper {
 	
 	public List<Cv> selectAll();
 	
-	public Cv selectByCvOfUserEmail(String userEmail);
+	public List<Cv> selectByCvOfUserEmail(String userEmail);
 	
 	public int insertCv(Cv cv);
 	
