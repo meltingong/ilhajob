@@ -246,11 +246,14 @@ values(REVIEW_REVIEW_SEQ_SEQ.nextval,'4','생각보다 다닐만한 기업','대
 
 /*********************************블로그게시판관련********************************/
 /**********************blog_cate insert**************************/
+insert into blog_cate(blog_cate_seq, blog_cate_name) values(blog_cate_blog_cate_seq_SEQ.nextval, '일상');
 
 /**********************blog insert**************************/
+insert into blog(blog_seq,blog_title,blog_content,blog_date,blog_image,blog_read_count,blog_like,user_email,blog_cate_seq) values(blog_blog_seq_SEQ.nextval,'제목','내용','이미지','2023/01/01',1,1,'테스트1@test.com',1);
+ 
 
 /**********************blog_comment insert**************************/
-
+insert into blog_comment(comment_seq, comment_content,comment_date,user_email,blog_seq) values(blog_comment_seq_SEQ.nextval
 
 
 
