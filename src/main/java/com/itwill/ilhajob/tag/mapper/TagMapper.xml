@@ -1,3 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.ilhajob.tag.mapper.TagMapper"></mapper>
+<mapper namespace="com.itwill.ilhajob.tag.mapper.TagMapper">
+	
+	<insert id="insertTag" parameterType="com.itwill.ilhajob.tag.Tag">
+		insert into tag(tagId, tagName)
+		values (#{tagId}, #{tagName})
+	</insert>
+	
+	<select id="selectTagById" parameterType="java.lang.Integer" resultType="com.itwill.ilhajob.tag.Tag">
+		select tagId, tagName from tag
+		where tagId = #{tagId}
+	</select>
+	
+	<select id="selectTagByName" parameterType="java.lang.String" resultType="com.itwill.ilhajob.tag.Tag">
+		select tagId, tagName from tag
+		where tagName = #{tagName}
+	</select>
+	
+	<select id="selectAllTag">
+		select * from tag
+	</select>
+	
+	<update id="updateTag" parameterType="com.itwill.ilhajob.tag.Tag">
+		update tag
+		set tagName = #{tagName}
+		where tagId = #{tagId}
+	</update>
+	
+	<delete id="deleteTag" parameterType="int">
+		delete from tag
+		where tagId = #{tagId}
+	</delete>
+
+</mapper>
