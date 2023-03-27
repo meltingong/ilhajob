@@ -218,7 +218,8 @@ insert into userinfo(user_email, user_password) values('테스트2@test.com','22
 /**********************message insert*************************/
 
 /**********************review insert*********************/
-
+insert into review (review_seq,review_grade,review_title,review_content,user_email,corp_id)
+values(REVIEW_REVIEW_SEQ_SEQ.nextval,'4','생각보다 다닐만한 기업','대충 좋은내용','테스트1@test.com','corp_01');
 
 
 /*****************************************태그************************************/

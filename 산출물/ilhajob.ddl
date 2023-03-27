@@ -212,8 +212,8 @@ CREATE TABLE corp_bookmark(
 CREATE TABLE review(
 		review_seq                    		NUMBER(20)		 NULL ,
 		review_grade                  		CHAR(1)		 NULL ,
-		review_title                  		VARCHAR2(10)		 NULL ,
-		review_content                		VARCHAR2(50)		 NULL ,
+		review_title                  		VARCHAR2(100)		 NULL ,
+		review_content                		VARCHAR2(200)		 NULL ,
 		user_email                    		VARCHAR2(50)		 NULL ,
 		corp_id                       		VARCHAR2(30)		 NULL 
 );
