@@ -481,7 +481,7 @@
                                                 <supportSize>true</supportSize>
                                                 <type>12</type>
                                               </columnType>
-                                              <size>20</size>
+                                              <size>50</size>
                                               <notNull>false</notNull>
                                               <primaryKey>false</primaryKey>
                                               <description></description>
@@ -492,7 +492,7 @@
                                               <columnName>massage_contents</columnName>
                                               <logicalName>massage_contents</logicalName>
                                               <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
-                                              <size>50</size>
+                                              <size>100</size>
                                               <notNull>false</notNull>
                                               <primaryKey>false</primaryKey>
                                               <description></description>

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CvServiceImpl {
+public class CvServiceImpl implements CvService{
 
 	@Autowired
-	private CvService cvService;
+	private CvDao cvDao;
 }
