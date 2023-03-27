@@ -1,4 +1,4 @@
-
+DROP TABLE admin CASCADE CONSTRAINTS;
 DROP TABLE message CASCADE CONSTRAINTS;
 DROP TABLE blog_comment CASCADE CONSTRAINTS;
 DROP TABLE blog CASCADE CONSTRAINTS;
@@ -23,7 +23,6 @@ DROP TABLE education CASCADE CONSTRAINTS;
 DROP TABLE CV CASCADE CONSTRAINTS;
 DROP TABLE userinfo CASCADE CONSTRAINTS;
 DROP TABLE job CASCADE CONSTRAINTS;
-DROP TABLE admin CASCADE CONSTRAINTS;
 
 CREATE TABLE job(
 		job_id                        		NUMBER(10)		 NULL ,
@@ -35,19 +34,19 @@ CREATE TABLE userinfo(
 		user_email                    		VARCHAR2(50)		 NOT NULL,
 		user_password                 		VARCHAR2(45)		 NULL ,
 		user_name                     		VARCHAR2(10)		 NULL ,
-		user_phone                    		NUMBER(20)		 NOT NULL,
+		user_phone                    		VARCHAR2(20)		 NOT NULL,
 		user_sex                      		VARCHAR2(10)		 NULL ,
 		user_address                  		VARCHAR2(50)		 NOT NULL,
-		user_career                   		NUMBER(10)		 NOT NULL,
-		user_age                      		NUMBER(10)		 NOT NULL,
+		user_career                   		VARCHAR2(20)		 NOT NULL,
+		user_age                      		NUMBER(5)		 NOT NULL,
 		user_final_education          		VARCHAR2(10)		 NOT NULL,
 		user_language                 		VARCHAR2(10)		 NULL ,
 		user_skills                   		VARCHAR2(100)		 NULL ,
 		user_image                    		VARCHAR2(45)		 NULL ,
 		user_status                   		CHAR(1)		 NULL ,
-		job_id                        		NUMBER(10)		 NULL ,
 		sns_type                      		VARCHAR2(45)		 NULL ,
-		sns_id                        		VARCHAR2(45)		 NULL 
+		sns_id                        		VARCHAR2(45)		 NULL ,
+		job_id                        		NUMBER(10)		 NULL 
 );
 
 
@@ -108,18 +107,17 @@ CREATE TABLE corp(
 		corp_id                       		VARCHAR2(30)		 NOT NULL,
 		corp_password                 		VARCHAR2(45)		 NOT NULL,
 		corp_name                     		VARCHAR2(30)		 NOT NULL,
-		corp_phone                    		NUMBER(10)		 NULL ,
-		corp_business_no              		NUMBER(10)		 NULL ,
+		corp_phone                    		VARCHAR2(20)		 NULL ,
+		corp_business_no              		VARCHAR2(20)		 NULL ,
 		corp_website                  		VARCHAR2(50)		 NULL ,
 		corp_est                      		DATE		 NULL ,
-		corp_size                     		NUMBER(10)		 NULL ,
+		corp_size                     		VARCHAR2(20)		 NULL ,
 		corp_sales                    		NUMBER(10)		 NULL ,
 		corp_coment                   		VARCHAR2(200)		 NULL ,
 		corp_welfare                  		VARCHAR2(50)		 NULL ,
-		job_id                        		NUMBER(10)		 NULL ,
 		corp_address                  		VARCHAR2(100)		 NULL ,
-		review_seq                    		NUMBER(20)		 NULL ,
-		corp_status                   		CHAR(1)		 NULL 
+		corp_status                   		CHAR(1)		 NULL ,
+		job_id                        		NUMBER(10)		 NULL 
 );
 
 
@@ -137,11 +135,9 @@ CREATE TABLE recruit(
 		recruit_title                 		VARCHAR2(40)		 NULL ,
 		recruit_position              		VARCHAR2(30)		 NULL ,
 		recruit_content               		VARCHAR2(200)		 NULL ,
-		recruit_career_level          		VARCHAR2(20)		 NULL ,
 		recruit_qualification         		VARCHAR2(50)		 NULL ,
 		recruit_salary                		NUMBER(20)		 NULL ,
 		recruit_deadline              		DATE		 NULL ,
-		recruit_experience            		VARCHAR2(20)		 NULL ,
 		recruit_read_count            		NUMBER(10)		 NULL ,
 		corp_id                       		VARCHAR2(30)		 NOT NULL
 );
@@ -162,8 +158,8 @@ CREATE SEQUENCE tag_tag_id_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 CREATE TABLE app(
-		app_seq               		NUMBER(20)		 NOT NULL,
-		app_status            		CHAR(1)		 NULL ,
+		app_seq                       		NUMBER(20)		 NOT NULL,
+		app_status                    		CHAR(1)		 NULL ,
 		recruit_seq                   		NUMBER(20)		 NOT NULL,
 		cv_seq                        		NUMBER(20)		 NOT NULL
 );
@@ -174,7 +170,7 @@ CREATE SEQUENCE app_app_seq_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 CREATE TABLE recruit_scrap(
-		rs_seq             		NUMBER(20)		 NOT NULL,
+		rs_seq                        		NUMBER(20)		 NOT NULL,
 		recruit_seq                   		NUMBER(20)		 NULL ,
 		user_email                    		VARCHAR2(50)		 NULL 
 );
@@ -198,6 +194,10 @@ CREATE TABLE review(
 		user_email                    		VARCHAR2(50)		 NULL ,
 		corp_id                       		VARCHAR2(30)		 NULL 
 );
+
+DROP SEQUENCE review_review_seq_SEQ;
+
+CREATE SEQUENCE review_review_seq_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 CREATE TABLE product(
@@ -296,13 +296,12 @@ CREATE TABLE message(
 		massage_contents              		VARCHAR2(50)		 NULL ,
 		massage_date                  		DATE		 NULL ,
 		user_email                    		VARCHAR2(50)		 NULL ,
-		app_seq               		NUMBER(20)		 NULL 
+		app_seq                       		NUMBER(20)		 NULL 
 );
 
 DROP SEQUENCE message_massage_seq_SEQ;
 
 CREATE SEQUENCE message_massage_seq_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
-
 
 CREATE TABLE admin(
 		admin_id                      		VARCHAR2(20)		 NULL ,
@@ -348,9 +347,9 @@ ALTER TABLE app ADD CONSTRAINT IDX_app_PK PRIMARY KEY (app_seq);
 ALTER TABLE app ADD CONSTRAINT IDX_app_FK0 FOREIGN KEY (recruit_seq) REFERENCES recruit (recruit_seq) on delete cascade;
 ALTER TABLE app ADD CONSTRAINT IDX_app_FK1 FOREIGN KEY (cv_seq) REFERENCES CV (cv_seq) on delete cascade;
 
-ALTER TABLE recruit_scrap ADD CONSTRAINT IDX_rs_PK PRIMARY KEY (rs_seq);
-ALTER TABLE recruit_scrap ADD CONSTRAINT IDX_rs_FK0 FOREIGN KEY (recruit_seq) REFERENCES recruit (recruit_seq) on delete cascade;
-ALTER TABLE recruit_scrap ADD CONSTRAINT IDX_rs_FK1 FOREIGN KEY (user_email) REFERENCES userinfo (user_email) on delete cascade;
+ALTER TABLE recruit_scrap ADD CONSTRAINT IDX_recruit_scrap_PK PRIMARY KEY (rs_seq);
+ALTER TABLE recruit_scrap ADD CONSTRAINT IDX_recruit_scrap_FK0 FOREIGN KEY (recruit_seq) REFERENCES recruit (recruit_seq) on delete cascade;
+ALTER TABLE recruit_scrap ADD CONSTRAINT IDX_recruit_scrap_FK1 FOREIGN KEY (user_email) REFERENCES userinfo (user_email) on delete cascade;
 
 ALTER TABLE corp_bookmark ADD CONSTRAINT IDX_corp_bookmark_FK0 FOREIGN KEY (user_email) REFERENCES userinfo (user_email) on delete cascade;
 ALTER TABLE corp_bookmark ADD CONSTRAINT IDX_corp_bookmark_FK1 FOREIGN KEY (corp_id) REFERENCES corp (corp_id) on delete cascade;
@@ -361,10 +360,10 @@ ALTER TABLE review ADD CONSTRAINT IDX_review_FK1 FOREIGN KEY (user_email) REFERE
 
 ALTER TABLE product ADD CONSTRAINT IDX_product_PK PRIMARY KEY (product_no);
 
-ALTER TABLE orders ADD CONSTRAINT IDX_order_PK PRIMARY KEY (order_no);
-ALTER TABLE orders ADD CONSTRAINT IDX_order_FK0 FOREIGN KEY (product_no) REFERENCES product (product_no) on delete cascade;
-ALTER TABLE orders ADD CONSTRAINT IDX_order_FK1 FOREIGN KEY (corp_id) REFERENCES corp (corp_id) on delete cascade;
-ALTER TABLE orders ADD CONSTRAINT IDX_order_FK2 FOREIGN KEY (user_email) REFERENCES userinfo (user_email) on delete cascade;
+ALTER TABLE orders ADD CONSTRAINT IDX_orders_PK PRIMARY KEY (order_no);
+ALTER TABLE orders ADD CONSTRAINT IDX_orders_FK0 FOREIGN KEY (product_no) REFERENCES product (product_no) on delete cascade;
+ALTER TABLE orders ADD CONSTRAINT IDX_orders_FK1 FOREIGN KEY (corp_id) REFERENCES corp (corp_id) on delete cascade;
+ALTER TABLE orders ADD CONSTRAINT IDX_orders_FK2 FOREIGN KEY (user_email) REFERENCES userinfo (user_email) on delete cascade;
 
 ALTER TABLE payment ADD CONSTRAINT IDX_payment_PK PRIMARY KEY (payment_seq);
 ALTER TABLE payment ADD CONSTRAINT IDX_payment_FK0 FOREIGN KEY (order_no) REFERENCES orders (order_no) on delete cascade;
