@@ -139,8 +139,8 @@ CREATE TABLE corp(
 CREATE TABLE manager(
 		manager_email                 		VARCHAR2(40)		 NOT NULL,
 		manager_name                  		VARCHAR2(20)		 NULL ,
-		manager_position              		VARCHAR2(10)		 NOT NULL,
-		manager_phone                 		NUMBER(20)		 NOT NULL,
+		manager_position              		VARCHAR2(30)		 NOT NULL,
+		manager_phone                 		VARCHAR2(20)		 NOT NULL,
 		corp_id                       		VARCHAR2(30)		 NOT NULL
 );
 

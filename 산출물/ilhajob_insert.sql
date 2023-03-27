@@ -16,7 +16,6 @@ insert into user_roles(role_id, role_name) values(6,'직무6');
 
 
 
-desc corp;
 /*********************************기업관련*********************************/
 /**********************corp insert************************/
 insert into corp(corp_id, corp_password, corp_name) values('기업1@corp.com','1111','테스트기업1');
@@ -110,10 +109,27 @@ values('corp_18', '1818', '슈피겐코리아(Spigen)', '02-862-3452', '120-87-3
 '연금,보험,휴무,보상,원격근무', '서울특별시 강남구 봉은사로 446 슈피겐 HQ A 동', '1', null, null);
 
 /**********************manage insert*********************/
-
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업1.com','기기기','인사팀장','010-5326-6477','corp_01');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업2.com','늬늬늬','인사팀장','010-5326-6477','corp_02');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업3.com','아아아','인사팀장','010-5326-6477','corp_03');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업4.com','댜댜댜','인사팀장','010-5326-6477','corp_04');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업5.com','리리리','인사팀장','010-5326-6477','corp_05');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업6.com','사사사','인사팀장','010-5326-6477','corp_06');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업7.com','카카카','인사팀장','010-5326-6477','DBtest1');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업8.com','ㅌㅌㅌ','인사팀장','010-5326-6477','corp_13');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업9.com','ㅊㅊㅊ','인사팀장','010-5326-6477','corp_14');
 /**********************recruit insert*********************/
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
-values (recruit_recruit_seq_SEQ.nextval, 'SW개발/보안 경력직 모집', '경력직', '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.',
+values (recruit_rc_seq_SEQ.nextval, 'SW개발/보안 경력직 모집', '경력직', '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.',
 '무' ,4500, '2023-04-05', 0, 'corp_01');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
@@ -150,29 +166,27 @@ insert into recruit(RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_S
 values(recruit_rc_seq_seq.nextval,'DB개발자 모집합니다','신입','DB개발자 신입모집합니다.','없음',3000,'2023-04-05',0,'DBtest6');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
-values (recruit_recruit_seq_SEQ.nextval, '다큐브- 시니어 백엔드 개발자', '경력', '다큐브팀과 함께 국내 최초 기업용 음성비서를 만들어갈 동료를 찾고 있습니다.',
+values (recruit_rc_seq_SEQ.nextval, '다큐브- 시니어 백엔드 개발자', '경력', '다큐브팀과 함께 국내 최초 기업용 음성비서를 만들어갈 동료를 찾고 있습니다.',
  'Springboot경험이 있는 분' ,5300, sysdate+30, 0, 'corp_13');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
-values (recruit_recruit_seq_SEQ.nextval, '개발자 구인[백엔드,프론트엔드,Android,iOS]', '신입', '구성원의 성장을 테이블링의 성장이라 생각하고 구성원분들에게 긍정적인 동기부여를 할 수
+values (recruit_rc_seq_SEQ.nextval, '개발자 구인[백엔드,프론트엔드,Android,iOS]', '신입', '구성원의 성장을 테이블링의 성장이라 생각하고 구성원분들에게 긍정적인 동기부여를 할 수
 있도록 노력하고 있습니다.','무' ,0, sysdate+30, 0, 'corp_14');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
-values (recruit_recruit_seq_SEQ.nextval, '프론트엔드 개발자 채용[테이블링]', '신입/경력', '메타넷그룹의 사업 확장과 비즈니스 성장에 함께할 IT 전문성을 가진 인재들을 모십니다.', '무' ,3600, sysdate+30, 0, 'corp_15');
+values (recruit_rc_seq_SEQ.nextval, '프론트엔드 개발자 채용[테이블링]', '신입/경력', '메타넷그룹의 사업 확장과 비즈니스 성장에 함께할 IT 전문성을 가진 인재들을 모십니다.', '무' ,3600, sysdate+30, 0, 'corp_15');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
-values (recruit_recruit_seq_SEQ.nextval, 'Backend Engineer (플랫폼서비스본부)', '경력', ' 무신사와 함께 한국을 넘어 글로벌 무대에서 경쟁력 있는 서비
+values (recruit_rc_seq_SEQ.nextval, 'Backend Engineer (플랫폼서비스본부)', '경력', ' 무신사와 함께 한국을 넘어 글로벌 무대에서 경쟁력 있는 서비
 스를 만들어갈 인재를 찾고 있습니다.','3년 이상의 개발 경력' ,0, sysdate+30, 0, 'corp_16');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
-values (recruit_recruit_seq_SEQ.nextval, '[Binary] 웹 프론트엔드 개발자', '경력', '하이브의 연구 및 개발 법인 바이너리코리아의 웹 프론트엔드 개발자 포지션으로서 사용자 중
+values (recruit_rc_seq_SEQ.nextval, '[Binary] 웹 프론트엔드 개발자', '경력', '하이브의 연구 및 개발 법인 바이너리코리아의 웹 프론트엔드 개발자 포지션으로서 사용자 중
 심의 신규 서비스를 개발하고 운영합니다.','2년 이상 프론트 개발 경력' ,3700, sysdate+30, 0, 'corp_17');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
-values (recruit_recruit_seq_SEQ.nextval, '웹 개발 (JAVA/SPRING)', '신입/경력', '부서 간 협업을 위한 개발 프로젝트를 진행하고, 전사적인 성과창출을 위한 시스템 혁신을 위해 웹 개발을 담당 해주실 분을 모시고 있습니다.',
+values (recruit_rc_seq_SEQ.nextval, '웹 개발 (JAVA/SPRING)', '신입/경력', '부서 간 협업을 위한 개발 프로젝트를 진행하고, 전사적인 성과창출을 위한 시스템 혁신을 위해 웹 개발을 담당 해주실 분을 모시고 있습니다.',
 'Spring Framework 기반 개발가능' ,0, sysdate+30, 0, 'corp_18');
-
-/**********************review insert*********************/
 
 /**********************corp_image insert*********************/
 
@@ -202,6 +216,8 @@ insert into userinfo(user_email, user_password) values('테스트2@test.com','22
 /**********************app insert*************************/
 
 /**********************message insert*************************/
+
+/**********************review insert*********************/
 
 
 
