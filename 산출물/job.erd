@@ -1166,12 +1166,17 @@
                                                   <net.java.amateras.db.visual.model.ColumnModel>
                                                     <columnName>comment_seq</columnName>
                                                     <logicalName>댓글seq</logicalName>
-                                                    <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../../../../../../../../../net.java.amateras.db.visual.model.ForeignKeyModel/source/targetConnections/net.java.amateras.db.visual.model.ForeignKeyModel/source/columns/net.java.amateras.db.visual.model.ColumnModel/columnType"/>
+                                                    <columnType class="net.java.amateras.db.dialect.ColumnType">
+                                                      <name>NUMBER</name>
+                                                      <logicalName>Numeric</logicalName>
+                                                      <supportSize>true</supportSize>
+                                                      <type>2</type>
+                                                    </columnType>
                                                     <size>20</size>
                                                     <notNull>false</notNull>
                                                     <primaryKey>true</primaryKey>
                                                     <description></description>
-                                                    <autoIncrement>false</autoIncrement>
+                                                    <autoIncrement>true</autoIncrement>
                                                     <defaultValue></defaultValue>
                                                   </net.java.amateras.db.visual.model.ColumnModel>
                                                   <net.java.amateras.db.visual.model.ColumnModel>
@@ -1204,7 +1209,7 @@
                                                     <primaryKey>false</primaryKey>
                                                     <description></description>
                                                     <autoIncrement>false</autoIncrement>
-                                                    <defaultValue></defaultValue>
+                                                    <defaultValue>sysdate</defaultValue>
                                                   </net.java.amateras.db.visual.model.ColumnModel>
                                                   <net.java.amateras.db.visual.model.ColumnModel>
                                                     <columnName>user_email</columnName>
@@ -1296,13 +1301,18 @@
                                             <net.java.amateras.db.visual.model.ColumnModel>
                                               <columnName>blog_date</columnName>
                                               <logicalName>등록일</logicalName>
-                                              <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../targetConnections/net.java.amateras.db.visual.model.ForeignKeyModel/source/columns/net.java.amateras.db.visual.model.ColumnModel[3]/columnType"/>
+                                              <columnType class="net.java.amateras.db.dialect.ColumnType">
+                                                <name>DATE</name>
+                                                <logicalName>Date</logicalName>
+                                                <supportSize>false</supportSize>
+                                                <type>91</type>
+                                              </columnType>
                                               <size>10</size>
                                               <notNull>false</notNull>
                                               <primaryKey>false</primaryKey>
                                               <description></description>
                                               <autoIncrement>false</autoIncrement>
-                                              <defaultValue></defaultValue>
+                                              <defaultValue>sysdate</defaultValue>
                                             </net.java.amateras.db.visual.model.ColumnModel>
                                             <net.java.amateras.db.visual.model.ColumnModel>
                                               <columnName>blog_read_count</columnName>
