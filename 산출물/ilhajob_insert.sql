@@ -50,6 +50,24 @@ insert into corp (corp_id, corp_password, corp_name, corp_phone, corp_business_n
 values('corp_06', '6666', '랜드소프트(주)', 0708864477, 6666666666, 'http://landsoft.co.kr', '2018-05-09', 50, 150000000,
 '랜드소프트 주식공 정보시스템 기업으로 2018년 국내 전문가들이 모여 시작해 매년 매출액이 200%이상 성장하고 있는 강소기업입니다.', '연금,보험,휴무,보상,편의',  null, '서울 서초구 서래로 37 (반포동) 2,3층',  null, 0 );
 
+insert into corp(CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID) 
+values('DBtest1','1111','더문랩스','02-1111-1111','123-456-7890','http://www.DBtest1.com','2021-01-01','45','1000000000','DB회사입니다.1','칼퇴','서울시 강남구','1',null,null);
+insert into corp(CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID) 
+values('DBtest2','2222','마켓링크','02-2222-2222','123-456-7899','http://www.DBtest2.com','2020-01-02','20','2000000000','DB회사입니다.2','칼퇴','서울시 서초구','1',null,null);
+insert into corp(CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID) 
+values('DBtest3','3333','디비에프아이에스','02-3333-3333','123-456-7898','http://www.DBtest3.com','2020-01-03','30','3000000000','DB회사입니다.3','칼퇴','서울시 중랑구','1',null,null);
+insert into corp(CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID) 
+values('DBtest4','4444','대보정보통신','02-4444-4444','123-456-7897','http://www.DBtest4.com','2020-01-04','40','4000000000','DB회사입니다.4','칼퇴','서울시 도봉구','1',null,null);
+insert into corp(CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID) 
+values('DBtest5','5555','오앤이데이타','02-5555-5555','123-456-7896','http://www.DBtest5.com','2020-01-05','50','5000000000','DB회사입니다.5','칼퇴','서울시 광진구','1',null,null);
+insert into corp(CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID) 
+values('DBtest6','6666','앱노리','02-6666-6666','123-456-7895','http://www.DBtest6.com','2020-01-06','60','6000000000','DB회사입니다.6','칼퇴','서울시 송파구','1',null,null);
 
 /**********************manage insert*********************/
 
@@ -77,6 +95,19 @@ values (recruit_recruit_seq_SEQ.nextval, '2023 IT 경력직 수시채용', '경�
 insert into recruit (recruit_seq, recruit_title, recruit_position, recruit_content, recruit_career_level, recruit_qualification, recruit_salary, recruit_deadline, recruit_experience, recruit_read_count, corp_id)
 values (recruit_recruit_seq_SEQ.nextval, '자바 개발자 인재 채용', '경력직', '대한민국 SI/SM의 NEW Leader, 랜드소프트가 함께할 인재를 찾습니다.',
 '정규직', '무' ,4000, sysdate+30, '3년 이상', 0, 'corp_06');
+
+insert into recruit(RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID) 
+values(recruit_rc_seq_SEQ.nextval,'DB개발자 모집합니다','신입','DB개발자 신입모집합니다.','없음',3000,'2023-04-05',0,'DBtest1');
+insert into recruit(RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID) 
+values(recruit_rc_seq_seq.nextval,'DB개발자 모집합니다','신입','DB개발자 신입모집합니다.','없음',3000,'2023-04-05',0,'DBtest2');
+insert into recruit(RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID) 
+values(recruit_rc_seq_seq.nextval,'DB개발자 모집합니다','신입','DB개발자 신입모집합니다.','없음',3000,'2023-04-05',0,'DBtest3');
+insert into recruit(RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID) 
+values(recruit_rc_seq_seq.nextval,'DB개발자 모집합니다','신입','DB개발자 신입모집합니다.','없음',3000,'2023-04-05',0,'DBtest4');
+insert into recruit(RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID) 
+values(recruit_rc_seq_seq.nextval,'DB개발자 모집합니다','신입','DB개발자 신입모집합니다.','없음',3000,'2023-04-05',0,'DBtest5');
+insert into recruit(RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID) 
+values(recruit_rc_seq_seq.nextval,'DB개발자 모집합니다','신입','DB개발자 신입모집합니다.','없음',3000,'2023-04-05',0,'DBtest6');
 
 /**********************review insert*********************/
 
