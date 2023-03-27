@@ -322,6 +322,10 @@ CREATE TABLE blog_comment(
 		blog_seq                      		NUMBER(20)		 NOT NULL
 );
 
+DROP SEQUENCE blog_comment_seq_SEQ;
+
+CREATE SEQUENCE blog_comment_seq_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
 
 CREATE TABLE message(
 		massage_seq                   		NUMBER(20)		 NULL ,
