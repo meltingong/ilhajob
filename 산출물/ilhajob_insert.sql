@@ -48,7 +48,7 @@ values('corp_05', '5555', '에이치엠엠', 0237065114, 5555555555, 'http://hmm
 
 insert into corp (corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, job_id, corp_address, corp_status, role_id) 
 values('corp_06', '6666', '랜드소프트(주)', 0708864477, 6666666666, 'http://landsoft.co.kr', '2018-05-09', 50, 150000000,
-'랜드소프트 주식공 정보시스템 기업으로 2018년 국내 전문가들이 모여 시작해 매년 매출액이 200%이상 성장하고 있는 강소기업입니다.', '연금,보험,휴무,보상,편의',  2, '서울 서초구 서래로 37 (반포동) 2,3층',  3, 3 );
+'랜드소프트 주식공 정보시스템 기업으로 2018년 국내 전문가들이 모여 시작해 매년 매출액이 200%이상 성장하고 있는 강소기업입니다.', '연금,보험,휴무,보상,편의',  2, '서울 서초구 서래로 37 (반포동) 2,3층',  0, 3 );
 
 insert into corp(CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
 CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID) 
