@@ -153,7 +153,7 @@ CREATE TABLE recruit(
 		rc_qualification              		VARCHAR2(50)		 NULL ,
 		rc_salary                     		NUMBER(20)		 NULL ,
 		rc_deadline                   		DATE		 NULL ,
-		rc_read_count                 		NUMBER(10)		 NULL ,
+		rc_read_count                 		NUMBER(10)		 DEFAULT 0 NULL ,
 		corp_id                       		VARCHAR2(30)		 NOT NULL
 );
 

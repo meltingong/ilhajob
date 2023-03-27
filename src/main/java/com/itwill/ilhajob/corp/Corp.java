@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.corp;
 
+
 import java.util.Date;
 
 import com.itwill.ilhajob.blog.Blog;
@@ -31,5 +32,5 @@ public class Corp {
 	String corp_status;
 	int job_id;
 	int role_id;
-	
+
 }
