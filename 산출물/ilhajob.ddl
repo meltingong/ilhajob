@@ -300,7 +300,7 @@ CREATE TABLE blog(
 		blog_title                    		VARCHAR2(30)		 NULL ,
 		blog_content                  		VARCHAR2(200)		 NULL ,
 		blog_image                    		VARCHAR2(45)		 NULL ,
-		blog_date                     		DATE		 NULL ,
+		blog_date                     		DATE		 DEFAULT sysdate		 NULL ,
 		blog_read_count               		NUMBER(10)		 NULL ,
 		blog_like                     		NUMBER(10)		 NULL ,
 		user_email                    		VARCHAR2(50)		 NOT NULL,
@@ -317,7 +317,7 @@ CREATE SEQUENCE blog_blog_seq_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 CREATE TABLE blog_comment(
 		comment_seq                   		NUMBER(20)		 NULL ,
 		comment_content               		VARCHAR2(50)		 NULL ,
-		comment_date                  		DATE		 NULL ,
+		comment_date                  		DATE		 DEFAULT sysdate		 NULL ,
 		user_email                    		VARCHAR2(50)		 NULL ,
 		blog_seq                      		NUMBER(20)		 NOT NULL
 );
