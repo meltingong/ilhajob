@@ -139,8 +139,8 @@ CREATE TABLE corp(
 CREATE TABLE manager(
 		manager_email                 		VARCHAR2(40)		 NOT NULL,
 		manager_name                  		VARCHAR2(20)		 NULL ,
-		manager_position              		VARCHAR2(10)		 NOT NULL,
-		manager_phone                 		NUMBER(20)		 NOT NULL,
+		manager_position              		VARCHAR2(30)		 NOT NULL,
+		manager_phone                 		VARCHAR2(20)		 NOT NULL,
 		corp_id                       		VARCHAR2(30)		 NOT NULL
 );
 
@@ -212,8 +212,8 @@ CREATE TABLE corp_bookmark(
 CREATE TABLE review(
 		review_seq                    		NUMBER(20)		 NULL ,
 		review_grade                  		CHAR(1)		 NULL ,
-		review_title                  		VARCHAR2(10)		 NULL ,
-		review_content                		VARCHAR2(50)		 NULL ,
+		review_title                  		VARCHAR2(100)		 NULL ,
+		review_content                		VARCHAR2(200)		 NULL ,
 		user_email                    		VARCHAR2(50)		 NULL ,
 		corp_id                       		VARCHAR2(30)		 NULL 
 );
