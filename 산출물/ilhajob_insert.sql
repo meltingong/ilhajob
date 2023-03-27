@@ -241,7 +241,6 @@ insert into blog_comment(comment_seq, comment_content,comment_date,user_email,bl
 
 
 /**********************admin insert*************************/
-
 commit;
 
 
