@@ -1,5 +1,5 @@
 package com.itwill.ilhajob.blog;
 
-public class BlogServiceImpl {
+public class BlogServiceImpl implements BlogService {
 
 }
