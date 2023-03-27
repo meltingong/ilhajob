@@ -1,1 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.ilhajob.app.mapper.AppMapper">
+    <select id="selectByApp" parameterType="int" resultType="com.itwill.ilhajob.app.App">
+        select * from app where app_seq = #{appSeq}
+    </select>
+   
+    <select id="selectAll" resultType="com.itwill.ilhajob.app.App">
+        select * from app
+    </select>
+    
+    <select id="selectByAppOfRcSeq" parameterType="string" resultType="com.itwill.ilhajob.app.App">
+        select * from app where rc_seq = #{rcSeq}
+    </select>
+    
+    <select id="selectByAppOfCvSeq" parameterType="string" resultType="com.itwill.ilhajob.app.App">
+        select * from app where cv_seq = #{cvSeq}
+    </select>
+    
+    <insert id="insertApp" parameterType="com.itwill.ilhajob.app.App">
+        insert into app (app_seq,app_status,rc_seq,cv_seq)
+        values (#{appSeq},#{appStatus},#{rcSeq},#{cvSeq})
+    </insert>
+    
+    <update id="updateApp" parameterType="com.itwill.ilhajob.app.App">
+        update app
+        set app_status=#{app_status},rc_seq=#{rc_seq},cv_seq=#{cv_seq}
+        where app_seq=#{appSeq}
+    </update>
+    
+    <delete id="deleteApp" parameterType="int">
+        delete app where app_seq=#{appSeq}
+    </delete>
+    
+</mapper>
