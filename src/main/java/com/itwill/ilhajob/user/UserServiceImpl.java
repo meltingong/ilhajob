@@ -51,12 +51,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<User> findUserList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean isDuplicateId(String userId) throws Exception {
 		// TODO Auto-generated method stub
 		return false;

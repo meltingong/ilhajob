@@ -15,38 +15,31 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int create(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return userMapper.create(user);
 	}
 
 	@Override
 	public int update(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return userMapper.update(user);
 	}
 
 	@Override
 	public int remove(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return userMapper.remove(userId);
 	}
 
 	@Override
 	public User findUser(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<User> findUserList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return userMapper.findUser(userId);
 	}
 
 	@Override
 	public boolean existedUser(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		if(userMapper.existedUser(userId)==1) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 

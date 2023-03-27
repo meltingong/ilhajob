@@ -26,11 +26,6 @@ public interface UserDao {
 	User findUser(String userId) throws Exception;
 
 	/*
-	 * 모든사용자 정보를 데이타베이스에서 찾아서 List<User> 콜렉션 에 저장하여 반환
-	 */
-	List<User> findUserList() throws Exception;
-
-	/*
 	 * 인자로 전달되는 아이디를 가지는 사용자가 존재하는지의 여부를판별
 	 */
 	boolean existedUser(String userId) throws Exception;

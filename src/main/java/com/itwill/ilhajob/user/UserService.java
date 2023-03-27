@@ -41,11 +41,6 @@ public interface UserService {
 	int remove(String userId) throws Exception;
 
 	/*
-	 * 전체회원리스트
-	 */
-	List<User> findUserList() throws Exception;
-
-	/*
 	 * 아이디중복체크
 	 */
 	boolean isDuplicateId(String userId) throws Exception;

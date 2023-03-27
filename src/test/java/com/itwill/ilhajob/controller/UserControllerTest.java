@@ -34,14 +34,12 @@ class UserControllerTest {
 		guestList.add(new User());
 		guestList.add(new User());
 		
-		given(userService.findUserList()).willReturn(guestList);
 		
 		mockMvc.perform(get("/guest_list"))
 		.andExpect(status().isOk())
 		.andExpect(forwardedUrl("/WEB-INF/views/guest_list.jsp"))
 		.andDo(print());
 		// static import --> ctrl + shitft +o
-		verify(userService).findUserList();
 	}
 	@Test
 	void testGuest_viewIntegerModel()throws Exception {
