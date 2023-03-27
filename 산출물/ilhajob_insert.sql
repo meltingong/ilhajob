@@ -114,27 +114,27 @@ values('corp_18', '1818', '슈피겐코리아(Spigen)', '02-862-3452', '120-87-3
 /**********************recruit insert*********************/
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
 values (recruit_recruit_seq_SEQ.nextval, 'SW개발/보안 경력직 모집', '경력직', '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.',
-'무' ,4500, sysdate+30, 0, 'corp_01');
+'무' ,4500, '2023-04-05', 0, 'corp_01');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
 values (recruit_rc_seq_SEQ.nextval, '부분별 경력/신입 인재영입', '신입/경력', '우아한 청년들에서 귀한 분을 모십니다.', 
-'무' ,4000, sysdate+30, 0, 'corp_02');
+'무' ,4000, '2023-04-05', 0, 'corp_02');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
 values (recruit_rc_seq_SEQ.nextval, '메타넷 그룹 경력직 공개채용', '경력직', '메타넷그룹의 사업 확장과 비즈니스 성장에 함께할 IT 전문성을 가진 인재들을 모십니다.',
-'무' ,3600, sysdate+30, 0, 'corp_03');
+'무' ,3600, '2023-04-05', 0, 'corp_03');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
 values (recruit_rc_seq_SEQ.nextval, '데이터베이스 관리자(DBA)모집', '경력직', 'JLK와 함께 성장하는 열정과 패기가 넘치는 global 인재를 모집합니다.',
-'대졸이상' ,3500, sysdate+30, 0, 'corp_04');
+'대졸이상' ,3500, '2023-04-05', 0, 'corp_04');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
 values (recruit_rc_seq_SEQ.nextval, '2023 IT 경력직 수시채용', '경력직', '저희 HMM 그룹과 최고 수준의 역량을 바탕으로 동반 성장의 파트너십에 기반하여 함께 성장할 인재를 찾습니다.',
-'경력 5년 이상' ,5000, sysdate+30, 0, 'corp_05');
+'경력 5년 이상' ,5000, '2023-04-05', 0, 'corp_05');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
 values (recruit_rc_seq_SEQ.nextval, '자바 개발자 인재 채용', '경력직', '대한민국 SI/SM의 NEW Leader, 랜드소프트가 함께할 인재를 찾습니다.',
-'경력 3년 이상' ,4000, sysdate+30, 0, 'corp_06');
+'경력 3년 이상' ,4000, '2023-04-05', 0, 'corp_06');
 
 insert into recruit(RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID) 
 values(recruit_rc_seq_SEQ.nextval,'DB개발자 모집합니다','신입','DB개발자 신입모집합니다.','없음',3000,'2023-04-05',0,'DBtest1');
