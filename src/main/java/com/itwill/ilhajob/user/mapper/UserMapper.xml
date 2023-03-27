@@ -2,12 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.user.mapper.UserMapper">
 	<insert id="create" parameterType="com.itwill.ilhajob.user.User">
-    insert into userinfo (user_email, user_password, user_name, user_phone, user_sex,
-        user_address, user_career, user_age, user_final_education, user_language, user_skills,
-        user_image, user_status, sns_type, sns_id, job_id)
-    values (#{userEmail}, #{userPassword}, #{userName}, #{userPhone}, #{userSex},
-        #{userAddress}, #{userCareer}, #{userAge}, #{userFinalEducation}, #{userLanguage},
-        #{userSkills}, #{userImage}, #{userStatus}, #{snsType}, #{snsId}, #{jobId})
+    insert into userinfo (user_email, user_password)
+    values (#{userEmail}, #{userPassword})
 	</insert>
 	<update id="update" parameterType="com.itwill.ilhajob.user.User">
 		update  userinfo 
