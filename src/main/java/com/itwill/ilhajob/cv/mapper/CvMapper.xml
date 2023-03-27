@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.ilhajob.cv.mapper.CvMapper">
+    <select id="selectByCv" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv">
+        select * from cv where cv_seq = #{cvSeq}
+    </select>
+
+    <select id="selectAll" resultType="com.itwill.ilhajob.cv.Cv">
+        select * from cv
+    </select>
+    
+    <select id="selectByCvOfUserEmail" parameterType="string" resultType="com.itwill.ilhajob.cv.Cv">
+        select * from cv where user_email = #{userEmail}
+    </select>
+
+    <insert id="insertCv" parameterType="com.itwill.ilhajob.cv.Cv">
+        insert into cv (cv_seq, cv_name, cv_description, cv_portfolio, user_email)
+        VALUES (#{cvSeq}, #{cvName}, #{cvDescription}, #{cvPortfolio}, #{userEmail})
+    </insert>
+
+    <update id="updateCv" parameterType="com.itwill.ilhajob.cv.Cv">
+        update cv
+        set cv_name = #{cvName}, cv_description = #{cvDescription}, cv_portfolio = #{cvPortfolio}
+        where cv_seq = #{cvSeq}
+    </update>
+
+    <delete id="deleteCv" parameterType="int">
+        delete from cv where cv_seq = #{cvSeq}
+    </delete>
+
+</mapper>
