@@ -15,6 +15,7 @@ insert into user_roles(role_id, role_name) values(5,'직무5');
 insert into user_roles(role_id, role_name) values(6,'직무6');
 
 
+
 desc corp;
 /*********************************기업관련*********************************/
 /**********************corp insert************************/
