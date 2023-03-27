@@ -71,10 +71,22 @@ select * from (
 join app
 on app.cv_seq=ucv.cv_seq
 join recruit r
-on r.rc_seq=app.rc_seq;
+on r.rc_seq=app.rc_seq
+order by r.rc_deadline desc;
 
 /********************기업1의 공고 목록**********************/
 select * from recruit r where r.corp_id='corp_01';
+
+/********************기업1의 공고에 지원된 이력서 목록**********************/
+select * from (
+            select * from recruit r
+            where r.corp_id='corp_01'
+            ) c
+join app
+on app.rc_seq=c.rc_seq
+join cv
+on cv.cv_seq=app.cv_seq
+order by c.rc_deadline desc, c.rc_title asc;
 
 /********************기업1의 모든 지원자목록**********************/
 select * from (
@@ -86,8 +98,8 @@ on app.rc_seq=c.rc_seq
 join cv
 on cv.cv_seq=app.cv_seq
 join userinfo u
-on u.user_email=cv.user_email;
-
+on u.user_email=cv.user_email
+order by c.rc_deadline desc, c.rc_title asc;
 
 --rollback;
 
