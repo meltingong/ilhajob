@@ -39,6 +39,7 @@ public class Blog {
 	private int blogReadCount;
 	private int blogLike;
 	private String userEmail;
+	private int blogCateSeq;
 	
 	
 }
