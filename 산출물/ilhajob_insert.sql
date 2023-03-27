@@ -131,6 +131,9 @@ values('이메일@기업9.com','ㅊㅊㅊ','인사팀장','010-5326-6477','corp_
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
 values (recruit_rc_seq_SEQ.nextval, 'SW개발/보안 경력직 모집', '경력직', '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.',
 '무' ,4500, '2023-04-05', 0, 'corp_01');
+insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
+values (recruit_rc_seq_SEQ.nextval, '청소부', '경력직', '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.',
+'무' ,3500, '2023-04-05', 0, 'corp_01');
 
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
 values (recruit_rc_seq_SEQ.nextval, '부분별 경력/신입 인재영입', '신입/경력', '우아한 청년들에서 귀한 분을 모십니다.', 
@@ -200,13 +203,30 @@ insert into userinfo(user_email, user_password) values('테스트1@test.com','11
 insert into userinfo(user_email, user_password) values('테스트2@test.com','2222');
 
 /**********************education insert************************/
-
+insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_email)
+values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90,sysdate-30,4.0,'학점만점','테스트1@test.com');
 /**********************awards insert***************************/
+/*awards 시퀀스 추가 필요*/
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
+values(100,'창의경진대회',sysdate-300,'장관상','테스트1@test.com');
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
+values(101,'해킹대회',sysdate-30,'금상','테스트1@test.com');
 
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
+values(102,'해킹대회',sysdate-30,'은상','테스트2@test.com');
 /**********************experience insert*************************/
-
+insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_email)
+values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'청소원','마이크로소프트',sysdate-600,sysdate-400,'잡부','테스트1@test.com');
+insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_email)
+values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'웹개발1팀장','구글',sysdate-400,sysdate,'구글에드센스 개발','테스트1@test.com');
 /**********************CV insert*************************/
+insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
+values(CV_CV_SEQ_SEQ.nextval, '웹개발이력서', '~~자기소개~~','https://github.com/테스트1/', '테스트1@test.com');
+insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
+values(CV_CV_SEQ_SEQ.nextval, '하드개발이력서', '~~하드웨어용 자기소개~~','https://github.com/테스트1/', '테스트1@test.com');
 
+insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
+values(CV_CV_SEQ_SEQ.nextval, '테스트2이력서', '~~자기소개2~~','https://github.com/테스트2/', '테스트2@test.com');
 /**********************recruit_scrap insert*************************/
 
 
@@ -214,7 +234,30 @@ insert into userinfo(user_email, user_password) values('테스트2@test.com','22
 
 /***************************************관계테이블**********************************/
 /**********************app insert*************************/
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '2', 1,1);
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '0', 2,1);
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '0', 3,1);
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '1', 4,1);
 
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '1', 3,2);
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '1', 4,2);
+
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '0', 1,3);
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '0', 2,3);
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '0', 3,3);
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '0', 4,3);
+insert into app(app_seq, app_status, rc_seq, cv_seq)
+values(APP_APP_SEQ_SEQ.nextval, '0', 5,3);
 /**********************message insert*************************/
 
 /**********************review insert*********************/

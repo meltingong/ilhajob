@@ -60,9 +60,9 @@ CREATE TABLE userinfo(
 
 CREATE TABLE CV(
 		cv_seq                        		NUMBER(20)		 NOT NULL,
-		cv_name                       		VARCHAR2(20)		 DEFAULT 'my CV'		 NULL ,
-		cv_description                		VARCHAR2(50)		 NULL ,
-		cv_portfolio                  		VARCHAR2(20)		 NULL ,
+		cv_name                       		VARCHAR2(30)		 DEFAULT 'my CV'		 NULL ,
+		cv_description                		VARCHAR2(1000)		 NULL ,
+		cv_portfolio                  		VARCHAR2(70)		 NULL ,
 		user_email                    		VARCHAR2(50)		 NOT NULL
 );
 

@@ -33,6 +33,60 @@ role_id=1
 where corp_id='기업1@corp.com';
 
 
+/********************회원 학력**********************/
+select * 
+from userinfo u
+join education e
+on u.user_email=e.user_email
+where u.user_email='테스트1@test.com';
+/********************회원 수상**********************/
+select * 
+from userinfo u
+join awards a
+on u.user_email=a.user_email
+where u.user_email='테스트1@test.com';
+/********************회원 경력**********************/
+select * 
+from userinfo u
+join experience exp
+on u.user_email=exp.user_email
+where u.user_email='테스트1@test.com';
+
+/********************회원1의 이력서 목록**********************/
+select * from cv where cv.user_email='테스트1@test.com';
+
+/********************회원1의 이력서 제출목록**********************/
+select * from (
+            select * from cv 
+            where cv.user_email='테스트1@test.com'
+            ) ucv
+join app
+on app.cv_seq=ucv.cv_seq;
+
+/********************회원1의 이력서 제출목록의 공고정보**********************/
+select * from (
+            select * from cv 
+            where cv.user_email='테스트1@test.com'
+            ) ucv
+join app
+on app.cv_seq=ucv.cv_seq
+join recruit r
+on r.rc_seq=app.rc_seq;
+
+/********************기업1의 공고 목록**********************/
+select * from recruit r where r.corp_id='corp_01';
+
+/********************기업1의 모든 지원자목록**********************/
+select * from (
+            select * from recruit r
+            where r.corp_id='corp_01'
+            ) c
+join app
+on app.rc_seq=c.rc_seq
+join cv
+on cv.cv_seq=app.cv_seq
+join userinfo u
+on u.user_email=cv.user_email;
 
 
 --rollback;
