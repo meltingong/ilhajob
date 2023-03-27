@@ -147,7 +147,7 @@ CREATE TABLE manager(
 
 CREATE TABLE recruit(
 		rc_seq                        		NUMBER(20)		 NOT NULL,
-		rc_title                      		VARCHAR2(40)		 NULL ,
+		rc_title                      		VARCHAR2(100)		 NULL ,
 		rc_position                   		VARCHAR2(30)		 NULL ,
 		rc_content                    		VARCHAR2(200)		 NULL ,
 		rc_qualification              		VARCHAR2(50)		 NULL ,
