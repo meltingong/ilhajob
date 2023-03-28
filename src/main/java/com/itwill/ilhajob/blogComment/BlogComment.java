@@ -29,6 +29,6 @@ public class BlogComment {
 	private int commentSeq;
 	private String commentContent;
 	private Date commentDate;
-	private String userEmail;
+	private String userSeq;
 	private int blogSeq;
 }
