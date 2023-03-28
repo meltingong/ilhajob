@@ -2,6 +2,10 @@ package com.itwill.ilhajob.corp;
 
 import java.util.List;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Repository;
+
+@Repository
 public interface CorpDao {
 	
 	// 회사계정 회원가입(아이디,비밀번호,회사명만 입력)

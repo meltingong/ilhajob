@@ -12,8 +12,6 @@ public class CorpDaoImpl implements CorpDao{
 	@Autowired
 	private CorpMapper corpMapper;
 	
-	public CorpDaoImpl() {
-	}
 	public int insertCorp(Corp corp) {
 		int insertRowCount = corpMapper.insertCorp(corp);
 		return insertRowCount;
@@ -23,7 +21,7 @@ public class CorpDaoImpl implements CorpDao{
 		return corpMapper.selectById(corpId);
 	}
 	
-	public List<Corp> selectAll(){
+	public List<Corp> selectAll() throws Exception{
 		return corpMapper.selectAll();
 	}
 	
