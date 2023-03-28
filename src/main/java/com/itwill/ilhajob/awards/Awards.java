@@ -17,6 +17,7 @@ public class Awards {
 	private int awardsSeq;
 	private String awardsName;
 	private Date awardsDate;
+	private String awardsContent;
 	private int userSeq;
 
 
