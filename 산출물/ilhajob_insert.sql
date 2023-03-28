@@ -279,7 +279,7 @@ values (recruit_rc_seq_SEQ.NEXTVAL, '정보보안 부문 채용', '경력(1년 �
 
 insert into recruit 
 (rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
-values (recruit_recruit_seq_SEQ.NEXTVAL, '네트워크 구축 엔지니어 채용', '경력(5년 이상)', '데이터센터 네트워크 설계, 구축 및 운영', '네트워크 관련 다수의 프로젝트 경험', 5000, sysdate+90, 0, 'olive@olivenetworks.com');
+values (recruit_rc_seq_SEQ.NEXTVAL, '네트워크 구축 엔지니어 채용', '경력(5년 이상)', '데이터센터 네트워크 설계, 구축 및 운영', '네트워크 관련 다수의 프로젝트 경험', 5000, sysdate+90, 0, 'olive@olivenetworks.com');
 
 insert into recruit 
 (rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
