@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-//@MapperScan(basePackages = "com.itiwll.ilhajob.corp.mapper")
+@MapperScan(basePackages = "com.itwill.ilhajob.corp.mapper")
 public class SpringBootCorpDaoMain {
 	
 	
