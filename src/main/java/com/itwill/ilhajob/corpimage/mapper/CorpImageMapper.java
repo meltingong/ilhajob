@@ -2,6 +2,8 @@ package com.itwill.ilhajob.corpimage.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.itwill.ilhajob.corp.Corp;
 import com.itwill.ilhajob.corpimage.CorpImage;
 
