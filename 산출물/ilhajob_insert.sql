@@ -303,17 +303,17 @@ insert into userinfo(user_seq, user_email, user_password) values(USERINFO_USER_S
 
 
 /**********************education insert************************/
-insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_email)
-values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90,sysdate-30,4.0,'학점만점','테스트1@test.com');
+insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_seq)
+values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90,sysdate-30,4.0,'학점만점',1);
 /**********************awards insert***************************/
 /*awards 시퀀스 추가 필요*/
-insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
-values(100,'창의경진대회',sysdate-300,'장관상','테스트1@test.com');
-insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
-values(101,'해킹대회',sysdate-30,'금상','테스트1@test.com');
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
+values(100,'창의경진대회',sysdate-300,'장관상',1);
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
+values(101,'해킹대회',sysdate-30,'금상',1);
 
-insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
-values(102,'해킹대회',sysdate-30,'은상','테스트2@test.com');
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
+values(102,'해킹대회',sysdate-30,'은상',2);
 /**********************experience insert*************************/
 insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_seq)
 values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'청소원','마이크로소프트',sysdate-600,sysdate-400,'잡부',1);
