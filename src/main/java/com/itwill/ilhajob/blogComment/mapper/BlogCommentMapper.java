@@ -24,7 +24,7 @@ public interface BlogCommentMapper {
 	*/
 	
 	public List<BlogComment> selectByBlogSeq(int blogSeq);
-	/*
+	/*i
 	<select id="selectByBlogSeq" resultType="com.itwill.ilhajob.blogComment.BlogComment">
         select * from blogcomment where blog_seq = #{blogSeq}
     </select>
