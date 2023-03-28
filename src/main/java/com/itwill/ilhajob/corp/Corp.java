@@ -2,8 +2,13 @@ package com.itwill.ilhajob.corp;
 
 
 import java.util.Date;
+import java.util.List;
 
 import com.itwill.ilhajob.blog.Blog;
+import com.itwill.ilhajob.corpimage.CorpImage;
+import com.itwill.ilhajob.manager.Manager;
+import com.itwill.ilhajob.order.Orders;
+
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -20,19 +25,24 @@ import lombok.ToString;
 public class Corp {
 	private String corp_id;
 	private String corp_password;
-	private String corp_name;
-	private String corp_phone;
-	private String corp_business_no;
-	private String corp_website;
-	private Date corp_est;
-	private String corp_size;
-	private String corp_sales;
-	private String corp_comment;
-	private String corp_welfare;
-	private String corp_address;
-	private char corp_status;
-	private int job_id;
-	private int role_id;
+	private String corpName;
+	private String corpPhone;
+	private String corpBusiness_no;
+	private String corpWebsite;
+	private Date corpEst;
+	private String corpSize;
+	private String corpSales;
+	private String corpComment;
+	private String corpWelfare;
+	private String corpAddress;
+	private char corpStatus;
+	private int jobId;
+	private int roleId;
+	
+	private Orders orders;
+	private List<CorpImage> corpImageList;
+	private List<Manager> managerList;
+	
 }
 /*
 	이름               널?       유형             

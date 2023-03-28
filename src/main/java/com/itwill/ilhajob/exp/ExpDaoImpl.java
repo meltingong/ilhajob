@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.itwill.ilhajob.exp.mapper.ExpMapper;
 
 @Repository
-public class ExpDaoImpl {
+public class ExpDaoImpl implements ExpDao {
 	@Autowired
 	private ExpMapper expMapper;
 	
@@ -53,10 +53,19 @@ public class ExpDaoImpl {
 	  */
 	 
 	 public List<Exp> selectByUser(int userSeq){
-		 List<Exp> expList = expMapper.selectByUserSeq(userSeq);
+		 List<Exp> expList = expMapper.selectByUser(userSeq);
 		 return expList;
 	 }
-	
+	 
+	 /*
+	  * 한 유저의 경력 전체보기
+	  */
+		@Override
+		public List<Exp> selectByUserEmail(String userEmail) {
+			List<Exp> expList = expMapper.selectByUserEmail(userEmail);
+			return expList;
+		}
+	 
 	 /*
 	  * 경력 추가
 	  */
@@ -81,4 +90,7 @@ public class ExpDaoImpl {
 		int deleteCount = expMapper.deleteExp(expSeq);
 		return deleteCount;
 	}
+
+
+
 }

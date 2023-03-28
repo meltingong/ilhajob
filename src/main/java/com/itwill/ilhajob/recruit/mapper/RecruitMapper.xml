@@ -48,7 +48,7 @@
 	select 기능별로 추가해야함 기본적인 
 	  -->
 	
-	<update id="updateBySeq" parameterMap="map">
+	<update id="updateBySeq" parameterType="map">
 		update recruit
 		set rc_title = #{rcTitle}, rc_position = #{rcPosition}, rc_content = #{rcContent},
 			rc_qualification = #{rcQualification}, rc_salary = #{rcSalary}, rc_deadline = #{rcDeadline}

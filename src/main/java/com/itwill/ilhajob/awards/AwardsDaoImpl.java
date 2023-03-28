@@ -14,38 +14,32 @@ public class AwardsDaoImpl implements AwardsDao{
 
 	@Override
 	public Awards findAwards(int awardsSeq) {
-		// TODO Auto-generated method stub
-		return null;
+		return  awardsMapper.selectByAwards(awardsSeq);
 	}
 
 	@Override
 	public int createAwards(Awards awards) {
-		// TODO Auto-generated method stub
-		return 0;
+		return awardsMapper.insertAwards(awards);
 	}
 
 	@Override
 	public int updateAwards(Awards awards) {
-		// TODO Auto-generated method stub
-		return 0;
+		return awardsMapper.updateAwards(awards);
 	}
 
 	@Override
 	public int removeAwards(Awards awards) {
-		// TODO Auto-generated method stub
-		return 0;
+		return awardsMapper.removeAwards(awards);
 	}
 
 	@Override
 	public List<Awards> findAwardsList() {
-		// TODO Auto-generated method stub
-		return null;
+		return awardsMapper.selectAll();
 	}
 
 	@Override
 	public List<Awards> findAwardsOfUser(int userSeq) {
-		// TODO Auto-generated method stub
-		return null;
+		return awardsMapper.selectByAwardsOfUser(userSeq);
 	}
 	
 	

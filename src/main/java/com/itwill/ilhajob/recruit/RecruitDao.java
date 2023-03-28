@@ -1,5 +1,18 @@
 package com.itwill.ilhajob.recruit;
 
-public interface RecruitDao {
+import java.util.List;
 
+public interface RecruitDao {
+	
+	public int insertRecruit(Recruit recruit) throws Exception;
+	
+	public List<Recruit> findByCorpId(String corpId) throws Exception;
+	
+	public List<Recruit> findByJob(String job) throws Exception;
+	
+	public Recruit findBySeq(int rcSeq) throws Exception;
+	
+	public int updateBySeq(Recruit recruit) throws Exception;
+	
+	public int deleteBySeq(int rcSeq, String corpId) throws Exception;
 }

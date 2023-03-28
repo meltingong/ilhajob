@@ -15,7 +15,7 @@ public interface CorpMapper {
 	 */
 	public Corp selectById(String corp_id);
 	public List<Corp> selectAll();
-	public int insertGuest(Corp corp);
-	public int deleteGuest(String corp_id);
-	public int updateGuest(Corp corp);
+	public int insertCorp(Corp corp);
+	public int deleteCorp(String corp_id);
+	public int updateCorp(Corp corp);
 }

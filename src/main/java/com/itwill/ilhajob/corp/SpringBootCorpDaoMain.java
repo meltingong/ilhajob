@@ -4,18 +4,22 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+
 
 @SpringBootApplication
-//@MapperScan(basePackages = "com.itiwll.ilhajob.Awards.mapper")
+@MapperScan(basePackages = "com.itwill.ilhajob.corp.mapper")
 public class SpringBootCorpDaoMain {
-
-	public static void main(String[] args) {
+	
+	
+	
+	public static void main(String[] args) throws Exception {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootCorpDaoMain.class, args);
-		//Awards tutorDao=(Awards)appicationContext.getBean(Awards.class);
+		CorpDao corpDao=(CorpDao)appicationContext.getBean(CorpDao.class);
 		System.out.println("---------findTutorByIdWithCourses------------------");
-		System.out.println();
-		System.out.println();
+		System.out.println(corpDao.selectAll());
+		System.out.println("");
 
 	}
 

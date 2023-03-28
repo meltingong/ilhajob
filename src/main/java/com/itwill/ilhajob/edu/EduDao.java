@@ -1,9 +1,12 @@
 package com.itwill.ilhajob.edu;
 
-public class EduDao {
+import java.util.List;
 
-	public static void main(String[] args) {
-
-	}
-
+public interface EduDao {
+    int insertEdu(Edu edu);
+    List<Edu> selectEduByUserSeq(int userSeq);
+    List<Edu> selectAllEdu();
+    int updateEdu(Edu edu);
+    int deleteEduByEduSeq(int eduSeq);
+    int deleteAllEdu(int userSeq);
 }
