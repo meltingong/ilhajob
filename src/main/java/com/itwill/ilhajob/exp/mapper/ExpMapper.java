@@ -2,8 +2,10 @@ package com.itwill.ilhajob.exp.mapper;
 
 import java.util.List;
 
-import com.itwill.ilhajob.exp.Exp;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.itwill.ilhajob.exp.Exp;
+@Mapper
 public interface ExpMapper {
 	
 	//public List<Exp> selectAll(); admin 없어서 필요없을 듯
