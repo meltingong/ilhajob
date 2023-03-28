@@ -236,8 +236,9 @@ values (recruit_rc_seq_SEQ.nextval, '웹 개발 (JAVA/SPRING)', '신입/경력',
 
 /*********************************개인회원관련********************************/
 /**********************userinfo insert************************/
-insert into userinfo(user_email, user_password) values('테스트1@test.com','1111');
-insert into userinfo(user_email, user_password) values('테스트2@test.com','2222');
+insert into userinfo(user_seq, user_email, user_password) values(USERINFO_USER_SEQ_SEQ.nextval,'테스트1@test.com','1111');
+insert into userinfo(user_seq, user_email, user_password) values(USERINFO_USER_SEQ_SEQ.nextval, '테스트2@test.com','2222');
+
 
 /**********************education insert************************/
 insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_email)
@@ -315,8 +316,35 @@ values(REVIEW_REVIEW_SEQ_SEQ.nextval,'4','생각보다 다닐만한 기업','대
 
 /*********************************결제관련********************************/
 /**********************product insert**************************/
+--개인회원 상품 insert=> p_div: 1
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(1,'개인회원상품1',10000,'2023-01-01','상품이미지1','1');
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(2,'개인회원상품2',20000,'2023-02-02','상품이미지2','1');
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(3,'개인회원상품3',30000,'2023-03-03','상품이미지3','1');
+
+--기업회원 상품 insert=> p_div: 2
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(4,'기업회원상품1',40000,'2023-04-04','상품이미지4','2');
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(5,'기업회원상품2',50000,'2023-05-05','상품이미지5','2');
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(6,'기업회원상품3',60000,'2023-06-06','상품이미지6','2');
 
 /**********************orders insert**************************/
+--개인회원1 user_seq:1 로 개인상품 p_no 1주문하기
+insert into orders(order_no,p_no,corp_id,user_seq)
+values(ORDERS_ORDER_NO_SEQ.nextval,1,null,1);
+--개인회원1 user_seq:1 로 개인상품 p_no 2주문하기
+insert into orders(order_no,p_no,corp_id,user_seq)
+values(ORDERS_ORDER_NO_SEQ.nextval,2,null,1);
+--기업회원1 'corp_01' 로 기업상품 p_no 4주문하기
+insert into orders(order_no,p_no,corp_id,user_seq)
+values(ORDERS_ORDER_NO_SEQ.nextval,4,'corp_01',null);
+--기업회원1 'corp_01' 로 기업상품 p_no 5주문하기
+insert into orders(order_no,p_no,corp_id,user_seq)
+values(ORDERS_ORDER_NO_SEQ.nextval,5,'corp_01',null);
 
 /**********************payment insert**************************/
 
