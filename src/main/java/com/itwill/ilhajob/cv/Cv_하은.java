@@ -14,7 +14,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cv {
+public class Cv_하은 {
 
 	private String cvSeq;
 	private String cvName;
