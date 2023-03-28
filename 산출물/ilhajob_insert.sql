@@ -451,8 +451,8 @@ insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog
 insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용2', '2023-03-02',2,33);
 insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용3', '2023-03-03',1,40);
 insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용4', '2023-03-04',2,41);
-insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용4', '2023-03-05',1,42);
-insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용4', '2023-03-06',2,43);
+insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용5', '2023-03-05',1,42);
+insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용6', '2023-03-06',2,43);
 
 
 
