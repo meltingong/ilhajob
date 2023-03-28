@@ -22,9 +22,9 @@ public class SpringBootProductDaoMain {
 		System.out.println("--selectByDiv--");
 		System.out.println(productDao.findAllByDiv("U"));
 		System.out.println("--update--");
-		System.out.println(productDao.update(new Product(1, "수정", 1, null, "수정", "A")));
-		//System.out.println("--delete--");
-		//System.out.println(productDao.delete(1));
+		System.out.println(productDao.update(new Product(1, "수정", 1, 3, "수정", "A")));
+		System.out.println("--delete--");
+		System.out.println(productDao.delete(1));
 
 	}
 

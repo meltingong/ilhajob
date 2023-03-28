@@ -11,17 +11,17 @@ import com.itwill.ilhajob.product.mapper.ProductMapper;
 @Repository
 public class ProductDaoImpl implements ProductDao{
 	
-	@Autowired(required = true)
+	@Autowired
 	private ProductMapper productMapper;
 
 	@Override
-	public Product findByNo(int p_no) throws Exception {
-		return productMapper.selectByNo(p_no);
+	public Product findByNo(int pNo) throws Exception {
+		return productMapper.selectByNo(pNo);
 	}
 
 	@Override
-	public List<Product> findAllByDiv(String p_div) throws Exception {
-		return productMapper.selectAllByDiv(p_div);
+	public List<Product> findAllByDiv(String pDiv) throws Exception {
+		return productMapper.selectAllByDiv(pDiv);
 	}
 
 	@Override
@@ -30,8 +30,8 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public int delete(int p_no) throws Exception {
-		return productMapper.deleteProduct(p_no);
+	public int delete(int pNo) throws Exception {
+		return productMapper.deleteProduct(pNo);
 	}
 	
 	

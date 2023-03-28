@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface ProductDao {
 	
-	Product findByNo(int p_no) throws Exception;
+	Product findByNo(int pNo) throws Exception;
 	
-	List<Product> findAllByDiv(String p_div) throws Exception;
+	List<Product> findAllByDiv(String pDiv) throws Exception;
 	
 	int update(Product product) throws Exception;
 	
-	int delete(int p_no) throws Exception;
+	int delete(int pNo) throws Exception;
 }

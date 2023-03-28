@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
-	private int p_no;
-	private String p_name;
-	private int p_price;
-	private Date p_date;
-	private String p_image;
-	private String p_div;
+	private int pNo;
+	private String pName;
+	private int pPrice;
+	private int pEndMonth;
+	private String pImage;
+	private String pDiv;
 }

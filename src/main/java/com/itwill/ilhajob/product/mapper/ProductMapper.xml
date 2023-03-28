@@ -3,21 +3,21 @@
 <mapper namespace="com.itwill.ilhajob.product.mapper.ProductMapper">
 	
 	<select id="selectByNo" parameterType="java.lang.Integer" resultType="com.itwill.ilhajob.product.Product">
-		select * from product where p_no=#{p_no}
+		select * from product where p_no=#{pNo}
 	</select>
 	  
 	<select id="selectAllByDiv" parameterType="java.lang.String" resultType="com.itwill.ilhajob.product.Product">
-		select * from product where p_div=#{p_div}
+		select * from product where p_div=#{pDiv}
 	</select>
 	  
 	<update id="updateProduct" parameterType="com.itwill.ilhajob.product.Product">
 		update product 
-		set p_name=#{p_name}, p_price=#{p_price}, p_end_month=#{p_end_month}, p_image=#{p_image},p_div=#{p_div}
-		where p_no=#{p_no}
+		set p_name=#{pName}, p_price=#{pPrice}, p_end_month=#{pEndMonth}, p_image=#{pImage},p_div=#{pDiv}
+		where p_no=#{pNo}
 	</update>
 	
-	<delete id="deleteProduct" parameterType="java.lang.Integer">List
-	 	delete from product where p_no=#{p_no}
+	<delete id="deleteProduct" parameterType="java.lang.Integer">
+	 	delete from product where p_no=#{pNo}
 	</delete>
 	
 </mapper>
