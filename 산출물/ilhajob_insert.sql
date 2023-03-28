@@ -387,20 +387,20 @@ values(REVIEW_REVIEW_SEQ_SEQ.nextval,'4','생각보다 다닐만한 기업','대
 /*********************************결제관련********************************/
 /**********************product insert**************************/
 --개인회원 상품 insert=> p_div: U
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(1,'개인회원상품1',10000,'2023-01-01','상품이미지1','U');
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(2,'개인회원상품2',20000,'2023-02-02','상품이미지2','U');
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(3,'개인회원상품3',30000,'2023-03-03','상품이미지3','U');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(1,'개인회원상품1',10000,1,'상품이미지1','U');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(2,'개인회원상품2',20000,2,'상품이미지2','U');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(3,'개인회원상품3',30000,3,'상품이미지3','U');
 
 --기업회원 상품 insert=> p_div: C
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(4,'기업회원상품1',40000,'2023-04-04','상품이미지4','C');
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(5,'기업회원상품2',50000,'2023-05-05','상품이미지5','C');
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(6,'기업회원상품3',60000,'2023-06-06','상품이미지6','C');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(4,'기업회원상품1',40000,4,'상품이미지4','C');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(5,'기업회원상품2',50000,5,'상품이미지5','C');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(6,'기업회원상품3',60000,6,'상품이미지6','C');
 
 /**********************orders insert**************************/
 --개인회원1 user_seq:1 로 개인상품 p_no 1주문하기

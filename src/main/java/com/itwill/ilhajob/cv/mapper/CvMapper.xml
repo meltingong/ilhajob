@@ -14,6 +14,7 @@
     </select>
 
     <insert id="insertCv" parameterType="com.itwill.ilhajob.cv.Cv">
+    	
         insert into cv (cv_seq, cv_name, cv_description, cv_portfolio, user_email)
         VALUES (#{cvSeq}, #{cvName}, #{cvDescription}, #{cvPortfolio}, #{userEmail})
     </insert>
