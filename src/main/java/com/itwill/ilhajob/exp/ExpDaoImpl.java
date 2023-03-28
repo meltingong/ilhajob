@@ -18,5 +18,13 @@ public class ExpDaoImpl {
 
 	}
 	
+	public ExpMapper getExpMapper() {
+		return expMapper;
+	}
+	
+	public void setExpMapper(ExpMapper expMapper) {
+		this.expMapper = expMapper;
+	}
+	
 	
 }
