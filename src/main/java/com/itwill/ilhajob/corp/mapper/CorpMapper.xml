@@ -15,7 +15,8 @@
 		where corp_id = #{corp_id}
 	</select>
 	
-	<select id="selectAll">
+	<select id="selectAll"
+			resultType="com.itwill.ilhajob.corp.Corp">
 		select * from corp
 	</select>
 	
