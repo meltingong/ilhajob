@@ -118,6 +118,22 @@ order by c.rc_deadline desc, c.rc_title asc;
 
 
 
+/********************회원의 결제상품 상세보기**********************/
+select * from orders
+where user_seq=1;
+
+/********************개인회원의 결제상품 상세보기**********************/
+select * from orders o
+join product p
+on o.p_no=p.p_no
+where user_seq=1;
+
+/********************기업의 결제상품 상세보기**********************/
+select * from orders o
+join product p
+on o.p_no=p.p_no
+where corp_id='corp_01';
+
 --rollback;
 
 

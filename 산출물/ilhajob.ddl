@@ -233,7 +233,7 @@ CREATE TABLE product(
 		p_no                          		NUMBER(20)		 NULL ,
 		p_name                        		VARCHAR2(50)		 NULL ,
 		p_price                       		NUMBER(10)		 NULL ,
-		p_date                        		DATE		 NULL ,
+		p_end_month                      NUMBER(10)	 DEFAULT 0 NULL ,
 		p_image                       		VARCHAR2(45)		 NULL ,
 		p_div                         		CHAR(1)		 NULL 
 );
@@ -241,6 +241,7 @@ CREATE TABLE product(
 
 CREATE TABLE orders(
 		order_no                      		NUMBER(20)		 NOT NULL,
+        order_end_date                   DATE		DEFAULT sysdate NULL,
 		p_no                          		NUMBER(20)		 NOT NULL,
 		corp_id                       		VARCHAR2(30)	 NULL,
 		user_seq                      		NUMBER(20)		 NULL 
