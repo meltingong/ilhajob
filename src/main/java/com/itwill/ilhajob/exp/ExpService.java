@@ -19,8 +19,11 @@ public interface ExpService {
 	 * 경력 수정
 	 */
 	int updateExp(Exp exp);
+	
 	/*
 	 * 경력 삭제
 	 */
 	int deleteExp(int expSeq);
+	
+	
 }

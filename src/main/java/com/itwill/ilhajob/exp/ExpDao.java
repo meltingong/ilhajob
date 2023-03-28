@@ -6,7 +6,7 @@ public interface ExpDao {
 	
 	int insertExp(Exp exp);
 	
-	List<Exp> selectByNo(int expSeq);
+	List<Exp> selectByUser(int userSeq);
 	
 	//List<Exp> selectAll();
 	
