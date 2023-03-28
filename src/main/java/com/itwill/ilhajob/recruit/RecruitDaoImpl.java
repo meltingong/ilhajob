@@ -1,6 +1,8 @@
 package com.itwill.ilhajob.recruit;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,9 +12,9 @@ import com.itwill.ilhajob.recruit.mapper.RecruitMapper;
 @Repository
 public class RecruitDaoImpl implements RecruitDao {
 
+    @Autowired
     private RecruitMapper recruitMapper;
 
-    @Autowired
     public RecruitDaoImpl(RecruitMapper recruitMapper) {
         this.recruitMapper = recruitMapper;
     }
@@ -43,8 +45,8 @@ public class RecruitDaoImpl implements RecruitDao {
     }
 
     @Override
-    public int deleteBySeq(int rcSeq, String corpId) throws Exception {
-        return recruitMapper.deleteBySeq(rcSeq, corpId);
+    public int deleteBySeq(Map<String, Object> map) throws Exception {
+    	return recruitMapper.deleteBySeq(map);
     }
 	
 	

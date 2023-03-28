@@ -1,6 +1,7 @@
 package com.itwill.ilhajob.recruit;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RecruitDao {
 	
@@ -14,5 +15,5 @@ public interface RecruitDao {
 	
 	public int updateBySeq(Recruit recruit) throws Exception;
 	
-	public int deleteBySeq(int rcSeq, String corpId) throws Exception;
+	public int deleteBySeq(Map<String, Object> map) throws Exception;
 }

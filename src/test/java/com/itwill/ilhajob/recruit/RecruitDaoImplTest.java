@@ -3,6 +3,8 @@ package com.itwill.ilhajob.recruit;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -27,7 +29,7 @@ class RecruitDaoImplTest {
 		recruitMapper.insertRecruit(recruit);
 	}
 
-	//@Disabled
+	@Disabled
 	@Test
 	void testFindByCorpId() {
 		System.out.println(recruitMapper.findByCorpId("DBtest6"));
@@ -37,25 +39,29 @@ class RecruitDaoImplTest {
 	@Disabled
 	@Test
 	void testFindByJob() {
-		fail("Not yet implemented");
+		System.out.println(recruitMapper.findByJob("2"));
 	}
 
 	@Disabled
 	@Test
 	void testFindBySeq() {
-		fail("Not yet implemented");
+		System.out.println(recruitMapper.findBySeq(4));
 	}
 
 	@Disabled
 	@Test
 	void testUpdateBySeq() {
-		fail("Not yet implemented");
+		Recruit recruit = new Recruit(10, "업데이트", "업데이트", "업데이트", "업데이트", 1000, new Date(), new Date(), 0, "DBtest6", null);
+		System.out.println(recruitMapper.updateBySeq(recruit));
 	}
 
-	@Disabled
+	//@Disabled
 	@Test
 	void testDeleteBySeq() {
-		fail("Not yet implemented");
+    	Map<String, Object> paramMap = new HashMap<>();
+    	paramMap.put("rcSeq", 10);
+    	paramMap.put("corpId", "DBtest6");
+		System.out.println(recruitMapper.deleteBySeq(paramMap));
 	}
 
 }

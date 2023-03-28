@@ -31,7 +31,7 @@
 		select * from recruit rc
 		join corp c
 		on rc.corp_id = c.corp_id
-		where c.job = #{job}
+		where c.job_id = #{jobId}
 	</select>
 	
 	<select id="findBySeq" 
@@ -48,14 +48,14 @@
 	select 기능별로 추가해야함 기본적인 
 	  -->
 	
-	<update id="updateBySeq" parameterType="map">
+	<update id="updateBySeq" parameterType="com.itwill.ilhajob.recruit.Recruit">
 		update recruit
 		set rc_title = #{rcTitle}, rc_position = #{rcPosition}, rc_content = #{rcContent},
 			rc_qualification = #{rcQualification}, rc_salary = #{rcSalary}, rc_deadline = #{rcDeadline}
-		where rc_seq = #{rcSEQ} and corp_id = #{corp_id}
+		where rc_seq = #{rcSeq} and corp_id = #{corpId}
 	</update>
 	
-	<delete id="deleteBySeq" parameterType="java.lang.String">
-		delete from recruit where rc_seq = #{rcSEQ} and corp_id = #{corpId}
+	<delete id="deleteBySeq" parameterType="java.util.Map">
+		delete from recruit where rc_seq = #{rcSeq} and corp_id = #{corpId}
 	</delete>
 </mapper>
