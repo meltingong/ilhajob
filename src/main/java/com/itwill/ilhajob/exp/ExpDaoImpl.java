@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.itwill.ilhajob.exp.mapper.ExpMapper;
 
 @Repository
-public class ExpDaoImpl {
+public class ExpDaoImpl implements ExpDao {
 	@Autowired
 	private ExpMapper expMapper;
 	
@@ -81,4 +81,5 @@ public class ExpDaoImpl {
 		int deleteCount = expMapper.deleteExp(expSeq);
 		return deleteCount;
 	}
+
 }
