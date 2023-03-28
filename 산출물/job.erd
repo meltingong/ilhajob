@@ -1670,6 +1670,22 @@
                                                     <defaultValue>sysdate</defaultValue>
                                                   </net.java.amateras.db.visual.model.ColumnModel>
                                                   <net.java.amateras.db.visual.model.ColumnModel>
+                                                    <columnName>order_valid</columnName>
+                                                    <logicalName>상품활성</logicalName>
+                                                    <columnType class="net.java.amateras.db.dialect.ColumnType">
+                                                      <name>CHAR</name>
+                                                      <logicalName>Character</logicalName>
+                                                      <supportSize>true</supportSize>
+                                                      <type>1</type>
+                                                    </columnType>
+                                                    <size>1</size>
+                                                    <notNull>false</notNull>
+                                                    <primaryKey>false</primaryKey>
+                                                    <description></description>
+                                                    <autoIncrement>false</autoIncrement>
+                                                    <defaultValue>&apos;F&apos;</defaultValue>
+                                                  </net.java.amateras.db.visual.model.ColumnModel>
+                                                  <net.java.amateras.db.visual.model.ColumnModel>
                                                     <columnName>p_no</columnName>
                                                     <logicalName>상품번호</logicalName>
                                                     <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../../../../../../../../../net.java.amateras.db.visual.model.ForeignKeyModel/source/columns/net.java.amateras.db.visual.model.ColumnModel[3]/columnType"/>

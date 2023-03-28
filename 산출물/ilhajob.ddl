@@ -242,6 +242,7 @@ CREATE TABLE product(
 CREATE TABLE orders(
 		order_no                      		NUMBER(20)		 NOT NULL,
         order_end_date                   DATE		DEFAULT sysdate NULL,
+        order_valid                         CHAR(1)		 NULL,
 		p_no                          		NUMBER(20)		 NOT NULL,
 		corp_id                       		VARCHAR2(30)	 NULL,
 		user_seq                      		NUMBER(20)		 NULL 
