@@ -303,11 +303,12 @@ insert into userinfo(user_seq,user_email,user_password) values(userinfo_user_seq
 
 
 /**********************education insert************************/
-insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_email)
-values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90,sysdate-30,4.0,'학점만점','테스트1@test.com');
+insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_seq)
+values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90,sysdate-30,4.0,'학점만점',userinfo_user_seq_SEQ.currval);
 /**********************awards insert***************************/
+/*awards 시퀀스 추가 필요*/
 insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
-values(awards_awards_seq_SEQ.nextval,'창의경진대회','2023/03/28','장관상',userinfo_user_seq_SEQ.currval);
+values(awards_awards_seq_SEQ.nextval,'창의경진대회',2023/03/28,'장관상',userinfo_user_seq_SEQ.currval);
 
 insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
 values(awards_awards_seq_SEQ.nextval,'과학경진대회','2023/01/28','국무총리상',userinfo_user_seq_SEQ.currval);
@@ -316,18 +317,18 @@ insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq
 values(awards_awards_seq_SEQ.nextval,'정보화경진대회','2023/02/28','대통령상',userinfo_user_seq_SEQ.currval);
 
 /**********************experience insert*************************/
-insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_email)
-values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'청소원','마이크로소프트',sysdate-600,sysdate-400,'잡부','테스트1@test.com');
-insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_email)
-values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'웹개발1팀장','구글',sysdate-400,sysdate,'구글에드센스 개발','테스트1@test.com');
+insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_seq)
+values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'청소원','마이크로소프트',sysdate-600,sysdate-400,'잡부',userinfo_user_seq_SEQ.currval);
+insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_seq)
+values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'웹개발1팀장','구글',sysdate-400,sysdate,'구글에드센스 개발',userinfo_user_seq_SEQ.currval);
 /**********************CV insert*************************/
-insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
+insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
 values(CV_CV_SEQ_SEQ.nextval, '웹개발이력서', '~~자기소개~~','https://github.com/테스트1/', '테스트1@test.com');
-insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
-values(CV_CV_SEQ_SEQ.nextval, '하드개발이력서', '~~하드웨어용 자기소개~~','https://github.com/테스트1/', '테스트1@test.com');
+insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
+values(CV_CV_SEQ_SEQ.nextval, '하드개발이력서', '~~하드웨어용 자기소개~~','https://github.com/테스트1/', userinfo_user_seq_SEQ.currval);
 
-insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
-values(CV_CV_SEQ_SEQ.nextval, '테스트2이력서', '~~자기소개2~~','https://github.com/테스트2/', '테스트2@test.com');
+insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
+values(CV_CV_SEQ_SEQ.nextval, '테스트2이력서', '~~자기소개2~~','https://github.com/테스트2/', userinfo_user_seq_SEQ.currval);
 /**********************recruit_scrap insert*************************/
 
 
@@ -379,21 +380,21 @@ values(REVIEW_REVIEW_SEQ_SEQ.nextval,'4','생각보다 다닐만한 기업','대
 
 /*********************************결제관련********************************/
 /**********************product insert**************************/
---개인회원 상품 insert=> p_div: 1
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(1,'개인회원상품1',10000,'2023-01-01','상품이미지1','1');
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(2,'개인회원상품2',20000,'2023-02-02','상품이미지2','1');
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(3,'개인회원상품3',30000,'2023-03-03','상품이미지3','1');
+--개인회원 상품 insert=> p_div: U
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(1,'개인회원상품1',10000,1,'상품이미지1','U');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(2,'개인회원상품2',20000,2,'상품이미지2','U');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(3,'개인회원상품3',30000,3,'상품이미지3','U');
 
---기업회원 상품 insert=> p_div: 2
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(4,'기업회원상품1',40000,'2023-04-04','상품이미지4','2');
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(5,'기업회원상품2',50000,'2023-05-05','상품이미지5','2');
-insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
-values(6,'기업회원상품3',60000,'2023-06-06','상품이미지6','2');
+--기업회원 상품 insert=> p_div: C
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(4,'기업회원상품1',40000,4,'상품이미지4','C');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(5,'기업회원상품2',50000,5,'상품이미지5','C');
+insert into product (p_no,p_name,p_price,p_end_month,p_image,p_div)
+values(6,'기업회원상품3',60000,6,'상품이미지6','C');
 
 /**********************orders insert**************************/
 --개인회원1 user_seq:1 로 개인상품 p_no 1주문하기

@@ -83,9 +83,9 @@ order by rc_seq desc;
 update recruit
 set rc_title = '업데이트테스트', rc_position = '업데이트', rc_content = '업데이트',
     rc_qualification = '업데이트', rc_salary = 5000,rc_deadline = '2023/04/05'
-where rc_seq = 1;
+where rc_seq = 1 and corp_id = 'corp_01';
 
-delete from recruit where rc_seq = 1;
+delete from recruit where rc_seq = 1 and corp_id = 'corp_01';
 
 
 /********************기업1의 공고 목록**********************/
@@ -117,6 +117,22 @@ on u.user_email=cv.user_email
 order by c.rc_deadline desc, c.rc_title asc;
 
 
+
+/********************회원의 결제상품 상세보기**********************/
+select * from orders
+where user_seq=1;
+
+/********************개인회원의 결제상품 상세보기**********************/
+select * from orders o
+join product p
+on o.p_no=p.p_no
+where user_seq=1;
+
+/********************기업의 결제상품 상세보기**********************/
+select * from orders o
+join product p
+on o.p_no=p.p_no
+where corp_id='corp_01';
 
 --rollback;
 
