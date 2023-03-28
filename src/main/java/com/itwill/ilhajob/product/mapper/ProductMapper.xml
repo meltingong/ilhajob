@@ -16,7 +16,7 @@
 		where p_no=#{p_no}
 	</update>
 	
-	<delete id="deleteProduct" parameterType="java.lang.Integer">
+	<delete id="deleteProduct" parameterType="java.lang.Integer">List
 	 	delete from product where p_no=#{p_no}
 	</delete>
 
