@@ -12,10 +12,10 @@ public class SpringBootAwardsDaoJOINSELECTMain {
 	public static void main(String[] args) {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootAwardsDaoJOINSELECTMain.class, args);
-		//Awards tutorDao=(Awards)appicationContext.getBean(Awards.class);
-		System.out.println("---------findTutorByIdWithCourses------------------");
-		System.out.println();
-		System.out.println();
+		AwardsDao awardsDao=(AwardsDao)appicationContext.getBean(AwardsDao.class);
+		System.out.println("---------AwardsDaoTEST------------------");
+		System.out.println(awardsDao.findAwardsList());
+		
 
 	}
 

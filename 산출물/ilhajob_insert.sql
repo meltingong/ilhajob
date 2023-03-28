@@ -312,7 +312,7 @@ insert into userinfo(user_seq,user_email,user_password) values(userinfo_user_seq
 insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_seq)
 values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90,sysdate-30,4.0,'학점만점',userinfo_user_seq_SEQ.currval);
 /**********************awards insert***************************/
-/*awards 시퀀스 추가 필요*/
+
 insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
 values(awards_awards_seq_SEQ.nextval,'창의경진대회',2023/03/28,'장관상',userinfo_user_seq_SEQ.currval);
 
