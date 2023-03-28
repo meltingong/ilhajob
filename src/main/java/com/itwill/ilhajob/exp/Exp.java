@@ -1,9 +1,22 @@
 package com.itwill.ilhajob.exp;
 
+import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Exp {
-
-	public static void main(String[] args) {
-		
-	}
-
+	
+	private int expSeq;
+	private String expPosition;
+	private String expCorpName;
+	private Date expStartDate;
+	private Date expEndDate;
+	private String expContent;
+	private int userSeq;
+	
 }

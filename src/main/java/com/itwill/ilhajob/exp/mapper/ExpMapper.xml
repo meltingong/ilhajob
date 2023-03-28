@@ -1,1 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.ilhajob.exp.mapper.ExpMapper">
+	<select id="selectByExp" resultType="com.itwill.ilhajob.exp.Exp">
+		select * from exp where exp_seq = #{expSeq}
+	</select>
+	
+	<select id="selectAll" resultType="com.itwill.ilhajob.exp.Exp">
+		select * from exp
+	</select>
+	
+	<select id="selectByUserSeq" resultType="com.itwill.ilhajob.exp.Exp">
+		select * from exp where user_seq = #{userSeq}
+	</select>
+	
+	<insert id="insertExp" parameterType="com.itwill.ilhajob.exp.Exp">
+		insert into exp (exp_seq,exp_position,exp_corp_name,exp_start_date,exp_end_date,exp_content,
+		user_seq) values (#{expSeq},#{expPosition},#{expCorpName},#{expStartDate},#{expEndDate},#{expContent},#{userSeq})
+	</insert>
+	
+	<update id="updateExp" parameterType="com.itwill.ilhajob.exp.Exp">
+		update exp set exp_seq = #{expSeq},exp_position = #{exp_position},exp_corp_name = #{expCorpName},exp_start_date = #{expStartDate},exp_end_date = #{expEndDate},exp_content = #{expContent}
+		where exp_seq = #{expSeq}
+	</update>
+	
+	<delete id="deleteExp" parameterType="com.itwill.ilhajob.exp.Exp">
+		delete from exp where exp_seq = #{expSeq}
+	</delete>
+	
+</mapper>

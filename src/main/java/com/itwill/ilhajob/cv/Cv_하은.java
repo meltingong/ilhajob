@@ -14,13 +14,13 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cv {
+public class Cv_하은 {
 
 	private String cvSeq;
 	private String cvName;
 	private String cvDescription;
 	private String cvPortfolio;
-	private int userEmail;
+	private int user_seq;
 	private List<Edu> eduList;
 	private List<Exp> expList;
 	private List<Awards> awardsList;

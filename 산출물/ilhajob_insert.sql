@@ -164,6 +164,43 @@ insert into manager (manager_email, manager_name, manager_position, manager_phon
 values('이메일@기업8.com','ㅌㅌㅌ','인사팀장','010-5326-6477','corp_13');
 insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
 values('이메일@기업9.com','ㅊㅊㅊ','인사팀장','010-5326-6477','corp_14');
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, role_id) 
+values
+('seoulnetwork@snt.com', '1111', '서울네트워크서비스', 021231234, 1000000001, 'http://www.snservice.com', '2007-02-10', 700, 4000, '다양한 분야에서의 최고의 고객 서비스 제공을 위한 다양한 사업영역을 확대해 나가고 있습니다.', 
+'학자금대출, 육아휴직, 점심 식대지원', '서울 영등포구 선유로 70', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, role_id) 
+values
+('greennetwork@greennet.com', '1111', '그린네트워크', 029876789, 1000000002, 'http://www.greennetwork.co.kr', '2017-02-10', 2940, 9125, '그린네트워크는 2017년에 설립되어 다양한 네트워크 서비스를 제공합니다.', 
+'4대보험, 생일휴가, 재택근무', '서울 금천구 벚꽃로 316', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, role_id) 
+values
+('apple@applesystem.com', '1111', '사과시스템', 029890765, 1000000003, 'http://www.applesystem.com', '2010-02-20', 2340, 8000, '사과시스템 소개', 
+'4대보험, 학자금대출, 직원 대출', '서울 강남구 강남대로 476', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, role_id) 
+values
+('olive@olivenetworks.com', '1111', '올리브네트웍스', 023745558, 1000000004, 'http://www.olivenetworks.co.kr', '1999-12-07', 960, 7000, '올리브네트웍스 소개', 
+'카페테리아, 육아휴직, 직장어린이집', '서울 성동구 아차산로 92', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, role_id) 
+values
+('ddbank@ddbank.com', '1111', 'DD은행', 021347789, 1000000005, 'http://www.ddbank.com', '2007-02-10', 690, 4000, '디디뱅크는 우리나라 최고의 은행입니다.', 
+'패밀리데이, 인센티브, 점심 식대지원', '서울 송파구 오금로11길 7', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, role_id) 
+values
+('aatel@aatelecom.com', '1111', 'AA텔레콤', 021233454, 1000000006, 'http://www.aatelecom.com', '1989-04-21', 5413, 124000, '최고 품질의 통신 서비스를 제공합니다.', 
+'유류비 지원, 시차출근제, 건강검진', '서울 중구 마른내로 34', null, null, null);
+
 /**********************recruit insert*********************/
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
 values (recruit_rc_seq_SEQ.nextval, 'SW개발/보안 경력직 모집', '경력직', '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.',
@@ -228,6 +265,31 @@ insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_
 values (recruit_rc_seq_SEQ.nextval, '웹 개발 (JAVA/SPRING)', '신입/경력', '부서 간 협업을 위한 개발 프로젝트를 진행하고, 전사적인 성과창출을 위한 시스템 혁신을 위해 웹 개발을 담당 해주실 분을 모시고 있습니다.',
 'Spring Framework 기반 개발가능' ,0, sysdate+30, 0, 'corp_18');
 
+insert into recruit 
+(rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
+values (recruit_rc_seq_SEQ.NEXTVAL, '네트워크 관리자 채용', '신입', '신입 네트워크 관리자 채용합니다.', '관련 지식 보유자, 커뮤니케이션 스킬', 3000, sysdate+30, 0, 'seoulnetwork@snt.com');
+
+insert into recruit 
+(rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
+values (recruit_rc_seq_SEQ.NEXTVAL, '인프라 구축 엔지니어 채용', '경력무관', '계열사 시스템 운영 업무. IT인프라 기획 및 운영', 'IT시스템 관련 기본 지식 보유', 3800, sysdate+60, 0, 'greennetwork@greennet.com');
+
+insert into recruit 
+(rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
+values (recruit_rc_seq_SEQ.NEXTVAL, '정보보안 부문 채용', '경력(1년 이상)', '보안 정책 수립 및 보안 아키텍쳐 구축, 사내 정보보안교육 수행', '정보보안 관련 경험 및 자격사항 우대', 3200, sysdate+90,  0, 'apple@applesystem.com');
+
+insert into recruit 
+(rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
+values (recruit_rc_seq_SEQ.NEXTVAL, '네트워크 구축 엔지니어 채용', '경력(5년 이상)', '데이터센터 네트워크 설계, 구축 및 운영', '네트워크 관련 다수의 프로젝트 경험', 5000, sysdate+90, 0, 'olive@olivenetworks.com');
+
+insert into recruit 
+(rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
+values (recruit_rc_seq_SEQ.NEXTVAL, '정보보호/보안 부문 경력 채용', '경력(2년 이상)', '보안 인프라 운영 및 관리, 정보보호 및 보안 관련 외부기관 대응', '정보보호시스템 운영경험', 4300, sysdate+60, 0, 'ddbank@ddbank.com');
+
+insert into recruit 
+(rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
+values (recruit_rc_seq_SEQ.NEXTVAL, '네트워크 구축 담당자 구인', '경력(10년 이상)', 'LTE 독립망 유/무선망 설계 및 분석업무, 사내 IP 할당 및 관리, 클라이언트 요구사항분석/기술 문의/이슈 상황 대응 등', '정보통신 관련 전공 졸업 또는 예정자', 9000, sysdate+90, 0, 'aatel@aatelecom.com');
+
+
 /**********************corp_image insert*********************/
 
 
@@ -236,8 +298,9 @@ values (recruit_rc_seq_SEQ.nextval, '웹 개발 (JAVA/SPRING)', '신입/경력',
 
 /*********************************개인회원관련********************************/
 /**********************userinfo insert************************/
-insert into userinfo(user_email, user_password) values('테스트1@test.com','1111');
-insert into userinfo(user_email, user_password) values('테스트2@test.com','2222');
+insert into userinfo(user_seq, user_email, user_password) values(USERINFO_USER_SEQ_SEQ.nextval,'테스트1@test.com','1111');
+insert into userinfo(user_seq, user_email, user_password) values(USERINFO_USER_SEQ_SEQ.nextval, '테스트2@test.com','2222');
+
 
 /**********************education insert************************/
 insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_email)
@@ -315,8 +378,35 @@ values(REVIEW_REVIEW_SEQ_SEQ.nextval,'4','생각보다 다닐만한 기업','대
 
 /*********************************결제관련********************************/
 /**********************product insert**************************/
+--개인회원 상품 insert=> p_div: 1
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(1,'개인회원상품1',10000,'2023-01-01','상품이미지1','1');
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(2,'개인회원상품2',20000,'2023-02-02','상품이미지2','1');
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(3,'개인회원상품3',30000,'2023-03-03','상품이미지3','1');
+
+--기업회원 상품 insert=> p_div: 2
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(4,'기업회원상품1',40000,'2023-04-04','상품이미지4','2');
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(5,'기업회원상품2',50000,'2023-05-05','상품이미지5','2');
+insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+values(6,'기업회원상품3',60000,'2023-06-06','상품이미지6','2');
 
 /**********************orders insert**************************/
+--개인회원1 user_seq:1 로 개인상품 p_no 1주문하기
+insert into orders(order_no,p_no,corp_id,user_seq)
+values(ORDERS_ORDER_NO_SEQ.nextval,1,null,1);
+--개인회원1 user_seq:1 로 개인상품 p_no 2주문하기
+insert into orders(order_no,p_no,corp_id,user_seq)
+values(ORDERS_ORDER_NO_SEQ.nextval,2,null,1);
+--기업회원1 'corp_01' 로 기업상품 p_no 4주문하기
+insert into orders(order_no,p_no,corp_id,user_seq)
+values(ORDERS_ORDER_NO_SEQ.nextval,4,'corp_01',null);
+--기업회원1 'corp_01' 로 기업상품 p_no 5주문하기
+insert into orders(order_no,p_no,corp_id,user_seq)
+values(ORDERS_ORDER_NO_SEQ.nextval,5,'corp_01',null);
 
 /**********************payment insert**************************/
 
