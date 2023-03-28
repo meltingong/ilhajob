@@ -11,6 +11,12 @@ public interface ExpService {
 	List<Exp> selectByUserSeq(int userSeq);
 	
 	/*
+	 * 유저 email 로 경력사항 찾기
+	 */
+	
+	List<Exp> selectByUserEmail(String userEmail);
+	
+	/*
 	 * 경력사항 추가
 	 */
 	int insertExp(Exp exp);

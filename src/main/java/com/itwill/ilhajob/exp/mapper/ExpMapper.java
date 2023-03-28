@@ -10,7 +10,9 @@ public interface ExpMapper {
 	
 	//public Exp selectByExp(int expSeq); 경력seq로 찾을 일이 없을듯
 	
-	public List<Exp> selectByUserSeq(int userSeq);
+	public List<Exp> selectByUser(int userSeq);
+	
+	List<Exp> selectByUserEmail(String userEmail);
 	
 	public int insertExp(Exp exp);
 	
