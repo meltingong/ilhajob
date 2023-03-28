@@ -315,10 +315,10 @@ values(101,'해킹대회',sysdate-30,'금상','테스트1@test.com');
 insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
 values(102,'해킹대회',sysdate-30,'은상','테스트2@test.com');
 /**********************experience insert*************************/
-insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_email)
-values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'청소원','마이크로소프트',sysdate-600,sysdate-400,'잡부','테스트1@test.com');
-insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_email)
-values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'웹개발1팀장','구글',sysdate-400,sysdate,'구글에드센스 개발','테스트1@test.com');
+insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_seq)
+values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'청소원','마이크로소프트',sysdate-600,sysdate-400,'잡부',1);
+insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_seq)
+values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'웹개발1팀장','구글',sysdate-400,sysdate,'구글에드센스 개발',2);
 /**********************CV insert*************************/
 insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
 values(CV_CV_SEQ_SEQ.nextval, '웹개발이력서', '~~자기소개~~','https://github.com/테스트1/', '테스트1@test.com');
