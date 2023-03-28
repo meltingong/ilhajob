@@ -1,1 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.ilhajob.product.mapper.ProductMapper">
+
+	<select id="selectByDiv" parameterType="java.lang.String" resultType="com.itwill.ilhajob.product.Product">
+		select * from product where p_div=#{p_div}
+	</select>
+	
+	<insert id="insertProduct" parameterType="com.itwill.ilhajob.product.Product">
+		insert into product (p_no,p_name,p_price,p_date,p_image,p_div)
+		values(#{p_no},#{p_name},#{p_price},null,#{p_image},#{p_div})
+	</insert>
+	
+	<update id="updateProduct" parameterType="com.itwill.ilhajob.product.Product">
+		update product 
+		set p_name=#{p_name}, p_price=#{p_price}, p_date=#{p_date}, p_image=#{p_image},p_div=#{p_div}
+		where p_no=#{p_no}
+	</update>
+	
+	<delete id="deleteProduct" parameterType="java.lang.Integer">
+	 	delete from product where p_no=#{p_no}
+	</delete>
+
+</mapper>
+
+
