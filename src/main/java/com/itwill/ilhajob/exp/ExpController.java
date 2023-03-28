@@ -1,9 +1,12 @@
 package com.itwill.ilhajob.exp;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+@Controller
 public class ExpController {
-
-	public static void main(String[] args) {
-
-	}
-
+	
+	@Autowired
+	private ExpService expService;
+	
 }
