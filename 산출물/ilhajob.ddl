@@ -152,13 +152,14 @@ CREATE TABLE manager(
 
 CREATE TABLE recruit(
 		rc_seq                        		NUMBER(20)		 NOT NULL,
-		rc_title                      		VARCHAR2(40)		 NULL ,
-		rc_position                   		VARCHAR2(30)		 NULL ,
+		rc_title                      		VARCHAR2(120)		 NULL ,
+		rc_position                   		VARCHAR2(60)		 NULL ,
 		rc_content                    		VARCHAR2(200)		 NULL ,
-		rc_qualification              		VARCHAR2(50)		 NULL ,
+		rc_qualification              		VARCHAR2(60)		 NULL ,
 		rc_salary                     		NUMBER(20)		 NULL ,
+		rc_date								DATE		DEFAULT sysdate NULL,
 		rc_deadline                   		DATE		 NULL ,
-		rc_read_count                 		NUMBER(10)		 NULL ,
+		rc_read_count                 		NUMBER(10)		DEFAULT 0 NULL ,
 		corp_id                       		VARCHAR2(30)		 NOT NULL
 );
 
