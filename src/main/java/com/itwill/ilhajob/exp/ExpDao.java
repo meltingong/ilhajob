@@ -1,5 +1,17 @@
 package com.itwill.ilhajob.exp;
 
-public interface ExpDao {
+import java.util.List;
 
+public interface ExpDao {
+	
+	int insertExp(Exp exp);
+	
+	Exp selectByNo(int expSeq);
+	
+	List<Exp> selectAll();
+	
+	int updateExp(Exp exp);
+	
+	int deleteExp(int expSeq);
+	
 }
