@@ -6,15 +6,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-//@MapperScan(basePackages = "com.itiwll.ilhajob.Awards.mapper")
+@MapperScan(basePackages = "com.itiwll.ilhajob.corp.mapper")
 public class SpringBootCorpDaoMain {
-
-	public static void main(String[] args) {
+	
+	public static void main(String[] args) throws Exception {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootCorpDaoMain.class, args);
-		//Awards tutorDao=(Awards)appicationContext.getBean(Awards.class);
+		CorpDaoImpl corpDao=(CorpDaoImpl)appicationContext.getBean(CorpDaoImpl.class);
 		System.out.println("---------findTutorByIdWithCourses------------------");
-		System.out.println();
+		System.out.println(corpDao.selectAll());
 		System.out.println();
 
 	}

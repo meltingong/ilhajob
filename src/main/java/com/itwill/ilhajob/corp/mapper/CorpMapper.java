@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.itwill.ilhajob.corp.Corp;
 
+@Mapper
 public interface CorpMapper {
 	/*
 	 * 메쏘드이름은 	GuestMapper.xml 파일의 id와일치

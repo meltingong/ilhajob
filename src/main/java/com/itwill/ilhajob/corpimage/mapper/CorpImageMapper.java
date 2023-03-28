@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.itwill.ilhajob.corp.Corp;
 import com.itwill.ilhajob.corpimage.CorpImage;
 
+@Mapper
 public interface CorpImageMapper {
 	public int insertCorpImage(CorpImage corp_image);
 	public CorpImage selectBySEQ(int corp_image_seq);

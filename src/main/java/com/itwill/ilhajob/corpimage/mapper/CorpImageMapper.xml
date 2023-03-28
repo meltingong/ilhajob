@@ -41,4 +41,6 @@
 		delete from corpImage
 		where corp_id=#{corp_image_seq}
 	</delete>
+	
+	
 </mapper>

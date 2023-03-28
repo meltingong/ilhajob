@@ -12,6 +12,8 @@ public class CorpDaoImpl implements CorpDao{
 	@Autowired
 	private CorpMapper corpMapper;
 	
+	public CorpDaoImpl() {
+	}
 	public int insertCorp(Corp corp) {
 		int insertRowCount = corpMapper.insertCorp(corp);
 		return insertRowCount;
