@@ -57,6 +57,28 @@ public class ExpDaoImpl {
 		 return expList;
 	 }
 	
+	 /*
+	  * 경력 추가
+	  */
 	 
+	public int insertExp(Exp exp) {
+		int insertExpCount = expMapper.insertExp(exp);
+		return insertExpCount;
+	}
 	 
+	/*
+	 * 경력 수정
+	 */
+	public int updateExp(Exp exp) {
+		int updateExpCount = expMapper.updateExp(exp);
+		return updateExpCount;
+	}
+	
+	/*
+	 * 경력 삭제
+	 */
+	public int deleteExp(int expSeq) {
+		int deleteCount = expMapper.deleteExp(expSeq);
+		return deleteCount;
+	}
 }

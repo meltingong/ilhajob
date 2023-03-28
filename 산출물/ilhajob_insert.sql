@@ -118,7 +118,7 @@ values('corp_19', '1212', '한글과컴퓨터', '1566-5192', '111-222-3333', 'ht
 insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
 CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID)
 values('corp_20', '2323', '더존비즈온', '02-6233-3000', '112-222-3333', 'http://www.douzone.com', '1977-08-20', '1675명', '3031억',
-'기업, 금융, 커머스, 헬스케어, 공공 분야 등에서 Work&Life 토털 솔루션을 제공하는 대한민국 대표 ICT그룹입니다.기업정보화 선도기업인 더존은 정보화에 필요한 각종 Solution과 Service를 제공합니다.',
+'기업, 금융, 커머스, 헬스케어, 공공 분야 등에서 Work''&''Life 토털 솔루션을 제공하는 대한민국 대표 ICT그룹입니다.기업정보화 선도기업인 더존은 정보화에 필요한 각종 Solution과 Service를 제공합니다.',
 '연금,보험,휴무,보상', '강원 춘천시 남산면 수동리 749번지 더존IT그룹 강촌캠퍼스', 1, null, null);
 
 insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
@@ -279,7 +279,7 @@ values (recruit_rc_seq_SEQ.NEXTVAL, '정보보안 부문 채용', '경력(1년 �
 
 insert into recruit 
 (rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
-values (recruit_recruit_seq_SEQ.NEXTVAL, '네트워크 구축 엔지니어 채용', '경력(5년 이상)', '데이터센터 네트워크 설계, 구축 및 운영', '네트워크 관련 다수의 프로젝트 경험', 5000, sysdate+90, 0, 'olive@olivenetworks.com');
+values (recruit_rc_seq_SEQ.NEXTVAL, '네트워크 구축 엔지니어 채용', '경력(5년 이상)', '데이터센터 네트워크 설계, 구축 및 운영', '네트워크 관련 다수의 프로젝트 경험', 5000, sysdate+90, 0, 'olive@olivenetworks.com');
 
 insert into recruit 
 (rc_seq, rc_title, rc_position, rc_content, rc_qualification, rc_salary, rc_deadline, rc_read_count, corp_id) 
@@ -298,35 +298,37 @@ values (recruit_rc_seq_SEQ.NEXTVAL, '네트워크 구축 담당자 구인', '경
 
 /*********************************개인회원관련********************************/
 /**********************userinfo insert************************/
-insert into userinfo(user_seq, user_email, user_password) values(USERINFO_USER_SEQ_SEQ.nextval,'테스트1@test.com','1111');
-insert into userinfo(user_seq, user_email, user_password) values(USERINFO_USER_SEQ_SEQ.nextval, '테스트2@test.com','2222');
+insert into userinfo(user_seq,user_email,user_password) values(userinfo_user_seq_SEQ.nextval,'test1@test.com','1111');
+insert into userinfo(user_seq,user_email,user_password) values(userinfo_user_seq_SEQ.nextval,'test2@test.com','2222');
 
 
 /**********************education insert************************/
-insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_email)
-values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90,sysdate-30,4.0,'학점만점','테스트1@test.com');
+insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_seq)
+values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90,sysdate-30,4.0,'학점만점',userinfo_user_seq_SEQ.currval);
 /**********************awards insert***************************/
 /*awards 시퀀스 추가 필요*/
-insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
-values(100,'창의경진대회',sysdate-300,'장관상','테스트1@test.com');
-insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
-values(101,'해킹대회',sysdate-30,'금상','테스트1@test.com');
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
+values(awards_awards_seq_SEQ.nextval,'창의경진대회',2023/03/28,'장관상',userinfo_user_seq_SEQ.currval);
 
-insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
-values(102,'해킹대회',sysdate-30,'은상','테스트2@test.com');
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
+values(awards_awards_seq_SEQ.nextval,'과학경진대회','2023/01/28','국무총리상',userinfo_user_seq_SEQ.currval);
+
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
+values(awards_awards_seq_SEQ.nextval,'정보화경진대회','2023/02/28','대통령상',userinfo_user_seq_SEQ.currval);
+
 /**********************experience insert*************************/
-insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_email)
-values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'청소원','마이크로소프트',sysdate-600,sysdate-400,'잡부','테스트1@test.com');
-insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_email)
-values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'웹개발1팀장','구글',sysdate-400,sysdate,'구글에드센스 개발','테스트1@test.com');
+insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_seq)
+values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'청소원','마이크로소프트',sysdate-600,sysdate-400,'잡부',userinfo_user_seq_SEQ.currval);
+insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_seq)
+values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'웹개발1팀장','구글',sysdate-400,sysdate,'구글에드센스 개발',userinfo_user_seq_SEQ.currval);
 /**********************CV insert*************************/
-insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
+insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
 values(CV_CV_SEQ_SEQ.nextval, '웹개발이력서', '~~자기소개~~','https://github.com/테스트1/', '테스트1@test.com');
-insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
-values(CV_CV_SEQ_SEQ.nextval, '하드개발이력서', '~~하드웨어용 자기소개~~','https://github.com/테스트1/', '테스트1@test.com');
+insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
+values(CV_CV_SEQ_SEQ.nextval, '하드개발이력서', '~~하드웨어용 자기소개~~','https://github.com/테스트1/', userinfo_user_seq_SEQ.currval);
 
-insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_email)
-values(CV_CV_SEQ_SEQ.nextval, '테스트2이력서', '~~자기소개2~~','https://github.com/테스트2/', '테스트2@test.com');
+insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
+values(CV_CV_SEQ_SEQ.nextval, '테스트2이력서', '~~자기소개2~~','https://github.com/테스트2/', userinfo_user_seq_SEQ.currval);
 /**********************recruit_scrap insert*************************/
 
 
