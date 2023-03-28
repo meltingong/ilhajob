@@ -118,7 +118,7 @@ values('corp_19', '1212', '한글과컴퓨터', '1566-5192', '111-222-3333', 'ht
 insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
 CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID)
 values('corp_20', '2323', '더존비즈온', '02-6233-3000', '112-222-3333', 'http://www.douzone.com', '1977-08-20', '1675명', '3031억',
-'기업, 금융, 커머스, 헬스케어, 공공 분야 등에서 Work&Life 토털 솔루션을 제공하는 대한민국 대표 ICT그룹입니다.기업정보화 선도기업인 더존은 정보화에 필요한 각종 Solution과 Service를 제공합니다.',
+'기업, 금융, 커머스, 헬스케어, 공공 분야 등에서 Work''&''Life 토털 솔루션을 제공하는 대한민국 대표 ICT그룹입니다.기업정보화 선도기업인 더존은 정보화에 필요한 각종 Solution과 Service를 제공합니다.',
 '연금,보험,휴무,보상', '강원 춘천시 남산면 수동리 749번지 더존IT그룹 강촌캠퍼스', 1, null, null);
 
 insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
