@@ -2,4 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.corp.mapper.CorpMapper">
 
+	<insert id="insertCorp" parameterType="com.itwill.ilhajob.corp.Corp">
+		<selectKey order="BEFORE"  resultType="int"  keyProperty="corpId" >
+			select corp_corp_id_seq.nextval from dual
+		</selectKey>
+		insert into corp(corp_id,corp_password,corp_name)
+		values(#{corp_id},#{corp_password},#{corp_name})
+	</insert>
+	
+	<select id="selectById" parameterType="java.lang.String">
+		select * from corp
+		where corp_id = #{corp_id}
+	</select>
+	
+	<select id="selectAll">
+		select * from corp
+	</select>
+	
+	<update id="updateCorp" parameterType="com.itwill.ilhajob.corp.Corp">
+		update corp set
+		corp_phone=#{corp_phone},
+		corp_business_no=#{corp_business_no},
+		corp_website=#{corp_website},
+		corp_est=#{corp_est},
+		corp_size=#{corp_size},
+		corp_sales=#{corp_sales},
+		corp_comment=#{corp_comment},
+		corp_welfare=#{corp_welfare},
+		corp_address=#{corp_address},
+		corp_status=#{corp_status},
+		job_id=#{job_id},
+		role_id=#{role_id}
+		where corp_id=#{corp_id}
+		
+	</update>
+	
+	<delete id="deleteCorp" parameterType="java.lang.String">
+		delete from corp
+		where corp_id=#{corp_id}
+	</delete>
 </mapper>
