@@ -74,8 +74,23 @@ join recruit r
 on r.rc_seq=app.rc_seq
 order by r.rc_deadline desc;
 
+/********************recruit**********************/
+select * from recruit rc 
+join corp c
+on rc.corp_id = c.corp_id
+order by rc_seq desc; 
+
+update recruit
+set rc_title = '업데이트테스트', rc_position = '업데이트', rc_content = '업데이트',
+    rc_qualification = '업데이트', rc_salary = 5000,rc_deadline = '2023/04/05'
+where rc_seq = 1;
+
+delete from recruit where rc_seq = 1;
+
+
 /********************기업1의 공고 목록**********************/
-select * from recruit r where r.corp_id='corp_01';
+select * from recruit r where r.corp_id='corp_01'
+order by rc_seq desc;
 
 /********************기업1의 공고에 지원된 이력서 목록**********************/
 select * from (
