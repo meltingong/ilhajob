@@ -1,9 +1,7 @@
 package com.itwill.ilhajob.awards;
 
-public class AwardsServiceImpl {
+public class AwardsServiceImpl implements AwardsService {
 
-	public static void main(String[] args) {
-
-	}
+	
 
 }
