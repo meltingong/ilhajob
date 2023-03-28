@@ -1,22 +1,26 @@
 package com.itwill.ilhajob.app;
 
+
+import com.itwill.ilhajob.cv.Cv;
+import com.itwill.ilhajob.recruit.Recruit;
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-/*
- *  사용자관리를 위하여 필요한 도메인클래스(VO,DTO)
- *  USERINFO 테이블의 각컬럼에해당하는 멤버를 가지고있다
- */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@ToString
+@Builder
 public class App {
 	
-	private String appSeq;
-	private String appStatus;
-	private String rcSeq;
-	private String cvSeq;
+	private int app_seq;
+	private char app_status;
+	private Recruit rc_seq;
+	private Cv cv_seq;
 
 }
