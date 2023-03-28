@@ -309,11 +309,13 @@ values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90
 /*awards 시퀀스 추가 필요*/
 insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
 values(awards_awards_seq_SEQ.nextval,'창의경진대회',2023/03/28,'장관상',userinfo_user_seq_SEQ.currval);
-insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
-values(awards_awards_seq_SEQ.nextval,'해킹대회',sysdate-30,'금상',userinfo_user_seq_SEQ.currval);
 
 insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
-values(awards_awards_seq_SEQ.nextval,'해킹대회',sysdate-30,'은상',userinfo_user_seq_SEQ.currval);
+values(awards_awards_seq_SEQ.nextval,'과학경진대회','2023/01/28','국무총리상',userinfo_user_seq_SEQ.currval);
+
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
+values(awards_awards_seq_SEQ.nextval,'정보화경진대회','2023/02/28','대통령상',userinfo_user_seq_SEQ.currval);
+
 /**********************experience insert*************************/
 insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_end_date,exp_content, user_seq)
 values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'청소원','마이크로소프트',sysdate-600,sysdate-400,'잡부',userinfo_user_seq_SEQ.currval);
