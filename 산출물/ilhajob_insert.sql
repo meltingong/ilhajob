@@ -298,17 +298,17 @@ values (recruit_rc_seq_SEQ.NEXTVAL, '네트워크 구축 담당자 구인', '경
 
 /*********************************개인회원관련********************************/
 /**********************userinfo insert************************/
-insert into userinfo(user_seq, user_email, user_password) values(USERINFO_USER_SEQ_SEQ.nextval,'테스트1@test.com','1111');
-insert into userinfo(user_seq, user_email, user_password) values(USERINFO_USER_SEQ_SEQ.nextval, '테스트2@test.com','2222');
+insert into userinfo(user_seq,user_email,user_password) values(userinfo_user_seq_SEQ.nextval,'test1@test.com','1111');
+insert into userinfo(user_seq,user_email,user_password) values(userinfo_user_seq_SEQ.nextval,'test2@test.com','2222');
 
 
 /**********************education insert************************/
 insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_email)
 values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90,sysdate-30,4.0,'학점만점','테스트1@test.com');
 /**********************awards insert***************************/
-/*awards 시퀀스 추가 필요*/
-insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
-values(100,'창의경진대회',sysdate-300,'장관상','테스트1@test.com');
+insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
+values(awards_awards_seq_SEQ.nextval,'창의경진대회','2023/03/28','장관상',userinfo_user_seq_SEQ.currval);
+
 insert into awards(awards_seq, awards_name, awards_date, awards_content,user_email)
 values(101,'해킹대회',sysdate-30,'금상','테스트1@test.com');
 
