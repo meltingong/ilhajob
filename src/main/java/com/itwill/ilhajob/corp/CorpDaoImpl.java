@@ -21,7 +21,7 @@ public class CorpDaoImpl implements CorpDao{
 		return corpMapper.selectById(corpId);
 	}
 	
-	public List<Corp> selectAll(){
+	public List<Corp> selectAll() throws Exception{
 		return corpMapper.selectAll();
 	}
 	

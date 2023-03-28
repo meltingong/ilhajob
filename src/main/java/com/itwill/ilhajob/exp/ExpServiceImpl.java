@@ -29,6 +29,12 @@ public class ExpServiceImpl implements ExpService{
 	}
 
 	@Override
+	public List<Exp> selectByUserEmail(String userEmail) {
+		List<Exp> expList = expDao.selectByUserEmail(userEmail);
+		return expList;
+	}
+	
+	@Override
 	public int insertExp(Exp exp) {
 		int insertCount = expDao.insertExp(exp);
 		return insertCount;
@@ -45,5 +51,7 @@ public class ExpServiceImpl implements ExpService{
 		int deleteCount = expDao.deleteExp(expSeq);
 		return deleteCount;
 	}
+
+	
 	
 }

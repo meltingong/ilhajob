@@ -8,6 +8,8 @@ public interface ExpDao {
 	
 	List<Exp> selectByUser(int userSeq);
 	
+	List<Exp> selectByUserEmail(String userEmail);
+	
 	//List<Exp> selectAll();
 	
 	int updateExp(Exp exp);

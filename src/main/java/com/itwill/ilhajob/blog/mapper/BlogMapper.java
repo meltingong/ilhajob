@@ -34,8 +34,8 @@ public interface BlogMapper {
 	public int insertBlog(Blog blog);
 	/*
 	<insert id="insertBlog" parameterType="com.itwill.ilhajob.blog.Blog">
-        insert into blog (blog_seq, blog_title, blog_content, blog_image, blog_date, blog_read_count, blog_like, user_email, blog_cate_seq) 
-        values (#{blogSeq}, #{blogTitle}, #{blogContent}, #{blogImage}, #{blogDate}, #{blogRead}, #{blogReadCount}, #{blogLike}, #{userEmail}, #{blogCateSeq})
+        insert into blog (blog_seq, blog_title, blog_content, blog_image, blog_date, blog_read_count, blog_like, user_seq, blog_cate_seq) 
+        values (#{blogSeq}, #{blogTitle}, #{blogContent}, #{blogImage}, #{blogDate}, #{blogRead}, #{blogReadCount}, #{blogLike}, #{userSeq}, #{blogCateSeq})
     </insert>
 	*/
 	
@@ -43,7 +43,7 @@ public interface BlogMapper {
 	/*
 	<update id="updateBlog" parameterType="com.itwill.ilhajob.blog.Blog">
         update blog set blog_seq = #{blogSeq}, blog_title=#{blogTitle}, blog_content=#{blogContent}, blog_image=#{blogImage}, blog_date=#{blogDate},
-        blog_read_count=#{blogReadCount}, blog_like=#{blogLike}, user_email=#{userEmail}, blog_cate_seq=#{blogCateSeq}
+        blog_read_count=#{blogReadCount}, blog_like=#{blogLike}, user_seq=#{userSeq}, blog_cate_seq=#{blogCateSeq}
     </update>
 	*/
 	
