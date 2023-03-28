@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Exp {
 	
-	private int exp_seq;
-	private String exp_position;
-	private String exp_corp_name;
-	private Date exp_start_date;
-	private Date exp_end_date;
-	private String exp_content;
-	private int user_seq;
+	private int expSeq;
+	private String expPosition;
+	private String expCorpName;
+	private Date expStartDate;
+	private Date expEndDate;
+	private String expContent;
+	private int userSeq;
 	
 }
