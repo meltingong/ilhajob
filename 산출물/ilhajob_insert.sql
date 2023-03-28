@@ -25,6 +25,7 @@ insert into corp(corp_id, corp_password, corp_name) values('기업4@corp.com','4
 insert into corp(corp_id, corp_password, corp_name) values('기업5@corp.com','5555','테스트기업5');
 insert into corp(corp_id, corp_password, corp_name) values('기업6@corp.com','6666','테스트기업6');
 
+
 insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
 CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID) 
 values('corp_01', '1111', '신세계아이앤씨', '02-3397-1234', '111-11-11111', 'http://shinsegae-inc.com', '1997-02-10', '1,339명', '58억 8100만원',
@@ -107,6 +108,42 @@ values('corp_18', '1818', '슈피겐코리아(Spigen)', '02-862-3452', '120-87-3
 '슈피겐코리아는 모바일 액세서리 및 소형 전자기기를 제조하여 전 세계에 팔고 있는 제조·유
 통 기업입니다.',
 '연금,보험,휴무,보상,원격근무', '서울특별시 강남구 봉은사로 446 슈피겐 HQ A 동', '1', null, null);
+
+insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID)
+values('corp_19', '1212', '한글과컴퓨터', '1566-5192', '111-222-3333', 'http://www.hancom.com', '1990-10-11', '434명', '1350억',
+'한글과컴퓨터는 새로워진 한컴디벨로퍼를 통해 한컴의 기술을 제공하고 문서편집까지 가능한 올인원 전자서명 서비스를 제공하고 있습니다.',
+'연금,보험,휴무,보상', '경기 성남시 분당구 대왕판교로644번길 49 (삼평동, 코리아벤처타운) 한컴타워10층', 1, null, null);
+
+insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID)
+values('corp_20', '2323', '더존비즈온', '02-6233-3000', '112-222-3333', 'http://www.douzone.com', '1977-08-20', '1675명', '3031억',
+'기업, 금융, 커머스, 헬스케어, 공공 분야 등에서 Work&Life 토털 솔루션을 제공하는 대한민국 대표 ICT그룹입니다.기업정보화 선도기업인 더존은 정보화에 필요한 각종 Solution과 Service를 제공합니다.',
+'연금,보험,휴무,보상', '강원 춘천시 남산면 수동리 749번지 더존IT그룹 강촌캠퍼스', 1, null, null);
+
+insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID)
+values('corp_21', '3434', '비즈테크아이', '02-2084-6700', '113-333-3333', 'http://www.biztechpartners.co.kr', '2003-01-09', '765명', '1492억8천',
+'비즈테크아이는 Global IT 서비스 전문기업인 LG CNS 자회사로 기술전문성을 가지고 SAP ERP와 Web Service 분야에서 차별화된 서비스를 제공합니다.​',
+'연금,보험,휴무,보상', '서울 마포구 매봉산로 75 (상암동, 디디엠씨(DDMC)) 12층', 1, null, null);
+
+insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID)
+values('corp_22', '4545', '코매퍼', '02-565-6713', '114-444-3333', 'http://ko-mapper.com', '2019-01-21', '13명', '3억8천',
+'코매퍼는 실제 현장 적용이 가능한 서비스를 제공하는 세계 최고수준의 3D Mapping/Modeling 솔루션 기업​입니다.',
+'연금,보험,휴무,보상', '서울 강남구 봉은사로57길 13 (삼성동, 프러스원) 2층', 1, null, null);
+
+insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID)
+values('corp_23', '5656', '소프트웍스', '02-6401-8937', '115-555-3333', 'http://www.softworks.co.kr', '2011-05-20', '80명', '5억4천4백',
+'소프트웍스는 전사 비즈니스에 대한 정보자산의 가치, 위협과 취약점 관리 능력을 강화시켜 Compliance Risk 를 최소화 할 수 있도록 지원하는 기업입니다.',
+'연금,보험,휴무,보상', '서울 서초구 사임당로10길 3 (서초동, 원진빌딩) 501호', 1, null, null);
+
+insert into corp (CORP_ID,CORP_PASSWORD,CORP_NAME,CORP_PHONE,CORP_BUSINESS_NO,CORP_WEBSITE,
+CORP_EST,CORP_SIZE,CORP_SALES,CORP_COMMENT,CORP_WELFARE,CORP_ADDRESS,CORP_STATUS,JOB_ID,ROLE_ID)
+values('corp_24', '6767', '온넷시스템즈코리아', '02-2057-2260', '116-666-3333', 'http://www.onnetsystemskorea.com', '2001-02-09', '34명', '29억6천',
+'온넷시스템즈코리아는 콘텐츠 전송속도의 저하를 막고 불안정성 문제를 해결하기 위해 고안된 기술로, ISP(internet service provider)의 네트워크 하단에 여러 대의 캐시서버를 설치,CP(Contents Provider)가 제공하는 콘텐츠를 이 캐시서버에 미리 옮겨놓고 수요가 있을 때 그 콘텐츠를 사용자에게 제공하는 기업입니다.',
+'연금,보험,휴무,보상', '서울 서초구 효령로 262 (서초동) 평화빌딩 4층', 1, null, null);
 
 /**********************manage insert*********************/
 insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
