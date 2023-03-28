@@ -1,9 +1,8 @@
 package com.itwill.ilhajob.awards.mapper;
 
-public class AwardsMapper {
+import org.apache.ibatis.annotations.Mapper;
 
-	public static void main(String[] args) {
-
-	}
+@Mapper
+public interface AwardsMapper {
 
 }
