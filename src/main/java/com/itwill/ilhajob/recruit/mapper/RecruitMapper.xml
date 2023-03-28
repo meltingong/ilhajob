@@ -14,21 +14,30 @@
 	 values (#{rcSeq},#{rcTitle},#{rcPosition},#{rcContent},#{rcQualification},#{rcSalary},#{rcDeadline},#{corpId})
 	</insert>
 	
-	<select id="findByCorpId" parameterType="java.lang.String" resultType="com.itwill.ilhajob.recruit.Recruit">
+	<select id="findByCorpId" 
+			parameterType="java.lang.String" 
+			resultType="com.itwill.ilhajob.recruit.Recruit"
+			resultMap="recruitWithCorpResultMap">
 		select * from recruit rc
 		join corp c
 		on rc.corp_id = c.corp_id
 		where rc.corp_id = #{corpId}
 	</select>
 	
-	<select id="findByJob" parameterType="java.lang.String" resultType="com.itwill.ilhajob.recruit.Recruit">
+	<select id="findByJob" 
+			parameterType="java.lang.String" 
+			resultType="com.itwill.ilhajob.recruit.Recruit"
+			resultMap="recruitWithCorpResultMap">
 		select * from recruit rc
 		join corp c
 		on rc.corp_id = c.corp_id
 		where c.job = #{job}
 	</select>
 	
-	<select id="findBySeq" parameterType="java.lang.Integer" resultType="com.itwill.ilhajob.recruit.Recruit">
+	<select id="findBySeq" 
+			parameterType="java.lang.Integer" 
+			resultType="com.itwill.ilhajob.recruit.Recruit"
+			resultMap="recruitWithCorpResultMap">
 		select * from recruit rc
 		join corp c
 		on rc.corp_id = c.corp_id
@@ -46,7 +55,7 @@
 		where rc_seq = #{rcSEQ} and corp_id = #{corp_id}
 	</update>
 	
-	<delete id="deleteBySeq" >
+	<delete id="deleteBySeq" parameterType="java.lang.String">
 		delete from recruit where rc_seq = #{rcSEQ} and corp_id = #{corpId}
 	</delete>
 </mapper>
