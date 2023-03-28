@@ -1,7 +1,16 @@
 package com.itwill.ilhajob.edu;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Edu {
 	/*
 	이름             널?       유형
@@ -24,5 +33,4 @@ public class Edu {
 	private int eduScore;
 	private String eduContent;
 	private int userSeq;
-
 }
