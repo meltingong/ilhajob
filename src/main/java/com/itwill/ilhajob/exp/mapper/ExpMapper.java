@@ -5,10 +5,10 @@ import java.util.List;
 import com.itwill.ilhajob.exp.Exp;
 
 public interface ExpMapper {
-
-	public Exp selectByExp(int expSeq);
 	
-	public List<Exp> selectAll();
+	//public List<Exp> selectAll(); admin 없어서 필요없을 듯
+	
+	//public Exp selectByExp(int expSeq); 경력seq로 찾을 일이 없을듯
 	
 	public List<Exp> selectByUserSeq(int userSeq);
 	
