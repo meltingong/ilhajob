@@ -12,7 +12,7 @@
 	
 	<update id="updateProduct" parameterType="com.itwill.ilhajpRob.product.Product">
 		update product 
-		set p_name=#{p_name}, p_price=#{p_price}, p_date=#{p_date}, p_image=#{p_image},p_div=#{p_div}
+		set p_name=#{p_name}, p_price=#{p_price}, p_end_month=#{p_end_month}, p_image=#{p_image},p_div=#{p_div}
 		where p_no=#{p_no}
 	</update>
 	
