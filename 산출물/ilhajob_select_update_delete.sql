@@ -43,8 +43,8 @@ where u.user_email='테스트1@test.com';
 select * 
 from userinfo u
 join awards a
-on u.user_email=a.user_email
-where u.user_email='테스트1@test.com';
+on u.user_seq=a.user_seq
+where u.user_seq=1;
 /********************회원 경력**********************/
 select * 
 from userinfo u
