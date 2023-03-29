@@ -2,6 +2,7 @@ package com.itwill.ilhajob.user;
 
 import java.util.List;
 
+import com.itwill.ilhajob.app.App;
 import com.itwill.ilhajob.cv.Cv;
 
 import lombok.AllArgsConstructor;
@@ -37,6 +38,8 @@ public class User {
 	private String snsId;
 	private String job;
 	private int role;
+	
+	private List<App> appList;
 
 	/*
 	 *패쓰워드 일치여부 검사 
