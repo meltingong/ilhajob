@@ -1,21 +1,3 @@
-/**********************job insert************************/
-insert into job(job_id, job_name) values(1,'직군이름1');
-insert into job(job_id, job_name) values(2,'직군이름2');
-insert into job(job_id, job_name) values(3,'직군이름3');
-insert into job(job_id, job_name) values(4,'직군이름4');
-insert into job(job_id, job_name) values(5,'직군이름5');
-insert into job(job_id, job_name) values(6,'직군이름6');
-
-/**********************user_roles insert************************/
-insert into user_roles(role_id, role_name) values(1,'직무1');
-insert into user_roles(role_id, role_name) values(2,'직무2');
-insert into user_roles(role_id, role_name) values(3,'직무3');
-insert into user_roles(role_id, role_name) values(4,'직무4');
-insert into user_roles(role_id, role_name) values(5,'직무5');
-insert into user_roles(role_id, role_name) values(6,'직무6');
-
-
-
 /*********************************기업관련*********************************/
 /**********************corp insert************************/
 insert into corp(corp_id, corp_password, corp_name) values('기업1@corp.com','1111','테스트기업1');
@@ -459,7 +441,6 @@ insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog
 insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용4', '2023-03-04',2,41);
 insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용5', '2023-03-05',1,42);
 insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용6', '2023-03-06',2,43);
-
 
 
 
