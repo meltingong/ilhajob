@@ -8,6 +8,8 @@ public interface CvDao_하은 {
 	
 	List<Cv> findCvList();
 	
+	List<Cv> findCvListByUserSeq(int userSeq);
+	
 	//List<Cv> findCvOfUser(String userEmail);
 	
 	int createCv(Cv cv);
