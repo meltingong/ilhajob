@@ -6,11 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-//@MapperScan(basePackages = "com.itiwll.ilhajob.Awards.mapper")
+
+@MapperScan(basePackages = "com.itwill.ilhajob.cv.mapper")
 public class SpringBootCvDaoMain {
 
 	public static void main(String[] args) {
-		ApplicationContext appicationContext=
+		ApplicationContext applicationContext=
 				SpringApplication.run(SpringBootCvDaoMain.class, args);
 		//Awards tutorDao=(Awards)appicationContext.getBean(Awards.class);
 		System.out.println("---------findTutorByIdWithCourses------------------");

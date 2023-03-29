@@ -7,17 +7,16 @@ import com.itwill.ilhajob.awards.Awards;
 import com.itwill.ilhajob.edu.Edu;
 import com.itwill.ilhajob.exp.Exp;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-public class Cv_하은 {
-
+/*
+ * 이름             널?       유형             
+-------------- -------- -------------- 
+CV_SEQ         NOT NULL NUMBER(20)     
+CV_NAME                 VARCHAR2(30)   
+CV_DESCRIPTION          VARCHAR2(1000) 
+CV_PORTFOLIO            VARCHAR2(70)   
+USER_SEQ                NUMBER(20)
+ */
+public class Cv_민영 {
 	private int cvSeq;
 	private String cvName;
 	private String cvDescription;
