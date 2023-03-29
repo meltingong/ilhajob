@@ -27,7 +27,7 @@
 		join manager m
 		on c.corp_id=m.corp_id
 		where c.corp_id=#{corpId}
-	</select> 
+	</select>
 
 <!-- 	
 	<resultMap id="corpWithAllResultMap"

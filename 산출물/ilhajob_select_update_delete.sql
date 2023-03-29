@@ -141,7 +141,18 @@ join corp_image ci
 on c.corp_id=ci.corp_id
 where c.corp_id='corp_01';
 
-select * from corp_image where corp_id='corp_01';
+select * from corp c
+join orders o
+on c.corp_id=o.corp_id
+where c.corp_id='corp_01';
+/********************기업의 이미지리스트, 매니저리스트 보기**********************/
+select * from corp c
+join corp_image ci
+on c.corp_id=ci.corp_id
+join manager m
+on m.corp_id=c.corp_id
+where c.corp_id='corp_01';
+
 /*****기업 1에 속한 모든 매니저 정보 불러오기******/
 select * from manager
 where corp_id='corp_01';

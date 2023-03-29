@@ -409,9 +409,9 @@ values(ORDERS_ORDER_NO_SEQ.nextval,2,null,1);
 --기업회원1 'corp_01' 로 기업상품 p_no 4주문하기
 insert into orders(order_no,p_no,corp_id,user_seq)
 values(ORDERS_ORDER_NO_SEQ.nextval,4,'corp_01',null);
---기업회원1 'corp_01' 로 기업상품 p_no 5주문하기
+--기업회원1 'corp_02' 로 기업상품 p_no 5주문하기
 insert into orders(order_no,p_no,corp_id,user_seq)
-values(ORDERS_ORDER_NO_SEQ.nextval,5,'corp_01',null);
+values(ORDERS_ORDER_NO_SEQ.nextval,5,'corp_02',null);
 
 /**********************payment insert**************************/
 
