@@ -32,9 +32,8 @@ public class User {
 	private String userStatus;
 	private String snsType;
 	private String snsId;
-	private String jobId;
-	private String roleId;
-	private List<Cv> cvList;
+	private String job;
+	private int role;
 
 	/*
 	 *패쓰워드 일치여부 검사 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.itwill.ilhajob.cv.mapper.CvMapper;
 
 @Repository
-public class CvDaoImpl implements CvDao{
+public class CvDaoImpl_하은 implements CvDao_하은{
 
 	@Autowired
 	private CvMapper cvMapper;
@@ -29,6 +29,12 @@ public class CvDaoImpl implements CvDao{
 	}
 */
 	@Override
+	public List<Cv> findCvListByUserSeq(int userSeq) {
+		
+		return cvMapper.selectByCvOfUserSeq(userSeq);
+	}
+	
+	@Override
 	public int createCv(Cv cv) {
 		return cvMapper.insertCv(cv);
 	}
@@ -42,4 +48,6 @@ public class CvDaoImpl implements CvDao{
 	public int remove(int cvSeq) {
 		return cvMapper.deleteCv(cvSeq);
 	}
+
+	
 }

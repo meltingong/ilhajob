@@ -1,7 +1,56 @@
 package com.itwill.ilhajob.awards;
 
-public class AwardsServiceImpl implements AwardsService {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AwardsServiceImpl implements AwardsService {
 	
+	@Autowired
+	private AwardsDao awardsDao;
+	
+	public AwardsServiceImpl(AwardsDao awardsDao) {
+		this.awardsDao=awardsDao;
+	}
+	
+
+	@Override
+	public int createAwards(Awards awards) {
+		int insertCount = awardsDao.createAwards(awards);
+		return insertCount;
+	}
+
+	@Override
+	public int updateAwards(Awards awards) {
+		int updateCount = awardsDao.updateAwards(awards);
+		return updateCount;
+	}
+
+	@Override
+	public int removeAwards(Awards awards) {
+		int removeAwards = awardsDao.removeAwards(awards);
+		return removeAwards;
+	}
+
+	@Override
+	public Awards findAwards(int awardsSeq) {
+		Awards findAwardsSeq = awardsDao.findAwards(awardsSeq);
+		return findAwardsSeq;
+	}
+
+	@Override
+	public List<Awards> findAwardsList() {
+		List<Awards> awaList = awardsDao.findAwardsList();
+		return awaList;
+	}
+	
+	//회원seq로 해당 수상실적 찾기
+	@Override
+	public List<Awards> findAwardsOfUser(int userSeq) {
+		List<Awards> findAwardsByUser = awardsDao.findAwardsOfUser(userSeq);
+		return findAwardsByUser;
+	}
 
 }

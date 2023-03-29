@@ -25,37 +25,26 @@ DROP TABLE userinfo CASCADE CONSTRAINTS;
 DROP TABLE user_roles CASCADE CONSTRAINTS;
 DROP TABLE job CASCADE CONSTRAINTS;
 
-CREATE TABLE job(
-		job_id                        		NUMBER(10)		 NULL ,
-		job_name                      		VARCHAR2(20)		 NULL 
-);
-
-
-CREATE TABLE user_roles(
-		role_id                       		NUMBER(20)		 NULL ,
-		role_name                     		VARCHAR2(10)		 NULL 
-);
-
 
 CREATE TABLE userinfo(
 		user_seq                      		NUMBER(20)		 NULL ,
 		user_email                    		VARCHAR2(50)		 NOT NULL,
 		user_password                 		VARCHAR2(45)		 NOT NULL,
-		user_name                     		VARCHAR2(10)		 NULL ,
+		user_name                     		VARCHAR2(30)		 NULL ,
 		user_phone                    		VARCHAR2(20)		 NULL ,
 		user_sex                      		VARCHAR2(10)		 NULL ,
-		user_address                  		VARCHAR2(100)		 NULL ,
+		user_address                  		VARCHAR2(150)		 NULL ,
 		user_career                   		VARCHAR2(20)		 NULL ,
 		user_age                      		NUMBER(5)		 NULL ,
-		user_final_education          		VARCHAR2(10)		 NULL ,
-		user_language                 		VARCHAR2(10)		 NULL ,
-		user_skills                   		VARCHAR2(100)		 NULL ,
+		user_final_education          		VARCHAR2(30)		 NULL ,
+		user_language                 		VARCHAR2(60)		 NULL ,
+		user_skills                   		VARCHAR2(120)		 NULL ,
 		user_image                    		VARCHAR2(45)		 NULL ,
 		user_status                   		CHAR(1)		 NULL ,
 		sns_type                      		VARCHAR2(45)		 NULL ,
 		sns_id                        		VARCHAR2(45)		 NULL ,
-		job_id                        		NUMBER(10)		 NULL ,
-		role_id                       		NUMBER(20)		 NULL 
+		job                         		VARCHAR2(60)		 NULL ,
+		role                        		NUMBER(5)			 NULL 
 );
 
 DROP SEQUENCE userinfo_user_seq_SEQ;
@@ -136,8 +125,8 @@ CREATE TABLE corp(
 		corp_welfare                  		VARCHAR2(50)		 NULL ,
 		corp_address                  		VARCHAR2(100)		 NULL ,
 		corp_status                   		CHAR(1)		 NULL ,
-		job_id                        		NUMBER(10)		 NULL ,
-		role_id                       		NUMBER(20)		 NULL 
+		job                         		VARCHAR2(60)		 NULL ,
+		role                        		NUMBER(5)			 NULL 
 );
 
 
@@ -356,8 +345,6 @@ ALTER TABLE job ADD CONSTRAINT IDX_job_PK PRIMARY KEY (job_id);
 ALTER TABLE user_roles ADD CONSTRAINT IDX_user_roles_PK PRIMARY KEY (role_id);
 
 ALTER TABLE userinfo ADD CONSTRAINT IDX_userinfo_PK PRIMARY KEY (user_seq);
-ALTER TABLE userinfo ADD CONSTRAINT IDX_userinfo_FK0 FOREIGN KEY (job_id) REFERENCES job (job_id) on delete cascade;
-ALTER TABLE userinfo ADD CONSTRAINT IDX_userinfo_FK1 FOREIGN KEY (role_id) REFERENCES user_roles (role_id) on delete cascade;
 
 ALTER TABLE CV ADD CONSTRAINT IDX_CV_PK PRIMARY KEY (cv_seq);
 ALTER TABLE CV ADD CONSTRAINT IDX_CV_FK0 FOREIGN KEY (user_seq) REFERENCES userinfo (user_seq) on delete cascade;
@@ -372,8 +359,6 @@ ALTER TABLE awards ADD CONSTRAINT IDX_awards_PK PRIMARY KEY (awards_seq);
 ALTER TABLE awards ADD CONSTRAINT IDX_awards_FK0 FOREIGN KEY (user_seq) REFERENCES userinfo (user_seq) on delete cascade;
 
 ALTER TABLE corp ADD CONSTRAINT IDX_corp_PK PRIMARY KEY (corp_id);
-ALTER TABLE corp ADD CONSTRAINT IDX_corp_FK0 FOREIGN KEY (job_id) REFERENCES job (job_id) on delete cascade;
-ALTER TABLE corp ADD CONSTRAINT IDX_corp_FK1 FOREIGN KEY (role_id) REFERENCES user_roles (role_id) on delete cascade;
 
 ALTER TABLE manager ADD CONSTRAINT IDX_manager_PK PRIMARY KEY (manager_email);
 ALTER TABLE manager ADD CONSTRAINT IDX_manager_FK0 FOREIGN KEY (corp_id) REFERENCES corp (corp_id) on delete cascade;

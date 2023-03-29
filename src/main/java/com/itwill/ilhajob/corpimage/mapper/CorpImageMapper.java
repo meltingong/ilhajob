@@ -9,11 +9,11 @@ import com.itwill.ilhajob.corpimage.CorpImage;
 
 @Mapper
 public interface CorpImageMapper {
-	public int insertCorpImage(CorpImage corp_image);
-	public CorpImage selectBySEQ(int corp_image_seq);
-	public List<CorpImage> selectById(String corp_id);
+	public int insertCorpImage(CorpImage corpImage);
+	public CorpImage selectBySEQ(int corpImageSeq);
+	public List<CorpImage> selectById(String corpId);
 	public List<CorpImage> selectAll();
-	public int updateCorpImage(CorpImage corp_image);
-	public int deleteCorpImageById(String corp_id);
-	public int deleteCorpImageBySEQ(int corp_image_seq);
+	public int updateCorpImage(CorpImage corpImage);
+	public int deleteCorpImageById(String corpId);
+	public int deleteCorpImageBySEQ(int corpImageSeq);
 }
