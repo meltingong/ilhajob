@@ -17,7 +17,7 @@ public interface AwardsService {
 	/*
 	 *  awards remove
 	 */
-	int removeAwards(Awards awards);
+	int removeAwardsBySeq(int awardsSeq);
 	
 	/*
 	 *  findAwards( 수상seq로 찾기 )

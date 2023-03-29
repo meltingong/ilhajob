@@ -29,8 +29,8 @@ public class AwardsServiceImpl implements AwardsService {
 	}
 
 	@Override
-	public int removeAwards(Awards awards) {
-		int removeAwards = awardsDao.removeAwards(awards);
+	public int removeAwardsBySeq(int awardsSeq) {
+		int removeAwards = awardsDao.removeAwardsBySeq(awardsSeq);
 		return removeAwards;
 	}
 

@@ -35,6 +35,10 @@
 		delete from awards where awards_seq=#{awardsSeq}
 	</delete>
 	
+	<delete id="removeAwardsByUserSeq" parameterType="int">
+		delete from awards where user_seq=#{userSeq}
+	</delete>
+	
 	
 	
 

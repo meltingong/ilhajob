@@ -21,8 +21,8 @@ class AwardsDaoImplTest {
 	void test() {
 		fail("Not yet implemented");
 	}
-	@Disabled
-	@Test
+	
+	//@Test
 	void testCreate() {
 		Awards awards = Awards.builder().awardsSeq(5)
 		.awardsName("정보화대회")
@@ -55,11 +55,15 @@ class AwardsDaoImplTest {
 	void testSelectAwards() {
 		System.out.println(awardsMapper.selectByAwards(7));
 	}
-	@Test
+	//@Test
 	void testRemove() {
 		awardsMapper.removeAwardsBySeq(7);
 	}
 	
+	@Test
+	void testRemovebyUser() {
+		awardsMapper.removeAwardsByUserSeq(3);
+	}
 	
 	
 }

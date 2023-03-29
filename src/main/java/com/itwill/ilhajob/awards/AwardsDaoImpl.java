@@ -30,10 +30,7 @@ public class AwardsDaoImpl implements AwardsDao{
 		return awardsMapper.updateAwards(awards);
 	}
 
-	@Override
-	public int removeAwards(Awards awards) {
-		return awardsMapper.removeAwards(awards);
-	}
+	
 	
 	@Override
 	public int removeAwardsBySeq(int awardsSeq) {
@@ -55,6 +52,11 @@ public class AwardsDaoImpl implements AwardsDao{
 	@Override
 	public List<Awards> findAwardsOfUser(int userSeq) {
 		return awardsMapper.selectByAwardsOfUser(userSeq);
+	}
+
+	@Override
+	public int removeAwardsByUserSeq(int userSeq) {
+		return awardsMapper.removeAwardsByUserSeq(userSeq);
 	}
 
 	

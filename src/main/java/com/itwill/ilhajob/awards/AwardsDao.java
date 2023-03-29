@@ -12,9 +12,9 @@ public interface AwardsDao {
 	
 	int updateAwards(Awards awards);
 	
-	int removeAwards(Awards awards);
-	
 	int removeAwardsBySeq(int awardsSeq);
+	
+	int removeAwardsByUserSeq(int userSeq);
 	
 	List<Awards> findAwardsList();
 	
