@@ -432,15 +432,15 @@ insert into blog_cate(blog_cate_seq, blog_cate_name) values(blog_cate_blog_cate_
 insert into blog(blog_seq,blog_title,blog_content,blog_date,blog_image,blog_read_count,blog_like,user_seq,blog_cate_seq)
 values(blog_blog_seq_SEQ.nextval,'블로그 제목1','블로그 내용1','2023-03-01','이미지1',1,1,1,1);
 insert into blog(blog_seq, blog_title, blog_content, blog_date, blog_image, blog_read_count, blog_like, user_seq, blog_cate_seq)
-values(blog_blog_seq_SEQ.nextval,'블로그 제목2','블로그 내용2','2023-03-02', '이미지2',2,2,2,2);
+values(blog_blog_seq_SEQ.nextval,'블로그 제목2','블로그 내용2','2023-03-02', '이미지2',2,2,1,1);
 insert into blog(blog_seq, blog_title, blog_content, blog_date, blog_image, blog_read_count, blog_like, user_seq, blog_cate_seq)
-values(blog_blog_seq_SEQ.nextval,'블로그 제목3','블로그 내용3','2023-03-03', '이미지3',3,3,1,3);
+values(blog_blog_seq_SEQ.nextval,'블로그 제목3','블로그 내용3','2023-03-03', '이미지3',3,3,1,1);
 insert into blog(blog_seq, blog_title, blog_content, blog_date, blog_image, blog_read_count, blog_like, user_seq, blog_cate_seq)
-values(blog_blog_seq_SEQ.nextval,'블로그 제목4','블로그 내용4','2023-03-04', '이미지4',4,4,2,4);
+values(blog_blog_seq_SEQ.nextval,'블로그 제목4','블로그 내용4','2023-03-04', '이미지4',4,4,1,1);
 insert into blog(blog_seq, blog_title, blog_content, blog_date, blog_image, blog_read_count, blog_like, user_seq, blog_cate_seq)
-values(blog_blog_seq_SEQ.nextval,'블로그 제목5','블로그 내용5','2023-03-05', '이미지5',5,5,1,5);
+values(blog_blog_seq_SEQ.nextval,'블로그 제목5','블로그 내용5','2023-03-05', '이미지5',5,5,1,1);
 insert into blog(blog_seq, blog_title, blog_content, blog_date, blog_image, blog_read_count, blog_like, user_seq, blog_cate_seq)
-values(blog_blog_seq_SEQ.nextval,'블로그 제목6','블로그 내용6','2023-03-06', '이미지6',6,6,2,6);
+values(blog_blog_seq_SEQ.nextval,'블로그 제목6','블로그 내용6','2023-03-06', '이미지6',6,6,1,1);
 
 /**********************blog_comment insert**************************/
 
