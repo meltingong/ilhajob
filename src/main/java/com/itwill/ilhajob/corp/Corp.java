@@ -36,7 +36,7 @@ public class Corp {
 	private String corpWelfare;
 	private String corpAddress;
 	private char corpStatus;
-	private int jobId;
+	private String job;
 	private int roleId;
 	
 	private Orders orders;
