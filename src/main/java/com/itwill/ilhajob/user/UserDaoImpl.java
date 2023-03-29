@@ -46,6 +46,15 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	@Override
+	public boolean findBySnsId(User user) throws Exception {
+		if(userMapper.findBySnsId(user)==1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 
 
 }

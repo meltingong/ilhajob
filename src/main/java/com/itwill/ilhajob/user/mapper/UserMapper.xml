@@ -32,5 +32,10 @@
 								resultType="java.lang.Integer">
 		select count(*) cnt from userinfo where user_email=#{userEmail}
 	</select>
+	
+	<select id="findBySnsId" 	parameterType="com.itwill.ilhajob.user.User" 
+								resultType="java.lang.Integer">
+		select count(*) cnt from userinfo where sns_type=#{snsType} and sns_id=#{snsId}
+	</select>
 
 </mapper>

@@ -19,4 +19,6 @@ public interface UserMapper {
 
 	public int existedUser(String userId);
 	
+	public int findBySnsId(User user);
+	
 }

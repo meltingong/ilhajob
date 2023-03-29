@@ -20,7 +20,7 @@ public interface UserService {
 	 * 1:패쓰워드 불일치
 	 * 2:로그인성공
 	 */
-	int login(String userId, String password) throws Exception;
+	int login(User user) throws Exception;
 	/*
 	 * 회원로그아웃
 	 */

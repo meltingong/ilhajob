@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int create(User user) throws Exception {
 		//1.아이디중복체크
-		if(userDao.existedUser(user.getUserEmail())) {
+		if(userDao.existedUser(user.getUserEmail()) || userDao.findBySnsId(user)) {
 			//아이디중복
 			ExistedUserException exception=
 					new ExistedUserException(user.getUserEmail()+" 는 이미 존재하는아이디입니다.");
@@ -43,17 +43,16 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int login(String userId, String password) throws Exception {
+	public int login(User user) throws Exception {
 		int result=1;
 		
-		User user = userDao.findUser(userId);
-		if(user==null) {
+		if(!userDao.existedUser(user.getUserEmail()) || !userDao.findBySnsId(user)) {
 			UserNotFoundException exception = 
-					new UserNotFoundException(userId+" 는 존재하지않는 아이디입니다.");
+					new UserNotFoundException(user.getUserEmail()+" 는 존재하지않는 아이디입니다.");
 			exception.setData(user);
 			throw exception;
 		}
-		if(!user.isMatchPassword(password)){
+		if(!user.isMatchPassword(user.getUserPassword())){
 			//패쓰워드불일치
 			PasswordMismatchException exception=
 				new PasswordMismatchException("패쓰워드가 일치하지않습니다.");

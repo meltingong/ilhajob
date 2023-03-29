@@ -29,5 +29,8 @@ public interface UserDao {
 	 * 인자로 전달되는 아이디를 가지는 사용자가 존재하는지의 여부를판별
 	 */
 	boolean existedUser(String userId) throws Exception;
+	
+	//sns로그인 가입 판별
+	boolean findBySnsId(User user) throws Exception;
 
 }
