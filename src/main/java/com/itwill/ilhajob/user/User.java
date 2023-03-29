@@ -32,8 +32,8 @@ public class User {
 	private String userStatus;
 	private String snsType;
 	private String snsId;
-	private String jobId;
-	private String roleId;
+	private String job;
+	private int role;
 	private List<Cv> cvList;
 
 	/*
