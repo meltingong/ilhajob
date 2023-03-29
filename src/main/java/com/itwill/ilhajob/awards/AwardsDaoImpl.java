@@ -34,6 +34,14 @@ public class AwardsDaoImpl implements AwardsDao{
 	public int removeAwards(Awards awards) {
 		return awardsMapper.removeAwards(awards);
 	}
+	
+	@Override
+	public int removeAwardsBySeq(int awardsSeq) {
+		return awardsMapper.removeAwardsBySeq(awardsSeq);
+	}
+	
+	
+	
 	/*
 	 * 수상 전체 리스트(admin 필요)
 	 */
@@ -48,6 +56,7 @@ public class AwardsDaoImpl implements AwardsDao{
 	public List<Awards> findAwardsOfUser(int userSeq) {
 		return awardsMapper.selectByAwardsOfUser(userSeq);
 	}
+
 	
 	
 

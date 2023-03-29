@@ -31,9 +31,11 @@
 	where awards_seq=#{awardsSeq}
 	</update>	
 	
-	<delete id="removeAwards" parameterType="int">
+	<delete id="removeAwardsBySeq" parameterType="int">
 		delete from awards where awards_seq=#{awardsSeq}
 	</delete>
-
+	
+	
+	
 
 </mapper>
