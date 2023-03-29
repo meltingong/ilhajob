@@ -2,6 +2,8 @@ package com.itwill.ilhajob.cv;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+@Repository
 public interface CvDao_하은 {
 	
 	Cv findCv(int cvSeq);
