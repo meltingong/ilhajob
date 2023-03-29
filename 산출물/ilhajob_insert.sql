@@ -127,6 +127,43 @@ values('corp_24', '6767', '온넷시스템즈코리아', '02-2057-2260', '116-66
 '온넷시스템즈코리아는 콘텐츠 전송속도의 저하를 막고 불안정성 문제를 해결하기 위해 고안된 기술로, ISP(internet service provider)의 네트워크 하단에 여러 대의 캐시서버를 설치,CP(Contents Provider)가 제공하는 콘텐츠를 이 캐시서버에 미리 옮겨놓고 수요가 있을 때 그 콘텐츠를 사용자에게 제공하는 기업입니다.',
 '연금,보험,휴무,보상', '서울 서초구 효령로 262 (서초동) 평화빌딩 4층', 1, null, null);
 
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job, ROLE) 
+values
+('seoulnetwork@snt.com', '1111', '서울네트워크서비스', 021231234, 1000000001, 'http://www.snservice.com', '2007-02-10', 700, 4000, '다양한 분야에서의 최고의 고객 서비스 제공을 위한 다양한 사업영역을 확대해 나가고 있습니다.', 
+'학자금대출, 육아휴직, 점심 식대지원', '서울 영등포구 선유로 70', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job, ROLE) 
+values
+('greennetwork@greennet.com', '1111', '그린네트워크', 029876789, 1000000002, 'http://www.greennetwork.co.kr', '2017-02-10', 2940, 9125, '그린네트워크는 2017년에 설립되어 다양한 네트워크 서비스를 제공합니다.', 
+'4대보험, 생일휴가, 재택근무', '서울 금천구 벚꽃로 316', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job, ROLE) 
+values
+('apple@applesystem.com', '1111', '사과시스템', 029890765, 1000000003, 'http://www.applesystem.com', '2010-02-20', 2340, 8000, '사과시스템 소개', 
+'4대보험, 학자금대출, 직원 대출', '서울 강남구 강남대로 476', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job, ROLE) 
+values
+('olive@olivenetworks.com', '1111', '올리브네트웍스', 023745558, 1000000004, 'http://www.olivenetworks.co.kr', '1999-12-07', 960, 7000, '올리브네트웍스 소개', 
+'카페테리아, 육아휴직, 직장어린이집', '서울 성동구 아차산로 92', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job, ROLE) 
+values
+('ddbank@ddbank.com', '1111', 'DD은행', 021347789, 1000000005, 'http://www.ddbank.com', '2007-02-10', 690, 4000, '디디뱅크는 우리나라 최고의 은행입니다.', 
+'패밀리데이, 인센티브, 점심 식대지원', '서울 송파구 오금로11길 7', null, null, null);
+
+insert into corp 
+(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job, ROLE) 
+values
+('aatel@aatelecom.com', '1111', 'AA텔레콤', 021233454, 1000000006, 'http://www.aatelecom.com', '1989-04-21', 5413, 124000, '최고 품질의 통신 서비스를 제공합니다.', 
+'유류비 지원, 시차출근제, 건강검진', '서울 중구 마른내로 34', null, null, null);
+
+
 /**********************manage insert*********************/
 
 /************기업 1에 속한 매니저************/
@@ -154,41 +191,6 @@ values('이메일@기업8.com','ㅌㅌㅌ','인사팀장','010-5326-6477','corp_
 insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
 values('이메일@기업9.com','ㅊㅊㅊ','인사팀장','010-5326-6477','corp_14');
 
-insert into corp 
-(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, ROLE) 
-values
-('seoulnetwork@snt.com', '1111', '서울네트워크서비스', 021231234, 1000000001, 'http://www.snservice.com', '2007-02-10', 700, 4000, '다양한 분야에서의 최고의 고객 서비스 제공을 위한 다양한 사업영역을 확대해 나가고 있습니다.', 
-'학자금대출, 육아휴직, 점심 식대지원', '서울 영등포구 선유로 70', null, null, null);
-
-insert into corp 
-(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, ROLE) 
-values
-('greennetwork@greennet.com', '1111', '그린네트워크', 029876789, 1000000002, 'http://www.greennetwork.co.kr', '2017-02-10', 2940, 9125, '그린네트워크는 2017년에 설립되어 다양한 네트워크 서비스를 제공합니다.', 
-'4대보험, 생일휴가, 재택근무', '서울 금천구 벚꽃로 316', null, null, null);
-
-insert into corp 
-(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, ROLE) 
-values
-('apple@applesystem.com', '1111', '사과시스템', 029890765, 1000000003, 'http://www.applesystem.com', '2010-02-20', 2340, 8000, '사과시스템 소개', 
-'4대보험, 학자금대출, 직원 대출', '서울 강남구 강남대로 476', null, null, null);
-
-insert into corp 
-(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, ROLE) 
-values
-('olive@olivenetworks.com', '1111', '올리브네트웍스', 023745558, 1000000004, 'http://www.olivenetworks.co.kr', '1999-12-07', 960, 7000, '올리브네트웍스 소개', 
-'카페테리아, 육아휴직, 직장어린이집', '서울 성동구 아차산로 92', null, null, null);
-
-insert into corp 
-(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, ROLE) 
-values
-('ddbank@ddbank.com', '1111', 'DD은행', 021347789, 1000000005, 'http://www.ddbank.com', '2007-02-10', 690, 4000, '디디뱅크는 우리나라 최고의 은행입니다.', 
-'패밀리데이, 인센티브, 점심 식대지원', '서울 송파구 오금로11길 7', null, null, null);
-
-insert into corp 
-(corp_id, corp_password, corp_name, corp_phone, corp_business_no, corp_website, corp_est, corp_size, corp_sales, corp_comment, corp_welfare, corp_address, corp_status, job_id, ROLE) 
-values
-('aatel@aatelecom.com', '1111', 'AA텔레콤', 021233454, 1000000006, 'http://www.aatelecom.com', '1989-04-21', 5413, 124000, '최고 품질의 통신 서비스를 제공합니다.', 
-'유류비 지원, 시차출근제, 건강검진', '서울 중구 마른내로 34', null, null, null);
 
 /**********************recruit insert*********************/
 insert into recruit (RC_SEQ,RC_TITLE,RC_POSITION,RC_CONTENT,RC_QUALIFICATION,RC_SALARY,RC_DEADLINE,RC_READ_COUNT,CORP_ID)
