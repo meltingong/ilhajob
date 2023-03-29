@@ -23,5 +23,5 @@ public interface CorpDao {
 	// 회사 삭제하기(id로 식별)
 	int deleteCorp(Corp corp) throws Exception;
 	
-	Corp findCorpByIdWithCorpImage(String corpId);
+	Corp findCorpByIdWithAll(String corpId);
 }

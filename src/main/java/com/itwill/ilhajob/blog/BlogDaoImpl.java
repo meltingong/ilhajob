@@ -20,8 +20,8 @@ public class BlogDaoImpl implements BlogDao {
 		return blogMapper.selectAll();
 	}
 	
-	public List<Blog> selectByBlogUser(int userSeq) {
-		return blogMapper.selectByBlogUser(userSeq);
+	public List<Blog> selectByBlogCate(int blogCateSeq) {
+		return blogMapper.selectByBlogCate(blogCateSeq);
 	}
 	
 	public int insertBlog(Blog blog) {

@@ -12,16 +12,8 @@ public class EduDaoImpl implements EduDao {
     private EduMapper eduMapper;
 
     /****************  ****************/
-    public EduDaoImpl() {
-
-    }
-
-    public EduMapper getEduMapper() {
-        return eduMapper;
-    }
-
-    public void setEduMapper(EduMapper eduMapper) {
-        this.eduMapper = eduMapper;
+    public EduDaoImpl(EduMapper eduMapper) {
+    	this.eduMapper = eduMapper;
     }
 
     @Override

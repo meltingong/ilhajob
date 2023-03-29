@@ -17,6 +17,9 @@ public interface CvMapper {
 	
 	public List<Cv> selectByCvOfUserSeq(int userSeq);
 	
+	// 이력서 상세보기
+	public Cv selectDetailCv(int userSeq);
+	
 	public int insertCv(Cv cv);
 	
 	public int updateCv(Cv cv);

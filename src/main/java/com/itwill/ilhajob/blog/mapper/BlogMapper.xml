@@ -9,18 +9,21 @@
         select * from blog
     </select>
     
-    <select id="selectByBlogUser" parameterType="int" resultType="com.itwill.ilhajob.blog.Blog">
-        select * from blog where user_seq = #{user_seq}
+    <select id="selectByBlogCate" parameterType="int" resultType="com.itwill.ilhajob.blog.Blog">
+        select * from blog where blog_cate_seq = #{blogCateSeq}
     </select>
     
     <insert id="insertBlog" parameterType="com.itwill.ilhajob.blog.Blog">
+        <selectKey order="BEFORE" resultType="int" keyProperty="blogSeq">
+            select blog_blog_seq_SEQ.nextval from dual
+        </selectKey>
         insert into blog (blog_seq, blog_title, blog_content, blog_image, blog_date, blog_read_count, blog_like, user_seq, blog_cate_seq) 
-        values (#{blogSeq}, #{blogTitle}, #{blogContent}, #{blogImage}, #{blogDate}, #{blogRead}, #{blogReadCount}, #{blogLike}, #{userSeq}, #{blogCateSeq})
+        values(#{blogSeq}, #{blogTitle}, #{blogContent}, #{blogImage}, #{blogDate}, #{blogReadCount}, #{blogLike}, #{userSeq}, #{blogCateSeq})
     </insert>
     
     <update id="updateBlog" parameterType="com.itwill.ilhajob.blog.Blog">
         update blog set blog_seq = #{blogSeq}, blog_title=#{blogTitle}, blog_content=#{blogContent}, blog_image=#{blogImage}, blog_date=#{blogDate},
-        blog_read_count=#{blogReadCount}, blog_like=#{blogLike}, user_seq=#{userSeq}, blog_cate_seq=#{blogCateSeq}
+        blog_read_count=#{blogReadCount}, blog_like=#{blogLike}, user_seq=#{userSeq}, blog_cate_seq=#{blogCateSeq} where blog_seq=#{blogSeq}
     </update>
     
     <delete id="deleteBlog" parameterType="com.itwill.ilhajob.blog.Blog">

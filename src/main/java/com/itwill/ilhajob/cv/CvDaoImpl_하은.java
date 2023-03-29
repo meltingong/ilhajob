@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.cv;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class CvDaoImpl_하은 implements CvDao_하은{
 */
 	@Override
 	public List<Cv> findCvListByUserSeq(int userSeq) {
+		List<Cv> cvList = new ArrayList<Cv>();
 		
 		return cvMapper.selectByCvOfUserSeq(userSeq);
 	}

@@ -16,14 +16,14 @@ import lombok.ToString;
 @ToString
 @Builder
 public class Orders {
-	private int order_no;
-	private Date order_end_date;
+	private int orderNo;
+	private Date orderEndDate;
 	//상품구매 목록 확인시 order_valid로 만료 표시
-	private char order_valid;
+	private char orderValid;
 	
-	private Product p_no;
-	private String corp_id;
-	private int user_seq;
+	private Product product;
+	private String corpId;
+	private int userSeq;
 	
 	
 }
