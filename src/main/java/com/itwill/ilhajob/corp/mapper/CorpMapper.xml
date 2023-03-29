@@ -7,15 +7,25 @@
 			   type="com.itwill.ilhajob.corp.Corp" 
 			   autoMapping="true">
 			   <result column="corp_id" property="corpId"/>
+		<association property="orders" 
+					javaType="com.itwill.ilhajob.order.Orders" 
+					autoMapping="true">
+				<association property="product"
+							 javaType="com.itwill.ilhajob.product.Product"
+							 column="p_no"
+							 select="com.itwill.ilhajob.product.mapper.ProductMapper.selectByNo">
+				</association>
+					<!-- <result column="p_no" property="pNo"/> -->
+		</association>
 		<collection property="corpImageList"
 					ofType="com.itwill.ilhajob.corpimage.CorpImage"
 					autoMapping="true">
-					<result column="corp_id" property="corpId"/>
+					<!-- <result column="corp_id" property="corpId"/> -->
 		</collection>
 		<collection property="managerList"
 					ofType="com.itwill.ilhajob.manager.Manager"
 					autoMapping="true">
-					<result column="corp_id" property="corpId"/>
+					<!-- <result column="corp_id" property="corpId"/> -->
 		</collection>
 	</resultMap>
 	<select id="findCorpByIdWithAll" 
@@ -26,6 +36,8 @@
 		on c.corp_id=ci.corp_id
 		join manager m
 		on c.corp_id=m.corp_id
+		join orders o
+		on c.corp_id=o.corp_id
 		where c.corp_id=#{corpId}
 	</select>
 

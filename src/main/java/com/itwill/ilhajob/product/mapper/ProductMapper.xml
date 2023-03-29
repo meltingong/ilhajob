@@ -19,7 +19,7 @@
 	<delete id="deleteProduct" parameterType="java.lang.Integer">
 	 	delete from product where p_no=#{pNo}
 	</delete>
-	
+	 
 </mapper>
 
 

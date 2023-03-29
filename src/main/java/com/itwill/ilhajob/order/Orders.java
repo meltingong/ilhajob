@@ -21,7 +21,7 @@ public class Orders {
 	//상품구매 목록 확인시 order_valid로 만료 표시
 	private char orderValid;
 	
-	private Product pNo;
+	private Product product;
 	private String corpId;
 	private int userSeq;
 	
