@@ -19,7 +19,7 @@
 			select awards_awards_seq_SEQ.nextval from dual
 		</selectKey>
 		insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
-		values(#{awardsSeq},#{awardsName},#{awardsDate},#{awardsContent},#{userSeq})
+		values(#{awardsSeq},#{awardsName},#{awardsDate},#{awardsContent,jdbcType=VARCHAR},#{userSeq})
 	</insert>
 	
 	
@@ -27,7 +27,7 @@
 	<update id="updateAwards" parameterType="com.itwill.ilhajob.awards.Awards">
 	
 	update awards
-	set awards_name = #{awardsName}, awards_date = #{awardsDate}, awards_content = #{awardsContent}
+	set awards_name = #{awardsName}, awards_date = #{awardsDate}, awards_content = #{awardsContent, jdbcType=VARCHAR}
 	where awards_seq=#{awardsSeq}
 	</update>	
 	
