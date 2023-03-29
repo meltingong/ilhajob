@@ -39,35 +39,26 @@ from userinfo u
 join education e
 on u.user_email=e.user_email
 where u.user_email='테스트1@test.com';
-/********************회원 수상(awards select)**********************/
+/********************회원 수상**********************/
 select * 
 from userinfo u
 join awards a
 on u.user_seq=a.user_seq
 where u.user_seq=2;
-/************* awards update **/
-update awards
-set awards_name =  '업데이트테스트' , awards_date = '2023/03/29', awards_content ='업데이트내용'
-where awards_seq=2
-
-/************* awards delete **/
-delete from awards 
-where awards_seq=2
-
 /********************회원 경력**********************/
 select * 
 from userinfo u
 join experience exp
 on u.user_email=exp.user_email
-where u.user_seq=2;
+where u.user_email='테스트1@test.com';
 
 /********************회원1의 이력서 목록**********************/
-select * from cv where cv.user_seq=2;
+select * from cv where cv.user_email='테스트1@test.com';
 
 /********************회원1의 이력서 제출목록**********************/
 select * from (
             select * from cv 
-            where cv.user_seq=2
+            where cv.user_email='테스트1@test.com'
             ) ucv
 join app
 on app.cv_seq=ucv.cv_seq;
@@ -143,9 +134,17 @@ join product p
 on o.p_no=p.p_no
 where corp_id='corp_01';
 
-select * from corp_image;
+/*****기업 1에 속한 모든 매니저 정보 불러오기******/
+select * from manager
+where corp_id='corp_01';
 
-select * from corp_image where corp_id='corp_01';
+
+/*****매니저 1이 속한 기업의 정보 불러오기 [매니저1 email(pk):이메일@기업1-1.com]******/
+select c.* from corp c
+join manager m
+on c.corp_id=m.corp_id
+where m.manager_email='이메일@기업1-1.com';
+
 --rollback;
 
 
