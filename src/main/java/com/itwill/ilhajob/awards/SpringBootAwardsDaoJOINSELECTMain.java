@@ -8,6 +8,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+//@SpringBootApplication
+//@MapperScan
+//@MapperScan(basePackages = "com.itwill.user.mapper")
+//@MapperScan(basePackageClasses =UserMapper.class)
+//해당 클래스만 테스트하려고할때 기재
+
+
+
 @SpringBootApplication
 @MapperScan(basePackages = "com.itwill.ilhajob.Awards.mapper")
 public class SpringBootAwardsDaoJOINSELECTMain {
