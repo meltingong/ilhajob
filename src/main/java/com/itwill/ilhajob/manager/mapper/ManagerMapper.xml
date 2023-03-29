@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="existedManager" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select count(*) cnt from manager where manager_email=#{managerEmail};
+		select count(*) cnt from manager where manager_email=#{managerEmail}
 	</select>
 	
 	<select id="selectListByCorpId" parameterType="java.lang.String" resultType="com.itwill.ilhajob.manager.Manager">
