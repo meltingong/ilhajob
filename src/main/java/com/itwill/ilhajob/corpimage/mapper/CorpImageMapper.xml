@@ -7,39 +7,39 @@
 			select corp_image_corp_image_seq.nextval from dual
 		</selectKey>
 		insert into corpImage(corp_image_seq,corp_image,corp_id)
-		values(#{corp_image_seq},#{corp_image},#{corp_id})
+		values(#{corpImageSeq},#{corpImage},#{corpId})
 	</insert>
 	
 	<select id="selectBySEQ" parameterType="java.lang.Integer"
-							resultType="com.itwill.ilhajob.corpimage">
+							resultType="com.itwill.ilhajob.corpimage.CorpImage">
 		select * from corpImage
-		where corp_image_seq = #{corp_image_seq}
+		where corpImageSeq = #{corpImageSeq}
 	</select>
 	
 	<select id="selectById" parameterType="java.lang.String" 
-							resultType="com.itwill.ilhajob.corpimage">
+							resultType="com.itwill.ilhajob.corpimage.CorpImage">
 		select * from corpImage
-		where corp_id = #{corp_id}
+		where corp_id = #{corpId}
 	</select>
 	
-	<select id="selectAll" resultType="com.itwill.ilhajob.corpimage">
+	<select id="selectAll" resultType="com.itwill.ilhajob.corpimage.CorpImage">
 		select * from corpImage
 	</select>
 	
-	<update id="updateCorpImage" parameterType="java.lang.Integer">
+	<update id="updateCorpImage" parameterType="com.itwill.ilhajob.corpimage.CorpImage">
 		update corpImage set
-		corp_image=#{corp_image}
-		where corp_image_seq=#{corp_image_seq}
+		corp_image=#{corpImage}
+		where corp_image_seq=#{corpImageSeq}
 	</update>
 	
 	<delete id="deleteCorpImageById" parameterType="java.lang.String">
 		delete from corpImage
-		where corp_id=#{corp_id}
+		where corp_id=#{corpId}
 	</delete>
 	
 	<delete id="deleteCorpImageBySEQ" parameterType="java.lang.Integer">
 		delete from corpImage
-		where corp_id=#{corp_image_seq}
+		where corp_image_seq=#{corpImageSeq}
 	</delete>
 	
 	
