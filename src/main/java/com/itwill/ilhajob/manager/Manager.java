@@ -25,6 +25,6 @@ public class Manager {
 	String managerEmail;
 	String managerName;
 	String managerPosition;
-	String manager_phone;
-	String corp_id;
+	String managerPhone;
+	String corpId;
 }
