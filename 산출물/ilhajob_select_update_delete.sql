@@ -134,6 +134,16 @@ join product p
 on o.p_no=p.p_no
 where corp_id='corp_01';
 
+/*****기업 1에 속한 모든 매니저 정보 불러오기******/
+select * from manager
+where corp_id='corp_01';
+
+/*****매니저 1이 속한 기업의 정보 불러오기 [매니저1 email(pk):이메일@기업1-1.com]******/
+select c.* from corp c
+join manager m
+on c.corp_id=m.corp_id
+where m.manager_email='이메일@기업1-1.com';
+
 --rollback;
 
 

@@ -146,8 +146,14 @@ values('corp_24', '6767', '온넷시스템즈코리아', '02-2057-2260', '116-66
 '연금,보험,휴무,보상', '서울 서초구 효령로 262 (서초동) 평화빌딩 4층', 1, null, null);
 
 /**********************manage insert*********************/
+/************기업 1에 속한 매니저************/
 insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
-values('이메일@기업1.com','기기기','인사팀장','010-5326-6477','corp_01');
+values('이메일@기업1-1.com','매니저1-1','인사팀장','010-5326-6477','corp_01');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업1-2.com','매니저1-2','인사팀장','010-5326-6477','corp_01');
+insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
+values('이메일@기업1-3.com','매니저1-3','인사팀장','010-5326-6477','corp_01');
+
 insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
 values('이메일@기업2.com','늬늬늬','인사팀장','010-5326-6477','corp_02');
 insert into manager (manager_email, manager_name, manager_position, manager_phone,corp_id)
