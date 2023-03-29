@@ -11,7 +11,10 @@ import com.itwill.ilhajob.awards.mapper.AwardsMapper;
 public class AwardsDaoImpl implements AwardsDao{
 	@Autowired
 	private AwardsMapper awardsMapper;
-
+	
+	/*
+	 * 수상seq로 찾기
+	 */
 	@Override
 	public Awards findAwards(int awardsSeq) {
 		return  awardsMapper.selectByAwards(awardsSeq);
@@ -31,12 +34,16 @@ public class AwardsDaoImpl implements AwardsDao{
 	public int removeAwards(Awards awards) {
 		return awardsMapper.removeAwards(awards);
 	}
-
+	/*
+	 * 수상 전체 리스트(admin 필요)
+	 */
 	@Override
 	public List<Awards> findAwardsList() {
 		return awardsMapper.selectAll();
 	}
-
+	/*
+	 *  한명의 유저로 수상찾기(userSEQ 찾기)
+	 */
 	@Override
 	public List<Awards> findAwardsOfUser(int userSeq) {
 		return awardsMapper.selectByAwardsOfUser(userSeq);
