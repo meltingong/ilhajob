@@ -41,21 +41,21 @@ CREATE TABLE userinfo(
 		user_seq                      		NUMBER(20)		 NULL ,
 		user_email                    		VARCHAR2(50)		 NOT NULL,
 		user_password                 		VARCHAR2(45)		 NOT NULL,
-		user_name                     		VARCHAR2(10)		 NULL ,
+		user_name                     		VARCHAR2(30)		 NULL ,
 		user_phone                    		VARCHAR2(20)		 NULL ,
 		user_sex                      		VARCHAR2(10)		 NULL ,
-		user_address                  		VARCHAR2(100)		 NULL ,
+		user_address                  		VARCHAR2(150)		 NULL ,
 		user_career                   		VARCHAR2(20)		 NULL ,
 		user_age                      		NUMBER(5)		 NULL ,
-		user_final_education          		VARCHAR2(10)		 NULL ,
-		user_language                 		VARCHAR2(10)		 NULL ,
-		user_skills                   		VARCHAR2(100)		 NULL ,
+		user_final_education          		VARCHAR2(30)		 NULL ,
+		user_language                 		VARCHAR2(60)		 NULL ,
+		user_skills                   		VARCHAR2(120)		 NULL ,
 		user_image                    		VARCHAR2(45)		 NULL ,
 		user_status                   		CHAR(1)		 NULL ,
 		sns_type                      		VARCHAR2(45)		 NULL ,
 		sns_id                        		VARCHAR2(45)		 NULL ,
-		job_id                        		NUMBER(10)		 NULL ,
-		role_id                       		NUMBER(20)		 NULL 
+		job                         		VARCHAR2(60)		 NULL ,
+		role                        		NUMBER(5)			 NULL 
 );
 
 DROP SEQUENCE userinfo_user_seq_SEQ;
@@ -136,8 +136,8 @@ CREATE TABLE corp(
 		corp_welfare                  		VARCHAR2(50)		 NULL ,
 		corp_address                  		VARCHAR2(100)		 NULL ,
 		corp_status                   		CHAR(1)		 NULL ,
-		job_id                        		NUMBER(10)		 NULL ,
-		role_id                       		NUMBER(20)		 NULL 
+		job                         		VARCHAR2(60)		 NULL ,
+		role                        		NUMBER(5)			 NULL 
 );
 
 
