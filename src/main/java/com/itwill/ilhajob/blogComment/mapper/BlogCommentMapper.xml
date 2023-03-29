@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.blogComment.mapper.BlogCommentMapper" >
-    <select id="selectByBlogComment" resultType="com.itwill.ilhajob.blogComment.BlogComment">
-        select * from blogcomment where comment_seq = #{commentSeq}
+
+    <select id="findBlogComment" parameterType="int" resultType="com.itwill.ilhajob.blogComment.BlogComment">
+        select * from blog_comment where comment_seq = #{commentSeq}
     </select>
     
     <select id="selectAll" resultType="com.itwill.ilhajob.blogComment.BlogComment">
-        select * from blogcomment
+        select * from blog_comment 
     </select>
     
-    <select id="selectByBlogSeq" resultType="com.itwill.ilhajob.blogComment.BlogComment">
-        select * from blogcomment where blog_seq = #{blogSeq}
+    <select id="selectByBlogCommentUser" parameterType="int" resultType="com.itwill.ilhajob.blogComment.BlogComment">
+        select * from blog_comment where user_seq=#{userSeq}
     </select>
-    
+       
     <insert id="insertBlogComment" parameterType="com.itwill.ilhajob.blogComment.BlogComment">
-        insert into blogcomment (comment_seq, comment_content, comment_date, user_seq, blog_seq)
+        insert into blog_comment (comment_seq, comment_content, comment_date, user_seq, blog_seq)
         values (#{commentSeq}, #{commentContent}, #{commentDate}, #{userSeq}, #{blogSeq})
     </insert>
     
     <update id="updateBlogComment" parameterType="com.itwill.ilhajob.blogComment.BlogComment">
-        update blogcomment set comment_seq = #{commentSeq}, comment_content=#{commentContent},
+        update blog_comment set comment_seq = #{commentSeq}, comment_content=#{commentContent},
         comment_date=#{commentDate}, user_seq=#{userSeq}, blog_seq=#{blogSeq}    
     </update>
     
-    <delete id="deleteBlogComment" parameterType="com.itwill.ilhajob.blogComment.BlogComment">
-        delete from blogcomment where comment_seq = #{commentSeq}
+    <delete id="removeBlogComment" parameterType="int">
+        delete from blog_comment where comment_seq = #{commentSeq}
     </delete> 
 
 </mapper>

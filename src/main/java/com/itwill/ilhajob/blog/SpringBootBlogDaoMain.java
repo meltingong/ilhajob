@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
+@MapperScan(basePackages = "com.itwill.ilhajob.blog.mapper")
 //@MapperScan(basePackages = "com.itiwll.ilhajob.Awards.mapper")
 public class SpringBootBlogDaoMain {
 
@@ -13,10 +14,10 @@ public class SpringBootBlogDaoMain {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootBlogDaoMain.class, args);
 		//Awards tutorDao=(Awards)appicationContext.getBean(Awards.class);
+		BlogDao blogDao=(BlogDao)appicationContext.getBean(BlogDao.class);
 		System.out.println("---------findTutorByIdWithCourses------------------");
-		System.out.println();
-		System.out.println();
-
+		System.out.println(blogDao.selectAll());
+		
 	}
 
 }
