@@ -20,8 +20,8 @@ public class CorpDaoImpl implements CorpDao{
 		return corpMapper.selectById(corpId);
 	}
 	
-	public Corp findCorpByIdWithCorpImage(String corpId) {
-		return corpMapper.findCorpByIdWithCorpImage(corpId);
+	public Corp findCorpByIdWithAll(String corpId) {
+		return corpMapper.findCorpByIdWithAll(corpId);
 	}
 	
 	public List<Corp> selectAll() throws Exception{

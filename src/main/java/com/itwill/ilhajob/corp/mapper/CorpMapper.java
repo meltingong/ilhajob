@@ -18,5 +18,5 @@ public interface CorpMapper {
 	public int insertCorp(Corp corp);
 	public int deleteCorp(String corpId);
 	public int updateCorp(Corp corp);
-	public Corp findCorpByIdWithCorpImage(String corpId);
+	public Corp findCorpByIdWithAll(String corpId);
 }
