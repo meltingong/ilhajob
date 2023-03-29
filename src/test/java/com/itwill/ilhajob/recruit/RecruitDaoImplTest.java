@@ -29,7 +29,7 @@ class RecruitDaoImplTest {
 		recruitMapper.insertRecruit(recruit);
 	}
 
-	@Disabled
+	//@Disabled
 	@Test
 	void testFindByCorpId() {
 		System.out.println(recruitMapper.findByCorpId("DBtest6"));
@@ -55,7 +55,7 @@ class RecruitDaoImplTest {
 		System.out.println(recruitMapper.updateBySeq(recruit));
 	}
 
-	//@Disabled
+	@Disabled
 	@Test
 	void testDeleteBySeq() {
     	Map<String, Object> paramMap = new HashMap<>();

@@ -25,17 +25,6 @@ DROP TABLE userinfo CASCADE CONSTRAINTS;
 DROP TABLE user_roles CASCADE CONSTRAINTS;
 DROP TABLE job CASCADE CONSTRAINTS;
 
-CREATE TABLE job(
-		job_id                        		NUMBER(10)		 NULL ,
-		job_name                      		VARCHAR2(20)		 NULL 
-);
-
-
-CREATE TABLE user_roles(
-		role_id                       		NUMBER(20)		 NULL ,
-		role_name                     		VARCHAR2(10)		 NULL 
-);
-
 
 CREATE TABLE userinfo(
 		user_seq                      		NUMBER(20)		 NULL ,
@@ -356,8 +345,6 @@ ALTER TABLE job ADD CONSTRAINT IDX_job_PK PRIMARY KEY (job_id);
 ALTER TABLE user_roles ADD CONSTRAINT IDX_user_roles_PK PRIMARY KEY (role_id);
 
 ALTER TABLE userinfo ADD CONSTRAINT IDX_userinfo_PK PRIMARY KEY (user_seq);
-ALTER TABLE userinfo ADD CONSTRAINT IDX_userinfo_FK0 FOREIGN KEY (job_id) REFERENCES job (job_id) on delete cascade;
-ALTER TABLE userinfo ADD CONSTRAINT IDX_userinfo_FK1 FOREIGN KEY (role_id) REFERENCES user_roles (role_id) on delete cascade;
 
 ALTER TABLE CV ADD CONSTRAINT IDX_CV_PK PRIMARY KEY (cv_seq);
 ALTER TABLE CV ADD CONSTRAINT IDX_CV_FK0 FOREIGN KEY (user_seq) REFERENCES userinfo (user_seq) on delete cascade;
@@ -372,8 +359,6 @@ ALTER TABLE awards ADD CONSTRAINT IDX_awards_PK PRIMARY KEY (awards_seq);
 ALTER TABLE awards ADD CONSTRAINT IDX_awards_FK0 FOREIGN KEY (user_seq) REFERENCES userinfo (user_seq) on delete cascade;
 
 ALTER TABLE corp ADD CONSTRAINT IDX_corp_PK PRIMARY KEY (corp_id);
-ALTER TABLE corp ADD CONSTRAINT IDX_corp_FK0 FOREIGN KEY (job_id) REFERENCES job (job_id) on delete cascade;
-ALTER TABLE corp ADD CONSTRAINT IDX_corp_FK1 FOREIGN KEY (role_id) REFERENCES user_roles (role_id) on delete cascade;
 
 ALTER TABLE manager ADD CONSTRAINT IDX_manager_PK PRIMARY KEY (manager_email);
 ALTER TABLE manager ADD CONSTRAINT IDX_manager_FK0 FOREIGN KEY (corp_id) REFERENCES corp (corp_id) on delete cascade;
