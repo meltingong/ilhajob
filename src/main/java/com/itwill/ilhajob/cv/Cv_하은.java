@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 public class Cv_하은 {
 
-	private String cvSeq;
+	private int cvSeq;
 	private String cvName;
 	private String cvDescription;
 	private String cvPortfolio;
