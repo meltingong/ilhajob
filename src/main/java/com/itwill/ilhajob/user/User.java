@@ -34,7 +34,6 @@ public class User {
 	private String snsId;
 	private String job;
 	private int role;
-	private List<Cv> cvList;
 
 	/*
 	 *패쓰워드 일치여부 검사 
