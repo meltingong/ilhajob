@@ -62,12 +62,12 @@ on u.user_email=exp.user_email
 where u.user_seq=2;
 
 /********************회원1의 이력서 목록**********************/
-select * from cv where cv.user_email='테스트1@test.com';
+select * from cv where cv.user_seq=2;
 
 /********************회원1의 이력서 제출목록**********************/
 select * from (
             select * from cv 
-            where cv.user_email='테스트1@test.com'
+            where cv.user_seq=2
             ) ucv
 join app
 on app.cv_seq=ucv.cv_seq;

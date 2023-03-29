@@ -22,7 +22,6 @@ public class Cv_하은 {
 	private String cvDescription;
 	private String cvPortfolio;
 	private int userSeq;
-	private String userEmail;
 	private List<Edu> eduList;
 	private List<Exp> expList;
 	private List<Awards> awardsList;
