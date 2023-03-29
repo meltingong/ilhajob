@@ -414,7 +414,6 @@ insert into orders(order_no,p_no,corp_id,user_seq)
 values(ORDERS_ORDER_NO_SEQ.nextval,5,'corp_01',null);
 
 /**********************payment insert**************************/
-insert into ORDERS()
 
 
 
