@@ -59,7 +59,7 @@ select *
 from userinfo u
 join experience exp
 on u.user_email=exp.user_email
-where u.user_email='테스트1@test.com';
+where u.user_seq=2;
 
 /********************회원1의 이력서 목록**********************/
 select * from cv where cv.user_email='테스트1@test.com';

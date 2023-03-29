@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.itwill.ilhajob.cv.mapper.CvMapper;
 
 @Repository
-public class CvDaoImpl implements CvDao{
+public class CvDaoImpl_하은 implements CvDao{
 
 	@Autowired
 	private CvMapper cvMapper;

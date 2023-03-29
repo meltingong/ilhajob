@@ -2,7 +2,7 @@ package com.itwill.ilhajob.cv;
 
 import java.util.List;
 
-public interface CvDao {
+public interface CvDao_하은 {
 	
 	Cv findCv(int cvSeq);
 	
