@@ -320,7 +320,7 @@ values(EDUCATION_EDU_SEQ_SEQ.nextval,'컴퓨터공학과','대학교',sysdate-90
 /**********************awards insert***************************/
 
 insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
-values(awards_awards_seq_SEQ.nextval,'창의경진대회',2023/03/28,'장관상',userinfo_user_seq_SEQ.currval);
+values(awards_awards_seq_SEQ.nextval,'창의경진대회','2023/03/28','장관상',userinfo_user_seq_SEQ.currval);
 
 insert into awards(awards_seq, awards_name, awards_date, awards_content,user_seq)
 values(awards_awards_seq_SEQ.nextval,'과학경진대회','2023/01/28','국무총리상',userinfo_user_seq_SEQ.currval);
