@@ -14,6 +14,8 @@ public interface AwardsDao {
 	
 	int removeAwards(Awards awards);
 	
+	int removeAwardsBySeq(int awardsSeq);
+	
 	List<Awards> findAwardsList();
 	
 	List<Awards> findAwardsOfUser(int userSeq);

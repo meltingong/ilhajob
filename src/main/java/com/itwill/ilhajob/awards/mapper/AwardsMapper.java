@@ -17,6 +17,8 @@ public interface AwardsMapper {
 		
 		public int removeAwards(Awards awards);
 		
+		public int removeAwardsBySeq(int awardsSeq);
+		
 		public List<Awards> selectAll();
 		
 		public List<Awards> selectByAwardsOfUser(int userSeq);
