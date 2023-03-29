@@ -134,6 +134,13 @@ join product p
 on o.p_no=p.p_no
 where corp_id='corp_01';
 
+
+/********************기업의 이미지리스트 보기**********************/
+select * from corp c
+join corp_image ci
+on c.corp_id=ci.corp_id
+where c.corp_id='corp_01';
+
 /*****기업 1에 속한 모든 매니저 정보 불러오기******/
 select * from manager
 where corp_id='corp_01';
