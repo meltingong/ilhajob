@@ -11,7 +11,7 @@ public interface BlogDao {
 	
 	List<Blog> selectAll();
 	
-	List<Blog> selectByBlogUser(int userSeq);
+	List<Blog> selectByBlogCate(int blogCateSeq);
 	
 	int insertBlog(Blog blog);
 	

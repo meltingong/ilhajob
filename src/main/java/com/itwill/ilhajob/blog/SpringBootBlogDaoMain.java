@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.blog;
 
+import java.util.Date;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,8 +18,12 @@ public class SpringBootBlogDaoMain {
 		//Awards tutorDao=(Awards)appicationContext.getBean(Awards.class);
 		BlogDao blogDao=(BlogDao)appicationContext.getBean(BlogDao.class);
 		System.out.println("---------findTutorByIdWithCourses------------------");
-		System.out.println(blogDao.selectAll());
+		//System.out.println(blogDao.selectAll());
+		//System.out.println(blogDao.findBlog(33));
+		//System.out.println(blogDao.selectByBlogCate(1))	;
+		//System.out.println(blogDao.insertBlog(new Blog(20, "TEST1","내용1", "이미지1", new Date(),1,1,"1",1)));
+		//System.out.println(blogDao.updateBlog(new Blog(32, "제목수정", "내용수정", "이미지수정", new Date(),2,2,"2",1)));
+		System.out.println(blogDao.deleteBlog(32));
 		
 	}
-
 }

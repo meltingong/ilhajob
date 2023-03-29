@@ -5,6 +5,7 @@ import java.util.List;
 import com.itwill.ilhajob.cv.Cv;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,10 +16,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
-
+	
+	private int userSeq;
 	private String userEmail;
-	private String password;
+	private String userPassword;
 	private String userName;
 	private String userPhone;
 	private String userSex;
@@ -40,7 +43,7 @@ public class User {
 	 */
 	public boolean isMatchPassword(String password){
 		boolean isMatch=false;
-		if(this.password.equals(password)){
+		if(this.userPassword.equals(password)){
 			isMatch=true;
 		}
 		return isMatch;

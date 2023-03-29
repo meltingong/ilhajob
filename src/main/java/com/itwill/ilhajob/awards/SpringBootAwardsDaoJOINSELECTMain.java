@@ -27,8 +27,7 @@ public class SpringBootAwardsDaoJOINSELECTMain {
 		System.out.println("---------AwardsDaoTEST------------------");
 		System.out.println(awardsDao.findAwardsList());
 		System.out.println(awardsDao.findAwards(2));
-		System.out.println(awardsDao.findAwardsOfUser(2));
-		
+		System.out.println(awardsDao.findAwardsOfUser(2));	
 		Awards awards = new Awards(2, "TEST3", new Date(), "내용3", 2);
 		
 		//System.out.println(awardsDao.createAwards(awards));

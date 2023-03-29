@@ -6,16 +6,16 @@
 			select userinfo_user_seq_seq.nextval from dual
 		</selectKey>
 	    insert into userinfo (user_seq, user_email, user_password, sns_type, sns_id)
-   	 	values (#{userSeq}, #{userEmail}, #{userPassword}, #{snsType}, #{snsId})
+   	 	values (#{userSeq}, #{userEmail}, #{userPassword}, #{snsType, jdbcType=VARCHAR}, #{snsId, jdbcType=VARCHAR})
 	</insert>
 
 	<update id="update" parameterType="com.itwill.ilhajob.user.User">
     	update userinfo
-    	set user_phone = #{userPhone}, user_sex = #{userSex}, user_address = #{userAddress},
-        	user_career = #{userCareer}, user_age = #{userAge}, user_final_education = #{userFinalEducation},
-        	user_language = #{userLanguage}, user_skills = #{userSkills}, user_image = #{userImage},
-        	sns_type = #{snsType}, sns_id = #{snsId}, job = #{job}
-    	where user_seq = #{userSeq}
+    	set user_phone = #{userPhone, jdbcType=VARCHAR}, user_sex = #{userSex, jdbcType=VARCHAR}, user_address = #{userAddress, jdbcType=VARCHAR},
+        	user_career = #{userCareer, jdbcType=VARCHAR}, user_age = #{userAge, jdbcType=NUMERIC}, user_final_education = #{userFinalEducation, jdbcType=VARCHAR},
+        	user_language = #{userLanguage, jdbcType=VARCHAR}, user_skills = #{userSkills, jdbcType=VARCHAR}, user_image = #{userImage, jdbcType=VARCHAR},
+        	sns_type = #{snsType, jdbcType=VARCHAR}, sns_id = #{snsId, jdbcType=VARCHAR}, job = #{job, jdbcType=VARCHAR}
+    	where user_Email = #{userEmail}
 	</update>
 	
 	<delete id="remove" parameterType="java.lang.String">

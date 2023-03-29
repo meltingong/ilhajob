@@ -19,41 +19,72 @@ import com.itwill.ilhajob.user.exception.UserNotFoundException;
  */
 @Service
 public class UserServiceImpl implements UserService{
-
+	
+	@Autowired
+	private UserDao userDao;
+	
+	public UserServiceImpl(UserDao userDao) {
+		this.userDao = userDao;
+	}
+	
 	@Override
 	public int create(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		//1.아이디중복체크
+		if(userDao.existedUser(user.getUserEmail())) {
+			//아이디중복
+			ExistedUserException exception=
+					new ExistedUserException(user.getUserEmail()+" 는 이미 존재하는아이디입니다.");
+			exception.setData(user);
+			throw exception;
+		}
+		//아이디안중복
+		//2.회원가입
+		return userDao.create(user);
 	}
 
 	@Override
 	public int login(String userId, String password) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int result=1;
+		
+		User user = userDao.findUser(userId);
+		if(user==null) {
+			UserNotFoundException exception = 
+					new UserNotFoundException(userId+" 는 존재하지않는 아이디입니다.");
+			exception.setData(user);
+			throw exception;
+		}
+		if(!user.isMatchPassword(password)){
+			//패쓰워드불일치
+			PasswordMismatchException exception=
+				new PasswordMismatchException("패쓰워드가 일치하지않습니다.");
+			throw exception;
+		}
+		return result;
 	}
 
 	@Override
 	public User findUser(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.findUser(userId);
 	}
 
 	@Override
 	public int update(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return userDao.update(user);
 	}
 
 	@Override
 	public int remove(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return userDao.remove(userId);
 	}
 
 	@Override
 	public boolean isDuplicateId(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isExist = userDao.existedUser(userId);
+		if(isExist) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	

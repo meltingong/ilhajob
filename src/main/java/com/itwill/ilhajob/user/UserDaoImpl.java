@@ -13,6 +13,10 @@ public class UserDaoImpl implements UserDao {
 	@Autowired(required = false)
 	private UserMapper userMapper;
 
+	public UserDaoImpl(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
+	
 	@Override
 	public int create(User user) throws Exception {
 		return userMapper.create(user);

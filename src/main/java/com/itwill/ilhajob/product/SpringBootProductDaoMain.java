@@ -24,7 +24,7 @@ public class SpringBootProductDaoMain {
 		System.out.println("--update--");
 		System.out.println(productDao.update(new Product(4, "수정", 1, 3, "수정", "A")));
 		System.out.println("--delete--");
-		System.out.println(productDao.delete(6));
+		System.out.println(productDao.delete(32));
 
 	}
 
