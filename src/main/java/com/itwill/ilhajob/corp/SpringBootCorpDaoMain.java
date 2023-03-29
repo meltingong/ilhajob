@@ -16,6 +16,8 @@ public class SpringBootCorpDaoMain {
 		CorpDao corpDao=(CorpDao)appicationContext.getBean(CorpDao.class);
 		System.out.println("---------findTutorByIdWithCourses------------------");
 		System.out.println(corpDao.selectAll());
+		System.out.println("---------selectById------------------");
+		System.out.println(corpDao.selectById("corp_01"));
 		System.out.println("---------findCorpByIdWithCorpImage------------------");
 		System.out.println(corpDao.findCorpByIdWithAll("corp_01"));
 		System.out.println("---------insert test------------------");

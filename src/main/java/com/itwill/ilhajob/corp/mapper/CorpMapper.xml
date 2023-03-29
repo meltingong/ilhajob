@@ -15,17 +15,14 @@
 							 column="p_no"
 							 select="com.itwill.ilhajob.product.mapper.ProductMapper.selectByNo">
 				</association>
-					<!-- <result column="p_no" property="pNo"/> -->
 		</association>
 		<collection property="corpImageList"
 					ofType="com.itwill.ilhajob.corpimage.CorpImage"
 					autoMapping="true">
-					<!-- <result column="corp_id" property="corpId"/> -->
 		</collection>
 		<collection property="managerList"
 					ofType="com.itwill.ilhajob.manager.Manager"
 					autoMapping="true">
-					<!-- <result column="corp_id" property="corpId"/> -->
 		</collection>
 	</resultMap>
 	<select id="findCorpByIdWithAll" 
@@ -41,43 +38,7 @@
 		where c.corp_id=#{corpId}
 	</select>
 
-<!-- 	
-	<resultMap id="corpWithAllResultMap"
-			   type="com.itwill.ilhajob.corp.Corp" 
-			   autoMapping="true">
-			   <result column="corp_id" property="corpId"/>
-		<collection property="corpImageList"
-					ofType="com.itwill.ilhajob.corpimage.CorpImage"
-					select="findCorpImageBycorpId"
-					autoMapping="true">
-		</collection>
-		<collection property="managerList"
-					ofType="com.itwill.ilhajob.manager.Manager"
-					select="findManagerBycorpId"
-					autoMapping="true">
-		</collection>
-	</resultMap>
-	
-	<select id="findCorpImageBycorpId"
-			parameterType="java.lang.String"
-			resultType="com.itwill.ilhajob.corpimage.CorpImage">
-		select * from corp_image 
-		where corp_id=#{cropId}
-	</select>
-	<select id="findManagerBycorpId"
-			parameterType="java.lang.String"
-			resultType="com.itwill.ilhajob.manager.Manager">
-		select * from manager 
-		where corp_id=#{cropId}
-	</select>
-	<select id="findCorpWithAll"
-			parameterType="java.lang.String"
-			resultMap="corpWithAllResultMap">
-		select * from corp where corp_id=#{corpId}
-	</select> 
--->
-	
-	
+
 	<select id="selectById" parameterType="java.lang.String"
 							resultType="com.itwill.ilhajob.corp.Corp">
 		select * from corp
