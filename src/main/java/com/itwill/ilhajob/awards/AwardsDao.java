@@ -2,6 +2,8 @@ package com.itwill.ilhajob.awards;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+@Repository
 public interface AwardsDao {
 	
 	Awards findAwards(int awardsSeq);

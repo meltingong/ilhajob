@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.ilhajob.corpimage.mapper.CorpMapper">
+<mapper namespace="com.itwill.ilhajob.corpimage.mapper.CorpImageMapper">
 
 	<insert id="insertCorpImage" parameterType="com.itwill.ilhajob.corpimage.CorpImage">
 		<selectKey order="BEFORE"  resultType="int"  keyProperty="corp_image_seq" >

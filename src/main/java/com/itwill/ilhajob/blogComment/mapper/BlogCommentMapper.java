@@ -24,7 +24,7 @@ public interface BlogCommentMapper {
 	*/
 	
 	public List<BlogComment> selectByBlogSeq(int blogSeq);
-	/*
+	/*i
 	<select id="selectByBlogSeq" resultType="com.itwill.ilhajob.blogComment.BlogComment">
         select * from blogcomment where blog_seq = #{blogSeq}
     </select>
@@ -33,8 +33,8 @@ public interface BlogCommentMapper {
 	public int insertBlogComment(BlogComment blogComment);	
 	/*
 	<insert id="insertBlogComment" parameterType="com.itwill.ilhajob.blogComment.BlogComment">
-        insert into blogcomment (comment_seq, comment_content, comment_date, user_email, blog_seq)
-        values (#{commentSeq}, #{commentContent}, #{commentDate}, #{userEmail}, #{blogSeq})
+        insert into blogcomment (comment_seq, comment_content, comment_date, user_seq, blog_seq)
+        values (#{commentSeq}, #{commentContent}, #{commentDate}, #{userSeq}, #{blogSeq})
     </insert>
 	*/
 	
@@ -42,7 +42,7 @@ public interface BlogCommentMapper {
 	/*
 	<update id="updateBlogComment" parameterType="com.itwill.ilhajob.blogComment.BlogComment">
         update blogcomment set comment_seq = #{commentSeq}, comment_content=#{commentContent},
-        comment_date=#{commentDate}, user_email=#{userEmail}, blog_seq=#{blogSeq}    
+        comment_date=#{commentDate}, user_seq=#{userSeq}, blog_seq=#{blogSeq}    
     </update> 
 	*/
 	

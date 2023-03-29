@@ -35,8 +35,9 @@ public class Recruit {
 	private String rcQualification;
 	private int rcSalary;
 	private Date rcDate;
-	private Date deadLine;
-	private int readCount;
+	private Date rcDeadline;
+	private int rcReadCount;
+	private String corpId;
 	private Corp corp;
 	
 }

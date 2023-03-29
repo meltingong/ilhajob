@@ -1,6 +1,7 @@
 package com.itwill.ilhajob.recruit.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,15 +10,15 @@ import com.itwill.ilhajob.recruit.Recruit;
 @Mapper
 public interface RecruitMapper {
 	
-	public int insertRecruit();
+	public int insertRecruit(Recruit recruit);
 	
-	public int updateBySeq();
+	public List<Recruit> findByCorpId(String corpId);
 	
-	public int deleteBySeq();
+	public List<Recruit> findByJob(String job);
 	
-	public List<Recruit> findByCorpId();
+	public Recruit findBySeq(int rcSeq);
 	
-	public List<Recruit> findByJob();
+	public int updateBySeq(Recruit recruit);
 	
-	public Recruit findBySeq();
+	public int deleteBySeq(Map<String, Object> map);
 }

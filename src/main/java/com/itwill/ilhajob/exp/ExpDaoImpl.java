@@ -53,10 +53,19 @@ public class ExpDaoImpl implements ExpDao {
 	  */
 	 
 	 public List<Exp> selectByUser(int userSeq){
-		 List<Exp> expList = expMapper.selectByUserSeq(userSeq);
+		 List<Exp> expList = expMapper.selectByUser(userSeq);
 		 return expList;
 	 }
-	
+	 
+	 /*
+	  * 한 유저의 경력 전체보기
+	  */
+		@Override
+		public List<Exp> selectByUserEmail(String userEmail) {
+			List<Exp> expList = expMapper.selectByUserEmail(userEmail);
+			return expList;
+		}
+	 
 	 /*
 	  * 경력 추가
 	  */
@@ -81,5 +90,7 @@ public class ExpDaoImpl implements ExpDao {
 		int deleteCount = expMapper.deleteExp(expSeq);
 		return deleteCount;
 	}
+
+
 
 }
