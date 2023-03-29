@@ -13,12 +13,15 @@ public class CorpDaoImpl implements CorpDao{
 	private CorpMapper corpMapper;
 	
 	public int insertCorp(Corp corp) {
-		int insertRowCount = corpMapper.insertCorp(corp);
-		return insertRowCount;
+		return corpMapper.insertCorp(corp);
 	}
 	
 	public Corp selectById(String corpId) {
 		return corpMapper.selectById(corpId);
+	}
+	
+	public Corp findCorpByIdWithCorpImage(String corpId) {
+		return corpMapper.findCorpByIdWithCorpImage(corpId);
 	}
 	
 	public List<Corp> selectAll() throws Exception{
