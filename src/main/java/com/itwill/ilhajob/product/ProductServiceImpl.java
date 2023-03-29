@@ -12,7 +12,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 	
 	//constructor
-	public ProductServiceImpl() {
+	public ProductServiceImpl(ProductDao productDao) {
+		this.productDao = productDao;
 	}
 	
 	//getter
