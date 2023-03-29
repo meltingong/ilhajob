@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.blog.mapper.BlogMapper">
-    <select id="selectByBlog" resultType="com.itwill.ilhajob.blog.Blog">
+    <select id="findBlog" parameterType="int" resultType="com.itwill.ilhajob.blog.Blog">
         select * from blog where blog_seq = #{blogSeq}
     </select>
     
@@ -9,8 +9,8 @@
         select * from blog
     </select>
     
-    <select id="selectByBlogCateSeq" resultType="com.itwill.ilhajob.blog.Blog">
-        select * from blog where blog_cate_seq = #{blogCateSeq}
+    <select id="selectByBlogUser" parameterType="int" resultType="com.itwill.ilhajob.blog.Blog">
+        select * from blog where user_seq = #{user_seq}
     </select>
     
     <insert id="insertBlog" parameterType="com.itwill.ilhajob.blog.Blog">
