@@ -27,10 +27,10 @@ public class Edu {
 
 	private int eduSeq;
 	private String eduMajor;
-	private String eduNmae;
+	private String eduName;
 	private Date eduStartDate;
 	private Date eduEndDate;
-	private int eduScore;
+	private double eduScore;
 	private String eduContent;
 	private int userSeq;
 }
