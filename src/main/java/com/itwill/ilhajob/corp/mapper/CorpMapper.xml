@@ -49,7 +49,7 @@
 		corp_welfare=#{corpWelfare},
 		corp_address=#{corpAddress},
 		corp_status=#{corpStatus},
-		job_id=#{jobId},
+		job=#{job},
 		role_id=#{roleId}
 		where corp_id=#{corpId}
 		

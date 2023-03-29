@@ -2,21 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.cv.mapper.CvMapper">
     <select id="selectByCv" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv" >
-        select * from cv where cv_seq = #{cvSeq}
+       select * from cv c join experience e on c.user_seq = e.user_seq
+		                   join awards a on c.user_seq = a.user_seq
+		                   join education ed on c.user_seq = ed.user_seq
+		                   where c.cv_seq = #{cvSeq}
     </select>
 
     <select id="selectAll" resultType="com.itwill.ilhajob.cv.Cv">
-        select * from cv
+        select * from cv c join experience e on c.user_seq = e.user_seq
+		                   join awards a on c.user_seq = a.user_seq
+		                   join education ed on c.user_seq = ed.user_seq
     </select>
-    
+    <!-- 
     <select id="selectByCvOfUserEmail" parameterType="string" resultType="com.itwill.ilhajob.cv.Cv">
         select * from cv where user_email = #{userEmail}
     </select>
-
+	-->
+	<select id="selectByCvOfUserSeq" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv">
+		select * from cv c join experience e on c.user_seq = e.user_seq
+		                   join awards a on c.user_seq = a.user_seq
+		                   join education ed on c.user_seq = ed.user_seq
+		                   where c.user_seq = #{userSeq};
+	</select>
+	
     <insert id="insertCv" parameterType="com.itwill.ilhajob.cv.Cv">
-    	
-        insert into cv (cv_seq, cv_name, cv_description, cv_portfolio, user_email)
-        VALUES (#{cvSeq}, #{cvName}, #{cvDescription}, #{cvPortfolio}, #{userEmail})
+    	<selectKey order="BEFORE" resultType="int" keyProperty="userSeq">
+			select cv_cv_seq_seq.nextVal from dual
+		</selectKey>
+        insert into cv (cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
+        VALUES (#{cvSeq}, #{cvName}, #{cvDescription}, #{cvPortfolio}, #{userSeq})
     </insert>
 
     <update id="updateCv" parameterType="com.itwill.ilhajob.cv.Cv">
