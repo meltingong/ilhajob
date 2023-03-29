@@ -50,7 +50,7 @@
 		corp_address=#{corpAddress},
 		corp_status=#{corpStatus},
 		job=#{job},
-		role_id=#{roleId}
+		role_id=#{role}
 		where corp_id=#{corpId}
 		
 	</update>
