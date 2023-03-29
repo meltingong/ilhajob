@@ -13,6 +13,7 @@
         select * from blog where blog_cate_seq = #{blogCateSeq}
     </select>
     
+    
     <insert id="insertBlog" parameterType="com.itwill.ilhajob.blog.Blog">
         <selectKey order="BEFORE" resultType="int" keyProperty="blogSeq">
             select blog_blog_seq_SEQ.nextval from dual
