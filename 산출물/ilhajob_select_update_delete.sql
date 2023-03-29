@@ -39,12 +39,21 @@ from userinfo u
 join education e
 on u.user_email=e.user_email
 where u.user_email='테스트1@test.com';
-/********************회원 수상**********************/
+/********************회원 수상(awards select)**********************/
 select * 
 from userinfo u
 join awards a
 on u.user_seq=a.user_seq
 where u.user_seq=2;
+/************* awards update **/
+update awards
+set awards_name =  '업데이트테스트' , awards_date = '2023/03/29', awards_content ='업데이트내용'
+where awards_seq=2
+
+/************* awards delete **/
+delete from awards 
+where awards_seq=2
+
 /********************회원 경력**********************/
 select * 
 from userinfo u
