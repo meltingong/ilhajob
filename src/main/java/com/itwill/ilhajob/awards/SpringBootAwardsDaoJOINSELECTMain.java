@@ -1,5 +1,8 @@
 package com.itwill.ilhajob.awards;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,6 +20,10 @@ public class SpringBootAwardsDaoJOINSELECTMain {
 		System.out.println(awardsDao.findAwardsList());
 		System.out.println(awardsDao.findAwards(2));
 		System.out.println(awardsDao.findAwardsOfUser(2));
+		
+		//Awards awards = new Awards(0, "TEST", new Date(), "내용", 2);
+		
+		//System.out.println(awardsDao.createAwards(awards));
 		
 
 	}
