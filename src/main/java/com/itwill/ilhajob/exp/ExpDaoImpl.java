@@ -59,12 +59,14 @@ public class ExpDaoImpl implements ExpDao {
 	 
 	 /*
 	  * 한 유저의 경력 전체보기
-	  */
+	  * 유저 이메일로 찾기 하려면 exp가 유저객체를 가져야함 추후에 필요하다면 논의필요
+	 
 		@Override
 		public List<Exp> selectByUserEmail(String userEmail) {
 			List<Exp> expList = expMapper.selectByUserEmail(userEmail);
 			return expList;
 		}
+	  */
 	 
 	 /*
 	  * 경력 추가

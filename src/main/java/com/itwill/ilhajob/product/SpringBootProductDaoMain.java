@@ -18,13 +18,13 @@ public class SpringBootProductDaoMain {
 		ProductDao productDao=(ProductDao)appicationContext.getBean(ProductDao.class);
 		System.out.println("---------ProductTest 시작------------------");
 		System.out.println("--selectByNo--");
-		System.out.println(productDao.findByNo(1));
+		System.out.println(productDao.findByNo(2));
 		System.out.println("--selectByDiv--");
 		System.out.println(productDao.findAllByDiv("U"));
 		System.out.println("--update--");
-		System.out.println(productDao.update(new Product(1, "수정", 1, 3, "수정", "A")));
+		System.out.println(productDao.update(new Product(4, "수정", 1, 3, "수정", "A")));
 		System.out.println("--delete--");
-		System.out.println(productDao.delete(1));
+		System.out.println(productDao.delete(6));
 
 	}
 

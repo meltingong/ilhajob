@@ -27,12 +27,14 @@ public class ExpServiceImpl implements ExpService{
 		List<Exp> expList = expDao.selectByUser(userSeq);
 		return expList;
 	}
-
+	
+	/*
 	@Override
 	public List<Exp> selectByUserEmail(String userEmail) {
 		List<Exp> expList = expDao.selectByUserEmail(userEmail);
 		return expList;
 	}
+	*/
 	
 	@Override
 	public int insertExp(Exp exp) {

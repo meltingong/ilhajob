@@ -2,17 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.corp.mapper.CorpMapper">
 
-	<insert id="insertCorp" parameterType="com.itwill.ilhajob.corp.Corp">
-		<selectKey order="BEFORE"  resultType="int"  keyProperty="corpId" >
-			select corp_corp_id_seq.nextval from dual
-		</selectKey>
-		insert into corp(corp_id,corp_password,corp_name)
-		values(#{corp_id},#{corp_password},#{corp_name})
-	</insert>
-	
-	<select id="selectById" parameterType="java.lang.String">
+	<select id="selectById" parameterType="java.lang.String"
+							resultType="com.itwill.ilhajob.corp.Corp">
 		select * from corp
-		where corp_id = #{corp_id}
+		where corp_id = #{corpId}
 	</select>
 	
 	<select id="selectAll"
@@ -20,26 +13,31 @@
 		select * from corp
 	</select>
 	
+	<insert id="insertCorp" parameterType="com.itwill.ilhajob.corp.Corp">
+		insert into corp(corp_id,corp_password,corp_name)
+		values(#{corpId},#{corpPassword},#{corpName})
+	</insert>
+	
 	<update id="updateCorp" parameterType="com.itwill.ilhajob.corp.Corp">
 		update corp set
-		corp_phone=#{corp_phone},
-		corp_business_no=#{corp_business_no},
-		corp_website=#{corp_website},
-		corp_est=#{corp_est},
-		corp_size=#{corp_size},
-		corp_sales=#{corp_sales},
-		corp_comment=#{corp_comment},
-		corp_welfare=#{corp_welfare},
-		corp_address=#{corp_address},
-		corp_status=#{corp_status},
-		job_id=#{job_id},
-		role_id=#{role_id}
-		where corp_id=#{corp_id}
+		corp_phone=#{corpPhone},
+		corp_business_no=#{corpBusinessNo},
+		corp_website=#{corpWebsite},
+		corp_est=#{corpEst},
+		corp_size=#{corpSize},
+		corp_sales=#{corpSales},
+		corp_comment=#{corpComment},
+		corp_welfare=#{corpWelfare},
+		corp_address=#{corpAddress},
+		corp_status=#{corpStatus},
+		job_id=#{jobId},
+		role_id=#{roleId}
+		where corp_id=#{corpId}
 		
 	</update>
 	
 	<delete id="deleteCorp" parameterType="java.lang.String">
 		delete from corp
-		where corp_id=#{corp_id}
+		where corp_id=#{corpId}
 	</delete>
 </mapper>

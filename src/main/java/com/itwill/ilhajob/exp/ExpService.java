@@ -14,7 +14,7 @@ public interface ExpService {
 	 * 유저 email 로 경력사항 찾기
 	 */
 	
-	List<Exp> selectByUserEmail(String userEmail);
+	//List<Exp> selectByUserEmail(String userEmail);
 	
 	/*
 	 * 경력사항 추가
