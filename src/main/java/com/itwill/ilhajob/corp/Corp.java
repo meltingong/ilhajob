@@ -23,8 +23,8 @@ import lombok.ToString;
 @ToString
 @Builder
 public class Corp {
-	private String corp_id;
-	private String corp_password;
+	private String corpId;
+	private String corpPassword;
 	private String corpName;
 	private String corpPhone;
 	private String corpBusiness_no;
