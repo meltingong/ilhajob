@@ -20,6 +20,11 @@ public interface AwardsService {
 	int removeAwardsBySeq(int awardsSeq);
 	
 	/*
+	 *  userSeq로 awards remove 하기
+	 */
+	int removeAwardsByUserSeq(int userSeq);
+	
+	/*
 	 *  findAwards( 수상seq로 찾기 )
 	 */
 	Awards findAwards(int awardsSeq);

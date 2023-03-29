@@ -53,4 +53,10 @@ public class AwardsServiceImpl implements AwardsService {
 		return findAwardsByUser;
 	}
 
+	//회원seq로 수상실적 삭제
+	@Override
+	public int removeAwardsByUserSeq(int userSeq) {
+		return awardsDao.removeAwardsByUserSeq(userSeq);
+	}
+
 }
