@@ -292,13 +292,19 @@ values (recruit_rc_seq_SEQ.NEXTVAL, '네트워크 구축 담당자 구인', '경
 
 /**********************corp_image insert*********************/
 insert into corp_image(CORP_IMAGE_SEQ,CORP_IMAGE,CORP_ID) 
-values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,null,'corp_01');
+values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,'default.jpg','corp_01');
+insert into corp_image(CORP_IMAGE_SEQ,CORP_IMAGE,CORP_ID) 
+values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,'default.jpg','corp_01');
+insert into corp_image(CORP_IMAGE_SEQ,CORP_IMAGE,CORP_ID) 
+values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,'default.jpg','corp_01');
 
 insert into corp_image(CORP_IMAGE_SEQ,CORP_IMAGE,CORP_ID) 
-values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,null,'corp_02');
+values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,'default.jpg','corp_02');
+insert into corp_image(CORP_IMAGE_SEQ,CORP_IMAGE,CORP_ID) 
+values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,'default.jpg','corp_02');
 
 insert into corp_image(CORP_IMAGE_SEQ,CORP_IMAGE,CORP_ID) 
-values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,null,'corp_03');
+values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,'default.jpg','corp_03');
 
 
 

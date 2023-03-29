@@ -134,6 +134,9 @@ join product p
 on o.p_no=p.p_no
 where corp_id='corp_01';
 
+select * from corp_image;
+
+select * from corp_image where corp_id='corp_01';
 --rollback;
 
 
