@@ -9,53 +9,49 @@ import org.springframework.stereotype.Service;
 public class CvServiceImpl_하은 implements CvService_하은{
 
 	@Autowired
-	private CvDao cvDao;
-	
-	public CvServiceImpl_하은(CvDao cvDao) {
+	private CvDao_하은 cvDao;
+
+	public CvServiceImpl_하은(CvDao_하은 cvDao) {
 		this.cvDao = cvDao;
 	}
 
-	public CvDao getCvDao() {
+	public CvDao_하은 getCvDao() {
 		return cvDao;
 	}
 
-	public void setCvDao(CvDao cvDao) {
+	public void setCvDao(CvDao_하은 cvDao) {
 		this.cvDao = cvDao;
 	}
 
 	@Override
 	public Cv findCv(int cvSeq) {
-		// TODO Auto-generated method stub
-		return null;
+		return cvDao.findCv(cvSeq);
 	}
-
+	
 	@Override
 	public List<Cv> findCvList() {
-		// TODO Auto-generated method stub
-		return null;
+		return cvDao.findCvList();
 	}
 
 	@Override
 	public List<Cv> findCvListByUserSeq(int userSeq) {
-		// TODO Auto-generated method stub
-		return null;
+		return cvDao.findCvListByUserSeq(userSeq);
 	}
 
 	@Override
 	public int createCv(Cv cv) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cvDao.createCv(cv);
 	}
 
 	@Override
 	public int updateCv(Cv cv) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cvDao.updateCv(cv);
 	}
 
 	@Override
 	public int remove(int cvSeq) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cvDao.remove(cvSeq);
 	}
+
+
 }

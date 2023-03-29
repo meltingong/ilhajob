@@ -141,6 +141,7 @@ join corp_image ci
 on c.corp_id=ci.corp_id
 where c.corp_id='corp_01';
 
+select * from corp_image where corp_id='corp_01';
 /*****기업 1에 속한 모든 매니저 정보 불러오기******/
 select * from manager
 where corp_id='corp_01';

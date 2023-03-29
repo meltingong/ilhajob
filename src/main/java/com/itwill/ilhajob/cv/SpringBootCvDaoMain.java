@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.itwiwll.ilhajob.Awards.mapper")
+
+@MapperScan(basePackages = "com.itwill.ilhajob.cv.mapper")
 public class SpringBootCvDaoMain {
 
 	public static void main(String[] args) {

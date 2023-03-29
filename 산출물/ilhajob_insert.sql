@@ -417,7 +417,6 @@ values(ORDERS_ORDER_NO_SEQ.nextval,5,'corp_01',null);
 
 
 
-
 /*********************************블로그게시판관련********************************/
 /**********************blog_cate insert**************************/
 insert into blog_cate(blog_cate_seq, blog_cate_name) values(blog_cate_blog_cate_seq_SEQ.nextval, '일월');

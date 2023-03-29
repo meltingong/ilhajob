@@ -2,6 +2,7 @@ package com.itwill.ilhajob.cv;
 
 import java.util.List;
 
+import com.itwill.ilhajob.app.App;
 import com.itwill.ilhajob.awards.Awards;
 import com.itwill.ilhajob.edu.Edu;
 import com.itwill.ilhajob.exp.Exp;
@@ -25,5 +26,5 @@ public class Cv_하은 {
 	private List<Edu> eduList;
 	private List<Exp> expList;
 	private List<Awards> awardsList;
-	
+	private List<App> appList;
 }
