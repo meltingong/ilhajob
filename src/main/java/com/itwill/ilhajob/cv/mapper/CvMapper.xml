@@ -18,7 +18,7 @@
 			<collection property="awardsList" ofType="com.itwill.ilhajob.awards.Awards" autoMapping="true" ></collection>
 			<collection property="eduList" ofType="com.itwill.ilhajob.edu.Edu" autoMapping="true"></collection>
 	</resultMap>
-	<select id="selectByCvOfUserSeq" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv">
+	<select id="selectByCvOfUserSeq" parameterType="int" resultMap="cvWithExpEduAwardsMap">
 		select * from cv c join experience e on c.user_seq = e.user_seq
 		                   join awards a on c.user_seq = a.user_seq
 		                   join education ed on c.user_seq = ed.user_seq
