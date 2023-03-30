@@ -37,7 +37,7 @@
 	</select>
 	
 	<!-- user 1명이 기업 1에 리뷰 중복 작성 안됨: 중복 체크 해줘야함 
-	<select id="existedReview" parameterType="" resultType="">
+	<select id="existedReview" parameterType="" resultType=""> 
 	</select>
 	-->
 </mapper>
