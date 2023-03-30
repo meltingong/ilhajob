@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.cv.mapper.CvMapper">
 	<resultMap id="cvWithExpEduAwardsMap" type="com.itwill.ilhajob.cv.Cv" autoMapping="true">
-		<!--<result column="CV_SEQ" property="cvSeq"/>-->
-		   	<association property="userSeq" javaType="com.itwill.ilhajob.user.User" autoMapping="true">
+		<result column="CV_SEQ" property="cvSeq"/>
+		   	<!-- <association property="userSeq" javaType="com.itwill.ilhajob.user.User" autoMapping="true">
 			 	<association property="expList" javaType="com.itwill.ilhajob.exp.Exp" 
 							 column="exp_seq" select="com.itwill.ilhajob.exp.mapper.ExpMapper.selectByUser">
 				</association>
@@ -13,12 +13,12 @@
 				<association property="eduList" javaType="com.itwill.ilhajob.edu.Edu" 
 							 column="edu_seq" select="com.itwill.ilhajob.edu.mapper.EduMapper.selectEduByUserSeq">
 				</association>
-			</association>    
+			</association>     -->
 			<collection property="expList" javaType="java.util.List" ofType="com.itwill.ilhajob.exp.Exp" autoMapping="true"></collection>
 			<collection property="awardsList" javaType="java.util.List" ofType="com.itwill.ilhajob.awards.Awards" autoMapping="true" ></collection>
 			<collection property="eduList" javaType="java.util.List" ofType="com.itwill.ilhajob.edu.Edu" autoMapping="true"></collection>
 	</resultMap>
-	<select id="selectByCvOfUserSeq" parameterType="Integer" resultType="com.itwill.ilhajob.cv.Cv">
+	<select id="selectByCvOfUserSeq" parameterType="int" resultMap="cvWithExpEduAwardsMap">
 		select * from cv c join experience e on c.user_seq = e.user_seq
 		                   join awards a on c.user_seq = a.user_seq
 		                   join education ed on c.user_seq = ed.user_seq
