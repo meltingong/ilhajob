@@ -21,7 +21,7 @@ public class Cv {
 	private String cvName;
 	private String cvDescription;
 	private String cvPortfolio;
-	private int userEmail;
+	private int userSeq;
 	private List<Edu> eduList;
 	private List<Exp> expList;
 	private List<Awards> awardsList;

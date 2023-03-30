@@ -37,8 +37,33 @@
 		on c.corp_id=o.corp_id
 		where c.corp_id=#{corpId}
 	</select>
-
-
+	
+	<resultMap id="corpWithOrdersResultMap"
+			   type="com.itwill.ilhajob.corp.Corp" 
+			   autoMapping="true">
+			   <result column="corp_id" property="corpId"/>
+		<association property="orders" 
+					javaType="com.itwill.ilhajob.order.Orders" 
+					autoMapping="true">
+				<association property="product"
+							 javaType="com.itwill.ilhajob.product.Product"
+							 autoMapping="true">
+				</association>
+		</association>
+	</resultMap>
+	<select id="findCorpByIdWithOrders"
+			parameterType="java.lang.String"
+			resultMap="corpWithOrdersResultMap">
+		select * from corp c
+		join corp_image ci
+		on c.corp_id=ci.corp_id
+		join manager m
+		on c.corp_id=m.corp_id
+		join orders o
+		on c.corp_id=o.corp_id
+		where c.corp_id=#{corpId}
+	</select>
+	
 	<select id="selectById" parameterType="java.lang.String"
 							resultType="com.itwill.ilhajob.corp.Corp">
 		select * from corp

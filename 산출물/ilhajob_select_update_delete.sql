@@ -113,10 +113,18 @@ on app.rc_seq=c.rc_seq
 join cv
 on cv.cv_seq=app.cv_seq
 join userinfo u
-on u.user_email=cv.user_email
+on u.user_seq=cv.user_seq
 order by c.rc_deadline desc, c.rc_title asc;
-
-
+/***이너 셀렉트 생략가능 ***/
+select * from recruit r
+join app
+on app.rc_seq=r.rc_seq
+join cv
+on cv.cv_seq=app.cv_seq
+join userinfo u
+on u.user_seq=cv.user_seq
+where r.corp_id='corp_01'
+order by r.rc_deadline desc, r.rc_title asc;
 
 /********************회원의 결제상품 상세보기**********************/
 select * from orders
