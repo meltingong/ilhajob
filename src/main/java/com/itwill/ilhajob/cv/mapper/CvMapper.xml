@@ -2,7 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.cv.mapper.CvMapper">
 	<resultMap type="com.itwill.ilhajob.cv.Cv" id="cvWithExpEduAwardsMap" autoMapping="true">
-		
+		<result column="CV_name" property="name"/>
+		<collection property="expList" javaType="java.util.List" ofType="com.itwill.ilhajob.exp.Exp" autoMapping="true">
+			<result column="expCoprName" property="name"/>
+		</collection>
 	</resultMap>
     <select id="selectByCv" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv" >
        select * from cv where cv_seq = #{cvSeq}
