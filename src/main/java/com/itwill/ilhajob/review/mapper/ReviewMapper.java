@@ -16,7 +16,7 @@ public interface ReviewMapper {
 	public int updateReview(Review review) throws Exception;
 	
 	//user_seq 사용해서 delete review
-	public int deleteByUserSeq(int userSeq) throws Exception;
+	public int deleteByUserSeq(Review review) throws Exception;
 	
 	//user_seq로 user가 쓴 리뷰 목록 불러오기
 	public List<Review> selectReivewListbyUserSeq(int userSeq) throws Exception;

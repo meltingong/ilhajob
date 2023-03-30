@@ -23,8 +23,8 @@
 	</delete>
 	-->
 	
-	<delete id="deleteByUserSeq" parameterType="java.lang.Integer">
-		delete from review where user_seq=#{userSeq}
+	<delete id="deleteByUserSeq" parameterType="com.itwill.ilhajob.review.Review">
+		delete from review where user_seq=#{userSeq} and review_seq=#{reviewSeq}
 	</delete>
 	
 	<!-- user_seq로 리뷰 목록 불러오기, corp_id로 리뷰 목록 불러오기 -->
