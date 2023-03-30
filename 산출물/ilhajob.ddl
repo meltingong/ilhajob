@@ -69,7 +69,7 @@ CREATE TABLE education(
 		edu_name                      		VARCHAR2(50)		 NOT NULL,
 		edu_start_date                		DATE		 NOT NULL,
 		edu_end_date                  		DATE		 NULL ,
-		edu_score                     		NUMBER(10)		 NULL ,
+		edu_score                     		VARCHAR2(10)		 NULL ,
 		edu_content                   		VARCHAR2(50)		 NULL ,
 		user_seq                      		NUMBER(20)		 NULL 
 );
@@ -420,4 +420,3 @@ ALTER TABLE admin ADD CONSTRAINT IDX_admin_FK2 FOREIGN KEY (pay_seq) REFERENCES 
 ALTER TABLE admin ADD CONSTRAINT IDX_admin_FK3 FOREIGN KEY (rc_seq) REFERENCES recruit (rc_seq) on delete cascade;
 ALTER TABLE admin ADD CONSTRAINT IDX_admin_FK4 FOREIGN KEY (p_no) REFERENCES product (p_no) on delete cascade;
 ALTER TABLE admin ADD CONSTRAINT IDX_admin_FK5 FOREIGN KEY (user_seq) REFERENCES userinfo (user_seq) on delete cascade;
-

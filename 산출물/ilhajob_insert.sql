@@ -452,3 +452,5 @@ insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog
 commit;
 
 
+
+
