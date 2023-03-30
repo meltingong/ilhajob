@@ -1,11 +1,12 @@
-package com.itwill.ilhajob.product;
+package com.itwill.ilhajob.blogComment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ProductController {
+public class BlogCommentController {
 	
 	@Autowired
-	private ProductService productService;
+	private BlogCommentService blogCommentService;
+
 }

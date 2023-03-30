@@ -303,7 +303,7 @@ values(CORP_IMAGE_CORP_IMAGE_SEQ_SEQ.nextval,'default.jpg','corp_03');
 /**********************userinfo insert************************/
 insert into userinfo(user_seq,user_email,user_password) values(userinfo_user_seq_SEQ.nextval,'test1@test.com','1111');
 insert into userinfo(user_seq,user_email,user_password) values(userinfo_user_seq_SEQ.nextval,'test2@test.com','2222');
-
+insert into userinfo(user_seq,user_email,user_password) values(userinfo_user_seq_SEQ.nextval,'test3@test.com','3333');
 
 /**********************education insert************************/
 insert into education(edu_seq,edu_major,edu_name,edu_start_date,edu_end_date,edu_score,edu_content,user_seq)
@@ -366,9 +366,18 @@ values(APP_APP_SEQ_SEQ.nextval, '0', 5,3);
 /**********************message insert*************************/
 
 /**********************review insert*********************/
-insert into review (review_seq,review_grade,review_title,review_content,user_email,corp_id)
-values(REVIEW_REVIEW_SEQ_SEQ.nextval,'4','생각보다 다닐만한 기업','대충 좋은내용','테스트1@test.com','corp_01');
+/*****user_seq=1인 회원의 모든 기업 리뷰******/
+insert into review (review_seq,review_grade,review_title,review_content, corp_id, user_seq)
+values(REVIEW_REVIEW_SEQ_SEQ.nextval,'1','리뷰 제목1','리뷰 내용1','corp_01','1');
+insert into review (review_seq,review_grade,review_title,review_content, corp_id, user_seq)
+values(REVIEW_REVIEW_SEQ_SEQ.nextval,'2','리뷰 제목2','리뷰 내용2','corp_02','1');
+insert into review (review_seq,review_grade,review_title,review_content, corp_id, user_seq)
+values(REVIEW_REVIEW_SEQ_SEQ.nextval,'3','리뷰 제목3','리뷰 내용3','corp_03','1');
 
+insert into review (review_seq,review_grade,review_title,review_content, corp_id, user_seq)
+values(REVIEW_REVIEW_SEQ_SEQ.nextval,'1','리뷰 제목1-1','리뷰 내용1-1','corp_01','2');
+insert into review (review_seq,review_grade,review_title,review_content, corp_id, user_seq)
+values(REVIEW_REVIEW_SEQ_SEQ.nextval,'2','리뷰 제목2-1','리뷰 내용2-1','corp_02','2');
 
 /*****************************************태그************************************/
 /**********************tag insert**************************/
