@@ -25,4 +25,5 @@ public interface ReviewMapper {
 	public List<Review> selectReviewListByCorpId(String corpId) throws Exception;
 	
 	//user 1명이 기업 1에 리뷰 중복 작성 안됨: 중복 체크 
+	public int existedReview(Review review) throws Exception;
 }
