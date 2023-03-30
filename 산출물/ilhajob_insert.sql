@@ -374,11 +374,10 @@ values(REVIEW_REVIEW_SEQ_SEQ.nextval,'2','리뷰 제목2','리뷰 내용2','corp
 insert into review (review_seq,review_grade,review_title,review_content, corp_id, user_seq)
 values(REVIEW_REVIEW_SEQ_SEQ.nextval,'3','리뷰 제목3','리뷰 내용3','corp_03','1');
 
-/******user_seq=2로 같은 기업에 리뷰 중복 작성하기******/
 insert into review (review_seq,review_grade,review_title,review_content, corp_id, user_seq)
 values(REVIEW_REVIEW_SEQ_SEQ.nextval,'1','리뷰 제목1-1','리뷰 내용1-1','corp_01','2');
 insert into review (review_seq,review_grade,review_title,review_content, corp_id, user_seq)
-values(REVIEW_REVIEW_SEQ_SEQ.nextval,'1','리뷰 제목1-2','리뷰 내용1-2','corp_01','2');
+values(REVIEW_REVIEW_SEQ_SEQ.nextval,'2','리뷰 제목2-1','리뷰 내용2-1','corp_02','2');
 
 /*****************************************태그************************************/
 /**********************tag insert**************************/
