@@ -8,6 +8,8 @@ import com.itwill.ilhajob.blog.Blog;
 import com.itwill.ilhajob.corpimage.CorpImage;
 import com.itwill.ilhajob.manager.Manager;
 import com.itwill.ilhajob.order.Orders;
+import com.itwill.ilhajob.recruit.Recruit;
+import com.itwill.ilhajob.review.Review;
 
 import java.util.Date;
 
@@ -40,6 +42,8 @@ public class Corp {
 	private int role;
 	
 	private Orders orders;
+	private List<Recruit> recruitList;
+	private List<Review> reviewList;
 	private List<CorpImage> corpImageList;
 	private List<Manager> managerList;
 	

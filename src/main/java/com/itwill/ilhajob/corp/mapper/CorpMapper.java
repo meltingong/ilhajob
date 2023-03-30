@@ -17,6 +17,7 @@ public interface CorpMapper {
 	public List<Corp> selectAll();
 	public Corp findCorpByIdWithAll(String corpId);
 	public Corp findCorpByIdWithOrders(String corpId);
+	public Corp findCorpByIdWithRecruit(String corpId);
 	
 	public int insertCorp(Corp corp);
 	public int deleteCorp(String corpId);

@@ -18,7 +18,8 @@ public interface CorpDao {
 	List<Corp> selectAll() throws Exception;
 	
 	Corp findCorpByIdWithAll(String corpId);
-	public Corp findCorpByIdWithOrders(String corpId);
+	Corp findCorpByIdWithOrders(String corpId);
+	Corp findCorpByIdWithRecruit(String corpId);
 	
 	// 회사 추가정보 입력하기(id로 식별)
 	int updateCorp(Corp corp) throws Exception;
