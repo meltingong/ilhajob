@@ -69,7 +69,7 @@ CREATE TABLE education(
 		edu_name                      		VARCHAR2(50)		 NOT NULL,
 		edu_start_date                		DATE		 NOT NULL,
 		edu_end_date                  		DATE		 NULL ,
-		edu_score                     		NUMBER(10)		 NULL ,
+		edu_score                     		VARCHAR2(10)		 NULL ,
 		edu_content                   		VARCHAR2(50)		 NULL ,
 		user_seq                      		NUMBER(20)		 NULL 
 );

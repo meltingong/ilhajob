@@ -24,4 +24,5 @@ public interface CorpDao {
 	int deleteCorp(Corp corp) throws Exception;
 	
 	Corp findCorpByIdWithAll(String corpId);
+	public Corp findCorpByIdWithOrders(String corpId);
 }

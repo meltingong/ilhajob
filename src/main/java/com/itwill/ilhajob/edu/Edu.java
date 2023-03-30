@@ -20,7 +20,7 @@ public class Edu {
 	EDU_NAME       NOT NULL VARCHAR2(50)
 	EDU_START_DATE NOT NULL DATE
 	EDU_END_DATE            DATE
-	EDU_SCORE               NUMBER(10)
+	EDU_SCORE               VARCHAR2(10)
 	EDU_CONTENT             VARCHAR2(50)
 	USER_SEQ                NUMBER(20)
 	 */
@@ -30,7 +30,7 @@ public class Edu {
 	private String eduName;
 	private Date eduStartDate;
 	private Date eduEndDate;
-	private double eduScore;
+	private String eduScore;
 	private String eduContent;
 	private int userSeq;
 }

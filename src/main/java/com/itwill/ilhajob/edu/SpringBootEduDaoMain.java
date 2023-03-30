@@ -25,7 +25,10 @@ public class SpringBootEduDaoMain {
 		
 		EduService eduService = (EduService)applicationContext.getBean(EduService.class);
 		System.out.println("------ EduServiceTest-----");
-		System.out.println(eduService.insertEdu(new Edu(0, "사회학과", "성균관대학교", new Date(), new Date(), 3.6, "", 2)));
+		System.out.println(eduService.insertEdu(new Edu(0, "건축학과", "성균관대학교 일반대학원", new Date(), new Date(), "3.2", "석사졸업", 2)));
+//		System.out.println(eduService.deleteEduByEduSeq(5));
+		System.out.println(eduService.selectAllEdu());
+		System.out.println(eduService.selectEduByUserSeq(2));
 	}
 
 }
