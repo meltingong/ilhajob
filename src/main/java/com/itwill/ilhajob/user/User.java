@@ -3,7 +3,10 @@ package com.itwill.ilhajob.user;
 import java.util.List;
 
 import com.itwill.ilhajob.app.App;
+import com.itwill.ilhajob.awards.Awards;
 import com.itwill.ilhajob.cv.Cv;
+import com.itwill.ilhajob.edu.Edu;
+import com.itwill.ilhajob.exp.Exp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,7 +43,10 @@ public class User {
 	private int role;
 	
 	private List<App> appList;
-
+	private List<Exp> expList;
+	private List<Edu> eduList;
+	private List<Awards> awardsList;
+	
 	/*
 	 *패쓰워드 일치여부 검사 
 	 */

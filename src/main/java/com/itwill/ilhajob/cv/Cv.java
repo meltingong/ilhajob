@@ -2,9 +2,11 @@ package com.itwill.ilhajob.cv;
 
 import java.util.List;
 
+import com.itwill.ilhajob.app.App;
 import com.itwill.ilhajob.awards.Awards;
 import com.itwill.ilhajob.edu.Edu;
 import com.itwill.ilhajob.exp.Exp;
+import com.itwill.ilhajob.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,5 +27,6 @@ public class Cv {
 	private List<Edu> eduList;
 	private List<Exp> expList;
 	private List<Awards> awardsList;
+	private List<App> appList;
 	
 }

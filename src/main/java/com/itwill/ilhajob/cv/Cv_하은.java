@@ -6,6 +6,7 @@ import com.itwill.ilhajob.app.App;
 import com.itwill.ilhajob.awards.Awards;
 import com.itwill.ilhajob.edu.Edu;
 import com.itwill.ilhajob.exp.Exp;
+import com.itwill.ilhajob.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
