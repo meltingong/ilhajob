@@ -33,5 +33,16 @@
 		where rc.corp_id = #{corpId}; 
 	</select>
 	
+	<insert id="insertApp" parameterType="com.itwill.ilhajob.app.App">
+		<selectKey keyProperty="appSeq" order="BEFORE" resultType="java.lang.Integer">
+			select app_app_seq_seq.nextVal from dual
+		</selectKey>
+		insert into app (app_seq, app_status, rc_seq, corp_seq)
+		values (#{appSeq},#{appStatus},#{rcSeq},#{corpSeq})
+	</insert>
+	
+	<delete id="deleteApp" parameterType="com.itwill.ilhajob.app.App">
+		delete from app where app_seq = #{appSeq} 
+	</delete>
 
 </mapper>
