@@ -7,12 +7,12 @@ public interface CvService {
 	 * cv seq로 이력서 찾기
 	 */
 	
-	Cv findCv(int cvSeq);
+	Cv selectByCv(int cvSeq);
 	
 	/*
 	 * cv 전체 리스트
 	 */
-	List<Cv> findCvList();
+	List<Cv> selectAll();
 	
 	/*
 	 * userSeq로 해당 회원의 cv 전체 리스트 찾기

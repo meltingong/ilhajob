@@ -32,11 +32,11 @@
 		                   where c.user_seq = #{userSeq} and c.cv_seq = #{cvSeq}
 	</select>
 	
-    <select id="selectByCv" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv" >
+    <select id="selectByCv" parameterType="int" resultMap="cvWithExpEduAwardsMap" >
        select * from cv where cv_seq = #{cvSeq}
     </select>
 
-    <select id="selectAll" resultType="com.itwill.ilhajob.cv.Cv">
+    <select id="selectAll" resultMap="cvWithExpEduAwardsMap">
         select * from cv
     </select>
     <!-- 

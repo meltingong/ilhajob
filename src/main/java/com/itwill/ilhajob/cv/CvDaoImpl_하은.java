@@ -15,12 +15,12 @@ public class CvDaoImpl_하은 implements CvDao_하은{
 	private CvMapper cvMapper;
 
 	@Override
-	public Cv findCv(int cvSeq) {
+	public Cv selectByCv(int cvSeq) {
 		return cvMapper.selectByCv(cvSeq);
 	}
 
 	@Override
-	public List<Cv> findCvList() {
+	public List<Cv> selectAll() {
 		return cvMapper.selectAll();
 	}
 /*

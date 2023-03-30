@@ -24,13 +24,13 @@ public class CvServiceImpl implements CvService{
 	}
 
 	@Override
-	public Cv findCv(int cvSeq) {
-		return cvDao.findCv(cvSeq);
+	public Cv selectByCv(int cvSeq) {
+		return cvDao.selectByCv(cvSeq);
 	}
 	
 	@Override
-	public List<Cv> findCvList() {
-		return cvDao.findCvList();
+	public List<Cv> selectAll() {
+		return cvDao.selectAll();
 	}
 
 	@Override

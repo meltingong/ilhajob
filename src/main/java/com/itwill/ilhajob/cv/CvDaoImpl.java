@@ -15,12 +15,12 @@ public class CvDaoImpl implements CvDao{
 	private CvMapper cvMapper;
 
 	@Override
-	public Cv findCv(int cvSeq) {
+	public Cv selectByCv(int cvSeq) {
 		return cvMapper.selectByCv(cvSeq);
 	}
 
 	@Override
-	public List<Cv> findCvList() {
+	public List<Cv> selectAll() {
 		return cvMapper.selectAll();
 	}
 /*
@@ -31,8 +31,6 @@ public class CvDaoImpl implements CvDao{
 */
 	@Override
 	public List<Cv> findCvListByUserSeq(int userSeq) {
-		List<Cv> cvList = new ArrayList<Cv>();
-		
 		return cvMapper.selectByCvOfUserSeq(userSeq);
 	}
 	
