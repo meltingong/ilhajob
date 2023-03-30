@@ -8,19 +8,23 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BlogCommentDao {
-	@Autowired
+	
+	// 블로그 댓글 번호로  댓글 조회하기
 	BlogComment findBlogComment(int commentSeq);
 	
-	// 모든 블로그 댓글 리스트 가져오기
-	List<BlogComment> selectAll()throws Exception;	
+	// 블로그 댓글 모두 조회하기
+	List<BlogComment> selectAll();
 	
-    List<BlogComment> selectByBlogCommentUser(int userSeq);
-	
+	// 블로그 댓글 블로그 번호로 조회하기
+    List<BlogComment> selectByBlogComment(int blogSeq);
+    
+	// 블로그 댓글 추가하기
 	int insertBlogComment(BlogComment blogComment);
 	
 	// 블로그 댓글 수정하기
     int updateBlogComment(BlogComment blogComment);
     
     // 블로그 댓글 삭제하기
-    int removeBlogComment(BlogComment blogComment);
+    int deleteBlogComment(int commentSeq);
+    
 }

@@ -16,25 +16,24 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 		return blogCommentMapper.findBlogComment(commentSeq);
 	}
 	
-	public List<BlogComment> selectAll() throws Exception{
+	public List<BlogComment> selectAll() {
 		return blogCommentMapper.selectAll();
 	}
-	public List<BlogComment> selectByBlogCommentUser(int userSeq) {
-		return blogCommentMapper.selectByBlogCommentUser(userSeq);
+	
+	public List<BlogComment> selectByBlogComment(int blogSeq) {
+		return blogCommentMapper.selectByBlogComment(blogSeq);
 	}
+	
 	public int insertBlogComment(BlogComment blogComment) {
-		int insertRowCount = blogCommentMapper.insertBlogComment(blogComment);
-		return insertRowCount;
+		return blogCommentMapper.insertBlogComment(blogComment);
 	}
 		
 	public int updateBlogComment(BlogComment blogComment) {
-		int updateRowCount = blogCommentMapper.updateBlogComment(blogComment);
-		return updateRowCount;
+		return blogCommentMapper.updateBlogComment(blogComment);
 	}
 	
-	public int removeBlogComment(BlogComment blogComment) {
-		int deleteRowCount = blogCommentMapper.removeBlogComment(blogComment);
-		return deleteRowCount;
+	public int deleteBlogComment(int commentSeq) {
+		return blogCommentMapper.deleteBlogComment(commentSeq);
 	}
 	
 }
