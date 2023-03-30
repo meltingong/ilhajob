@@ -11,8 +11,8 @@
 	</insert>
 	
 	<update id="updateReview" parameterType="com.itwill.ilhajob.review.Review">
-		update review set review_seq=#{reviewSeq}, review_grade=#{reviewGrade}, review_title=#{reviewTitle}, 
-						  review_content=#{reviewContent}, corp_id=#{corpId}, user_seq=#{user_seq}
+		update review set review_grade=#{reviewGrade}, review_title=#{reviewTitle}, 
+						  review_content=#{reviewContent}
 		where review_seq=#{reviewSeq}
 	</update>
 	 <!-- delete user_seq로 삭제 가능 review_seq로 삭제할 필요없음 -->
