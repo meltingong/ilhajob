@@ -62,10 +62,10 @@ public class ManagerServiceImpl implements ManagerService{
 		}
 	}
 	
-	//manager insert/create: user처럼 manager는 회원가입 할 필요 없다고 함...
+	//manager insert/create: user처럼 manager는 회원가입 및 유효성체크할 필요 없다고 함...
 	@Override
 	public int insertManager(Manager manager) throws Exception {
-		return 0;
+		return managerDao.insert(manager);
 	}
 	
 }
