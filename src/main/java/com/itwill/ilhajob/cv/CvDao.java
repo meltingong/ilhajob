@@ -8,7 +8,11 @@ public interface CvDao {
 	
 	List<Cv> findCvList();
 	
+	List<Cv> findCvListByUserSeq(int userSeq);
+	
 	//List<Cv> findCvOfUser(String userEmail);
+	
+	Cv detailCv(int userSeq, int cvSeq);
 	
 	int createCv(Cv cv);
 	

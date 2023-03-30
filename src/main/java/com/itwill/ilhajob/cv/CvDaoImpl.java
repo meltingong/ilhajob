@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.cv;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,13 @@ public class CvDaoImpl implements CvDao{
 	}
 */
 	@Override
+	public List<Cv> findCvListByUserSeq(int userSeq) {
+		List<Cv> cvList = new ArrayList<Cv>();
+		
+		return cvMapper.selectByCvOfUserSeq(userSeq);
+	}
+	
+	@Override
 	public int createCv(Cv cv) {
 		return cvMapper.insertCv(cv);
 	}
@@ -41,5 +49,10 @@ public class CvDaoImpl implements CvDao{
 	@Override
 	public int remove(int cvSeq) {
 		return cvMapper.deleteCv(cvSeq);
+	}
+
+	@Override
+	public Cv detailCv(int userSeq, int cvSeq) {
+		return cvMapper.selectDetailCv(userSeq,cvSeq);
 	}
 }

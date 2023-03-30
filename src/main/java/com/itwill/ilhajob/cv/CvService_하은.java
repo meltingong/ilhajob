@@ -22,6 +22,10 @@ public interface CvService_하은 {
 	//List<Cv> findCvOfUser(String userEmail);
 	
 	/*
+	 * 회원의 각 이력서 상세보기
+	 */
+	Cv detailCv(int userSeq, int cvSeq);
+	/*
 	 * 이력서 추가
 	 */
 	int createCv(Cv cv);

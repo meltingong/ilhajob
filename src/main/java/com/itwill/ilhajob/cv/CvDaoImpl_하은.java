@@ -51,5 +51,10 @@ public class CvDaoImpl_하은 implements CvDao_하은{
 		return cvMapper.deleteCv(cvSeq);
 	}
 
+	@Override
+	public Cv detailCv(int userSeq, int cvSeq) {
+		return cvMapper.selectDetailCv(userSeq,cvSeq);
+	}
+
 	
 }

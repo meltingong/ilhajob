@@ -14,6 +14,8 @@ public interface CvDao_하은 {
 	
 	//List<Cv> findCvOfUser(String userEmail);
 	
+	Cv detailCv(int userSeq, int cvSeq);
+	
 	int createCv(Cv cv);
 	
 	int updateCv(Cv cv);

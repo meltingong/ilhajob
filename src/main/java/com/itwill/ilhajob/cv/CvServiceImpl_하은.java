@@ -53,5 +53,11 @@ public class CvServiceImpl_하은 implements CvService_하은{
 		return cvDao.remove(cvSeq);
 	}
 
+	@Override
+	public Cv detailCv(int userSeq, int cvSeq) {
+		return cvDao.detailCv(userSeq, cvSeq);
+	}
+
+
 
 }
