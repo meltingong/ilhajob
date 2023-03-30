@@ -10,13 +10,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Builder
 public class Review {
-	int review_seq;
-	String review_grade;
-	String review_title;
-	String review_content;
-	String user_email;
-	String corp_id;
+	private int reviewSeq;
+	private String reviewGrade;
+	private String reviewTitle;
+	private String reviewContent;
+	private String corpId;
+	private int userSeq;
 	
 }
