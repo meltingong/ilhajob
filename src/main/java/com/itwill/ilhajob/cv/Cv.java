@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class Cv {
@@ -29,5 +28,14 @@ public class Cv {
 	private List<Exp> expList;
 	private List<Awards> awardsList;
 	private List<App> appList;
+	public Cv(int cvSeq, String cvName, String cvDescription, String cvPortfolio, int userSeq) {
+		this.cvSeq = cvSeq;
+		this.cvName = cvName;
+		this.cvDescription = cvDescription;
+		this.cvPortfolio = cvPortfolio;
+		this.userSeq = userSeq;
+	}
+	
+	
 	
 }

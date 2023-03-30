@@ -27,9 +27,10 @@ public class SpringBootCvDaoMain_하은 {
 		//System.out.println(">> cv seq 로 이력서 찾기");
 		//System.out.println(cvDao.selectByCv(2));
 		
-		 System.out.println(">> createCv"); 
-		 
-		//System.out.println(">> cv update");
+		// System.out.println(">> createCv"); 
+		// System.out.println(cvDao.createCv(new Cv(0, "최선을 다하는 사원", "자기소개", "http://github.com/123", 2)));
+		System.out.println(">> cv update");
+		System.out.println(cvDao.updateCv(new Cv(14,"최선을 다하는 사원","자기소개 수정","http://github.com/123",2)));
 		
 	}
 
