@@ -13,12 +13,16 @@ public interface UserMapper {
 
 	public int update(User user);
 
-	public int remove(String userId);
+	public int remove(String userEmail);
 
-	public User findUser(String userId);
+	public User findUser(String userEmail);
 
-	public int existedUser(String userId);
+	public int existedUser(String userEmail);
 	
 	public int findBySnsId(User user);
+	
+	public User findExpAwardsEduByUserSeq(int userSeq);
+	
+	public User findAppByUserSeq(int userSeq);
 	
 }

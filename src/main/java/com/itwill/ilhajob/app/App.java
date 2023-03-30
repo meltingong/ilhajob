@@ -22,8 +22,6 @@ public class App {
 	
 	private int app_seq;
 	private char app_status;
-	private int rc_seq;
-	private int cv_seq;
 	
 	private Recruit rc;
 	private Cv cv;

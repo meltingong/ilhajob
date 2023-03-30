@@ -14,6 +14,8 @@ class UserDaoImplTest {
 	
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private UserDao userDao;
 	
 	@Disabled
 	@Test
@@ -67,11 +69,24 @@ class UserDaoImplTest {
 		System.out.println(userMapper.existedUser("test1@test.com"));
 	}
 	
-	//@Disabled
+	@Disabled
 	@Test
 	void testFindBySnsId() {
 		User user = User.builder().snsType("1").snsId("1").build();
 		System.out.println(userMapper.findBySnsId(user));
+	}
+	
+	@Disabled
+	@Test
+	void testFindExpAwardsEduByUserSeq() throws Exception {
+		System.out.println(userDao.findExpAwardsEduList(2));
+	}
+	
+	@Disabled
+	@Test
+	void testFindAppByUserSeq() throws Exception {
+		User user = User.builder().userSeq(2).build();
+		System.out.println(userDao.findAppList(2));
 	}
 
 }

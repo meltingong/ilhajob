@@ -55,6 +55,16 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	@Override
+	public User findExpAwardsEduList(int userSeq) throws Exception {
+		return userMapper.findExpAwardsEduByUserSeq(userSeq);
+	}
+
+	@Override
+	public User findAppList(int userSeq) throws Exception {
+		return userMapper.findAppByUserSeq(userSeq);
+	}
+
 
 
 }

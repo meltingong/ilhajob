@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.user.mapper.UserMapper">
+	<resultMap type="com.itwill.ilhajob.user.User" id="userWithExpAwardsEduListResultMap" autoMapping="true">
+		<result column="user_seq" property="userSeq"/>
+		<collection property="expList" javaType="java.util.List" ofType="com.itwill.ilhajob.exp.Exp" autoMapping="true"></collection>
+		<collection property="awardsList" javaType="java.util.List" ofType="com.itwill.ilhajob.awards.Awards" autoMapping="true" ></collection>
+		<collection property="eduList" javaType="java.util.List" ofType="com.itwill.ilhajob.edu.Edu" autoMapping="true"></collection>
+	</resultMap>
+	<select id="findExpAwardsEduByUserSeq" parameterType="java.lang.Integer" 
+								 resultType="com.itwill.ilhajob.user.User"
+								 resultMap="userWithExpAwardsEduListResultMap">
+		select * from userinfo u
+		left outer join experience e on u.user_seq = e.user_seq
+		left outer join awards a on u.user_seq = a.user_seq
+		left outer join education ed on u.user_seq = ed.user_seq
+		where u.user_seq = #{userSeq}
+	</select>
+	
+	
+	<resultMap type="com.itwill.ilhajob.user.User" id="userWithAppListResultMap" autoMapping="true">
+		<collection property="appList" javaType="java.util.List" ofType="com.itwill.ilhajob.app.App" autoMapping="true" >
+			<association property="rc" javaType="com.itwill.ilhajob.recruit.Recruit" column="rc_seq" autoMapping="true"/>
+			<association property="cv" javaType="com.itwill.ilhajob.cv.Cv" column="cv_seq" autoMapping="true"/>
+		</collection>
+	</resultMap>
+	<select id="findAppByUserSeq" parameterType="java.lang.Integer" 
+								 resultType="com.itwill.ilhajob.user.User"
+								 resultMap="userWithAppListResultMap">
+		select * from app a 
+		left outer join recruit rc 
+		on a.rc_seq = rc.rc_seq
+        left outer join cv cv 
+		on a.cv_seq = cv.cv_seq
+		where cv.user_seq = #{userSeq}
+	</select>
+	
 	<insert id="create" parameterType="com.itwill.ilhajob.user.User">
 		<selectKey keyProperty="userSeq" resultType="int" order="BEFORE">
 			select userinfo_user_seq_seq.nextval from dual

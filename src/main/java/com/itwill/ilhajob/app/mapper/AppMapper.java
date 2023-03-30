@@ -13,7 +13,7 @@ public interface AppMapper {
 	
 	int deleteApp();
 	
-	List<App> findAppByUserSeq();
+	List<App> findAppByUserSeq(int userSeq);
 	
-	List<App> findAppBycorpId();
+	List<App> findAppByCorpId(String coprId);
 }
