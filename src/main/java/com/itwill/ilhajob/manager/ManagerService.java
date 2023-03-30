@@ -17,7 +17,7 @@ public interface ManagerService {
 	Manager findManagerByEmail(String managerEmail) throws Exception;
 	
 	//email로 기존 DB에 매니저 존재 여부 확인
-	int existedManager(String managerEmail) throws Exception;
+	boolean existedManager(String managerEmail) throws Exception;
 	
 	//corp_id로 해당되는 매니저 리스트 불러오기
 	List<Manager> selectListByCorpId(String corpId) throws Exception;
