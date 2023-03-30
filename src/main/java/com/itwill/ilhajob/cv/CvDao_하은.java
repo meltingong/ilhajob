@@ -6,13 +6,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CvDao_하은 {
 	
-	Cv findCv(int cvSeq);
+	Cv selectByCv(int cvSeq);
 	
-	List<Cv> findCvList();
+	List<Cv> selectAll();
 	
 	List<Cv> findCvListByUserSeq(int userSeq);
 	
 	//List<Cv> findCvOfUser(String userEmail);
+	
+	Cv detailCv(int userSeq, int cvSeq);
 	
 	int createCv(Cv cv);
 	

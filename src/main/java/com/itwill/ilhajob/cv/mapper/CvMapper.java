@@ -3,6 +3,7 @@ package com.itwill.ilhajob.cv.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.itwill.ilhajob.cv.Cv;
 
@@ -18,7 +19,7 @@ public interface CvMapper {
 	public List<Cv> selectByCvOfUserSeq(int userSeq);
 	
 	// 이력서 상세보기
-	public Cv selectDetailCv(int userSeq);
+	public Cv selectDetailCv(@Param("userSeq") int userSeq, @Param("cvSeq") int cvSeq);
 	
 	public int insertCv(Cv cv);
 	

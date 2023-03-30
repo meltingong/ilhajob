@@ -381,7 +381,9 @@ values(REVIEW_REVIEW_SEQ_SEQ.nextval,'2','리뷰 제목2-1','리뷰 내용2-1','
 
 /*****************************************태그************************************/
 /**********************tag insert**************************/
-
+insert into tag(tag_id, tag_name) values (TAG_TAG_ID_SEQ.nextval, '태그1');
+insert into tag(tag_id, tag_name) values (TAG_TAG_ID_SEQ.nextval, '태그2');
+insert into tag(tag_id, tag_name) values (TAG_TAG_ID_SEQ.nextval, '태그3');
 /**********************corp_tag insert**************************/
 
 /**********************recruit_tag insert**************************/

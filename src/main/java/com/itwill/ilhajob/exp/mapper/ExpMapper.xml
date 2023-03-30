@@ -22,7 +22,7 @@
 			select experience_exp_seq_seq.nextVal from dual
 		</selectKey>
 		insert into experience (exp_seq,exp_position,exp_corp_name,exp_start_date,exp_end_date,exp_content,
-		user_seq) values (#{expSeq},#{expPosition},#{expCorpName},#{expStartDate},#{expEndDate},#{expContent},#{userSeq})
+		user_seq) values (#{expSeq},#{expPosition},#{expCorpName},#{expStartDate},#{expEndDate},#{expContent, jdbcType=VARCHAR},#{userSeq})
 	</insert>
 	
 	<update id="updateExp" parameterType="com.itwill.ilhajob.exp.Exp">
