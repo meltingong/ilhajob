@@ -14,9 +14,10 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Cv {
 
-	private String cvSeq;
+	private int cvSeq;
 	private String cvName;
 	private String cvDescription;
 	private String cvPortfolio;
