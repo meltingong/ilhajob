@@ -12,26 +12,32 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 	@Autowired
 	private BlogCommentMapper blogCommentMapper;
 	
+	@Override
 	public BlogComment findBlogComment(int commentSeq) {
 		return blogCommentMapper.findBlogComment(commentSeq);
 	}
 	
+	@Override
 	public List<BlogComment> selectAll() {
 		return blogCommentMapper.selectAll();
 	}
 	
+	@Override
 	public List<BlogComment> selectByBlogComment(int blogSeq) {
 		return blogCommentMapper.selectByBlogComment(blogSeq);
 	}
 	
+	@Override
 	public int insertBlogComment(BlogComment blogComment) {
 		return blogCommentMapper.insertBlogComment(blogComment);
 	}
-		
+	
+	@Override
 	public int updateBlogComment(BlogComment blogComment) {
 		return blogCommentMapper.updateBlogComment(blogComment);
 	}
 	
+	@Override
 	public int deleteBlogComment(int commentSeq) {
 		return blogCommentMapper.deleteBlogComment(commentSeq);
 	}
