@@ -1,1 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.ilhajob.review.mapper.ReviewMapper">
+
+	<insert id="insertReview" parameterType="com.itwill.ilhajob.review.Review">
+		<selectKey order="BEFORE" resultType="java.lang.Integer" keyProperty="reviewSeq">
+			select review_review_seq_SEQ.nextval from dual
+		</selectKey>
+			insert into review(review_seq, review_grade, review_title, review_content, corp_id, user_seq)
+			values(#{reviewSeq},#{reviewGrade},#{reviewTitle},#{reviewContent},#{corpId},#{userSeq})
+	</insert>
+	
+	<update id="updateReview" parameterType="com.itwill.ilhajob.review.Review">
+		update review set review_seq=#{reviewSeq}, review_grade=#{reviewGrade}, review_title=#{reviewTitle}, 
+						  review_content=#{reviewContent}, corp_id=#{corpId}, user_seq=#{user_seq}
+		where review_seq=#{reviewSeq}
+	</update>
+	 <!-- delete user_seq로 삭제 가능 review_seq로 삭제할 필요없음 -->
+	 
+	<!--  
+	<delete id="deleteByReviewSeq" parameterType="java.lang.Integer">
+		delete from review where review_seq=#{reviewSeq}
+	</delete>
+	-->
+	
+	<delete id="deleteByUserSeq" parameterType="java.lang.Integer">
+		delete from review where user_seq=#{userSeq}
+	</delete>
+	
+	<!-- user_seq로 리뷰 목록 불러오기, corp_id로 리뷰 목록 불러오기 -->
+	<select id="selectReviewListByUserSeq" parameterType="java.lang.Integer" resultType="com.itwill.ilhajob.review.Review">
+		select * from review where user_seq=#{userSeq}
+	</select>
+	
+	<select id="selectReviewListByCorpId" parameterType="java.lang.String" resultType="com.itwill.ilhajob.review.Review">
+		select * from review where corp_id=#{corpId}
+	</select>
+	
+	<!-- user 1명이 기업 1에 리뷰 중복 작성 안됨: 중복 체크 해줘야함 
+	<select id="existedReview" parameterType="" resultType="">
+	</select>
+	-->
+</mapper>
