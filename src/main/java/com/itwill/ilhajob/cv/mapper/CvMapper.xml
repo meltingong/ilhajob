@@ -2,11 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.cv.mapper.CvMapper">
 	<resultMap type="com.itwill.ilhajob.cv.Cv" id="cvWithExpEduAwardsMap" autoMapping="true">
-		<result column="CV_name" property="name"/>
-		<collection property="expList" javaType="java.util.List" ofType="com.itwill.ilhajob.exp.Exp" autoMapping="true">
-			<result column="expCoprName" property="name"/>
-		</collection>
+		<result column="CV_SEQ" property="seq"/>
+			<association property="userSeq" javaType="com.itwill.ilhajob.user.User" autoMapping="true">
+				<association property="expList" javaType="com.itwill.ilhajob.exp.Exp" autoMapping="true"></association>
+				<association property="awardsList" javaType="com.itwill.ilhajob.awards.Awards" autoMapping="true"></association>
+				<association property="eduList" javaType="com.itwill.ilhajob.edu.Edu" autoMapping="true"></association>
+			</association>
+			<collection property="expList" ofType="com.itwill.ilhajob.exp.Exp" autoMapping="true"></collection>
+			<collection property="awardsList" ofType="com.itwill.ilhajob.awards.Awards" autoMapping="true"></collection>
+			<collection property="eduList" ofType="com.itwill.ilhajob.edu.Edu" autoMapping="true"></collection>
 	</resultMap>
+	<select id="selectByCvOfUserSeq" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv">
+		select * from cv c join experience e on c.user_seq = e.user_seq
+		                   join awards a on c.user_seq = a.user_seq
+		                   join education ed on c.user_seq = ed.user_seq
+		                   where c.user_seq = #{userSeq}
+	</select>
+	
     <select id="selectByCv" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv" >
        select * from cv where cv_seq = #{cvSeq}
     </select>
@@ -19,12 +31,6 @@
         select * from cv where user_email = #{userEmail}
     </select>
 	-->
-	<select id="selectByCvOfUserSeq" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv">
-		select * from cv c join experience e on c.user_seq = e.user_seq
-		                   join awards a on c.user_seq = a.user_seq
-		                   join education ed on c.user_seq = ed.user_seq
-		                   where c.user_seq = #{userSeq}
-	</select>
 	
 	<select id="selectDetailCv" parameterType="int" resultType="com.itwill.ilhajob.cv.Cv">
 		select * from cv c join experience e on c.user_seq = e.user_seq
