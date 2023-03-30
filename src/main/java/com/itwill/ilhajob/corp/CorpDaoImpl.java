@@ -32,12 +32,16 @@ public class CorpDaoImpl implements CorpDao{
 	}
 	
 	public int updateCorp(Corp corp) {
-		int updateRowCount = corpMapper.updateCorp(corp);
-		return updateRowCount;
+		return corpMapper.updateCorp(corp);
+		
 	}
 	
 	public int deleteCorp(Corp corp) {
-		int deleteRowCount = corpMapper.updateCorp(corp);
-		return deleteRowCount;
+		return corpMapper.updateCorp(corp);
+	}
+	
+	@Override
+	public int existedCorp(String corpId) {
+		return corpMapper.existedCorp(corpId);
 	}
 }

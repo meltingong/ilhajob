@@ -403,9 +403,9 @@ values(6,'기업회원상품3',60000,6,'상품이미지6','C');
 --개인회원1 user_seq:1 로 개인상품 p_no 1주문하기
 insert into orders(order_no,p_no,corp_id,user_seq)
 values(ORDERS_ORDER_NO_SEQ.nextval,1,null,1);
---개인회원1 user_seq:1 로 개인상품 p_no 2주문하기
+--개인회원1 user_seq:2 로 개인상품 p_no 2주문하기
 insert into orders(order_no,p_no,corp_id,user_seq)
-values(ORDERS_ORDER_NO_SEQ.nextval,2,null,1);
+values(ORDERS_ORDER_NO_SEQ.nextval,2,null,2);
 --기업회원1 'corp_01' 로 기업상품 p_no 4주문하기
 insert into orders(order_no,p_no,corp_id,user_seq)
 values(ORDERS_ORDER_NO_SEQ.nextval,4,'corp_01',null);

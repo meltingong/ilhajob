@@ -48,6 +48,7 @@
 				<association property="product"
 							 javaType="com.itwill.ilhajob.product.Product"
 							 autoMapping="true">
+							 <result column="p_no" property="pNo"/>
 				</association>
 		</association>
 	</resultMap>
@@ -55,12 +56,10 @@
 			parameterType="java.lang.String"
 			resultMap="corpWithOrdersResultMap">
 		select * from corp c
-		join corp_image ci
-		on c.corp_id=ci.corp_id
-		join manager m
-		on c.corp_id=m.corp_id
-		join orders o
-		on c.corp_id=o.corp_id
+			join orders o
+			on c.corp_id=o.corp_id
+	        join product p
+	        on o.p_no=p.p_no
 		where c.corp_id=#{corpId}
 	</select>
 	
@@ -104,4 +103,9 @@
 		delete from corp
 		where corp_id=#{corpId}
 	</delete>
+	
+	<select id="existedCorp" 	parameterType="java.lang.String" 
+								resultType="java.lang.Integer">
+		select count(*) cnt from corp where corp_id=#{corId}
+	</select>
 </mapper>

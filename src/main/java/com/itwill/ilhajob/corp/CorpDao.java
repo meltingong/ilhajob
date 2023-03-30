@@ -17,12 +17,14 @@ public interface CorpDao {
 	// 모든 회사정보 가져오기
 	List<Corp> selectAll() throws Exception;
 	
+	Corp findCorpByIdWithAll(String corpId);
+	public Corp findCorpByIdWithOrders(String corpId);
+	
 	// 회사 추가정보 입력하기(id로 식별)
 	int updateCorp(Corp corp) throws Exception;
 	
 	// 회사 삭제하기(id로 식별)
 	int deleteCorp(Corp corp) throws Exception;
 	
-	Corp findCorpByIdWithAll(String corpId);
-	public Corp findCorpByIdWithOrders(String corpId);
+	int existedCorp(String corpId);
 }

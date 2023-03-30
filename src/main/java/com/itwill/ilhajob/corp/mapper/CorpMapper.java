@@ -21,4 +21,6 @@ public interface CorpMapper {
 	public int insertCorp(Corp corp);
 	public int deleteCorp(String corpId);
 	public int updateCorp(Corp corp);
+	
+	public int existedCorp(String corpId);
 }

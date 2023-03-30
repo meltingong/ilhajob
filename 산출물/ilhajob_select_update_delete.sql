@@ -149,10 +149,6 @@ join corp_image ci
 on c.corp_id=ci.corp_id
 where c.corp_id='corp_01';
 
-select * from corp c
-join orders o
-on c.corp_id=o.corp_id
-where c.corp_id='corp_01';
 /********************기업의 이미지리스트, 매니저리스트 보기**********************/
 select * from corp c
 join corp_image ci
@@ -171,9 +167,23 @@ join orders o
 on c.corp_id=o.corp_id
 where c.corp_id='corp_01';
 
-/*****기업 1에 속한 모든 매니저 정보 불러오기******/
-select * from manager
-where corp_id='corp_01';
+/********************기업의 orders with Product**********************/
+select * from corp c
+join orders o
+on c.corp_id=o.corp_id
+where c.corp_id='corp_01';
+
+select * from corp c
+		join orders o
+		on c.corp_id=o.corp_id
+        join product p
+        on o.p_no=p.p_no
+where c.corp_id='corp_01';
+
+
+
+/*****기업 아이디 중복체크******/
+select count(*) cnt from corp where corp_id='corp_01';
 
 
 /*****매니저 1이 속한 기업의 정보 불러오기 [매니저1 email(pk):이메일@기업1-1.com]******/
