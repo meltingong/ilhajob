@@ -82,11 +82,10 @@ class UserDaoImplTest {
 		System.out.println(userDao.findExpAwardsEduList(2));
 	}
 	
-	@Disabled
+	//@Disabled
 	@Test
 	void testFindAppByUserSeq() throws Exception {
-		User user = User.builder().userSeq(2).build();
-		System.out.println(userDao.findAppList(2));
+		System.out.println(userDao.findAppList(3));
 	}
 
 }
