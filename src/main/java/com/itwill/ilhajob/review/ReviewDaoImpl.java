@@ -46,13 +46,17 @@ public class ReviewDaoImpl implements ReviewDao{
 	public List<Review> selectListByUserSeq(int userSeq) throws Exception {
 		List<Review> ListByUserSeq=reviewMapper.selectReviewListByUserSeq(userSeq);
 		return ListByUserSeq;
+	}
 		
-	//select List By corpId
+	/*	
+	//select List By corpId ->corp mapper에서 실행할거임
 	}
 	@Override
 	public List<Review> selectListByCorpId(String corpId) throws Exception {
 		return reviewMapper.selectReviewListByCorpId(corpId);
 	}
+	*/
+		
 	//existed Review 중복 체크
 	@Override
 	public boolean existedReview(Review review) throws Exception {

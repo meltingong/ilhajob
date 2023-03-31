@@ -21,8 +21,8 @@ public interface ReviewMapper {
 	//user_seq로 user가 쓴 리뷰 목록 불러오기
 	public List<Review> selectReviewListByUserSeq(int userSeq) throws Exception;
 	
-	//corp_id로 해당 기업의 리뷰 목록 불러오기
-	public List<Review> selectReviewListByCorpId(String corpId) throws Exception;
+	//corp_id로 해당 기업의 리뷰 목록 불러오기->corp mapper에서 실행할거임
+	//public List<Review> selectReviewListByCorpId(String corpId) throws Exception;
 	
 	//user 1명이 기업 1에 리뷰 중복 작성 안됨: 중복 체크 
 	public int existedReview(Review review) throws Exception;
