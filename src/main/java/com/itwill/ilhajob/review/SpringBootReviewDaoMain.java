@@ -25,8 +25,8 @@ public class SpringBootReviewDaoMain {
 		System.out.println(reviewDao.deleteReview(deleteReview));
 		System.out.println("--select ReviewList By UserSeq--");
 		System.out.println(reviewDao.selectListByUserSeq(2));
-		System.out.println("--select ReviewList By CorpId--");
-		System.out.println(reviewDao.selectListByCorpId("corp_01"));
+		//System.out.println("--select ReviewList By CorpId--");
+		//System.out.println(reviewDao.selectListByCorpId("corp_01"));
 		System.out.println("--existed Review--");
 		Review isReview=new Review(0, null, null, null, "corp_01", 1);
 		System.out.println(reviewDao.existedReview(isReview));

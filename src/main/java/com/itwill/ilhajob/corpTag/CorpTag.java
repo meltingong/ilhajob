@@ -1,5 +1,14 @@
 package com.itwill.ilhajob.corpTag;
 
-public class CorpTag {
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@AllArgsConstructor
+@ToString
+public class CorpTag {
+	private String corpId;
+	private int tagId;
 }

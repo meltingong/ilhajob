@@ -132,6 +132,13 @@ on u.user_seq=cv.user_seq
 where r.corp_id='corp_01'
 order by r.rc_deadline desc, r.rc_title asc;
 
+/***************기업 1의 리뷰 모두 보기(order by revoew.seq desc: 최신순-> 생략가능)*************/
+select * from corp c
+join review r
+on c.corp_id=r.corp_id
+where c.corp_id='corp_01'
+order by r.review_seq desc;
+
 /********************회원의 결제상품 상세보기**********************/
 select * from orders
 where user_seq=1;
@@ -185,7 +192,6 @@ select * from corp c
         join product p
         on o.p_no=p.p_no
 where c.corp_id='corp_01';
-
 
 
 /*****기업 아이디 중복체크******/

@@ -18,5 +18,14 @@ public interface BlogDao {
 	int updateBlog(Blog blog);
 	
 	int deleteBlog(int blogSeq);
+
+	List<Blog> findByUserSeqBlogList(int userSeq);
+	
+	List<Blog> findByBlogAndCommetAll(int blogSeq);
+	
+	int updateBlogReadCount(int blogSeq);
+	
+	int updateBlogLikeCount(int blogSeq);
+
 	
 }
