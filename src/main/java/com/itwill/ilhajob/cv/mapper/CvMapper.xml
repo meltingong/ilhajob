@@ -29,7 +29,7 @@
 		select * from cv c join experience e on c.user_seq = e.user_seq
 		                   join awards a on c.user_seq = a.user_seq
 		                   join education ed on c.user_seq = ed.user_seq
-		                   where c.user_seq = #{userSeq} and c.cv_seq = #{cvSeq}
+		                   where c.cv_seq = #{cvSeq}
 	</select>
 	
     <select id="selectByCv" parameterType="int" resultMap="cvWithExpEduAwardsMap" >
