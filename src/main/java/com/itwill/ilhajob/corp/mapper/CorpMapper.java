@@ -19,9 +19,12 @@ public interface CorpMapper {
 	public Corp findCorpByIdWithOrders(String corpId);
 	public Corp findCorpByIdWithRecruit(String corpId);
 	
+	//도현 추가
+	public Corp findCorpByIdWithReview(String corpId);
+	
 	public int insertCorp(Corp corp);
 	public int deleteCorp(String corpId);
 	public int updateCorp(Corp corp);
 	
-	public int existedCorp(String corpId);
+	public int existedCorp(String corpId); 
 }

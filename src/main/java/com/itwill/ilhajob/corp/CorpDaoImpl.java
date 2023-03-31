@@ -31,6 +31,12 @@ public class CorpDaoImpl implements CorpDao{
 	public Corp findCorpByIdWithRecruit(String corpId) {
 		return corpMapper.findCorpByIdWithRecruit(corpId);
 	}
+	
+	@Override
+	public Corp findCorpByIdWithReview(String corpId) {
+		return corpMapper.findCorpByIdWithReview(corpId);
+	}
+
 	public List<Corp> selectAll() throws Exception{
 		return corpMapper.selectAll();
 	}

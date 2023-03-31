@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.ilhajob.corp.mapper.CorpMapper">
-
+	
+	<resultMap id="corpWithReviewResultMap" 
+			   type="com.itwill.ilhajob.corp.Corp" 
+			   autoMapping="true">
+			   <id column="corp_id" property="corpId"/>
+		<collection property="reviewList"
+					ofType="com.itwill.ilhajob.review.Review"
+					javaType="ArrayList"
+					autoMapping="true">
+		</collection>
+	</resultMap>
+	<select id="findCorpByIdWithReview" 
+			parameterType="java.lang.String"
+			resultMap="corpWithReviewResultMap">
+		select * from corp c
+		join review r
+		on c.corp_id=r.corp_id
+		where c.corp_id=#{corp_id}
+		order by r.review_seq desc	
+	</select>
 	
 	<resultMap id="corpWithAllResultMap"
 			   type="com.itwill.ilhajob.corp.Corp" 
