@@ -84,10 +84,9 @@
 		<resultMap id="corpWithReviewResultMap" 
 			   type="com.itwill.ilhajob.corp.Corp" 
 			   autoMapping="true">
-			   <id column="corp_id" property="corpId"/>
+			   <result column="corp_id" property="corpId"/>
 		<collection property="reviewList"
 					ofType="com.itwill.ilhajob.review.Review"
-					javaType="ArrayList"
 					autoMapping="true">
 		</collection>
 	</resultMap>
