@@ -76,16 +76,15 @@ class UserDaoImplTest {
 		System.out.println(userMapper.findBySnsId(user));
 	}
 	
-	@Disabled
+	//@Disabled
 	@Test
 	void testFindExpAwardsEduByUserSeq() throws Exception {
-		System.out.println(userDao.findExpAwardsEduList(2));
+		System.out.println(userDao.findExpAwardsEduList(3));
 	}
 	
-	@Disabled
+	//@Disabled
 	@Test
 	void testFindAppByUserSeq() throws Exception {
-		User user = User.builder().userSeq(2).build();
 		System.out.println(userDao.findAppList(2));
 	}
 

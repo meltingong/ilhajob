@@ -50,7 +50,7 @@ public class CvDaoImpl implements CvDao{
 	}
 
 	@Override
-	public Cv detailCv(int userSeq, int cvSeq) {
-		return cvMapper.selectDetailCv(userSeq,cvSeq);
+	public Cv detailCv(int cvSeq) {
+		return cvMapper.selectDetailCv(cvSeq);
 	}
 }

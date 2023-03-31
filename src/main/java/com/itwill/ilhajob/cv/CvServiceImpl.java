@@ -54,8 +54,8 @@ public class CvServiceImpl implements CvService{
 	}
 
 	@Override
-	public Cv detailCv(int userSeq, int cvSeq) {
-		return cvDao.detailCv(userSeq, cvSeq);
+	public Cv detailCv(int cvSeq) {
+		return cvDao.detailCv(cvSeq);
 	}
 
 

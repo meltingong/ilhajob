@@ -1,7 +1,9 @@
 package com.itwill.ilhajob.blog;
 
 import java.util.Date;
+import java.util.List;
 
+import com.itwill.ilhajob.blogComment.BlogComment;
 import com.itwill.ilhajob.user.User;
 
 import lombok.AllArgsConstructor;
@@ -38,8 +40,10 @@ public class Blog {
 	private Date blogDate;
 	private int blogReadCount;
 	private int blogLike;
-	private String userSeq;
+	private int userSeq;
 	private int blogCateSeq;
+	
+	private List<BlogComment> blogCommentList;
 	
 	
 }

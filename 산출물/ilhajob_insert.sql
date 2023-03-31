@@ -326,7 +326,7 @@ insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_
 values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'웹개발1팀장','구글',sysdate-400,sysdate,'구글에드센스 개발',userinfo_user_seq_SEQ.currval);
 /**********************CV insert*************************/
 insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
-values(CV_CV_SEQ_SEQ.nextval, '웹개발이력서', '~~자기소개~~','https://github.com/테스트1/', '테스트1@test.com');
+values(CV_CV_SEQ_SEQ.nextval, '웹개발이력서', '~~자기소개~~','https://github.com/테스트1/', 1);
 insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
 values(CV_CV_SEQ_SEQ.nextval, '하드개발이력서', '~~하드웨어용 자기소개~~','https://github.com/테스트1/', userinfo_user_seq_SEQ.currval);
 
@@ -339,30 +339,30 @@ values(CV_CV_SEQ_SEQ.nextval, '테스트2이력서', '~~자기소개2~~','https:
 
 /***************************************관계테이블**********************************/
 /**********************app insert*************************/
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '2', 1,1);
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '0', 2,1);
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '0', 3,1);
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '1', 4,1);
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '2', 1,1, 2, 'corp_01');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '0', 2,1, 2, 'corp_02');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '0', 3,1, 2, 'corp_03');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '1', 4,1, 2, 'corp_04');
 
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '1', 3,2);
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '1', 4,2);
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '1', 3,2, 2, 'corp_03');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '1', 4,2, 2, 'corp_04');
 
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '0', 1,3);
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '0', 2,3);
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '0', 3,3);
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '0', 4,3);
-insert into app(app_seq, app_status, rc_seq, cv_seq)
-values(APP_APP_SEQ_SEQ.nextval, '0', 5,3);
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '0', 1,3, 2, 'corp_01');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '0', 2,3, 2, 'corp_02');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '0', 3,3, 2, 'corp_03');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '0', 4,3, 2, 'corp_04');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '0', 5,3, 2, 'corp_05');
 /**********************message insert*************************/
 
 /**********************review insert*********************/
@@ -446,14 +446,14 @@ values(blog_blog_seq_SEQ.nextval,'블로그 제목2','블로그 내용2','2023-0
 insert into blog(blog_seq, blog_title, blog_content, blog_date, blog_image, blog_read_count, blog_like, user_seq, blog_cate_seq)
 values(blog_blog_seq_SEQ.nextval,'블로그 제목3','블로그 내용3','2023-03-03', '이미지3',3,3,3,3);
 insert into blog(blog_seq, blog_title, blog_content, blog_date, blog_image, blog_read_count, blog_like, user_seq, blog_cate_seq)
-values(blog_blog_seq_SEQ.nextval,'블로그 제목4','블로그 내용4','2023-03-04', '이미지4',4,4,4,4);
+values(blog_blog_seq_SEQ.nextval,'블로그 제목4','블로그 내용4','2023-03-04', '이미지4',4,4,3,4);
 
 /**********************blog_comment insert**************************/
 
-insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용1', '2023-03-01',1,56);
-insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용2', '2023-03-02',2,57);
-insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용3', '2023-03-03',3,58);
-insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_seq_SEQ.nextval,'블로그 댓글내용4', '2023-03-04',4,59);
+insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_comment_seq_SEQ.nextval,'블로그 댓글내용1', '2023-03-01',1,1);
+insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_comment_seq_SEQ.nextval,'블로그 댓글내용2', '2023-03-02',2,2);
+insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_comment_seq_SEQ.nextval,'블로그 댓글내용3', '2023-03-03',3,3);
+insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog_seq) values(blog_comment_comment_seq_SEQ.nextval,'블로그 댓글내용4', '2023-03-04',3,3);
 
 
 
