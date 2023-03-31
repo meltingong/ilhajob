@@ -23,7 +23,6 @@ DROP TABLE education CASCADE CONSTRAINTS;
 DROP TABLE CV CASCADE CONSTRAINTS;
 DROP TABLE userinfo CASCADE CONSTRAINTS;
 
-
 CREATE TABLE userinfo(
 		user_seq                      		NUMBER(20)		 NULL ,
 		user_email                    		VARCHAR2(50)		 NOT NULL,
@@ -121,7 +120,7 @@ CREATE TABLE corp(
 		corp_sales                    		VARCHAR2(20)		 NULL ,
 		corp_comment                  		VARCHAR2(1000)		 NULL ,
 		corp_welfare                  		VARCHAR2(50)		 NULL ,
-		corp_address                  		VARCHAR2(100)		 NULL ,
+		corp_address                  		VARCHAR2(300)		 NULL ,
 		corp_status                   		CHAR(1)		 NULL ,
 		job                         		VARCHAR2(60)		 NULL ,
 		role                        		NUMBER(5)			 NULL 

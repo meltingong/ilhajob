@@ -23,12 +23,12 @@ public class SpringBootEduDaoMain {
 //		System.out.println(eduDao.deleteEduByEduSeq(8));
 //		System.out.println(eduDao.deleteAllEdu(3));
 		
-		EduService eduService = (EduService)applicationContext.getBean(EduService.class);
-		System.out.println("------ EduServiceTest-----");
-		System.out.println(eduService.insertEdu(new Edu(0, "건축학과", "성균관대학교 일반대학원", new Date(), new Date(), "3.2", "석사졸업", 2)));
+//		EduService eduService = (EduService)applicationContext.getBean(EduService.class);
+//		System.out.println("------ EduServiceTest-----");
+//		System.out.println(eduService.insertEdu(new Edu(0, "건축학과", "성균관대학교 일반대학원", new Date(), new Date(), "3.2", "석사졸업", 2)));
 //		System.out.println(eduService.deleteEduByEduSeq(5));
-		System.out.println(eduService.selectAllEdu());
-		System.out.println(eduService.selectEduByUserSeq(2));
+//		System.out.println(eduService.selectAllEdu());
+//		System.out.println(eduService.selectEduByUserSeq(2));
 	}
 
 }
