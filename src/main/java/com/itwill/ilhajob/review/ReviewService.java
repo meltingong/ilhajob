@@ -17,7 +17,7 @@ public interface ReviewService {
 	List<Review> selectListByUserSeq(int userSeq) throws Exception;
 	
 	//corp_id로 작성된 리뷰 리스트 불러오기
-	List<Review> selectListByCorpId(String corpId) throws Exception;
+	//List<Review> selectListByCorpId(String corpId) throws Exception;
 	
 	//user_seq로 같은 기업에 리뷰 중복 작성됐는지 확인
 	boolean existedReview(Review review) throws Exception;

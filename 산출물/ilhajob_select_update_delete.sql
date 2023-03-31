@@ -92,6 +92,12 @@ delete from recruit where rc_seq = 1 and corp_id = 'corp_01';
 select * from recruit r where r.corp_id='corp_01'
 order by rc_seq desc;
 
+select * from corp c
+join recruit r
+on c.corp_id=r.corp_id
+where r.corp_id='corp_01'
+order by rc_seq desc;
+
 /********************기업1의 공고에 지원된 이력서 목록**********************/
 select * from (
             select * from recruit r
@@ -125,6 +131,13 @@ join userinfo u
 on u.user_seq=cv.user_seq
 where r.corp_id='corp_01'
 order by r.rc_deadline desc, r.rc_title asc;
+
+/***************기업 1의 리뷰 모두 보기(order by revoew.seq desc: 최신순-> 생략가능)*************/
+select * from corp c
+join review r
+on c.corp_id=r.corp_id
+where c.corp_id='corp_01'
+order by r.review_seq desc;
 
 /********************회원의 결제상품 상세보기**********************/
 select * from orders
@@ -181,10 +194,8 @@ select * from corp c
 where c.corp_id='corp_01';
 
 
-
 /*****기업 아이디 중복체크******/
 select count(*) cnt from corp where corp_id='corp_01';
-
 
 /*****매니저 1이 속한 기업의 정보 불러오기 [매니저1 email(pk):이메일@기업1-1.com]******/
 select c.* from corp c

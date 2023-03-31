@@ -26,11 +26,14 @@ public interface CorpDao {
 	//회사 공고정보목록 가져오기
 	Corp findCorpByIdWithRecruit(String corpId);
 	
+	//회사 리뷰 목록 가져오기
+	Corp findCorpByIdWithReview(String corpId);
+	
 	// 회사 추가정보 입력하기(id로 식별)
 	int updateCorp(Corp corp) throws Exception;
 	
 	// 회사 삭제하기(id로 식별)
 	int deleteCorp(Corp corp) throws Exception;
 	
-	int existedCorp(String corpId);
+	boolean existedCorp(String corpId);
 }

@@ -15,7 +15,7 @@ public interface BlogCommentDao {
 	BlogComment findBlogComment(int commentSeq);
 	
 	/*
-	기존의 블로그 댓글 리스트 모두조회
+	블로그가 가지고 있는 댓글 리스트 모두조회
 	*/	
 	List<BlogComment> selectAll();
 	
