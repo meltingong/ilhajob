@@ -52,4 +52,9 @@ public class BlogCommentServiceImpl implements BlogCommentService{
 		return deleteBlogCom;
 	}
 	
+	@Override
+	public List<BlogComment>  findByUserSeqCommnt(int userSeq){
+		List<BlogComment> userSeqComment = blogCommentDao.findByUserSeqCommnt(userSeq);
+		return userSeqComment;
+	}
 }

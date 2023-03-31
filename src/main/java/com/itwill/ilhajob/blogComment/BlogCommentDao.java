@@ -39,4 +39,6 @@ public interface BlogCommentDao {
     */
     int deleteBlogComment(int commentSeq);
     
+    List<BlogComment> findByUserSeqCommnt(int userSeq);
+    
 }

@@ -15,8 +15,10 @@ public class SpringBootBlogDaoMain {
 	public static void main(String[] args) {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootBlogDaoMain.class, args);
-		//Awards tutorDao=(Awards)appicationContext.getBean(Awards.class);
+
 		BlogDao blogDao=(BlogDao)appicationContext.getBean(BlogDao.class);
+		
+		/*
 		System.out.println("--------findBlog--------");
 		System.out.println(blogDao.findBlog(5));
 		
@@ -26,7 +28,6 @@ public class SpringBootBlogDaoMain {
 		System.out.println("--------selectByBlogCate--------");
 		System.out.println(blogDao.selectByBlogCate(1));
 		
-
 		System.out.println("--------insertBlog test--------");
 		System.out.println(blogDao.insertBlog(Blog.builder()
 												.blogSeq(0)
@@ -53,9 +54,13 @@ public class SpringBootBlogDaoMain {
 												.blogCateSeq(1)
 												.build()));
 		
-		
 		//System.out.println("--------deleteBlog test--------");
 		//System.out.println(blogDao.deleteBlog(61));
+		
+		System.out.println("--------findByBlogAndCommetAll--------");
+		System.out.println(blogDao.findByBlogAndCommetAll(1));
+		 */
+		
 		
 	}
 }

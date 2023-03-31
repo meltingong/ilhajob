@@ -12,6 +12,11 @@
     <select id="selectByBlogComment" parameterType="int" resultType="com.itwill.ilhajob.blogComment.BlogComment">
         select * from blog_comment where blog_seq = #{blogSeq}
     </select>
+    
+     <!-- BlogComment user_seq 별 리스트 -->
+     <select id="findByUserSeqCommnt" parameterType="int" resultType="com.itwill.ilhajob.blog.Blog">
+        select * from blog_commnet where user_seq = #{userSeq}
+    </select>
        
     <insert id="insertBlogComment" parameterType="com.itwill.ilhajob.blogComment.BlogComment">
         <selectKey>

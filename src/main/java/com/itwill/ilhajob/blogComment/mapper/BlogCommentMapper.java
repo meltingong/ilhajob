@@ -26,6 +26,9 @@ public interface BlogCommentMapper {
         select * from blog_comment where blog_seq = #{blogSeq}
     </select>
 	*/
+	
+	public List<BlogComment> findByUserSeqCommnt(int userSeq);
+	
 	public int insertBlogComment(BlogComment blogComment);	
     /*
     <insert id="insertBlogComment" parameterType="com.itwill.ilhajob.blogComment.BlogComment">
