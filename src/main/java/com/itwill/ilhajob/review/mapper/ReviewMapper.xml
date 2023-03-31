@@ -27,10 +27,11 @@
 		delete from review where user_seq=#{userSeq} and review_seq=#{reviewSeq}
 	</delete>
 	
-	<!-- user_seq로 리뷰 목록 불러오기 -->
+	<!-- user_seq로 리뷰 목록 불러오기-> user mapper에서 실시할거임 
 	<select id="selectReviewListByUserSeq" parameterType="java.lang.Integer" resultType="com.itwill.ilhajob.review.Review">
 		select * from review where user_seq=#{userSeq}
 	</select>
+	-->
 	
 	<!-- corp_id로 리뷰 목록 불러오기-> corp mapper에서 실시할거임
 	<select id="selectReviewListByCorpId" parameterType="java.lang.String" resultType="com.itwill.ilhajob.review.Review">

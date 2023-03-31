@@ -41,12 +41,14 @@ public class ReviewDaoImpl implements ReviewDao{
 		return reviewMapper.deleteByUserSeq(review);
 	}
 	
-	//select List By userSeq
+	/*
+	//select List By userSeq-> user mapper에서 실시할거임 
 	@Override
 	public List<Review> selectListByUserSeq(int userSeq) throws Exception {
 		List<Review> ListByUserSeq=reviewMapper.selectReviewListByUserSeq(userSeq);
 		return ListByUserSeq;
 	}
+	*/
 		
 	/*	
 	//select List By corpId ->corp mapper에서 실행할거임

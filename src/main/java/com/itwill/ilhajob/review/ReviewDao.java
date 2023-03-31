@@ -13,8 +13,8 @@ public interface ReviewDao {
 	//delete review
 	int deleteReview(Review review) throws Exception;
 	
-	//user_seq로 user가 쓴 리뷰 목록 불러오기
-	List<Review> selectListByUserSeq(int userSeq) throws Exception;
+	//user_seq로 user가 쓴 리뷰 목록 불러오기-> user mapper에서 실시할거임 
+	//List<Review> selectListByUserSeq(int userSeq) throws Exception;
 	
 	//corp_id로 해당 기업의 리뷰 목록 불러오기->corp mapper에서 실행할거임
 	//List<Review> selectListByCorpId(String corpId) throws Exception;

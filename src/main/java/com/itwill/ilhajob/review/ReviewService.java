@@ -13,8 +13,8 @@ public interface ReviewService {
 	//delete review
 	int deleteReview(Review review) throws Exception;
 	
-	//user_seq로 작성된 리뷰 리스트 불러오기
-	List<Review> selectListByUserSeq(int userSeq) throws Exception;
+	//user_seq로 작성된 리뷰 리스트 불러오기 ->user mapper에서 실시할거임 
+	//List<Review> selectListByUserSeq(int userSeq) throws Exception;
 	
 	//corp_id로 작성된 리뷰 리스트 불러오기
 	//List<Review> selectListByCorpId(String corpId) throws Exception;

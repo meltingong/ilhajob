@@ -33,11 +33,13 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDao.deleteReview(review);
 	}
 	
-	//user_seq로 작성된 리뷰 리스트 불러오기
+	/*
+	//user_seq로 작성된 리뷰 리스트 불러오기->user mapper에서 실시할거임 
 	@Override
 	public List<Review> selectListByUserSeq(int userSeq) throws Exception {
 		return reviewDao.selectListByUserSeq(userSeq);
 	}
+	*/
 	
 	//corp_id로 작성된 리뷰 리스트 불러오기
 	/*
