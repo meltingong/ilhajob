@@ -19,7 +19,7 @@ public interface ManagerDao {
 	//managerEmail로 기존 manager 존재 여부 판별
 	boolean existManager(String managerEmail) throws Exception;
 	
-	//corpId로 해당되는 매니저 모두 불러오기
-	List<Manager> listManagerByCorpId(String corpId) throws Exception;
+	//corpId로 해당되는 매니저 모두 불러오기-corp mapper에서 실시
+	//List<Manager> listManagerByCorpId(String corpId) throws Exception;
 
 }

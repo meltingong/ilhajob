@@ -41,12 +41,12 @@ public class ManagerDaoImpl implements ManagerDao{
 			return false;
 		}
 	}
-
+	/* corp mapper에서 실시
 	@Override
 	public List<Manager> listManagerByCorpId(String corpId) throws Exception {
 		return managerMapper.selectListByCorpId(corpId);
 	}
-	
+	*/
 	
 	
 }

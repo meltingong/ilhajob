@@ -25,9 +25,11 @@
 		select count(*) cnt from manager where manager_email=#{managerEmail}
 	</select>
 	
+	<!-- corp mapper에서 실시
 	<select id="selectListByCorpId" parameterType="java.lang.String" resultType="com.itwill.ilhajob.manager.Manager">
 		select * from manager where corp_id=#{corpId}
 	</select>
+	 -->
 	
 	
 </mapper>

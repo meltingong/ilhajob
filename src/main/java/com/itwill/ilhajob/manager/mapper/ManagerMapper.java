@@ -19,5 +19,6 @@ public interface ManagerMapper {
 	
 	public int existedManager(String managerEmail);
 	
-	public List<Manager> selectListByCorpId(String corpId);
+	//corp mapper에서 실시
+	//public List<Manager> selectListByCorpId(String corpId);
 }
