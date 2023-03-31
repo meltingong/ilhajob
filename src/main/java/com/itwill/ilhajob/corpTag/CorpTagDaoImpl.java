@@ -22,8 +22,8 @@ public class CorpTagDaoImpl implements CorpTagDao{
 	}
 
 	@Override
-	public int deleteCorpTag(CorpTag corpTag) {
-		return corpTagMapper.deleteCorpTag(corpTag);
+	public int deleteCorpTag(String corpId,int tagId) {
+		return corpTagMapper.deleteCorpTag(CorpTag.builder().corpId(corpId).tagId(tagId).build());
 	}
 
 	@Override
