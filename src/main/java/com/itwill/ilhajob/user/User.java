@@ -7,6 +7,7 @@ import com.itwill.ilhajob.awards.Awards;
 import com.itwill.ilhajob.cv.Cv;
 import com.itwill.ilhajob.edu.Edu;
 import com.itwill.ilhajob.exp.Exp;
+import com.itwill.ilhajob.review.Review;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,6 +48,7 @@ public class User {
 	private List<Exp> expList;
 	private List<Edu> eduList;
 	private List<Awards> awardsList;
+	private List<Review> reviewList;
 	
 	/*
 	 *패쓰워드 일치여부 검사 

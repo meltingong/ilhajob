@@ -79,9 +79,7 @@ select * from review r
 join userinfo u
 on r.user_seq=u.user_seq
 where r.user_seq=1
-order by r.review_seq desc
-
-
+order by r.review_seq desc;
 
 /********************recruit**********************/
 select * from recruit rc 

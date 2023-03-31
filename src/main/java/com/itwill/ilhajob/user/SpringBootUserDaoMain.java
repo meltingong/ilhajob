@@ -9,14 +9,15 @@ import org.springframework.context.ApplicationContext;
 //@MapperScan(basePackages = "com.itiwll.ilhajob.Awards.mapper")
 public class SpringBootUserDaoMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootUserDaoMain.class, args);
+		UserDao userDao=(UserDao)appicationContext.getBean(UserDao.class);
 		//Awards tutorDao=(Awards)appicationContext.getBean(Awards.class);
-		System.out.println("---------findTutorByIdWithCourses------------------");
-		System.out.println();
-		System.out.println();
+		System.out.println("---------findUserByIdWithReview------------------");
+		System.out.println(userDao.findUserByIdWithReview(1));
 
 	}
 
 }
+;
