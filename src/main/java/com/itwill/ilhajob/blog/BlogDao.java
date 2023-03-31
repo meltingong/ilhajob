@@ -26,6 +26,7 @@ public interface BlogDao {
 	int updateBlogReadCount(int blogSeq);
 	
 	int updateBlogLikeCount(int blogSeq);
-
+	
+	int updateBlogLikeDiscount(int blogSeq);
 	
 }

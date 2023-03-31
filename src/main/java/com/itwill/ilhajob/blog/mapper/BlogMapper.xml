@@ -72,5 +72,10 @@
 	<update id="updateBlogLikeCount" parameterType="int">
 		update blog set blog_like = blog_like+1 where blog_seq=#{blogSeq}
 	</update>
+   
+    <!-- Blog 좋아요 수 감소 (blog_like) -->
+	<update id="updateBlogLikeDiscount" parameterType="int">
+		update blog set blog_like = blog_like-1 where blog_seq=#{blogSeq}
+	</update>
 
 </mapper>

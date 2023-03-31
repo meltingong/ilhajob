@@ -51,6 +51,12 @@ public class BlogServiceImpl implements BlogService {
 	}
 	
 	@Override
+	public List<Blog> findByBlogAndCommetAll(int blogSeq){
+		List<Blog> findByBlogAndCommetAllList = blogDao.findByBlogAndCommetAll(blogSeq);
+		return findByBlogAndCommetAllList;
+	}
+
+	@Override
 	public Blog findBlog(int blogSeq) {
 		Blog findByBlogSeq = blogDao.findBlog(blogSeq);
 		return findByBlogSeq;
@@ -68,10 +74,10 @@ public class BlogServiceImpl implements BlogService {
 		return updateBlogLikeCount;
 	}
 	
-	@Override
-	public List<Blog> findByBlogAndCommetAll(int blogSeq){
-		List<Blog> findByBlogAndCommetAllList = blogDao.findByBlogAndCommetAll(blogSeq);
-		return findByBlogAndCommetAllList;
-	}
 	
+	@Override
+	public int updateBlogLikeDiscount(int blogSeq) {
+		int updateBlogLikeDiscount = blogDao.updateBlogLikeDiscount(blogSeq);
+		return updateBlogLikeDiscount;
+	}
 }

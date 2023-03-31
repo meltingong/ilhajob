@@ -52,4 +52,8 @@ public class BlogDaoImpl implements BlogDao {
 	public int updateBlogLikeCount(int blogSeq) {
 		return blogMapper.updateBlogLikeCount(blogSeq);
 	}
+	
+	public int updateBlogLikeDiscount(int blogSeq) {
+		return blogMapper.updateBlogLikeDiscount(blogSeq);
+	}
 }

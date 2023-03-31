@@ -6,25 +6,21 @@ public interface BlogService {
 
 
 	int insertBlog(Blog blog);
-	
-	Blog findBlog(int blogSeq);
-	
-	List<Blog> selectAll();
-
-	List<Blog> selectByBlogCate(int blogCateSeq);
-
-	List<Blog> findByUserSeqBlogList(int userSeq);
-
 	int updateBlog(Blog blog);
-
 	int deleteBlog(int blogSeq);
 
+	Blog findBlog(int blogSeq);
+	
+	
+	List<Blog> selectAll();
+	List<Blog> selectByBlogCate(int blogCateSeq);
+	List<Blog> findByUserSeqBlogList(int userSeq);
+	List<Blog> findByBlogAndCommetAll(int blogSeq);
+	
 	int updateBlogReadCount(int blogSeq);
 	
 	int updateBlogLikeCount(int blogSeq);
-
-	List<Blog> findByBlogAndCommetAll(int blogSeq);
-
+	int updateBlogLikeDiscount(int blogSeq);
 
 		
 		
