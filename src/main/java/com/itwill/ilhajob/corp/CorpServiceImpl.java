@@ -8,4 +8,6 @@ public class CorpServiceImpl implements CorpService{
 	
 	@Autowired
 	private CorpDao corpDao;
+	
+	
 }

@@ -32,5 +32,5 @@ public interface CorpDao {
 	// 회사 삭제하기(id로 식별)
 	int deleteCorp(Corp corp) throws Exception;
 	
-	int existedCorp(String corpId);
+	boolean existedCorp(String corpId);
 }

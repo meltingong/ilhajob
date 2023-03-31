@@ -92,6 +92,12 @@ delete from recruit where rc_seq = 1 and corp_id = 'corp_01';
 select * from recruit r where r.corp_id='corp_01'
 order by rc_seq desc;
 
+select * from corp c
+join recruit r
+on c.corp_id=r.corp_id
+where r.corp_id='corp_01'
+order by rc_seq desc;
+
 /********************기업1의 공고에 지원된 이력서 목록**********************/
 select * from (
             select * from recruit r
@@ -184,7 +190,6 @@ where c.corp_id='corp_01';
 
 /*****기업 아이디 중복체크******/
 select count(*) cnt from corp where corp_id='corp_01';
-
 
 /*****매니저 1이 속한 기업의 정보 불러오기 [매니저1 email(pk):이메일@기업1-1.com]******/
 select c.* from corp c

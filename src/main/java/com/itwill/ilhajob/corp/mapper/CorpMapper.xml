@@ -102,6 +102,8 @@
 	
 	<update id="updateCorp" parameterType="com.itwill.ilhajob.corp.Corp">
 		update corp set
+		corp_password=#{corpPassword},
+		corp_name=#{corpName},
 		corp_phone=#{corpPhone},
 		corp_business_no=#{corpBusinessNo},
 		corp_website=#{corpWebsite},
@@ -113,7 +115,7 @@
 		corp_address=#{corpAddress},
 		corp_status=#{corpStatus},
 		job=#{job},
-		role_id=#{role}
+		role=#{role}
 		where corp_id=#{corpId}
 		
 	</update>
