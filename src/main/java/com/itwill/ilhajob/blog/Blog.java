@@ -14,17 +14,18 @@ import lombok.ToString;
 
 /*
  * 
-CREATE TABLE blog(
-		blog_seq                      		NUMBER(20)		 NULL ,
-		blog_title                    		VARCHAR2(30)		 NULL ,
-		blog_content                  		VARCHAR2(200)		 NULL ,
-		blog_image                    		VARCHAR2(45)		 NULL ,
-		blog_date                     		DATE		 NULL ,
-		blog_read_count               		NUMBER(10)		 NULL ,
-		blog_like                     		NUMBER(10)		 NULL ,
-		user_email                    		VARCHAR2(50)		 NOT NULL,
-		blog_cate_seq                 		NUMBER(20)		 NOT NULL
-);
+이름              널?       유형            
+--------------- -------- ------------- 
+BLOG_SEQ        NOT NULL NUMBER(20)    
+BLOG_TITLE               VARCHAR2(30)  
+BLOG_CONTENT             VARCHAR2(200) 
+BLOG_IMAGE               VARCHAR2(45)  
+BLOG_DATE                DATE          
+BLOG_READ_COUNT          NUMBER(10)    
+BLOG_LIKE                NUMBER(10)    
+BLOG_CATE_SEQ   NOT NULL NUMBER(20)    
+USER_SEQ                 NUMBER(20)    
+
  */
 
 @Data

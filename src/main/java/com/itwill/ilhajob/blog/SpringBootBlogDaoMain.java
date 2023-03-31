@@ -29,29 +29,30 @@ public class SpringBootBlogDaoMain {
 
 		System.out.println("--------insertBlog test--------");
 		System.out.println(blogDao.insertBlog(Blog.builder()
-													.blogCateSeq(4)
-													.blogContent("내용1")
-													.blogSeq(0)
-													.blogReadCount(4)
-													.blogDate(new Date())
-													.blogLike(4)
-													.blogImage("이미지1")
-													.blogTitle("test1")
-													.userSeq(1)
-													.build()));
-		
+												.blogSeq(0)
+												.blogTitle("블로그제목1")
+												.blogContent("내용1")
+												.blogImage("이미지1")
+												.blogDate(new Date())
+												.blogReadCount(0)
+												.blogLike(0)
+												.userSeq(1)
+												.blogCateSeq(1)
+												.build()));
+										
 		System.out.println("--------updateBlog test--------");
 		System.out.println(blogDao.insertBlog(Blog.builder()
-												.blogCateSeq(4)
-												.blogContent("내용1수정")
 												.blogSeq(0)
-												.blogReadCount(5)
+												.blogTitle("블로그제목1")
+												.blogContent("내용1")
+												.blogImage("이미지1")
 												.blogDate(new Date())
-												.blogLike(4)
-												.blogImage("이미지1수정")
-												.blogTitle("test1수정")
+												.blogReadCount(0)
+												.blogLike(0)
 												.userSeq(1)
+												.blogCateSeq(1)
 												.build()));
+		
 		
 		//System.out.println("--------deleteBlog test--------");
 		//System.out.println(blogDao.deleteBlog(61));
