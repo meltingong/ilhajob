@@ -172,7 +172,9 @@ CREATE TABLE app(
 		app_seq                       		NUMBER(20)		 NOT NULL,
 		app_status                    		CHAR(1)		 NULL ,
 		rc_seq                        		NUMBER(20)		 NOT NULL,
-		cv_seq                        		NUMBER(20)		 NOT NULL
+		cv_seq                        		NUMBER(20)		 NOT NULL,
+		user_seq          					NUMBER(20)       NOT NULL,
+		corp_id                             VARCHAR2(30)	 NOT NULL
 );
 
 DROP SEQUENCE app_app_seq_SEQ;
@@ -368,6 +370,8 @@ ALTER TABLE tag ADD CONSTRAINT IDX_tag_PK PRIMARY KEY (tag_id);
 ALTER TABLE app ADD CONSTRAINT IDX_app_PK PRIMARY KEY (app_seq);
 ALTER TABLE app ADD CONSTRAINT IDX_app_FK0 FOREIGN KEY (rc_seq) REFERENCES recruit (rc_seq) on delete cascade;
 ALTER TABLE app ADD CONSTRAINT IDX_app_FK1 FOREIGN KEY (cv_seq) REFERENCES CV (cv_seq) on delete cascade;
+ALTER TABLE app ADD CONSTRAINT IDX_app_FK2 FOREIGN KEY (user_seq) REFERENCES USERINFO (user_seq) on delete cascade;
+ALTER TABLE app ADD CONSTRAINT IDX_app_FK3 FOREIGN KEY (corp_id) REFERENCES CORP (corp_id) on delete cascade;
 
 ALTER TABLE recruit_scrap ADD CONSTRAINT IDX_recruit_scrap_PK PRIMARY KEY (rc_seq);
 ALTER TABLE recruit_scrap ADD CONSTRAINT IDX_recruit_scrap_FK0 FOREIGN KEY (rc_seq) REFERENCES recruit (rc_seq) on delete cascade;
