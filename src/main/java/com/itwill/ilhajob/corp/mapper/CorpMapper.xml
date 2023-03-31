@@ -63,6 +63,25 @@
 		where c.corp_id=#{corpId}
 	</select>
 	
+	<resultMap id="corpWithRecruitResultMap" 
+			   type="com.itwill.ilhajob.corp.Corp"
+			   autoMapping="true">
+			   <result column="corp_id" property="corpId"/>
+		<collection property="recruitList"
+					ofType="com.itwill.ilhajob.recruit.Recruit"
+					autoMapping="true">
+		</collection>
+	</resultMap>
+	<select id="findCorpByIdWithRecruit"
+			parameterType="java.lang.String"
+			resultMap="corpWithRecruitResultMap">
+		select * from corp c
+		join recruit r
+		on c.corp_id=r.corp_id
+		where r.corp_id=#{corpId}
+		order by rc_seq desc
+	</select>
+	
 	<select id="selectById" parameterType="java.lang.String"
 							resultType="com.itwill.ilhajob.corp.Corp">
 		select * from corp

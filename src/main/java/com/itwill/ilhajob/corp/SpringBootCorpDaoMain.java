@@ -25,6 +25,9 @@ public class SpringBootCorpDaoMain {
 		System.out.println("---------findCorpByIdWithCorpImage------------------");
 		System.out.println(corpDao.findCorpByIdWithOrders("corp_01"));
 		*/
+		System.out.println("---------findCorpByIdWithRecruit------------------");
+		System.out.println(corpDao.findCorpByIdWithRecruit("corp_01"));
+		
 		System.out.println("------------insert test---------------");
 		System.out.println(corpDao.insertCorp(
 				Corp.builder()
