@@ -14,44 +14,37 @@ public class MessageDaoImpl implements MessageDao{
 
 	@Override
 	public Message findMessage(int messageSeq) {
-		// TODO Auto-generated method stub
-		return null;
+		return messageMapper.findMessage(messageSeq);
 	}
 
 	@Override
 	public int createMessage(Message message) {
-		// TODO Auto-generated method stub
-		return 0;
+		return messageMapper.createMessage(message);
 	}
 
 	@Override
 	public int updateMessage(Message message) {
-		// TODO Auto-generated method stub
-		return 0;
+		return messageMapper.updateMessage(message);
 	}
 
 	@Override
 	public int removeMessageBySeq(int messageSeq) {
-		// TODO Auto-generated method stub
-		return 0;
+		return messageMapper.removeMessageBySeq(messageSeq);
 	}
 
 	@Override
 	public int removeMessageByUserSeq(int userSeq) {
-		// TODO Auto-generated method stub
-		return 0;
+		return messageMapper.removeMessageByUserSeq(userSeq);
 	}
 
 	@Override
 	public List<Message> findMessageList() {
-		// TODO Auto-generated method stub
-		return null;
+		return messageMapper.findMessageList();
 	}
 
 	@Override
 	public List<Message> findMessageOfUser(int userSeq) {
-		// TODO Auto-generated method stub
-		return null;
+		return messageMapper.findMessageOfUser(userSeq);
 	}
 
 }

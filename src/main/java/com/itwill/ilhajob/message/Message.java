@@ -29,7 +29,7 @@ USER_SEQ                  NUMBER(20)
 public class Message {
 	private int messageSeq;
 	private String messageTitle;
-	private String messageContent;
+	private String messageContents;
 	private Date messageDate;
 	private int appSeq;
 	private int userSeq;
