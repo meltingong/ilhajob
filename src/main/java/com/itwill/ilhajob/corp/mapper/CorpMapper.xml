@@ -80,7 +80,7 @@
 		where r.corp_id=#{corpId}
 		order by rc_seq desc
 	</select>
-	
+	 
 		<resultMap id="corpWithReviewResultMap" 
 			   type="com.itwill.ilhajob.corp.Corp" 
 			   autoMapping="true">
