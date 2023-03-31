@@ -385,9 +385,17 @@ insert into tag(tag_id, tag_name) values (TAG_TAG_ID_SEQ.nextval, '태그1');
 insert into tag(tag_id, tag_name) values (TAG_TAG_ID_SEQ.nextval, '태그2');
 insert into tag(tag_id, tag_name) values (TAG_TAG_ID_SEQ.nextval, '태그3');
 /**********************corp_tag insert**************************/
-
+insert into corp_tag(tag_id,corp_id) values('1','corp_01');
+insert into corp_tag(tag_id,corp_id) values('2','corp_01');
+insert into corp_tag(tag_id,corp_id) values('3','corp_01');
+insert into corp_tag(tag_id,corp_id) values('2','corp_02');
+insert into corp_tag(tag_id,corp_id) values('3','corp_03');
 /**********************recruit_tag insert**************************/
-
+insert into recruit_tag(tag_id,rc_seq) values('1','1');
+insert into recruit_tag(tag_id,rc_seq) values('2','1');
+insert into recruit_tag(tag_id,rc_seq) values('2','2');
+insert into recruit_tag(tag_id,rc_seq) values('3','2');
+insert into recruit_tag(tag_id,rc_seq) values('1','3');
 /**********************crop_bookmark insert**************************/
 
 

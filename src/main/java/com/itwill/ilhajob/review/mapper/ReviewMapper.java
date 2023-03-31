@@ -19,7 +19,7 @@ public interface ReviewMapper {
 	public int deleteByUserSeq(Review review) throws Exception;
 	
 	//user_seq로 user가 쓴 리뷰 목록 불러오기
-	public List<Review> selectReivewListbyUserSeq(int userSeq) throws Exception;
+	public List<Review> selectReviewListByUserSeq(int userSeq) throws Exception;
 	
 	//corp_id로 해당 기업의 리뷰 목록 불러오기
 	public List<Review> selectReviewListByCorpId(String corpId) throws Exception;
