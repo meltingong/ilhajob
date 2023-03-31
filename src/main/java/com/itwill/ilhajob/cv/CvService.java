@@ -24,7 +24,7 @@ public interface CvService {
 	/*
 	 * 회원의 각 이력서 상세보기
 	 */
-	Cv detailCv(int userSeq, int cvSeq);
+	Cv detailCv(int cvSeq);
 	/*
 	 * 이력서 추가
 	 */

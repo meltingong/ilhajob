@@ -12,7 +12,7 @@ public interface CvDao {
 	
 	//List<Cv> findCvOfUser(String userEmail);
 	
-	Cv detailCv(int userSeq, int cvSeq);
+	Cv detailCv(int cvSeq);
 	
 	int createCv(Cv cv);
 	
