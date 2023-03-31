@@ -18,8 +18,6 @@ public interface CorpMapper {
 	public Corp findCorpByIdWithAll(String corpId);
 	public Corp findCorpByIdWithOrders(String corpId);
 	public Corp findCorpByIdWithRecruit(String corpId);
-	
-	//도현 추가
 	public Corp findCorpByIdWithReview(String corpId);
 	
 	public int insertCorp(Corp corp);
