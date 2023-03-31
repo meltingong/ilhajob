@@ -44,12 +44,13 @@ public class ManagerServiceImpl implements ManagerService{
 		return managerDao.findManager(managerEmail);
 	}
 	
-	
+	/* corp mapper에서 실시
 	//cropId에 해당하는 매니저 리스트 불러오기
 	@Override
 	public List<Manager> selectListByCorpId(String corpId) throws Exception {
 		return managerDao.listManagerByCorpId(corpId);
 	}
+	*/
 	
 	//ManagerEmail 중복 여부 체크->이것도 User처럼 회원가입 안할거라 필요 없을 것 같기도...
 	@Override

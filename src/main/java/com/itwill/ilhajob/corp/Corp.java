@@ -29,7 +29,7 @@ public class Corp {
 	private String corpPassword;
 	private String corpName;
 	private String corpPhone;
-	private String corpBusiness_no;
+	private String corpBusinessNo;
 	private String corpWebsite;
 	private Date corpEst;
 	private String corpSize;

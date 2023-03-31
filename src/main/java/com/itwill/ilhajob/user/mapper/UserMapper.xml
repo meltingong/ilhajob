@@ -35,6 +35,25 @@
         where u.user_seq = #{userSeq}
 	</select>
 	
+	<resultMap id="userWithReviewResultMap" 
+			   type="com.itwill.ilhajob.user.User" 
+			   autoMapping="true">
+			   <result column="user_seq" property="userSeq"/>
+		<collection property="reviewList"
+					ofType="com.itwill.ilhajob.review.Review"
+					autoMapping="true">
+		</collection>
+	</resultMap>
+	<select id="findUserByIdWithReview" 
+			parameterType="java.lang.Integer"
+			resultMap="userWithReviewResultMap">
+		select * from review r
+		join userinfo u
+		on r.user_seq=u.user_seq
+		where r.user_seq=#{userSeq}
+		order by r.review_seq desc
+	</select>
+	
 	<insert id="create" parameterType="com.itwill.ilhajob.user.User">
 		<selectKey keyProperty="userSeq" resultType="int" order="BEFORE">
 			select userinfo_user_seq_seq.nextval from dual

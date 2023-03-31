@@ -25,4 +25,6 @@ public interface UserMapper {
 	
 	public User findAppByUserSeq(int userSeq);
 	
+	public User findUserByIdWithReview(int userSeq);
+	
 }

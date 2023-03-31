@@ -65,6 +65,11 @@ public class UserDaoImpl implements UserDao {
 		return userMapper.findAppByUserSeq(userSeq);
 	}
 
+	@Override
+	public User findUserByIdWithReview(int userSeq) throws Exception {
+		return userMapper.findUserByIdWithReview(userSeq);
+	}
 
+	
 
 }

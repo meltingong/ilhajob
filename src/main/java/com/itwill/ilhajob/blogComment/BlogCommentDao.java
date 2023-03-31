@@ -15,7 +15,7 @@ public interface BlogCommentDao {
 	BlogComment findBlogComment(int commentSeq);
 	
 	/*
-	기존의 블로그 댓글 리스트 모두조회
+	블로그가 가지고 있는 댓글 리스트 모두조회
 	*/	
 	List<BlogComment> selectAll();
 	
@@ -38,5 +38,7 @@ public interface BlogCommentDao {
     블로그 댓글번호에 해당하는 댓글 삭제
     */
     int deleteBlogComment(int commentSeq);
+    
+    List<BlogComment> findByUserSeqCommnt(int userSeq);
     
 }

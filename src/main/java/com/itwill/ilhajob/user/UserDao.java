@@ -29,6 +29,8 @@ public interface UserDao {
 	
 	User findAppList(int userSeq) throws Exception;
 	
+	User findUserByIdWithReview(int userSeq) throws Exception;
+	
 	/*
 	 * 인자로 전달되는 아이디를 가지는 사용자가 존재하는지의 여부를판별
 	 */

@@ -31,6 +31,12 @@ public class CorpDaoImpl implements CorpDao{
 	public Corp findCorpByIdWithRecruit(String corpId) {
 		return corpMapper.findCorpByIdWithRecruit(corpId);
 	}
+	
+	@Override
+	public Corp findCorpByIdWithReview(String corpId) {
+		return corpMapper.findCorpByIdWithReview(corpId);
+	}
+
 	public List<Corp> selectAll() throws Exception{
 		return corpMapper.selectAll();
 	}
@@ -45,7 +51,11 @@ public class CorpDaoImpl implements CorpDao{
 	}
 	
 	@Override
-	public int existedCorp(String corpId) {
-		return corpMapper.existedCorp(corpId);
+	public boolean existedCorp(String corpId) {
+		if(corpMapper.existedCorp(corpId)==1) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }

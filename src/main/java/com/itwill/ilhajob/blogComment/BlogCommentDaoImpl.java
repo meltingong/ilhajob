@@ -42,4 +42,8 @@ public class BlogCommentDaoImpl implements BlogCommentDao {
 		return blogCommentMapper.deleteBlogComment(commentSeq);
 	}
 	
+	@Override
+	public List<BlogComment>findByUserSeqCommnt(int userSeq) {
+		return blogCommentMapper.findByUserSeqCommnt(userSeq);
+	}
 }

@@ -18,10 +18,11 @@ public interface CorpMapper {
 	public Corp findCorpByIdWithAll(String corpId);
 	public Corp findCorpByIdWithOrders(String corpId);
 	public Corp findCorpByIdWithRecruit(String corpId);
+	public Corp findCorpByIdWithReview(String corpId);
 	
 	public int insertCorp(Corp corp);
 	public int deleteCorp(String corpId);
 	public int updateCorp(Corp corp);
 	
-	public int existedCorp(String corpId);
+	public int existedCorp(String corpId); 
 }

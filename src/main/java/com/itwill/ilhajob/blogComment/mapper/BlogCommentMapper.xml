@@ -12,18 +12,23 @@
     <select id="selectByBlogComment" parameterType="int" resultType="com.itwill.ilhajob.blogComment.BlogComment">
         select * from blog_comment where blog_seq = #{blogSeq}
     </select>
+    
+     <!-- BlogComment user_seq 별 리스트 -->
+     <select id="findByUserSeqCommnt" parameterType="int" resultType="com.itwill.ilhajob.blog.Blog">
+        select * from blog_commnet where user_seq = #{userSeq}
+    </select>
        
     <insert id="insertBlogComment" parameterType="com.itwill.ilhajob.blogComment.BlogComment">
-        <selectKey>
+        <selectKey order="BEFORE" resultType="int" keyProperty="commentSeq">
             select blog_comment_comment_seq_SEQ.nextval from dual
         </selectKey>
         insert into blog_comment (comment_seq, comment_content, comment_date, user_seq, blog_seq)
         values(#{commentSeq}, #{commentContent}, #{commentDate}, #{userSeq}, #{blogSeq})    
     </insert>
-    
+       
     <update id="updateBlogComment" parameterType="com.itwill.ilhajob.blogComment.BlogComment">
-        update blog_comment set comment_seq = #{commentSeq}, comment_content=#{commentContent},
-        comment_date=#{commentDate}, user_seq=#{userSeq}, blog_seq=#{blogSeq} where comment_seq=#{commentSeq} 
+        update blog_comment set comment_seq=#{commentSeq}, comment_content=#{commentContent},
+        comment_date=#{commentDate}, user_seq=#{userSeq}, blog_seq=#{blogSeq} where comment_seq=#{commentSeq} 	
     </update>
     
     <delete id="deleteBlogComment" parameterType="com.itwill.ilhajob.blog.Blog">

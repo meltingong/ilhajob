@@ -385,9 +385,17 @@ insert into tag(tag_id, tag_name) values (TAG_TAG_ID_SEQ.nextval, '태그1');
 insert into tag(tag_id, tag_name) values (TAG_TAG_ID_SEQ.nextval, '태그2');
 insert into tag(tag_id, tag_name) values (TAG_TAG_ID_SEQ.nextval, '태그3');
 /**********************corp_tag insert**************************/
-
+insert into corp_tag(tag_id,corp_id) values('1','corp_01');
+insert into corp_tag(tag_id,corp_id) values('2','corp_01');
+insert into corp_tag(tag_id,corp_id) values('3','corp_01');
+insert into corp_tag(tag_id,corp_id) values('2','corp_02');
+insert into corp_tag(tag_id,corp_id) values('3','corp_03');
 /**********************recruit_tag insert**************************/
-
+insert into recruit_tag(tag_id,rc_seq) values('1','1');
+insert into recruit_tag(tag_id,rc_seq) values('2','1');
+insert into recruit_tag(tag_id,rc_seq) values('2','2');
+insert into recruit_tag(tag_id,rc_seq) values('3','2');
+insert into recruit_tag(tag_id,rc_seq) values('1','3');
 /**********************crop_bookmark insert**************************/
 
 
@@ -460,8 +468,14 @@ insert into blog_comment(comment_seq, comment_content,comment_date,user_seq,blog
 
 
 /**********************admin insert*************************/
+insert into admin(admin_id, blog_seq, corp_id, pay_seq, rc_seq, p_no, user_seq) values('admin1@admin.com',1,'corp_01',null,1,1,1);
+insert into admin(admin_id, blog_seq, corp_id, pay_seq, rc_seq, p_no, user_seq) values('admin2@admin.com',2,'corp_02',null,2,2,2);
+insert into admin(admin_id, blog_seq, corp_id, pay_seq, rc_seq, p_no, user_seq) values('admin3@admin.com',3,'corp_03',null,3,3,3);
+insert into admin(admin_id, blog_seq, corp_id, pay_seq, rc_seq, p_no, user_seq) values('admin4@admin.com',5,'corp_04',null,4,4,3);
+
+
 commit;
 
 
-
+select * from admin;
 

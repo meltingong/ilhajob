@@ -13,10 +13,10 @@ public class SpringBootCvDaoMain {
 	public static void main(String[] args) {
 		ApplicationContext applicationContext=
 				SpringApplication.run(SpringBootCvDaoMain.class, args);
-		//Awards tutorDao=(Awards)appicationContext.getBean(Awards.class);
+		CvDao cvDao=(CvDao)applicationContext.getBean(CvDao.class);
 		System.out.println("---------findTutorByIdWithCourses------------------");
-		System.out.println();
-		System.out.println();
+		System.out.println(">>>>>delete ");
+		System.out.println(cvDao.remove(1));
 
 	}
 
