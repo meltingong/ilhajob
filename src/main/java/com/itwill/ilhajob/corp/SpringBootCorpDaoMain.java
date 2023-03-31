@@ -27,6 +27,9 @@ public class SpringBootCorpDaoMain {
 		System.out.println("---------findCorpByIdWithCorpImage------------------");
 		System.out.println(corpDao.findCorpByIdWithOrders("corp_01"));
 		*/
+		
+		
+		/*
 		System.out.println("---------findCorpByIdWithRecruit------------------");
 		System.out.println(corpDao.findCorpByIdWithRecruit("corp_01"));
 		
@@ -70,9 +73,15 @@ public class SpringBootCorpDaoMain {
 				.corpName("testDao")
 				.build())
 		);
+
 		System.out.println("-------------existedCorp--------------");
 		System.out.println(corpDao.existedCorp("corp_00"));
 		System.out.println(corpDao.existedCorp("corp_01"));
+		 */
+		
+		System.out.println("--findCorpByIdWithReview--");
+		System.out.println(corpDao.findCorpByIdWithReview("corp_01"));
+
 	}
 
 }
