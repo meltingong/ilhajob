@@ -74,6 +74,15 @@ join recruit r
 on r.rc_seq=app.rc_seq
 order by r.rc_deadline desc;
 
+/********회원 1의 리뷰 작성 목록->order by 생략 가능********/
+select * from review r
+join userinfo u
+on r.user_seq=u.user_seq
+where r.user_seq=1
+order by r.review_seq desc
+
+
+
 /********************recruit**********************/
 select * from recruit rc 
 join corp c
