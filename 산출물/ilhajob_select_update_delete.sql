@@ -210,6 +210,26 @@ join manager m
 on c.corp_id=m.corp_id
 where m.manager_email='이메일@기업1-1.com';
 
+/*********************************************메세지***************/
+select * from message;
+
+select * from message where message_seq=1;
+
+select * from message where user_seq=2;
+
+update message set message_title='제목변경', message_contents='제목 내용', message_date='2022/01/01', user_seq=3 where message_seq=1;
+
+delete from message where message_seq=3;
+
+delete from message where user_seq=2;
+
+
+
+
+
+
+
+
 --rollback;
 
 

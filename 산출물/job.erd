@@ -2249,8 +2249,8 @@
                                           <constraint>
                                             <height>-1</height>
                                             <width>-1</width>
-                                            <x>1104</x>
-                                            <y>268</y>
+                                            <x>1097</x>
+                                            <y>269</y>
                                           </constraint>
                                           <sourceConnections>
                                             <net.java.amateras.db.visual.model.ForeignKeyModel reference="../../.."/>
@@ -2278,9 +2278,14 @@
                                           <description></description>
                                           <columns>
                                             <net.java.amateras.db.visual.model.ColumnModel>
-                                              <columnName>massage_seq</columnName>
-                                              <logicalName>massage_seq</logicalName>
-                                              <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../../../../../../net.java.amateras.db.visual.model.ForeignKeyModel[5]/source/sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/targetConnections/net.java.amateras.db.visual.model.ForeignKeyModel[2]/source/sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/sourceConnections/net.java.amateras.db.visual.model.ForeignKeyModel/target/columns/net.java.amateras.db.visual.model.ColumnModel/columnType"/>
+                                              <columnName>message_seq</columnName>
+                                              <logicalName>message_seq</logicalName>
+                                              <columnType class="net.java.amateras.db.dialect.ColumnType">
+                                                <name>NUMBER</name>
+                                                <logicalName>Numeric</logicalName>
+                                                <supportSize>true</supportSize>
+                                                <type>2</type>
+                                              </columnType>
                                               <size>20</size>
                                               <notNull>false</notNull>
                                               <primaryKey>true</primaryKey>
@@ -2289,8 +2294,8 @@
                                               <defaultValue></defaultValue>
                                             </net.java.amateras.db.visual.model.ColumnModel>
                                             <net.java.amateras.db.visual.model.ColumnModel>
-                                              <columnName>massage_title</columnName>
-                                              <logicalName>massage_title</logicalName>
+                                              <columnName>message_title</columnName>
+                                              <logicalName>message_title</logicalName>
                                               <columnType class="net.java.amateras.db.dialect.ColumnType">
                                                 <name>VARCHAR2</name>
                                                 <logicalName>String</logicalName>
@@ -2305,8 +2310,8 @@
                                               <defaultValue></defaultValue>
                                             </net.java.amateras.db.visual.model.ColumnModel>
                                             <net.java.amateras.db.visual.model.ColumnModel>
-                                              <columnName>massage_contents</columnName>
-                                              <logicalName>massage_contents</logicalName>
+                                              <columnName>message_contents</columnName>
+                                              <logicalName>message_contents</logicalName>
                                               <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[2]/columnType"/>
                                               <size>100</size>
                                               <notNull>false</notNull>
@@ -2316,8 +2321,8 @@
                                               <defaultValue></defaultValue>
                                             </net.java.amateras.db.visual.model.ColumnModel>
                                             <net.java.amateras.db.visual.model.ColumnModel>
-                                              <columnName>massage_date</columnName>
-                                              <logicalName>massage_date</logicalName>
+                                              <columnName>message_date</columnName>
+                                              <logicalName>message_date</logicalName>
                                               <columnType class="net.java.amateras.db.dialect.ColumnType">
                                                 <name>DATE</name>
                                                 <logicalName>Date</logicalName>
@@ -2329,7 +2334,7 @@
                                               <primaryKey>false</primaryKey>
                                               <description></description>
                                               <autoIncrement>false</autoIncrement>
-                                              <defaultValue></defaultValue>
+                                              <defaultValue>sysdate</defaultValue>
                                             </net.java.amateras.db.visual.model.ColumnModel>
                                             <net.java.amateras.db.visual.model.ColumnModel>
                                               <columnName>app_seq</columnName>

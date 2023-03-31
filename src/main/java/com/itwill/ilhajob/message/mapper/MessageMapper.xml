@@ -18,7 +18,7 @@
 		<selectKey order="BEFORE" resultType="int" keyProperty="messageSeq">
 			select message_massage_seq_SEQ.nextval from dual
 		</selectKey>
-		insert into messages(message_seq, message_title, message_contents, message_date, app_seq, user_seq)
+		insert into message(message_seq, message_title, message_contents, message_date, app_seq, user_seq)
 		values(#{messageSeq},#{messageTitle,jdbcType=VARCHAR},#{messageContents,jdbcType=VARCHAR},#{messageDate,jdbcType=DATE},#{appSeq},#{userSeq})
 	</insert>
 	

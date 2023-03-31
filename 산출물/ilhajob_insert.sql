@@ -364,6 +364,16 @@ values(APP_APP_SEQ_SEQ.nextval, '0', 4,3, 2, 'corp_04');
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
 values(APP_APP_SEQ_SEQ.nextval, '0', 5,3, 2, 'corp_05');
 /**********************message insert*************************/
+insert into message(message_seq, message_title, message_contents, message_date, app_seq, user_seq) 
+values(message_massage_seq_SEQ.nextval,'메세지 제목','내용','2023/03/31',6,2);
+
+insert into message(message_seq, message_title, message_contents, message_date, app_seq, user_seq) 
+values(message_massage_seq_SEQ.nextval,'메세지 제목','내용','2023/03/30',6,2);
+
+insert into message(message_seq, message_title, message_contents, message_date, app_seq, user_seq) 
+values(message_massage_seq_SEQ.nextval,'메세지 제목','내용','2023/03/29',6,2);
+
+
 
 /**********************review insert*********************/
 /*****user_seq=1인 회원의 모든 기업 리뷰******/

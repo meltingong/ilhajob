@@ -316,10 +316,10 @@ CREATE SEQUENCE blog_comment_comment_seq_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 CREATE TABLE message(
-		massage_seq                   		NUMBER(20)		 NULL ,
-		massage_title                 		VARCHAR2(50)		 NULL ,
-		massage_contents              		VARCHAR2(100)		 NULL ,
-		massage_date                  		DATE		 NULL ,
+		message_seq                   		NUMBER(20)		 NULL ,
+		message_title                 		VARCHAR2(50)		 NULL ,
+		message_contents              		VARCHAR2(100)		 NULL ,
+		message_date                  		DATE		 DEFAULT sysdate        NULL ,
 		app_seq                       		NUMBER(20)		 NULL ,
 		user_seq                      		NUMBER(20)		 NULL 
 );
