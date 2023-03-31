@@ -92,6 +92,12 @@ delete from recruit where rc_seq = 1 and corp_id = 'corp_01';
 select * from recruit r where r.corp_id='corp_01'
 order by rc_seq desc;
 
+select * from corp c
+join recruit r
+on c.corp_id=r.corp_id
+where r.corp_id='corp_01'
+order by rc_seq desc;
+
 /********************기업1의 공고에 지원된 이력서 목록**********************/
 select * from (
             select * from recruit r

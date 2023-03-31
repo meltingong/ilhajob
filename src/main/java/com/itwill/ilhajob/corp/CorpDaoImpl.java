@@ -51,7 +51,11 @@ public class CorpDaoImpl implements CorpDao{
 	}
 	
 	@Override
-	public int existedCorp(String corpId) {
-		return corpMapper.existedCorp(corpId);
+	public boolean existedCorp(String corpId) {
+		if(corpMapper.existedCorp(corpId)==1) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }
