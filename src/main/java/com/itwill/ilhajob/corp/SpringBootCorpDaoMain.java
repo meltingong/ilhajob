@@ -13,7 +13,9 @@ public class SpringBootCorpDaoMain {
 	public static void main(String[] args) throws Exception {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootCorpDaoMain.class, args);
+		
 		CorpDao corpDao=(CorpDao)appicationContext.getBean(CorpDao.class);
+		/*
 		System.out.println("---------findTutorByIdWithCourses------------------");
 		System.out.println(corpDao.selectAll());
 		System.out.println("---------selectById------------------");
@@ -22,18 +24,19 @@ public class SpringBootCorpDaoMain {
 		System.out.println(corpDao.findCorpByIdWithAll("corp_01"));
 		System.out.println("---------findCorpByIdWithCorpImage------------------");
 		System.out.println(corpDao.findCorpByIdWithOrders("corp_01"));
-		
+		*/
 		System.out.println("------------insert test---------------");
-//		System.out.println(corpDao.insertCorp(
-//				Corp.builder()
-//				.corpId("testDao@test.com")
-//				.corpPassword("tttt")
-//				.corpName("testDao")
-//				.build())
-//		);
+		System.out.println(corpDao.insertCorp(
+				Corp.builder()
+				.corpId("testDao@test.com")
+				.corpPassword("tttt")
+				.corpName("testDao")
+				.build())
+		);
+		/*
 		System.out.println("-------------existedCorp--------------");
 		System.out.println(corpDao.existedCorp("corp_01"));
-		
+		*/
 	}
 
 }
