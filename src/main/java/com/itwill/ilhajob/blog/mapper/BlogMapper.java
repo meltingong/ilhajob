@@ -55,4 +55,14 @@ public interface BlogMapper {
         delete from blog where blog_seq = #{blogSeq}
     </delete>
 	*/
+	
+	public List<Blog> findByUserSeqBlogList(int userSeq);
+	
+	
+	public int updateBlogReadCount(int blogSeq);
+	
+	
+	public int updateBlogLikeCount(int blogSeq);
+	
+	public List<Blog> findByBlogAndCommetAll(int blogSeq);
 }

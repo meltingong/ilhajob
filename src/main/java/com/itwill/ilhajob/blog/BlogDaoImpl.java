@@ -12,6 +12,7 @@ public class BlogDaoImpl implements BlogDao {
 	@Autowired
 	private BlogMapper blogMapper;
 	
+
 	public Blog findBlog(int blogSeq) {
 		return blogMapper.findBlog(blogSeq);
 	}
@@ -22,6 +23,10 @@ public class BlogDaoImpl implements BlogDao {
 	
 	public List<Blog> selectByBlogCate(int blogCateSeq) {
 		return blogMapper.selectByBlogCate(blogCateSeq);
+	}
+	
+	public List<Blog> findByBlogAndCommetAll(int blogSeq){
+		return blogMapper.findByBlogAndCommetAll(blogSeq);
 	}
 	
 	public int insertBlog(Blog blog) {
@@ -35,5 +40,16 @@ public class BlogDaoImpl implements BlogDao {
 	public int deleteBlog(int blogSeq) {
 		return blogMapper.deleteBlog(blogSeq);
 	}
-
+	
+	public List<Blog> findByUserSeqBlogList(int userSeq) {
+		return blogMapper.findByUserSeqBlogList(userSeq);
+	}
+	
+	public int updateBlogReadCount(int blogSeq) {
+		return blogMapper.updateBlogReadCount(blogSeq);
+	}
+	
+	public int updateBlogLikeCount(int blogSeq) {
+		return blogMapper.updateBlogLikeCount(blogSeq);
+	}
 }
