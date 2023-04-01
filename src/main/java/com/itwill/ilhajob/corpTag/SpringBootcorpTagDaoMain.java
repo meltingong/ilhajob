@@ -20,12 +20,13 @@ public class SpringBootcorpTagDaoMain{
 		
 		System.out.println("---------selectCorpByTag------------------");
 		System.out.println(corpTagDao.selectCorpByTag(1));
-		*/
+		
 		System.out.println("---------existedCorpTag------------------");
 		System.out.println(corpTagDao.existedCorpTag("corp_04",1));
 
 		System.out.println("---------deleteCorpTag------------------");
 		System.out.println(corpTagDao.deleteCorpTag("corp_04",1));
+		*/
 	}
 
 }

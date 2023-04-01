@@ -9,7 +9,7 @@
 	</insert>
 	<!-- 태그로 공고리스트 선택 -->
 	<select id="selectRecruitByTag" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-		select re_seq from recruit_tag
+		select rc_seq from recruit_tag
 		where tag_id = #{tagId}
 	</select>
 	<!-- 공고에서 공고태그삭제-->
@@ -19,6 +19,6 @@
 	</delete>
 	<!-- 공고태그 중복확인 -->
 	<select id="existedRecruitTag" resultType="java.lang.Integer" parameterType="com.itwill.ilhajob.recruitTag.RecruitTag">
-		select count(*) cnt from corp_tag where rc_seq=#{rcSeq} and tag_id=#{tagId}
+		select count(*) cnt from recruit_tag where rc_seq=#{rcSeq} and tag_id=#{tagId}
 	</select>
 </mapper>
