@@ -16,7 +16,7 @@ public class SpringBootCorpDaoMain {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootCorpDaoMain.class, args);
 		
-		CorpDao corpDao=(CorpDao)appicationContext.getBean(CorpDao.class);
+//		CorpDao corpDao=(CorpDao)appicationContext.getBean(CorpDao.class);
 		/*
 		System.out.println("---------findTutorByIdWithCourses------------------");
 		System.out.println(corpDao.selectAll());
@@ -79,8 +79,8 @@ public class SpringBootCorpDaoMain {
 		System.out.println(corpDao.existedCorp("corp_01"));
 		 */
 		
-		System.out.println("--findCorpByIdWithReview--");
-		System.out.println(corpDao.findCorpByIdWithReview("corp_01"));
+//		System.out.println("--findCorpByIdWithReview--");
+//		System.out.println(corpDao.findCorpByIdWithReview("corp_01"));
 
 	}
 
