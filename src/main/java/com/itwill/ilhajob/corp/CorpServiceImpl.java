@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
-import com.itwill.ilhajob.corp.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
 
 
@@ -70,19 +70,19 @@ public class CorpServiceImpl implements CorpService{
 	}
 	
 	@Override
-	public Corp findCorpWithimagesAndManagers(String corpId) {
+	public Corp findCorpWithimagesAndManagers(String corpId)  throws Exception{
 		return corpDao.findCorpByIdWithAll(corpId);
 	}
 	@Override
-	public Corp findCorpWithOrdersWithProduct(String corpId) {
+	public Corp findCorpWithOrdersWithProduct(String corpId)  throws Exception{
 		return corpDao.findCorpByIdWithOrders(corpId);
 	}
 	@Override
-	public Corp findCorpWithRecruits(String corpId) {
+	public Corp findCorpWithRecruits(String corpId)  throws Exception{
 		return corpDao.findCorpByIdWithRecruit(corpId);
 	}
 	@Override
-	public Corp findCorpWithReviews(String corpId) {
+	public Corp findCorpWithReviews(String corpId)  throws Exception{
 		return corpDao.findCorpByIdWithReview(corpId);
 	}
 	

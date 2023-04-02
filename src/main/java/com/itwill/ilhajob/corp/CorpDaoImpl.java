@@ -12,28 +12,28 @@ public class CorpDaoImpl implements CorpDao{
 	@Autowired
 	private CorpMapper corpMapper;
 	
-	public int insertCorp(Corp corp) {
+	public int insertCorp(Corp corp)  throws Exception{
 		return corpMapper.insertCorp(corp);
 	}
 	
-	public Corp selectById(String corpId) {
+	public Corp selectById(String corpId)  throws Exception{
 		return corpMapper.selectById(corpId);
 	}
 	
-	public Corp findCorpByIdWithAll(String corpId) {
+	public Corp findCorpByIdWithAll(String corpId)  throws Exception{
 		return corpMapper.findCorpByIdWithAll(corpId);
 	}
 	@Override
-	public Corp findCorpByIdWithOrders(String corpId) {
+	public Corp findCorpByIdWithOrders(String corpId)  throws Exception{
 		return corpMapper.findCorpByIdWithOrders(corpId);
 	}
 	@Override
-	public Corp findCorpByIdWithRecruit(String corpId) {
+	public Corp findCorpByIdWithRecruit(String corpId)  throws Exception{
 		return corpMapper.findCorpByIdWithRecruit(corpId);
 	}
 	
 	@Override
-	public Corp findCorpByIdWithReview(String corpId) {
+	public Corp findCorpByIdWithReview(String corpId)  throws Exception{
 		return corpMapper.findCorpByIdWithReview(corpId);
 	}
 
@@ -41,17 +41,17 @@ public class CorpDaoImpl implements CorpDao{
 		return corpMapper.selectAll();
 	}
 	
-	public int updateCorp(Corp corp) {
+	public int updateCorp(Corp corp)  throws Exception{
 		return corpMapper.updateCorp(corp);
 		
 	}
 	
-	public int deleteCorp(String corpId) {
+	public int deleteCorp(String corpId)  throws Exception{
 		return corpMapper.deleteCorp(corpId);
 	}
 	
 	@Override
-	public boolean existedCorp(String corpId) {
+	public boolean existedCorp(String corpId)  throws Exception{
 		if(corpMapper.existedCorp(corpId)==1) {
 			return true;
 		}else {

@@ -39,16 +39,16 @@ public interface CorpService {
 	boolean isDuplicateId(String corpId) throws Exception;
 	
 	//회사 이미지리스트와 매니저정보 리스트로 불러오기 (공고등록용)
-	public Corp findCorpWithimagesAndManagers(String corpId);
+	public Corp findCorpWithimagesAndManagers(String corpId) throws Exception;
 	
 	//회사 오더와 상품정보 가져오기
-	public Corp findCorpWithOrdersWithProduct(String corpId);
+	public Corp findCorpWithOrdersWithProduct(String corpId) throws Exception;
 	
 	//회사 공고정보목록 가져오기
-	public Corp findCorpWithRecruits(String corpId);
+	public Corp findCorpWithRecruits(String corpId) throws Exception;
 	
 	//회사 리뷰 목록 가져오기
-	public Corp findCorpWithReviews(String corpId);
+	public Corp findCorpWithReviews(String corpId) throws Exception;
 	
 	
 }
