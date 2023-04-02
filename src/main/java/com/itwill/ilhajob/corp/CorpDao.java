@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
-@Repository
 public interface CorpDao {
 	
 	// 회사계정 회원가입(아이디,비밀번호,회사명만 입력)
@@ -33,7 +32,7 @@ public interface CorpDao {
 	int updateCorp(Corp corp) throws Exception;
 	
 	// 회사 삭제하기(id로 식별)
-	int deleteCorp(Corp corp) throws Exception;
+	int deleteCorp(String corpId) throws Exception;
 	
 	boolean existedCorp(String corpId);
 }

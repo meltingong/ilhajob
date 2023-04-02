@@ -47,6 +47,16 @@ public class Corp {
 	private List<CorpImage> corpImageList;
 	private List<Manager> managerList;
 	
+	/*
+	 *패쓰워드 일치여부 검사 
+	 */
+	public boolean isMatchPassword(String corpPassword){
+		boolean isMatch=false;
+		if(this.corpPassword.equals(corpPassword)){
+			isMatch=true;
+		}
+		return isMatch;
+	}
 }
 /*
 	이름               널?       유형             

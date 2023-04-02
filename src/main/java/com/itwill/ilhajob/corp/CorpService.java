@@ -8,24 +8,20 @@ public interface CorpService {
 	 * 기업가입
 	 */
 	// id, password, name 으로 가입
-	int create(User user) throws Exception;
+	int create(Corp corp) throws Exception;
 
 	/*
 	 * 기업로그인
-	 * 
-	 * 0:아이디존재안함
-	 * 1:패쓰워드 불일치
-	 * 2:로그인성공
 	 */
-	int login(Corp corp) throws Exception;
+	int login(String corpId,String corpPassword) throws Exception;
 	/*
 	 * 기업로그아웃
 	 */
 
 	/*
-	 * 기업상세보기
+	 * 기업 기본정보상세보기
 	 */
-	User findUser(String corpId) throws Exception;
+	Corp findCorp(String corpId) throws Exception;
 
 	/*
 	 * 기업 추가정보등록 및 수정
@@ -42,9 +38,17 @@ public interface CorpService {
 	 */
 	boolean isDuplicateId(String corpId) throws Exception;
 	
-	/*
-	 * 
-	 */
+	//회사 이미지리스트와 매니저정보 리스트로 불러오기 (공고등록용)
+	public Corp findCorpWithimagesAndManagers(String corpId);
+	
+	//회사 오더와 상품정보 가져오기
+	public Corp findCorpWithOrdersWithProduct(String corpId);
+	
+	//회사 공고정보목록 가져오기
+	public Corp findCorpWithRecruits(String corpId);
+	
+	//회사 리뷰 목록 가져오기
+	public Corp findCorpWithReviews(String corpId);
 	
 	
 }

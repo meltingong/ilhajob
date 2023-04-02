@@ -46,8 +46,8 @@ public class CorpDaoImpl implements CorpDao{
 		
 	}
 	
-	public int deleteCorp(Corp corp) {
-		return corpMapper.updateCorp(corp);
+	public int deleteCorp(String corpId) {
+		return corpMapper.deleteCorp(corpId);
 	}
 	
 	@Override

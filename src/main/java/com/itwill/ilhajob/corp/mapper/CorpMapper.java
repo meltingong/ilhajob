@@ -15,9 +15,13 @@ public interface CorpMapper {
 	 */
 	public Corp selectById(String corpId);
 	public List<Corp> selectAll();
+	//회사 이미지리스트와 매니저정보 리스트로 불러오기
 	public Corp findCorpByIdWithAll(String corpId);
+	//회사 오더와 상품정보 가져오기
 	public Corp findCorpByIdWithOrders(String corpId);
+	//회사 공고정보목록 가져오기
 	public Corp findCorpByIdWithRecruit(String corpId);
+	//회사 리뷰 목록 가져오기
 	public Corp findCorpByIdWithReview(String corpId);
 	
 	public int insertCorp(Corp corp);
