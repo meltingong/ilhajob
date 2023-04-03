@@ -19,14 +19,14 @@ public class CorpController {
 	@Autowired
 	private CorpService corpService;
 	
-	@RequestMapping("/index-16-test")
+	@RequestMapping("/index")
 	public String main() {
-		String forward_path = "index-16-test";
+		String forward_path = "index";
 		return forward_path;
 	}
 	
 	@RequestMapping("/login-test")
-	public String login_test() {
+	public String login() {
 		String forward_path = "login-test";
 		return forward_path;
 	}
@@ -36,20 +36,21 @@ public class CorpController {
 		try {
 			corpService.login(corp.getCorpId(), corp.getCorpPassword());
 			session.setAttribute("sCorpId", corp.getCorpId());
-			forwardPath="dashboard-test";
+			System.out.println(corp.getCorpId());
+			forwardPath="dashboard";
 		}catch (CorpNotFoundException e) {
 			e.printStackTrace();
 			model.addAttribute("msg1",e.getMessage());
-			forwardPath="login-test";
+			forwardPath="login";
 		}catch (PasswordMismatchException e) {
 			e.printStackTrace();
 			model.addAttribute("msg2",e.getMessage());
-			forwardPath="login-test";
+			forwardPath="login";
 		}
 		return forwardPath;
 	}
 	
-	@RequestMapping("/dashboard-test")
+	@RequestMapping("/dashboard")
 	public String corp_dashboard_view(HttpServletRequest request) throws Exception {
 		String forwardPath = "";
 		/************** login check **************/
@@ -58,7 +59,7 @@ public class CorpController {
 		Corp loginCorp=corpService.findCorp(sCorpId);
 		System.out.println(loginCorp);
 		request.setAttribute("loginCorp", loginCorp);
-		forwardPath="dashboard-test";
+		forwardPath="dashboard";
 		
 		return forwardPath;
 	}

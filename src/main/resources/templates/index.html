@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <title>Superio | Just another HTML Template | Home Page 11</title>
@@ -14,7 +14,8 @@
   <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
   <!-- Responsive -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
@@ -35,53 +36,13 @@
           <!--Nav Outer -->
           <div class="nav-outer">
             <div class="logo-box">
-              <div class="logo"><a href="index.html"><img src="images/logo-2.svg" alt="" title=""></a></div>
+              <div class="logo"><a href="index"><img src="images/logo-2.svg" alt="" title=""></a></div>
             </div>
 
             <nav class="nav main-menu">
               <ul class="navigation" id="navbar">
                 <li class="current dropdown">
                   <span>Home</span>
-                  <div class="mega-menu">
-                    <div class="mega-menu-bar row pt-0">
-                      <div class="column col-lg-3 col-md-3 col-sm-12">
-                        <ul>
-                          <li><a href="index.html">Home Page 01</a></li>
-                          <li><a href="index-2.html">Home Page 02</a></li>
-                          <li><a href="index-3.html">Home Page 03</a></li>
-                          <li><a href="index-4.html">Home Page 04</a></li>
-                          <li><a href="index-5.html">Home Page 05</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="column col-lg-3 col-md-3 col-sm-12">
-                        <ul>
-                          <li><a href="index-6.html">Home Page 06</a></li>
-                          <li><a href="index-7.html">Home Page 07</a></li>
-                          <li><a href="index-8.html">Home Page 08</a></li>
-                          <li><a href="index-9.html">Home Page 09</a></li>
-                          <li><a href="index-10.html">Home Page 10</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="column col-lg-3 col-md-3 col-sm-12">
-                        <ul>
-                          <li><a href="index-11.html">Home Page 11</a></li>
-                          <li><a href="index-12.html">Home Page 12</a></li>
-                          <li><a href="index-13.html">Home Page 13</a></li>
-                          <li><a href="index-14.html">Home Page 14</a></li>
-                          <li><a href="index-15.html">Home Page 15</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="column col-lg-3 col-md-3 col-sm-12">
-                        <ul>
-                          <li class="current"><a href="index-16.html">Home Page 16</a></li>
-                          <li><a href="index-17.html">Home Page 17</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
                 </li>
 
                 <li class="dropdown has-mega-menu" id="has-mega-menu">
@@ -91,41 +52,14 @@
                       <div class="column col-lg-3 col-md-3 col-sm-12">
                         <h3>Jobs Listing</h3>
                         <ul>
-                          <li><a href="job-list-v1.html">Jobs List – v1</a></li>
-                          <li><a href="job-list-v2.html">Jobs List – v2</a></li>
-                          <li><a href="job-list-v3.html">Jobs List – v3</a></li>
                           <li><a href="job-list-v4.html">Jobs List – v4</a></li>
-                          <li><a href="job-list-v5.html">Jobs List – v5</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="column col-lg-3 col-md-3 col-sm-12">
-                        <ul>
-                          <li><a href="job-list-v6.html">Jobs List – v6</a></li>
-                          <li><a href="job-list-v7.html">Jobs List – v7</a></li>
-                          <li><a href="job-list-v8.html">Jobs List – v8</a></li>
-                          <li><a href="job-list-v9.html">Jobs List – v9</a></li>
-                          <li><a href="job-list-v10.html">Jobs List – v10</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="column col-lg-3 col-md-3 col-sm-12">
-                        <ul>
-                          <li><a href="job-list-v11.html">Jobs List – v11</a></li>
-                          <li><a href="job-list-v12.html">Jobs List – v12</a></li>
-                          <li><a href="job-list-v13.html">Jobs List – v13</a></li>
-                          <li><a href="job-list-v14.html">Jobs List – v14</a></li>
                         </ul>
                       </div>
 
                       <div class="column col-lg-3 col-md-3 col-sm-12">
                         <h3>Jobs Single</h3>
                         <ul>
-                          <li><a href="job-single.html">Job Single v1</a></li>
-                          <li><a href="job-single-2.html">Job Single v2</a></li>
                           <li><a href="job-single-3.html">Job Single v3</a></li>
-                          <li><a href="job-single-4.html">Job Single v4</a></li>
-                          <li><a href="job-single-5.html">Job Single v5</a></li>
                         </ul>
                       </div>
                     </div>
@@ -138,10 +72,7 @@
                     <li class="dropdown">
                       <span>Employers List</span>
                       <ul>
-                        <li><a href="employers-list-v1.html">Employers LIst v1</a></li>
-                        <li><a href="employers-list-v2.html">Employers LIst v2</a></li>
                         <li><a href="employers-list-v3.html">Employers LIst v3</a></li>
-                        <li><a href="employers-list-v4.html">Employers LIst v4</a></li>
                       </ul>
                     </li>
 
@@ -149,11 +80,9 @@
                       <span>Employers Single</span>
                       <ul>
                         <li><a href="employers-single-v1.html">Employers Single v1</a></li>
-                        <li><a href="employers-single-v2.html">Employers Single v2</a></li>
-                        <li><a href="employers-single-v3.html">Employers Single v3</a></li>
                       </ul>
                     </li>
-                    <li><a href="dashboard.html">Employers Dashboard</a></li>
+                    <li><a href="dashboard">Employers Dashboard</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -162,11 +91,7 @@
                     <li class="dropdown">
                       <span>Candidates List</span>
                       <ul>
-                        <li><a href="candidates-list-v1.html">Candidates LIst v1</a></li>
-                        <li><a href="candidates-list-v2.html">Candidates LIst v2</a></li>
                         <li><a href="candidates-list-v3.html">Candidates LIst v3</a></li>
-                        <li><a href="candidates-list-v4.html">Candidates LIst v4</a></li>
-                        <li><a href="candidates-list-v5.html">Candidates LIst v5</a></li>
                       </ul>
                     </li>
 
@@ -174,8 +99,6 @@
                       <span>Candidates Single</span>
                       <ul>
                         <li><a href="candidates-single-v1.html">Candidates Single v1</a></li>
-                        <li><a href="candidates-single-v2.html">Candidates Single v2</a></li>
-                        <li><a href="candidates-single-v3.html">Candidates Single v3</a></li>
                       </ul>
                     </li>
                     <li><a href="candidate-dashboard.html">Candidates Dashboard</a></li>
@@ -184,8 +107,6 @@
                 <li class="dropdown">
                   <span>Blog</span>
                   <ul>
-                    <li><a href="blog-list-v1.html">Blog LIst v1</a></li>
-                    <li><a href="blog-list-v2.html">Blog LIst v2</a></li>
                     <li><a href="blog-list-v3.html">Blog LIst v3</a></li>
                     <li><a href="blog-single.html">Blog Single</a></li>
                   </ul>
@@ -202,7 +123,7 @@
                         <li><a href="shopping-cart.html">Shopping Cart</a></li>
                         <li><a href="shop-checkout.html">Checkout</a></li>
                         <li><a href="order-completed.html">Order Completed</a></li>
-                        <li><a href="login.html">Login</a></li>
+                        <li><a href="login-test">Login</a></li>
                         <li><a href="register.html">Register</a></li>
                       </ul>
                     </li>
@@ -254,7 +175,7 @@
 
           <div class="main-box">
             <div class="logo-box">
-              <div class="sticky-logo"><a href="index.html"><img src="images/logo.svg" alt="" title=""></a></div>
+              <div class="sticky-logo"><a href="index"><img src="images/logo.svg" alt="" title=""></a></div>
             </div>
 
             <!--Keep This Empty / Menu will come through Javascript-->
@@ -265,16 +186,27 @@
 
       <!-- Mobile Header -->
       <div class="mobile-header">
-        <div class="logo"><a href="index.html"><img src="images/logo.svg" alt="" title=""></a></div>
+        <div class="logo"><a href="index"><img src="images/logo.svg" alt="" title=""></a></div>
 
         <!--Nav Box-->
         <div class="nav-outer clearfix">
 
           <div class="outer-box">
             <!-- Login/Register -->
-            <div class="login-box">
+            <ul>
+				<th:block th:if="${session.sCorpId!=null}">
+				<li><a href='' th:text="@{${session.sCorpId} + '님'}">guard1 님</a></li>
+				<li><a href='user_view'>내정보</a></li>
+				<li><a href="user_logout_action">로그아웃</a></li>
+				</th:block>
+				<th:block th:unless="${session.sCorpId!=null}">
+				<li><a href="user_login_form">로그인</a></li>
+				<li><a href="user_write_form">회원가입</a></li>
+				</th:block>
+			</ul>
+            <!-- <div class="login-box">
               <a href="login-popup.html" class="call-modal"><span class="icon-user"></span></a>
-            </div>
+            </div> -->
 
             <a href="#nav-mobile" class="mobile-nav-toggler navbar-trigger"><span class="flaticon-menu-1"></span></a>
           </div>
