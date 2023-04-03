@@ -37,7 +37,7 @@ public class CorpController {
 			corpService.login(corp.getCorpId(), corp.getCorpPassword());
 			session.setAttribute("sCorpId", corp.getCorpId());
 			System.out.println(corp.getCorpId());
-			forwardPath="dashboard";
+			forwardPath="redirect:dashboard";
 		}catch (CorpNotFoundException e) {
 			e.printStackTrace();
 			model.addAttribute("msg1",e.getMessage());
