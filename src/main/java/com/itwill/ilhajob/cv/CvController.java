@@ -9,6 +9,7 @@ public class CvController {
 	private CvService cvService;
 	
 	/*
+	 * get방식 막기
 	 * 로그인 체크 
 	 * -> 로그인x : 로그인페이지로 이동
 	 *    로그인o : 이력서 페이지
