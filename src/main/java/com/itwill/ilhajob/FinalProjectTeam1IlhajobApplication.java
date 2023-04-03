@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.itwill.ilhajob")
 public class FinalProjectTeam1IlhajobApplication {
 
 	public static void main(String[] args) {
