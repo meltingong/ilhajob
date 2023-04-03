@@ -1,3 +1,4 @@
+DROP TABLE blog_heart CASCADE CONSTRAINTS;
 DROP TABLE admin CASCADE CONSTRAINTS;
 DROP TABLE message CASCADE CONSTRAINTS;
 DROP TABLE blog_comment CASCADE CONSTRAINTS;
@@ -340,6 +341,16 @@ CREATE TABLE admin(
 		user_seq                      		NUMBER(20)		 NULL 
 );
 
+CREATE TABLE blog_heart(
+		blog_heart_no                 		NUMBER(10)		 NULL ,
+		blog_heart_state              		NUMBER(1)		 NULL ,
+		blog_seq                      		NUMBER(20)		 NULL ,
+		user_seq                      		NUMBER(20)		 NULL 
+);
+
+DROP SEQUENCE blog_heart_blog_heart_no_SEQ;
+
+CREATE SEQUENCE blog_heart_blog_heart_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 ALTER TABLE userinfo ADD CONSTRAINT IDX_userinfo_PK PRIMARY KEY (user_seq);
@@ -411,6 +422,11 @@ ALTER TABLE blog ADD CONSTRAINT IDX_blog_FK1 FOREIGN KEY (user_seq) REFERENCES u
 ALTER TABLE blog_comment ADD CONSTRAINT IDX_blog_comment_PK PRIMARY KEY (comment_seq);
 ALTER TABLE blog_comment ADD CONSTRAINT IDX_blog_comment_FK0 FOREIGN KEY (blog_seq) REFERENCES blog (blog_seq) on delete cascade;
 ALTER TABLE blog_comment ADD CONSTRAINT IDX_blog_comment_FK1 FOREIGN KEY (user_seq) REFERENCES userinfo (user_seq) on delete cascade;
+
+
+ALTER TABLE blog_heart ADD CONSTRAINT IDX_blog_heart_PK PRIMARY KEY (blog_heart_no);
+ALTER TABLE blog_heart ADD CONSTRAINT IDX_blog_heart_FK0 FOREIGN KEY (blog_seq) REFERENCES blog (blog_seq) on delete cascade;
+ALTER TABLE blog_heart ADD CONSTRAINT IDX_blog_heart_FK1 FOREIGN KEY (user_seq) REFERENCES userinfo (user_seq) on delete cascade;
 
 ALTER TABLE message ADD CONSTRAINT IDX_message_PK PRIMARY KEY (massage_seq);
 ALTER TABLE message ADD CONSTRAINT IDX_message_FK0 FOREIGN KEY (app_seq) REFERENCES app (app_seq) on delete cascade;
