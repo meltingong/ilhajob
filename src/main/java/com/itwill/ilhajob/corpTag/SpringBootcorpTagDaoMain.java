@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import com.itwill.ilhajob.corpTag.mapper.CorpTagMapper;
+
 @SpringBootApplication
 @MapperScan(basePackages = "com.itwill.ilhajob.corpTag.mapper")
 public class SpringBootcorpTagDaoMain{
