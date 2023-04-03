@@ -25,9 +25,9 @@ public class CorpController {
 		return forward_path;
 	}
 	
-	@RequestMapping("/login-test")
+	@RequestMapping("/login")
 	public String login() {
-		String forward_path = "login-test";
+		String forward_path = "login";
 		return forward_path;
 	}
 	@PostMapping("corp_login_action")
