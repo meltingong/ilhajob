@@ -25,9 +25,9 @@ public class CorpController {
 		return forward_path;
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/login-test")
 	public String login() {
-		String forward_path = "login";
+		String forward_path = "login-test";
 		return forward_path;
 	}
 	@PostMapping("corp_login_action")
@@ -36,6 +36,7 @@ public class CorpController {
 		try {
 			corpService.login(corp.getCorpId(), corp.getCorpPassword());
 			session.setAttribute("sCorpId", corp.getCorpId());
+			System.out.println(corp.getCorpId());
 			forwardPath="dashboard";
 		}catch (CorpNotFoundException e) {
 			e.printStackTrace();
