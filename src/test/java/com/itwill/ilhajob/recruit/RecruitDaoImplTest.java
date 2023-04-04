@@ -43,6 +43,7 @@ class RecruitDaoImplTest {
 	}
 
 	@Disabled
+	
 	@Test
 	void testFindBySeq() {
 		System.out.println(recruitMapper.findBySeq(4));
