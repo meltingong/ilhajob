@@ -33,7 +33,7 @@ class AppDaoImplTest {
 		App app = App.builder().appSeq(1)
 				.appStatus('G')
 				.corpId("corp_03")
-				.recruit(rc)
+				.rc(rc)
 				.cv(cv)
 				.userSeq(3)
 				.build();
