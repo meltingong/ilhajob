@@ -24,7 +24,7 @@ class RecruitDaoImplTest {
 	@Test
 	void testInsertRecruit() {
 		Corp corp = new Corp();
-		Recruit recruit = new Recruit(0, "테스트", "테스트", "테스트", "테스트", 0, new Date(), new Date(), 0, "DBtest6",corp);
+		Recruit recruit = new Recruit(0, "테스트", "테스트", "테스트", "테스트", 0, new Date(), new Date(), 0, "DBtest6");
 		
 		recruitMapper.insertRecruit(recruit);
 	}
@@ -43,6 +43,7 @@ class RecruitDaoImplTest {
 	}
 
 	@Disabled
+	
 	@Test
 	void testFindBySeq() {
 		System.out.println(recruitMapper.findBySeq(4));
@@ -51,7 +52,7 @@ class RecruitDaoImplTest {
 	@Disabled
 	@Test
 	void testUpdateBySeq() {
-		Recruit recruit = new Recruit(10, "업데이트", "업데이트", "업데이트", "업데이트", 1000, new Date(), new Date(), 0, "DBtest6", null);
+		Recruit recruit = new Recruit(10, "업데이트", "업데이트", "업데이트", "업데이트", 1000, new Date(), new Date(), 0, "DBtest6");
 		System.out.println(recruitMapper.updateBySeq(recruit));
 	}
 

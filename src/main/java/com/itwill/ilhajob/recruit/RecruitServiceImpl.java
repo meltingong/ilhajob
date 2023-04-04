@@ -32,6 +32,11 @@ public class RecruitServiceImpl implements RecruitService {
 	}
 
 	@Override
+	public List<Recruit> findRecruitListAll() throws Exception {
+		return recruitDao.findAll();
+	}
+	
+	@Override
 	public List<Recruit> findRecruitListByCorpId(String corpId) throws Exception {
 		return recruitDao.findByCorpId(corpId);
 	}

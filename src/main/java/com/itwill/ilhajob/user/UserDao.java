@@ -37,6 +37,6 @@ public interface UserDao {
 	boolean existedUser(String userId) throws Exception;
 	
 	//sns로그인 가입 판별
-	boolean findBySnsId(User user) throws Exception;
+	boolean findBySnsId(String snsType, String snsId) throws Exception;
 
 }

@@ -69,12 +69,13 @@ class UserDaoImplTest {
 		System.out.println(userMapper.existedUser("test1@test.com"));
 	}
 	
-	@Disabled
-	@Test
-	void testFindBySnsId() {
-		User user = User.builder().snsType("1").snsId("1").build();
-		System.out.println(userMapper.findBySnsId(user));
-	}
+	/*
+	 * @Disabled
+	 * 
+	 * @Test void testFindBySnsId() { User user =
+	 * User.builder().snsType("1").snsId("1").build();
+	 * System.out.println(userMapper.findBySnsId(user)); }
+	 */
 	
 	//@Disabled
 	@Test
