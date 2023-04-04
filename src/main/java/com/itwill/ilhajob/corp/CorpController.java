@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.recruit.Recruit;
@@ -81,18 +82,33 @@ public class CorpController {
 	@RequestMapping("/dashboard")
 	public String corp_dashboard_view(HttpServletRequest request) throws Exception {
 		String forwardPath = "";
-		/************** login check **************
+		
+		/************** login check **************/
+		request.getSession().setAttribute("sCorpId", "corp_01"); //임시로 아이디 로그인상태
 		String sCorpId =(String)request.getSession().getAttribute("sCorpId");
 		if(sCorpId==null) {
-			forwardPath= "redirect:/	login";
+			forwardPath= "redirect:login";
 		}else {
 			//System.out.println(loginCorp);
 			Corp loginCorp=corpService.findCorp(sCorpId);
 			request.setAttribute("loginCorp", loginCorp);
 			forwardPath="dashboard";
 		}
-		****************************************/
-		forwardPath="dashboard";
+		/****************************************/
+		//forwardPath="dashboard";
+		return forwardPath;
+	}
+	
+	@RequestMapping("/dashboard-company-profile")
+	public String corp_dashboard_company_profile(HttpServletRequest request,Model model) throws Exception {
+		
+		String forwardPath ="";
+		
+		String sCorpId = (String)request.getSession().getAttribute("sCorpId");
+		Corp corp=corpService.findCorpWithRecruits(sCorpId);
+		model.addAttribute("corp", corp);
+		forwardPath =  "dashboard-company-profile";
+				
 		return forwardPath;
 	}
 	
