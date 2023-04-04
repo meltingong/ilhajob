@@ -43,6 +43,7 @@ public class UserController {
 	 * 회원 탈퇴
 	 * 회원 정보 보기
 	 */
+	
 	/*
 	 * dashboard-resume-alerts.html
 	 * <<유저 알림>>
@@ -55,11 +56,6 @@ public class UserController {
 	 * <<지원>> applied jobs 지원한 공고 목록
 	 * 회사에 이력서 지원 하기
 	 * 이력서 지원한 회사 목록 보기
-	 */
-	
-	/*
-	 * <<오더목록>> Packages 개인회원이 결재한 목록
-	 * 주문한 목록 보기
 	 */
 	
 	/*
