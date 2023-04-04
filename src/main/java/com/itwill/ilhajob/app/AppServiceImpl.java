@@ -1,5 +1,22 @@
 package com.itwill.ilhajob.app;
 
-public class AppServiceImpl {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
+public class AppServiceImpl implements AppService {
+	@Autowired	
+	private AppDao appDao;
+
+	@Override
+	public int insertApp(App app) {
+		return appDao.insertApp(app);
+	}
+
+	@Override
+	public int deleteApp(int appSeq) {
+		return appDao.deleteApp(appSeq);
+	}
+	
+	
 }
