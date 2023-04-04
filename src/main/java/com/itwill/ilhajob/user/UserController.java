@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwill.ilhajob.user.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.exception.UserNotFoundException;
+
 /*
 /user_main 
 /user_write_form 
@@ -44,7 +47,42 @@ public class UserController {
 	 * 회원 정보 보기
 	 */
 	
+	//메인 페이지
+	@RequestMapping(value = "/index")
+	public String main() {
+		return "index";
+	}
 	
+	//회원 정보 보기
+	@RequestMapping(value = "/candidate-dashboard-profile")
+	public String user_view() {
+		return "candidate-dashboard-profile";
+	}
+	
+	//회원 로그인 폼
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
+	//회원 로그인 액션
+	@RequestMapping
+	public String login_action(@ModelAttribute("fuser")User user,Model model,HttpSession session) throws Exception{
+		String forwardPath = "";
+		try {
+			userService.login(user.getUserEmail(),user.getUserPassword(),user.getSnsType(),user.getSnsId());
+			session.setAttribute("sUserId", user.getUserEmail());
+			forwardPath = "redirect:index";
+		}catch (UserNotFoundException e) {
+			e.printStackTrace();
+			model.addAttribute("msg1",e.getMessage());
+			forwardPath = "login";
+		}catch (PasswordMismatchException e) {
+			e.printStackTrace();
+			model.addAttribute("msg2", e.getMessage());
+			forwardPath = "login";
+		}
+		return forwardPath;
+	}
 	
 	// my resume 이력서 작성 폼
 	

@@ -52,14 +52,13 @@ public class User {
 	private List<Review> reviewList;
 	
 
-	public User(int userSeq, String userEmail, String userPassword) {
-		super();
-		this.userSeq = userSeq;
+	public User(String userEmail, String userPassword, String snsType, String snsId) {
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
+		this.snsType = snsType;
+		this.snsId = snsId;
 	}
 
-	
 	/*
 	 *패쓰워드 일치여부 검사 
 	 */
@@ -70,6 +69,8 @@ public class User {
 		}
 		return isMatch;
 	}
+
+
 
 
 }

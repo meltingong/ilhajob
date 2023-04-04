@@ -20,11 +20,11 @@ public interface UserService {
 	 * 1:패쓰워드 불일치
 	 * 2:로그인성공
 	 */
-	int login(User user) throws Exception;
+	int login(String userEamil,String userPassword, String snsType, String snsId) throws Exception;
 	/*
 	 * 회원로그아웃
 	 */
-
+	
 	/*
 	 * 회원상세보기
 	 */
