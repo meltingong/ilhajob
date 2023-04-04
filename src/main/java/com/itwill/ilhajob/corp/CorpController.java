@@ -25,6 +25,17 @@ public class CorpController {
 		return forward_path;
 	}
 	
+	@RequestMapping("/corp-list")
+	public String corp_list() {
+		String forward_path = "corp-list";
+		return forward_path;
+	}
+	@RequestMapping("/corp-detail")
+	public String corp_detail_view() {
+		String forward_path = "corp-detail";
+		return forward_path;
+	}
+	
 	@RequestMapping("/login")
 	public String login() {
 		String forward_path = "login";
