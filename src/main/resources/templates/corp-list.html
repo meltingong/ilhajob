@@ -41,7 +41,7 @@
       <div class="auto-container">
         <!-- Job Search Form -->
         <div class="job-search-form">
-          <form method="post" action="job-list-v10.html">
+          <form method="post" action="job-list-v8.html">
             <div class="row">
               <!-- Form Group -->
               <div class="form-group col-lg-4 col-md-12 col-sm-12">
@@ -54,8 +54,9 @@
                 <span class="icon flaticon-map-locator"></span>
                 <input type="text" name="field_name" placeholder="City or postcode">
               </div>
-
-              <!-- Form Group -->
+              
+			<!--Form Group--> 
+              <!--
               <div class="form-group col-lg-3 col-md-12 col-sm-12 location">
                 <span class="icon flaticon-briefcase"></span>
                 <select class="chosen-select">
@@ -70,7 +71,8 @@
                   <option value="107">Project Management</option>
                 </select>
               </div>
-
+			  -->
+			  
               <!-- Form Group -->
               <div class="form-group col-lg-2 col-md-12 col-sm-12 text-right">
                 <button type="submit" class="theme-btn btn-style-one">Find Jobs</button>
@@ -154,16 +156,15 @@
                     <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     <span class="featured">Featured</span>
                     <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
-                    <h4><a href="corp-detail" th:value ="${corp.corpId}" th:text="${corp.corpName}"></a></h4>
+                    <h4><a th:href="@{/corp-detail(corpId=${corp.corpId})}" th:text="${corp.corpName}"></a></h4>
                     <ul class="job-info">
                       <li><span class="icon flaticon-map-locator" ></span>
                       	  <span th:text="${corp.corpAddress}"><br/>
                       	  </span>
                       </li>
-                      <li><div class="icon flaticon-briefcase" >
+                      <li><span class="icon flaticon-briefcase" ></span>
                      	  <span th:text="${corp.job}">
                      	  </span>
-                     	  </div>
                       </li>
                     </ul>
                     <div class="job-type">Open Jobs – 2</div>
