@@ -17,8 +17,8 @@ public class SpringBootAppDaoMain {
 		//App app = new App(0, 'u', 4, 3, 3, "corp_03");
 		//appDao.insertApp(app);
 		//appDao.deleteApp(17);
-		System.out.println(appDao.findAppByCorpId("corp_03"));
-		//System.out.println(appDao.findAppByUserSeq(2));
+		//System.out.println(appDao.findAppByCorpId("corp_03"));
+		//System.out.println(appDao.findAppByUserSeq(3));
 	}
 
 }
