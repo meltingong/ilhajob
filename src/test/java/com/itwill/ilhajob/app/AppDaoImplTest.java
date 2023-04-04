@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.itwill.ilhajob.app.mapper.AppMapper;
+import com.itwill.ilhajob.cv.Cv;
+import com.itwill.ilhajob.recruit.Recruit;
 
 @SpringBootTest
 class AppDaoImplTest {
@@ -24,11 +26,15 @@ class AppDaoImplTest {
 	
 	@Test
 	void testCreateApp() {
+		Recruit rc = new Recruit();
+		rc.setRcSeq(3);
+		Cv cv = new Cv();
+		cv.setCvSeq(1);
 		App app = App.builder().appSeq(1)
 				.appStatus('G')
 				.corpId("corp_03")
-				.rcSeq(4)
-				.cvSeq(3)
+				.recruit(rc)
+				.cv(cv)
 				.userSeq(3)
 				.build();
 		appMapper.insertApp(app);

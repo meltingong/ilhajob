@@ -12,8 +12,8 @@ user_image='default.jpg',
 user_status='F',
 sns_type='카카오?',
 sns_id='2720506301811636',
-job_id=2,
-role_id=4  
+job=2,
+role=4  
 where user_email='테스트1@test.com';
 
 --기업회원 추가정보 업데이트
@@ -28,8 +28,8 @@ corp_comment='ㅎ...ㅎ.ㅎ.ㅎ.ㅎ.ㅎ.ㅎ.ㅎ.ㅎ',
 corp_welfare='^&^&^&^&^&^&^&^',
 corp_address='@!$@!%@#^^$^%&$',
 corp_status='F',
-job_id=2,
-role_id=1
+job=2,
+role=1
 where corp_id='기업1@corp.com';
 
 
@@ -224,10 +224,46 @@ delete from message where message_seq=3;
 delete from message where user_seq=2;
 
 
+select * from recruit r
+join corp c
+on c.corp_id=r.corp_id;
 
 
+select * from userinfo u
+join app a
+on a.user_seq=u.user_seq
+join recruit r
+on r.rc_seq=a.rc_seq
+where u.user_seq=2;
 
+select * from app a 
+		join recruit rc 
+		on a.rc_seq = rc.rc_seq
+		join cv cv 
+		on a.cv_seq = cv.cv_seq
+		where rc.corp_id = 'corp_03';
 
+select * from app
+where corp_id='corp_03';
+
+select * from corp c
+join app a
+on c.corp_id=a.corp_id
+where c.corp_id='corp_03';
+
+/***********유저2가 지원한 회사의 공고**********/
+select * from cv c
+join userinfo u
+on u.user_seq=c.user_seq;
+
+select * from app a
+join userinfo u
+on u.user_seq=a.user_seq;
+
+select * from userinfo u
+join app a
+on a.user_seq=u.user_seq
+where u.user_seq=2;
 
 
 --rollback;

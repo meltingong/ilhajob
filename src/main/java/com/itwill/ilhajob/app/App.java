@@ -25,8 +25,9 @@ public class App {
 	private int appSeq;
 	private char appStatus;
 
-	private int rcSeq;
-	private int cvSeq;
+	private Recruit rc;
+	private Cv cv;
+	
 	private int userSeq;
 	private String corpId;
 	
