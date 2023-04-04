@@ -14,9 +14,12 @@
 	 values (#{rcSeq},#{rcTitle},#{rcPosition},#{rcContent},#{rcQualification},#{rcSalary},#{rcDeadline},#{corpId})
 	</insert>
 	
-	<select id="findAll"
-			resultType="com.itwill.ilhajob.recruit.Recruit">
-		select * from recruit
+	<select id="findAllWithCorp"
+			resultType="com.itwill.ilhajob.recruit.Recruit"
+			resultMap="recruitWithCorpResultMap">
+		select * from recruit rc
+		join corp c
+		on rc.corp_id = c.corp_id
 	</select>
 	
 	<select id="findByCorpId" 

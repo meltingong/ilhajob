@@ -3,6 +3,8 @@ package com.itwill.ilhajob.recruit;
 import java.util.List;
 import java.util.Map;
 
+import com.itwill.ilhajob.corp.Corp;
+
 public interface RecruitService {
 	
 	//공고등록
@@ -12,10 +14,10 @@ public interface RecruitService {
 	//공고삭제
 	int removeRecruit(Map<String, Object> map) throws Exception;
 	
-	List<Recruit> findRecruitListAll() throws Exception;
+	List<Recruit> findRecruitListAllWithCorp() throws Exception;
 	
 	//corp회원이 등록한 공고리스트
-	List<Recruit> findRecruitListByCorpId(String corpId) throws Exception;
+	List<Recruit> findRecruitListByCorpId(Corp corp) throws Exception;
 	//직무별 공고리스트
 	List<Recruit> findRecruitListByJob(String job) throws Exception;
 	//공고 상세

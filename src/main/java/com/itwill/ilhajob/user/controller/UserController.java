@@ -57,21 +57,34 @@ public class UserController {
 	
 	//회원 대시보드 보기
 	@LoginCheck
-	@RequestMapping("/candidate-dashboard.html")
-	public String dashboard() {
-		String forwardPath = "candidate-dashboard.html";
+	@RequestMapping("/candidate-dashboard")
+	public String dashboard(HttpServletRequest request) throws Exception {
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		User loginUser = userService.findUser(sUserId);
+		request.setAttribute("loginUser", loginUser);
+		String forwardPath = "candidate-dashboard";
 		return forwardPath;
 	}
 	
 	//회원 정보 보기
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-profile")
-	public String user_view(HttpServletRequest request) throws Exception {
+	public String user_profile(HttpServletRequest request) throws Exception {
 		String forwardPath = "";
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		User loginUser = userService.findUser(sUserId);
 		request.setAttribute("loginUser", loginUser);
 		forwardPath = "candidate-dashboard-profile";
+		return forwardPath;
+	}
+	
+	// 회원 정보수정 폼 ***템플릿 복사해서 수정 가능한 modify-form 만들어야 함****
+	@LoginCheck
+	@RequestMapping("/candidate-dashboard-profile-modify-form")
+	public String modify_form(HttpServletRequest request) {
+		String forwardPath = "";
+		
+		
 		return forwardPath;
 	}
 	
@@ -110,15 +123,7 @@ public class UserController {
 		forwardPath = "redirect:index";
 		return forwardPath;
 	}
-	// 회원 정보수정 폼
-	@LoginCheck
-	@RequestMapping("/")
-	public String modify_form(HttpServletRequest request) {
-		String forwardPath = "";
-		
-		
-		return forwardPath;
-	}
+
 	
 	// my resume 이력서 작성 폼
 	

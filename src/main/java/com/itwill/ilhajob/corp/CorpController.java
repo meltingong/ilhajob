@@ -46,7 +46,7 @@ public class CorpController {
 		return forward_path;
 	}
 	*/
-	@RequestMapping("/corp-detail")
+	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpId") String corpId, Model model) throws Exception {
 		Corp corp=corpService.findCorp(corpId);
 		model.addAttribute("corp", corp);
