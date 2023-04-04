@@ -18,10 +18,11 @@ class AppDaoImplTest {
 	private AppMapper appMapper; 	
 	
 	
-	//@Test
+	/*@Test
 	void testFindAppByUserSeq() {
 		System.out.println(appMapper.findAppByUserSeq(2));
 	}
+*/	
 	
 	
 	@Test
@@ -39,6 +40,5 @@ class AppDaoImplTest {
 				.build();
 		appMapper.insertApp(app);
 	}
-	
 	
 }

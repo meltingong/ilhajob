@@ -23,9 +23,12 @@ public class SpringBootAppDaoMain {
 		cv.setCvSeq(1);
 		
 		App app = new App(0, 'u', rc, cv, 3, "corp_03");
-		//appDao.insertApp(app);
-		//appDao.deleteApp(17);
+		appDao.insertApp(app);
+		appDao.deleteApp(17);
 		//System.out.println(appDao.findAppByCorpId("corp_03"));
+
+		//System.out.println(appDao.findAppByUserSeq(3));
+
 		//System.out.println(appDao.findAppByUserSeq(2));
 	}
 
