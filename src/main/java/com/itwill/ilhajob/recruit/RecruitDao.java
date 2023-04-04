@@ -7,6 +7,8 @@ public interface RecruitDao {
 	
 	public int insertRecruit(Recruit recruit) throws Exception;
 	
+	public List<Recruit> findAll() throws Exception;
+	
 	public List<Recruit> findByCorpId(String corpId) throws Exception;
 	
 	public List<Recruit> findByJob(String job) throws Exception;

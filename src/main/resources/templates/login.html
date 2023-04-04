@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
 	function login() {
 		document.f.action = "corp_login_action";
@@ -37,33 +36,7 @@
 
     <!-- Main Header-->
     <header class="main-header">
-      <div class="container-fluid">
-        <!-- Main box -->
-        <div class="main-box">
-          <!--Nav Outer -->
-          <div class="nav-outer">
-            <div class="logo-box">
-              <div class="logo"><a href="index.html"><img src="images/logo-2.svg" alt="" title=""></a></div>
-            </div>
-          </div>
-
-          <div class="outer-box">
-            <!-- Login/Register -->
-            <div class="btn-box">
-              <a href="login-popup.html" class="theme-btn btn-style-three call-modal">Login / Register</a>
-              <a href="dashboard-post-job.html" class="theme-btn btn-style-one"><span class="btn-title">Job Post</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Header -->
-      <div class="mobile-header">
-        <div class="logo"><a href="index.html"><img src="images/logo.svg" alt="" title=""></a></div>
-      </div>
-
-      <!-- Mobile Nav -->
-      <div id="nav-mobile"></div>
+      <div id="main-header" th:include="include_common_top_login::include_common_top_login"></div>
     </header>
     <!--End Main Header -->
 

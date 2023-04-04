@@ -25,6 +25,11 @@ public class RecruitDaoImpl implements RecruitDao {
     }
 
     @Override
+    public List<Recruit> findAll() throws Exception {
+    	return recruitMapper.findAll();
+    }
+    
+    @Override
     public List<Recruit> findByCorpId(String corpId) throws Exception {
         return recruitMapper.findByCorpId(corpId);
     }
