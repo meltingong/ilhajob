@@ -1,4 +1,4 @@
-package com.itwill.ilhajob.user;
+package com.itwill.ilhajob.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwill.ilhajob.user.User;
+import com.itwill.ilhajob.user.UserService;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
 
@@ -48,25 +50,40 @@ public class UserController {
 	 */
 	
 	//메인 페이지
-	@RequestMapping(value = "/index")
+	@RequestMapping("/index")
 	public String main() {
 		return "index";
 	}
 	
+	//회원 대시보드 보기
+	@LoginCheck
+	@RequestMapping("/candidate-dashboard.html")
+	public String dashboard() {
+		String forwardPath = "candidate-dashboard.html";
+		return forwardPath;
+	}
+	
 	//회원 정보 보기
-	@RequestMapping(value = "/candidate-dashboard-profile")
-	public String user_view() {
-		return "candidate-dashboard-profile";
+	@LoginCheck
+	@RequestMapping("/candidate-dashboard-profile")
+	public String user_view(HttpServletRequest request) throws Exception {
+		String forwardPath = "";
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		User loginUser = userService.findUser(sUserId);
+		request.setAttribute("loginUser", loginUser);
+		forwardPath = "candidate-dashboard-profile";
+		return forwardPath;
 	}
 	
 	//회원 로그인 폼
-	@RequestMapping(value = "/login")
+	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
+	
 	//회원 로그인 액션
-	@RequestMapping
-	public String login_action(@ModelAttribute("fuser")User user,Model model,HttpSession session) throws Exception{
+	@PostMapping("/user_login_action")
+	public String user_login_action(@ModelAttribute("fuser")User user,Model model,HttpSession session) throws Exception{
 		String forwardPath = "";
 		try {
 			userService.login(user.getUserEmail(),user.getUserPassword(),user.getSnsType(),user.getSnsId());
@@ -81,6 +98,25 @@ public class UserController {
 			model.addAttribute("msg2", e.getMessage());
 			forwardPath = "login";
 		}
+		return forwardPath;
+	}
+	
+	// 회원 로그아웃 액션
+	@LoginCheck
+	@RequestMapping("/user_logout_action")
+	public String user_logout_action(HttpServletRequest request) {
+		String forwardPath = "";
+		request.getSession().invalidate();
+		forwardPath = "redirect:index";
+		return forwardPath;
+	}
+	// 회원 정보수정 폼
+	@LoginCheck
+	@RequestMapping("/")
+	public String modify_form(HttpServletRequest request) {
+		String forwardPath = "";
+		
+		
 		return forwardPath;
 	}
 	
