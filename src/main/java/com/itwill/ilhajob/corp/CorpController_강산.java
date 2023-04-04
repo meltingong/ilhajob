@@ -15,7 +15,7 @@ import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
 @Controller
-public class CorpController {
+public class CorpController_강산 {
 	@Autowired
 	private CorpService corpService;
 	
