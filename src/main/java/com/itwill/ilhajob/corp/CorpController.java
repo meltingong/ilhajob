@@ -53,7 +53,6 @@ public class CorpController {
 		return "corp-detail";
 	}
 	
-	
 	@RequestMapping("/login")
 	public String login() {
 		String forward_path = "login";
