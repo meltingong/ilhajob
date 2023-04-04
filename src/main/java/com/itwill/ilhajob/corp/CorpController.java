@@ -28,12 +28,13 @@ public class CorpController {
 		return forward_path;
 	}
 	
-	@GetMapping(value = "/corp-list")
-	public String corp_list(Model model,HttpServletRequest req) throws Exception {
+	@RequestMapping("corp-list")
+	public String corp_list(Model model) throws Exception {
 		List<Corp> corpList = corpService.findCorpAll();
 		model.addAttribute("corpList",corpList);
 		String forward_path = "corp-list";
 		return forward_path;
+		
 	}
 	@RequestMapping("/corp-detail")
 	public String corp_detail_view() {
