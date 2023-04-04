@@ -12,6 +12,8 @@ public interface RecruitMapper {
 	
 	public int insertRecruit(Recruit recruit);
 	
+	public List<Recruit> findAll();
+	
 	public List<Recruit> findByCorpId(String corpId);
 	
 	public List<Recruit> findByJob(String job);

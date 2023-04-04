@@ -40,6 +40,4 @@ public class Recruit {
 	private Date rcDeadline;
 	private int rcReadCount;
 	private String corpId;
-	private Corp corp;
-	
 }
