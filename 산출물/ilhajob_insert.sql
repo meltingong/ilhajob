@@ -326,10 +326,10 @@ insert into experience(exp_seq, exp_position, exp_corp_name,exp_start_date, exp_
 values(EXPERIENCE_EXP_SEQ_SEQ.nextval,'웹개발1팀장','구글',sysdate-400,sysdate,'구글에드센스 개발',userinfo_user_seq_SEQ.currval);
 /**********************CV insert*************************/
 insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
-values(CV_CV_SEQ_SEQ.nextval, '웹개발이력서', '~~자기소개~~','https://github.com/테스트1/', 1);
+values(CV_CV_SEQ_SEQ.nextval, '웹개발이력서', '~~자기소개~~','https://github.com/테스트1/', userinfo_user_seq_SEQ.currval);
 insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
 values(CV_CV_SEQ_SEQ.nextval, '하드개발이력서', '~~하드웨어용 자기소개~~','https://github.com/테스트1/', userinfo_user_seq_SEQ.currval);
-
+--userinfo_user_seq_SEQ.currval(user_seq를 app의 user_seq랑 일치시켜야한다)
 insert into cv(cv_seq, cv_name, cv_description, cv_portfolio, user_seq)
 values(CV_CV_SEQ_SEQ.nextval, '테스트2이력서', '~~자기소개2~~','https://github.com/테스트2/', userinfo_user_seq_SEQ.currval);
 /**********************recruit_scrap insert*************************/
@@ -340,29 +340,33 @@ values(CV_CV_SEQ_SEQ.nextval, '테스트2이력서', '~~자기소개2~~','https:
 /***************************************관계테이블**********************************/
 /**********************app insert*************************/
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '2', 1,1, 1, 'corp_01');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '0', 2,1, 1, 'corp_02');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '0', 3,1, 1, 'corp_03');
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
+values(APP_APP_SEQ_SEQ.nextval, '1', 4,1, 1, 'corp_04');
+
+insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
 values(APP_APP_SEQ_SEQ.nextval, '2', 1,1, 2, 'corp_01');
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
 values(APP_APP_SEQ_SEQ.nextval, '0', 2,1, 2, 'corp_02');
-insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
-values(APP_APP_SEQ_SEQ.nextval, '0', 3,1, 2, 'corp_03');
-insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
-values(APP_APP_SEQ_SEQ.nextval, '1', 4,1, 2, 'corp_04');
-
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
 values(APP_APP_SEQ_SEQ.nextval, '1', 3,2, 2, 'corp_03');
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
 values(APP_APP_SEQ_SEQ.nextval, '1', 4,2, 2, 'corp_04');
 
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
-values(APP_APP_SEQ_SEQ.nextval, '0', 1,3, 2, 'corp_01');
+values(APP_APP_SEQ_SEQ.nextval, '0', 1,3, 3, 'corp_01');
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
-values(APP_APP_SEQ_SEQ.nextval, '0', 2,3, 2, 'corp_02');
+values(APP_APP_SEQ_SEQ.nextval, '0', 2,3, 3, 'corp_02');
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
-values(APP_APP_SEQ_SEQ.nextval, '0', 3,3, 2, 'corp_03');
+values(APP_APP_SEQ_SEQ.nextval, '0', 3,3, 3, 'corp_03');
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
-values(APP_APP_SEQ_SEQ.nextval, '0', 4,3, 2, 'corp_04');
+values(APP_APP_SEQ_SEQ.nextval, '0', 4,3, 3, 'corp_04');
 insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
-values(APP_APP_SEQ_SEQ.nextval, '0', 5,3, 2, 'corp_05');
+values(APP_APP_SEQ_SEQ.nextval, '0', 5,3, 3, 'corp_05');
 /**********************message insert*************************/
 insert into message(message_seq, message_title, message_contents, message_date, app_seq, user_seq) 
 values(message_massage_seq_SEQ.nextval,'메세지 제목','내용','2023/03/31',6,2);

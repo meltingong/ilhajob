@@ -73,6 +73,13 @@ on app.cv_seq=ucv.cv_seq
 join recruit r
 on r.rc_seq=app.rc_seq
 order by r.rc_deadline desc;
+/******************회원2가 지원한 공고목록***********************/
+select * from userinfo u
+        join app a
+        on u.user_seq = a.user_seq
+        join recruit rc 
+		on a.rc_seq = rc.rc_seq
+        where u.user_seq = 2;
 
 /********회원 1의 리뷰 작성 목록->order by 생략 가능********/
 select * from review r

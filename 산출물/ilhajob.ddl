@@ -428,7 +428,7 @@ ALTER TABLE blog_heart ADD CONSTRAINT IDX_blog_heart_PK PRIMARY KEY (blog_heart_
 ALTER TABLE blog_heart ADD CONSTRAINT IDX_blog_heart_FK0 FOREIGN KEY (blog_seq) REFERENCES blog (blog_seq) on delete cascade;
 ALTER TABLE blog_heart ADD CONSTRAINT IDX_blog_heart_FK1 FOREIGN KEY (user_seq) REFERENCES userinfo (user_seq) on delete cascade;
 
-ALTER TABLE message ADD CONSTRAINT IDX_message_PK PRIMARY KEY (massage_seq);
+ALTER TABLE message ADD CONSTRAINT IDX_message_PK PRIMARY KEY (message_seq);
 ALTER TABLE message ADD CONSTRAINT IDX_message_FK0 FOREIGN KEY (app_seq) REFERENCES app (app_seq) on delete cascade;
 ALTER TABLE message ADD CONSTRAINT IDX_message_FK1 FOREIGN KEY (user_seq) REFERENCES userinfo (user_seq) on delete cascade;
 

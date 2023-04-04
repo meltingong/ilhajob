@@ -20,11 +20,11 @@ public class SpringBootAppDaoMain {
 		Recruit rc = new Recruit();
 		rc.setRcSeq(3);
 		Cv cv = new Cv();
-		cv.setCvSeq(1);
+		cv.setCvSeq(3);
 		
-		App app = new App(0, 'u', rc, cv, 3, "corp_03");
-		appDao.insertApp(app);
-		appDao.deleteApp(17);
+		App app = new App(0, 'u', rc, cv, 3, "corp_02");
+		//appDao.insertApp(app);
+		appDao.deleteApp(16);
 		//System.out.println(appDao.findAppByCorpId("corp_03"));
 
 		//System.out.println(appDao.findAppByUserSeq(3));
