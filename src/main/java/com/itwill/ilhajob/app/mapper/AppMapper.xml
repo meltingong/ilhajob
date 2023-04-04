@@ -12,7 +12,6 @@
 	</resultMap>
 	
 	<select id="findAppByUserSeq" parameterType="java.lang.Integer"
-								  resultType="com.itwill.ilhajob.app.App"
 								  resultMap="appWithRcResultMap">
 		select * from app a 
 		left outer join recruit rc 
@@ -22,15 +21,14 @@
 		where cv.user_seq = #{userSeq}
 	</select>
 	
-	<select id="findAppByCorpId" parameterType="java.lang.Integer"
-								 resultType="com.itwill.ilhajob.app.App"
+	<select id="findAppByCorpId" parameterType="java.lang.String"
 								 resultMap="appWithCvResultMap">
 		select * from app a 
 		join recruit rc 
 		on a.rc_seq = rc.rc_seq
 		join cv cv 
 		on a.cv_seq = cv.cv_seq
-		where rc.corp_id = #{corpId}; 
+		where rc.corp_id = #{corpId}
 	</select>
 	
 	<insert id="insertApp" parameterType="com.itwill.ilhajob.app.App">
@@ -38,7 +36,7 @@
 			select app_app_seq_SEQ.nextVal from dual
 		</selectKey>
 		insert into app(app_seq, app_status, rc_seq, cv_seq, user_seq, corp_id)
-		values (#{appSeq},#{appStatus},#{rcSeq},#{cvSeq},#{userSeq},#{corpId})
+		values (#{appSeq},#{appStatus},#{rc.rcSeq},#{cv.cvSeq},#{userSeq},#{corpId})
 		</insert>
 	
 	<delete id="deleteApp" parameterType="com.itwill.ilhajob.app.App">
