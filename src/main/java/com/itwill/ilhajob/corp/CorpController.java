@@ -1,6 +1,8 @@
 package com.itwill.ilhajob.corp;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,12 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
+import com.itwill.ilhajob.recruit.Recruit;
+import com.itwill.ilhajob.recruit.RecruitService;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
 @Controller
 public class CorpController {
 	@Autowired
 	private CorpService corpService;
+	//@Autowired
+	//private RecruitService recruitService;
 	
 	@RequestMapping("/index")
 	public String main() {
@@ -39,23 +45,13 @@ public class CorpController {
 		return forward_path;
 		
 	}
-	/*
-	@RequestMapping("/corp-detail")
-	public String corp_detail_view() {
-		String forward_path = "corp-detail";
-		return forward_path;
-	}
-	*/
+	
 	@RequestMapping("corp-detail")
-	public String corp_detail_view(@RequestParam("corpId") String corpId, Model model) throws Exception {
-		Corp corp=corpService.findCorp(corpId);
+	public String corp_detail_view(@RequestParam("corpId") String corpId,Model model) throws Exception {
+		Corp corp=corpService.findCorpWithRecruits(corpId);
 		model.addAttribute("corp", corp);
 		return "corp-detail";
-		//return forward_path="corp-detail";
-		
-		
 	}
-	
 	
 	
 	@RequestMapping("/login")
