@@ -17,7 +17,17 @@ public class RecruitController {
 	public String main(Model model) throws Exception{
 		List<Recruit> recruitList = recruitService.findRecruitListAll();
 		model.addAttribute("recruitList", recruitList);
+		System.out.println(recruitList);
 		String forward_path = "index";
+		return forward_path;
+	}
+	
+	@RequestMapping("/recruit-list")
+	public String recruit_list(Model model) throws Exception{
+		List<Recruit> recruitList = recruitService.findRecruitListAll();
+		model.addAttribute("recruitList", recruitList);
+		System.out.println(recruitList);
+		String forward_path = "recruit-list";
 		return forward_path;
 	}
 	
