@@ -8,19 +8,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.itwill.ilhajob.app.mapper.AppMapper;
+import com.itwill.ilhajob.cv.Cv;
+import com.itwill.ilhajob.recruit.Recruit;
 
 @SpringBootTest
-@MapperScan(basePackages = "com.itwill.ilhajob")
 class AppDaoImplTest {
 	
 	@Autowired
 	private AppMapper appMapper; 	
-	@Autowired
-	private AppDao appDao;
+	
+	
+	//@Test
+	void testFindAppByUserSeq() {
+		System.out.println(appMapper.findAppByUserSeq(2));
+	}
+	
 	
 	@Test
-	void testFindAppByUserSeq() {
-		System.out.println(appDao.findAppByUserSeq(2));
+	void testCreateApp() {
+		Recruit rc = new Recruit();
+		rc.setRcSeq(3);
+		Cv cv = new Cv();
+		cv.setCvSeq(1);
+		App app = App.builder().appSeq(1)
+				.appStatus('G')
+				.corpId("corp_03")
+				.recruit(rc)
+				.cv(cv)
+				.userSeq(3)
+				.build();
+		appMapper.insertApp(app);
 	}
-
+	
+	
 }

@@ -19,4 +19,6 @@ public interface CvDao {
 	int updateCv(Cv cv);
 	
 	int remove(int cvSeq);
+	
+
 }

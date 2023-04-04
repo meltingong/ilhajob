@@ -14,17 +14,6 @@ public class AppDaoImpl implements AppDao {
 	@Autowired
 	private AppMapper appMapper;
 	
-	@Override
-	public int insertApp() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteApp() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public List<App> findAppByUserSeq(int userSeq) {
@@ -34,6 +23,16 @@ public class AppDaoImpl implements AppDao {
 	@Override
 	public List<App> findAppByCorpId(String coprId) {
 		return appMapper.findAppByCorpId(coprId);
+	}
+
+	@Override
+	public int insertApp(App app) {
+		return appMapper.insertApp(app);
+	}
+
+	@Override
+	public int deleteApp(int appSeq) {
+		return appMapper.deleteApp(appSeq);
 	}
 
 }
