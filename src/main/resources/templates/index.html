@@ -153,12 +153,12 @@
               <div class="row">
 
                 <!-- Job Block -->
-                <div class="job-block col-lg-4 col-md-6 col-sm-12">
+                <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
-                    <div th:each="recruit:${recruitList}" class="content">
+                    <div class="content">
                       <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
                       <h4 ><a href="#"
-                      		  th:href="@{recruit-detail(rcNo=${recruit.rcNo})}" 
+                      		  th:href="@{recruit-detail(rcSeq=${recruit.rcSeq})}" 
                       		  th:text="${recruit.rcTitle}" >Software Engineer</a></h4>
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span> Segment</li>
@@ -181,12 +181,12 @@
               <div class="row">
 
                 <!-- Job Block -->
-                <div class="job-block col-lg-4 col-md-6 col-sm-12">
+                <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
-                    <div th:each="recruit:${recruitList}" class="content">
+                    <div class="content">
                       <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
                       <h4 ><a href="#"
-                      		  th:href="@{recruit-detail(rcNo=${recruit.rcNo})}" 
+                      		  th:href="@{recruit-detail(rcSeq=${recruit.rcSeq})}" 
                       		  th:text="${recruit.rcTitle}" >Software Engineer</a></h4>
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span> Segment</li>
@@ -200,7 +200,27 @@
                     </div>
                   </div>
                 </div>
-
+				<table border="0" cellpadding="0" cellspacing="1" width="590"
+					bgcolor="BBBBBB">
+					<tr>
+						<td width=50 align=center bgcolor="E6ECDE" height="22">번호</td>
+						<td width=300 align=center bgcolor="E6ECDE">제목</td>
+						<td width=120 align=center bgcolor="E6ECDE">이름</td>
+						<td width=120 align=center bgcolor="E6ECDE">날짜</td>
+					</tr>
+					<tr th:each="recruit:${recruitList}">
+						<td th:text="${recruit.rcSeq}" width=50 align=center bgcolor="ffffff" height="20">158</td>
+						<td width=300 bgcolor="ffffff" style="padding-left: 10">
+							<a th:text="${recruit.rcTitle}" 
+								th:href="@{recruit-detail(rcSeq=${recruit.rcSeq})}" 
+								href="guest_view?guest_no=158" 
+								class="user">제목</a>
+						</td>
+						<td th:text="${recruit.rcSalary}" width=120 align=center bgcolor="ffffff">테스트</td>
+						<td th:text="${recruit.rcDeadline}" width=120 align=center bgcolor="ffffff">2023-02-15</td>
+					</tr>
+	
+				</table>
               </div>
             </div>
 
@@ -209,12 +229,12 @@
               <div class="row">
 
                 <!-- Job Block -->
-                <div class="job-block col-lg-4 col-md-6 col-sm-12">
+                <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
-                    <div th:each="recruit:${recruitList}" class="content">
+                    <div class="content">
                       <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
                       <h4 ><a href="#"
-                      		  th:href="@{recruit-detail(rcNo=${recruit.rcNo})}" 
+                      		  th:href="@{recruit-detail(rcSeq=${recruit.rcSeq})}" 
                       		  th:text="${recruit.rcTitle}" >Software Engineer</a></h4>
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span> Segment</li>
@@ -237,12 +257,12 @@
               <div class="row">
 
                 <!-- Job Block -->
-                <div class="job-block col-lg-4 col-md-6 col-sm-12">
+                <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
-                    <div th:each="recruit:${recruitList}" class="content">
+                    <div class="content">
                       <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
                       <h4 ><a href="#"
-                      		  th:href="@{recruit-detail(rcNo=${recruit.rcNo})}" 
+                      		  th:href="@{recruit-detail(rcSeq=${recruit.rcSeq})}" 
                       		  th:text="${recruit.rcTitle}" >Software Engineer</a></h4>
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span> Segment</li>
@@ -265,12 +285,12 @@
               <div class="row">
 
                 <!-- Job Block -->
-                <div class="job-block col-lg-4 col-md-6 col-sm-12">
+                <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
-                    <div th:each="recruit:${recruitList}" class="content">
+                    <div class="content">
                       <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
                       <h4 ><a href="#"
-                      		  th:href="@{recruit-detail(rcNo=${recruit.rcNo})}" 
+                      		  th:href="@{recruit-detail(rcSeq=${recruit.rcSeq})}" 
                       		  th:text="${recruit.rcTitle}" >Software Engineer</a></h4>
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span> Segment</li>

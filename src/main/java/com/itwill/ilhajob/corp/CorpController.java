@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.corp;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +29,15 @@ public class CorpController {
 		return forward_path;
 	}
 	
-	@RequestMapping("/corp-list")
-	public String corp_list() {
+	@RequestMapping("corp-list")
+	public String corp_list(Model model) throws Exception {
+		List<Corp> corpList = corpService.findCorpAll();
+		model.addAttribute("corpList",corpList);
 		String forward_path = "corp-list";
 		
 		
 		return forward_path;
+		
 	}
 	/*
 	@RequestMapping("/corp-detail")
