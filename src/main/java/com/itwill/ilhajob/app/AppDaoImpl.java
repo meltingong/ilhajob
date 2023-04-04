@@ -14,7 +14,7 @@ public class AppDaoImpl implements AppDao {
 	@Autowired
 	private AppMapper appMapper;
 	
-
+	/*
 	@Override
 	public List<App> findAppByUserSeq(int userSeq) {
 		return appMapper.findAppByUserSeq(userSeq);
@@ -24,7 +24,7 @@ public class AppDaoImpl implements AppDao {
 	public List<App> findAppByCorpId(String coprId) {
 		return appMapper.findAppByCorpId(coprId);
 	}
-
+	*/
 	@Override
 	public int insertApp(App app) {
 		return appMapper.insertApp(app);

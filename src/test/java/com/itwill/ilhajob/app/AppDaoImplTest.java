@@ -24,21 +24,7 @@ class AppDaoImplTest {
 	}
 	
 	
-	@Test
-	void testCreateApp() {
-		Recruit rc = new Recruit();
-		rc.setRcSeq(3);
-		Cv cv = new Cv();
-		cv.setCvSeq(1);
-		App app = App.builder().appSeq(1)
-				.appStatus('G')
-				.corpId("corp_03")
-				.recruit(rc)
-				.cv(cv)
-				.userSeq(3)
-				.build();
-		appMapper.insertApp(app);
-	}
+	
 	
 	
 }

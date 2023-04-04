@@ -13,9 +13,9 @@ public interface AppDao {
 	
 	int deleteApp(int appSeq);
 	
-	List<App> findAppByUserSeq(int userSeq);
+	//List<App> findAppByUserSeq(int userSeq);
 	
-	List<App> findAppByCorpId(String coprId);
+	//List<App> findAppByCorpId(String coprId);
 
 	
 }
