@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
@@ -28,13 +29,28 @@ public class CorpController {
 	@RequestMapping("/corp-list")
 	public String corp_list() {
 		String forward_path = "corp-list";
+		
+		
 		return forward_path;
 	}
+	/*
 	@RequestMapping("/corp-detail")
 	public String corp_detail_view() {
 		String forward_path = "corp-detail";
 		return forward_path;
 	}
+	*/
+	@RequestMapping("/corp-detail")
+	public String corp_detail_view(@RequestParam("corpId") String corpId, Model model) throws Exception {
+		Corp corp=corpService.findCorp(corpId);
+		model.addAttribute("corp", corp);
+		return "corp-detail";
+		//return forward_path="corp-detail";
+		
+		
+	}
+	
+	
 	
 	@RequestMapping("/login")
 	public String login() {

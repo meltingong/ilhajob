@@ -44,7 +44,8 @@
 
 
     <!-- Job Detail Section -->
-    <form th:object="${corp}" name="f" method="post">
+    <!--  form th:object="${corp}" name="f" method="post"-->
+    <!--  input th:value="*{corpId}" type="hidden" -->
     <section class="job-detail-section">
       <!-- Upper Box -->
       <div class="upper-box">
@@ -54,12 +55,12 @@
             <div class="inner-box">
               <div class="content">
                 <span class="company-logo"><img src="images/resource/company-logo/5-1.png" alt=""></span>
-                <h4><a th:text="${corpName}" href="#">Invision</a></h4>
+                <h4><a th:text="${corp.corpName}" href="#">${corp.corpName}</a></h4><br>
                 <ul class="job-info">
-                  <li><span th:text="${corpAddress}" class="icon flaticon-map-locator"></span> London, UK</li>
-                  <li><span class="icon flaticon-briefcase"></span> Accounting / Finance</li>
-                  <li><span th:text="${corpPhone}" class="icon flaticon-telephone-1"></span> 123 456 7890</li>
-                  <li><span th:text="${corpWebsite}" class="icon flaticon-mail"></span> info@invision.com</li>
+                  <li><span th:text="${corp.corpAddress}" class="icon flaticon-map-locator">${corp.corpAddress}</span></li>
+                  <li><span class="icon flaticon-briefcase"></span></li>
+                  <li><span th:text="${corp.corpPhone}" class="icon flaticon-telephone-1">${corp.corpPhone}</span></li>
+                  <li><span th:text="${corp.corpWebsite}" class="icon flaticon-mail">${corp.corpWebsite}</span></li>
                 </ul>
                 <ul class="job-other-info">
                   <li class="time">Open Jobs – 3</li>
@@ -81,7 +82,8 @@
             <div class="content-column col-lg-8 col-md-12 col-sm-12">
               <div class="job-detail">
                 <h4>About Company</h4>
-                <p th:text="${coprComment}">Moody’s Corporation, often referred to as Moody’s, is an American business and financial services company. It is the holding company for Moody’s Investors Service (MIS), an American credit rating agency, and Moody’s Analytics (MA), an American provider of financial analysis software and services.</p>
+                <p th:text="${corp.corpComment}">Moody’s Corporation, often referred to as Moody’s, is an American business and financial services company. It is the holding company for Moody’s Investors Service (MIS), an American credit rating agency, and Moody’s Analytics (MA), an American provider of financial analysis software and services.</p>
+                <p th:text="${corp.corpWelfare}">Moody’s Corporation, often referred to as Moody’s, is an American business and financial services company. It is the holding company for Moody’s Investors Service (MIS), an American credit rating agency, and Moody’s Analytics (MA), an American provider of financial analysis software and services.</p>
                 <div class="row images-outer">
                   <div class="col-lg-3 col-md-3 col-sm-6">
                     <figure class="image"><a href="images/resource/employers-single-1.png" class="lightbox-image" data-fancybox="gallery"><img src="images/resource/employers-single-1.png" alt=""></a></figure>
@@ -177,12 +179,12 @@
 					
 					<!-- 해당 기업의 상세정보: 오른쪽 박스 -->
                     <ul class="company-info mt-0">
-                      <li>Primary industry: <span th:text="${job}">Software</span></li>
-                      <li>Company size: <span th:text="${corpSize}">501-1,000</span></li>
-                      <li>Founded in: <span th:text="${corpEst}">2011</span></li>
-                      <li>Phone: <span th:text="${corpPhone}">123 456 7890</span></li>
-                      <li>Email: <span th:text="${corpWebsite}">info@joio.com</span></li>
-                      <li>Location: <span th:text="${corpAddress}">London, UK</span></li>
+                      <li>Primary industry: <span th:text="${corp.job}">Software</span></li>
+                      <li>Company size: <span th:text="${corp.corpSize}">501-1,000</span></li>
+                      <li>Founded in: <span th:text="${corp.corpEst}">2011</span></li>
+                      <li>Phone: <span th:text="${corp.corpPhone}">123 456 7890</span></li>
+                      <li>Email: <span th:text="${corp.corpWebsite}">info@joio.com</span></li>
+                      <li>Location: <span th:text="${corp.corpAddress}">London, UK</span></li>
                       <li>Social media:
                         <div class="social-links">
                           <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -215,7 +217,7 @@
         </div>
       </div>
     </section>
-    </form>
+    <!--  /form-->
     <!-- End Job Detail Section -->
 
 
