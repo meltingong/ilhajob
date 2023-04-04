@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.corp;
 
+import java.util.List;
+
 import com.itwill.ilhajob.user.User;
 
 public interface CorpService {
@@ -50,5 +52,6 @@ public interface CorpService {
 	//회사 리뷰 목록 가져오기
 	public Corp findCorpWithReviews(String corpId) throws Exception;
 	
-	
+	//회사 리스트
+	public List<Corp> findCorpAll() throws Exception;
 }

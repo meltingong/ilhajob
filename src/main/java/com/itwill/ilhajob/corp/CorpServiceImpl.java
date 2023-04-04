@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.corp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -84,6 +86,10 @@ public class CorpServiceImpl implements CorpService{
 	@Override
 	public Corp findCorpWithReviews(String corpId)  throws Exception{
 		return corpDao.findCorpByIdWithReview(corpId);
+	}
+	@Override
+	public List<Corp> findCorpAll() throws Exception {
+		return corpDao.selectAll();
 	}
 	
 }

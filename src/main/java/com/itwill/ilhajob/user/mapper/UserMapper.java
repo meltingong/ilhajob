@@ -19,7 +19,7 @@ public interface UserMapper {
 
 	public int existedUser(String userEmail);
 	
-	public int findBySnsId(User user);
+	public int findBySnsId(String snsType, String snsId);
 	
 	public User findExpAwardsEduByUserSeq(int userSeq);
 	
