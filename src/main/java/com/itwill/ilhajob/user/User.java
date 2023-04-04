@@ -23,6 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class User {
 	
 	private int userSeq;
@@ -49,6 +50,15 @@ public class User {
 	private List<Edu> eduList;
 	private List<Awards> awardsList;
 	private List<Review> reviewList;
+	
+
+	public User(int userSeq, String userEmail, String userPassword) {
+		super();
+		this.userSeq = userSeq;
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+	}
+
 	
 	/*
 	 *패쓰워드 일치여부 검사 

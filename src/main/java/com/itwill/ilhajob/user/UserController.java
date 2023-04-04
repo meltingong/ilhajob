@@ -44,11 +44,7 @@ public class UserController {
 	 * 회원 정보 보기
 	 */
 	
-	/*
-	 * dashboard-resume-alerts.html
-	 * <<유저 알림>>
-	 * 지원 완료 알림 , 지원 상태(서류합격) 알림 , 이력서 열람 알림
-	 */
+	
 	
 	// my resume 이력서 작성 폼
 	

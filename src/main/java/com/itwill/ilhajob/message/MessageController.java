@@ -10,4 +10,12 @@ public class MessageController {
 	
 	@Autowired
 	private MessageService messageService;
+	
+	/*
+	 * dashboard-resume-alerts.html
+	 * <<유저 알림>>
+	 * 지원 완료 알림 , 지원 상태(서류합격) 알림 , 이력서 열람 알림
+	 */
+	
+	
 }
