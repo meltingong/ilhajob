@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RecruitController {
@@ -15,7 +16,7 @@ public class RecruitController {
 	
 	@RequestMapping("/index")
 	public String main(Model model) throws Exception{
-		List<Recruit> recruitList = recruitService.findRecruitListAll();
+		List<Recruit> recruitList = recruitService.findRecruitListAllWithCorp();
 		model.addAttribute("recruitList", recruitList);
 		System.out.println(recruitList);
 		String forward_path = "index";
@@ -24,10 +25,22 @@ public class RecruitController {
 	
 	@RequestMapping("/recruit-list")
 	public String recruit_list(Model model) throws Exception{
-		List<Recruit> recruitList = recruitService.findRecruitListAll();
+		List<Recruit> recruitList = recruitService.findRecruitListAllWithCorp();
 		model.addAttribute("recruitList", recruitList);
-		System.out.println(recruitList);
 		String forward_path = "recruit-list";
+		return forward_path;
+	}
+	
+	@RequestMapping(value = "/recruit-detail",params = "!rcSeq")
+	public String recruit_detail() {
+		return "redirect:index";	
+	}
+	@RequestMapping(value = "/recruit-detail",params = "rcSeq")
+	public String recruit_detail(@RequestParam int rcSeq, Model model) throws Exception{
+		Recruit recruit = recruitService.findRecruit(rcSeq);
+		model.addAttribute("recruit", recruit);
+		System.out.println(recruit);
+		String forward_path = "recruit-detail";
 		return forward_path;
 	}
 	

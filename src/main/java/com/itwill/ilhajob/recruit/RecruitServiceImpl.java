@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.ilhajob.corp.Corp;
+
 @Service
 public class RecruitServiceImpl implements RecruitService {
 	
@@ -32,13 +34,13 @@ public class RecruitServiceImpl implements RecruitService {
 	}
 
 	@Override
-	public List<Recruit> findRecruitListAll() throws Exception {
-		return recruitDao.findAll();
+	public List<Recruit> findRecruitListAllWithCorp() throws Exception {
+		return recruitDao.findAllWithCorp();
 	}
 	
 	@Override
-	public List<Recruit> findRecruitListByCorpId(String corpId) throws Exception {
-		return recruitDao.findByCorpId(corpId);
+	public List<Recruit> findRecruitListByCorpId(Corp corp) throws Exception {
+		return recruitDao.findByCorpId(corp);
 	}
 
 	@Override
