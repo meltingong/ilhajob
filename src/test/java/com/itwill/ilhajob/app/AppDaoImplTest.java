@@ -10,17 +10,29 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.itwill.ilhajob.app.mapper.AppMapper;
 
 @SpringBootTest
-@MapperScan(basePackages = "com.itwill.ilhajob")
 class AppDaoImplTest {
 	
 	@Autowired
 	private AppMapper appMapper; 	
-	@Autowired
-	private AppDao appDao;
+	
+	
+	//@Test
+	void testFindAppByUserSeq() {
+		System.out.println(appMapper.findAppByUserSeq(2));
+	}
+	
 	
 	@Test
-	void testFindAppByUserSeq() {
-		System.out.println(appDao.findAppByUserSeq(2));
+	void testCreateApp() {
+		App app = App.builder().appSeq(1)
+				.appStatus('G')
+				.corpId("corp_03")
+				.rcSeq(4)
+				.cvSeq(3)
+				.userSeq(3)
+				.build();
+		appMapper.insertApp(app);
 	}
-
+	
+	
 }

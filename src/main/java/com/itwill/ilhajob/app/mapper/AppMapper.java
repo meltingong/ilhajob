@@ -9,9 +9,9 @@ import com.itwill.ilhajob.app.App;
 @Mapper
 public interface AppMapper {
 	
-	int insertApp();
+	int insertApp(App app);
 	
-	int deleteApp();
+	int deleteApp(int appSeq);
 	
 	List<App> findAppByUserSeq(int userSeq);
 	
