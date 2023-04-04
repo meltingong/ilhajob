@@ -86,14 +86,18 @@ public class CorpController {
 	@RequestMapping("/dashboard")
 	public String corp_dashboard_view(HttpServletRequest request) throws Exception {
 		String forwardPath = "";
-		/************** login check **************/
-		/****************************************/
+		/************** login check **************
 		String sCorpId =(String)request.getSession().getAttribute("sCorpId");
-		Corp loginCorp=corpService.findCorp(sCorpId);
-		System.out.println(loginCorp);
-		request.setAttribute("loginCorp", loginCorp);
+		if(sCorpId==null) {
+			forwardPath= "redirect:/	login";
+		}else {
+			//System.out.println(loginCorp);
+			Corp loginCorp=corpService.findCorp(sCorpId);
+			request.setAttribute("loginCorp", loginCorp);
+			forwardPath="dashboard";
+		}
+		****************************************/
 		forwardPath="dashboard";
-		
 		return forwardPath;
 	}
 	
