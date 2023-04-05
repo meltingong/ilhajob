@@ -5,8 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-@SpringBootApplication
-//@MapperScan(basePackages = "com.itiwll.ilhajob.Awards.mapper")
+@SpringBootApplication(scanBasePackages = {"com.itwill.ilhajob.corp","com.itwill.ilhajob.recruit"})
+//@MapperScan(basePackages = "com.itwill.ilhajob.Awards.mapper")
 public class SpringBootRecruitDaoMain {
 
 	public static void main(String[] args) {

@@ -14,7 +14,7 @@ public class RecruitController {
 	@Autowired
 	private RecruitService recruitService;
 	
-	@RequestMapping("/index")
+	@RequestMapping(value = {"/","/index"})
 	public String main(Model model) throws Exception{
 		List<Recruit> recruitList = recruitService.findRecruitListAllWithCorp();
 		model.addAttribute("recruitList", recruitList);
@@ -44,4 +44,16 @@ public class RecruitController {
 		return forward_path;
 	}
 	
+	@RequestMapping("/dashboard-post-job")
+	public String dashboard_post_job_form() {
+		
+		String forward_path = "dashboard-post-job";
+		return forward_path;
+	}
+	@RequestMapping("/dashboard-post-job-action")
+	public String dashboard_post_job_action(Model model) {
+		
+		String forward_path = "recruit-detail";
+		return forward_path;
+	}
 }

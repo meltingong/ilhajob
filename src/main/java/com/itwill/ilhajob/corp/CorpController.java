@@ -24,6 +24,8 @@ import com.itwill.ilhajob.recruit.Recruit;
 import com.itwill.ilhajob.recruit.RecruitService;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
+import groovyjarjarantlr4.v4.parse.ANTLRParser.exceptionGroup_return;
+
 @Controller
 public class CorpController {
 	@Autowired
@@ -111,6 +113,15 @@ public class CorpController {
 		forwardPath =  "dashboard-company-profile";
 				
 		return forwardPath;
+	}
+	
+	@RequestMapping("/dashboard-manage-job")
+	public String corp_dashboard_manage_job(HttpServletRequest request ,Model model)throws Exception{
+		String forwardPath ="";
+		String sCorpId = (String)request.getSession().getAttribute("sCorpId");
+		Corp corp=corpService.findCorpWithRecruits(sCorpId);
+		model.addAttribute("corp", corp);
+		return "dashboard-manage-job";
 	}
 	
 //	@ExceptionHandler(Exception.class)

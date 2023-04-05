@@ -87,6 +87,11 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public User findAppList(int userSeq) throws Exception {
+		return userDao.findAppList(userSeq);
+	}
+
 	
 }
 
