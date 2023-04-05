@@ -20,18 +20,5 @@ public class AppController {
 		@Autowired
 		private AppService appService;
 		
-		//회원의 my applied job보기
-		@LoginCheck
-		@RequestMapping("/candidate-dashboard-applied-job")
-		public String user_applied_job(HttpServletRequest request) throws Exception{
-			String forwardPath="";
-			request.getSession().setAttribute("sUserId", "test2@test.com"); //아이디 임시설정
-			String sUserId = (String)request.getSession().getAttribute("sUserId");
-			User loginUser = userService.findUser(sUserId);
-			User user = userService.findAppList(loginUser.getUserSeq());
-			System.out.println(user);
-			request.setAttribute("loginUser", loginUser);
-			forwardPath = "/candidate-dashboard-applied-job";
-			return forwardPath;
-		}
+
 }
