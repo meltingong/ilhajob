@@ -19,4 +19,12 @@ public class AppServiceImpl implements AppService {
 	}
 	
 	
+	//CorpId로 지원한 app 수
+	@Override
+	public int findAppCountByCorpId(String corpId) {
+		return appDao.findAppCountByCorpId(corpId);
+	}
+	
+	
+	
 }

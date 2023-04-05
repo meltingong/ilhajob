@@ -280,14 +280,9 @@ select count(*)cnt from recruit r
         on r.rc_seq=a.rc_seq
         where a.corp_id='corp_05';
         
-/*******corp_05의 공고에 지원한 모든 지원자 수********/      
+/*******corp_01의 공고에 지원한 모든 지원자 수********/      
 select count(*)cnt from app a
-join recruit r
-on a.rc_seq=r.rc_seq
-where a.corp_id='corp_05'       
-	
-        
-
+where a.corp_id='corp_01'       
 
 --rollback;
 

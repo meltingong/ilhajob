@@ -13,6 +13,8 @@ public interface AppDao {
 	
 	int deleteApp(int appSeq);
 	
+	int findAppCountByCorpId(String corpId);
+	
 	//List<App> findAppByUserSeq(int userSeq);
 	
 	//List<App> findAppByCorpId(String coprId);

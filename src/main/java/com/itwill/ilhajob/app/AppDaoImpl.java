@@ -34,5 +34,12 @@ public class AppDaoImpl implements AppDao {
 	public int deleteApp(int appSeq) {
 		return appMapper.deleteApp(appSeq);
 	}
-
+	
+	//CorpId로 지원자 수 반환받기
+	@Override
+	public int findAppCountByCorpId(String corpId) {
+		return appMapper.findAppCountByCorpId(corpId);
+	}
+	
+	
 }
