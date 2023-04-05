@@ -97,7 +97,7 @@ public class UserController {
 		public String modify_action(@ModelAttribute User user, HttpServletRequest request) throws Exception {
 			String forwardPath = "";
 			userService.update(user);
-			forwardPath = "candidate-dashboard-profile";
+			forwardPath = "redirect:candidate-dashboard-profile";
 			return forwardPath;
 		}
 		
