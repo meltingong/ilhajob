@@ -14,7 +14,7 @@ public class RecruitController {
 	@Autowired
 	private RecruitService recruitService;
 	
-	@RequestMapping("/index")
+	@RequestMapping(value = {"/","/index"})
 	public String main(Model model) throws Exception{
 		List<Recruit> recruitList = recruitService.findRecruitListAllWithCorp();
 		model.addAttribute("recruitList", recruitList);
