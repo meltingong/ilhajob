@@ -13,7 +13,7 @@ import com.itwill.ilhajob.product.Product;
 import com.itwill.ilhajob.recruit.Recruit;
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.itwill.ilhajob.corp","com.itwill.ilhajob.recruit"})
 @MapperScan(basePackages = {"com.itwill.ilhajob.corp.mapper","com.itwill.ilhajob.product.mapper","com.itwill.ilhajob.recruit.mapper" })
 //@MapperScan(basePackageClasses = {CorpMapper.class, Product.class, Recruit.class})
 public class SpringBootCorpDaoMain {

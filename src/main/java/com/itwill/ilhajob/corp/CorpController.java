@@ -1,6 +1,8 @@
 package com.itwill.ilhajob.corp;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,8 +20,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
+import com.itwill.ilhajob.corpimage.CorpImage;
+import com.itwill.ilhajob.corpimage.CorpImageService;
 import com.itwill.ilhajob.recruit.Recruit;
 import com.itwill.ilhajob.recruit.RecruitService;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
@@ -107,12 +113,21 @@ public class CorpController {
 		String forwardPath ="";
 		
 		String sCorpId = (String)request.getSession().getAttribute("sCorpId");
-		Corp corp=corpService.findCorpWithRecruits(sCorpId);
+		Corp corp=corpService.findCorpWithimagesAndManagers(sCorpId);
 		model.addAttribute("corp", corp);
 		forwardPath =  "dashboard-company-profile";
 				
 		return forwardPath;
 	}
+	
+	/*
+	@PostMapping("/corp-update-action") //400에러 Date 변환 문제...
+	public String corp_update_action(@ModelAttribute Corp corp) throws Exception {
+		
+		corpService.update(corp);
+		return "redirect:corp-detail";
+	}
+	*/
 	
 	@RequestMapping("/dashboard-manage-job")
 	public String corp_dashboard_manage_job(HttpServletRequest request ,Model model)throws Exception{
@@ -122,6 +137,7 @@ public class CorpController {
 		model.addAttribute("corp", corp);
 		return "dashboard-manage-job";
 	}
+
 	
 //	@ExceptionHandler(Exception.class)
 //	public String corp_exception_handler(Exception e) {
