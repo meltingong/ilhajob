@@ -44,5 +44,9 @@ public interface UserService {
 	 * 아이디중복체크
 	 */
 	boolean isDuplicateId(String userId) throws Exception;
-
+	/*
+	 *  회원의 지원리스트
+	 */
+	User findAppList(int userSeq) throws Exception;
+ 
 }
