@@ -142,14 +142,15 @@ public class UserController {
 	
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
-	public String user_applied_job(HttpServletRequest request, User user) throws Exception{
+	public String user_applied_job(HttpServletRequest request) throws Exception{
 		String forwardPath="";
-		int userSeq = user.getUserSeq();
+		request.getSession().setAttribute("sUserId", "test3@test.com");
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		User loginUser = userService.findUser(sUserId);
-		userService.findAppList(userSeq);
-		request.setAttribute("loginUser", loginUser);
-		forwardPath = "candidate-dashboard-applied-job";
+ 		User user = userService.findAppList(loginUser.getUserSeq());
+		System.out.println(user);
+ 		request.setAttribute("loginUser", loginUser);
+		forwardPath = "/candidate-dashboard-applied-job";
 		return forwardPath;
 	}
 	

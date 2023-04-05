@@ -3,6 +3,8 @@ package com.itwill.ilhajob.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+@Repository
 public interface UserDao {
 
 	/*
