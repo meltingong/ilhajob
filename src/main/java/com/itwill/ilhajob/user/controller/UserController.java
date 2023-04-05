@@ -138,6 +138,23 @@ public class UserController {
 		forwardPath = "redirect:index";
 		return forwardPath;
 	}
+	
+	
+	@LoginCheck
+	@RequestMapping("/candidate-dashboard-applied-job")
+	public String user_applied_job(HttpServletRequest request, User user) throws Exception{
+		String forwardPath="";
+		int userSeq = user.getUserSeq();
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		User loginUser = userService.findUser(sUserId);
+		userService.findAppList(userSeq);
+		request.setAttribute("loginUser", loginUser);
+		forwardPath = "candidate-dashboard-applied-job";
+		return forwardPath;
+	}
+	
+	
+	
 	// my resume 이력서 작성 폼
 	
 	/*
