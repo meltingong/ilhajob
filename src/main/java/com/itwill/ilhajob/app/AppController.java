@@ -23,12 +23,12 @@ public class AppController {
 		@RequestMapping("/candidate-dashboard-applied-job")
 		public String user_applied_job(HttpServletRequest request, User user) throws Exception{
 			String forwardPath="";
-			int userSeq = user.getUserSeq();
+			request.getSession().setAttribute("sUserId", "test2@test.com"); //아이디 임시설정
 			String sUserId = (String)request.getSession().getAttribute("sUserId");
 			User loginUser = userService.findUser(sUserId);
-			userService.findAppList(userSeq);
+			userService.findAppList(loginUser.getUserSeq());
 			request.setAttribute("loginUser", loginUser);
-			forwardPath = "candidate-dashboard-applied-job";
+			forwardPath = "/candidate-dashboard-applied-job";
 			return forwardPath;
 		}
 }
