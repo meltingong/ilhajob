@@ -7299,27 +7299,25 @@ Job Detail Section
 
 .job-block-seven .job-info {
   position: relative;
-  display:block;
+  display:flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
 }
 
 .job-block-seven .job-info li {
-	display:block;
   position: relative;
   font-size: 14px;
   line-height: 22px;
   color: #696969;
   font-weight: 400;
-  padding-left: 25px;
+  padding-left: 2px;
   margin-right: 20px;
   margin-bottom: 3px;
 }
 
 .job-block-seven .job-info li .icon {
-  display:block;
   position: absolute;
-  left: 0;
+  left: 0; 
   top: 0;
   font-size: 18px;
   line-height: 22px;
@@ -7394,6 +7392,7 @@ Job Detail Section
 
 .job-detail {
   position: relative;
+
   padding-right: 30px;
 }
 

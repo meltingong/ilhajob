@@ -40,7 +40,43 @@
     <div class="sidebar-backdrop"></div>
 
     <!-- User Sidebar -->
+<<<<<<< HEAD
     <div id="user-sidebar" th:include="user-sidebar::user-sidebar"></div>
+=======
+    <div class="user-sidebar">
+
+      <div class="sidebar-inner">
+        <ul class="navigation">
+          <li><a href="candidate-dashboard"> <i class="la la-home"></i> Dashboard</a></li>
+          <li class="active"><a href="candidate-dashboard-profile"><i class="la la-user-tie"></i>My Profile</a></li>
+          <li><a href="candidate-dashboard-resume"><i class="la la-file-invoice"></i>My Resume</a></li>
+          <li><a href="candidate-dashboard-applied-job"><i class="la la-briefcase"></i> Applied Jobs </a></li>
+          <li><a href="candidate-dashboard-job-alerts"><i class="la la-bell"></i>Job Alerts</a></li>
+          <li><a href="candidate-dashboard-shortlisted-resume"><i class="la la-bookmark-o"></i>Shortlisted Jobs</a></li>
+          <li><a href="candidate-dashboard-cv-manager"><i class="la la-file-invoice"></i> CV manager</a></li>
+          <li><a href="dashboard-packages"><i class="la la-box"></i>Packages</a></li>
+          <li><a href="dashboard-messages"><i class="la la-comment-o"></i>Messages</a></li>
+          <li><a href="dashboard-change-password"><i class="la la-lock"></i>Change Password</a></li>
+          <li><a href="dashboard-profile"><i class="la la-user-alt"></i>View Profile</a></li>
+          <li><a href="index"><i class="la la-sign-out"></i>Logout</a></li>
+          <li><a href="dashboard-delete"><i class="la la-trash"></i>Delete Profile</a></li>
+        </ul>
+
+        <div class="skills-percentage">
+          <h4>Skills Percentage</h4>
+          <p>Put value for "Cover Image" field to increase your skill up to "85%"</p>
+
+          <!-- Pie Graph -->
+          <div class="pie-graph">
+            <div class="graph-outer">
+              <input type="text" class="dial" data-fgColor="#7367F0" data-bgColor="transparent" data-width="234" data-height="234" data-linecap="normal" value="30">
+              <div class="inner-text count-box"><span class="count-text txt" data-stop="30" data-speed="2000"></span>%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+>>>>>>> branch 'master' of https://github.com/2022-11-JAVA-DEVELOPER/final-project-team1-xxx.git
     <!-- End User Sidebar -->
 
     <!-- Dashboard -->
@@ -76,87 +112,71 @@
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Full Name</label>
-                        <input type="text" name="name" placeholder="Jerome">
+                        <input type="text" th:value="${fuser?.userName}"  name="userName" th:placeholder="${loginUser.userName}">
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Job Title</label>
-                        <input type="text" name="name" placeholder="UI Designer">
+                        <input type="text" th:value="${fuser?.job}"  name="job" th:placeholder="${loginUser.job}">
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Phone</label>
-                        <input type="text" name="name" placeholder="0 123 456 7890">
+                        <input type="text" th:value="${fuser?.userPhone}" name="userPhone" th:placeholder="${loginUser.userPhone}">
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Email address</label>
-                        <input type="text" name="name" placeholder="creativelayers">
+                        <input type="text" th:value="${fuser?.userEmail}" name="userEmail" th:placeholder="${loginUser.userEmail}">
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
-                        <label>Website</label>
-                        <input type="text" name="name" placeholder="www.jerome.com">
+                        <label>Sex</label>
+                        <input type="text" th:value="${fuser?.userSex}" name="userSex" th:placeholder="${loginUser.userSex}">
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-3 col-md-12">
-                        <label>Current Salary($)</label>
-                        <select class="chosen-select">
-                          <option>40-70 K</option>
-                          <option>50-80 K</option>
-                          <option>60-90 K</option>
-                          <option>70-100 K</option>
-                          <option>100-150 K</option>
-                        </select>
+                        <label>Address</label>
+                       <input type="text" th:value="${fuser?.userAddress}" name="userAddress" th:placeholder="${loginUser.userAddress}">
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-3 col-md-12">
-                        <label>Expected Salary($)</label>
-                        <select class="chosen-select">
-                          <option>120-350 K</option>
-                          <option>40-70 K</option>
-                          <option>50-80 K</option>
-                          <option>60-90 K</option>
-                          <option>70-100 K</option>
-                          <option>100-150 K</option>
-                        </select>
-                      </div>
-
-                      <!-- Input -->
-                      <div class="form-group col-lg-6 col-md-12">
-                        <label>Experience</label>
-                        <input type="text" name="name" placeholder="5-10 Years">
+                        <label>Career</label>
+                        <input type="text" th:value="${fuser?.userCareer}" name="userCareer" th:placeholder="${loginUser.userCareer}">
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Age</label>
-                        <select class="chosen-select">
-                          <option>23 - 27 Years</option>
-                          <option>24 - 28 Years</option>
-                          <option>25 - 29 Years</option>
-                          <option>26 - 30 Years</option>
-                        </select>
+                        <input type="text" th:value="${fuser?.userAge}" name="userAge" th:placeholder="${loginUser.userAge}">
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
-                        <label>Education Levels</label>
-                        <input type="text" name="name" placeholder="Certificate">
+                        <label>Final Education</label>
+                        <input type="text" th:value="${fuser?.userFinalEducation}" name="userFinalEducation" th:placeholder="${loginUser.userFinalEducation}">
                       </div>
 
-                      <!-- Input -->
+  					   <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Languages</label>
-                        <input type="text" name="name" placeholder="English, Turkish">
+                        <input type="text" th:value="${fuser?.userLanguage}" name="userLanguage" th:placeholder="${loginUser.userLanguage}">
                       </div>
 
+
+                      <!-- Input -->
+                      <div class="form-group col-lg-6 col-md-12">
+                        <label>Skills</label>
+                        <input type="text" th:value="${fuser?.userSkills}" name="userSkills" th:placeholder="${loginUser.userSkills}">
+                      </div>
+
+                 
                       <!-- Search Select -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Categories </label>
