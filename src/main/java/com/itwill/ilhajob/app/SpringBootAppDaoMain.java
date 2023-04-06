@@ -8,7 +8,8 @@ import org.springframework.context.ApplicationContext;
 import com.itwill.ilhajob.cv.Cv;
 import com.itwill.ilhajob.recruit.Recruit;
 
-@SpringBootApplication(scanBasePackages = {"com.itwill.ilhajob.app","com.itwill.ilhajob.user"})
+
+//@SpringBootApplication(scanBasePackages = {"com.itwill.ilhajob.app","com.itwill.ilhajob.user"})
 //@MapperScan(basePackages = "com.itwill.ilhajob.app.mapper")
 public class SpringBootAppDaoMain {
 
@@ -26,6 +27,8 @@ public class SpringBootAppDaoMain {
 		//App app = new App(0, 'u', rc, cv, 3, "corp_02");
 		//appDao.insertApp(app);
 		//appDao.deleteApp(16);
+		//System.out.println(appDao.findAppCountByCorpId("corp_03")); 
+		
 		//System.out.println(appDao.findAppByCorpId("corp_03"));
 
 		//System.out.println(appDao.findAppByUserSeq(3));
