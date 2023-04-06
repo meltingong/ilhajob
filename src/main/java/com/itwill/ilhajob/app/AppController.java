@@ -15,8 +15,8 @@ import com.itwill.ilhajob.user.controller.LoginCheck;
 @Controller
 public class AppController {
 
-		@Autowired
-		private UserService userService;
+//		@Autowired
+//		private UserService userService;
 		@Autowired
 		private AppService appService;
 		

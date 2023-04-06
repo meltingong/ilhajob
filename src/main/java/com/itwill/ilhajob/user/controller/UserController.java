@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +14,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.ilhajob.app.App;
+import com.itwill.ilhajob.app.AppService;
+import com.itwill.ilhajob.message.Message;
+import com.itwill.ilhajob.message.MessageService;
 import com.itwill.ilhajob.user.User;
 import com.itwill.ilhajob.user.UserService;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
@@ -34,6 +41,12 @@ import com.itwill.ilhajob.user.exception.UserNotFoundException;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	//@Autowired
+	//private MessageService messageService;
+
+	@Autowired
+	private AppService appService;
+
 
 	/**************Local Exception Handler**************/
 	@ExceptionHandler(Exception.class)
@@ -162,21 +175,72 @@ public class UserController {
 		}
 		return forwardPath;
 	}
+
+	//나의 지원현황
+
 	
+	// 회원 탈퇴
+	@LoginCheck
+	@RequestMapping("/delete-action")
+	public String user_delete(HttpServletRequest request) throws Exception {
+		String forwardPath="";
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		userService.remove(sUserId);
+		request.getSession().invalidate();
+		forwardPath = "redirect:index";
+		return forwardPath;
+	}
+	
+	
+	//회원이 지원한 공고
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
 		String forwardPath="";
-		//request.getSession().setAttribute("sUserId", "test3@test.com");
+		request.getSession().setAttribute("sUserId", "test3@test.com");
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		User loginUser = userService.findUser(sUserId);
  		User user = userService.findAppList(loginUser.getUserSeq());
-		System.out.println(user);
- 		request.setAttribute("loginUser", loginUser);
+		//System.out.println(user);
+ 		request.setAttribute("loginUser", user);
 		forwardPath = "/candidate-dashboard-applied-job";
 		return forwardPath;
 	}
 	
+	//회원이 공고삭제하기
+	@LoginCheck
+	@RequestMapping("/remove-applied-job")
+	public String remove_applied_job(@RequestParam int appSeq) throws Exception{
+		int app = appService.deleteApp(appSeq);
+		System.out.println(app);//테스트용
+		return "redirect:candidate-dashboard-applied-job";
+	}
+
+	
+	
+	
+	
+
+	/*
+	// 회원 알림 전체보기
+	@LoginCheck
+	@RequestMapping("/candidate-dashboard-job-alerts")
+	public String user_alerts(HttpServletRequest request,User user,Model model) throws Exception {
+		String forwardPath="";
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		User loginUser = userService.findUser(sUserId);
+		request.setAttribute("loginUser", loginUser);
+		List<Message> messageList = messageService.fineMessageOfUser(loginUser.getUserSeq());
+		model.addAttribute("messageList",messageList);
+		forwardPath = "candidate-dashboard-job-alerts";
+		return forwardPath;
+	}
+	*/
+	
+
+
+
+
 	
 	
 	// my resume 이력서 작성 폼
@@ -185,6 +249,7 @@ public class UserController {
 	 * <<지원>> applied jobs 지원한 공고 목록
 	 * 회사에 이력서 지원 하기
 	 * 이력서 지원한 회사 목록 보기
+	 * 지원취소
 	 */
 	
 	/*

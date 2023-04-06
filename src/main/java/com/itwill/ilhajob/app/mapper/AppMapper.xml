@@ -32,7 +32,7 @@
 	</select>
 	
 	<select id="findAppCountByCorpId" parameterType="java.lang.String" resultType="java.lang.Integer">
-		select count(*)cnt from app a
+		select count(*) from app a
         where a.corp_id=#{corpId} 
 	</select>
 	
