@@ -7,4 +7,6 @@ public interface AppService {
 	int deleteApp(int appSeq);
 	
 	int findAppCountByCorpId(String corpId);
+
+	
 }
