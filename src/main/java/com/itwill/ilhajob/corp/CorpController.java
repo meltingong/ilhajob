@@ -151,7 +151,12 @@ public class CorpController {
 		
 		return "dashboard-manage-job";
 	}
-
+	
+	@RequestMapping("/dashboard-applicants")
+	public String corp_dashboard_applicants() {
+		return "dashboard-applicants";
+	}
+	
 	
 //	@ExceptionHandler(Exception.class)
 //	public String corp_exception_handler(Exception e) {

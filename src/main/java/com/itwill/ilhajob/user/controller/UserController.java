@@ -42,8 +42,11 @@ public class UserController {
 	private UserService userService;
 	//@Autowired
 	//private MessageService messageService;
+
 	@Autowired
 	private AppService appService;
+
+
 	/**************Local Exception Handler**************/
 	@ExceptionHandler(Exception.class)
 	public String user_excetpion_handler(Exception e) {
@@ -171,7 +174,24 @@ public class UserController {
 		}
 		return forwardPath;
 	}
+
 	//나의 지원현황
+
+	
+	// 회원 탈퇴
+	@LoginCheck
+	@RequestMapping("/delete-action")
+	public String user_delete(HttpServletRequest request) throws Exception {
+		String forwardPath="";
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		userService.remove(sUserId);
+		request.getSession().invalidate();
+		forwardPath = "redirect:index";
+		return forwardPath;
+	}
+	
+	
+
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
@@ -190,6 +210,9 @@ public class UserController {
 	
 	
 	
+
+	
+
 	// 회원 알림 전체보기
 	/*	@LoginCheck
 		@RequestMapping("/candidate-dashboard-job-alerts")
@@ -203,8 +226,13 @@ public class UserController {
 			forwardPath = "candidate-dashboard-job-alerts";
 			return forwardPath;
 		}
+
 	*/
 	
+
+
+
+
 	
 	
 	// my resume 이력서 작성 폼
