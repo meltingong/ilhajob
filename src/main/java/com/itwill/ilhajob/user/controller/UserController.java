@@ -168,6 +168,19 @@ public class UserController {
 		return forwardPath;
 	}
 	
+	// 회원 탈퇴
+	@LoginCheck
+	@RequestMapping("/delete-action")
+	public String user_delete(HttpServletRequest request) throws Exception {
+		String forwardPath="";
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		userService.remove(sUserId);
+		request.getSession().invalidate();
+		forwardPath = "redirect:index";
+		return forwardPath;
+	}
+	
+	
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
