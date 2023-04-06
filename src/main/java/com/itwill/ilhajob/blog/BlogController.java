@@ -63,19 +63,5 @@ public class BlogController {
     return "blog-single/{blogSeq}";
 	}
 
-	/*
-	@RequestMapping(value = "/blog-single",params = "!blogSeq")
-	public String blog_single() {
-		return "redirect:index";	
-	}
-	
-	@RequestMapping(value = "/blog-single",params = "blogSeq")
-	public String blog_single(@RequestParam int blogSeq , Model model) throws Exception{
-		List<Blog> blogList = blogService.findByBlogAndCommetAll(blogSeq);
-		model.addAttribute("blogList", blogList);
-
-		return "blog-single";
-    }
-	 */
 
 }
