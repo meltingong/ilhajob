@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.ilhajob.app.App;
 import com.itwill.ilhajob.app.AppService;
@@ -191,7 +192,7 @@ public class UserController {
 	}
 	
 	
-
+	//회원이 지원한 공고
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
@@ -200,10 +201,19 @@ public class UserController {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		User loginUser = userService.findUser(sUserId);
  		User user = userService.findAppList(loginUser.getUserSeq());
-		System.out.println(user);
+		//System.out.println(user);
  		request.setAttribute("loginUser", user);
 		forwardPath = "/candidate-dashboard-applied-job";
 		return forwardPath;
+	}
+	
+	//회원이 공고삭제하기
+	@LoginCheck
+	@RequestMapping("/remove-applied-job")
+	public String remove_applied_job(@RequestParam int appSeq) throws Exception{
+		int app = appService.deleteApp(appSeq);
+		System.out.println(app);//테스트용
+		return "redirect:candidate-dashboard-applied-job";
 	}
 
 	
