@@ -211,22 +211,20 @@ public class UserController {
 	
 	
 
-	
-
+	/*
 	// 회원 알림 전체보기
-	/*	@LoginCheck
-		@RequestMapping("/candidate-dashboard-job-alerts")
-		public String user_alerts(HttpServletRequest request,User user,Model model) throws Exception {
-			String forwardPath="";
-			String sUserId = (String)request.getSession().getAttribute("sUserId");
-			User loginUser = userService.findUser(sUserId);
-			request.setAttribute("loginUser", loginUser);
-			List<Message> messageList = messageService.fineMessageOfUser(loginUser.getUserSeq());
-			model.addAttribute("messageList",messageList);
-			forwardPath = "candidate-dashboard-job-alerts";
-			return forwardPath;
-		}
-
+	@LoginCheck
+	@RequestMapping("/candidate-dashboard-job-alerts")
+	public String user_alerts(HttpServletRequest request,User user,Model model) throws Exception {
+		String forwardPath="";
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		User loginUser = userService.findUser(sUserId);
+		request.setAttribute("loginUser", loginUser);
+		List<Message> messageList = messageService.fineMessageOfUser(loginUser.getUserSeq());
+		model.addAttribute("messageList",messageList);
+		forwardPath = "candidate-dashboard-job-alerts";
+		return forwardPath;
+	}
 	*/
 	
 
