@@ -30,18 +30,14 @@ public class CvController {
 	
 	@Autowired
 	private CvService cvService;
-	/*
 	@Autowired
 	private AwardsService awardsService;
 	@Autowired
 	private EduService eduService;
 	@Autowired
 	private ExpService expService;
-	@Autowired 
-	private AppService appService;
-	@Autowired
-	private UserService userService;
-	*/
+//	@Autowired 
+//	private AppService appService;
 	
 	/* 테스트용 매핑 - user 붙인 후 삭제할 것 */
 	/** dash board */
@@ -81,10 +77,10 @@ public class CvController {
 	 * awards 추가, 수정, 삭제
 	 * edu 추가, 수정, 삭제
 	 * exp crud 추가, 수정, 삭제
-	 * 선택된 cv로 apply(apply 버튼 추가 예정)
+	 * 선택된 cv로 apply(apply 버튼 추가함)
 	 */
-	/** cv detail */
 	
+	/** cv detail */
 //	@LoginCheck
 	@RequestMapping(value = "/cv-write-form")
 	public String cv_wirte_from(HttpServletRequest request) {
@@ -92,19 +88,43 @@ public class CvController {
 		return forwardpath;
 	}
 
-	//	@LoginCheck
-	@RequestMapping(value = "/cv-detail")
-	public String cv_detail(int userSeq, int cvSeq, Model model) {
+//	@LoginCheck
+	@RequestMapping(value = "/cv-detail", params = "!cvSeq")
+//	public String cv_detail(int userSeq, Model model) {							// test
+	public String cv_detail(@ModelAttribute User user, Model model) {
 		String forwardpath = "";
-		
+		/* user cv list 가져오기 */
+		List<Cv> cvList = cvService.findCvListByUserSeq(user.getUserSeq());
+//		List<Cv> cvList = cvService.findCvListByUserSeq(userSeq); 				// test
+		System.out.println(cvList);
+		if (cvList.size() == 0) {
+			forwardpath = "redirect:cv-write-form";
+		} else {
+			model.addAttribute("cvList", cvList);
+			/* 가장 최근 작성한 cv의 detail */
+			Cv cvDetail = cvService.detailCv(cvList.get(cvList.size()-1).getCvSeq());
+			model.addAttribute("cvDetail", cvDetail);
+			forwardpath = "candidate-dashboard-resume";
+		}
+		return forwardpath;
+	}
+	
+//	@LoginCheck
+	@RequestMapping(value = "/cv-detail")
+	public String cv_detail(@ModelAttribute User user, @RequestParam int cvSeq, Model model) {
+		String forwardpath = "";
 		/* user cv list */
-		List<Cv> cvList = cvService.findCvListByUserSeq(userSeq);
+		List<Cv> cvList = cvService.findCvListByUserSeq(user.getUserSeq());
 		System.out.println(cvList);
 		model.addAttribute("cvList", cvList);
 		
 		/* 특정 cv detail */
 		Cv cvDetail = cvService.detailCv(cvSeq);
 		System.out.println(">>>>>>>> cv " + cvDetail);
+		
+		List<Edu> eduList = cvDetail.getEduList();
+		model.addAttribute("eduList", eduList);
+		
 		if(cvDetail != null) {
 			// 어디로 보낼지 더 생각하기
 			forwardpath = "redirect:cv-list";
@@ -114,15 +134,14 @@ public class CvController {
 		return forwardpath;
 	}
 	
+	/* 삭제? */
 //	@LoginCheck
 	@RequestMapping(value = "/cv-update-form")
 	public String cv_update_from() {
-		/*
-		 * login check
-		 */
 		String forwardpath = "candidate-dashboard-resume";
 		return forwardpath;
 	}
+	/* 삭제? */
 	
 	/************************* cv action *******************************/
 	/** write_action */
@@ -130,9 +149,6 @@ public class CvController {
 //	@PostMapping(value = "/cv-write-action")
 	@GetMapping(value = "/cv-write-action")
 	public String cv_write_action(@ModelAttribute Cv cv) {
-		/*
-		 * login check
-		 */
 		try {
 			cvService.createCv(cv);
 			
@@ -148,9 +164,6 @@ public class CvController {
 	@GetMapping(value = "/cv-update-action")
 //	public String cv_update_action(HttpServletRequest request, @ModelAttribute Cv cv, @ModelAttribute List<Awards> awardsList, @ModelAttribute Edu edu, @ModelAttribute Exp exp, Model model) {
 	public String cv_update_action(HttpServletRequest request, @ModelAttribute Cv cv, Model model) {
-		/*
-		 * login check
-		 */
 		try {
 //			for (Awards awards : awardsList) {
 //				List<Awards> updateAwardsList = new ArrayList<Awards>();
@@ -183,8 +196,9 @@ public class CvController {
 	}
 	
 	/*********************** cv apply action *************************/
-	@RequestMapping("cv-apply-action")
+//	@LoginCheck
 //	@PostMapping("cv-apply-action")
+	@RequestMapping("cv-apply-action")
 	public String cv_apply_action() {
 		
 //		return "candidate-dashboard-applied-job";
