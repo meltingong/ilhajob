@@ -378,6 +378,8 @@ insert into message(message_seq, message_title, message_contents, message_date, 
 values(message_massage_seq_SEQ.nextval,'메세지 제목','내용','2023/03/29',6,2);
 
 
+insert into message(message_seq, message_title, message_contents, message_date, app_seq, user_seq) 
+values(message_massage_seq_SEQ.nextval,'이력서 열람','내용','2023/04/06',6,2);
 
 /**********************review insert*********************/
 /*****user_seq=1인 회원의 모든 기업 리뷰******/
