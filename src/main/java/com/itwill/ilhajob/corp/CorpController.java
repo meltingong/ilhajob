@@ -36,7 +36,7 @@ import groovyjarjarantlr4.v4.parse.ANTLRParser.exceptionGroup_return;
 
 
 
-@Controller
+//@Controller
 public class CorpController {
 	
 	@Autowired

@@ -11,7 +11,7 @@ public interface AppDao {
 	
 	int insertApp(App app);
 	
-	int deleteApp(int appSeq);
+	int deleteApp(App app);
 	
 	int findAppCountByCorpId(String corpId);
 	

@@ -14,8 +14,8 @@ public class AppServiceImpl implements AppService {
 	}
 
 	@Override
-	public int deleteApp(int appSeq) {
-		return appDao.deleteApp(appSeq);
+	public int deleteApp(App app) {
+		return appDao.deleteApp(app);
 	}
 	
 	

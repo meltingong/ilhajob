@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwill.ilhajob.app.App;
+import com.itwill.ilhajob.app.AppService;
 import com.itwill.ilhajob.message.Message;
 import com.itwill.ilhajob.message.MessageService;
 import com.itwill.ilhajob.user.User;
@@ -38,8 +40,10 @@ import com.itwill.ilhajob.user.exception.UserNotFoundException;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	//@Autowired
+	//private MessageService messageService;
 	@Autowired
-	private MessageService messageService;
+	private AppService appService;
 	/**************Local Exception Handler**************/
 	@ExceptionHandler(Exception.class)
 	public String user_excetpion_handler(Exception e) {
@@ -167,7 +171,7 @@ public class UserController {
 		}
 		return forwardPath;
 	}
-	
+	//나의 지원현황
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
@@ -181,9 +185,13 @@ public class UserController {
 		forwardPath = "/candidate-dashboard-applied-job";
 		return forwardPath;
 	}
+
+	
+	
+	
 	
 	// 회원 알림 전체보기
-		@LoginCheck
+	/*	@LoginCheck
 		@RequestMapping("/candidate-dashboard-job-alerts")
 		public String user_alerts(HttpServletRequest request,User user,Model model) throws Exception {
 			String forwardPath="";
@@ -195,7 +203,7 @@ public class UserController {
 			forwardPath = "candidate-dashboard-job-alerts";
 			return forwardPath;
 		}
-	
+	*/
 	
 	
 	
@@ -205,6 +213,7 @@ public class UserController {
 	 * <<지원>> applied jobs 지원한 공고 목록
 	 * 회사에 이력서 지원 하기
 	 * 이력서 지원한 회사 목록 보기
+	 * 지원취소
 	 */
 	
 	/*
