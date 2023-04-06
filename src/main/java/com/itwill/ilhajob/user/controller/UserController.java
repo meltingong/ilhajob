@@ -144,7 +144,7 @@ public class UserController {
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
 		String forwardPath="";
-		request.getSession().setAttribute("sUserId", "test3@test.com");
+		//request.getSession().setAttribute("sUserId", "test3@test.com");
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		User loginUser = userService.findUser(sUserId);
  		User user = userService.findAppList(loginUser.getUserSeq());
