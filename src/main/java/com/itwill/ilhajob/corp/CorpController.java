@@ -36,7 +36,7 @@ import groovyjarjarantlr4.v4.parse.ANTLRParser.exceptionGroup_return;
 
 
 
-//@Controller
+@Controller
 public class CorpController {
 	
 	@Autowired
@@ -46,13 +46,13 @@ public class CorpController {
 	
 	
 	
-	@RequestMapping("/index")
-	public String main() {
-		String forward_path = "index";
-		return forward_path;
-	}
+//	@RequestMapping("/index")
+//	public String main() {
+//		String forward_path = "index";
+//		return forward_path;
+//	}
 	
-	@RequestMapping("corp-list")
+	@RequestMapping("/corp-list")
 	public String corp_list(Model model) throws Exception {
 		List<Corp> corpList = corpService.findCorpAll();
 		model.addAttribute("corpList",corpList);
@@ -71,11 +71,11 @@ public class CorpController {
 		
 	}
 	
-	@RequestMapping("/login")
-	public String login() {
-		String forward_path = "login";
-		return forward_path;
-	}
+//	@RequestMapping("/login")
+//	public String login() {
+//		String forward_path = "login";
+//		return forward_path;
+//	}
 	@PostMapping("corp_login_action")
 	public String corp_login_action(@ModelAttribute("fcorp") Corp corp,Model model,HttpSession session) throws Exception {
 		String forwardPath = "";

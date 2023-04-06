@@ -20,9 +20,9 @@ import com.itwill.ilhajob.recruit.RecruitDao;
 import com.itwill.ilhajob.recruit.RecruitService;
 
 
-@SpringBootApplication(scanBasePackages = {"com.itwill.ilhajob.corp","com.itwill.ilhajob.recruit","com.itwill.ilhajob.app"})
-//@MapperScan(basePackageClasses = {CorpMapper.class, Product.class, Recruit.class, App.class})
-@MapperScan(basePackages = {"com.itwill.ilhajob.corp.mapper", "com.itwill.ilhajob.app.mapper","com.itwill.ilhajob.recruit.mapper"})
+//@SpringBootApplication(scanBasePackages = {"com.itwill.ilhajob.corp","com.itwill.ilhajob.recruit","com.itwill.ilhajob.app"})
+@SpringBootApplication(scanBasePackageClasses = {Corp.class, Recruit.class, App.class})
+@MapperScan(basePackages = {"com.itwill.ilhajob.corp.mapper", "com.itwill.ilhajob.product.mapper","com.itwill.ilhajob.recruit.mapper"})
 public class SpringBootCorpDaoMain {
 	public static void main(String[] args) throws Exception {
 		ApplicationContext appicationContext=

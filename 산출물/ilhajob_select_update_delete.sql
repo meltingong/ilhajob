@@ -290,7 +290,7 @@ join recruit r
 on a.rc_seq=r.rc_seq  
 join cv c
 on c.cv_seq=a.cv_seq
-where a.corp_id='corp_01'
+where a.corp_id='corp_01';
 
 --rollback;
 
