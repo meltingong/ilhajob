@@ -282,7 +282,15 @@ select count(*)cnt from recruit r
         
 /*******corp_01의 공고에 지원한 모든 지원자 수********/      
 select count(*)cnt from app a
-where a.corp_id='corp_01'       
+where a.corp_id='corp_01';
+
+/***********corp_01의 공고에 지원한 사람들의 이력서 목록 불러오기***********/
+select * from app a
+join recruit r
+on a.rc_seq=r.rc_seq  
+join cv c
+on c.cv_seq=a.cv_seq
+where a.corp_id='corp_01'
 
 --rollback;
 
