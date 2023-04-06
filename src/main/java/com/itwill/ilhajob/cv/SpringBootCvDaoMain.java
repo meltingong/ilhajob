@@ -12,6 +12,8 @@ import com.itwill.ilhajob.edu.EduDao;
 import com.itwill.ilhajob.edu.EduService;
 import com.itwill.ilhajob.exp.Exp;
 import com.itwill.ilhajob.exp.ExpDao;
+import com.itwill.ilhajob.recruit.Recruit;
+import com.itwill.ilhajob.recruit.RecruitDao;
 
 @SpringBootApplication(scanBasePackageClasses = {Cv.class, Edu.class, Awards.class, Exp.class})
 @MapperScan(basePackages = {"com.itwill.ilhajob.cv.mapper"})
@@ -38,6 +40,8 @@ public class SpringBootCvDaoMain {
 //		System.out.println(cvDao.detailCv(2));
 //		System.out.println("=============================================");
 //		System.out.println(eduService.selectAllEdu());
+//		System.out.println("--한 회사가 올린 공고 하나의 이력서 목록 불러오기:findCvListByCorpId--");
+//		System.out.println(cvDao.findCvListByCorpId("corp_01"));
 	}
 
 }

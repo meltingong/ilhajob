@@ -46,6 +46,34 @@
     </select>
 	-->
 	
+	<!-- 회사1이 올린 공고 1에 지원한 모든 이력서 리스트 뽑아오기 
+	<resultMap id="corpWithCvResultMap" 
+			   type="com.itwill.ilhajob.corp.Corp"
+			   autoMapping="true">
+			   <result column="corp_id" property="corpId"/>
+		<association property="recruit"
+					 javaType="com.itwill.ilhajob.recruit.Recruit"
+					 autoMapping="true">
+					 <result column="rc_seq" property="reSeq"/>
+		</association>
+		<collection property="cvList"
+					javaType="java.util.List"
+					ofType="com.itwill.ilhajob.cv.Cv"
+					autoMapping="true">
+		</collection>
+	</resultMap>
+	<select id="findCvListByCorpId"
+	        parameterType="java.lang.String"
+	        resultMap="corpWithCvResultMap">
+	    select * from app a
+		join recruit r
+		on a.rc_seq=r.rc_seq  
+		join cv c
+		on c.cv_seq=a.cv_seq
+		where a.corp_id=#{corpId}
+	</select>
+	-->
+	
 	
     <insert id="insertCv" parameterType="com.itwill.ilhajob.cv.Cv">
     	<selectKey order="BEFORE" resultType="int" keyProperty="cvSeq">
