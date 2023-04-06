@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,8 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwill.ilhajob.message.Message;
+import com.itwill.ilhajob.message.MessageService;
 import com.itwill.ilhajob.user.User;
 import com.itwill.ilhajob.user.UserService;
+import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
 
@@ -33,7 +38,8 @@ import com.itwill.ilhajob.user.exception.UserNotFoundException;
 public class UserController {
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	private MessageService messageService;
 	/**************Local Exception Handler**************/
 	@ExceptionHandler(Exception.class)
 	public String user_excetpion_handler(Exception e) {
@@ -139,6 +145,28 @@ public class UserController {
 		return forwardPath;
 	}
 	
+
+	// 회원 가입 폼
+	@RequestMapping("/register")
+	public String user_join() {
+		String forwardPath = "";
+		forwardPath = "register";
+		return forwardPath;
+	}
+	
+	// 회원 가입 액션
+	@RequestMapping("/user_join_action")
+	public String user_join_action(@ModelAttribute("fuser")User user,Model model) throws Exception {
+		String forwardPath = "";
+		try {
+			userService.create(user);
+			forwardPath = "redirect:login";
+		}catch (ExistedUserException e) {
+			model.addAttribute("msg",e.getMessage());
+			forwardPath = "redirect:register";
+		}
+		return forwardPath;
+	}
 	
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
@@ -154,7 +182,19 @@ public class UserController {
 		return forwardPath;
 	}
 	
-	
+	// 회원 알림 전체보기
+		@LoginCheck
+		@RequestMapping("/candidate-dashboard-job-alerts")
+		public String user_alerts(HttpServletRequest request,User user,Model model) throws Exception {
+			String forwardPath="";
+			String sUserId = (String)request.getSession().getAttribute("sUserId");
+			User loginUser = userService.findUser(sUserId);
+			request.setAttribute("loginUser", loginUser);
+			List<Message> messageList = messageService.fineMessageOfUser(loginUser.getUserSeq());
+			model.addAttribute("messageList",messageList);
+			forwardPath = "candidate-dashboard-job-alerts";
+			return forwardPath;
+		}
 	
 	
 	
