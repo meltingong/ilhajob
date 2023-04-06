@@ -18,6 +18,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+<script type="text/javascript">
+function appDelete() {
+	if (window.confirm("정말 삭제하시겠습니까?")) {
+		document.f.action = "remove-applied-job";
+		document.f.submit();
+	}
+}
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
 </head>
 
 <body>
@@ -82,7 +103,7 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-
+			<!-- form 걸어봄 --><form name="f">
                       <tbody>
                         <tr th:each="app:${loginUser.appList}" >
                           <td>
@@ -110,13 +131,14 @@
                             <div class="option-box">
                               <ul class="option-list">
                                 <li><button data-text="View Aplication"><span class="la la-eye"></span></button></li>
-                                <li><button data-text="Delete Aplication"><span class="la la-trash"></span></button></li>
+                                <li><button data-text="Delete Aplication" onclick="appDelete()" th:value="${app.appSeq}"><span class="la la-trash"></span></button></li>
                               </ul>
                             </div>
                           </td>
                         </tr>
 
                       </tbody>
+              <!-- form종료 --> </form>
                     </table>
                   </div>
                 </div>
