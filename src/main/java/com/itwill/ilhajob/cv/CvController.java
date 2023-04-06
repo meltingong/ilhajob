@@ -42,29 +42,32 @@ public class CvController {
 	/* 테스트용 매핑 - user 붙인 후 삭제할 것 */
 	/** dash board */
 //	@LoginCheck
-	@RequestMapping("/candidate-dashboard")
-	public String candidate_dashboard() {
-		return "candidate-dashboard";
-	}
+//	@RequestMapping("/candidate-dashboard")
+//	public String candidate_dashboard() {
+//		return "candidate-dashboard";
+//	}
 	
 	/************************* cv list *******************************/
 //	@LoginCheck
 	@RequestMapping(value = "/cv-list")
 	public String cv_list(HttpServletRequest request, Model model) {
 		String forwardpath = "";
-		/**************** 실제 보여줄 서비스(userSeq로 cv list) ********/
-		if(request.getSession().getAttribute("userSeq") != null) {
+//		if(request.getSession().getAttribute("userSeq") != null) {
+//			int userSeq = (int)request.getSession().getAttribute("userSeq");
+		
+		/* 테스트용 userSeq 세팅, 조건문 */
+		request.getSession().setAttribute("userSeq", 3);
+		if(request.getSession() != null) {
+		/* 테스트용 userSeq 세팅, 조건문 */
 			int userSeq = (int)request.getSession().getAttribute("userSeq");
 			List<Cv> cvList = cvService.findCvListByUserSeq(userSeq);
 			model.addAttribute("cvList", cvList);
 			forwardpath = "candidate-dashboard-cv-manager";
-		
-		/********* 테스트용 전체 cv list(일반회원 로그인 구현 후 삭제할 것) **********/ 
-		} else {
+		} 
+		else {
 			List<Cv> cvList = cvService.selectAll();
 			model.addAttribute("cvList", cvList);
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> cvList" + cvList);
-			forwardpath = "candidate-dashboard-cv-manager";
+			forwardpath = "redirect:cv-write-form";
 		}
 		return forwardpath;
 	}
@@ -80,7 +83,7 @@ public class CvController {
 	 * 선택된 cv로 apply(apply 버튼 추가함)
 	 */
 	
-	/** cv detail */
+	/** cv write form */
 //	@LoginCheck
 	@RequestMapping(value = "/cv-write-form")
 	public String cv_wirte_from(HttpServletRequest request) {
@@ -88,6 +91,7 @@ public class CvController {
 		return forwardpath;
 	}
 
+	/** cv detail */
 //	@LoginCheck
 	@RequestMapping(value = "/cv-detail", params = "!cvSeq")
 //	public String cv_detail(int userSeq, Model model) {							// test
@@ -122,8 +126,17 @@ public class CvController {
 		Cv cvDetail = cvService.detailCv(cvSeq);
 		System.out.println(">>>>>>>> cv " + cvDetail);
 		
+		/* eduList */
 		List<Edu> eduList = cvDetail.getEduList();
 		model.addAttribute("eduList", eduList);
+		
+		/* expList */
+		List<Exp> expList = cvDetail.getExpList();
+		model.addAttribute("expList", expList);
+		
+		/* awardsList */
+		List<Awards> awardsList = cvDetail.getAwardsList();
+		model.addAttribute("awardsList", awardsList);
 		
 		if(cvDetail != null) {
 			// 어디로 보낼지 더 생각하기
@@ -133,15 +146,6 @@ public class CvController {
 		forwardpath = "candidate-dashboard-resume";
 		return forwardpath;
 	}
-	
-	/* 삭제? */
-//	@LoginCheck
-	@RequestMapping(value = "/cv-update-form")
-	public String cv_update_from() {
-		String forwardpath = "candidate-dashboard-resume";
-		return forwardpath;
-	}
-	/* 삭제? */
 	
 	/************************* cv action *******************************/
 	/** write_action */
@@ -187,10 +191,9 @@ public class CvController {
 	
 	/** delete_action */
 //	@LoginCheck
-//	@PostMapping(value = "/cv-delete")
-	@RequestMapping(value = "/cv-delete")
-	public String cv_delete_action(@RequestParam int cvSeq) throws Exception{
-		System.out.println(">>>>>>>>>>>>>>>>>>>> test <<<<<<<<<<<<<");
+//	@PostMapping(value = "/cv-delete-action")
+	@RequestMapping(value = "/cv-delete-action")
+	public String cv_delete_action(HttpServletRequest request, @RequestParam int cvSeq) throws Exception{
 		cvService.remove(cvSeq);
 		return "redirect:cv-list";
 	}

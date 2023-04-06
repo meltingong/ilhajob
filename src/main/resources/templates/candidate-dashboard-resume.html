@@ -132,10 +132,10 @@
                         </div>
 
                         <!-- Resume / Work & Experience -->
-                        <div class="resume-outer theme-blue">
+                        <div class="resume-outer theme-blue" th:each="exp:${expList}">
                           <div class="upper-title">
                             <h4>경력 사항</h4>
-                            <button class="add-info-btn"><span class="icon flaticon-plus"></span> Add Work</button>
+                            <button class="add-info-btn"><span class="icon flaticon-plus"></span> 경력 추가</button>
                           </div>
                           <!-- Resume BLock -->
                           <div class="resume-block">
@@ -143,11 +143,12 @@
                               <span class="name">S</span>
                               <div class="title-box">
                                 <div class="info-box">
-                                  <h3>Product Designer</h3>
-                                  <span>Spotify Inc.</span>
+                                  <h3 th:text="${exp.expPosition}">Product Designer</h3>
+                                  <span th:text="${exp.expCorpName}">Spotify Inc.</span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year">2012 - 2014</span>
+                                  <span class="year" th:text="${exp.expStartDate}">2012 - 2014</span>
+                                  <span class="year" th:text="${exp.expEndDate}">2012 - 2014</span>
                                   <div class="edit-btns">
                                     <button><span class="la la-pencil"></span></button>
                                     <button><span class="la la-trash"></span></button>

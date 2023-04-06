@@ -26,6 +26,10 @@ public class SpringBootCvDaoMain {
 		ExpDao expDao = (ExpDao)applicationContext.getBean(ExpDao.class);
 //		AppDao appDao = (AppDao)applicationContext.getBean(AppDao.class);
 		
+		System.out.println(cvDao.findCvListByUserSeq(1));
+		System.out.println(cvDao.findCvListByUserSeq(2));
+		System.out.println(cvDao.findCvListByUserSeq(3));
+		
 //		System.out.println(awardsDao.findAwardsList());
 //		System.out.println(eduDao.selectAllEdu());
 //		System.out.println(expDao.selectByUser(3));

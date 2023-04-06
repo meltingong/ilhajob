@@ -19,16 +19,16 @@
 			<collection property="eduList" javaType="java.util.List" ofType="com.itwill.ilhajob.edu.Edu" autoMapping="true"></collection>
 	</resultMap>
 	<select id="selectByCvOfUserSeq" parameterType="int" resultMap="cvWithExpEduAwardsMap">
-		select * from cv c join experience e on c.user_seq = e.user_seq
-		                   join awards a on c.user_seq = a.user_seq
-		                   join education ed on c.user_seq = ed.user_seq
+		select * from cv c left outer join experience e on c.user_seq = e.user_seq
+		                   left outer join awards a on c.user_seq = a.user_seq
+		                   left outer join education ed on c.user_seq = ed.user_seq
 		                   where c.user_seq = #{userSeq}
 	</select>
 	
 	<select id="selectDetailCv" parameterType="int" resultMap="cvWithExpEduAwardsMap">
-		select * from cv c join experience e on c.user_seq = e.user_seq
-		                   join awards a on c.user_seq = a.user_seq
-		                   join education ed on c.user_seq = ed.user_seq
+		select * from cv c left outer join experience e on c.user_seq = e.user_seq
+		                   left outer join awards a on c.user_seq = a.user_seq
+		                   left outer join education ed on c.user_seq = ed.user_seq
 		                   where c.cv_seq = #{cvSeq}
 	</select>
 	
