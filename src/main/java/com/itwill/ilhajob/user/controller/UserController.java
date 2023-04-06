@@ -38,8 +38,8 @@ import com.itwill.ilhajob.user.exception.UserNotFoundException;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private MessageService messageService;
+	//@Autowired
+	//private MessageService messageService;
 	/**************Local Exception Handler**************/
 	@ExceptionHandler(Exception.class)
 	public String user_excetpion_handler(Exception e) {
@@ -194,7 +194,7 @@ public class UserController {
 		forwardPath = "/candidate-dashboard-applied-job";
 		return forwardPath;
 	}
-	
+	/*
 	// 회원 알림 전체보기
 		@LoginCheck
 		@RequestMapping("/candidate-dashboard-job-alerts")
@@ -209,7 +209,7 @@ public class UserController {
 			return forwardPath;
 		}
 	
-	
+	*/
 	
 	
 	// my resume 이력서 작성 폼
