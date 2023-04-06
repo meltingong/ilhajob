@@ -1,16 +1,25 @@
 package com.itwill.ilhajob.recruit;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.ilhajob.corp.Corp;
+import com.itwill.ilhajob.corp.CorpService;
+
 @Controller
 public class RecruitController {
-
+	@Autowired
+	private CorpService corpService;
 	@Autowired
 	private RecruitService recruitService;
 	
@@ -44,14 +53,19 @@ public class RecruitController {
 		return forward_path;
 	}
 	
-	@RequestMapping("/dashboard-post-job")
-	public String dashboard_post_job_form() {
-		String forward_path = "dashboard-post-job";
-		return forward_path;
-	}
-	@RequestMapping("/dashboard-post-job-action")
-	public String dashboard_post_job_action(Model model) {
-		String forward_path = "recruit-detail";
-		return forward_path;
-	}
+	   @RequestMapping("/dashboard-post-job")
+	   public String dashboard_post_job_form(HttpServletRequest request,Model model) throws Exception {
+		  Corp loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
+	      model.addAttribute("corp",loginCorp);
+	      String forward_path = "dashboard-post-job";
+	      return forward_path;
+	   }
+	   @PostMapping("/dashboard-post-job-action")
+	   public String dashboard_post_job_action(@ModelAttribute Recruit recruit,Model model) throws Exception {
+		  recruit.setRcDeadline(new Date());
+		  recruitService.saveRecruit(recruit);
+	      model.addAttribute("rcSeq",recruit.getRcSeq());
+	      String forward_path = "recruit-detail";
+	      return forward_path;
+	   }
 }

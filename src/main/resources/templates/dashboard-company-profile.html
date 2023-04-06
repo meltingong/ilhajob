@@ -1,6 +1,18 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<script type="text/javascript">
+   function update(){
+      document.f.action = "corp-update-action";
+      var yyyy_mm_dd = String(document.f.corpEst.value);
+      var yyyy = yyyy_mm_dd.substring(0,4);
+      var mm = yyyy_mm_dd.substring(5,7);
+      var dd = yyyy_mm_dd.substring(8,10);
+      console.log(yyyy+mm+dd);
+      document.f.corpEst.value = new Date(yyyy+'-'+mm+'-'+dd);
+      document.method="POST"
+      document.f.submit();
+   }
+</script>
 <head>
   <meta charset="utf-8">
   <title>Superio | Just another HTML Template | Company Profile</title>
@@ -47,8 +59,8 @@
     <section class="user-dashboard">
       <div class="dashboard-outer">
         <div class="upper-title-box">
-          <h3>Company Profile!</h3>
-          <div class="text">Ready to jump back in?</div>
+          <h3>회사 프로필</h3>
+          <div class="text">회사 프로필을 최신화하세요</div>
         </div>
 
         <div class="row">
@@ -57,12 +69,12 @@
             <div class="ls-widget">
               <div class="tabs-box">
                 <div class="widget-title">
-                  <h4>My Profile</h4>
+                  <h4>회사 프로필</h4>
                 </div>
 
                 <div class="widget-content">
                 
-					<!-- 
+               <!-- 
                   <div class="uploading-outer">
                     <div class="uploadButton">
                       <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload" multiple />
@@ -74,10 +86,10 @@
 -->
                   <div class="uploading-outer">
                     <div class="uploadButton">
-                    	<div th:each = "CorpImage : ${corp.corpImageList}">
-                    		<!-- <img class = "uploadButton-input" src="${corp.corpImageList.corpImage.corpImage}">-->
-                    		<div th:text = "${CorpImage.corpImage}"></div>
-                    	</div>
+                       <div th:each = "CorpImage : ${corp.corpImageList}">
+                          <!-- <img class = "uploadButton-input" src="${corp.corpImageList.corpImage.corpImage}">-->
+                          <div th:text = "${CorpImage.corpImage}"></div>
+                       </div>
                    <!-- <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload_cover" multiple />
                        <label class="uploadButton-button ripple-effect" for="upload">Browse Cover</label>
                       <span class="uploadButton-file-name"></span>
@@ -86,12 +98,22 @@
                     <div class="text">최대 파일 크기는 1MB이고 최소 치수는 330x300이며 적합한 파일은 .jpg 및 .png입니다</div>
                   </div>
 
-                  <form class="default-form" method="post" action="/corp-update-action">
+                  <form class="default-form" name ="f" method="post">
                     <div class="row">
                       <!-- Input -->
+                      <input type="hidden" name="corpId" th:value = "${corp.corpId}">
+                      <input type="hidden" name="corpStatus" th:value = "${corp.corpStatus}">
+                      <input type="hidden" name="job" th:value = "${corp.job}">
+                      <input type="hidden" name="role" th:value = "${corp.role}">
+                      
                       <div class="form-group col-lg-6 col-md-12">
                         <label >회사 이름</label>
                         <input type="text" name="corpName" th:value = "${corp.corpName}">
+                      </div>
+                      
+                      <div class="form-group col-lg-6 col-md-12">
+                        <label >비밀번호</label>
+                        <input type="password" name="corpPassword" th:value = "${corp.corpPassword}">
                       </div>
 
                       <!-- Input -->
@@ -100,6 +122,9 @@
                         <input type="text" name="corpAddress" th:value = "${corp.corpAddress}">
                       </div>
 
+                  
+                  <input type="hidden" name="corpBusinessNo" th:value = "${corp.corpBusinessNo}">
+                  <input type="hidden" name="corpSales" th:value = "${corp.corpSales}">
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>전화번호</label>
@@ -115,7 +140,7 @@
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>회사설립일</label>
-                        <input type="text" name="corpEst" th:value="${#dates.format(corp.corpEst,'yyyy-MM-dd')}">
+                        <input type="text" name="corpEst" th:value="${#dates.format(corp.corpEst,'yyyy-mm-dd')}">
                       </div>
 
                       <!-- Input -->
@@ -145,19 +170,19 @@
                       <!-- About Company -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>회사소개</label>
-                        <textarea th:value="${corp.corpComment}"></textarea>
+                        <textarea name = "corpComment" th:value="${corp.corpComment}"></textarea>
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
-                        <button class="theme-btn btn-style-one" type="submit">저장</button>
+                        <button class="theme-btn btn-style-one" type="button" onClick ="update();" >저장</button>
                       </div>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-			
+         
             <!-- Ls widget -->
             <!--
             <div class="ls-widget">

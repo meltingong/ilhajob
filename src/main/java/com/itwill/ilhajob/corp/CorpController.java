@@ -108,7 +108,7 @@ public class CorpController {
 		}else {
 			//System.out.println(loginCorp);
 			Corp loginCorp=corpService.findCorp(sCorpId);
-			request.setAttribute("loginCorp", loginCorp);
+			//request.setAttribute("loginCorp", loginCorp);
 			forwardPath="dashboard";
 		}
 		/****************************************/
