@@ -61,8 +61,10 @@ public class RecruitController {
 	      return forward_path;
 	   }
 	   @PostMapping("/dashboard-post-job-action")
-	   public String dashboard_post_job_action(@ModelAttribute Recruit recruit,Model model) throws Exception {
+	   public String dashboard_post_job_action(@ModelAttribute Recruit recruit,HttpServletRequest request,Model model) throws Exception {
+		   Corp loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
 		  recruit.setRcDeadline(new Date());
+		  recruit.setCorp(loginCorp);
 		  recruitService.saveRecruit(recruit);
 	      model.addAttribute("rcSeq",recruit.getRcSeq());
 	      String forward_path = "recruit-detail";
