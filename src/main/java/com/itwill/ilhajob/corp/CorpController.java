@@ -71,6 +71,9 @@ public class CorpController {
 	public String corp_detail_view(@RequestParam("corpId") String corpId,Model model) throws Exception {
 		Corp corp=corpService.findCorpWithRecruits(corpId);
 		model.addAttribute("corp", corp);
+		//리뷰 목록 뿌리기
+		Corp corp1=corpService.findCorpWithReviews(corpId);
+		model.addAttribute("corp1", corp1);
 		return "corp-detail";
 		
 	}
