@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.app.AppService;
 import com.itwill.ilhajob.awards.Awards;
@@ -41,11 +42,11 @@ public class CvController {
 	
 	/* 테스트용 매핑 - user 붙인 후 삭제할 것 */
 	/** dash board */
-	@LoginCheck
-	@RequestMapping("/candidate-dashboard")
-	public String candidate_dashboard() {
-		return "candidate-dashboard";
-	}
+//	@LoginCheck
+//	@RequestMapping("/candidate-dashboard")
+//	public String candidate_dashboard() {
+//		return "candidate-dashboard";
+//	}
 	
 	/************************* cv list *******************************/
 //	@LoginCheck
@@ -86,7 +87,29 @@ public class CvController {
 	/** cv write form */
 //	@LoginCheck
 	@RequestMapping(value = "/cv-write-form")
-	public String cv_wirte_from(HttpServletRequest request) {
+//	public String cv_wirte_from(HttpServletRequest request, Model model) {
+	public String cv_wirte_from(@ModelAttribute User user, Model model) {
+//		int userSeq = Integer.parseInt(request.getParameter("userSeq"));
+		/* user cv list */
+//		List<Cv> cvList = cvService.findCvListByUserSeq(user.getUserSeq());
+//		System.out.println(cvList);
+//		model.addAttribute("cvList", cvList);
+		
+		/* userSeq */
+		int userSeq = user.getUserSeq();
+		model.addAttribute(model);
+		
+		/* eduList */
+		List<Edu> eduList = user.getEduList();
+		model.addAttribute("eduList", eduList);
+		
+		/* expList */
+		List<Exp> expList = user.getExpList();
+		model.addAttribute("expList", expList);
+		
+		/* awardsList */
+		List<Awards> awardsList = user.getAwardsList();
+		model.addAttribute("awardsList", awardsList);
 		String forwardpath = "candidate-dashboard-resume-write";
 		return forwardpath;
 	}
@@ -152,14 +175,18 @@ public class CvController {
 	/** write_action */
 //	@LoginCheck
 //	@PostMapping(value = "/cv-write-action")
-	@GetMapping(value = "/cv-write-action")
-	public String cv_write_action(@ModelAttribute Cv cv) {
+	@RequestMapping(value = "/cv-write-action")
+	public String cv_write_action(@ModelAttribute Cv cv, RedirectAttributes redirectAttributes) {
 		try {
 			cvService.createCv(cv);
-			
+			int cvSeq = cv.getCvSeq();
+			System.out.println("---------- insert cvSeq test -------- >" + cvSeq);
+			redirectAttributes.addAttribute("cvSeq", cvSeq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// 작성한 cv의 detail 페이지로 이동 체크
+//		return "redirect:cv-detail";
 		return "redirect:cv-list";
 	}
 	

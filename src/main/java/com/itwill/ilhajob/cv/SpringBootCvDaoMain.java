@@ -14,6 +14,7 @@ import com.itwill.ilhajob.exp.Exp;
 import com.itwill.ilhajob.exp.ExpDao;
 import com.itwill.ilhajob.recruit.Recruit;
 import com.itwill.ilhajob.recruit.RecruitDao;
+import com.itwill.ilhajob.user.User;
 
 @SpringBootApplication(scanBasePackageClasses = {Cv.class, Edu.class, Awards.class, Exp.class})
 @MapperScan(basePackages = {"com.itwill.ilhajob.cv.mapper"})
@@ -28,8 +29,8 @@ public class SpringBootCvDaoMain {
 		ExpDao expDao = (ExpDao)applicationContext.getBean(ExpDao.class);
 //		AppDao appDao = (AppDao)applicationContext.getBean(AppDao.class);
 		
-		System.out.println(cvDao.findCvListByUserSeq(1));
-		System.out.println(cvDao.findCvListByUserSeq(2));
+//		System.out.println(cvDao.findCvListByUserSeq(1));
+//		System.out.println(cvDao.findCvListByUserSeq(2));
 		System.out.println(cvDao.findCvListByUserSeq(3));
 		
 //		System.out.println(awardsDao.findAwardsList());

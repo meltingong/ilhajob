@@ -18,6 +18,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+  
+ <script type="text/javascript">
+ /*
+	 function deleteAwards() {
+		if (window.confirm("정말 삭제하시겠습니까?")) {
+			document.f.method='POST';
+			document.f.action = "cv-list";
+			document.f.submit();
+		}
+	 }
+ */
+ </script>
+  
 </head>
 
 <body>
@@ -61,7 +74,8 @@
                 </div>
 
                 <div class="widget-content" th:object="${cvDetail}">
-                  <form class="default-form">
+ 		<!-- ************ form start  ************ -->
+                  <form class="default-form" name="f">
                     <div class="row">
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
@@ -150,8 +164,8 @@
                                   <span class="year" th:text="${exp.expStartDate}">2012 - 2014</span>
                                   <span class="year" th:text="${exp.expEndDate}">2012 - 2014</span>
                                   <div class="edit-btns">
-                                    <button><span class="la la-pencil"></span></button>
-                                    <button><span class="la la-trash"></span></button>
+                                    <button><span class="la la-pencil" onclick=""></span></button>
+                                    <button><span class="la la-trash" onclick=""></span></button>
                                   </div>
                                 </div>
                               </div>
@@ -162,8 +176,6 @@
 		                      </div>
                             </div>
                           </div>
-
-                          <!-- Resume BLock -->
                         </div>
 
 <!-- 
@@ -187,48 +199,31 @@
                             <button class="add-info-btn"><span class="icon flaticon-plus"></span> Awards</button>
                           </div>
                           <!-- Resume BLock -->
-                          <div class="resume-block">
+                          <div class="resume-block" th:each="awards:${awardsList}">
                             <div class="inner">
-                              <span class="name"></span>
+                              <span class="name">Awards</span>
                               <div class="title-box">
                                 <div class="info-box">
-                                  <h3>Perfect Attendance Programs</h3>
+                                  <h3 th:text="${awards.awardsName}">Perfect Attendance Programs</h3>
                                   <span></span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year">2012 - 2014</span>
+                                  <span class="year" th:value="${awards.awardsDate}">2012 - 2014</span>
                                   <div class="edit-btns">
-                                    <button><span class="la la-pencil"></span></button>
-                                    <button><span class="la la-trash"></span></button>
+                                    <button><span class="la la-pencil" onclick=""></span></button>
+                                    <button><span class="la la-trash" onclick="deleteAwards()"></span></button>
                                   </div>
                                 </div>
                               </div>
-                              <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
+                              <div class="form-group col-lg-12 col-md-12">
+                              	<label>수상 상세</label>
+		                        <input type="text" name="name" placeholder="수상관련 추가 정보를 입력하세요." th:value="${awards.awardsContent}">
+	                      	  </div>
                             </div>
                           </div>
-                          <!-- Resume BLock Start -->
-                          <div class="resume-block">
-                            <div class="inner">
-                              <span class="name"></span>
-                              <div class="title-box">
-                                <div class="info-box">
-                                  <h3>Top Performer Recognition</h3>
-                                  <span></span>
-                                </div>
-                                <div class="edit-box">
-                                  <span class="year">2012 - 2014</span>
-                                  <div class="edit-btns">
-                                    <button><span class="la la-pencil"></span></button>
-                                    <button><span class="la la-trash"></span></button>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
-                            </div>
-                          </div>
-                          <!-- Resume BLock End -->
                         </div>
                       </div>
+                     </div>
 
                       <!-- Search Select -->
                       <div class="form-group col-lg-6 col-md-12">
@@ -244,11 +239,12 @@
 
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
-                        <button class="theme-btn btn-style-one">Save</button>
-                        <button class="theme-btn btn-style-one">Apply</button>
+                        <button class="theme-btn btn-style-one" onclick="">Save</button>
+                        <button class="theme-btn btn-style-one" onclick="">Apply</button>
                       </div>
                     </div>
                   </form>
+ 		<!-- ************ form end  ************ -->
                 </div>
               </div>
             </div>
