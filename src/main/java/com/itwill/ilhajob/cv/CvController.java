@@ -41,11 +41,11 @@ public class CvController {
 	
 	/* 테스트용 매핑 - user 붙인 후 삭제할 것 */
 	/** dash board */
-	@LoginCheck
-	@RequestMapping("/candidate-dashboard")
-	public String candidate_dashboard() {
-		return "candidate-dashboard";
-	}
+//	@LoginCheck
+//	@RequestMapping("/candidate-dashboard")
+//	public String candidate_dashboard() {
+//		return "candidate-dashboard";
+//	}
 	
 	/************************* cv list *******************************/
 //	@LoginCheck
