@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwill.ilhajob.app.mapper.AppMapper;
 import com.itwill.ilhajob.corp.mapper.CorpMapper;
+import com.itwill.ilhajob.cv.Cv;
 
 @Repository
 public class AppDaoImpl implements AppDao {
@@ -43,8 +44,8 @@ public class AppDaoImpl implements AppDao {
 	
 	//공고(a.rc_seq=2)에 지원한 사람들의 이력서 목록 불러오기
 	@Override
-	public List<App> findCvListByRcSeq(int rc_seq) {
-		return appMapper.findCvListByRcSeq(rc_seq);
+	public List<Cv> findCvListByRcSeq(int rcSeq) {
+		return appMapper.findCvListByRcSeq(rcSeq);
 	}
 	
 	

@@ -30,7 +30,7 @@ public class SpringBootCorpDaoMain {
 		
 		CorpDao corpDao=(CorpDao)appicationContext.getBean(CorpDao.class);
 		AppService appService=(AppService)appicationContext.getBean(AppService.class);
-		//RecruitDao recruitDao  = (RecruitDao)appicationContext.getBean(RecruitDao.class);
+		RecruitService recruitService  = (RecruitService)appicationContext.getBean(RecruitService.class);
 		/*
 		System.out.println("---------findTutorByIdWithCourses------------------");
 		System.out.println(corpDao.selectAll());
@@ -45,10 +45,11 @@ public class SpringBootCorpDaoMain {
 		
 		
 		System.out.println("---------findCorpByIdWithRecruit------------------");
-		System.out.println(corpDao.findCorpByIdWithRecruit("corp_01"));
+		//System.out.println(corpDao.findCorpByIdWithRecruit("corp_01"));
 		//System.out.println(recruitDao.findAllWithCorp());
-		System.out.println(appService.findAppCountByCorpId("corp_01"));
-		System.out.println(appService.findAppCountByCorpId("corp_02"));
+		//System.out.println(appService.findAppCountByCorpId("corp_01"));
+		//System.out.println(appService.findAppCountByCorpId("corp_02"));
+		System.out.println(recruitService.findRecruit(1));
 		
 //		System.out.println("------------insertCorp---------------");
 //		System.out.println(corpDao.insertCorp(
