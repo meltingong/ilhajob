@@ -14,6 +14,25 @@
       document.method="POST"
       document.f.submit();
    }
+   
+   $(document).ready(function() {
+	   $(".deleteButton").on("click", function() {
+	     var corpImageSeq = $(this).data("CorpImage");
+	     $.ajax({
+	       type: "POST",
+	       url: "/remove_corp_image",
+	       data: { CorpImage: CorpImage },
+	       success: function(result) {
+	         // 삭제 성공 시, 화면을 업데이트합니다.
+	         location.reload();
+	       },
+	       error: function() {
+	         // 삭제 실패 시, 에러 처리를 합니다.
+	         alert("삭제에 실패하였습니다.");
+	       }
+	     });
+	   });
+	 });
 </script>
 <head>
   <meta charset="utf-8">
@@ -85,22 +104,39 @@
                     </div>
                     <div class="text">Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg & .png</div>
                   </div>
--->
-                  <div class="uploading-outer">
-                    <div class="uploadButton">
-                       <div th:each = "CorpImage : ${corp.corpImageList}">
+-->					
+					<form id="image-upload-form" method="post" enctype="multipart/form-data">
+					  <input type="file" name="image" id="image-input">
+					  <button type="submit">이미지 업로드</button>
+					</form>
+                  
+
+                  <form class="default-form" name ="f" method="post">
+                  	<div class="uploading-outer">
+                   		 <div class="uploadButton">
+                    	<ul>
+						  <li th:each="CorpImage : ${corp.corpImageList}" >
+						    <img th:src="${CorpImage.corpImage}" />
+						    <button class="deleteButton" data-corpImageSeq="${CorpImage}">삭제</button>
+						  </li>
+						</ul>
+                    	</div>
+                    </div>
+                    
+                    
+                   
+                     <!--     <div th:each = "CorpImage : ${corp.corpImageList}">	
                           <!-- <img class = "uploadButton-input" src="${corp.corpImageList.corpImage.corpImage}">-->
-                          <div th:text = "${CorpImage.corpImage}"></div>
-                       </div>
+                        <!--    <img th:src="${CorpImage.corpImage}">
+                         <!-- <div th:text = "${CorpImage.corpImage}"></div> --> 
+                      <!--  </div>
                    <!-- <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload_cover" multiple />
                        <label class="uploadButton-button ripple-effect" for="upload">Browse Cover</label>
                       <span class="uploadButton-file-name"></span>
                     -->
-                    </div>
-                    <div class="text">최대 파일 크기는 1MB이고 최소 치수는 330x300이며 적합한 파일은 .jpg 및 .png입니다</div>
-                  </div>
-
-                  <form class="default-form" name ="f" method="post">
+                    
+                   <!--  <div class="text">최대 파일 크기는 1MB이고 최소 치수는 330x300이며 적합한 파일은 .jpg 및 .png입니다</div>-->
+                  
                     <div class="row">
                       <!-- Input -->
                       <input type="hidden" name="corpId" th:value = "${corp.corpId}">

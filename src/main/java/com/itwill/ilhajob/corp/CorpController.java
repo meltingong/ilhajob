@@ -43,7 +43,8 @@ public class CorpController {
 	private CorpService corpService;
 	@Autowired
 	private AppService appService;
-	
+	@Autowired
+	private CorpImageService corpImageService;
 	
 	
 //	@RequestMapping("/index")
@@ -62,6 +63,7 @@ public class CorpController {
 		return forward_path;
 		
 	}
+	
 	
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpId") String corpId,Model model) throws Exception {
@@ -158,6 +160,10 @@ public class CorpController {
 		return "dashboard-applicants";
 	}
 	
+	@RequestMapping("/remove_corp_image")
+	public void remove_corp_image(@ModelAttribute CorpImage corpImage) {
+		corpImageService.deleteCorpImageBySEQ(corpImage.getCorpImageSeq());
+	}
 	
 //	@ExceptionHandler(Exception.class)
 //	public String corp_exception_handler(Exception e) {
