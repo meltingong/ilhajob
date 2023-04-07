@@ -24,10 +24,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.ilhajob.app.App;
 import com.itwill.ilhajob.app.AppService;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corpimage.CorpImage;
 import com.itwill.ilhajob.corpimage.CorpImageService;
+import com.itwill.ilhajob.cv.Cv;
 import com.itwill.ilhajob.recruit.Recruit;
 import com.itwill.ilhajob.recruit.RecruitService;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
@@ -43,6 +45,8 @@ public class CorpController {
 	private CorpService corpService;
 	@Autowired
 	private AppService appService;
+	@Autowired
+	private RecruitService recruitService;
 	
 	
 	
@@ -152,9 +156,21 @@ public class CorpController {
 		return "dashboard-manage-job";
 	}
 	
+	
 	@RequestMapping("/dashboard-applicants")
-	public String corp_dashboard_applicants() {
-		return "dashboard-applicants";
+	public String corp_dashboard_applicants(@RequestParam("rcSeq") int rcSeq, Model model) throws Exception {
+		//이력서 리스트 불러오기
+		List<Cv> cvList = appService.findCvListByRcSeq(rcSeq);
+		model.addAttribute("cvList", cvList);
+		System.out.println(cvList);
+		
+		//공고 정보 디테일도 뿌리기
+		Recruit recruit=recruitService.findRecruit(rcSeq);
+		model.addAttribute("recruit", recruit);
+		System.out.println(recruit);
+		
+		String forward_path = "dashboard-applicants";
+		return forward_path;
 	}
 	
 	
