@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.app.App;
 import com.itwill.ilhajob.app.AppService;
+import com.itwill.ilhajob.corp.Corp;
 import com.itwill.ilhajob.message.Message;
 import com.itwill.ilhajob.message.MessageService;
+import com.itwill.ilhajob.review.Review;
+import com.itwill.ilhajob.review.ReviewService;
 import com.itwill.ilhajob.user.User;
 import com.itwill.ilhajob.user.UserService;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
@@ -43,6 +47,10 @@ public class UserController {
 	private UserService userService;
 	//@Autowired
 	//private MessageService messageService;
+	
+	@Autowired
+	private ReviewService reviewService;
+	
 
 	@Autowired
 	private AppService appService;
@@ -240,7 +248,16 @@ public class UserController {
 		}
 
 	 */
-
+	
+	
+	//리뷰 작성
+	//corpSeq필요 -> delete할떄 appseq처럼 input hidden corpseq필요(redirect용)
+//	@RequestMapping("/review_write_action")
+//	public String review_write_action(@ModelAttribute Review review, RedirectAttributes redirectAttributes) throws Exception{
+	//	reviewService.insertReview(review);
+	//	redirectAttributes.addAttribute("review",review);
+	//	return "redirect:corp-detail";
+	//}
 
 	
 	

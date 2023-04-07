@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+	function submit(){
+		document.f.action = "review_write_action";
+		document.method='POST';
+		document.f.submit();
+		
+	}
 
+
+</script>
 
 <head>
   <meta charset="utf-8">
@@ -151,23 +160,23 @@
 
         <!-- Comment Form -->
         <div class="comment-form default-form">
-          <h4>댓글 등록</h4>
+          <h4>리뷰 등록</h4>
           <form>
             <div class="row clearfix">
               <div class="col-lg-6 col-md-12 col-sm-12 form-group">
                 <label>이름</label>
-                <input type="text" name="username" placeholder="Name" required>
+                <input th:value="${review?.reviewTitle}" type="text" name="reviewTitle" placeholder="Name" required>
               </div>
               <div class="col-lg-6 col-md-12 col-sm-12 form-group">
                 <label>이메일</label>
-                <input type="email" name="email" placeholder="Email" required>
+                <input th:value="${review?.reviewGrade}"  type="email" name="reviewGrade" placeholder="Email" required>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                 <label>댓글내용</label>
-                <textarea name="message" placeholder="Write Comment"></textarea>
+                <textarea th:value="${review?.reviewContent}"  name="reviewContent" placeholder="Write Comment"></textarea>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                <button class="theme-btn btn-style-one" type="submit" name="submit-form">등록하기</button>
+                <button class="theme-btn btn-style-one" type="submit" onClick="submit()" name="submit-form">등록하기</button>
               </div>
             </div>
           </form>
