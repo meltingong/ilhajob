@@ -23,7 +23,6 @@ import com.itwill.ilhajob.edu.EduService;
 import com.itwill.ilhajob.exp.Exp;
 import com.itwill.ilhajob.exp.ExpService;
 import com.itwill.ilhajob.user.User;
-import com.itwill.ilhajob.user.UserService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
 
 @Controller
@@ -39,14 +38,6 @@ public class CvController {
 	private ExpService expService;
 //	@Autowired 
 //	private AppService appService;
-	
-	/* 테스트용 매핑 - user 붙인 후 삭제할 것 */
-	/** dash board */
-//	@LoginCheck
-//	@RequestMapping("/candidate-dashboard")
-//	public String candidate_dashboard() {
-//		return "candidate-dashboard";
-//	}
 	
 	/************************* cv list *******************************/
 //	@LoginCheck
@@ -74,30 +65,16 @@ public class CvController {
 	}
 	
 	/************************* cv form *******************************/
-	/*
-	 * cv list(최신 이력서 하나 기본으로 보여주고 드롭박스로 선택 가능)
-	 * --> cvService.findCvListByUserSeq(userSeq)를 desc로 정렬 ?
-	 * cv update
-	 * awards 추가, 수정, 삭제
-	 * edu 추가, 수정, 삭제
-	 * exp crud 추가, 수정, 삭제
-	 * 선택된 cv로 apply(apply 버튼 추가함)
-	 */
-	
 	/** cv write form */
 //	@LoginCheck
 	@RequestMapping(value = "/cv-write-form")
 //	public String cv_wirte_from(HttpServletRequest request, Model model) {
 	public String cv_wirte_from(@ModelAttribute User user, Model model) {
 //		int userSeq = Integer.parseInt(request.getParameter("userSeq"));
-		/* user cv list */
-//		List<Cv> cvList = cvService.findCvListByUserSeq(user.getUserSeq());
-//		System.out.println(cvList);
-//		model.addAttribute("cvList", cvList);
 		
 		/* userSeq */
 		int userSeq = user.getUserSeq();
-		model.addAttribute(model);
+		model.addAttribute("userSeq", userSeq);
 		
 		/* eduList */
 		List<Edu> eduList = user.getEduList();
@@ -180,14 +157,12 @@ public class CvController {
 		try {
 			cvService.createCv(cv);
 			int cvSeq = cv.getCvSeq();
-			System.out.println("---------- insert cvSeq test -------- >" + cvSeq);
 			redirectAttributes.addAttribute("cvSeq", cvSeq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// 작성한 cv의 detail 페이지로 이동 체크
-//		return "redirect:cv-detail";
-		return "redirect:cv-list";
+//		새로 작성한 이력서 디테일로 가는데, 작성한 다른 이력서 리스트도 추가해줘야하나?(셀렉트옵션)
+		return "redirect:cv-detail";
 	}
 	
 	/** update_action */

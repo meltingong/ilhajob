@@ -31,7 +31,7 @@ public class SpringBootCvDaoMain {
 		
 //		System.out.println(cvDao.findCvListByUserSeq(1));
 //		System.out.println(cvDao.findCvListByUserSeq(2));
-		System.out.println(cvDao.findCvListByUserSeq(3));
+//		System.out.println(cvDao.findCvListByUserSeq(3));
 		
 //		System.out.println(awardsDao.findAwardsList());
 //		System.out.println(eduDao.selectAllEdu());
