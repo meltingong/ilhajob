@@ -8,8 +8,8 @@ import org.springframework.context.ApplicationContext;
 import com.itwill.ilhajob.cv.Cv;
 import com.itwill.ilhajob.recruit.Recruit;
 
-
-@SpringBootApplication(scanBasePackages = {"com.itwill.ilhajob.app","com.itwill.ilhajob.user"})
+@SpringBootApplication
+//@SpringBootApplication(scanBasePackages = {"com.itwill.ilhajob.app","com.itwill.ilhajob.user"})
 @MapperScan(basePackages = "com.itwill.ilhajob.app.mapper")
 public class SpringBootAppDaoMain {
 
@@ -18,6 +18,8 @@ public class SpringBootAppDaoMain {
 				SpringApplication.run(SpringBootAppDaoMain.class, args);
 		AppDao appDao=(AppDao)applicationContext.getBean(AppDao.class);
 			System.out.println("-----test----");
+			System.out.println("--findCvListByRcSeq--");
+			System.out.println(appDao.findCvListByRcSeq(2));
 		//Recruit rc = new Recruit();
 		//rc.setRcSeq(10);
 		//Cv cv = new Cv();

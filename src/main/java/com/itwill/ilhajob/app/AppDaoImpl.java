@@ -41,5 +41,13 @@ public class AppDaoImpl implements AppDao {
 		return appMapper.findAppCountByCorpId(corpId);
 	}
 	
+	//공고(a.rc_seq=2)에 지원한 사람들의 이력서 목록 불러오기
+	@Override
+	public List<App> findCvListByRcSeq(int rc_seq) {
+		return appMapper.findCvListByRcSeq(rc_seq);
+	}
+	
+	
+	
 	
 }

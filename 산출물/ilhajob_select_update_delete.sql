@@ -284,13 +284,19 @@ select count(*)cnt from recruit r
 select count(*)cnt from app a
 where a.corp_id='corp_01';
 
-/***********corp_01의 공고에 지원한 사람들의 이력서 목록 불러오기***********/
+/***********corp_01의 공고에 지원한 사람들의 이력서 목록 불러오기 1***********/
 select * from app a
 join recruit r
 on a.rc_seq=r.rc_seq  
 join cv c
 on c.cv_seq=a.cv_seq
 where a.corp_id='corp_01';
+
+/**********corp_01의 공고(rc_seq=2)에 지원한 사람들의 이력서 목록 불러오기 ->이렇게 해도 될 듯..?**********/
+select * from app a
+join cv c
+on a.cv_seq=c.cv_seq
+where a.rc_seq=2
 
 --rollback;
 

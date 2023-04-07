@@ -30,7 +30,9 @@ public class App {
 	
 	private int userSeq;
 	private String corpId;
+	private int rcSeq;
 	
+	private List<Cv> cvList;
 	
 	
 	
