@@ -68,25 +68,33 @@ public class CvController {
 	/** cv write form */
 //	@LoginCheck
 	@RequestMapping(value = "/cv-write-form")
-//	public String cv_wirte_from(HttpServletRequest request, Model model) {
-	public String cv_wirte_from(@ModelAttribute User user, Model model) {
+	public String cv_wirte_from(HttpServletRequest request, Model model) {
+//	public String cv_wirte_from(@ModelAttribute User user, Model model) {
 //		int userSeq = Integer.parseInt(request.getParameter("userSeq"));
 		
+		/* 테스트용 userSeq 세팅 */
+		request.getSession().setAttribute("userSeq", 3);
+		int userSeq = (int)request.getSession().getAttribute("userSeq");
+		
 		/* userSeq */
-		int userSeq = user.getUserSeq();
+//		int userSeq = user.getUserSeq();
 		model.addAttribute("userSeq", userSeq);
 		
 		/* eduList */
-		List<Edu> eduList = user.getEduList();
+//		List<Edu> eduList = user.getEduList();
+		List<Edu> eduList = eduService.selectEduByUserSeq(userSeq);
 		model.addAttribute("eduList", eduList);
 		
 		/* expList */
-		List<Exp> expList = user.getExpList();
+//		List<Exp> expList = user.getExpList();
+		List<Exp> expList = expService.selectByUserSeq(userSeq);
 		model.addAttribute("expList", expList);
 		
 		/* awardsList */
-		List<Awards> awardsList = user.getAwardsList();
+//		List<Awards> awardsList = user.getAwardsList();
+		List<Awards> awardsList = awardsService.findAwardsOfUser(userSeq);
 		model.addAttribute("awardsList", awardsList);
+		
 		String forwardpath = "candidate-dashboard-resume-write";
 		return forwardpath;
 	}
@@ -116,16 +124,24 @@ public class CvController {
 	/** cv detail param(cvSeq) 있을 때 */
 //	@LoginCheck
 	@RequestMapping(value = "/cv-detail")
-	public String cv_detail(@ModelAttribute User user, @RequestParam int cvSeq, Model model) {
+//	public String cv_detail(@ModelAttribute User user, @RequestParam int cvSeq, Model model) {
+		public String cv_detail(HttpServletRequest request, @ModelAttribute User user, @RequestParam int cvSeq, Model model) {
 		String forwardpath = "";
+		
+		/* 테스트용 userSeq 세팅 */
+		request.getSession().setAttribute("userSeq", 3);
+		int userSeq = (int)request.getSession().getAttribute("userSeq");
+		model.addAttribute("userSeq", userSeq);
+		System.out.println(userSeq);
 		/* user cv list */
-		List<Cv> cvList = cvService.findCvListByUserSeq(user.getUserSeq());
+//		List<Cv> cvList = cvService.findCvListByUserSeq(user.getUserSeq());
+		List<Cv> cvList = cvService.findCvListByUserSeq(userSeq); // test
 		System.out.println(cvList);
 		model.addAttribute("cvList", cvList);
 		
 		/* 특정 cv detail */
 		Cv cvDetail = cvService.detailCv(cvSeq);
-		System.out.println(">>>>>>>> cv " + cvDetail);
+		model.addAttribute("cvDetail", cvDetail);
 		
 		/* eduList */
 		List<Edu> eduList = cvDetail.getEduList();
@@ -143,7 +159,7 @@ public class CvController {
 			// 어디로 보낼지 더 생각하기
 			forwardpath = "redirect:cv-list";
 		}
-		model.addAttribute("cvDetail", cvDetail);
+		
 		forwardpath = "candidate-dashboard-resume";
 		return forwardpath;
 	}
@@ -153,11 +169,16 @@ public class CvController {
 //	@LoginCheck
 //	@PostMapping(value = "/cv-write-action")
 	@RequestMapping(value = "/cv-write-action")
-	public String cv_write_action(@ModelAttribute Cv cv, RedirectAttributes redirectAttributes) {
+//	public String cv_write_action(@ModelAttribute Cv cv, @ModelAttribute List<Edu> eduList, RedirectAttributes redirectAttributes) {
+		public String cv_write_action(@ModelAttribute Cv cv, RedirectAttributes redirectAttributes) {
 		try {
 			cvService.createCv(cv);
 			int cvSeq = cv.getCvSeq();
 			redirectAttributes.addAttribute("cvSeq", cvSeq);
+//			for (Edu edu : eduList) {
+//				eduService.updateEdu(edu);
+//			}
+//			System.out.println(eduList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -168,28 +189,29 @@ public class CvController {
 	/** update_action */
 //	@LoginCheck
 //	@PostMapping(value = "/cv-update-action")
-	@GetMapping(value = "/cv-update-action")
+	@RequestMapping(value = "/cv-update-action")
 //	public String cv_update_action(HttpServletRequest request, @ModelAttribute Cv cv, @ModelAttribute List<Awards> awardsList, @ModelAttribute Edu edu, @ModelAttribute Exp exp, Model model) {
-	public String cv_update_action(HttpServletRequest request, @ModelAttribute Cv cv, Model model) {
-		try {
-//			for (Awards awards : awardsList) {
-//				List<Awards> updateAwardsList = new ArrayList<Awards>();
-//				updateAwardsList.add(awardsService.updateAwards(awards.));
-//			}
-//			Awards awards = awardsService.findAwards(awards.getAwardsSeq());
-//			eduService.updateEdu(edu);
-//			expService.updateExp(exp);
-//			cv.setAwardsList(awards);
-//			cv.setEduList(null);
-//			cv.setExpList(null);
-			int userSeq = (int)request.getSession().getAttribute("userSeq");
-//			List<Edu> eduList = eduService.selectEduByUserSeq(userSeq);
-//			model.addAttribute("eduList", eduList);
-			cvService.updateCv(cv);
-			} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:cv-list";
+	public String cv_update_action(HttpServletRequest request, @ModelAttribute Cv cv, Model model, RedirectAttributes redirectAttributes) {
+//		for (Awards awards : awardsList) {
+//			List<Awards> updateAwardsList = new ArrayList<Awards>();
+//			updateAwardsList.add(awardsService.updateAwards(awards.));
+//		}
+//		Awards awards = awardsService.findAwards(awards.getAwardsSeq());
+//		eduService.updateEdu(edu);
+//		expService.updateExp(exp);
+//		cv.setAwardsList(awards);
+//		cv.setEduList(null);
+//		cv.setExpList(null);
+//		int userSeq = (int)request.getSession().getAttribute("userSeq");
+//		List<Edu> eduList = eduService.selectEduByUserSeq(userSeq);
+//		model.addAttribute("eduList", eduList);
+
+		cvService.updateCv(cv);
+		
+		int cvSeq = cv.getCvSeq();
+		redirectAttributes.addAttribute("cvSeq", cvSeq);
+		
+		return "redirect:cv-detail";
 	}
 	
 	/** delete_action */
@@ -212,7 +234,7 @@ public class CvController {
 	}
 	
 	/************** Get 방식 요청 처리
-	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete"})
+	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action"})
 	public String cv_get() {
 		// 메인 또는 cv-list로 이동
 		return "redirect:cv-list";

@@ -3,12 +3,14 @@
 <script type="text/javascript">
    function update(){
       document.f.action = "corp-update-action";
+      /*
       var yyyy_mm_dd = String(document.f.corpEst.value);
       var yyyy = yyyy_mm_dd.substring(0,4);
       var mm = yyyy_mm_dd.substring(5,7);
       var dd = yyyy_mm_dd.substring(8,10);
       console.log(yyyy+mm+dd);
       document.f.corpEst.value = new Date(yyyy+'-'+mm+'-'+dd);
+       */
       document.method="POST"
       document.f.submit();
    }
@@ -140,7 +142,7 @@
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>회사설립일</label>
-                        <input type="text" name="corpEst" th:value="${#dates.format(corp.corpEst,'yyyy-mm-dd')}">
+                        <input type="text" name="corpest" th:value="${#dates.format(corp.corpEst,'yyyy-mm-dd')}">
                       </div>
 
                       <!-- Input -->

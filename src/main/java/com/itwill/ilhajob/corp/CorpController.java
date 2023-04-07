@@ -133,14 +133,15 @@ public class CorpController {
 		return forwardPath;
 	}
 	
-	/*
+	
 	@PostMapping("/corp-update-action") //400에러 Date 변환 문제...
-	public String corp_update_action(@ModelAttribute Corp corp) throws Exception {
-		
+	public String corp_update_action(@ModelAttribute Corp corp,Model model) throws Exception {
+		corp.setCorpEst(new Date());
 		corpService.update(corp);
-		return "redirect:corp-detail";
+		model.addAttribute("corpId",corp.getCorpId());
+		return "corp-detail";
 	}
-	*/
+	
 	
 	@RequestMapping("/dashboard-manage-job")
 	public String corp_dashboard_manage_job(HttpServletRequest request ,Model model)throws Exception{
