@@ -66,8 +66,8 @@
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>이력서 선택</label>
-                        <!-- <<< 수정필 >>> : onchange() -> 해당 cvSeq로 전환 해당하는 데이터 비동기로 뿌려주기 -->
-                        <select class="chosen-select" onchange="">
+                        <!-- <<< 수정필 >>> : onclick="changeCv()" -->
+                        <select class="chosen-select" onclick="changeCv()">
                           <option th:text="*{cvName}">My CV</option>
                           <option th:each="cv:${cvList}" th:text="${cv.cvName}" th:value="${cv.cvSeq}">My CV</option>
                         </select>
@@ -89,15 +89,15 @@
 
                       <div class="form-group col-lg-12 col-md-12">
                         <!-- Resume / Education -->
-                        <div class="resume-outer" th:each="edu:${eduList}">
+                        <div class="resume-outer">
                           <div class="upper-title">
                             <h4>학력</h4>
                             <button class="add-info-btn"><span class="icon flaticon-plus"></span> 학력 추가</button>
                           </div>
                           <!-- Resume BLock -->
-                          <div class="resume-block">
+                          <div class="resume-block" th:each="edu:${eduList}">
                             <div class="inner">
-                              <span class="name"></span>
+                              <span class="name">E</span>
                               <div class="title-box">
                                 <div class="info-box">
                                   <h3 th:text="${edu.eduMajor}">Bachlors in Fine Arts</h3>
@@ -132,13 +132,13 @@
                         </div>
 
                         <!-- Resume / Work & Experience -->
-                        <div class="resume-outer theme-blue" th:each="exp:${expList}">
+                        <div class="resume-outer theme-blue">
                           <div class="upper-title">
                             <h4>경력 사항</h4>
                             <button class="add-info-btn"><span class="icon flaticon-plus"></span> 경력 추가</button>
                           </div>
                           <!-- Resume BLock -->
-                          <div class="resume-block">
+                          <div class="resume-block" th:each="exp:${expList}">
                             <div class="inner">
                               <span class="name">S</span>
                               <div class="title-box">
@@ -155,33 +155,19 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
+                           <!-- Input expContent -->
+                              <div class="form-group col-lg-12 col-md-12">
+		                        <label>경력 상세</label>
+		                        <input type="text" name="name" placeholder="경력 관련 추가 정보를 입력하세요." th:value="${exp.expContent}">
+		                      </div>
                             </div>
                           </div>
 
                           <!-- Resume BLock -->
-                          <div class="resume-block">
-                            <div class="inner">
-                              <span class="name">D</span>
-                              <div class="title-box">
-                                <div class="info-box">
-                                  <h3>Sr UX Engineer</h3>
-                                  <span>Dropbox Inc.</span>
-                                </div>
-                                <div class="edit-box">
-                                  <span class="year">2012 - 2014</span>
-                                  <div class="edit-btns">
-                                    <button><span class="la la-pencil"></span></button>
-                                    <button><span class="la la-trash"></span></button>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
-                            </div>
-                          </div>
                         </div>
-                      </div>
 
+<!-- 
+		포트폴리오 파일 업로드
                       <div class="form-group col-lg-6 col-md-12">
                         <div class="uploading-outer">
                           <div class="uploadButton">
@@ -191,6 +177,7 @@
                           </div>
                         </div>
                       </div>
+ -->
 
                       <div class="form-group col-lg-12 col-md-12">
                         <!-- Resume / Awards -->
@@ -219,9 +206,7 @@
                               <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
                             </div>
                           </div>
-
-
-                          <!-- Resume BLock -->
+                          <!-- Resume BLock Start -->
                           <div class="resume-block">
                             <div class="inner">
                               <span class="name"></span>
@@ -241,6 +226,7 @@
                               <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
                             </div>
                           </div>
+                          <!-- Resume BLock End -->
                         </div>
                       </div>
 
