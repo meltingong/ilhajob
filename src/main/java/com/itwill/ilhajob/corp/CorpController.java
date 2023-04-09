@@ -3,6 +3,7 @@ package com.itwill.ilhajob.corp;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.app.App;
@@ -180,9 +182,28 @@ public class CorpController {
 		return forward_path;
 	}
 	
+	/*
 	@RequestMapping("/remove_corp_image")
 	public void remove_corp_image(@ModelAttribute CorpImage corpImage) {
 		corpImageService.deleteCorpImageBySEQ(corpImage.getCorpImageSeq());
+	}
+	*/
+	
+	@RequestMapping("/imageUpload")
+	public void insert_corp_image(@ModelAttribute CorpImage corpImage, HttpServletRequest request, 
+	                              @RequestParam("image") MultipartFile imageFile) throws Exception {
+	    // 세션에서 corpId 값을 가져와서 corpImage 객체에 설정
+	    corpImage.setCorpId((String) request.getSession().getAttribute("sUserId"));
+
+	    // 업로드된 이미지 파일을 Base64 인코딩하여 문자열로 변환
+	    String imageData = Base64.getEncoder().encodeToString(imageFile.getBytes());
+
+	    System.out.println(imageData);
+	    // corpImage 객체의 corpImage 필드에 Base64 인코딩된 문자열 저장
+	    corpImage.setCorpImage(imageData);
+
+	    // CorpImageService를 사용하여 DB에 데이터 저장
+	    corpImageService.insertCorpImage(corpImage);
 	}
 	
 //	@ExceptionHandler(Exception.class)
