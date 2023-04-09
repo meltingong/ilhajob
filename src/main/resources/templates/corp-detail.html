@@ -161,7 +161,7 @@
         <!-- Comment Form -->
         <div class="comment-form default-form">
           <h4>리뷰 등록</h4>
-          <form>
+          <form name ="f">
             <div class="row clearfix">
               <div class="col-lg-6 col-md-12 col-sm-12 form-group">
                 <label>이름</label>
@@ -176,7 +176,8 @@
                 <textarea th:value="${review?.reviewContent}"  name="reviewContent" placeholder="Write Comment"></textarea>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                <button class="theme-btn btn-style-one" type="submit" onClick="submit()" name="submit-form">등록하기</button>
+              	<input type="hidden" name="corpId" th:value="${corp.corpId}"/>
+                <button class="theme-btn btn-style-one" type="submit" onClick="submit()" th:value="${corp.corpId}" name="submit-form">등록하기</button>
               </div>
             </div>
           </form>

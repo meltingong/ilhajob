@@ -252,12 +252,13 @@ public class UserController {
 	
 	//리뷰 작성
 	//corpSeq필요 -> delete할떄 appseq처럼 input hidden corpseq필요(redirect용)
-//	@RequestMapping("/review_write_action")
-//	public String review_write_action(@ModelAttribute Review review, RedirectAttributes redirectAttributes) throws Exception{
-	//	reviewService.insertReview(review);
-	//	redirectAttributes.addAttribute("review",review);
-	//	return "redirect:corp-detail";
-	//}
+	@RequestMapping("/review_write_action")
+	public String review_write_action(@ModelAttribute Review review, @RequestParam("corpId") String corpId, RedirectAttributes redirectAttributes) throws Exception{
+		reviewService.insertReview(review);
+		redirectAttributes.addAttribute("corpId",corpId);
+		String forwardPath = "redirect:corp-detail?corpId="+corpId;
+		return forwardPath;
+	}
 
 	
 	
