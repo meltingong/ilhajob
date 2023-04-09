@@ -147,32 +147,16 @@
           <div class="comment-box">
             <h4>Comment</h4>
             <!-- Comment -->
-            <div class="comment" >
+            <div th:each="review:${corp1.reviewList}" class="comment" >
               <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
               <div class="comment-info">
-                <div  class="user-name">Oscar Cafeo</div>
-                <div class="title" >Beautiful courses</div>
+                <div th:text="|Review Title: ${review.reviewTitle}|" class="user-name">Oscar Cafeo</div>
+                <div th:text="|Review Grade(5점 만점): ${review.reviewGrade} 점|" class="title" >Beautiful courses</div>
               </div>
-              <div class="text" >Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
+              <div th:text="|Review Content: ${review.reviewContent}|" class="text" >Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
             </div>
           </div>
-			
-			<!-- 왜 reviewList 안불러와지는지 확인 -->
-			    <!--  div class="auto-container">
-			    
-          <div class="comment-box">
-            <h4>Comment</h4>
-            <div th:each="review:${corp.reviewList}" class="comment" >
-              <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
-              <div class="comment-info">
-                <div th:text="${review.reviewTitle}" class="user-name">Oscar Cafeo</div>
-                <div th:text="${review.reviewGrade}" class="title" >Beautiful courses</div>
-              </div>
-              <div th:text="${review.reviewContent}" class="text" >Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
-            </div>
-          </div-->
-			
-			
+		
 
         <!-- Comment Form -->
         <div class="comment-form default-form">

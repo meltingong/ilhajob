@@ -81,8 +81,8 @@ public class CorpController {
 		model.addAttribute("corp", corp);
 		
 		//리뷰 목록 뿌리기
-		Corp reviewList= corpService.findCorpWithReviews(corpId);
-		model.addAttribute("reviewList", reviewList);
+		Corp corp1= corpService.findCorpWithReviews(corpId);
+		model.addAttribute("corp1", corp1);
 		return "corp-detail";
 		
 	}
@@ -177,7 +177,7 @@ public class CorpController {
 		model.addAttribute("cvList", cvList);
 		System.out.println(cvList);
 		
-		//공고 정보 디테일도 뿌리기
+		//공고 정보 디테일 뿌리기
 		Recruit recruit=recruitService.findRecruit(rcSeq);
 		model.addAttribute("recruit", recruit);
 		System.out.println(recruit);
