@@ -2,6 +2,7 @@ package com.itwill.ilhajob.corp;
 
 import java.text.SimpleDateFormat;
 
+
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
@@ -34,6 +35,7 @@ import com.itwill.ilhajob.corpimage.CorpImageService;
 import com.itwill.ilhajob.cv.Cv;
 import com.itwill.ilhajob.recruit.Recruit;
 import com.itwill.ilhajob.recruit.RecruitService;
+import com.itwill.ilhajob.review.Review;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
 import groovyjarjarantlr4.v4.parse.ANTLRParser.exceptionGroup_return;
@@ -74,11 +76,13 @@ public class CorpController {
 	
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpId") String corpId,Model model) throws Exception {
+		//공고 목록 뿌리기
 		Corp corp=corpService.findCorpWithRecruits(corpId);
 		model.addAttribute("corp", corp);
+		
 		//리뷰 목록 뿌리기
-		Corp corp1=corpService.findCorpWithReviews(corpId);
-		model.addAttribute("corp1", corp1);
+		Corp reviewList= corpService.findCorpWithReviews(corpId);
+		model.addAttribute("reviewList", reviewList);
 		return "corp-detail";
 		
 	}

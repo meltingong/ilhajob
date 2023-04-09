@@ -150,13 +150,29 @@
             <div class="comment" >
               <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
               <div class="comment-info">
-                <div class="user-name" >Oscar Cafeo</div>
+                <div  class="user-name">Oscar Cafeo</div>
                 <div class="title" >Beautiful courses</div>
               </div>
               <div class="text" >Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
             </div>
           </div>
-
+			
+			<!-- 왜 reviewList 안불러와지는지 확인 -->
+			    <!--  div class="auto-container">
+			    
+          <div class="comment-box">
+            <h4>Comment</h4>
+            <div th:each="recruit:${corp.recruitList}" class="comment" >
+              <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
+              <div class="comment-info">
+                <div th:text="${review.reviewTitle}" class="user-name">Oscar Cafeo</div>
+                <div th:text="${review.reviewGrade}" class="title" >Beautiful courses</div>
+              </div>
+              <div th:text="${review.reviewContent}" class="text" >Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
+            </div>
+          </div-->
+			
+			
 
         <!-- Comment Form -->
         <div class="comment-form default-form">
@@ -194,7 +210,7 @@
                 
                 
 				    <!-- Job Block 해당 기업의 리뷰 리스트 껍데기-->
-                <div class="job-block">
+                <!--  div class="job-block">
                   <div class="inner-box">
                     <div  class="content">
                       <span class="company-logo"><img src="images/resource/company-logo/1-3.png" alt=""></span>
@@ -211,7 +227,7 @@
                       <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     </div>
                   </div>
-                </div>
+                </div-->
 				
             <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
               <aside class="sidebar">
