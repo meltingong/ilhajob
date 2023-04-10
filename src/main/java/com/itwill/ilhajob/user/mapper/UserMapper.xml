@@ -21,7 +21,8 @@
 	<resultMap type="com.itwill.ilhajob.user.User" id="userWithAppListResultMap" autoMapping="true">
 		<result column="user_seq" property="userSeq"/>
 		<collection property="appList" javaType="java.util.List" ofType="com.itwill.ilhajob.app.App" autoMapping="true" >
-			<association property="rc" javaType="com.itwill.ilhajob.recruit.Recruit" column="rc_seq" autoMapping="true"/>
+			<association property="rc" javaType="com.itwill.ilhajob.recruit.Recruit" column="rc_seq" autoMapping="true">
+			</association>
 		</collection>
 	</resultMap>
 	<select id="findAppByUserSeq" parameterType="java.lang.Integer" 

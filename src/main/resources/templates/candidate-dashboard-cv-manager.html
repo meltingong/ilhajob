@@ -18,10 +18,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+
 </head>
 
 <body>
-
   <div class="page-wrapper dashboard">
 
     <!-- Preloader -->
@@ -47,18 +47,22 @@
     <section class="user-dashboard">
       <div class="dashboard-outer">
         <div class="upper-title-box">
-          <h3>Cv Manager</h3>
+          <h3>나의 이력서 목록</h3>
           <div class="text">Ready to jump back in?</div>
         </div>
         <div class="row">
+
+
 
           <div class="col-lg-12">
             <!-- CV Manager Widget -->
             <div class="cv-manager-widget ls-widget">
               <div class="widget-title">
-                <h4>Cv Manager</h4>
+                <h4>이력서 관리</h4>
               </div>
               <div class="widget-content">
+                
+                <!-- 
                 <div class="uploading-resume">
                   <div class="uploadButton">
                     <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload" multiple />
@@ -70,33 +74,25 @@
                     <span class="uploadButton-file-name"></span>
                   </div>
                 </div>
+                 -->
 
-                <div class="files-outer">
-                  <div class="file-edit-box">
-                    <span class="title">Sample CV</span>
+		<!-- form start -->
+		<form name="f">
+			<!-- cv list -->
+                <div class="files-outer" >
+                  <div class="file-edit-box" th:each="cv:${cvList}">
+                    <span class="title" th:text="${cv.cvName}">Sample CV</span>
                     <div class="edit-btns">
-                      <button><span class="la la-pencil"></span></button>
-                      <button><span class="la la-trash"></span></button>
+                  	<input type="hidden" name="cvSeq" th:value="${cv.cvSeq}"/>
+                      <a th:href="@{cv-detail(cvSeq=${cv.cvSeq})}"><button type="button" th:value="${cv.cvSeq}"><span class="la la-pencil"></span></button></a>
+                      <!-- <button type="button" name="detail" th:value="${cv.cvSeq}" onclick="detail()"><span class="la la-pencil"></span></button> -->
+                      <button type="button" onclick="cvDelete()" th:value="${cv.cvSeq}"><span class="la la-trash"></span></button>
                     </div>
                   </div>
-
-                  <div class="file-edit-box">
-                    <span class="title">Sample CV</span>
-                    <div class="edit-btns">
-                      <button><span class="la la-pencil"></span></button>
-                      <button><span class="la la-trash"></span></button>
-                    </div>
-                  </div>
-
-                  <div class="file-edit-box">
-                    <span class="title">Sample CV</span>
-                    <div class="edit-btns">
-                      <button><span class="la la-pencil"></span></button>
-                      <button><span class="la la-trash"></span></button>
-                    </div>
-                  </div>
-                </div>
               </div>
+			<!-- cv list -->
+		</form>
+		<!-- form start -->
             </div>
           </div>
         </div>
@@ -128,6 +124,7 @@
   <script src="js/wow.js"></script>
   <script src="js/knob.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/cv.js"></script>
 </body>
 
 </html>

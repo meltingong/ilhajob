@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwill.ilhajob.app.mapper.AppMapper;
 import com.itwill.ilhajob.corp.mapper.CorpMapper;
+import com.itwill.ilhajob.cv.Cv;
 
 @Repository
 public class AppDaoImpl implements AppDao {
@@ -34,5 +35,20 @@ public class AppDaoImpl implements AppDao {
 	public int deleteApp(int appSeq) {
 		return appMapper.deleteApp(appSeq);
 	}
-
+	
+	//CorpId로 지원자 수 반환받기
+	@Override
+	public int findAppCountByCorpId(String corpId) {
+		return appMapper.findAppCountByCorpId(corpId);
+	}
+	
+	//공고(a.rc_seq=2)에 지원한 사람들의 이력서 목록 불러오기
+	@Override
+	public List<Cv> findCvListByRcSeq(int rcSeq) {
+		return appMapper.findCvListByRcSeq(rcSeq);
+	}
+	
+	
+	
+	
 }

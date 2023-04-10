@@ -3,25 +3,34 @@ package com.itwill.ilhajob.corp;
 import java.util.Date;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.itwill.ilhajob.app.App;
+import com.itwill.ilhajob.app.AppDao;
+import com.itwill.ilhajob.app.AppService;
+import com.itwill.ilhajob.app.mapper.AppMapper;
 import com.itwill.ilhajob.corp.mapper.CorpMapper;
 import com.itwill.ilhajob.product.Product;
 import com.itwill.ilhajob.recruit.Recruit;
+import com.itwill.ilhajob.recruit.RecruitDao;
+import com.itwill.ilhajob.recruit.RecruitService;
 
 
-@SpringBootApplication
-@MapperScan(basePackages = {"com.itwill.ilhajob.corp.mapper","com.itwill.ilhajob.product.mapper","com.itwill.ilhajob.recruit.mapper" })
-//@MapperScan(basePackageClasses = {CorpMapper.class, Product.class, Recruit.class})
+//@SpringBootApplication(scanBasePackages = {"com.itwill.ilhajob.corp","com.itwill.ilhajob.recruit","com.itwill.ilhajob.app"})
+@SpringBootApplication(scanBasePackageClasses = {Corp.class, Recruit.class, App.class})
+@MapperScan(basePackages = {"com.itwill.ilhajob.corp.mapper", "com.itwill.ilhajob.product.mapper","com.itwill.ilhajob.recruit.mapper"})
 public class SpringBootCorpDaoMain {
 	public static void main(String[] args) throws Exception {
 		ApplicationContext appicationContext=
 				SpringApplication.run(SpringBootCorpDaoMain.class, args);
 		
 		CorpDao corpDao=(CorpDao)appicationContext.getBean(CorpDao.class);
+		AppService appService=(AppService)appicationContext.getBean(AppService.class);
+		RecruitService recruitService  = (RecruitService)appicationContext.getBean(RecruitService.class);
 		/*
 		System.out.println("---------findTutorByIdWithCourses------------------");
 		System.out.println(corpDao.selectAll());
@@ -36,7 +45,11 @@ public class SpringBootCorpDaoMain {
 		
 		
 		System.out.println("---------findCorpByIdWithRecruit------------------");
-		System.out.println(corpDao.findCorpByIdWithRecruit("corp_01"));
+		//System.out.println(corpDao.findCorpByIdWithRecruit("corp_01"));
+		//System.out.println(recruitDao.findAllWithCorp());
+		//System.out.println(appService.findAppCountByCorpId("corp_01"));
+		//System.out.println(appService.findAppCountByCorpId("corp_02"));
+		System.out.println(recruitService.findRecruit(1));
 		
 //		System.out.println("------------insertCorp---------------");
 //		System.out.println(corpDao.insertCorp(
@@ -88,5 +101,7 @@ public class SpringBootCorpDaoMain {
 //		System.out.println(corpDao.findCorpByIdWithReview("corp_01"));
 
 	}
+	
+	
 
 }
