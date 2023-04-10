@@ -19,6 +19,21 @@
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 </head>
+ 
+	 <script>
+	 $(document).on('click','#search-button',function(){
+				var query = $("#query").val();
+				$.ajax({
+					type: "POST",
+					url: "/search",
+					data: {query: query},
+					success: function(resultMap) {
+						var corpList = resultMap.corpList;
+						console.log(corpList)
+					}
+				});
+			});
+	</script>
 
 <body>
 
@@ -72,7 +87,7 @@
                   <option value="107">소프트웨어 하드웨어</option>
                 </select>
               </div>
-			 
+			
 			  
               <!-- Form Group -->
               <div class="form-group col-lg-2 col-md-12 col-sm-12 text-right">
