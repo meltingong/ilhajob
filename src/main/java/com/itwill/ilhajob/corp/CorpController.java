@@ -201,8 +201,8 @@ public class CorpController {
 		corpImageService.deleteCorpImageBySEQ(corpImage.getCorpImageSeq());
 	}
 	*/
-	
-	@RequestMapping("/imageUpload")
+	@ResponseBody
+	@PostMapping("/imageUpload")
 	public void insert_corp_image(@ModelAttribute CorpImage corpImage, HttpServletRequest request, 
 	                              @RequestParam("image") MultipartFile imageFile) throws Exception {
 	    // 세션에서 corpId 값을 가져와서 corpImage 객체에 설정
@@ -220,6 +220,7 @@ public class CorpController {
 
 	    // CorpImageService를 사용하여 DB에 데이터 저장
 	 //   corpImageService.insertCorpImage(corpImage);
+	    
 	}
 //	
 //	@ExceptionHandler(Exception.class)
