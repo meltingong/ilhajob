@@ -196,33 +196,22 @@ public class CorpController {
 		return forward_path;
 	}
 	
-	/* 검색기능(미완)
-	private ArrayList<String> data;
-	//코프 검색리스트
-	public CorpController() throws Exception {
-		for (Corp corp : corpService.findCorpAll()) {
-			data.add(corp.getCorpName()); 
-		}
-	}
+	//검색기능
+    @GetMapping("/search")
+    public String searchCorp() {
+        return "search";
+    }
 	
-	 @RequestMapping(value = "/search", method = RequestMethod.GET)
-	 public String showSearchForm(Model model) {
-	        model.addAttribute("searchQuery", "");
-	        return "search";
+	 @PostMapping("/search")
+	public String searchCorp(@RequestParam("query") String query, Model model) throws Exception {
+
+	      // 상품 검색 서비스 호출
+	      List<Corp> searchResults = corpService.searchCorpList(query);
+	      
+	      model.addAttribute("corpList",searchResults);
+	      // 결과 페이지를 반환
+	      return "corpList";
 	    }
-	
-	 @RequestMapping(value = "/search", method = RequestMethod.POST)
-	 public ArrayList<String> handlerRequest(HttpServletRequest request, Model model) {
-		 String query = request.getParameter("query");
-		 ArrayList<String> result =new ArrayList<String>();
-		 for(String item: data) {
-			 if(item.toLowerCase().contains(query.toLowerCase())) {
-				 result.add(item);
-			 }
-		 }
-		return result;
-	 }
-	 */
 	
 	
 	/*
