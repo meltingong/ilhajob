@@ -72,3 +72,40 @@ function cvDelete() {
 function apply() {
 	
 }
+
+
+/** cv ajax send */
+function dataSend() {};
+
+function addEdu() {
+
+}
+
+
+function deleteEdu(eduSeq) {
+	document.f.value=eduSeq;
+	$('#eduSeq'+eduSeq).value=eduSeq;
+	console.log(document.f.value);
+	console.log(">>>>"+$('#eduSeq'+eduSeq).value);
+	document.f.action = "info-delete-action";
+	document.f.method='POST';
+	document.f.submit();
+}
+
+function deleteExp() {
+	document.f.action = "exp-delete-action";
+	document.f.method='GET';
+	document.f.submit();
+}
+
+function apply() {
+	document.f.action = "cv-apply-action";
+	document.f.method='POST';
+	document.f.submit();
+}
+
+function changeCv() {
+	document.f.action = "cv-detail";
+	document.f.method='GET';
+	document.f.submit();
+}

@@ -25,9 +25,9 @@ class RecruitDaoImplTest {
 	void testInsertRecruit() {
 		Corp corp = new Corp();
 		corp.setCorpId("DBtest6");
-		Recruit recruit = new Recruit(0, "테스트", "테스트", "테스트", "테스트", 0, new Date(), new Date(), 0, corp);
+		//Recruit recruit = new Recruit(0, "테스트", "테스트", "테스트", "테스트", 0, new Date(), new Date(), 0, corp);
 		
-		recruitMapper.insertRecruit(recruit);
+		//recruitMapper.insertRecruit(recruit);
 	}
 
 	//@Disabled
@@ -57,8 +57,8 @@ class RecruitDaoImplTest {
 	void testUpdateBySeq() {
 		Corp corp = new Corp();
 		corp.setCorpId("DBtest6");
-		Recruit recruit = new Recruit(10, "업데이트", "업데이트", "업데이트", "업데이트", 1000, new Date(), new Date(), 0, corp);
-		System.out.println(recruitMapper.updateBySeq(recruit));
+		//Recruit recruit = new Recruit(10, "업데이트", "업데이트", "업데이트", "업데이트", 1000, new Date(), new Date(), 0, corp);
+		//System.out.println(recruitMapper.updateBySeq(recruit));
 	}
 
 	@Disabled

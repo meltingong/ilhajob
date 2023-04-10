@@ -15,24 +15,35 @@
       document.f.submit();
    }
    
+   //이미지 업로드 
+/*
+
    $(document).ready(function() {
-	   $(".deleteButton").on("click", function() {
-	     var corpImageSeq = $(this).data("CorpImage");
+	   $('#upload-button').click(function(event) {
+	     //event.preventDefault(); // 폼 제출 동작 중지
+
+	     var formData = new FormData();
+	     var imageFile = $('#upload')[0].files[0]; // 파일 업로드 필드에서 이미지 파일 가져오기
+	     formData.append('image', imageFile); // FormData 객체에 이미지 파일 추가
+
 	     $.ajax({
-	       type: "POST",
-	       url: "/remove_corp_image",
-	       data: { CorpImage: CorpImage },
-	       success: function(result) {
-	         // 삭제 성공 시, 화면을 업데이트합니다.
-	         location.reload();
+	       url: '/imageUpload', // 업로드를 처리할 서버 URL
+	       method: 'POST',
+	       data: formData,
+	       contentType: false, // 서버로 데이터를 전송할 때 사용할 Content-Type 설정
+	       processData: false, // 데이터를 query string으로 변환하지 않도록 설정
+	       success: function(response) {
+	         console.log('Upload success:', response);
+	         // 업로드 완료 메시지 또는 결과를 처리하는 로직 작성
 	       },
-	       error: function() {
-	         // 삭제 실패 시, 에러 처리를 합니다.
-	         alert("삭제에 실패하였습니다.");
+	       error: function(xhr, status, error) {
+	         console.log('Upload error:', error);
+	         // 에러 처리 로직 작성
 	       }
 	     });
 	   });
 	 });
+	 */
 </script>
 <head>
   <meta charset="utf-8">
@@ -95,34 +106,32 @@
 
                 <div class="widget-content">
                 
-               <!-- 
+                <form class="image-form" name ="image-f" method="post" action="/imageUpload">
                   <div class="uploading-outer">
                     <div class="uploadButton">
                       <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload" multiple />
                       <label class="uploadButton-button ripple-effect" for="upload">회사 로고</label>
                       <span class="uploadButton-file-name"></span>
+                      <button type="submit">업로드</button>
                     </div>
                     <div class="text">Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg & .png</div>
                   </div>
--->					
+					<!--				
 					<form id="image-upload-form" method="post" enctype="multipart/form-data">
 					  <input type="file" name="image" id="image-input">
-					  <button type="submit">이미지 업로드</button>
+					  <button type="button" id="upload-button">이미지 업로드</button>
 					</form>
-                  
-
+                    -->
+					</form>
                   <form class="default-form" name ="f" method="post">
                   	<div class="uploading-outer">
                    		 <div class="uploadButton">
-                    	<ul>
-						  <li th:each="CorpImage : ${corp.corpImageList}" >
+						  <span th:each="CorpImage : ${corp.corpImageList}" >
 						    <img th:src="${CorpImage.corpImage}" />
 						    <button class="deleteButton" data-corpImageSeq="${CorpImage}">삭제</button>
-						  </li>
-						</ul>
+						  </span>
                     	</div>
                     </div>
-                    
                     
                    
                      <!--     <div th:each = "CorpImage : ${corp.corpImageList}">	

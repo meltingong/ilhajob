@@ -689,7 +689,8 @@
         $radio.closest('label').addClass('selected');
     });
 
-	// Input Upload 
+	// Input Upload
+	
     var uploadButton = {
         $button: $('.uploadButton-input'),
         $nameField: $('.uploadButton-file-name')
