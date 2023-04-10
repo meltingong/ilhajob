@@ -9,8 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -203,15 +204,17 @@ public class CorpController {
         return "search";
     }
 	
-	 @PostMapping("/search")
-	public String searchCorp(@RequestParam("query") String query, Model model) throws Exception {
-
+    //검색기능
+    @ResponseBody
+	@PostMapping("/search")
+	public Map<String, Object> searchCorp(@RequestParam("query") String query, Model model) throws Exception {
+    	Map<String, Object> resultMap = new HashMap<String,Object>();
 	      // 상품 검색 서비스 호출
 	      List<Corp> searchResults = corpService.searchCorpList(query);
 	      
-	      model.addAttribute("corpList",searchResults);
+	      resultMap.put("corpList",searchResults);
 	      // 결과 페이지를 반환
-	      return "corpList";
+	      return resultMap;
 	    }
 	
 	
