@@ -1,5 +1,8 @@
 package com.itwill.ilhajob.corp;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 
 
@@ -198,13 +201,16 @@ public class CorpController {
 	                              @RequestParam("image") MultipartFile imageFile) throws Exception {
 	    // 세션에서 corpId 값을 가져와서 corpImage 객체에 설정
 	    corpImage.setCorpId((String) request.getSession().getAttribute("sUserId"));
-
+	    String serverPath = "C:\\JAVA-DEVELOPER\\git-repository\\final-project-team1-xxx\\src\\main\\resources\\static\\images\\clients\\corp\\"; //저장할 경로
+	    byte[] bytes = imageFile.getBytes(); 
+	    Path path = Paths.get(serverPath + imageFile.getOriginalFilename()); //저장할 파일 경로 설정
+	    Files.write(path, bytes); // 파일저장
 	    // 업로드된 이미지 파일을 Base64 인코딩하여 문자열로 변환
-	    String imageData = Base64.getEncoder().encodeToString(imageFile.getBytes());
-
-	    System.out.println(imageData);
+//	    String imageData = Base64.getEncoder().encodeToString(imageFile.getBytes());
+//
+//	    System.out.println(imageData);
 	    // corpImage 객체의 corpImage 필드에 Base64 인코딩된 문자열 저장
-	    corpImage.setCorpImage(imageData);
+//	    corpImage.setCorpImage(imageData);
 
 	    // CorpImageService를 사용하여 DB에 데이터 저장
 	    corpImageService.insertCorpImage(corpImage);
