@@ -277,7 +277,7 @@ public class UserController {
 	
 	@RequestMapping("/review_delete")
 	public String review_delete(@ModelAttribute Review review, HttpServletRequest request, @RequestParam int reviewSeq,@RequestParam("corpId") String corpId) throws Exception{
-			reviewService.deleteReview(reviewSeq);
+		reviewService.deleteReview(reviewSeq);
 		return "redirect:corp-detail?corpId="+corpId;
 	}
 	

@@ -689,7 +689,8 @@
         $radio.closest('label').addClass('selected');
     });
 
-	// Input Upload 
+	// Input Upload
+	
     var uploadButton = {
         $button: $('.uploadButton-input'),
         $nameField: $('.uploadButton-file-name')
@@ -704,9 +705,6 @@
             selectedFile.push($button.get(0).files[i].name + '<br>');
         }
         uploadButton.$nameField.html(selectedFile);
-        uploadButton.$button.action = "imageUpload";
-        uploadButton.$button.method = "POST";
-        uploadButton.$button.submit();
     }
 
 	//Header Search

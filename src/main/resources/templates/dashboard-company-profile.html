@@ -17,6 +17,7 @@
    
    //이미지 업로드 
 /*
+
    $(document).ready(function() {
 	   $('#upload-button').click(function(event) {
 	     //event.preventDefault(); // 폼 제출 동작 중지
@@ -105,7 +106,10 @@
 
                 <div class="widget-content">
                 
+<<<<<<< HEAD
+=======
                 <form class="image-form" name ="image-f" method="post" action="/imageUpload">
+>>>>>>> branch 'master' of https://github.com/2022-11-JAVA-DEVELOPER/final-project-team1-xxx.git
                   <div class="uploading-outer">
                     <div class="uploadButton">
                       <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload" multiple />
@@ -115,7 +119,6 @@
                     </div>
                     <div class="text">Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg & .png</div>
                   </div>
-                 </form>
 					<!--				
 					<form id="image-upload-form" method="post" enctype="multipart/form-data">
 					  <input type="file" name="image" id="image-input">
@@ -128,12 +131,10 @@
                   <form class="default-form" name ="f" method="post">
                   	<div class="uploading-outer">
                    		 <div class="uploadButton">
-                    	<ul>
-						  <li th:each="CorpImage : ${corp.corpImageList}" >
+						  <span th:each="CorpImage : ${corp.corpImageList}" >
 						    <img th:src="${CorpImage.corpImage}" />
 						    <button class="deleteButton" data-corpImageSeq="${CorpImage}">삭제</button>
-						  </li>
-						</ul>
+						  </span>
                     	</div>
                     </div>
                     

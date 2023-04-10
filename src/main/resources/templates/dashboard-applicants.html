@@ -101,11 +101,11 @@
                             <div  class="inner-box">
                               <div class="content">
                                 <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
-                                <h4 class="name" ><a href="#">Darlene Robertson</a></h4>
+                                <h4 th:text="${cv.cvName}" class="name" ><a href="#">Darlene Robertson</a></h4>
                                 <ul class="candidate-info">
-                                  <li class="designation">UI Designer</li>
-                                  <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                  <li><span class="icon flaticon-money"></span> $99 / hour</li>
+                                  <li th:text="|UserNo= ${cv.userSeq}|" class="designation">UI Designer</li>
+                                  <li class="icon flaticon-map-locator"><span th:text="|Description= ${cv.cvDescription}|">London, UK</span></li>
+                                  <li class="icon flaticon-money"><span th:text="|Portfoloi= ${cv.cvPortfolio}|" >$99 / hour</span></li>
                                 </ul>
                                 <ul class="post-tags">
                                   <li><a href="#">App</a></li>
