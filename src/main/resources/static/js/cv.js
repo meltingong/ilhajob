@@ -81,16 +81,15 @@ function addEdu() {
 
 }
 
-
 function deleteEdu(eduSeq) {
-	document.f.value=eduSeq;
-	$('#eduSeq'+eduSeq).value=eduSeq;
-	console.log(document.f.value);
-	console.log(">>>>"+$('#eduSeq'+eduSeq).value);
+	$('#eduSeq'+eduSeq).val(eduSeq);
+	console.log($('#eduSeq'+eduSeq).attr('value'));
+	console.log($('.default-form').serialize());
 	document.f.action = "info-delete-action";
 	document.f.method='POST';
 	document.f.submit();
 }
+
 
 function deleteExp() {
 	document.f.action = "exp-delete-action";

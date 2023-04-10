@@ -35,13 +35,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itwill.ilhajob.app.App;
 import com.itwill.ilhajob.app.AppService;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
-<<<<<<< HEAD
-import com.itwill.ilhajob.corp.CorpService;
-=======
+
 import com.itwill.ilhajob.corpimage.CorpImage;
 import com.itwill.ilhajob.corpimage.CorpImageService;
 import com.itwill.ilhajob.cv.Cv;
->>>>>>> branch 'master' of https://github.com/2022-11-JAVA-DEVELOPER/final-project-team1-xxx.git
 import com.itwill.ilhajob.recruit.Recruit;
 import com.itwill.ilhajob.recruit.RecruitService;
 import com.itwill.ilhajob.review.Review;
