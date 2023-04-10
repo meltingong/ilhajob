@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.naming.factory.webservices.ServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -156,7 +157,7 @@ public class CorpController {
 	
 	
 	@RequestMapping("/dashboard-manage-job")
-	public String corp_dashboard_manage_job(HttpServletRequest request ,Model model)throws Exception{
+	public String corp_dashboard_manage_job(HttpServletRequest request ,Model model /*,@RequestParam("date")@DateTimeFormat(pattern = "yyyy-MM-dd") Date rcDeadLine*/)throws Exception{
 		String sCorpId = (String)request.getSession().getAttribute("sCorpId");
 		Corp corp=corpService.findCorpWithRecruits(sCorpId);
 		model.addAttribute("corp", corp);
@@ -166,7 +167,12 @@ public class CorpController {
 		System.out.println(appCount);
 		model.addAttribute("appCount", appCount);
 		
-		return "dashboard-manage-job";
+		//공고 마감, 진행상태 보여주기->안됨...다시 하는 중
+//		String recruitDeadLine=recruitService.getStatus(rcDeadLine);
+//		model.addAttribute("recruitDeadLine", recruitDeadLine);
+		
+		String forward_path = "dashboard-manage-job";
+		return forward_path;
 	}
 	
 	
@@ -193,23 +199,23 @@ public class CorpController {
 	}
 	*/
 	
-	@RequestMapping("/imageUpload")
-	public void insert_corp_image(@ModelAttribute CorpImage corpImage, HttpServletRequest request, 
-	                              @RequestParam("image") MultipartFile imageFile) throws Exception {
-	    // 세션에서 corpId 값을 가져와서 corpImage 객체에 설정
-	    corpImage.setCorpId((String) request.getSession().getAttribute("sUserId"));
-
-	    // 업로드된 이미지 파일을 Base64 인코딩하여 문자열로 변환
-	    String imageData = Base64.getEncoder().encodeToString(imageFile.getBytes());
-
-	    System.out.println(imageData);
-	    // corpImage 객체의 corpImage 필드에 Base64 인코딩된 문자열 저장
-	    corpImage.setCorpImage(imageData);
-
-	    // CorpImageService를 사용하여 DB에 데이터 저장
-	    corpImageService.insertCorpImage(corpImage);
-	}
-	
+//	@RequestMapping("/imageUpload")
+//	public void insert_corp_image(@ModelAttribute CorpImage corpImage, HttpServletRequest request, 
+//	                              @RequestParam("image") MultipartFile imageFile) throws Exception {
+//	    // 세션에서 corpId 값을 가져와서 corpImage 객체에 설정
+//	    corpImage.setCorpId((String) request.getSession().getAttribute("sUserId"));
+//
+//	    // 업로드된 이미지 파일을 Base64 인코딩하여 문자열로 변환
+//	    String imageData = Base64.getEncoder().encodeToString(imageFile.getBytes());
+//
+//	    System.out.println(imageData);
+//	    // corpImage 객체의 corpImage 필드에 Base64 인코딩된 문자열 저장
+//	    corpImage.setCorpImage(imageData);
+//
+//	    // CorpImageService를 사용하여 DB에 데이터 저장
+//	    corpImageService.insertCorpImage(corpImage);
+//	}
+//	
 //	@ExceptionHandler(Exception.class)
 //	public String corp_exception_handler(Exception e) {
 //		System.out.println("에러..");
