@@ -277,7 +277,13 @@ public class UserController {
 	
 	@RequestMapping("/review_delete")
 	public String review_delete(@ModelAttribute Review review, HttpServletRequest request, @RequestParam int reviewSeq,@RequestParam("corpId") String corpId) throws Exception{
-			reviewService.deleteReview(reviewSeq);
+		request.getSession().setAttribute("sUserId", "test3@test.com");
+		request.getSession().setAttribute("loginUserSeq", 3);
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		User loginUser = userService.findUser(sUserId);
+		review.setUserSeq(loginUser.getUserSeq());
+		request.setAttribute("loginUser", loginUser);
+		reviewService.deleteReview(reviewSeq);
 		return "redirect:corp-detail?corpId="+corpId;
 	}
 	
