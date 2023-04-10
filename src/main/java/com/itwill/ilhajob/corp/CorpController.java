@@ -196,7 +196,7 @@ public class CorpController {
 		return forward_path;
 	}
 	
-	
+	/* 검색기능(미완)
 	private ArrayList<String> data;
 	//코프 검색리스트
 	public CorpController() throws Exception {
@@ -222,7 +222,9 @@ public class CorpController {
 		 }
 		return result;
 	 }
-	 
+	 */
+	
+	
 	/*
 	@RequestMapping("/remove_corp_image")
 	public void remove_corp_image(@ModelAttribute CorpImage corpImage) {
