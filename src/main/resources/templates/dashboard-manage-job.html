@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+	function deadLine(){
+		var deadLine=new Date(document.getElementById(deadLine).value);
+		var now=new Date();
+		if(deadLine<now){
+			document.getElementById("status").innerHTML="마감";
+		}
+			document.getElementById("status").innerHTML="진행중"
+		
+	}
+		window.onload=deadLine();
+		
+
+</script>
+
+
 
 <head>
   <meta charset="utf-8">

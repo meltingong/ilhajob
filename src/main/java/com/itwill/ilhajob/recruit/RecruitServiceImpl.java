@@ -57,12 +57,13 @@ public class RecruitServiceImpl implements RecruitService {
 		return recruitDao.findBySeq(rcSeq);
 	}
 	
-//	//마감일 됐는지 여부 확인
+	//마감일 됐는지 여부 확인
 //	@Override
 //	public boolean isDeadLine(Date rcDeadline) throws Exception {
 //		Date now=new Date();
 //		return now.after(rcDeadline);
 //	}
+	
 //	//마감일 설정
 //	@Override
 //	public Date addDay(Date date, int day) throws Exception {
@@ -70,6 +71,9 @@ public class RecruitServiceImpl implements RecruitService {
 //		time+=day*24*60*60*1000;
 //		return new Date(time);
 //	}
+	
+	
+	
 	//마감일 
 	@Override
 	public String getStatus(Date rcDeadLine) throws Exception {
