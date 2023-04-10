@@ -83,8 +83,9 @@ function addEdu() {
 
 
 function deleteEdu() {
+	console.log("ccccccc" + document.f.deleteEduBtn.value)
 	document.f.action = "info-delete-action";
-	document.f.method='POST';
+	document.f.method='GET';
 	document.f.submit();
 }
 

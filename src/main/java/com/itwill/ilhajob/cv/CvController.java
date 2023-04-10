@@ -248,12 +248,6 @@ public class CvController {
 	 **************/
 	
 	
-	
-	
-	
-	
-	
-	
 
 	/** << ajax >> edu_write_action */
 //	@LoginCheck
@@ -270,22 +264,6 @@ public class CvController {
 	public String cv_info_delete_action(HttpServletRequest request, @RequestParam("eduSeq") int eduSeq, Model model, RedirectAttributes redirectAttributes) {
 		System.out.println(eduSeq);
 		eduService.deleteEduByEduSeq(eduSeq);
-		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		if(model.getClass() == Edu.class) {
-//			System.out.println(model.getClass());
-//			int eduSeq = (int)request.getSession().getAttribute("eduSeq");
-//			System.out.println(eduSeq);
-//			eduService.deleteEduByEduSeq(eduSeq);
-//		} else if(model.getClass() == Exp.class) {
-//			System.out.println(model.getClass());
-//			int expSeq = (int)request.getSession().getAttribute("expSeq");
-//			expService.deleteExp(expSeq);
-//		} else if(model.getClass() == Awards.class) {
-//			System.out.println(model.getClass());
-//			int awardsSeq = (int)request.getSession().getAttribute("awardsSeq");
-//			awardsService.removeAwardsBySeq(awardsSeq);
-//		}
 		
 		int userSeq = (int)request.getSession().getAttribute("userSeq");
 		int cvSeq = cvService.findCvListByUserSeq(userSeq).get(2).getCvSeq();

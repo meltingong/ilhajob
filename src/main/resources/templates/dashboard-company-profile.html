@@ -14,12 +14,15 @@
       document.method="POST"
       document.f.submit();
    }
+   
+   //이미지 업로드 
+/*
    $(document).ready(function() {
 	   $('#upload-button').click(function(event) {
-	     event.preventDefault(); // 폼 제출 동작 중지
+	     //event.preventDefault(); // 폼 제출 동작 중지
 
 	     var formData = new FormData();
-	     var imageFile = $('#image-input')[0].files[0]; // 파일 업로드 필드에서 이미지 파일 가져오기
+	     var imageFile = $('#upload')[0].files[0]; // 파일 업로드 필드에서 이미지 파일 가져오기
 	     formData.append('image', imageFile); // FormData 객체에 이미지 파일 추가
 
 	     $.ajax({
@@ -39,6 +42,7 @@
 	     });
 	   });
 	 });
+	 */
 </script>
 <head>
   <meta charset="utf-8">
@@ -101,22 +105,25 @@
 
                 <div class="widget-content">
                 
-               <!-- 
+                <form class="image-form" name ="image-f" method="post" action="/imageUpload">
                   <div class="uploading-outer">
                     <div class="uploadButton">
                       <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload" multiple />
                       <label class="uploadButton-button ripple-effect" for="upload">회사 로고</label>
                       <span class="uploadButton-file-name"></span>
+                      <button type="submit">업로드</button>
                     </div>
                     <div class="text">Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg & .png</div>
                   </div>
-					-->					
+                 </form>
+					<!--				
 					<form id="image-upload-form" method="post" enctype="multipart/form-data">
 					  <input type="file" name="image" id="image-input">
 					  <button type="button" id="upload-button">이미지 업로드</button>
 					</form>
 
                   
+                    -->
 
                   <form class="default-form" name ="f" method="post">
                   	<div class="uploading-outer">
@@ -129,7 +136,6 @@
 						</ul>
                     	</div>
                     </div>
-                    
                     
                    
                      <!--     <div th:each = "CorpImage : ${corp.corpImageList}">	
