@@ -100,9 +100,9 @@
                             <button class="add-info-btn" onclick="addEdu()"><span class="icon flaticon-plus"></span> 학력 추가</button>
                           </div>
                           <!-- Resume BLock -->
-                          <div class="resume-block" th:object="${eduList}">
+                          <div class="resume-block" th:each="edu:${eduList}" th:object="${eduList}">
                         <!-- <input type="hidden" name="eduSeq" th:value="${eduSeq}"/> -->
-                            <div class="inner" th:each="edu:${eduList}">
+                            <div class="inner">
                               <span class="name">E</span>
                               <div class="title-box">
                                 <div class="info-box">
@@ -118,8 +118,9 @@
 								<span class="year" th:text="${edu.eduEndDate}">2012 - 2014</span>
                                   <div class="edit-btns">
                                   <!-- 버튼 클릭 펑션 추가필 -->
+     	                             <input type="hidden" name="eduSeq" th:value="${edu.eduSeq}"/>
                                     <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
-                                    <button type="button" onclick="deleteEdu()" th:value="${edu.eduSeq}"><span class="la la-trash"></span></button>
+                                    <button name="deleteEduBtn" type="button" onclick="deleteEdu()" th:value="${edu.eduSeq}"><span class="la la-trash"></span></button>
                                   </div>
                                 </div>
                               </div>
