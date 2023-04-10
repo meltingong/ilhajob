@@ -152,7 +152,6 @@
                  <!-- Comments area -->
          <div class="auto-container">
           <!-- Comment Box -->
-          <form name="d">
           <div class="comment-box">
             <h4>Comment</h4>
             <!-- Comment -->
@@ -163,12 +162,13 @@
                 <div th:text="|Review Grade(5점 만점): ${review.reviewGrade} 점|" class="title" >Beautiful courses</div>
               </div>
               <div th:text="|Review Content: ${review.reviewContent}|" class="text" >Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
+          <form name="d">
             	 <input type="hidden" name="reviewSeq" th:value="${review.reviewSeq}"/>
             	 <input th:value="${review.corpId}" type="hidden" name="corpId" /> 
             	 <li><button data-text="Delete Aplication" onclick="reviewDelete()" th:value="${review.reviewSeq}"><span class="la la-trash"></span></button></li>
+		</form>
             </div>
           </div>
-		</form>
 
         <!-- Comment Form -->
         <div class="comment-form default-form">

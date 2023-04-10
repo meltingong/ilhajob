@@ -219,7 +219,7 @@ public class CorpController {
 //	    corpImage.setCorpImage(imageData);
 
 	    // CorpImageService를 사용하여 DB에 데이터 저장
-	    corpImageService.insertCorpImage(corpImage);
+	 //   corpImageService.insertCorpImage(corpImage);
 	}
 //	
 //	@ExceptionHandler(Exception.class)
