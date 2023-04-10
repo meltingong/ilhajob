@@ -82,7 +82,11 @@ function addEdu() {
 }
 
 
-function deleteEdu() {
+function deleteEdu(eduSeq) {
+	document.f.value=eduSeq;
+	$('#eduSeq'+eduSeq).value=eduSeq;
+	console.log(document.f.value);
+	console.log(">>>>"+$('#eduSeq'+eduSeq).value);
 	document.f.action = "info-delete-action";
 	document.f.method='POST';
 	document.f.submit();

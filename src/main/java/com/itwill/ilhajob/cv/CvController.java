@@ -265,7 +265,6 @@ public class CvController {
 	@RequestMapping(value = "/info-delete-action")
 	public String cv_info_delete_action(HttpServletRequest request, @ModelAttribute Edu edu, @RequestParam("eduSeq") int eduSeq, Model model, RedirectAttributes redirectAttributes) {
 		System.out.println("======== eduSeq : " + eduSeq);
-		System.out.println(edu);
 //		System.out.println(edu.getEduSeq());
 //		eduService.deleteEduByEduSeq(edu.getEduSeq());
 		
