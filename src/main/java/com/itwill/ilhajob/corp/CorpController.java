@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -195,6 +196,33 @@ public class CorpController {
 		return forward_path;
 	}
 	
+	
+	private ArrayList<String> data;
+	//코프 검색리스트
+	public CorpController() throws Exception {
+		for (Corp corp : corpService.findCorpAll()) {
+			data.add(corp.getCorpName()); 
+		}
+	}
+	
+	 @RequestMapping(value = "/search", method = RequestMethod.GET)
+	 public String showSearchForm(Model model) {
+	        model.addAttribute("searchQuery", "");
+	        return "search";
+	    }
+	
+	 @RequestMapping(value = "/search", method = RequestMethod.POST)
+	 public ArrayList<String> handlerRequest(HttpServletRequest request, Model model) {
+		 String query = request.getParameter("query");
+		 ArrayList<String> result =new ArrayList<String>();
+		 for(String item: data) {
+			 if(item.toLowerCase().contains(query.toLowerCase())) {
+				 result.add(item);
+			 }
+		 }
+		return result;
+	 }
+	 
 	/*
 	@RequestMapping("/remove_corp_image")
 	public void remove_corp_image(@ModelAttribute CorpImage corpImage) {

@@ -41,12 +41,12 @@
       <div class="auto-container">
         <!-- Job Search Form -->
         <div class="job-search-form">
-          <form method="post" action="job-list-v8">
+          <form method="post" action="/search">
             <div class="row">
               <!-- Form Group -->
               <div class="form-group col-lg-5 col-md-12 col-sm-12">
                 <span class="icon flaticon-search-1"></span>
-                <input type="text" name="field_name" placeholder="회사명">
+                <input type="text" name="query" id="query" placeholder="회사명">
               </div>
 
               <!-- Form Group -->
@@ -80,6 +80,9 @@
               </div>
             </div>
           </form>
+   			 <ul th:each="String item:${result}">
+            	<li th:value = "${item}"></li>
+            	</ul>
         </div>
         <!-- Job Search Form -->
 		<!--  
@@ -155,7 +158,7 @@
                   <div class="inner-box">
                     <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     <span class="featured">Featured</span>
-                    <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
+                    <span class="company-logo"><img src="images/resource/company-logo/6	-1.png" alt=""></span>
                     <h4><a th:href="@{/corp-detail(corpId=${corp.corpId})}" th:text="${corp.corpName}"></a></h4>
                     <ul class="job-info">
                       <li><span class="icon flaticon-map-locator" ></span>
@@ -163,11 +166,11 @@
                       	  </span>
                       </li>
                       <li><span class="icon flaticon-briefcase" ></span>
-                     	  <span th:text="${corp.job}">
+                     	  <span th:text="${corp.corpWelfare}">
                      	  </span>
                       </li>
                     </ul>
-                    <div class="job-type">Open Jobs – 2</div>
+                    <div class="job-type"  th:text="${corp.job}" >Open Jobs – 2</div>
                   </div>
                 </div>
               </div>
