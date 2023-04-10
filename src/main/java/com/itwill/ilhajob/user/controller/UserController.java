@@ -255,9 +255,9 @@ public class UserController {
 	@RequestMapping("/review_write_action")
 	public String review_write_action(@ModelAttribute Review review, @ModelAttribute Corp corp, Model model) throws Exception{
 		
-		reviewService.insertReview(review);
 	    model.addAttribute("review",review);
 	    model.addAttribute("corp",corp);
+	    reviewService.insertReview(review);
 		String forwardPath = "redirect:corp-detail?corpId="+corp.getCorpId();
 		return forwardPath;
 		
