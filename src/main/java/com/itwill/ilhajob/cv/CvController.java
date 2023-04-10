@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -261,9 +263,11 @@ public class CvController {
 	
 	/** 일단 동기방식으로 테스트 */
 	@RequestMapping(value = "/info-delete-action")
-	public String cv_info_delete_action(HttpServletRequest request, @RequestParam("eduSeq") int eduSeq, Model model, RedirectAttributes redirectAttributes) {
-		System.out.println(eduSeq);
-		eduService.deleteEduByEduSeq(eduSeq);
+	public String cv_info_delete_action(HttpServletRequest request, @ModelAttribute Edu edu, @RequestParam("eduSeq") int eduSeq, Model model, RedirectAttributes redirectAttributes) {
+		System.out.println("======== eduSeq : " + eduSeq);
+		System.out.println(edu);
+//		System.out.println(edu.getEduSeq());
+//		eduService.deleteEduByEduSeq(edu.getEduSeq());
 		
 		int userSeq = (int)request.getSession().getAttribute("userSeq");
 		int cvSeq = cvService.findCvListByUserSeq(userSeq).get(2).getCvSeq();
@@ -273,6 +277,12 @@ public class CvController {
 		return "redirect:cv-detail";
 	}
 	
+	@RequestMapping(value = "/exp-delete-action")
+	public String cv_exp_delete_action(HttpServletRequest request, @RequestParam int expSeq) {
+		System.out.println("############### expSeq : " + expSeq);
+		expService.deleteExp(expSeq);
+		return "redirect:cv-detail";
+	}
 	
 	
 	
