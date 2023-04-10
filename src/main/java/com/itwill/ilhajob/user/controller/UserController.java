@@ -267,6 +267,28 @@ public class UserController {
 		
 	}
 
+	/*//회원이 공고삭제하기
+	@LoginCheck
+	@RequestMapping(value = "/remove-applied-job")
+	public String remove_applied_job(HttpServletRequest request, @RequestParam int appSeq) throws Exception{
+		appService.deleteApp(appSeq);
+		return "redirect:candidate-dashboard-applied-job";
+	}*/
+	
+	@RequestMapping("/review_delete")
+	public String review_delete(@ModelAttribute Review review, HttpServletRequest request, @RequestParam int reviewSeq,@RequestParam("corpId") String corpId) throws Exception{
+			reviewService.deleteReview(reviewSeq);
+		return "redirect:corp-detail?corpId="+corpId;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	// my resume 이력서 작성 폼

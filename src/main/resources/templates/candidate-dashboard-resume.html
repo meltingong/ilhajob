@@ -69,8 +69,8 @@
                       <div class="form-group col-lg-6 col-md-12">
                         <label>이력서 선택</label>
                         <!-- <<< 수정필 >>> : onclick="changeCv()" -->
-                        <select class="chosen-select" onclick="changeCv()" name="cvSeq">
-                          <!-- <option th:text="*{cvName}">My CV</option> -->
+                        <select class="chosen-select" onchange="changeCv()" name="cvSeq">
+                          <option th:text="*{cvName}">My CV</option>
                           <option th:each="cv:${cvList}" th:text="${cv.cvName}" th:value="${cv.cvSeq}">My CV</option>
                         </select>
                       </div>
@@ -97,24 +97,30 @@
                         <div class="resume-outer">
                           <div class="upper-title">
                             <h4>학력</h4>
-                            <button class="add-info-btn"><span class="icon flaticon-plus"></span> 학력 추가</button>
+                            <button class="add-info-btn" onclick="addEdu()"><span class="icon flaticon-plus"></span> 학력 추가</button>
                           </div>
                           <!-- Resume BLock -->
-                          <div class="resume-block" th:each="edu:${eduList}">
+                          <div class="resume-block" th:each="edu:${eduList}" th:object="${eduList}">
+                        <!-- <input type="hidden" name="eduSeq" th:value="${eduSeq}"/> -->
                             <div class="inner">
                               <span class="name">E</span>
                               <div class="title-box">
                                 <div class="info-box">
+                                <input type="hidden" name="eduMajor" th:value="${edu.eduMajor}"/>
                                   <h3 th:text="${edu.eduMajor}">Bachlors in Fine Arts</h3>
-                                  <span th:text="${edu.eduName}">Modern College</span>
+                                <input type="hidden" name="eduName" th:value="${edu.eduName}"/>
+                                  <span th:text="${edu.eduName}" th:value="${edu.eduName}">Modern College</span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year" th:text="${edu.eduStartDate}">2012 - 2014</span>
-                                  <span class="year" th:text="${edu.eduEndDate}">2012 - 2014</span>
+                                <input type="hidden" name="eduStartDate" th:value="${edu.eduStartDate}"/>
+								<span class="year" th:text="${edu.eduStartDate}">2012 - 2014</span>
+								<input type="hidden" name="eduEndDate" th:value="${edu.eduEndDate}"/>
+								<span class="year" th:text="${edu.eduEndDate}">2012 - 2014</span>
                                   <div class="edit-btns">
                                   <!-- 버튼 클릭 펑션 추가필 -->
-                                    <button type="button" onclick=""><span class="la la-pencil"></span></button>
-                                    <button type="button" onclick=""><span class="la la-trash"></span></button>
+     	                             <input type="hidden" name="eduSeq" th:value="${edu.eduSeq}"/>
+                                    <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
+                                    <button name="deleteEduBtn" type="button" onclick="deleteEdu()" th:value="${edu.eduSeq}"><span class="la la-trash"></span></button>
                                   </div>
                                 </div>
                               </div>
@@ -129,7 +135,7 @@
                                <!-- Input eduContent -->
 		                      <div class="form-group col-lg-12 col-md-12">
 		                        <label>추가 정보 입력</label>
-		                        <input type="text" name="name" placeholder="학력 관련 추가 정보를 입력하세요." th:value="${edu.eduContent}">
+		                         <input type="text" name="name" placeholder="학력 관련 추가 정보를 입력하세요." th:value="${edu.eduContent}">
 		                      </div>
                               </div>
                             </div>
@@ -199,7 +205,7 @@
                                   <span></span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year" th:value="${awards.awardsDate}">2012 - 2014</span>
+                                  <span class="year" th:text="${awards.awardsDate}">2012 - 2014</span>
                                   <div class="edit-btns">
                                     <button><span class="la la-pencil" onclick=""></span></button>
                                     <button><span class="la la-trash" onclick="deleteAwards()"></span></button>

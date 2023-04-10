@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.naming.factory.webservices.ServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -159,7 +160,7 @@ public class CorpController {
 	
 	
 	@RequestMapping("/dashboard-manage-job")
-	public String corp_dashboard_manage_job(HttpServletRequest request ,Model model)throws Exception{
+	public String corp_dashboard_manage_job(HttpServletRequest request ,Model model /*,@RequestParam("date")@DateTimeFormat(pattern = "yyyy-MM-dd") Date rcDeadLine*/)throws Exception{
 		String sCorpId = (String)request.getSession().getAttribute("sCorpId");
 		Corp corp=corpService.findCorpWithRecruits(sCorpId);
 		model.addAttribute("corp", corp);
@@ -169,7 +170,12 @@ public class CorpController {
 		System.out.println(appCount);
 		model.addAttribute("appCount", appCount);
 		
-		return "dashboard-manage-job";
+		//공고 마감, 진행상태 보여주기->안됨...다시 하는 중
+//		String recruitDeadLine=recruitService.getStatus(rcDeadLine);
+//		model.addAttribute("recruitDeadLine", recruitDeadLine);
+		
+		String forward_path = "dashboard-manage-job";
+		return forward_path;
 	}
 	
 	
@@ -215,7 +221,7 @@ public class CorpController {
 	    // CorpImageService를 사용하여 DB에 데이터 저장
 	    corpImageService.insertCorpImage(corpImage);
 	}
-	
+//	
 //	@ExceptionHandler(Exception.class)
 //	public String corp_exception_handler(Exception e) {
 //		System.out.println("에러..");

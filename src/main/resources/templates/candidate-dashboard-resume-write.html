@@ -91,10 +91,11 @@
                         <div class="resume-outer">
                           <div class="upper-title">
                             <h4>학력</h4>
-                            <button class="add-info-btn"><span class="icon flaticon-plus"></span> 학력 추가</button>
+                            <button class="add-info-btn" onclick="addEdu()"><span class="icon flaticon-plus"></span> 학력 추가</button>
+                            <button class="add-info-btn" id="addEduBtn" onclick="addEdu()"><span class="icon flaticon-plus"></span> 추가 버튼</button>
                           </div>
                           <!-- Resume BLock -->
-                          <div class="resume-block" th:each="edu:${eduList}">
+                          <div class="resume-block" th:each="edu:${eduList}" id="eduBlock">
                             <div class="inner">
                               <span class="name">E</span>
                               <div class="title-box">
@@ -127,6 +128,7 @@
 		                      </div>
                               </div>
                             </div>
+                            <div id="newDiv"></div>
                           </div>
                         </div>
 

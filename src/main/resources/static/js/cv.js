@@ -72,3 +72,31 @@ function cvDelete() {
 function apply() {
 	
 }
+
+
+/** cv ajax send */
+function dataSend() {};
+
+function addEdu() {
+
+}
+
+
+function deleteEdu() {
+	console.log("ccccccc" + document.f.deleteEduBtn.value)
+	document.f.action = "info-delete-action";
+	document.f.method='GET';
+	document.f.submit();
+}
+
+function apply() {
+	document.f.action = "cv-apply-action";
+	document.f.method='POST';
+	document.f.submit();
+}
+
+function changeCv() {
+	document.f.action = "cv-detail";
+	document.f.method='GET';
+	document.f.submit();
+}
