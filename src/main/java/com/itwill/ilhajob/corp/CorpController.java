@@ -179,14 +179,13 @@ public class CorpController {
 	@RequestMapping("/dashboard-applicants")
 	public String corp_dashboard_applicants(@RequestParam("rcSeq") int rcSeq, Model model) throws Exception {
 		//이력서 리스트 불러오기
-		List<Cv> cvList = appService.findCvListByRcSeq(rcSeq);
+		App app = appService.findCvListByRcSeq(rcSeq);
+		List<Cv> cvList = app.getCvList();
 		model.addAttribute("cvList", cvList);
-		System.out.println(cvList);
 		
 		//공고 정보 디테일 뿌리기
 		Recruit recruit=recruitService.findRecruit(rcSeq);
 		model.addAttribute("recruit", recruit);
-		System.out.println(recruit);
 		
 		String forward_path = "dashboard-applicants";
 		return forward_path;
