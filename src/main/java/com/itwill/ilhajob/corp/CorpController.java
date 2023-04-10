@@ -165,21 +165,25 @@ public class CorpController {
 	
 	@RequestMapping("/dashboard-manage-job")
 	public String corp_dashboard_manage_job(HttpServletRequest request ,Model model /*,@RequestParam("date")@DateTimeFormat(pattern = "yyyy-MM-dd") Date rcDeadLine*/)throws Exception{
+		//corpId 고정됐을때 해당 기업 공고 가져오기
+		String forward_path="";
 		String sCorpId = (String)request.getSession().getAttribute("sCorpId");
 		Corp corp=corpService.findCorpWithRecruits(sCorpId);
 		model.addAttribute("corp", corp);
 		
 		//지원자 숫자 보여주기
 		int appCount=appService.findAppCountByCorpId(sCorpId);
-		System.out.println(appCount);
 		model.addAttribute("appCount", appCount);
 		
-		//공고 마감, 진행상태 보여주기->안됨...다시 하는 중
-//		String recruitDeadLine=recruitService.getStatus(rcDeadLine);
-//		model.addAttribute("recruitDeadLine", recruitDeadLine);
+		//appCount==0일때 추가하기 클릭 시 페이지 redirect 추가하기
 		
-		String forward_path = "dashboard-manage-job";
+		forward_path="dashboard-manage-job";
 		return forward_path;
+		
+		//공고 마감, 진행상태 보여주기->안됨...다시 하는 중
+		//String recruitDeadLine=recruitService.getStatus(rcDeadLine);
+		//model.addAttribute("recruitDeadLine", recruitDeadLine);
+		
 	}
 	
 	
