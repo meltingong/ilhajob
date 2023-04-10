@@ -79,8 +79,9 @@ public class CorpController {
 	
 	
 	@RequestMapping("corp-detail")
-	public String corp_detail_view(@RequestParam("corpId") String corpId,Model model) throws Exception {
+	public String corp_detail_view(@RequestParam("corpId") String corpId,Model model, HttpServletRequest request) throws Exception {
 		//공고 목록 뿌리기
+		//request.getSession().setAttribute("loginUserSeq", 3);
 		Corp corp=corpService.findCorpWithRecruits(corpId);
 		model.addAttribute("corp", corp);
 		
@@ -182,14 +183,13 @@ public class CorpController {
 	@RequestMapping("/dashboard-applicants")
 	public String corp_dashboard_applicants(@RequestParam("rcSeq") int rcSeq, Model model) throws Exception {
 		//이력서 리스트 불러오기
-		List<Cv> cvList = appService.findCvListByRcSeq(rcSeq);
+		App app = appService.findCvListByRcSeq(rcSeq);
+		List<Cv> cvList = app.getCvList();
 		model.addAttribute("cvList", cvList);
-		System.out.println(cvList);
 		
 		//공고 정보 디테일 뿌리기
 		Recruit recruit=recruitService.findRecruit(rcSeq);
 		model.addAttribute("recruit", recruit);
-		System.out.println(recruit);
 		
 		String forward_path = "dashboard-applicants";
 		return forward_path;
@@ -201,9 +201,9 @@ public class CorpController {
 		corpImageService.deleteCorpImageBySEQ(corpImage.getCorpImageSeq());
 	}
 	*/
-	
+
 	@ResponseBody
-	@RequestMapping("/imageUpload")
+	@PostMapping("/imageUpload")
 	public void insert_corp_image(@ModelAttribute CorpImage corpImage, HttpServletRequest request, 
 	                              @RequestParam("image") MultipartFile imageFile) throws Exception {
 	    // 세션에서 corpId 값을 가져와서 corpImage 객체에 설정
@@ -222,6 +222,7 @@ public class CorpController {
 
 	    // CorpImageService를 사용하여 DB에 데이터 저장
 	 //   corpImageService.insertCorpImage(corpImage);
+	    
 	}
 //	
 //	@ExceptionHandler(Exception.class)
