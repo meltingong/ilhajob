@@ -118,9 +118,9 @@
 								<span class="year" th:text="${edu.eduEndDate}">2012 - 2014</span>
                                   <div class="edit-btns">
                                   <!-- 버튼 클릭 펑션 추가필 -->
-     	                             <input type="hidden" name="eduSeq" th:value="${edu.eduSeq}">
+     	                             <input type="hidden" th:id="'eduSeq(' + ${edu.eduSeq} + ')'" name="eduSeq" th:value="${edu.eduSeq}">
                                     <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
-                                    <button type="button" onclick="deleteEdu()" th:value="${edu.eduSeq}"><span class="la la-trash"></span></button>
+                                    <button type="button" th:id="'deleteEdu(' + ${edu.eduSeq} + ')'" th:onclick="'deleteEdu(' + ${edu.eduSeq} + ')'"  th:value="${edu.eduSeq}"><span class="la la-trash"></span></button>
                                   </div>
                                 </div>
                               </div>
