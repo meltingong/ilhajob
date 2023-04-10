@@ -202,12 +202,14 @@ public class CorpController {
 	}
 	*/
 	
+	@ResponseBody
 	@RequestMapping("/imageUpload")
 	public void insert_corp_image(@ModelAttribute CorpImage corpImage, HttpServletRequest request, 
 	                              @RequestParam("image") MultipartFile imageFile) throws Exception {
 	    // 세션에서 corpId 값을 가져와서 corpImage 객체에 설정
 	    corpImage.setCorpId((String) request.getSession().getAttribute("sUserId"));
 	    String serverPath = "C:\\JAVA-DEVELOPER\\git-repository\\final-project-team1-xxx\\src\\main\\resources\\static\\images\\clients\\corp\\"; //저장할 경로
+	    System.out.println(">>>>>>>>>>>>> : "+imageFile);
 	    byte[] bytes = imageFile.getBytes(); 
 	    Path path = Paths.get(serverPath + imageFile.getOriginalFilename()); //저장할 파일 경로 설정
 	    Files.write(path, bytes); // 파일저장
