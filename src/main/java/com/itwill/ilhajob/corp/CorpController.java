@@ -9,9 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,7 +35,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itwill.ilhajob.app.App;
 import com.itwill.ilhajob.app.AppService;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
-
 import com.itwill.ilhajob.corpimage.CorpImage;
 import com.itwill.ilhajob.corpimage.CorpImageService;
 import com.itwill.ilhajob.cv.Cv;
@@ -170,22 +168,21 @@ public class CorpController {
 		String sCorpId = (String)request.getSession().getAttribute("sCorpId");
 		Corp corp=corpService.findCorpWithRecruits(sCorpId);
 		model.addAttribute("corp", corp);
-		
+
 		//지원자 숫자 보여주기
 		int appCount=appService.findAppCountByCorpId(sCorpId);
 		model.addAttribute("appCount", appCount);
-		
+
 		//appCount==0일때 추가하기 클릭 시 페이지 redirect 추가하기
-		
+
 		forward_path="dashboard-manage-job";
 		return forward_path;
-		
+
 		//공고 마감, 진행상태 보여주기->안됨...다시 하는 중
 		//String recruitDeadLine=recruitService.getStatus(rcDeadLine);
 		//model.addAttribute("recruitDeadLine", recruitDeadLine);
-		
+
 	}
-	
 	
 	@RequestMapping("/dashboard-applicants")
 	public String corp_dashboard_applicants(@RequestParam("rcSeq") int rcSeq, Model model) throws Exception {
@@ -208,17 +205,15 @@ public class CorpController {
         return "search";
     }
 	
-    //검색기능
-    @ResponseBody
-	@PostMapping("/search")
-	public Map<String, Object> searchCorp(@RequestParam("query") String query, Model model) throws Exception {
-    	Map<String, Object> resultMap = new HashMap<String,Object>();
+	 @PostMapping("/search")
+	public String searchCorp(@RequestParam("query") String query, Model model) throws Exception {
+
 	      // 상품 검색 서비스 호출
 	      List<Corp> searchResults = corpService.searchCorpList(query);
 	      
-	      resultMap.put("corpList",searchResults);
+	      model.addAttribute("corpList",searchResults);
 	      // 결과 페이지를 반환
-	      return resultMap;
+	      return "corpList";
 	    }
 	
 	

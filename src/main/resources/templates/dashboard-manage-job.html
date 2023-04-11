@@ -1,36 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
-	function recruitModifyForm(){
-		document.f.mehod='POST';
-		document.f.action="recruit_modify_form";
-		document.f.submit();
+	/*
+	function deadLine(){
+		var deadLine=new Date(document.getElementById(deadLine).value);
+		var now=new Date();
+		if(deadLine<now){
+			document.getElementById("status").innerHTML="마감";
+		}
+			document.getElementById("status").innerHTML="진행중"
+		
 	}
-	
-	function recruitModifyAction(){
-		/* 수정
-		if(){
+		window.onload=deadLine();
+		
+		
+		function recruitModifyForm(){
+			document.f.mehod='POST';
+			document.f.action="recruit_modify_form";
+			document.f.submit();
+		}
+
+		function recruitModifyAction(){
+			//수정 중 
+			if(){
+				
+			}
 			
+
+			document.f.method='POST';
+			document.f.action = "recruit_modify_action";
+			document.f.submit();
+		}
+
+		function recruitRemove(){
+			if(window.confirm("정말 삭제하시겠습니까?")){
+				document.f.mehod='POST';
+				document.f.action="recruit_remove_action";
+				document.f.submit();
+			}
 		}
 		*/
 		
-		document.f.method='POST';
-		document.f.action = "recruit_modify_action";
-		document.f.submit();
-	}
-	
-	function recruitRemove(){
-		if(window.confirm("정말 삭제하시겠습니까?")){
-			document.f.mehod='POST';
-			document.f.action="recruit_remove_action";
-			document.f.submit();
-		}
-	}
-
-
-
+		
+		
 
 </script>
+
 
 
 <head>
@@ -115,8 +130,9 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-
-                      <form name="f" method="post">
+			
+			
+					<form name="f" method="post">
                       <tbody>
                         <tr th:each="recruit:${corp.recruitList}">
                           <td>
@@ -135,15 +151,15 @@
                           <td>
                             <div class="option-box">
                               <ul class="option-list">
-                                <li><button data-text="Modify Recruit" value="수정" onClick="recruitModifyForm()"><span class="la la-pencil"></span></button></li>
+                                 <li><button data-text="Modify Recruit" value="수정" onClick="recruitModifyForm()"><span class="la la-pencil"></span></button></li>
                                 <li><button data-text="Delete Recruit" value="삭제" onClick="recruitRemove()"><span class="la la-trash"></span></button></li>
                               </ul>
                             </div>
                           </td>
                         </tr>
                       </tbody>
-                          </form>
-                    </table>
+                      </form>
+                      </table>
                   </div>
                 </div>
               </div>

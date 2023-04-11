@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
-	function cvDetailView(){
-		window.location.href='cv-detail';
-	}
-	//승인, 거절 만들건데 굳이 여기서 삭제까지 해야할지 확인->승인, 거절, 삭제 시 user에게 메세지 전송 기능
-	
-	/*
 	function cvDelete(){
-		if(window.confirm("정말 삭제하시겠습니까?")){
-		document.applicantsForm.method='POST';
-		document.applicantsForm.action="cv-delete-action";
-		document.applicantsForm.submit();
-		}
+		document.f.action=""
 	}
-	*/
 	
+
 </script>
+
+
+
+
+
 
 
 <head>
@@ -98,8 +93,8 @@
                   </div>
                 </div>
 
-			
                 <div class="widget-content">
+
                   <div class="tabs-box">
                     <div class="aplicants-upper-bar">
                       <h6 th:text="${recruit.rcTitle}">Senior Product Designer</h6>
@@ -109,12 +104,11 @@
                         <li class="tab-btn rejected" data-tab="#rejected">Rejected(s): 4</li>
                       </ul>
                     </div>
-                    
+
                     <div class="tabs-content">
                       <!--Tab-->
                       <div class="tab active-tab" id="totals">
                         <div class="row">
-				<form name="applicantsForm" method="post">
                           <!-- Candidate block three -->
                           <div th:each="cv:${cvList}" class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
                             <div  class="inner-box">
@@ -124,7 +118,8 @@
                                 <ul class="candidate-info">
                                   <li th:text="|UserNo= ${cv.userSeq}|" class="designation">UI Designer</li>
                                   <li class="icon flaticon-map-locator"><span th:text="|Description= ${cv.cvDescription}|">London, UK</span></li>
-                                  <li class="icon flaticon-money"><span th:text="|Portfoloi= ${cv.cvPortfolio}|" >$99 / hour</span></li>
+                                  <li class="icon flaticon-money"><span th:text="|Portfoli
+                                  o= ${cv.cvPortfolio}|" >$99 / hour</span></li>
                                 </ul>
                                 <ul class="post-tags">
                                   <li><a href="#">App</a></li>
@@ -134,16 +129,20 @@
                               </div>
                               <div class="option-box">
                                 <ul class="option-list">
-                                  <li><button data-text="View Aplication" value="디테일뷰" onClick="cvDetailView();"><span class="la la-eye"></span></button></li>
+                                
+                                <form id="cvControl" name="f">
+                                  <input type="hidden"/>
+                                  <li><button data-text="View Aplication"><span class="la la-eye"></span></button></li>
                                   <li><button data-text="Approve Aplication"><span class="la la-check"></span></button></li>
                                   <li><button data-text="Reject Aplication"><span class="la la-times-circle"></span></button></li>
-                                  <li><button data-text="Delete Aplication" value="삭제" onClick="cvDelete();"><span class="la la-trash"></span></button></li>
-                                  <!-- li><button data-text="Delete Aplication" value="삭제" onClick="cvDelete();"><span class="la la-trash"></span></button></li-->
+                                  <li><button data-text="Delete Aplication" onclick="cvDelete()" th:value="${cv.cvSeq}"><span class="la la-trash"></span></button></li>
+                                </form>
+                                
                                 </ul>
                               </div>
                             </div>
                           </div>
-						</form>
+
                           
                       <!--Tab-->
                       <div class="tab" id="approved">

@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itwill.ilhajob.corp.Corp;
-import com.itwill.ilhajob.corp.CorpDao;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;

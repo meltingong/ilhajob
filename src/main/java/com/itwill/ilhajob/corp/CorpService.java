@@ -2,7 +2,6 @@ package com.itwill.ilhajob.corp;
 
 import java.util.List;
 
-import com.itwill.ilhajob.corp.Corp;
 import com.itwill.ilhajob.user.User;
 
 public interface CorpService {

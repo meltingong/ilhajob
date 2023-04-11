@@ -70,6 +70,7 @@ public class RecruitController {
 	      String forward_path = "recruit-detail";
 	      return forward_path;
 	   }
+	   
 	   /* 수정 전 껍데기
 	   //delete
 	   @PostMapping(value="/recruit_remove_action")
@@ -87,4 +88,5 @@ public class RecruitController {
 		   return "";
 	   }
 	   */
+	   
 }
