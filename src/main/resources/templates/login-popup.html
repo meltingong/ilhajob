@@ -8,8 +8,20 @@
         <!--Login Form-->
         <form method="post" action="add-parcel.html">
           <div class="form-group">
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Username" required>
+            <div class="btn-box row">
+              <div class="col-lg-6 col-md-12">
+                <a href="#" id="candidate-btn" class="theme-btn btn-style-seven" onclick="candidate()"><i class="la la-user"></i> Candidate </a>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <a href="#" id="corp-btn" class="theme-btn btn-style-four" onclick="corp()"><i class="la la-briefcase"></i> Employer </a>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="login-separate" name="login-separate" value="">
+
+          <div class="form-group">
+            <label for="email">User Email</label>
+            <input type="email" id="email" name="email" placeholder="User Email" required>
           </div>
 
           <div class="form-group">
@@ -62,6 +74,35 @@
         });
       });
     });
+    
+   	
+    function candidate(){
+    	jQuery('.jquery-modal.blocker.current#login-separate').val('user');
+    	jQuery('.jquery-modal.blocker.current#candidate-btn').toggleClass('btn-style-four btn-style-seven');
+    	jQuery('.jquery-modal.blocker.current#corp-btn').toggleClass('btn-style-seven btn-style-four');
+      	jQuery('.jquery-modal.blocker.current input#id').attr('type','email');
+      	jQuery('.jquery-modal.blocker.current input#id').attr('name','email');
+      	jQuery('.jquery-modal.blocker.current input#id').attr('placeholder','User Email');
+      	jQuery('.jquery-modal.blocker.current input#id').attr('id','email');
+      	jQuery('label[for="id"]').attr('for','email');
+      	jQuery('label[for="email"]').text('Email');
+    	
+    };
+    
+    function corp(){
+    	jQuery('.jquery-modal.blocker.current#login-separate').val('corp');
+    	jQuery('.jquery-modal.blocker.current#candidate-btn').toggleClass('btn-style-seven btn-style-four');
+    	jQuery('.jquery-modal.blocker.current#corp-btn').toggleClass('btn-style-four btn-style-seven');
+      	jQuery('.jquery-modal.blocker.current input#email').attr('type','text');
+      	jQuery('.jquery-modal.blocker.current input#email').attr('name','id');
+      	jQuery('.jquery-modal.blocker.current input#email').attr('placeholder','Login ID');
+      	jQuery('.jquery-modal.blocker.current input#email').attr('id','id');
+      	jQuery('label[for="email"]').attr('for','id');
+      	jQuery('label[for="id"]').text('Login ID');
+    }
+    
+
+
   </script>
 
 

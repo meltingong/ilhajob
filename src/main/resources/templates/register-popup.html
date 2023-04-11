@@ -11,17 +11,18 @@
           <div class="form-group">
             <div class="btn-box row">
               <div class="col-lg-6 col-md-12">
-                <a href="#" class="theme-btn btn-style-seven"><i class="la la-user"></i> Candidate </a>
+                <a href="#" id="create-candidate-btn" class="theme-btn btn-style-seven" onclick="create_candidate()"><i class="la la-user"></i> 개인 </a>
               </div>
               <div class="col-lg-6 col-md-12">
-                <a href="#" class="theme-btn btn-style-four"><i class="la la-briefcase"></i> Employer </a>
+                <a href="#" id="create-corp-btn" class="theme-btn btn-style-four" onclick="create_corp()"><i class="la la-briefcase"></i> 기업 </a>
               </div>
             </div>
           </div>
+          <input type="hidden" id="create-separate" name="create-separate" value="">
 
           <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" name="email" placeholder="Email" required>
+            <label for="create-email">Email</label>
+            <input type="email" id="create-email" name="email" placeholder="Email" required>
           </div>
 
           <div class="form-group">
@@ -49,5 +50,32 @@
     </div>
     <!--End Login Form -->
   </div>
+  <script type="text/javascript">
+ 	
+  function create_candidate(){
+  	jQuery('#create-separate').val('user');
+  	jQuery('#create-candidate-btn').toggleClass('btn-style-four btn-style-seven');
+  	jQuery('#create-corp-btn').toggleClass('btn-style-seven btn-style-four');
+  	jQuery('#create-id').attr('type','email');
+  	jQuery('#create-id').attr('name','email');
+  	jQuery('#create-id').attr('placeholder','Email');
+  	jQuery('#create-id').attr('id','create-email');
+  	jQuery('label[for="create-id"]').attr('for','create-email');
+  	jQuery('label[for="create-email"]').text('Email');
+  };
+  
+  function create_corp(){
+  	jQuery('#create-separate').val('corp');
+  	jQuery('#create-candidate-btn').toggleClass('btn-style-seven btn-style-four');
+  	jQuery('#create-corp-btn').toggleClass('btn-style-four btn-style-seven');
+  	jQuery('#create-email').attr('type','text');
+  	jQuery('#create-email').attr('name','id');
+  	jQuery('#create-email').attr('placeholder','ID');
+  	jQuery('#create-email').attr('id','create-id');
+  	jQuery('label[for="create-email"]').attr('for','create-id');
+  	jQuery('label[for="create-id"]').text('ID');
+  }
+  
+  </script>
   <!-- End Login Module -->
 </div>

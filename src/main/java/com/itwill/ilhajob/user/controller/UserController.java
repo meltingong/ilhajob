@@ -217,16 +217,17 @@ public class UserController {
 	//리뷰 작성
 		//corpSeq필요 -> delete할떄 appseq처럼 input hidden corpseq필요(redirect용)
 		@RequestMapping("/review_write_action")
-		public String review_write_action(@ModelAttribute ReviewDto reviewDto, @RequestParam("corpId") CorpDto corp, Model model,HttpServletRequest request) throws Exception{
+		public String review_write_action(@ModelAttribute ReviewDto reviewDto, @RequestParam("corpId") String corpId, Model model,HttpServletRequest request) throws Exception{
 			request.getSession().setAttribute("sUserId", "test3@test.com");
 			String sUserId = (String)request.getSession().getAttribute("sUserId");
 			UserDto loginUser = userService.findUser(sUserId);
-			reviewDto.setCorp(corp);
+			CorpDto corpDto = CorpDto.builder().corpLoginId(corpId).build();
+			reviewDto.setCorp(corpDto);
 			reviewDto.setUser(loginUser);
 			System.out.println(reviewDto);
 			request.setAttribute("loginUser", loginUser);	
 		    reviewService.insertReview(reviewDto);
-			String forwardPath = "redirect:corp-detail?corpId="+corp.getId();
+			String forwardPath = "redirect:corp-detail?corpId="+corpDto.getCorpLoginId();
 			return forwardPath;
 			
 		}
