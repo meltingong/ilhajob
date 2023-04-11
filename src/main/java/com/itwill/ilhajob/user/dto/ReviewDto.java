@@ -12,6 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class ReviewDto {
 	private Long id;
 	private int reviewGrade;
@@ -21,5 +22,5 @@ public class ReviewDto {
 	private CorpDto corp;
 	@ToString.Exclude
 	private UserDto user;
-	
+
 }
