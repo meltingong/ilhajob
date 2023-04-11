@@ -214,6 +214,8 @@ public class UserController {
 		return forwardPath;
 	}
 	*/
+			
+	// 지원한 목록 보기
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
@@ -221,15 +223,12 @@ public class UserController {
 		//request.getSession().setAttribute("sUserId", "test3@test.com");
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		UserDto loginUser = userService.findUser(sUserId);
-		
-		System.out.println(loginUser);
- 		request.setAttribute("loginUser", loginUser);
+ 		UserDto user = userService.findAppListById(loginUser.getId());
+		System.out.println(user);
+ 		request.setAttribute("loginUser", user);
 		forwardPath = "/candidate-dashboard-applied-job";
 		return forwardPath;
 	}
-	
-	
-	
 	
 	@LoginCheck
 	@RequestMapping(value = "/remove-applied-job")                             //appSeq-> appDto의 id로 들어가야함
