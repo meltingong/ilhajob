@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.RecruitService;
@@ -56,21 +57,21 @@ public class RecruitController {
 		return forward_path;
 	}
 	
-//	   @RequestMapping("/dashboard-post-job")
-//	   public String dashboard_post_job_form(HttpServletRequest request,Model model) throws Exception {
-//		  Corp loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
-//	      model.addAttribute("corp",loginCorp);
-//	      String forward_path = "dashboard-post-job";
-//	      return forward_path;
-//	   }
-//	   @PostMapping("/dashboard-post-job-action")
-//	   public String dashboard_post_job_action(@ModelAttribute Recruit recruit,HttpServletRequest request,Model model) throws Exception {
-//		   Corp loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
-//		  recruit.setRcDeadline(new Date());
-//		  recruit.setCorp(loginCorp);
-//		  recruitService.saveRecruit(recruit);
-//	      model.addAttribute("rcSeq",recruit.getRcSeq());
-//	      String forward_path = "recruit-detail";
-//	      return forward_path;
-//	   }
+	   @RequestMapping("/dashboard-post-job")
+	   public String dashboard_post_job_form(HttpServletRequest request,Model model) throws Exception {
+		  CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
+	      model.addAttribute("corp",loginCorp);
+	      String forward_path = "dashboard-post-job";
+	      return forward_path;
+	   }
+	   @PostMapping("/dashboard-post-job-action")
+	   public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto,HttpServletRequest request,Model model) throws Exception {
+		  CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
+		  recruitDto.setRcDeadline(new Date());
+		  recruitDto.setCorp(loginCorp);
+		  recruitService.save(recruitDto);
+	      model.addAttribute("id",recruitDto.getId());
+	      String forward_path = "recruit-detail";
+	      return forward_path;
+	   }
 }

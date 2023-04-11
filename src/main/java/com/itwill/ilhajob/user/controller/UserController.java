@@ -51,11 +51,11 @@ public class UserController {
 	 * ++ 메시지 알림
 	 */
 	
-	//메인 페이지
-	@RequestMapping("/index")
-	public String main() {
-		return "index";
-	}
+//	//메인 페이지
+//	@RequestMapping("/index")
+//	public String main() {
+//		return "index";
+//	}
 	
 	//회원 대시보드 보기
 	@LoginCheck
