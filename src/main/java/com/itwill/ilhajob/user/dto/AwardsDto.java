@@ -18,7 +18,8 @@ public class AwardsDto {
 	private String awardsName;
 	private Date awardsDate;
 	private String awardsContent;
-	private int userSeq;
-
+//	private int userSeq;
+//	@ToString.Exclude
+	private int userId;
 
 }
