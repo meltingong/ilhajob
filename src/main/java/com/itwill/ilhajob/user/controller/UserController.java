@@ -221,7 +221,6 @@ public class UserController {
 		//request.getSession().setAttribute("sUserId", "test3@test.com");
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		UserDto loginUser = userService.findUser(sUserId);
-		
 		System.out.println(loginUser);
  		request.setAttribute("loginUser", loginUser);
 		forwardPath = "/candidate-dashboard-applied-job";

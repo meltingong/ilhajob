@@ -1092,30 +1092,8 @@
     }
 
 	//login 
-	$('.log-in').on('submit',function(event){
-		let form = $('#login-f').serialize();	
-		console.log(form);
-        /*let form = '#login-f';
-			
-		let id = $('#login-f .user-id').val();
-		let email = $('#login-f #password-field').val();*/
-       /* $.ajax({
-            url:"/ajaxLogin",
-            method:"POST",
-            data: $(form).serialize(),
-            success:function(data){
-                $('form').trigger("reset");
-                $('#email-form .response').fadeIn().html(data);
-                setTimeout(function(){
-                    $('#email-form .response').fadeOut("slow");
-                }, 5000);
-            },
-            error:function(){
-                $('#email-form .response').fadeIn().html(data);
-            }
-        });
-		event.preventDefault();*/
-	});
+
+
 	
 
 /* ==========================================================================
