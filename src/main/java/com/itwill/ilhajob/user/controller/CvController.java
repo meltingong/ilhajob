@@ -1,24 +1,16 @@
 package com.itwill.ilhajob.user.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
-import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.AwardsDto;
 import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.dto.EduDto;
@@ -36,6 +27,7 @@ import com.itwill.ilhajob.user.service.AwardsService;
 import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.EduService;
 import com.itwill.ilhajob.user.service.ExpService;
+import com.itwill.ilhajob.user.service.UserService;
 
 @Controller
 public class CvController {
@@ -50,42 +42,41 @@ public class CvController {
 	private ExpService expService;
 	@Autowired 
 	private AppService appService;
+	@Autowired
+	private UserService userService;
 	
 	/************************* cv list *******************************/
 	@LoginCheck
 	@RequestMapping(value = "/cv-list")
 	public String cv_list(HttpServletRequest request, Model model) {
 		String forwardpath = "";
-		if(request.getSession() != null) {
-		/* 테스트용 userSeq 세팅, 조건문 */
-			Long userId = (Long)request.getSession().getAttribute("id");
-			List<CvDto> cvList = cvService.findCvByUserId(userId);
+		Long userId = (Long)request.getSession().getAttribute("id");
+		System.out.println("userId : " + userId);
+		List<CvDto> cvList = cvService.findCvByUser(userId);
+		System.out.println(cvList);
+		if(cvList != null) {
 			model.addAttribute("cvList", cvList);
 			forwardpath = "candidate-dashboard-cv-manager";
-		} 
-		else {
-			List<CvDto> cvList = cvService.findAll();
-			model.addAttribute("cvList", cvList);
+		} else {
 			forwardpath = "redirect:cv-write-form";
 		}
 		return forwardpath;
-		}
+	}
 	
 	/************************* cv form *******************************/
 	/** cv write form */
 	@LoginCheck
 	@RequestMapping(value = "/cv-write-form")
-	public String cv_wirte_from(HttpServletRequest request, Model model) {
+	public String cv_wirte_from(HttpServletRequest request, Model model) throws Exception {
 //	public String cv_wirte_from(@ModelAttribute User user, Model model) {
 //		int userSeq = Integer.parseInt(request.getParameter("userSeq"));
 		
-		/* 테스트용 userSeq 세팅 */
-		request.getSession().setAttribute("userSeq", 3);
-		int userSeq = (int)request.getSession().getAttribute("userSeq");
+		Long userId = (Long)request.getSession().getAttribute("id");
 		
 		/* userSeq */
 //		int userSeq = user.getUserSeq();
-		model.addAttribute("userSeq", userSeq);
+		UserDto user = userService.findUser((String)request.getSession().getAttribute("userEmail"));
+		model.addAttribute("user", user);
 		
 
 //		/* eduList */
@@ -111,14 +102,13 @@ public class CvController {
 	/** cv detail param(cvSeq) 없을 때 */
 	@LoginCheck
 	@RequestMapping(value = "/cv-detail", params = "!cvSeq")
-//	public String cv_detail(int userSeq, Model model) {							// test
-	public String cv_detail(@ModelAttribute UserDto userDto, Model model) {
+	public String cv_detail(HttpServletRequest request, Model model) {
 		String forwardpath = "";
 		/* user cv list 가져오기 */
-		List<CvDto> cvList = cvService.findCvByUserId(userDto.getId());
-//		List<Cv> cvList = cvService.findCvListByUserSeq(userSeq); 				// test
+		Long userId = (Long)request.getSession().getAttribute("id");
+		List<CvDto> cvList = cvService.findCvByUser(userId);
 		System.out.println(cvList);
-		if (cvList.size() == 0) {
+		if (cvList.size() == 0 || cvList == null) {
 			forwardpath = "redirect:cv-write-form";
 		} else {
 			model.addAttribute("cvList", cvList);
@@ -144,7 +134,7 @@ public class CvController {
 //		System.out.println(userSeq);
 		
 		/* user cv list */
-		List<CvDto> cvList = cvService.findCvByUserId(user.getId()); // test
+		List<CvDto> cvList = cvService.findCvByUser(user.getId()); // test
 		System.out.println(cvList);
 		model.addAttribute("cvList", cvList);
 		
@@ -165,7 +155,7 @@ public class CvController {
 		List<AwardsDto> awardsList = cvDetail.getAwardsList();
 		model.addAttribute("awardsList", awardsList);
 		
-		if(cvDetail != null) {
+		if(cvList == null || cvDetail != null) {
 			// 어디로 보낼지 더 생각하기
 			forwardpath = "redirect:cv-list";
 		}
@@ -183,7 +173,7 @@ public class CvController {
 		public String cv_write_action(@ModelAttribute CvDto cv, RedirectAttributes redirectAttributes) {
 		try {
 			cvService.saveCv(cv);
-			int cvSeq = cv.getCvSeq();
+			Long cvSeq = cv.getCvSeq();
 			redirectAttributes.addAttribute("cvSeq", cvSeq);
 //			for (Edu edu : eduList) {
 //				eduService.updateEdu(edu);
@@ -203,7 +193,7 @@ public class CvController {
 //	public String cv_update_action(HttpServletRequest request, @ModelAttribute Cv cv, @ModelAttribute List<Awards> awardsList, @ModelAttribute Edu edu, @ModelAttribute Exp exp, Model model) {
 	public String cv_update_action(HttpServletRequest request, @ModelAttribute CvDto cv, @ModelAttribute EduDto edu, Model model, RedirectAttributes redirectAttributes) {
 
-		int cvSeq = cv.getCvSeq();
+		Long cvSeq = cv.getCvSeq();
 		cvService.saveCv(cv);
 //		List<Edu> eduList = (List<Edu>)request.getSession().getAttribute("eduList");
 //		for (int i = 0; i < eduList.size(); i++) {

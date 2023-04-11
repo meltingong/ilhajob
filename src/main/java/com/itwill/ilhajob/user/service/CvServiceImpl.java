@@ -5,20 +5,20 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.entity.Cv;
 import com.itwill.ilhajob.user.repository.CvRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CvServiceImpl implements CvService{
 
-	@Autowired
-	private CvRepository cvRepository;
-	@Autowired
-	private ModelMapper modelMapper;
+	private final CvRepository cvRepository;
+	private final ModelMapper modelMapper;
 
 	@Override
 	public CvDto saveCv(CvDto cvDto) {
@@ -39,13 +39,15 @@ public class CvServiceImpl implements CvService{
 	}
 
 	@Override
-	public List<CvDto> findCvByUserId(Long userId) {
-		return cvRepository.findCvByUserId(userId);
+	public List<CvDto> findCvByUser(Long id) {
+		List<Cv> cvList = cvRepository.findById(id).get().getUser().getCvList();
+//		List<Cv> cvList = cvRepository.findById(id).orElse(null).getUser().getCvList();
+		return cvList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<CvDto> findAll() {
+	public List<CvDto> findCvAll() {
 		List<Cv> cvList = cvRepository.findAll();
-		return cvList.stream().map(cv -> modelMapper.map(cvList, CvDto.class)).collect(Collectors.toList());
+		return cvList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
 	}
 }

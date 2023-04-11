@@ -16,10 +16,10 @@ public interface CvService {
 	CvDto findCvById(Long id);
 	
 	// find cv by user id
-	List<CvDto> findCvByUserId(Long userId);
+	List<CvDto> findCvByUser(Long id);
 	
 	// find all
-	List<CvDto> findAll();
+	List<CvDto> findCvAll();
 	
 	//한 회사가 올린 공고 하나의 이력서 목록 불러오기
 	//List<Cv> findCvListByCorpId(String corpId);
