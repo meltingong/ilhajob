@@ -262,7 +262,7 @@ public class CvController {
 	}
 	
 	/** 일단 동기방식으로 테스트 */
-	@RequestMapping(value = "/info-delete-action")
+	@RequestMapping(value = "/edu-delete-action")
 	public String cv_info_delete_action(HttpServletRequest request, @ModelAttribute Edu edu, @RequestParam("eduSeq") String eduSeq, Model model, RedirectAttributes redirectAttributes) {
 		System.out.println("======== eduSeq : " + eduSeq);
 		System.out.println(eduSeq.replace(',', ' ').trim());
@@ -283,12 +283,5 @@ public class CvController {
 		expService.deleteExp(expSeq);
 		return "redirect:cv-detail";
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

@@ -4,12 +4,10 @@
  
  // cv write
  function writeCv() {
-	
 	console.log(document.f.cvName.value);
 	console.log(document.f.cvDescription.value);
 	console.log(document.f.cvPortfolio.value);
 	console.log(document.f.userSeq.value);
-	
 	if (document.f.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
 		document.f.cvName.focus();
@@ -68,35 +66,43 @@ function cvDelete() {
 	}
 }
 
-// cv apply
-function apply() {
-	
+function deleteEdu(eduSeq) {
+	$('#eduSeq'+eduSeq).val(eduSeq);
+	console.log($('#eduSeq'+eduSeq).attr('value'));
+	console.log($('.default-form').serialize());
+	document.f.action = "edu-delete-action";
+	document.f.method='POST';
+	document.f.submit();
 }
 
 
-/** cv ajax send */
-function dataSend() {};
+
+
+
+
+/****************** 이하 작업중 */
+function addHtml() {
+	const addEduBtn = document.getElementById();
+}
+
+
 
 function addEdu() {
 
 }
 
-function deleteEdu(eduSeq) {
-	$('#eduSeq'+eduSeq).val(eduSeq);
-	console.log($('#eduSeq'+eduSeq).attr('value'));
+
+
+function deleteExp(expSeq) {
+	$('#expSeq'+expSeq).val(expSeq);
+	console.log($('#expSeq'+expSeq).attr('value'));
 	console.log($('.default-form').serialize());
 	document.f.action = "info-delete-action";
 	document.f.method='POST';
 	document.f.submit();
 }
 
-
-function deleteExp() {
-	document.f.action = "exp-delete-action";
-	document.f.method='GET';
-	document.f.submit();
-}
-
+// cv apply
 function apply() {
 	document.f.action = "cv-apply-action";
 	document.f.method='POST';

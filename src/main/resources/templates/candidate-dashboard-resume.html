@@ -68,7 +68,6 @@
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>이력서 선택</label>
-                        <!-- <<< 수정필 >>> : onclick="changeCv()" -->
                         <select class="chosen-select" onchange="changeCv()" name="cvSeq">
                           <option th:text="*{cvName}">My CV</option>
                           <option th:each="cv:${cvList}" th:text="${cv.cvName}" th:value="${cv.cvSeq}">My CV</option>
@@ -157,7 +156,8 @@
                                   <span th:text="${exp.expCorpName}" th:value="${exp.expCorpName}">Spotify Inc.</span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year" th:value="${exp.expSeq}" th:text="${exp.expSeq}">2012 - 2014</span>
+                                  <span class="year" th:value="${exp.expStartDate}" th:text="${exp.expStartDate}">2012 - 2014</span>
+                                  <span class="year" th:value="${exp.expEndDate}" th:text="${exp.expEndDate}">2012 - 2014</span>
                                   <div class="edit-btns">
                                     <button><span class="la la-pencil" onclick=""></span></button>
                                     <button><span class="la la-trash" th:value="${exp.expSeq}" onclick="deleteExp()"></span></button>
