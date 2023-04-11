@@ -10,7 +10,7 @@ import com.itwill.ilhajob.corp.dto.RecruitDto;
 public interface RecruitService {
 	
 	//공고등록
-	int save(RecruitDto RecruitDto) throws Exception;
+	int create(RecruitDto RecruitDto) throws Exception;
 	//공고수정
 	int update(RecruitDto RecruitDto) throws Exception;
 	//공고삭제

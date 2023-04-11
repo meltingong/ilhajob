@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.corp.repository.RecruitRepository;
 
@@ -43,8 +44,9 @@ public class RecruitServiceImpl implements RecruitService {
 	}
 	
 	@Override
-	public int save(RecruitDto RecruitDto) throws Exception {
-		// TODO Auto-generated method stub
+	public int create(RecruitDto RecruitDto) throws Exception {
+		Recruit recruit = modelMapper.map(RecruitDto, Recruit.class);
+		recruit = recruitRepository.save(recruit);
 		return 0;
 	}
 	@Override

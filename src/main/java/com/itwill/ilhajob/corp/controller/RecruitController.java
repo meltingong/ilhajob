@@ -69,7 +69,7 @@ public class RecruitController {
 		  CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
 		  recruitDto.setRcDeadline(new Date());
 		  recruitDto.setCorp(loginCorp);
-		  recruitService.save(recruitDto);
+		  recruitService.create(recruitDto);
 	      model.addAttribute("id",recruitDto.getId());
 	      String forward_path = "recruit-detail";
 	      return forward_path;
