@@ -63,14 +63,13 @@ public class RecruitController {
 	      return forward_path;
 	   }
 	   @PostMapping("/dashboard-post-job-action")
-	   public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto,HttpServletRequest request,Model model) throws Exception {
+	   public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto,HttpServletRequest request) throws Exception {
 		  CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
 		  recruitDto.setRcDate(new Date());
 		  recruitDto.setRcDeadline(new Date());
 		  recruitDto.setCorp(loginCorp);
-		  recruitService.create(recruitDto);
-	      model.addAttribute("id",recruitDto.getId());
-	      String forward_path = "recruit-detail";
+		  recruitDto = recruitService.create(recruitDto);
+	      String forward_path = "redirect:recruit-detail?id="+recruitDto.getId();
 	      return forward_path;
 	   }
 }

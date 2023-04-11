@@ -47,14 +47,14 @@ public class RecruitServiceImpl implements RecruitService {
 	}
 	
 	@Override
-	public int create(RecruitDto RecruitDto) throws Exception {
+	public RecruitDto create(RecruitDto RecruitDto) throws Exception {
 		Recruit recruit = modelMapper.map(RecruitDto, Recruit.class);
 		System.out.println(recruit);
 		recruit = recruitRepository.save(recruit);
-		return 0;
+		return modelMapper.map(recruit, RecruitDto.class);
 	}
 	@Override
-	public int update(RecruitDto RecruitDto) throws Exception {
+	public RecruitDto update(RecruitDto RecruitDto) throws Exception {
 //		User user = userRepository.findById(id).orElseThrow(() 
 //        		-> new UserNotFoundException("존재하지 않습니다."));
 //        userDto.setId(id);
@@ -63,7 +63,7 @@ public class RecruitServiceImpl implements RecruitService {
 //        modelMapper.map(userDto, user);
 //        user = userRepository.save(user);
 //        return modelMapper.map(user, UserDto.class);
-		return 0;
+		return null;
 	}
 	@Override
 	public int remove(Map<String, Object> map) throws Exception {
