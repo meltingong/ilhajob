@@ -63,8 +63,8 @@ public class CorpController {
 	}
 	
 	@RequestMapping("corp-detail")
-	public String corp_detail_view(@RequestParam("corpId") String corpId,Model model) throws Exception {
-		CorpDto corpDto=corpService.findCorp(corpId);
+	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId,Model model) throws Exception {
+		CorpDto corpDto=corpService.findCorp(corpLoginId);
 		System.out.println(corpDto);
 		model.addAttribute("corp", corpDto);
 		return "corp-detail";
@@ -101,7 +101,7 @@ public class CorpController {
 		String forwardPath = "";
 		
 		/************** login check **************/
-		request.getSession().setAttribute("id", "5L"); //임시로 아이디 로그인상태
+		request.getSession().setAttribute("id", "1L"); //임시로 아이디 로그인상태
 		request.getSession().setAttribute("sCorpId", "corp_01"); //임시로 아이디 로그인상태
 		String sCorpId =(String)request.getSession().getAttribute("sCorpId");
 		if(sCorpId==null) {
@@ -109,7 +109,7 @@ public class CorpController {
 		}else {
 			//System.out.println(loginCorp);
 			CorpDto loginCorp=corpService.findCorp(sCorpId);
-			//request.setAttribute("loginCorp", loginCorp);
+			request.setAttribute("loginCorp", loginCorp);
 			forwardPath="dashboard";
 		}
 		/****************************************/

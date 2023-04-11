@@ -10,7 +10,7 @@ import com.itwill.ilhajob.corp.dto.RecruitDto;
 public interface RecruitService {
 	
 	//공고등록
-	int save(RecruitDto RecruitDto) throws Exception;
+	int create(RecruitDto RecruitDto) throws Exception;
 	//공고수정
 	int update(RecruitDto RecruitDto) throws Exception;
 	//공고삭제
@@ -19,7 +19,7 @@ public interface RecruitService {
 	List<RecruitDto> findRecruitAll() throws Exception;
 	
 	//공고 상세
-	RecruitDto findRecruitDto(int rcSeq) throws Exception;
+	RecruitDto findRecruit(long id) throws Exception;
 	
 	//마감 지났는지 여부 확인
 	//boolean isDeadLine(Date rcDeadline) throws Exception;

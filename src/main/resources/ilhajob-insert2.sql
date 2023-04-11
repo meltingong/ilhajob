@@ -57,14 +57,14 @@ values(CV_ID_SEQ.nextval, '~~하드웨어용 자기소개~~', '하드개발이�
 
 /*******************************기업회원관련**************************************/
 /**********************corp insert****************************/
-insert into corp(id, corp_login_id, corp_name, corp_password, corp_status)
-values(CORP_ID_SEQ.nextval, '기업1@corp.com', '테스트기업1', '1111', 1);
-insert into corp(id, corp_login_id, corp_name, corp_password, corp_status)
-values(CORP_ID_SEQ.nextval, '기업2@corp.com', '테스트기업2', '2222', 2); 
-insert into corp(id, corp_login_id, corp_name, corp_password, corp_status)
-values(CORP_ID_SEQ.nextval, '기업3@corp.com', '테스트기업3', '3333', 3); 
-insert into corp(id, corp_login_id, corp_name, corp_password, corp_status)
-values(CORP_ID_SEQ.nextval, '기업4@corp.com', '테스트기업4', '4444', 4);
+--insert into corp(id, corp_login_id, corp_name, corp_password, corp_status)
+--values(CORP_ID_SEQ.nextval, '기업1@corp.com', '테스트기업1', '1111', 1);
+--insert into corp(id, corp_login_id, corp_name, corp_password, corp_status)
+--values(CORP_ID_SEQ.nextval, '기업2@corp.com', '테스트기업2', '2222', 2); 
+--insert into corp(id, corp_login_id, corp_name, corp_password, corp_status)
+--values(CORP_ID_SEQ.nextval, '기업3@corp.com', '테스트기업3', '3333', 3); 
+--insert into corp(id, corp_login_id, corp_name, corp_password, corp_status)
+--values(CORP_ID_SEQ.nextval, '기업4@corp.com', '테스트기업4', '4444', 4);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_STATUS, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
