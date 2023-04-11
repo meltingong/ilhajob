@@ -12,11 +12,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.entity.Corp;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
+import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
 
 /*
@@ -34,6 +39,13 @@ import com.itwill.ilhajob.user.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	//@Autowired
+	//private AppService appService;
+	
+	@Autowired
+	private ReviewService reviewService;
+
 
 	/**************Local Exception Handler**************/
 	@ExceptionHandler(Exception.class)
@@ -178,6 +190,12 @@ public class UserController {
 		return forwardPath;
 	}
 	
+	@LoginCheck
+	@RequestMapping(value = "/remove-applied-job")                             //appSeq-> appDto의 id로 들어가야함
+	public String remove_applied_job(HttpServletRequest request, @RequestParam int appSeq) throws Exception{
+		//appService.deleteApp(appSeq);
+		return "redirect:candidate-dashboard-applied-job";
+	}
 	
 	
 	// my resume 이력서 작성 폼
@@ -187,9 +205,36 @@ public class UserController {
 	 * 회사에 이력서 지원 하기
 	 * 이력서 지원한 회사 목록 보기
 	 */
+	//회원이 지원한 공고
+
+	
 	
 	/*
 	 * 리뷰(기업에 대한 리뷰) -- > 템플릿 페이지 만들 필요 있음
 	 * 리뷰 작성 , 삭제 , --수정 
 	 */
+	
+	//리뷰 작성
+		//corpSeq필요 -> delete할떄 appseq처럼 input hidden corpseq필요(redirect용)
+		@RequestMapping("/review_write_action")
+		public String review_write_action(@ModelAttribute ReviewDto reviewDto, @RequestParam("corpId") CorpDto corp, Model model,HttpServletRequest request) throws Exception{
+			request.getSession().setAttribute("sUserId", "test3@test.com");
+			String sUserId = (String)request.getSession().getAttribute("sUserId");
+			UserDto loginUser = userService.findUser(sUserId);
+			reviewDto.setCorp(corp);
+			reviewDto.setUser(loginUser);
+			System.out.println(reviewDto);
+			request.setAttribute("loginUser", loginUser);	
+		    reviewService.insertReview(reviewDto);
+			String forwardPath = "redirect:corp-detail?corpId="+corp.getId();
+			return forwardPath;
+			
+		}
+		
+		@RequestMapping("/review_delete")
+		public String review_delete(@ModelAttribute ReviewDto reviewDto, HttpServletRequest request, @RequestParam Long id,@RequestParam("corpId") CorpDto corp) throws Exception{
+			reviewService.deleteReview(id);
+			return "redirect:corp-detail?corpId="+corp.getId();
+		}
+
 }
