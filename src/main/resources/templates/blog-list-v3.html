@@ -68,6 +68,7 @@
                         <li><a href="#" th:text="${#dates.format(blog.blogDate,'yyyy-MM-dd')}" >August 31, 2021</a></li>
                         <li>12 Comment</li>
                         <li><p th:text="|${blog.blogReadCount} views|"></p>
+                        <li><p th:text="${blog.blogLike}"></p>
                       </ul>
                       <h3><a th:text="${blog.blogTitle}" th:href="@{blog-single(blogSeq=${blog.blogSeq})}">Attract Sales And Profits</a></h3>
                       <p class="text" th:text="|${#strings.substring(blog.blogContent,0,6)}...|">A job ravenously while Far much that one rank beheld after outside....</p>
