@@ -11,11 +11,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ReviewDto {
-	private int reviewSeq;
+	private long id;
 	private String reviewGrade;
 	private String reviewTitle;
 	private String reviewContent;
-	private String corpId;
+	private int corpId;
 	private int userSeq;
 	
 }

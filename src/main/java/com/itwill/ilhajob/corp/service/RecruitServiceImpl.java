@@ -18,6 +18,9 @@ import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.corp.repository.RecruitRepository;
+import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.User;
+import com.itwill.ilhajob.user.exception.UserNotFoundException;
 
 @Service
 public class RecruitServiceImpl implements RecruitService {
@@ -46,12 +49,20 @@ public class RecruitServiceImpl implements RecruitService {
 	@Override
 	public int create(RecruitDto RecruitDto) throws Exception {
 		Recruit recruit = modelMapper.map(RecruitDto, Recruit.class);
+		System.out.println(recruit);
 		recruit = recruitRepository.save(recruit);
 		return 0;
 	}
 	@Override
 	public int update(RecruitDto RecruitDto) throws Exception {
-		// TODO Auto-generated method stub
+//		User user = userRepository.findById(id).orElseThrow(() 
+//        		-> new UserNotFoundException("존재하지 않습니다."));
+//        userDto.setId(id);
+//        userDto.setUserEmail(user.getUserEmail());
+//        userDto.setUserPassword(user.getUserPassword());
+//        modelMapper.map(userDto, user);
+//        user = userRepository.save(user);
+//        return modelMapper.map(user, UserDto.class);
 		return 0;
 	}
 	@Override
