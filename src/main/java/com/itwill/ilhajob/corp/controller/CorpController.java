@@ -141,12 +141,13 @@ public class CorpController {
 	@RequestMapping("/dashboard-manage-job")
 	public String corp_dashboard_manage_job(HttpServletRequest request, Model model) throws Exception {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto = corpService.findCorpWithRecruits(sCorpId);
+		CorpDto corpDto = corpService.findCorp(sCorpId);
 		model.addAttribute("corp", corpDto);
+		List<Integer> countList = new ArrayList<>();
 		// 지원자 숫자 보여주기
-		Long appCount = appService.findAppCountByCorpId(sCorpId);
-		System.out.println(appCount);
-		model.addAttribute("appCount", appCount);
+		//Long appCount = appService.findAppCountByCorpId(sCorpId);
+		//System.out.println(appCount);
+		//model.addAttribute("appCount", appCount);
 
 		return "dashboard-manage-job";
 	}
