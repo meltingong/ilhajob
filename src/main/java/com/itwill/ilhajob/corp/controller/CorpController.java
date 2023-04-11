@@ -140,7 +140,7 @@ public class CorpController {
 		CorpDto corpDto = corpService.findCorpWithRecruits(sCorpId);
 		model.addAttribute("corp", corpDto);
 		// 지원자 숫자 보여주기
-		Long appCount = appService.findAppCountByCorpId(sCorpId);
+		Long appCount = appService.findAppCountByCorpId(corpDto.getId());
 		System.out.println(appCount);
 		model.addAttribute("appCount", appCount);
 
