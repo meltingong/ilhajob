@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.corp.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,10 +25,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.dto.CorpImageDto;
+import com.itwill.ilhajob.corp.entity.Corp;
+import com.itwill.ilhajob.corp.entity.CorpImage;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
+import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
@@ -38,7 +45,8 @@ public class CorpController {
 	private CorpService corpService;
 	@Autowired
 	private AppService appService;
-
+	@Autowired
+	private CorpImageService corpImageService;
 //	@RequestMapping("/index")
 //	public String main() {
 //		String forward_path = "index";
@@ -176,11 +184,49 @@ public class CorpController {
 		// 결과 페이지를 반환
 		return resultMap;
 	}
+	
+	//이미지 업로드
+    @PostMapping("/imageUpload")
+    public String handleImageUpload(MultipartFile file, Model model,HttpServletRequest request) throws Exception {
+        if (!file.isEmpty()) {
+            try {
+                // 파일 저장 로직 구현 (예: 서버에 파일 저장, 파일 정보 DB에 저장 등)
+                String fileName = file.getOriginalFilename();
+                String CorpImageUrl =
+                "C:\\2022-11-JAVA-DEVELOPER\\git_repositories\\final-project-team1-xxx\\src\\main\\resources\\imageUpload\\"
+                + fileName;
+                file.transferTo(new File(CorpImageUrl));
+                
+                
+                CorpDto corp = corpService.findCorp((String)request.getSession().getAttribute("sUserId"));
+                
+                
+                CorpImageDto corpImage = new CorpImageDto(5,
+                									CorpImageUrl,
+                									1);
+                corpImageService.insertCorpImage(corpImage);
+                // 파일 처리가 완료된 후에는 해당 정보를 모델에 추가하여 View로 전달
+                model.addAttribute("fileName", fileName);
 
+                // 업로드 처리가 완료된 후에는 성공 페이지 또는 결과 페이지를 반환
+                return "/dashboard"; // 성공 페이지 또는 결과 페이지를 반환
 
+            } catch (IOException e) {
+                // 파일 업로드 처리 중에 예외 발생 시 에러 처리
+                model.addAttribute("error", "Failed to upload file. Error: " + e.getMessage());
+                return "error"; // 에러 페이지 또는 에러 처리 로직을 반환
+            }
+        } else {
+            // 업로드된 파일이 없는 경우 예외 처리 또는 에러 처리
+            model.addAttribute("error", "No file uploaded.");
+            return "error"; // 에러 페이지 또는 에러 처리 로직을 반환
+        }
+    }
+    
+}
 //	@ExceptionHandler(Exception.class)
 //	public String corp_exception_handler(Exception e) {
 //		System.out.println("에러..");
 //		return "shop-checkout";
 //	}
-}
+

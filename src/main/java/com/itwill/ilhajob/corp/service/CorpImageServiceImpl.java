@@ -5,13 +5,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
 import com.itwill.ilhajob.corp.entity.CorpImage;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.corp.repository.CorpImageRepository;
 
-
+@Service
 public class CorpImageServiceImpl implements CorpImageService{
 	
 	private final CorpImageRepository corpImageRepository;
