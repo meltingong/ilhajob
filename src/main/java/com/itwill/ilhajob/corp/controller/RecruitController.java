@@ -50,7 +50,6 @@ public class RecruitController {
 	public String recruit_detail(@RequestParam long id, Model model) throws Exception{
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
-		System.out.println(recruit.getCorp());
 		String forward_path = "recruit-detail";
 		return forward_path;
 	}
@@ -72,4 +71,14 @@ public class RecruitController {
 	      String forward_path = "redirect:recruit-detail?id="+recruitDto.getId();
 	      return forward_path;
 	   }
+	   
+	   //테스트아직 안함
+//	   @PostMapping("/dashboard-post-remove-action")
+//	   public String dashboard_post_remove_action(@ModelAttribute RecruitDto recruitDto, HttpServletRequest request) throws Exception {
+//		  CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
+//		  System.out.println(recruitDto);
+//		  //recruitService.remove(0);
+//	      String forward_path = "redirect:recruit-list";
+//	      return forward_path;
+//	   }
 }
