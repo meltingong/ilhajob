@@ -70,4 +70,23 @@ public class RecruitController {
 	      String forward_path = "recruit-detail";
 	      return forward_path;
 	   }
+	   
+	   /* 수정 전 껍데기
+	   //delete
+	   @PostMapping(value="/recruit_remove_action")
+	   public String recruit_remove_action(@RequestParam("rcSeq")int rcSeq)throws Exception{
+		   return "";
+	   }
+	   //modify_form
+	   @PostMapping(value="/recruit_modify_form")
+	   public String recruit_modify_form()throws Exception{
+		   return "";
+	   }
+	   //modify_action
+	   @PostMapping(value="/recruit_modify_action")
+	   public String recruit_remove_action()throws Exception{
+		   return "";
+	   }
+	   */
+	   
 }
