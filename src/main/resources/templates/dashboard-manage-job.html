@@ -86,6 +86,7 @@
 
                       <tbody>
                         <tr th:each="recruit:${corp.recruitList}">
+                        <!-- form자리 버튼 포스트로 넘길용도 -->
                           <td>
                             <a th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 th:text="${recruit.rcTitle}">Senior Full Stack Engineer, Creator Success</h6></a>
                             <span th:text="${corp.corpAddress}" class="info"><i class="icon flaticon-map-locator"></i> London, UK</span>

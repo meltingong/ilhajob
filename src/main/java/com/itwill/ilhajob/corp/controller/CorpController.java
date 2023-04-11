@@ -151,15 +151,19 @@ public class CorpController {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto = corpService.findCorp(sCorpId);
 		model.addAttribute("corp", corpDto);
-		List<Integer> countList = new ArrayList<>();
-		// 지원자 숫자 보여주기
+		
+		// 지원자 숫자 보여주기->일단 보류
+		//List<Integer> countList = new ArrayList<>();
 		//Long appCount = appService.findAppCountByCorpId(sCorpId);
 		//System.out.println(appCount);
 		//model.addAttribute("appCount", appCount);
+		
+		//마감,진행 status도 일단 보류
 
 		return "dashboard-manage-job";
 	}
-
+	
+	//지원자 보기
 	@RequestMapping("/dashboard-applicants")
 	public String corp_dashboard_applicants() {
 		return "dashboard-applicants";
