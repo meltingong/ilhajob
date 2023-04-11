@@ -1,49 +1,11 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
-   function update(){
-      document.f.action = "corp-update-action";
-      /*
-      var yyyy_mm_dd = String(document.f.corpEst.value);
-      var yyyy = yyyy_mm_dd.substring(0,4);
-      var mm = yyyy_mm_dd.substring(5,7);
-      var dd = yyyy_mm_dd.substring(8,10);
-      console.log(yyyy+mm+dd);
-      document.f.corpEst.value = new Date(yyyy+'-'+mm+'-'+dd);
-       */
-      document.method="POST"
-      document.f.submit();
-   }
-   
-   //이미지 업로드 
-/*
-
-   $(document).ready(function() {
-	   $('#upload-button').click(function(event) {
-	     //event.preventDefault(); // 폼 제출 동작 중지
-
-	     var formData = new FormData();
-	     var imageFile = $('#upload')[0].files[0]; // 파일 업로드 필드에서 이미지 파일 가져오기
-	     formData.append('image', imageFile); // FormData 객체에 이미지 파일 추가
-
-	     $.ajax({
-	       url: '/imageUpload', // 업로드를 처리할 서버 URL
-	       method: 'POST',
-	       data: formData,
-	       contentType: false, // 서버로 데이터를 전송할 때 사용할 Content-Type 설정
-	       processData: false, // 데이터를 query string으로 변환하지 않도록 설정
-	       success: function(response) {
-	         console.log('Upload success:', response);
-	         // 업로드 완료 메시지 또는 결과를 처리하는 로직 작성
-	       },
-	       error: function(xhr, status, error) {
-	         console.log('Upload error:', error);
-	         // 에러 처리 로직 작성
-	       }
-	     });
-	   });
-	 });
-	 */
+	function modifyAction(){
+		document.f.action = "corp-update-action";
+		document.method='POST';
+		document.f.submit(); 
+	}
 </script>
 <head>
   <meta charset="utf-8">
@@ -91,8 +53,8 @@
     <section class="user-dashboard">
       <div class="dashboard-outer">
         <div class="upper-title-box">
-          <h3>회사 프로필</h3>
-          <div class="text">회사 프로필을 최신화하세요</div>
+          <h3>Company Profile!</h3>
+          <div class="text">Ready to jump back in?</div>
         </div>
 
         <div class="row">
@@ -101,66 +63,41 @@
             <div class="ls-widget">
               <div class="tabs-box">
                 <div class="widget-title">
-                  <h4>회사 프로필</h4>
+                  <h4>My Profile</h4>
                 </div>
 
                 <div class="widget-content">
                 
-                <form class="image-form" name ="image-f" method="post" action="/imageUpload">
+					<!-- 
                   <div class="uploading-outer">
                     <div class="uploadButton">
                       <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload" multiple />
                       <label class="uploadButton-button ripple-effect" for="upload">회사 로고</label>
                       <span class="uploadButton-file-name"></span>
-                      <button type="submit">업로드</button>
                     </div>
                     <div class="text">Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg & .png</div>
                   </div>
-					<!--				
-					<form id="image-upload-form" method="post" enctype="multipart/form-data">
-					  <input type="file" name="image" id="image-input">
-					  <button type="button" id="upload-button">이미지 업로드</button>
-					</form>
-                    -->
-					</form>
-                  <form class="default-form" name ="f" method="post">
-                  	<div class="uploading-outer">
-                   		 <div class="uploadButton">
-						  <span th:each="CorpImage : ${corp.corpImageList}" >
-						    <img th:src="${CorpImage.corpImage}" />
-						    <button class="deleteButton" data-corpImageSeq="${CorpImage}">삭제</button>
-						  </span>
+-->
+                  <div class="uploading-outer">
+                    <div class="uploadButton">
+                    	<div th:each = "CorpImage : ${corp.corpImageList}">
+                    		<!-- <img class = "uploadButton-input" src="${corp.corpImageList.corpImage.corpImage}">-->
+                    		<div th:text = "${CorpImage.corpImage}"></div>
                     	</div>
-                    </div>
-                    
-                   
-                     <!--     <div th:each = "CorpImage : ${corp.corpImageList}">	
-                          <!-- <img class = "uploadButton-input" src="${corp.corpImageList.corpImage.corpImage}">-->
-                        <!--    <img th:src="${CorpImage.corpImage}">
-                         <!-- <div th:text = "${CorpImage.corpImage}"></div> --> 
-                      <!--  </div>
                    <!-- <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload_cover" multiple />
                        <label class="uploadButton-button ripple-effect" for="upload">Browse Cover</label>
                       <span class="uploadButton-file-name"></span>
                     -->
-                    
-                   <!--  <div class="text">최대 파일 크기는 1MB이고 최소 치수는 330x300이며 적합한 파일은 .jpg 및 .png입니다</div>-->
-                  
+                    </div>
+                    <div class="text">최대 파일 크기는 1MB이고 최소 치수는 330x300이며 적합한 파일은 .jpg 및 .png입니다</div>
+                  </div>
+
+                  <form class="default-form" method="post" action="/corp-update-action">
                     <div class="row">
                       <!-- Input -->
-                      <input type="hidden" name="corpId" th:value = "${corp.corpId}">
-                      <input type="hidden" name="corpStatus" th:value = "${corp.corpStatus}">
-                      <input type="hidden" name="job" th:value = "${corp.job}">
-                      <input type="hidden" name="role" th:value = "${corp.role}">
-                      
                       <div class="form-group col-lg-6 col-md-12">
                         <label >회사 이름</label>
                         <input type="text" name="corpName" th:value = "${corp.corpName}">
-                      </div>
-                      
-                      <div class="form-group col-lg-6 col-md-12">
-                        <label >비밀번호</label>
-                        <input type="password" name="corpPassword" th:value = "${corp.corpPassword}">
                       </div>
 
                       <!-- Input -->
@@ -169,9 +106,6 @@
                         <input type="text" name="corpAddress" th:value = "${corp.corpAddress}">
                       </div>
 
-                  
-                  <input type="hidden" name="corpBusinessNo" th:value = "${corp.corpBusinessNo}">
-                  <input type="hidden" name="corpSales" th:value = "${corp.corpSales}">
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>전화번호</label>
@@ -187,7 +121,7 @@
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>회사설립일</label>
-                        <input type="text" name="corpest" th:value="${#dates.format(corp.corpEst,'yyyy-mm-dd')}">
+                        <input type="text" name="corpEst" th:value="${#dates.format(corp.corpEst,'yyyy-MM-dd')}">
                       </div>
 
                       <!-- Input -->
@@ -217,19 +151,19 @@
                       <!-- About Company -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>회사소개</label>
-                        <textarea name = "corpComment" th:value="${corp.corpComment}"></textarea>
+                        <textarea th:value="${corp.corpComment}"></textarea>
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
-                        <button class="theme-btn btn-style-one" type="button" onClick ="update();" >저장</button>
+                        <button class="theme-btn btn-style-one" onClick ="modifyAction()">저장</button>
                       </div>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-         
+			
             <!-- Ls widget -->
             <!--
             <div class="ls-widget">

@@ -1,7 +1,5 @@
 package com.itwill.ilhajob.user.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,21 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.itwill.ilhajob.app.App;
-import com.itwill.ilhajob.app.AppService;
-import com.itwill.ilhajob.corp.Corp;
-import com.itwill.ilhajob.message.Message;
-import com.itwill.ilhajob.message.MessageService;
-import com.itwill.ilhajob.review.Review;
-import com.itwill.ilhajob.review.ReviewService;
-import com.itwill.ilhajob.user.User;
-import com.itwill.ilhajob.user.UserService;
+import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
+import com.itwill.ilhajob.user.service.UserService;
 
 /*
 /user_main 
@@ -45,16 +34,6 @@ import com.itwill.ilhajob.user.exception.UserNotFoundException;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	//@Autowired
-	//private MessageService messageService;
-	
-	@Autowired
-	private ReviewService reviewService;
-	
-
-	@Autowired
-	private AppService appService;
-
 
 	/**************Local Exception Handler**************/
 	@ExceptionHandler(Exception.class)
@@ -84,7 +63,7 @@ public class UserController {
 	public String dashboard(HttpServletRequest request) throws Exception {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		//System.out.println(">>>>>>>>"+sUserId);
-		User loginUser = userService.findUser(sUserId);
+		UserDto loginUser = userService.findUser(sUserId);
 		request.setAttribute("loginUser", loginUser);
 		String forwardPath = "candidate-dashboard";
 		return forwardPath;
@@ -96,7 +75,7 @@ public class UserController {
 	public String user_profile(HttpServletRequest request) throws Exception {
 		String forwardPath = "";
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
-		User loginUser = userService.findUser(sUserId);
+		UserDto loginUser = userService.findUser(sUserId);
 		request.setAttribute("loginUser", loginUser);
 		forwardPath = "candidate-dashboard-profile";
 		return forwardPath;
@@ -108,7 +87,7 @@ public class UserController {
 	public String modify_form(HttpServletRequest request) throws Exception {
 		String forwardPath = "";
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
-		User loginUser = userService.findUser(sUserId);
+		UserDto loginUser = userService.findUser(sUserId);
 		request.setAttribute("loginUser", loginUser);
 		forwardPath = "candidate-dashboard-profile-modify-form";
 		return forwardPath;
@@ -117,9 +96,10 @@ public class UserController {
 	// 회원 정보수정
 	@LoginCheck
 	@RequestMapping("/modify_action")
-	public String modify_action(@ModelAttribute User user, HttpServletRequest request) throws Exception {
+	public String modify_action(@ModelAttribute UserDto userDto, HttpServletRequest request) throws Exception {
 		String forwardPath = "";
-		userService.update(user);
+		Long id = (Long)request.getSession().getAttribute("id");
+		userService.update(id,userDto);
 		forwardPath = "redirect:candidate-dashboard-profile";
 		return forwardPath;
 	}
@@ -133,11 +113,12 @@ public class UserController {
 	
 	//회원 로그인 액션
 	@PostMapping("/user_login_action")
-	public String user_login_action(@ModelAttribute("fuser")User user,Model model,HttpSession session) throws Exception{
+	public String user_login_action(@ModelAttribute("fuser")UserDto userDto,Model model,HttpSession session) throws Exception{
 		String forwardPath = "";
 		try {
-			userService.login(user.getUserEmail(),user.getUserPassword());
-			session.setAttribute("sUserId", user.getUserEmail());
+			UserDto loginUser = userService.login(userDto.getUserEmail(),userDto.getUserPassword());
+			session.setAttribute("id", loginUser.getId());
+			session.setAttribute("sUserId", userDto.getUserEmail());
 			forwardPath = "redirect:index";
 		}catch (UserNotFoundException e) {
 			e.printStackTrace();
@@ -172,7 +153,7 @@ public class UserController {
 	
 	// 회원 가입 액션
 	@RequestMapping("/user_join_action")
-	public String user_join_action(@ModelAttribute("fuser")User user,Model model) throws Exception {
+	public String user_join_action(@ModelAttribute("fuser")UserDto user,Model model) throws Exception {
 		String forwardPath = "";
 		try {
 			userService.create(user);
@@ -183,111 +164,19 @@ public class UserController {
 		}
 		return forwardPath;
 	}
-
-	//나의 지원현황
-
 	
-	// 회원 탈퇴
-	@LoginCheck
-	@RequestMapping("/delete-action")
-	public String user_delete(HttpServletRequest request) throws Exception {
-		String forwardPath="";
-		String sUserId = (String)request.getSession().getAttribute("sUserId");
-		userService.remove(sUserId);
-		request.getSession().invalidate();
-		forwardPath = "redirect:index";
-		return forwardPath;
-	}
-	
-	
-	//회원이 지원한 공고
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
 		String forwardPath="";
-		request.getSession().setAttribute("sUserId", "test3@test.com");
+		//request.getSession().setAttribute("sUserId", "test3@test.com");
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
-		User loginUser = userService.findUser(sUserId);
- 		User user = userService.findAppList(loginUser.getUserSeq());
-		//System.out.println(user);
- 		request.setAttribute("loginUser", user);
+		UserDto loginUser = userService.findUser(sUserId);
+		System.out.println(loginUser);
+ 		request.setAttribute("loginUser", loginUser);
 		forwardPath = "/candidate-dashboard-applied-job";
 		return forwardPath;
 	}
-	
-	//회원이 공고삭제하기
-	@LoginCheck
-	@RequestMapping(value = "/remove-applied-job")
-	public String remove_applied_job(HttpServletRequest request, @RequestParam int appSeq) throws Exception{
-		appService.deleteApp(appSeq);
-		return "redirect:candidate-dashboard-applied-job";
-	}
-	/*
-	// 회원 알림 전체보기
-		@LoginCheck
-		@RequestMapping("/candidate-dashboard-job-alerts")
-		public String user_alerts(HttpServletRequest request,User user,Model model) throws Exception {
-			String forwardPath="";
-			String sUserId = (String)request.getSession().getAttribute("sUserId");
-			User loginUser = userService.findUser(sUserId);
-			request.setAttribute("loginUser", loginUser);
-			List<Message> messageList = messageService.fineMessageOfUser(loginUser.getUserSeq());
-			model.addAttribute("messageList",messageList);
-			forwardPath = "candidate-dashboard-job-alerts";
-			return forwardPath;
-		}
-		
-		// 알림 삭제
-		@LoginCheck
-		@RequestMapping("/alerts-remove")
-		public String user_alerts_remove(HttpServletRequest request,int messageSeq) throws Exception {
-			String forwardPath="";
-			messageService.removeMessageBySeq(messageSeq);
-			forwardPath="redirect:candidate-dashboard-job-alerts";
-			return forwardPath;
-		}
-
-	 */
-	
-	
-	//리뷰 작성
-	//corpSeq필요 -> delete할떄 appseq처럼 input hidden corpseq필요(redirect용)
-	@RequestMapping("/review_write_action")
-	public String review_write_action(@ModelAttribute Review review, @RequestParam("corpId") String corpId, Model model,HttpServletRequest request) throws Exception{
-		request.getSession().setAttribute("sUserId", "test3@test.com");
-		String sUserId = (String)request.getSession().getAttribute("sUserId");
-		User loginUser = userService.findUser(sUserId);
-		review.setCorpId(corpId);
-		review.setUserSeq(loginUser.getUserSeq());
-		System.out.println(review);
-		request.setAttribute("loginUser", loginUser);	
-	    reviewService.insertReview(review);
-		String forwardPath = "redirect:corp-detail?corpId="+corpId;
-		return forwardPath;
-		
-	}
-
-	/*//회원이 공고삭제하기
-	@LoginCheck
-	@RequestMapping(value = "/remove-applied-job")
-	public String remove_applied_job(HttpServletRequest request, @RequestParam int appSeq) throws Exception{
-		appService.deleteApp(appSeq);
-		return "redirect:candidate-dashboard-applied-job";
-	}*/
-	
-	@RequestMapping("/review_delete")
-	public String review_delete(@ModelAttribute Review review, HttpServletRequest request, @RequestParam int reviewSeq,@RequestParam("corpId") String corpId) throws Exception{
-		reviewService.deleteReview(reviewSeq);
-		return "redirect:corp-detail?corpId="+corpId;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -297,7 +186,6 @@ public class UserController {
 	 * <<지원>> applied jobs 지원한 공고 목록
 	 * 회사에 이력서 지원 하기
 	 * 이력서 지원한 회사 목록 보기
-	 * 지원취소
 	 */
 	
 	/*
