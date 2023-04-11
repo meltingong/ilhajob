@@ -1,6 +1,7 @@
 package com.itwill.ilhajob.corp.dto;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class CorpDto {
 	private String corpPhone;
 	private String corpBusinessNo;
 	private String corpWebsite;
-	private Date corpEst;
+	private LocalDate corpEst;
 	private String corpSize;
 	private String corpSales;
 	private String corpComment;
