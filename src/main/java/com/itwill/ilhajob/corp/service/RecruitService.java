@@ -10,11 +10,11 @@ import com.itwill.ilhajob.corp.dto.RecruitDto;
 public interface RecruitService {
 	
 	//공고등록
-	RecruitDto create(RecruitDto RecruitDto) throws Exception;
+	RecruitDto create(RecruitDto recruitDto) throws Exception;
 	//공고수정
-	RecruitDto update(RecruitDto RecruitDto) throws Exception;
+	RecruitDto update(long id, RecruitDto recruitDto) throws Exception;
 	//공고삭제
-	int remove(Map<String, Object> map) throws Exception;
+	void remove(long id) throws Exception;
 	
 	List<RecruitDto> findRecruitAll() throws Exception;
 	

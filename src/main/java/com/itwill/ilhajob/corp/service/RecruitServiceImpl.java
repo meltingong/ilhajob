@@ -47,28 +47,27 @@ public class RecruitServiceImpl implements RecruitService {
 	}
 	
 	@Override
-	public RecruitDto create(RecruitDto RecruitDto) throws Exception {
-		Recruit recruit = modelMapper.map(RecruitDto, Recruit.class);
+	public RecruitDto create(RecruitDto recruitDto) throws Exception {
+		Recruit recruit = modelMapper.map(recruitDto, Recruit.class);
 		System.out.println(recruit);
 		recruit = recruitRepository.save(recruit);
 		return modelMapper.map(recruit, RecruitDto.class);
 	}
 	@Override
-	public RecruitDto update(RecruitDto RecruitDto) throws Exception {
-//		User user = userRepository.findById(id).orElseThrow(() 
-//        		-> new UserNotFoundException("존재하지 않습니다."));
-//        userDto.setId(id);
-//        userDto.setUserEmail(user.getUserEmail());
-//        userDto.setUserPassword(user.getUserPassword());
-//        modelMapper.map(userDto, user);
-//        user = userRepository.save(user);
-//        return modelMapper.map(user, UserDto.class);
-		return null;
+	public RecruitDto update(long id, RecruitDto recruitDto) throws Exception {
+		Optional<Recruit> optionalRecurit = recruitRepository.findById(id);
+		Recruit recruit = optionalRecurit.get();
+		recruitDto.setId(id);
+		recruitDto.setRcTitle(recruit.getRcTitle());
+		recruitDto.setRcContent(recruit.getRcContent());
+		recruitDto.setRcSalary(recruit.getRcSalary());
+        modelMapper.map(recruitDto, recruit);
+        recruit = recruitRepository.save(recruit);
+        return modelMapper.map(recruit, RecruitDto.class);
 	}
 	@Override
-	public int remove(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public void remove(long id) throws Exception {
+		recruitRepository.deleteById(id);
 	}
 	
 	//마감일 됐는지 여부 확인
