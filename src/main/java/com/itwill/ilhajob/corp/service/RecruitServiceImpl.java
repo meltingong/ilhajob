@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -35,9 +36,10 @@ public class RecruitServiceImpl implements RecruitService {
 				.collect(Collectors.toList());
 	}
 	@Override
-	public RecruitDto findRecruitDto(int rcSeq) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public RecruitDto findRecruit(long id) throws Exception {
+		Optional<Recruit> optionalRecurit = recruitRepository.findById(id);
+		Recruit findRecruit = optionalRecurit.get();
+		return modelMapper.map(findRecruit, RecruitDto.class);
 	}
 	
 	@Override

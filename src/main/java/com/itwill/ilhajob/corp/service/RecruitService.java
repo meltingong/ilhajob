@@ -19,7 +19,7 @@ public interface RecruitService {
 	List<RecruitDto> findRecruitAll() throws Exception;
 	
 	//공고 상세
-	RecruitDto findRecruitDto(int rcSeq) throws Exception;
+	RecruitDto findRecruit(long id) throws Exception;
 	
 	//마감 지났는지 여부 확인
 	//boolean isDeadLine(Date rcDeadline) throws Exception;
