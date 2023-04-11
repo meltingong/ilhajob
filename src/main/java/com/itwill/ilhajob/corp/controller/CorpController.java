@@ -2,6 +2,8 @@ package com.itwill.ilhajob.corp.controller;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.type.LocalDateType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -124,11 +127,12 @@ public class CorpController {
 		return forwardPath;
 	}
 
-	@PostMapping("corp-update-action")
-	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto, HttpServletRequest request)
-			throws Exception {
-		Long id = (Long) request.getSession().getAttribute("id");
-		System.out.println("날짜" + corpDto.getCorpEst());
+	@PostMapping("/corp-update-action")
+	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto, HttpServletRequest request)throws Exception {
+		Long id = corpDto.getId();
+		System.out.println(corpDto.getCorpEst());
+		
+		corpDto.setCorpEst(LocalDate.now());
 		corpService.update(id, corpDto);
 		request.setAttribute("corLoginpId", corpDto.getCorpLoginId());
 		return "corp-detail";
