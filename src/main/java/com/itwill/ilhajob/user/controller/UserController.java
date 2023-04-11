@@ -213,7 +213,7 @@ public class UserController {
 		forwardPath="redirect:candidate-dashboard-job-alerts";
 		return forwardPath;
 	}
-	
+	*/
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
