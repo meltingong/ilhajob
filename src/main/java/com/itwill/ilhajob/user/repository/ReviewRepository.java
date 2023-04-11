@@ -10,12 +10,21 @@ import com.itwill.ilhajob.user.entity.Review;
 import com.itwill.ilhajob.user.entity.User;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
+	
 	//findBy+entity의 컬럼이름 으로 찾아줌
 	List<Review> findByUser(String userEmail);
+	
+	//위 메소드 안되면 -> 아래꺼사용
+	//List<Review> findByUser(User user);
+	
 	//Optional이 필요한경우
 	//Optional<List<Review>> findByUser(String userEmail);
 	
 	List<Review> findByCorp(String corpId);
+	
+		//위 메소드 안되면 -> 아래꺼사용
+		//List<Review> findByCorp(Corp corp);
+	
 	//Optional<List<Review>> findByCorp(String corpId);
  }
 /* <<ServiceImpl에서 작성이 필요한 부분>>
