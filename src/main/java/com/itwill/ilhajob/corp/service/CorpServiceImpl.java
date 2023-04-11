@@ -1,5 +1,8 @@
 package com.itwill.ilhajob.corp.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,6 +33,9 @@ public class CorpServiceImpl implements CorpService{
 		this.corpRepository = corpRepository;
 		this.modelMapper = modelMapper;
 	}
+
+	
+	
 	
 	@Override
 	public CorpDto create(CorpDto corpDto) throws ExistedCorpException, Exception {
@@ -82,6 +88,7 @@ public class CorpServiceImpl implements CorpService{
 		corpDto.setId(id);
 		corpDto.setCorpLoginId(corp.getCorpLoginId());
 		corpDto.setCorpPassword(corp.getCorpPassword());
+		corpDto.setCorpEst((corpDto.getCorpEst()));
 		modelMapper.map(corpDto, corp);
 		corp = corpRepository.save(corp);
 		return modelMapper.map(corp, CorpDto.class);
@@ -131,6 +138,15 @@ public class CorpServiceImpl implements CorpService{
 		return corpRepository.existsByCorpLoginId(corpLoginId);
 	}
 	
-
+	@Override
+	public List<CorpDto> searchCorpList(String query) throws Exception{
+		List<CorpDto> result = this.findCorpAll();
+		for(CorpDto corp:result) {
+			if((corp.getCorpName().toLowerCase()).contains(query.toLowerCase())) {
+				result.add(corp);
+			}
+		}
+		return result;
+	}
 	
 }

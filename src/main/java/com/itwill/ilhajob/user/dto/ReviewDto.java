@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.user.dto;
 
+import com.itwill.ilhajob.corp.dto.CorpDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,12 +12,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class ReviewDto {
-	private int reviewSeq;
-	private String reviewGrade;
+	private Long id;
+	private int reviewGrade;
 	private String reviewTitle;
 	private String reviewContent;
-	private String corpId;
-	private int userSeq;
-	
+	@ToString.Exclude
+	private CorpDto corp;
+	@ToString.Exclude
+	private UserDto user;
+
 }

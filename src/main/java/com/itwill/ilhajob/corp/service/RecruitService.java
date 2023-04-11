@@ -10,20 +10,16 @@ import com.itwill.ilhajob.corp.dto.RecruitDto;
 public interface RecruitService {
 	
 	//공고등록
-	int saveRecruitDto(RecruitDto RecruitDto) throws Exception;
+	RecruitDto create(RecruitDto recruitDto) throws Exception;
 	//공고수정
-	int updateRecruitDto(RecruitDto RecruitDto) throws Exception;
+	RecruitDto update(long id, RecruitDto recruitDto) throws Exception;
 	//공고삭제
-	int removeRecruitDto(Map<String, Object> map) throws Exception;
+	void remove(long id) throws Exception;
 	
-	List<RecruitDto> findRecruitDtoListAllWithCorp() throws Exception;
+	List<RecruitDto> findRecruitAll() throws Exception;
 	
-	//corp회원이 등록한 공고리스트
-	List<RecruitDto> findRecruitDtoListByCorpId(CorpDto corp) throws Exception;
-	//직무별 공고리스트
-	List<RecruitDto> findRecruitDtoListByJob(String job) throws Exception;
 	//공고 상세
-	RecruitDto findRecruitDto(int rcSeq) throws Exception;
+	RecruitDto findRecruit(long id) throws Exception;
 	
 	//마감 지났는지 여부 확인
 	//boolean isDeadLine(Date rcDeadline) throws Exception;

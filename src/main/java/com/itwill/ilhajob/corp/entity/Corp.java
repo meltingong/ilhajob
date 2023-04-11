@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.corp.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,7 +58,7 @@ public class Corp {
 	
 	private String corpWebsite;
 	
-	private Date corpEst;
+	private LocalDate corpEst;
 	
 	private String corpSize;
 	
