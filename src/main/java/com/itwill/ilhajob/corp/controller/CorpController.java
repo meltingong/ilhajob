@@ -11,19 +11,15 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.naming.factory.webservices.ServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
@@ -31,8 +27,6 @@ import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
-import groovyjarjarantlr4.v4.parse.ANTLRParser.exceptionGroup_return;
 
 @Controller
 public class CorpController {
@@ -158,13 +152,6 @@ public class CorpController {
 		return "dashboard-applicants";
 	}
 
-	@RequestMapping("/dashboard-post-job")
-	public String dashboard_post_job_form(HttpServletRequest request, Model model) throws Exception {
-		CorpDto loginCorp = corpService.findCorp((String) request.getSession().getAttribute("sCorpId"));
-		model.addAttribute("corp", loginCorp);
-		String forward_path = "dashboard-post-job";
-		return forward_path;
-	}
 
 	// 검색기능
 	@GetMapping("/search")
@@ -185,16 +172,6 @@ public class CorpController {
 		return resultMap;
 	}
 
-	/*
-	 * @PostMapping("/dashboard-post-job-action") public String
-	 * dashboard_post_job_action(@ModelAttribute Recruit recruit,HttpServletRequest
-	 * request,Model model) throws Exception { CorpDto loginCorp =
-	 * corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
-	 * recruit.setRcDeadline(new Date()); recruit.setCorp(loginCorp);
-	 * recruitService.saveRecruit(recruit);
-	 * model.addAttribute("rcSeq",recruit.getRcSeq()); String forward_path =
-	 * "recruit-detail"; return forward_path; }
-	 */
 
 //	@ExceptionHandler(Exception.class)
 //	public String corp_exception_handler(Exception e) {
