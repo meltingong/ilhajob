@@ -51,6 +51,7 @@ public class RecruitController {
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
 		System.out.println(recruit);
+		System.out.println(recruit.getCorp());
 		String forward_path = "recruit-detail";
 		return forward_path;
 	}
