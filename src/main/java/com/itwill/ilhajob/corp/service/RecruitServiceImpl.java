@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.corp.repository.RecruitRepository;
 
 @Service
@@ -25,8 +27,34 @@ public class RecruitServiceImpl implements RecruitService {
 		this.recruitRepository = recruitRepository;
 		this.modelMapper = modelMapper;
 	}
+	@Override
+	public List<RecruitDto> findRecruitAll() throws Exception {
+		List<Recruit> recruitList = recruitRepository.findAll();
+		return recruitList.stream()
+				.map(recruit ->modelMapper.map(recruit, RecruitDto.class))
+				.collect(Collectors.toList());
+	}
+	@Override
+	public RecruitDto findRecruitDto(int rcSeq) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-	
+	@Override
+	public int save(RecruitDto RecruitDto) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int update(RecruitDto RecruitDto) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int remove(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	//마감일 됐는지 여부 확인
 //	@Override
@@ -58,62 +86,6 @@ public class RecruitServiceImpl implements RecruitService {
         } else {
             return "D-" + daysUntilDeadLine;
         }
-	}
-
-
-
-	@Override
-	public int saveRecruitDto(RecruitDto RecruitDto) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public int updateRecruitDto(RecruitDto RecruitDto) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public int removeRecruitDto(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public List<RecruitDto> findRecruitDtoListAllWithCorp() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public List<RecruitDto> findRecruitDtoListByCorpId(CorpDto corp) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public List<RecruitDto> findRecruitDtoListByJob(String job) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public RecruitDto findRecruitDto(int rcSeq) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }
