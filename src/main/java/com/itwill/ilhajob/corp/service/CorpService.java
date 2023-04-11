@@ -3,6 +3,7 @@ package com.itwill.ilhajob.corp.service;
 import java.util.List;
 
 import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.entity.Corp;
 
 
 public interface CorpService {
@@ -55,4 +56,6 @@ public interface CorpService {
 	
 	//회사 리스트
 	public List<CorpDto> findCorpAll() throws Exception;
+
+	List<CorpDto> searchCorpList(String query) throws Exception;
 }
