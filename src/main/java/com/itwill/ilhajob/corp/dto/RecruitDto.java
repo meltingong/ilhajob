@@ -27,7 +27,7 @@ public class RecruitDto {
 	CORP_ID          NOT NULL VARCHAR2(30)  
 	*/
 	
-	private int rcSeq;
+	private long id;
 	private String rcTitle; 
 	private String rcPosition;
 	private String rcContent;
@@ -36,7 +36,6 @@ public class RecruitDto {
 	private Date rcDate;
 	private Date rcDeadline;
 	private int rcReadCount;
-	private String corpId;
 	@ToString.Exclude
 	private CorpDto corp;
 	

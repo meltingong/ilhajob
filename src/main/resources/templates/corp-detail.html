@@ -110,7 +110,7 @@
                   <div class="inner-box">
                     <div th:each="recruit:${corp.recruitList}" class="content">
                       <span class="company-logo"><img src="images/resource/company-logo/1-3.png" alt=""></span>
-                      <h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(rcSeq=${recruit.rcSeq})}" href="#" >Product Designer / UI Designer</a></h4>
+                      <h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#" >Product Designer / UI Designer</a></h4>
                       <ul class="job-info" >
                         <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}"></span></li>
                         <li class="icon flaticon-clock-3"><span th:text="${recruit.rcDate}"></span></li>
