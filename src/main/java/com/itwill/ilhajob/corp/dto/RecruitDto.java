@@ -36,7 +36,6 @@ public class RecruitDto {
 	private Date rcDate;
 	private Date rcDeadline;
 	private int rcReadCount;
-	private String corpId;
 	@ToString.Exclude
 	private CorpDto corp;
 	
