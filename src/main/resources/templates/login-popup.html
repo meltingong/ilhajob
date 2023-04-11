@@ -6,7 +6,7 @@
       <div class="form-inner">
         <h3>Login to Superio</h3>
         <!--Login Form-->
-        <form method="post" action="add-parcel.html">
+        <form id="login-f" name="login-f" method="post">
           <div class="form-group">
             <div class="btn-box row">
               <div class="col-lg-6 col-md-12">
@@ -21,7 +21,7 @@
 
           <div class="form-group">
             <label for="email">User Email</label>
-            <input type="email" id="email" name="email" placeholder="User Email" required>
+            <input type="email" class="user-id" id="email" name="email" placeholder="User Email" required>
           </div>
 
           <div class="form-group">
@@ -40,7 +40,7 @@
           </div>
 
           <div class="form-group">
-            <button class="theme-btn btn-style-one" type="submit" name="log-in">Log In</button>
+            <button class="theme-btn btn-style-one" type="button" id="log-in" name="log-in">Log In</button>
           </div>
         </form>
 
@@ -75,7 +75,6 @@
       });
     });
     
-   	
     function candidate(){
     	jQuery('.jquery-modal.blocker.current a#user-separate').val('user');
     	jQuery('.jquery-modal.blocker.current a#candidate-btn').toggleClass('btn-style-four btn-style-seven');
@@ -100,11 +99,10 @@
       	jQuery('label[for="email"]').attr('for','id');
       	jQuery('label[for="id"]').text('Login ID');
     }
-    
-
+   	
 
   </script>
-
+  <script src="js/script.js"></script>
 
 
 </div>
