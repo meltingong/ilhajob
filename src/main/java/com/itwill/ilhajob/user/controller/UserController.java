@@ -177,6 +177,43 @@ public class UserController {
 		return forwardPath;
 	}
 	
+	// 회원 탈퇴
+			@LoginCheck
+			@RequestMapping("/delete-action")
+			public String user_delete(HttpServletRequest request) throws Exception {
+				String forwardPath="";
+				Long id = (Long)request.getSession().getAttribute("id");
+				userService.remove(id);
+				request.getSession().invalidate();
+				forwardPath = "redirect:index";
+				return forwardPath;
+			}
+			
+	/*
+	// 회원 알림 전체보기
+	@LoginCheck
+	@RequestMapping("/candidate-dashboard-job-alerts")
+	public String user_alerts(HttpServletRequest request,UserDto user,Model model) throws Exception {
+		String forwardPath="";
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		request.setAttribute("loginUser", loginUser);
+		List<Message> messageList = messageService.fineMessageOfUser(loginUser.getId());
+		model.addAttribute("messageList",messageList);
+		forwardPath = "candidate-dashboard-job-alerts";
+		return forwardPath;
+	}
+	
+	// 알림 선택삭제
+	@LoginCheck
+	@RequestMapping("/alerts-remove")
+	public String user_alerts_remove(HttpServletRequest request,int messageSeq) throws Exception {
+		String forwardPath="";
+		messageService.removeMessageBySeq(messageSeq);
+		forwardPath="redirect:candidate-dashboard-job-alerts";
+		return forwardPath;
+	}
+	
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
 	public String user_applied_job(HttpServletRequest request) throws Exception{
@@ -189,6 +226,9 @@ public class UserController {
 		forwardPath = "/candidate-dashboard-applied-job";
 		return forwardPath;
 	}
+	
+	
+	
 	
 	@LoginCheck
 	@RequestMapping(value = "/remove-applied-job")                             //appSeq-> appDto의 id로 들어가야함
