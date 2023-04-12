@@ -25,7 +25,7 @@ import com.itwill.ilhajob.user.repository.UserRepository;
 
 @Service
 @Transactional
-public abstract class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService{
 	
 	private final UserRepository userRepository;
 	private final MessageRepository messageRepository;
@@ -151,5 +151,11 @@ public abstract class UserServiceImpl implements UserService{
 	@Override
 	public void deleteReview(Long reviewId) throws Exception {
 		reviewRepository.deleteById(reviewId);
+	}
+
+	@Override
+	public boolean isDuplicateReview(String userEmail, String corpLoginId) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

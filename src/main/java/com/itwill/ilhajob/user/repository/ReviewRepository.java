@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.entity.Review;
 import com.itwill.ilhajob.user.entity.User;
 
+@Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 	
 	//findBy+entity의 컬럼이름 으로 찾아줌
