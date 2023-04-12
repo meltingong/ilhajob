@@ -55,12 +55,12 @@ public interface UserService {
 	/*
 	 * 유저 알림 list 
 	 */
-	List<MessageDto> findMessageList(Long messageSeq);
+	List<MessageDto> findMessageList(Long messageId);
 	
 	/*
 	 * 유저 알림 선택삭제
 	 */
-	void removeMessageBySeq(Long messageSeq);
+	void removeMessageBySeq(Long messageId);
 	
 	//리뷰 select는 Corp에서 담당
 	/*
