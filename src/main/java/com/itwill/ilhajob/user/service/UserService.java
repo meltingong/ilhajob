@@ -68,4 +68,10 @@ public interface UserService {
 	 * 리뷰 삭제하기
 	 */
 	void deleteReview(Long id) throws Exception;
+	
+	
+	/*
+	 * 회원과 일치하는 리뷰 존재여부
+	 */
+	boolean isDuplicateReview(String userEmail, String corpLoginId) throws Exception;
 }

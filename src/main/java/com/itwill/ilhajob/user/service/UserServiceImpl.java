@@ -19,7 +19,7 @@ import com.itwill.ilhajob.user.repository.UserRepository;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public abstract class UserServiceImpl implements UserService{
 	
 	private final UserRepository userRepository;
 	private final ReviewRepository reviewRepository;
