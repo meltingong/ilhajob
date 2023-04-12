@@ -1120,13 +1120,12 @@
 			// 로그인 성공 시 처리
 			if (response.success) {
 				alert('로그인 성공');
-				// 페이지 이동 등 추가 처리
 				window.location.href = '/final-project-team1-ilhajob';
 			}
 			// 로그인 실패 시 처리
 			else {
-				alert('로그인 실패');
-				// 추가 처리
+				alert(response.message);
+				window.location.href = response.location;
 			}
 		})
 			.fail(function(xhr, status, error) {
