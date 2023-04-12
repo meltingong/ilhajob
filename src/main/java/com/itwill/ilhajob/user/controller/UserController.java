@@ -41,6 +41,7 @@ import com.itwill.ilhajob.user.service.UserService;
 */
 @Controller
 public class UserController {
+	
 	@Autowired
 	private UserService userService;
 	

@@ -16,7 +16,9 @@ import com.itwill.ilhajob.user.dto.MessageDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.entity.Message;
+import com.itwill.ilhajob.user.entity.Review;
 import com.itwill.ilhajob.user.entity.User;
+import com.itwill.ilhajob.user.exception.ExistedReviewException;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
@@ -55,6 +57,7 @@ public class UserServiceImpl implements UserService{
         }
         User user = modelMapper.map(userDto, User.class);
         user = userRepository.save(user);
+        
         return modelMapper.map(user, UserDto.class);
 	}
 
@@ -126,23 +129,51 @@ public class UserServiceImpl implements UserService{
 	public void removeMessageBySeq(Long messageSeq) {
 		messageRepository.deleteById(messageSeq);
 	}
-
+	
+	//리뷰 작성
+	
 	@Override
 	public ReviewDto insertReview(ReviewDto reviewDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		boolean exists = reviewRepository.existsByUserAndCorp(reviewDto.getUser().getUserEmail(), reviewDto.getCorp().getCorpLoginId());
+		if (exists) {
+			ExistedReviewException exception = 
+					new ExistedReviewException(reviewDto.getUser().getUserEmail()+"회원님이 작성한 리뷰가 존재합니다."); //getUserEmail() -> getUserName으로 변경될예정~
+			exception.setData(reviewDto);
+			throw exception;
+		    // 특정 유저 + 기업 -> 조건에 맞는 리뷰가 이미 작성되어 있는 경우
+		} else {
+		    // 특정 유저 + 기업 -> 조건에 맞는 리뷰가 작성이 안되어 있는 경우
+			Review review = modelMapper.map(reviewDto, Review.class);
+			review = reviewRepository.save(review);
+			return modelMapper.map(review, ReviewDto.class);
+		}
 	}
-
+	
+	
+	//리뷰 수정
+	
 	@Override
 	public ReviewDto updateReview(ReviewDto reviewDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Review review = reviewRepository.findById(reviewDto.getId()).orElse(null); //null이 반환될수도 있음.
+		reviewDto.setReviewTitle(review.getReviewTitle());
+		reviewDto.setReviewContent(review.getReviewContent());
+		reviewDto.setReviewGrade(review.getReviewGrade());
+		modelMapper.map(reviewDto, review);
+		review = reviewRepository.save(review);
+		return modelMapper.map(review, ReviewDto.class);
+	}
+	
+	//리뷰 삭제
+	
+	@Override
+	public void deleteReview(Long reviewId) throws Exception {
+		reviewRepository.deleteById(reviewId);
 	}
 
 	@Override
-	public void deleteReview(Long id) throws Exception {
+	public boolean isDuplicateReview(String userEmail, String corpLoginId) throws Exception {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override

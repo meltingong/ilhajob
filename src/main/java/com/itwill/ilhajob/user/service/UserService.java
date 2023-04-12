@@ -3,6 +3,8 @@ package com.itwill.ilhajob.user.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.itwill.ilhajob.user.dto.MessageDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
@@ -78,7 +80,7 @@ public interface UserService {
 	/*
 	 * 리뷰 삭제하기
 	 */
-	void deleteReview(Long id) throws Exception;
+	void deleteReview(Long reviewId) throws Exception;
 	
 
 	

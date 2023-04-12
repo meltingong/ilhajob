@@ -1092,7 +1092,97 @@
     }
 
 	//login 
+	$(document).on('click', '#log-in', function(e) {
+		e.preventDefault();
+		let formData = new FormData($('#login-f')[0]);
 
+		// FormData 객체를 JSON 형태로 변환
+		let jsonData = {};
+		formData.forEach(function(value, key) {
+			jsonData[key] = value;
+		});
+		console.log(JSON.stringify(jsonData));
+		/*// Promise 객체 생성
+		let promise = $.ajax({
+			type: 'POST',
+			url: 'ajaxLogin',
+			data: JSON.stringify(jsonData),
+			contentType: 'application/json',
+			dataType: 'json'
+		});
+
+		// Promise 객체를 사용하여 Ajax 요청 처리
+		promise.then(function(response) {
+			// 서버로부터 받은 응답 데이터 처리
+			console.log(response);
+			console.log(response.message);
+
+			// 로그인 성공 시 처리
+			if (response.success) {
+				alert('로그인 성공');
+				window.location.href = '/final-project-team1-ilhajob';
+			}
+			// 로그인 실패 시 처리
+			else {
+				alert(response.message);
+				window.location.href = response.location;
+			}
+		})
+			.fail(function(xhr, status, error) {
+				// Ajax 요청 실패 시 처리
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			});*/
+	});
+	
+	//register
+	$(document).on('click', '#create-btn', function(e) {
+		e.preventDefault();
+		let formData = {};
+		$.each($('#create-f').serializeArray(), function() {
+			formData[this.name] = this.value;
+		});
+		let jsonData = JSON.stringify(formData);
+		console.log(jsonData);
+
+		/*$.ajax({
+			type: 'POST',
+			url: url,
+			data: data,
+			success: function(response) {
+				// 로그인 성공 시 실행할 코드
+			},
+			error: function(xhr, status, error) {
+				// 에러 발생 시 실행할 코드
+			}
+		});*/
+	});
+	
+	$(document).on('click', '#candidate-btn', function(e) {
+		e.preventDefault();
+		$('.jquery-modal.blocker.current input#separate').val('user');
+    	$('.jquery-modal.blocker.current a#candidate-btn').toggleClass('btn-style-four btn-style-seven');
+    	$('.jquery-modal.blocker.current a#corp-btn').toggleClass('btn-style-seven btn-style-four');
+      	$('.jquery-modal.blocker.current input#id').attr('type','email');
+      	$('.jquery-modal.blocker.current input#id').attr('name','email');
+      	$('.jquery-modal.blocker.current input#id').attr('placeholder','User Email');
+      	$('.jquery-modal.blocker.current input#id').attr('id','email');
+      	$('label[for="id"]').attr('for','email');
+      	$('label[for="email"]').text('Email');
+	});
+	
+	$(document).on('click', '#corp-btn', function(e) {
+		$('.jquery-modal.blocker.current input#separate').val('corp');
+    	$('.jquery-modal.blocker.current a#candidate-btn').toggleClass('btn-style-seven btn-style-four');
+    	$('.jquery-modal.blocker.current a#corp-btn').toggleClass('btn-style-four btn-style-seven');
+      	$('.jquery-modal.blocker.current input#email').attr('type','text');
+      	$('.jquery-modal.blocker.current input#email').attr('name','id');
+      	$('.jquery-modal.blocker.current input#email').attr('placeholder','Login ID');
+      	$('.jquery-modal.blocker.current input#email').attr('id','id');
+      	$('label[for="email"]').attr('for','id');
+      	$('label[for="id"]').text('Login ID');
+	});
 
 	
 

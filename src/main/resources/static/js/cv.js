@@ -31,16 +31,18 @@
 // cv update
 function updateCv() {
 	console.log('dddddddd');
-	console.log(document.f.cvSeq.value);
+	console.log(document.f.cvId.value);
 	console.log(document.f.cvName.value);
 	console.log(document.f.cvDescription.value);
 	console.log(document.f.cvPortfolio.value);
-	console.log(document.f.userSeq.value);
+	console.log(document.f.userId.value);
+	/*
 	if (document.f.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
 		document.f.cvName.focus();
 		return false;
 	}
+	*/
 	if (document.f.cvDescription.value == "") {
 		alert("자기소개를 입력하세요.");
 		document.f.cvDescription.focus();
@@ -59,6 +61,7 @@ function updateCv() {
 // cv delete
 function cvDelete() {
 	// 나중에 모달 등으로 수정하기
+	console.log('cvId value : ' + document.f.cvId.value);
 	if (window.confirm("정말 삭제하시겠습니까?")) {
 		document.f.method='POST';
 		document.f.action = "cv-delete-action";
