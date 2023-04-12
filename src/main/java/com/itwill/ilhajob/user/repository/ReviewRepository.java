@@ -22,7 +22,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 	//Optional이 필요한경우
 	//Optional<List<Review>> findByUser(String userEmail);
 	
-	List<Review> findByCorp(String corpLoginId);
+	//List<Review> findByCorp(String corpLoginId);
 	
 		//위 메소드 안되면 -> 아래꺼사용
 		//List<Review> findByCorp(Corp corp);
