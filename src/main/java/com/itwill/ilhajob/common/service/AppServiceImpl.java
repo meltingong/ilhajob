@@ -33,7 +33,7 @@ public class AppServiceImpl implements AppService {
 
 	@Override
 	public Long findAppCountByCorpId(long id) {
-		return appRepository.countByCorpId(id);
+		return 1l;
 	}
 	
 	

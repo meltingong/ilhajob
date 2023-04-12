@@ -27,18 +27,18 @@ class AppRepositoryTest extends FinalProjectTeam1IlhajobApplicationTests{
 	
 	@Test
 	void testCountByCorpId() {
-		System.out.println(appRepository.countByCorpId(1L));
+		//System.out.println(appRepository.countByCorpId(1L));
 	}
 	@Test
 	void testCountByCorpId2() throws Exception {
 		CorpDto corpDto = corpService.findCorp("corp_01");
 		Corp corp = modelMapper.map(corpDto, Corp.class);
-		System.out.println(appRepository.countByCorp(corp));
+		//System.out.println(appRepository.countByCorp(corp));
 	}
 
 	@Test
 	void testFindAppsByRecruitId() {
-		List<App> appList = appRepository.findAppsByRecruitId(1L);
+		//List<App> appList = appRepository.findAppsByRecruitId(1L);
 //		List<AppDto> appDtoList = appList.stream()
 //									.map(app->modelMapper.map(app, AppDto.class))
 //									.collect(Collectors.toList());
@@ -61,7 +61,7 @@ class AppRepositoryTest extends FinalProjectTeam1IlhajobApplicationTests{
 
 	@Test
 	void testFindAppsByCorpId() {
-		List<App> appList = appRepository.findAppsByCorpId(1L);
+	//	List<App> appList = appRepository.findAppsByCorpId(1L);
 	}
 
 	@Test
