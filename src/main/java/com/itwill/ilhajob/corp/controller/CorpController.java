@@ -126,9 +126,9 @@ public class CorpController {
 	public String corp_dashboard_company_profile(HttpServletRequest request, Model model) throws Exception {
 
 		String forwardPath = "";
-
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto = corpService.findCorp(sCorpId);
+		System.out.println(corpDto.getCorpEst());
 		model.addAttribute("corp", corpDto);
 		forwardPath = "dashboard-company-profile";
 
@@ -138,9 +138,7 @@ public class CorpController {
 	@PostMapping("/corp-update-action")
 	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto, HttpServletRequest request)throws Exception {
 		Long id = corpDto.getId();
-		System.out.println(corpDto.getCorpEst());
-		
-		corpDto.setCorpEst(LocalDate.now());
+		//System.out.println(corpDto.getCorpEst());
 		corpService.update(id, corpDto);
 		request.setAttribute("corLoginpId", corpDto.getCorpLoginId());
 		return "corp-detail";

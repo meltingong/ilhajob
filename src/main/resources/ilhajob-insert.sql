@@ -274,14 +274,14 @@ insert into app(id, app_status, corp_id, cv_id, recruit_id, user_id)
 values(APP_ID_SEQ.nextval, '0', 4, 3, 4, 3);
 
 /**********************massage insert***************************/
+insert into message(id, message_contents, message_date, message_title, user_id)
+values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/31', '메세지 제목', 2);
 insert into message(id, message_contents, message_date, message_title, app_id, user_id)
-values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/31', '메세지 제목', 6, 2);
+values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/30', '메세지 제목', 2);
 insert into message(id, message_contents, message_date, message_title, app_id, user_id)
-values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/30', '메세지 제목', 6, 2);
+values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/29', '메세지 제목', 2);
 insert into message(id, message_contents, message_date, message_title, app_id, user_id)
-values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/29', '메세지 제목', 6, 2);
-insert into message(id, message_contents, message_date, message_title, app_id, user_id)
-values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/28', '메세지 제목', 6, 2);
+values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/28', '메세지 제목', 2);
 /**********************review insert***************************/
 /************user_id=1인 회원의 모든 기업 리뷰************/
 insert into review(id, review_content, review_grade, review_title, corp_id, user_id)

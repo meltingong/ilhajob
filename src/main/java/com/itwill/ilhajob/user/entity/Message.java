@@ -44,11 +44,6 @@ public class Message {
 	private Date messageDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "app_id")
-	@ToString.Exclude
-	private App app;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;

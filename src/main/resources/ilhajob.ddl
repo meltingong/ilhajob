@@ -115,7 +115,7 @@
         corp_address varchar2(600 char),
         corp_business_no varchar2(255 char),
         corp_comment varchar2(1000 char),
-        corp_est timestamp,
+        corp_est DATE,
         corp_login_id varchar2(255 char) not null,
         corp_name varchar2(255 char),
         corp_password varchar2(255 char) not null,
@@ -206,7 +206,6 @@
         message_contents varchar2(1000 char),
         message_date timestamp,
         message_title varchar2(255 char),
-        app_id number(19,0),
         user_id number(19,0),
         primary key (id)
     );
