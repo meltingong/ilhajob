@@ -209,12 +209,13 @@ public class UserController {
 	@RequestMapping("/alerts-remove")
 	public String user_alerts_remove(HttpServletRequest request,int messageSeq) throws Exception {
 		String forwardPath="";
-		messageService.removeMessageBySeq(messageSeq);
+		//messageService.removeMessageBySeq(messageSeq);
 		forwardPath="redirect:candidate-dashboard-job-alerts";
 		return forwardPath;
 	}
 	*/
 			
+	/*
 	// 지원한 목록 보기
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-applied-job")
@@ -229,7 +230,7 @@ public class UserController {
 		forwardPath = "/candidate-dashboard-applied-job";
 		return forwardPath;
 	}
-	
+	*/
 	@LoginCheck
 	@RequestMapping(value = "/remove-applied-job")                             //appSeq-> appDto의 id로 들어가야함
 	public String remove_applied_job(HttpServletRequest request, @RequestParam int appSeq) throws Exception{

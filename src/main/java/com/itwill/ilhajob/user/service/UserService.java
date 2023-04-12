@@ -3,10 +3,11 @@ package com.itwill.ilhajob.user.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itwill.ilhajob.user.dto.MessageDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 
 public interface UserService {
-
+	
 	/*
 	 * 회원가입
 	 */
@@ -48,6 +49,15 @@ public interface UserService {
 	/*
 	 *  회원의 지원리스트
 	 */
-	UserDto findAppListById(Long id) throws Exception;
-
+	//UserDto findAppListById(Long id) throws Exception;
+	
+	/*
+	 * 유저 알림 list 
+	 */
+	List<MessageDto> findMessageList(Long messageSeq);
+	
+	/*
+	 * 유저 알림 선택삭제
+	 */
+	void removeMessageBySeq(Long messageSeq);
 }

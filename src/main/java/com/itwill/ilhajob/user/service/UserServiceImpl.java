@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.user.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -8,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.ilhajob.user.dto.MessageDto;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.Message;
 import com.itwill.ilhajob.user.entity.User;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
+import com.itwill.ilhajob.user.repository.MessageRepository;
 import com.itwill.ilhajob.user.repository.UserRepository;
 
 @Service
@@ -20,12 +24,14 @@ import com.itwill.ilhajob.user.repository.UserRepository;
 public class UserServiceImpl implements UserService{
 	
 	private final UserRepository userRepository;
+	private final MessageRepository messageRepository;
 	private final ModelMapper modelMapper;
 	
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper) {
+	public UserServiceImpl(UserRepository userRepository, MessageRepository messageRepository, ModelMapper modelMapper) {
 		this.userRepository = userRepository;
 		this.modelMapper = modelMapper;
+		this.messageRepository = messageRepository;
 	}
 	
 	@Override
@@ -87,11 +93,25 @@ public class UserServiceImpl implements UserService{
 	public boolean isDuplicateEmail(String userEmail) throws Exception {
 		return userRepository.existsByUserEmail(userEmail);
 	}
-	
+	/*
 	@Override
 	public UserDto findAppListById(Long id) throws Exception {
 		Optional<User> OptionalUser = userRepository.findAppListById(id);
 		User user = OptionalUser.get();
 		return modelMapper.map(user,UserDto.class);
+	}
+	*/
+	
+	@Override
+	public List<MessageDto> findMessageList(Long userId) {
+		Optional<User> optionalUser = userRepository.findById(userId);
+		List<Message> messageList = optionalUser.get().getMessageList();
+		
+		return null;
+	}
+
+	@Override
+	public void removeMessageBySeq(Long messageSeq) {
+		messageRepository.deleteById(messageSeq);
 	}
 }
