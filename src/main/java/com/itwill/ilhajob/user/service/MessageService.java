@@ -6,7 +6,7 @@ import com.itwill.ilhajob.user.dto.MessageDto;
 
 
 public interface MessageService {
-	
+	/*
 	int createMessage(MessageDto message);
 	int updateMessage(MessageDto message);
 	int removeMessageBySeq(Long id);
@@ -14,5 +14,5 @@ public interface MessageService {
 	MessageDto findMessageDetail(Long id);
 	List<MessageDto> findMessageList();
 	List<MessageDto> fineMessageOfUser(Long userId);
-	
+	*/
 }
