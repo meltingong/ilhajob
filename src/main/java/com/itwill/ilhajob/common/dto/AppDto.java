@@ -29,8 +29,4 @@ public class AppDto {
 	private RecruitDto recruit;
 	@ToString.Exclude
 	private CvDto cv;
-	@ToString.Exclude
-	private UserDto user;
-	@ToString.Exclude
-	private CorpDto corp;
 }

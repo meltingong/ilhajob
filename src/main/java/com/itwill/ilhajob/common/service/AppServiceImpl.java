@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.ilhajob.common.dto.AppDto;
+import com.itwill.ilhajob.common.entity.App;
 import com.itwill.ilhajob.common.repository.AppRepository;
 
 @Service
@@ -21,12 +22,13 @@ public class AppServiceImpl implements AppService {
 
 		@Override
 	public void insertApp(AppDto appDto) {
-		
+		App createApp = modelMapper.map(appDto, App.class);
+		appRepository.save(createApp);
 	}
 
 	@Override
 	public void deleteApp(Long id) {
-		
+		appRepository.deleteById(id);
 	}
 
 	@Override

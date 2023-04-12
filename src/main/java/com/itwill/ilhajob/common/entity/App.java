@@ -55,14 +55,4 @@ public class App {
 	@ToString.Exclude
 	private Cv cv;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	@ToString.Exclude
-	private User user;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "corp_id")
-	@ToString.Exclude
-	private Corp corp;
-	
 }
