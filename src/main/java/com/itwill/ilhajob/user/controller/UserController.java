@@ -204,7 +204,7 @@ public class UserController {
 		UserDto loginUser = userService.findUser(sUserId);
 		request.setAttribute("loginUser", loginUser);
 		List<MessageDto> messageList = userService.findMessageList(loginUser.getId());
-		//System.out.println(loginUser.getId());
+		System.out.println(loginUser.getId());
 		System.out.println(messageList);
 		model.addAttribute("messageList",messageList);
 		forwardPath = "candidate-dashboard-job-alerts";
