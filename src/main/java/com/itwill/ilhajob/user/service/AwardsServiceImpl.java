@@ -14,10 +14,8 @@ import com.itwill.ilhajob.user.repository.AwardsRepository;
 @Service
 public class AwardsServiceImpl implements AwardsService {
 	
-	@Autowired
-	private AwardsRepository awardsRepository;
-	@Autowired
-	private ModelMapper mapper;	
+	private final AwardsRepository awardsRepository;
+	private final ModelMapper mapper;	
 	
 	public AwardsServiceImpl(AwardsRepository awardsRepository, ModelMapper mapper) {
 		this.awardsRepository = awardsRepository;

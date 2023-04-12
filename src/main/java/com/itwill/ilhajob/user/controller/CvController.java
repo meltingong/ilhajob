@@ -99,9 +99,9 @@ public class CvController {
 		return forwardpath;
 	}
 
-	/** cv detail param(cvSeq) 없을 때 */
+	/** cv detail param(cvId) 없을 때 */
 	@LoginCheck
-	@RequestMapping(value = "/cv-detail", params = "!cvSeq")
+	@RequestMapping(value = "/cv-detail", params = "!cvId")
 	public String cv_detail(HttpServletRequest request, Model model) {
 		String forwardpath = "";
 		/* user cv list 가져오기 */
@@ -113,7 +113,6 @@ public class CvController {
 		} else {
 			model.addAttribute("cvList", cvList);
 			/* 가장 최근 작성한 cv의 detail */
-//			CvDto cvDetail = cvService.detailCv(cvList.get(cvList.size()-1).getCvSeq());
 			CvDto cvDetail = cvList.get(cvList.size()-1);
 			model.addAttribute("cvDetail", cvDetail);
 			forwardpath = "candidate-dashboard-resume";
@@ -121,17 +120,17 @@ public class CvController {
 		return forwardpath;
 	}
 	
-	/** cv detail param(cvSeq) 있을 때 */
+	/** cv detail param(cvId) 있을 때 
+	 * @throws Exception */
 	@LoginCheck
 	@RequestMapping(value = "/cv-detail")
-		public String cv_detail(HttpServletRequest request, @ModelAttribute UserDto user, @RequestParam Long cvId, Model model) {
+		public String cv_detail(HttpServletRequest request, @RequestParam Long cvId, Model model) throws Exception {
 		String forwardpath = "";
 		
-		/* 테스트용 userSeq 세팅 */
-//		request.getSession().setAttribute("userSeq", 3);
-//		int userSeq = (int)request.getSession().getAttribute("userSeq");
-//		model.addAttribute("userSeq", userSeq);
-//		System.out.println(userSeq);
+		String userEmail = (String)request.getSession().getAttribute("userEmail");
+		UserDto user = userService.findUser(userEmail);
+		model.addAttribute("user", user);
+		System.out.println(user);
 		
 		/* user cv list */
 		List<CvDto> cvList = cvService.findCvByUser(user.getId()); // test
@@ -173,8 +172,8 @@ public class CvController {
 		public String cv_write_action(@ModelAttribute CvDto cv, RedirectAttributes redirectAttributes) {
 		try {
 			cvService.saveCv(cv);
-			Long cvSeq = cv.getCvSeq();
-			redirectAttributes.addAttribute("cvSeq", cvSeq);
+			Long cvId = cv.getId();
+			redirectAttributes.addAttribute("cvId", cvId);
 //			for (Edu edu : eduList) {
 //				eduService.updateEdu(edu);
 //			}
@@ -193,7 +192,7 @@ public class CvController {
 //	public String cv_update_action(HttpServletRequest request, @ModelAttribute Cv cv, @ModelAttribute List<Awards> awardsList, @ModelAttribute Edu edu, @ModelAttribute Exp exp, Model model) {
 	public String cv_update_action(HttpServletRequest request, @ModelAttribute CvDto cv, @ModelAttribute EduDto edu, Model model, RedirectAttributes redirectAttributes) {
 
-		Long cvSeq = cv.getCvSeq();
+		Long cvId = cv.getId();
 		cvService.saveCv(cv);
 //		List<Edu> eduList = (List<Edu>)request.getSession().getAttribute("eduList");
 //		for (int i = 0; i < eduList.size(); i++) {
@@ -201,7 +200,7 @@ public class CvController {
 //			eduService.updateEdu(edu);
 //		}
 //		model.addAttribute("eduList", eduList);
-		redirectAttributes.addAttribute("cvSeq", cvSeq);
+		redirectAttributes.addAttribute("cvId", cvId);
 		
 		return "redirect:cv-detail";
 	}

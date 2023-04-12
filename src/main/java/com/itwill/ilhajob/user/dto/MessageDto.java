@@ -2,6 +2,8 @@ package com.itwill.ilhajob.user.dto;
 
 import java.util.Date;
 
+import com.itwill.ilhajob.common.dto.AppDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +30,9 @@ public class MessageDto {
 	private String messageTitle;
 	private String messageContents;
 	private Date messageDate;
-	private int appSeq;
-	private int userSeq;
+	
+	@ToString.Exclude
+	private AppDto app;
+	@ToString.Exclude
+	private UserDto user;
 }
