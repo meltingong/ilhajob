@@ -49,5 +49,20 @@ public interface UserService {
 	 *  회원의 지원리스트
 	 */
 	UserDto findAppListById(Long id) throws Exception;
+	
+	//리뷰 select는 Corp에서 담당
+	/*
+	 * 리뷰 작성하기
+	 */
 
+	
+	/*
+	 * 리뷰 수정하기
+	 */
+	
+	
+	/*
+	 * 리뷰 삭제하기
+	 */
+	
 }

@@ -20,6 +20,8 @@ import com.itwill.ilhajob.user.repository.UserRepository;
 public class UserServiceImpl implements UserService{
 	
 	private final UserRepository userRepository;
+	
+	
 	private final ModelMapper modelMapper;
 	
 	@Autowired
