@@ -44,8 +44,6 @@ public class CorpController {
 	@Autowired
 	private CorpService corpService;
 	@Autowired
-	private AppService appService;
-	@Autowired
 	private CorpImageService corpImageService;
 //	@RequestMapping("/index")
 //	public String main() {
