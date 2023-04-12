@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 /*
@@ -35,4 +36,6 @@ public class MessageDto {
 	private AppDto app;
 	@ToString.Exclude
 	private UserDto user;
+	
+	
 }

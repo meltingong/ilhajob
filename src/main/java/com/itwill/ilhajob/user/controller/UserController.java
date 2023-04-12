@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.entity.Corp;
+import com.itwill.ilhajob.user.dto.MessageDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
+import com.itwill.ilhajob.user.service.MessageService;
 import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
 
@@ -42,7 +46,7 @@ public class UserController {
 	
 	//@Autowired
 	//private AppService appService;
-	
+
 	@Autowired
 	private ReviewService reviewService;
 
@@ -189,7 +193,7 @@ public class UserController {
 				return forwardPath;
 			}
 			
-	/*
+	
 	// 회원 알림 전체보기
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard-job-alerts")
@@ -198,7 +202,7 @@ public class UserController {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		UserDto loginUser = userService.findUser(sUserId);
 		request.setAttribute("loginUser", loginUser);
-		List<Message> messageList = messageService.fineMessageOfUser(loginUser.getId());
+		List<MessageDto> messageList = userService.findMessageList(loginUser.getId());
 		model.addAttribute("messageList",messageList);
 		forwardPath = "candidate-dashboard-job-alerts";
 		return forwardPath;
@@ -207,13 +211,13 @@ public class UserController {
 	// 알림 선택삭제
 	@LoginCheck
 	@RequestMapping("/alerts-remove")
-	public String user_alerts_remove(HttpServletRequest request,int messageSeq) throws Exception {
+	public String user_alerts_remove(HttpServletRequest request,Long messageSeq) throws Exception {
 		String forwardPath="";
-		//messageService.removeMessageBySeq(messageSeq);
+		userService.removeMessageBySeq(messageSeq);
 		forwardPath="redirect:candidate-dashboard-job-alerts";
 		return forwardPath;
 	}
-	*/
+	
 			
 	/*
 	// 지원한 목록 보기

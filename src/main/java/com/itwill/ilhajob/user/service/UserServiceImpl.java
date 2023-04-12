@@ -1,7 +1,10 @@
 package com.itwill.ilhajob.user.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.NamingConventions;
@@ -113,8 +116,10 @@ public abstract class UserServiceImpl implements UserService{
 	public List<MessageDto> findMessageList(Long userId) {
 		Optional<User> optionalUser = userRepository.findById(userId);
 		List<Message> messageList = optionalUser.get().getMessageList();
-		
-		return null;
+		List<MessageDto> messageDtoList = messageList.stream()
+													.map(message-> modelMapper.map(messageList, MessageDto.class))
+													.collect(Collectors.toList());
+		return messageDtoList;
 	}
 
 	@Override
