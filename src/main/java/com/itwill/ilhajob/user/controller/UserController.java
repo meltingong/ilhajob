@@ -52,12 +52,12 @@ public class UserController {
 	private ReviewService reviewService;
 
 
-	/**************Local Exception Handler**************/
+	/**************Local Exception Handler*************
 	@ExceptionHandler(Exception.class)
 	public String user_excetpion_handler(Exception e) {
 		return "user_error";
 	}
-	
+	*/
 	/*
 	 * <<유저 정보>> my profile 유저정보 업데이트 폼
 	 * 회원 로그인
@@ -183,16 +183,16 @@ public class UserController {
 	}
 	
 	// 회원 탈퇴
-			@LoginCheck
-			@RequestMapping("/delete-action")
-			public String user_delete(HttpServletRequest request) throws Exception {
-				String forwardPath="";
-				Long id = (Long)request.getSession().getAttribute("id");
-				userService.remove(id);
-				request.getSession().invalidate();
-				forwardPath = "redirect:index";
-				return forwardPath;
-			}
+	@LoginCheck
+	@RequestMapping("/delete-action")
+	public String user_delete(HttpServletRequest request) throws Exception {
+		String forwardPath="";
+		Long id = (Long)request.getSession().getAttribute("id");
+		userService.remove(id);
+		request.getSession().invalidate();
+		forwardPath = "redirect:index";
+		return forwardPath;
+	}
 			
 	
 	// 회원 알림 전체보기
@@ -204,6 +204,8 @@ public class UserController {
 		UserDto loginUser = userService.findUser(sUserId);
 		request.setAttribute("loginUser", loginUser);
 		List<MessageDto> messageList = userService.findMessageList(loginUser.getId());
+		//System.out.println(loginUser.getId());
+		System.out.println(messageList);
 		model.addAttribute("messageList",messageList);
 		forwardPath = "candidate-dashboard-job-alerts";
 		return forwardPath;
