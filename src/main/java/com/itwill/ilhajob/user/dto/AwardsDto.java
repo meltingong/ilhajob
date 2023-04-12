@@ -14,12 +14,10 @@ import lombok.ToString;
 @ToString
 @Builder
 public class AwardsDto {
-	private int awardsSeq;
+	private Long id;
 	private String awardsName;
 	private Date awardsDate;
 	private String awardsContent;
-//	private int userSeq;
-//	@ToString.Exclude
-	private int userId;
-
+	@ToString.Exclude
+	private UserDto user;
 }
