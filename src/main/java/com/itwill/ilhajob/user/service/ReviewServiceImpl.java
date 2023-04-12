@@ -41,8 +41,6 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewDto.setReviewGrade(review.getReviewGrade());
 		modelMapper.map(reviewDto, review);
 		return modelMapper.map(review, ReviewDto.class);
-		
-		
 	}
 	
 	//delete review
