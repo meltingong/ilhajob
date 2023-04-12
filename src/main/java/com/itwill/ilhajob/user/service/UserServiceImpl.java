@@ -119,9 +119,13 @@ public class UserServiceImpl implements UserService{
 	public List<MessageDto> findMessageList(Long userId) {
 		Optional<User> optionalUser = userRepository.findById(userId);
 		List<Message> messageList = optionalUser.get().getMessageList();
-		List<MessageDto> messageDtoList = messageList.stream()
+		System.out.println(messageList);
+		/*List<MessageDto> messageDtoList = messageList.stream()
 													.map(message-> modelMapper.map(messageList, MessageDto.class))
-													.collect(Collectors.toList());
+													.collect(Collectors.toList());*/
+		 List<MessageDto> messageDtoList = messageList.stream()
+		            .map(message-> new MessageDto(message.getId(),message.getMessageTitle(),message.getMessageContents(),message.getMessageDate()))
+		            .collect(Collectors.toList());
 		return messageDtoList;
 	}
 
@@ -170,10 +174,5 @@ public class UserServiceImpl implements UserService{
 		reviewRepository.deleteById(reviewId);
 	}
 
-	@Override
-	public boolean isDuplicateReview(String userEmail, String corpLoginId) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }
