@@ -78,7 +78,7 @@ public interface UserService {
 	/*
 	 * 리뷰 삭제하기
 	 */
-	void deleteReview(Long id) throws Exception;
+	void deleteReview(Long reviewId) throws Exception;
 	
 
 	
