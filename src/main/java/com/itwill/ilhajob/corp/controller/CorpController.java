@@ -2,12 +2,12 @@ package com.itwill.ilhajob.corp.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,7 +126,6 @@ public class CorpController {
 		String forwardPath = "";
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto = corpService.findCorp(sCorpId);
-		System.out.println(corpDto.getCorpEst());
 		model.addAttribute("corp", corpDto);
 		forwardPath = "dashboard-company-profile";
 
@@ -134,11 +133,12 @@ public class CorpController {
 	}
 
 	@PostMapping("/corp-update-action")
-	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto, HttpServletRequest request)throws Exception {
+	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto,
+			@RequestParam("corpEst") String corpEst, HttpServletRequest request)throws Exception {
 		Long id = corpDto.getId();
-		//System.out.println(corpDto.getCorpEst());
+		System.out.println(corpEst);
 		corpService.update(id, corpDto);
-		request.setAttribute("corLoginpId", corpDto.getCorpLoginId());
+		request.setAttribute("corLoginId", corpDto.getCorpLoginId());
 		return "corp-detail";
 	}
 

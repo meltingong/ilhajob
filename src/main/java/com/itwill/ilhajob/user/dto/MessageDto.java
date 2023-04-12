@@ -37,6 +37,13 @@ public class MessageDto {
 	private AppDto app;
 	@ToString.Exclude
 	private UserDto user;
+	public MessageDto(Long id, String messageTitle, String messageContents, LocalDateTime messageDate) {
+		this.id = id;
+		this.messageTitle = messageTitle;
+		this.messageContents = messageContents;
+		this.messageDate = messageDate;
+	}
+	
 	
 	
 }

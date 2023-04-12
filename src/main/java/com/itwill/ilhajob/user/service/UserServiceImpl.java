@@ -171,10 +171,5 @@ public class UserServiceImpl implements UserService{
 		reviewRepository.deleteById(reviewId);
 	}
 
-	@Override
-	public boolean isDuplicateReview(String userEmail, String corpLoginId) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

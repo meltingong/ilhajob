@@ -84,9 +84,5 @@ public interface UserService {
 	
 
 	
-	/*
-	 * 회원과 일치하는 리뷰 존재여부
-	 */
-	boolean isDuplicateReview(String userEmail, String corpLoginId) throws Exception;
 
 }

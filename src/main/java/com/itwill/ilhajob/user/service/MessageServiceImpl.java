@@ -24,48 +24,24 @@ public class MessageServiceImpl implements MessageService{
 		this.modelMapper = modelMapper;
 	}
 	
-	/*
+	
 	@Override
-	public int createMessage(MessageDto messageDto) {
+	public MessageDto createMessage(MessageDto messageDto) {
 		Message message = modelMapper.map(messageDto, Message.class);
 		message = messageRepository.save(message);
-		return 0;
+		return modelMapper.map(message, MessageDto.class);
+	}
+	
+	// 쓸 일 있을까/
+	@Override
+	public MessageDto updateMessage(MessageDto messageDto) {
+		Message message = messageRepository.findById(messageDto.getId()).orElse(null);
+		messageDto.setMessageContents(message.getMessageContents());
+		messageDto.setMessageTitle(messageDto.getMessageTitle());
+		messageDto.setMessageDate(message.getMessageDate());
+		modelMapper.map(messageDto, message);
+		message = messageRepository.save(message);
+		return modelMapper.map(message, MessageDto.class);
 	}
 
-	@Override
-	public int updateMessage(MessageDto message) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int removeMessageBySeq(Long id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int removeMessageByUserSeq(Long userId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public MessageDto findMessageDetail(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<MessageDto> findMessageList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<MessageDto> fineMessageOfUser(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
 }

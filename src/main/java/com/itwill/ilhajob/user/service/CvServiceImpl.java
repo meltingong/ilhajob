@@ -13,6 +13,7 @@ import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.entity.Cv;
 import com.itwill.ilhajob.user.repository.CvRepository;
+import com.itwill.ilhajob.user.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,11 +22,13 @@ public class CvServiceImpl implements CvService{
 
 	private final CvRepository cvRepository;
 	private final ModelMapper modelMapper;
+	private final UserRepository userRepository;
 	
 	@Autowired
-	public CvServiceImpl(CvRepository cvRepository, ModelMapper modelMapper) {
+	public CvServiceImpl(CvRepository cvRepository, ModelMapper modelMapper, UserRepository userRepository) {
 		this.cvRepository = cvRepository;
 		this.modelMapper = modelMapper;
+		this.userRepository = userRepository;
 	}
 
 	@Override
@@ -37,20 +40,9 @@ public class CvServiceImpl implements CvService{
 	
 	public CvDto updateCv(Long id, CvDto cvDto) {
 		Cv cv = cvRepository.findById(id).get();
-		cv.builder()
-		.cvName(cvDto.getCvDescription())
-		.cvDescription(cvDto.getCvDescription())
-		.cvPortfolio(cvDto.getCvPortfolio())
-//		.awardslist(cvDto.getAwardsList())
-//		.edulist(cvDto.getEduList())
-//		.explist(cvDto.getExpList())
-		.build();
 		cvRepository.save(cv);
 		return modelMapper.map(cv, CvDto.class);
-//		cvDto = modelMapper.map(cv, CvDto.class);
-//		return cvDto;
 	};
-	
 
 	@Override
 	public void removeById(Long id) {
@@ -64,23 +56,18 @@ public class CvServiceImpl implements CvService{
 		return modelMapper.map(cv, CvDto.class);
 	}
 
-
-
+	@Override
+	public List<CvDto> findCvByUserId(Long userId) {
+//		List<Cv> tempList = userRepository.findById(userId).get().getCvList();
+//		List<CvDto> cvList = tempList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
+//		return cvList;
+		return null;
+	}
+	 
 	@Override
 	public List<CvDto> findCvAll() {
 		List<Cv> cvList = cvRepository.findAll();
 		return cvList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
 	}
 
-	@Override
-	public List<CvDto> findCvByUser(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	//	@Override
-//	public List<CvDto> findCvByUser(Long id) {
-//		List<Cv> cvList = cvRepository.findById(id).get().getUser().getCvList();
-//		List<Cv> cvList = cvRepository.findById(id).orElse(null).getUser().getCvList();
-//		return cvList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
-//	}
 }

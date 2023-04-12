@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.entity.Review;
 import com.itwill.ilhajob.user.entity.User;
@@ -22,7 +23,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 	//Optional이 필요한경우
 	//Optional<List<Review>> findByUser(String userEmail);
 	
-	List<Review> findByCorp(String corpLoginId);
+	List<Review> findByCorp(String CorpLoginId);
 	
 		//위 메소드 안되면 -> 아래꺼사용
 		//List<Review> findByCorp(Corp corp);
