@@ -274,7 +274,7 @@ public class UserController {
 			reviewDto.setUser(loginUser);
 			System.out.println(reviewDto);
 			request.setAttribute("loginUser", loginUser);	
-		    reviewService.insertReview(reviewDto);
+		    userService.insertReview(reviewDto);
 			String forwardPath = "redirect:corp-detail?corpId="+corpDto.getCorpLoginId();
 			return forwardPath;
 			
@@ -282,7 +282,7 @@ public class UserController {
 		
 		@RequestMapping("/review_delete")
 		public String review_delete(@ModelAttribute ReviewDto reviewDto, HttpServletRequest request, @RequestParam Long id,@RequestParam("corpId") CorpDto corp) throws Exception{
-			reviewService.deleteReview(id);
+			userService.deleteReview(id);
 			return "redirect:corp-detail?corpId="+corp.getId();
 		}
 

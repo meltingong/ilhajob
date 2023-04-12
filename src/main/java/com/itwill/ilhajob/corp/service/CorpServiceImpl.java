@@ -130,7 +130,7 @@ public class CorpServiceImpl implements CorpService{
 		Optional<Corp> optionalCorp = corpRepository.findById(corpId);
 		List<Review> reviewList = optionalCorp.get().getReviewList();
 		List<ReviewDto> reviewDtoList = reviewList.stream()
-				.map(review -> modelMapper.map(reviewList, ReviewDto.class))
+				.map(review-> new ReviewDto(review.getId(),review.getReviewGrade(),review.getReviewTitle(),review.getReviewContent()))
 				.collect(Collectors.toList());
 		return reviewDtoList;
 	}
