@@ -126,9 +126,19 @@ public class CorpController {
 		String forwardPath = "";
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto = corpService.findCorp(sCorpId);
+		/***********CorpImage 코프 로그인아이디로 리스트뽑아오기*****************/
+		List<CorpImageDto> corpImageList = corpImageService.selectAll();
+		List<CorpImageDto> corpImageList1 = new ArrayList<CorpImageDto>();
+		for (CorpImageDto corpImageDto : corpImageList) {
+			if(corpImageDto.getCorp().getCorpLoginId()==corpDto.getCorpLoginId()) {
+				corpImageList1.add(corpImageDto);
+			}
+		}
+		/*******************************************************************/
 		model.addAttribute("corp", corpDto);
+		model.addAttribute("corpImageList", corpImageList1);
 		forwardPath = "dashboard-company-profile";
-
+		
 		return forwardPath;
 	}
 

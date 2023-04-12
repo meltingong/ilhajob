@@ -3,6 +3,7 @@ package com.itwill.ilhajob.corp.service;
 import java.util.List;
 
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
+import com.itwill.ilhajob.corp.entity.Corp;
 
 public interface CorpImageService {
 
@@ -15,6 +16,8 @@ public interface CorpImageService {
 	CorpImageDto selectById(Long id);
 
 	CorpImageDto insertCorpImage(CorpImageDto corpImageDto);
+
+
 
 
 
