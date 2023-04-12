@@ -160,17 +160,19 @@ public class CvController {
 //	public String cv_write_action(@ModelAttribute Cv cv, @ModelAttribute List<Edu> eduList, RedirectAttributes redirectAttributes) {
 		public String cv_write_action(@ModelAttribute CvDto cv, RedirectAttributes redirectAttributes) {
 		try {
+			System.out.println("@@@@@@@@cv : " + cv);
 			cvService.saveCv(cv);
+			System.out.println("@@@@@@@@@@ after save cv : " + cv);
 			Long cvId = cv.getId();
 			redirectAttributes.addAttribute("cvId", cvId);
 //			for (Edu edu : eduList) {
 //				eduService.updateEdu(edu);
 //			}
 //			System.out.println(eduList);
+			redirectAttributes.addAttribute("cvId", cvId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		새로 작성한 이력서 디테일로 가는데, 작성한 다른 이력서 리스트도 추가해줘야하나?(셀렉트옵션)
 		return "redirect:cv-detail";
 	}
 	

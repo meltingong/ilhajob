@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.entity.Cv;
 import com.itwill.ilhajob.user.repository.CvRepository;
@@ -29,8 +31,8 @@ public class CvServiceImpl implements CvService{
 	@Override
 	public CvDto saveCv(CvDto cvDto) {
 		Cv cv = modelMapper.map(cvDto, Cv.class);
-		cvRepository.save(cv);
-		return modelMapper.map(cv,CvDto.class);
+		cv = cvRepository.save(cv);
+		return modelMapper.map(cv, CvDto.class);
 	}
 	
 	public CvDto updateCv(Long id, CvDto cvDto) {
