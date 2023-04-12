@@ -13,7 +13,8 @@ function uploadImage() {
     var file = fileInput.files[0];
     var formData = new FormData();
     formData.append('file', file);
-
+	console.log("파일",file);
+    
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/imageUpload', true);
     xhr.onload = function() {
@@ -119,9 +120,9 @@ function uploadImage() {
 -->
                   <div class="uploading-outer">
                     <div class="uploadButton">
-                    	<div th:each = "CorpImage : ${corp.corpImageList}">
+                    	<div th:each = "corpImage : ${corpImageList}">
                     		<!-- <img class = "uploadButton-input" src="${corp.corpImageList.corpImage.corpImage}">-->
-                    		<div th:text = "${CorpImage.corpImage}"></div>
+                    		<div th:text = "${corpImage.corpImage}"></div>
                     	</div>
                    <!-- <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload_cover" multiple />
                        <label class="uploadButton-button ripple-effect" for="upload">Browse Cover</label>
@@ -137,7 +138,6 @@ function uploadImage() {
                       <input type="hidden" name="id" th:value = "${corp.id}">
                       <input type="hidden" name="corpLoginId" th:value = "${corp.corpLoginId}">
                       <input type="hidden" name="corpPassword" th:value = "${corp.corpPassword}">
-                      <input type="hidden" name="corpStatus" th:value = "${corp.corpStatus}">
                       <input type="hidden" name="job" th:value = "${corp.job}">
                       <!--  
                       <input type="hidden" name="orders" th:value = "${corp.orders}">

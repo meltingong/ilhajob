@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
+import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.entity.CorpImage;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.corp.repository.CorpImageRepository;
@@ -40,6 +41,7 @@ public class CorpImageServiceImpl implements CorpImageService{
 		return modelMapper.map(found.get(), CorpImageDto.class);
 	}
 
+	
 	@Override
 	public List<CorpImageDto> selectAll() {
 		List<CorpImage> corpImageList = corpImageRepository.findAll();
