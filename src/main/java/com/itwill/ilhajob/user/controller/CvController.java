@@ -21,10 +21,13 @@ import com.itwill.ilhajob.user.dto.AwardsDto;
 import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.dto.EduDto;
 import com.itwill.ilhajob.user.dto.ExpDto;
+import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.Cv;
 import com.itwill.ilhajob.user.service.AwardsService;
 import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.EduService;
 import com.itwill.ilhajob.user.service.ExpService;
+import com.itwill.ilhajob.user.service.UserService;
 
 @Controller
 public class CvController {
@@ -39,6 +42,8 @@ public class CvController {
 	private ExpService expService;
 	@Autowired 
 	private AppService appService;
+	@Autowired
+	private UserService userService;
 	
 	/************************* cv list *******************************/
 	@LoginCheck
@@ -47,7 +52,7 @@ public class CvController {
 		String forwardpath = "";
 		Long userId = (Long)request.getSession().getAttribute("id");
 		System.out.println("userId : " + userId);
-		List<CvDto> cvList = cvService.findCvByUser(userId);
+		List<CvDto> cvList = cvService.findCvByUserId(userId);
 		System.out.println("$$$$ cvLIst + " + cvList);
 		if(cvList != null) {
 			model.addAttribute("cvList", cvList);
@@ -78,10 +83,10 @@ public class CvController {
 //		List<ExpDto> expList = expService.selectByUserSeq(userId);
 //		model.addAttribute("expList", expList);
 //		
-//		/* awardsList */
-////		List<Awards> awardsList = user.getAwardsList();
-//		List<AwardsDto> awardsList = awardsService.findAwardsOfUser(userId);
-//		model.addAttribute("awardsList", awardsList);
+		/* awardsList */
+//		List<Awards> awardsList = user.getAwardsList();
+		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
+		model.addAttribute("awardsList", awardsList);
 		
 		String forwardpath = "candidate-dashboard-resume-write";
 		return forwardpath;
@@ -94,7 +99,7 @@ public class CvController {
 		String forwardpath = "";
 		/* user cv list 가져오기 */
 		Long userId = (Long)request.getSession().getAttribute("id");
-		List<CvDto> cvList = cvService.findCvByUser(userId);
+		List<CvDto> cvList = cvService.findCvByUserId(userId);
 		System.out.println(cvList);
 		if (cvList.size() == 0 || cvList == null) {
 			forwardpath = "redirect:cv-write-form";
@@ -115,19 +120,23 @@ public class CvController {
 		public String cv_detail(HttpServletRequest request, @RequestParam Long cvId, Model model) throws Exception {
 		String forwardpath = "";
 		
+//		UserDto user = userService.findUser((String)request.getSession().getAttribute("sUserId"));
+//		System.out.println("AwardsList" + user.getAwardsList());
+//		System.out.println("EduList" + user.getEduList());
+//		System.out.println("ExpList" + user.getExpList());
+		
 		Long userId = (Long)request.getSession().getAttribute("id");
-//		System.out.println("uuuuuuser id by session : " + userId);
+		System.out.println("uuuuuuser id by session : " + userId);
 		model.addAttribute("userId", userId);
 		
 		/* user cv list */
-		List<CvDto> cvList = cvService.findCvByUser(userId); // test
-//		System.out.println("########### cvList : " + cvList);
+		List<CvDto> cvList = cvService.findCvByUserId((Long)request.getSession().getAttribute("id")); // test
+		System.out.println("########### cvList : " + cvList);
 		model.addAttribute("cvList", cvList);
 		
 		/* 특정 cv detail */
-		CvDto cvDetail = cvService.findCvById(cvId);
-//		System.out.println("********** cvId : " + cvId);
-//		System.out.println("########### cvDetail : " + cvDetail);
+		CvDto cvDetail = cvService.findCvById(userId);
+		System.out.println("########### cvDetail : " + cvDetail);
 		model.addAttribute("cvDetail", cvDetail);
 		
 		/* eduList */
@@ -140,11 +149,10 @@ public class CvController {
 		model.addAttribute("expList", expList);
 		
 		/* awardsList */
-		List<AwardsDto> awardsList = cvDetail.getAwardsList();
+		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
 		model.addAttribute("awardsList", awardsList);
 		
 		if(cvList == null || cvDetail != null) {
-			// 어디로 보낼지 더 생각하기
 			forwardpath = "redirect:cv-list";
 		}
 		
