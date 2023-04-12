@@ -43,11 +43,9 @@ public class AuthController {
 				session.setAttribute("sUserId", loginRequest.getEmail());
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
 			}catch (UserNotFoundException e) {
-				e.printStackTrace();
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
 			}catch (PasswordMismatchException e) {
-				e.printStackTrace();
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
 			}
 	    }else if(loginRequest.getSeparate().equals("corp")) {
 	    	String id = loginRequest.getId();
@@ -58,11 +56,9 @@ public class AuthController {
 				session.setAttribute("sCorpId", id);
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
 			} catch (CorpNotFoundException e) {
-				e.printStackTrace();
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
 			} catch (PasswordMismatchException e) {
-				e.printStackTrace();
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
 			}
 	    }
 	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"잘못된 형식입니다.\", \"location\": \"/final-project-team1-ilhajob\"}");

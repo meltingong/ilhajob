@@ -807,12 +807,19 @@
 	  event.preventDefault();
 	  this.blur();
 	  $.get(this.href, function(html) {
+		$('.modal').remove();
 	    $(html).appendTo('body').modal({
 	    	closeExisting: true,
 			fadeDuration: 300,
 			fadeDelay: 0.15
 	    });
 	  });
+	});
+
+	// Close modal
+	$('.close-modal').on('click', function(event){
+		event.preventDefault();
+		$(this).closest('.modal').remove();
 	});
 
 
@@ -1094,19 +1101,16 @@
 	//login 
 	$(document).on('click', '#log-in', function(e) {
 		e.preventDefault();
-		let formData = new FormData($('#login-f')[0]);
-
-		// FormData 객체를 JSON 형태로 변환
-		let jsonData = {};
-		formData.forEach(function(value, key) {
-			jsonData[key] = value;
+		let formData = {};
+		$.each($('#login-f').serializeArray(), function() {
+			formData[this.name] = this.value;
 		});
-		console.log(JSON.stringify(jsonData));
+		let jsonData = JSON.stringify(formData);
 		// Promise 객체 생성
 		let promise = $.ajax({
 			type: 'POST',
 			url: 'ajaxLogin',
-			data: JSON.stringify(jsonData),
+			data: jsonData,
 			contentType: 'application/json',
 			dataType: 'json'
 		});
@@ -1128,11 +1132,19 @@
 				window.location.href = response.location;
 			}
 		})
-			.fail(function(xhr, status, error) {
+			.fail(function(xhr,status,error) {
 				// Ajax 요청 실패 시 처리
 				console.log(xhr);
 				console.log(status);
 				console.log(error);
+
+				let errorMsg = document.createElement('p');
+				errorMsg.style.textAlign = 'center';
+				errorMsg.style.color = 'red';
+				errorMsg.textContent = xhr.responseText;
+				let passwordInput = document.getElementById('password-field');
+				passwordInput.insertAdjacentElement('afterend', errorMsg);
+				$('#email').focus();
 			});
 	});
 	
@@ -1144,19 +1156,39 @@
 			formData[this.name] = this.value;
 		});
 		let jsonData = JSON.stringify(formData);
-		console.log(jsonData);
 
-		/*$.ajax({
+		// Promise 객체 생성
+		let promise = $.ajax({
 			type: 'POST',
-			url: url,
-			data: data,
-			success: function(response) {
-				// 로그인 성공 시 실행할 코드
-			},
-			error: function(xhr, status, error) {
-				// 에러 발생 시 실행할 코드
+			url: 'ajaxLogin',
+			data: jsonData,
+			contentType: 'application/json',
+			dataType: 'json'
+		});
+
+/*		// Promise 객체를 사용하여 Ajax 요청 처리
+		promise.then(function(response) {
+			// 서버로부터 받은 응답 데이터 처리
+			console.log(response);
+			console.log(response.message);
+
+			// 로그인 성공 시 처리
+			if (response.success) {
+				alert('가입성공');
+				window.location.href = '/final-project-team1-ilhajob/login-popup';
 			}
-		});*/
+			// 로그인 실패 시 처리
+			else {
+				alert(response.message);
+				window.location.href = response.location;
+			}
+		})
+			.fail(function(xhr, status, error) {
+				// Ajax 요청 실패 시 처리
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			});*/
 	});
 	
 	$(document).on('click', '#candidate-btn', function(e) {
