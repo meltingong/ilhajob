@@ -26,15 +26,33 @@ public class CvServiceImpl implements CvService{
 		cvRepository.save(cv);
 		return modelMapper.map(cv,CvDto.class);
 	}
+	
+	public CvDto updateCv(Long id, CvDto cvDto) {
+		Cv cv = cvRepository.findById(id).get();
+		cv.builder()
+		.cvName(cvDto.getCvDescription())
+		.cvDescription(cvDto.getCvDescription())
+		.cvPortfolio(cvDto.getCvPortfolio())
+//		.awardslist(cvDto.getAwardsList())
+//		.edulist(cvDto.getEduList())
+//		.explist(cvDto.getExpList())
+		.build();
+		cvRepository.save(cv);
+		return modelMapper.map(cv, CvDto.class);
+//		cvDto = modelMapper.map(cv, CvDto.class);
+//		return cvDto;
+	};
+	
 
 	@Override
 	public void removeById(Long id) {
 		cvRepository.deleteById(id);
+		cvRepository.flush();
 	}
 
 	@Override
 	public CvDto findCvById(Long id) {
-		Optional<Cv> cv = cvRepository.findById(id);
+		Cv cv = cvRepository.findById(id).get();
 		return modelMapper.map(cv, CvDto.class);
 	}
 
