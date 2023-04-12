@@ -1102,7 +1102,7 @@
 			jsonData[key] = value;
 		});
 		console.log(JSON.stringify(jsonData));
-		/*// Promise 객체 생성
+		// Promise 객체 생성
 		let promise = $.ajax({
 			type: 'POST',
 			url: 'ajaxLogin',
@@ -1133,7 +1133,7 @@
 				console.log(xhr);
 				console.log(status);
 				console.log(error);
-			});*/
+			});
 	});
 	
 	//register
