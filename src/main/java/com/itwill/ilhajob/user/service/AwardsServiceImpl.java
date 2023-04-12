@@ -52,10 +52,11 @@ public class AwardsServiceImpl implements AwardsService {
 
 	@Override
 	public List<AwardsDto> findAwardsByUserId(Long userId) {
-		List<Awards> tempList = userRepository.findById(userId).get().getAwardsList();
-		List<AwardsDto> awardsList = tempList.stream().map(awards -> new AwardsDto(awards.getId(), awards.getAwardsName(), awards.getAwardsDate(), awards.getAwardsContent()))
-									.collect(Collectors.toList());
-		return awardsList;
+//		List<Awards> tempList = userRepository.findById(userId).get().getAwardsList();
+//		List<AwardsDto> awardsList = tempList.stream().map(awards -> new AwardsDto(awards.getId(), awards.getAwardsName(), awards.getAwardsDate(), awards.getAwardsContent()))
+//									.collect(Collectors.toList());
+//		return awardsList;
+		return null;
 	}
 
 	@Override
