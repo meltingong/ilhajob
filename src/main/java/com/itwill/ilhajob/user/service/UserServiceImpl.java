@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.entity.User;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
+import com.itwill.ilhajob.user.repository.ReviewRepository;
 import com.itwill.ilhajob.user.repository.UserRepository;
 
 @Service
@@ -20,14 +22,17 @@ import com.itwill.ilhajob.user.repository.UserRepository;
 public class UserServiceImpl implements UserService{
 	
 	private final UserRepository userRepository;
+	private final ReviewRepository reviewRepository;
 	
 	
 	private final ModelMapper modelMapper;
 	
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper) {
+	public UserServiceImpl(UserRepository userRepository, ReviewRepository reviewRepository, ModelMapper modelMapper) {
 		this.userRepository = userRepository;
+		this.reviewRepository = reviewRepository;
 		this.modelMapper = modelMapper;
+		
 	}
 	
 	@Override
@@ -95,5 +100,23 @@ public class UserServiceImpl implements UserService{
 		Optional<User> OptionalUser = userRepository.findAppListById(id);
 		User user = OptionalUser.get();
 		return modelMapper.map(user,UserDto.class);
+	}
+
+	@Override
+	public ReviewDto insertReview(ReviewDto reviewDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReviewDto updateReview(ReviewDto reviewDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteReview(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -3,6 +3,7 @@ package com.itwill.ilhajob.user.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 
 public interface UserService {
@@ -55,14 +56,16 @@ public interface UserService {
 	 * 리뷰 작성하기
 	 */
 
+	ReviewDto insertReview(ReviewDto reviewDto) throws Exception;
 	
 	/*
+	 * 
 	 * 리뷰 수정하기
 	 */
-	
+	ReviewDto updateReview(ReviewDto reviewDto) throws Exception;
 	
 	/*
 	 * 리뷰 삭제하기
 	 */
-	
+	void deleteReview(Long id) throws Exception;
 }
