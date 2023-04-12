@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -15,10 +16,11 @@ public class EduDto {
 	private Long id;
 	private String eduMajor;
 	private String eduName;
-	private Date eduStartDate;
-	private Date eduEndDate;
+	private LocalDateTime eduStartDate;
+	private LocalDateTime eduEndDate;
 	private String eduScore;
 	private String eduContent;
 	@ToString.Exclude
 	private UserDto user;
+	private Long cvId;
 }

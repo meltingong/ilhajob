@@ -64,16 +64,23 @@ public class CvServiceImpl implements CvService{
 		return modelMapper.map(cv, CvDto.class);
 	}
 
-	@Override
-	public List<CvDto> findCvByUser(Long id) {
-		List<Cv> cvList = cvRepository.findById(id).get().getUser().getCvList();
-//		List<Cv> cvList = cvRepository.findById(id).orElse(null).getUser().getCvList();
-		return cvList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
-	}
+
 
 	@Override
 	public List<CvDto> findCvAll() {
 		List<Cv> cvList = cvRepository.findAll();
 		return cvList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
 	}
+
+	@Override
+	public List<CvDto> findCvByUser(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	//	@Override
+//	public List<CvDto> findCvByUser(Long id) {
+//		List<Cv> cvList = cvRepository.findById(id).get().getUser().getCvList();
+//		List<Cv> cvList = cvRepository.findById(id).orElse(null).getUser().getCvList();
+//		return cvList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
+//	}
 }

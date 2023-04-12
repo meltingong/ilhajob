@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.common.entity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +43,10 @@ public class App {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "app_id_SEQ_gen")
 	private Long id;
 	
-	@Column(columnDefinition = "CHAR(1) DEFAUlT '0'")
-	private char app_status;
+	@Column(columnDefinition = "NUMBER(1) DEFAUlT 0")
+	private int appStatus;
+	
+	private LocalDateTime appCreateDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "recruit_id")
@@ -54,15 +57,5 @@ public class App {
 	@JoinColumn(name = "cv_id")
 	@ToString.Exclude
 	private Cv cv;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	@ToString.Exclude
-	private User user;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "corp_id")
-	@ToString.Exclude
-	private Corp corp;
 	
 }

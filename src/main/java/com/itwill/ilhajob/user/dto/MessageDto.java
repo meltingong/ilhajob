@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.user.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.itwill.ilhajob.common.dto.AppDto;
@@ -30,7 +31,7 @@ public class MessageDto {
 	private Long id;
 	private String messageTitle;
 	private String messageContents;
-	private Date messageDate;
+	private LocalDateTime messageDate;
 	
 	@ToString.Exclude
 	private AppDto app;

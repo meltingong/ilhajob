@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.user.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -18,11 +19,12 @@ public class ExpDto {
 	private Long id;
 	private String expPosition;
 	private String expCorpName;
-	private Date expStartDate;
-	private Date expEndDate;
+	private LocalDateTime expStartDate;
+	private LocalDateTime expEndDate;
 	private String expContent;
 	
 	@ToString.Exclude
 	private UserDto user;
+	private Long cvId;
 	
 }

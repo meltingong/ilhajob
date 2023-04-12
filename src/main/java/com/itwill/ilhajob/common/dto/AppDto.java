@@ -1,6 +1,7 @@
 package com.itwill.ilhajob.common.dto;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.itwill.ilhajob.corp.dto.CorpDto;
@@ -24,7 +25,8 @@ import lombok.ToString;
 public class AppDto {
 	
 	private long id;
-	private char appStatus;
+	private int appStatus;
+	private LocalDateTime appCreateDate;
 	@ToString.Exclude
 	private RecruitDto recruit;
 	@ToString.Exclude

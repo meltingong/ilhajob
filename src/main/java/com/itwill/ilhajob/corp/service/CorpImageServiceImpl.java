@@ -24,7 +24,7 @@ public class CorpImageServiceImpl implements CorpImageService{
 	}
 	@Override
 	public CorpImageDto insertCorpImage(CorpImageDto corpImageDto) {
-		Optional<CorpImage> found = corpImageRepository.findById(corpImageDto.getCorpId());
+		Optional<CorpImage> found = corpImageRepository.findById(corpImageDto.getCorp().getId());
 		if(!found.isPresent()) {
 			ExistedCorpException exception = 
 					new ExistedCorpException("아이디가 없습니다 돌아가세요.");

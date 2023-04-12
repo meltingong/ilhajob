@@ -201,10 +201,10 @@ public class CorpController {
                 CorpDto corp = corpService.findCorp((String)request.getSession().getAttribute("sUserId"));
                 
                 
-                CorpImageDto corpImage = new CorpImageDto(5,
-                									CorpImageUrl,
-                									1);
-                corpImageService.insertCorpImage(corpImage);
+//                CorpImageDto corpImage = new CorpImageDto(5,
+//                									CorpImageUrl,
+//                									1);
+//                corpImageService.insertCorpImage(corpImage);
                 // 파일 처리가 완료된 후에는 해당 정보를 모델에 추가하여 View로 전달
                 model.addAttribute("fileName", fileName);
 

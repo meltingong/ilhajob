@@ -67,11 +67,9 @@
     
     create table app (
        id number(19,0) not null,
-        app_status CHAR(1) DEFAUlT '0',
-        corp_id number(19,0),
+        app_status number(1) DEFAUlT 0,
         cv_id number(19,0),
         recruit_id number(19,0),
-        user_id number(19,0),
         primary key (id)
     );
  
