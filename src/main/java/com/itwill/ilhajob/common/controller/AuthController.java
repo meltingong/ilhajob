@@ -1,45 +1,71 @@
 package com.itwill.ilhajob.common.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itwill.ilhajob.common.dto.LoginDto;
+import com.itwill.ilhajob.common.dto.LoginRequestDto;
+import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
+import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.exception.UserNotFoundException;
+import com.itwill.ilhajob.user.service.UserService;
+
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 public class AuthController {
+	
+	private final UserService userService;
+	private final CorpService corpService;
+	
+	@Autowired
+	public AuthController(UserService userService, CorpService corpService) {
+		this.userService = userService;
+		this.corpService = corpService;
+	}
+	
+	@PostMapping("ajaxLogin")
+	public ResponseEntity<Object> ajaxLogin(@RequestBody LoginRequestDto loginRequest, @ApiIgnore HttpSession session) throws Exception {
+	    if(loginRequest.getSeparate().equals("user")) {
+	    	String id = loginRequest.getEmail();
+	    	String password = loginRequest.getPassword();
+	    	try {
+				UserDto loginUser = userService.login(id,password);
+				session.setAttribute("id", loginUser.getId());
+				session.setAttribute("sUserId", loginRequest.getEmail());
+				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
+			}catch (UserNotFoundException e) {
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
+			}catch (PasswordMismatchException e) {
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
+			}
+	    }else if(loginRequest.getSeparate().equals("corp")) {
+	    	String id = loginRequest.getId();
+	    	String password = loginRequest.getPassword();
+	    	try {
+				CorpDto loginCorp =  corpService.login(id, password);
+				session.setAttribute("id", loginCorp.getId());
+				session.setAttribute("sCorpId", id);
+				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
+			} catch (CorpNotFoundException e) {
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
+			} catch (PasswordMismatchException e) {
+				e.printStackTrace();
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
+			}
+	    }
+	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
+	}
 
-	 @PostMapping("final-project-team1-ilhajob/ajaxLogin")
-	 public ResponseEntity<Object> ajaxLogin(@RequestBody LoginDto loginDto) {
-		 String email = loginDto.getUserEmail();
-	     String password = loginDto.getPassword();
-	     System.out.println(loginDto);
-
-	     // 로그인 처리
-	     if (loginSuccess(email, password)) {
-	         // 인증 성공 시 HttpStatus.OK와 성공 메시지 반환
-	         return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
-	     } else {
-	         // 인증 실패 시 HttpStatus.UNAUTHORIZED와 오류 메시지 반환
-	         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"이메일 또는 비밀번호가 올바르지 않습니다.\"}");
-	     }
-	 }
-	 
-	 private boolean loginSuccess(String email, String password) {
-		 
-	     return true;
-	 }
 }
