@@ -11,7 +11,7 @@ import com.itwill.ilhajob.corp.entity.Recruit;
 
 @Repository
 public interface AppRepository extends JpaRepository<App, Long> {
-	
+/*	
 	Long countByCorpId(long id);
 	Long countByCorp(Corp corp);
 	
@@ -22,5 +22,5 @@ public interface AppRepository extends JpaRepository<App, Long> {
 	List<App> findAppsByUserId(long id);
 //	List<App> findAppsByUserEmail(String userEmail);
 	List<App> findAppsByCorpId(long id);
-//	List<App> findAppsByCorpLoginId(String corpLoginId);
+//	List<App> findAppsByCorpLoginId(String corpLoginId);*/
 }
