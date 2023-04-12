@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.itwill.ilhajob.user.dto.MessageDto;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 
 public interface UserService {
@@ -60,4 +61,23 @@ public interface UserService {
 	 * 유저 알림 선택삭제
 	 */
 	void removeMessageBySeq(Long messageSeq);
+	
+	//리뷰 select는 Corp에서 담당
+	/*
+	 * 리뷰 작성하기
+	 */
+
+	ReviewDto insertReview(ReviewDto reviewDto) throws Exception;
+	
+	/*
+	 * 
+	 * 리뷰 수정하기
+	 */
+	ReviewDto updateReview(ReviewDto reviewDto) throws Exception;
+	
+	/*
+	 * 리뷰 삭제하기
+	 */
+	void deleteReview(Long id) throws Exception;
+	
 }

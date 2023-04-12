@@ -26,6 +26,11 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 		//List<Review> findByCorp(Corp corp);
 	
 	//Optional<List<Review>> findByCorp(String corpLoginId);
+	
+	
+	boolean existsByUserAndCorp(String userEmail, String corpLoginId);
+
+	
  }
 /* <<ServiceImpl에서 작성이 필요한 부분>>
  * Optional<List<Person>> optionalPersons = personRepository.findByFirstName("John");
@@ -37,3 +42,13 @@ List<Person> persons = optionalPersons.get();
 // 결과가 없는 경우 처리하는 코드 작성
 }
 */
+/*
+ * boolean exists = personRepository.existsByFirstNameAndLastName("John", "Doe");
+if (exists) {
+    // 특정 이름과 성을 갖는 사람이 데이터베이스에 존재하는 경우 수행할 작업
+} else {
+    // 특정 이름과 성을 갖는 사람이 데이터베이스에 존재하지 않는 경우 수행할 작업
+}
+
+ */
+

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.ilhajob.user.dto.MessageDto;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.entity.Message;
 import com.itwill.ilhajob.user.entity.User;
@@ -17,6 +18,7 @@ import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
 import com.itwill.ilhajob.user.repository.MessageRepository;
+import com.itwill.ilhajob.user.repository.ReviewRepository;
 import com.itwill.ilhajob.user.repository.UserRepository;
 
 @Service
@@ -25,11 +27,15 @@ public class UserServiceImpl implements UserService{
 	
 	private final UserRepository userRepository;
 	private final MessageRepository messageRepository;
+	private final ReviewRepository reviewRepository;
+	
+	
 	private final ModelMapper modelMapper;
 	
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, MessageRepository messageRepository, ModelMapper modelMapper) {
+	public UserServiceImpl(UserRepository userRepository, ReviewRepository reviewRepository, ModelMapper modelMapper, MessageRepository messageRepository) {
 		this.userRepository = userRepository;
+		this.reviewRepository = reviewRepository;
 		this.modelMapper = modelMapper;
 		this.messageRepository = messageRepository;
 	}
@@ -100,6 +106,7 @@ public class UserServiceImpl implements UserService{
 		User user = OptionalUser.get();
 		return modelMapper.map(user,UserDto.class);
 	}
+
 	*/
 	
 	@Override
@@ -113,5 +120,23 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void removeMessageBySeq(Long messageSeq) {
 		messageRepository.deleteById(messageSeq);
+	}
+
+	@Override
+	public ReviewDto insertReview(ReviewDto reviewDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReviewDto updateReview(ReviewDto reviewDto) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteReview(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 }
