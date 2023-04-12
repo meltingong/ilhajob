@@ -124,7 +124,9 @@ public class UserServiceImpl implements UserService{
 	public void removeMessageBySeq(Long messageSeq) {
 		messageRepository.deleteById(messageSeq);
 	}
-
+	
+	//리뷰 작성
+	
 	@Override
 	public ReviewDto insertReview(ReviewDto reviewDto) throws Exception {
 		boolean exists = reviewRepository.existsByUserAndCorp(reviewDto.getUser().getUserEmail(), reviewDto.getCorp().getCorpLoginId());
@@ -141,13 +143,23 @@ public class UserServiceImpl implements UserService{
 			return modelMapper.map(review, ReviewDto.class);
 		}
 	}
-
+	
+	
+	//리뷰 수정
+	
 	@Override
 	public ReviewDto updateReview(ReviewDto reviewDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Review review = reviewRepository.findById(reviewDto.getId()).orElse(null); //null이 반환될수도 있음.
+		reviewDto.setReviewTitle(review.getReviewTitle());
+		reviewDto.setReviewContent(review.getReviewContent());
+		reviewDto.setReviewGrade(review.getReviewGrade());
+		modelMapper.map(reviewDto, review);
+		review = reviewRepository.save(review);
+		return modelMapper.map(review, ReviewDto.class);
 	}
-
+	
+	//리뷰 삭제
+	
 	@Override
 	public void deleteReview(Long reviewId) throws Exception {
 		reviewRepository.deleteById(reviewId);

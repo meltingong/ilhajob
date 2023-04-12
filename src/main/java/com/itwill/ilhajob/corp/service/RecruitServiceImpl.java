@@ -39,6 +39,8 @@ public class RecruitServiceImpl implements RecruitService {
 				.map(recruit ->modelMapper.map(recruit, RecruitDto.class))
 				.collect(Collectors.toList());
 	}
+	
+	
 	@Override
 	public RecruitDto findRecruit(long id) throws Exception {
 		Optional<Recruit> optionalRecurit = recruitRepository.findById(id);
