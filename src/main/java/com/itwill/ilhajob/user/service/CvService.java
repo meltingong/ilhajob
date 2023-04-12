@@ -9,6 +9,9 @@ public interface CvService {
 	// save
 	CvDto saveCv(CvDto cvDto);
 	
+	// update
+	CvDto updateCv(Long id, CvDto cvDto);
+	
 	// remove by cv id
 	void removeById(Long id);
 	

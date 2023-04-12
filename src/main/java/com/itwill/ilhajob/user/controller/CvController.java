@@ -1,6 +1,5 @@
 package com.itwill.ilhajob.user.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,19 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.user.dto.AwardsDto;
 import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.dto.EduDto;
 import com.itwill.ilhajob.user.dto.ExpDto;
-import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.service.AwardsService;
 import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.EduService;
 import com.itwill.ilhajob.user.service.ExpService;
-import com.itwill.ilhajob.user.service.UserService;
 
 @Controller
 public class CvController {
@@ -42,8 +39,6 @@ public class CvController {
 	private ExpService expService;
 	@Autowired 
 	private AppService appService;
-	@Autowired
-	private UserService userService;
 	
 	/************************* cv list *******************************/
 	@LoginCheck
@@ -53,7 +48,7 @@ public class CvController {
 		Long userId = (Long)request.getSession().getAttribute("id");
 		System.out.println("userId : " + userId);
 		List<CvDto> cvList = cvService.findCvByUser(userId);
-		System.out.println(cvList);
+		System.out.println("$$$$ cvLIst + " + cvList);
 		if(cvList != null) {
 			model.addAttribute("cvList", cvList);
 			forwardpath = "candidate-dashboard-cv-manager";
@@ -72,28 +67,21 @@ public class CvController {
 //		int userSeq = Integer.parseInt(request.getParameter("userSeq"));
 		
 		Long userId = (Long)request.getSession().getAttribute("id");
-		
-		/* userSeq */
-//		int userSeq = user.getUserSeq();
-		UserDto user = userService.findUser((String)request.getSession().getAttribute("userEmail"));
-		model.addAttribute("user", user);
-		
 
 //		/* eduList */
 ////		List<Edu> eduList = user.getEduList();
-//		List<Edu> eduList = eduService.selectEduByUserSeq(userSeq);
+//		List<EduDto> eduList = eduService.selectEduByUserSeq(userId);
 //		model.addAttribute("eduList", eduList);
 //		
 //		/* expList */
 ////		List<Exp> expList = user.getExpList();
-//		List<Exp> expList = expService.selectByUserSeq(userSeq);
+//		List<ExpDto> expList = expService.selectByUserSeq(userId);
 //		model.addAttribute("expList", expList);
 //		
 //		/* awardsList */
 ////		List<Awards> awardsList = user.getAwardsList();
-//		List<Awards> awardsList = awardsService.findAwardsOfUser(userSeq);
+//		List<AwardsDto> awardsList = awardsService.findAwardsOfUser(userId);
 //		model.addAttribute("awardsList", awardsList);
-
 		
 		String forwardpath = "candidate-dashboard-resume-write";
 		return forwardpath;
@@ -127,18 +115,19 @@ public class CvController {
 		public String cv_detail(HttpServletRequest request, @RequestParam Long cvId, Model model) throws Exception {
 		String forwardpath = "";
 		
-		String userEmail = (String)request.getSession().getAttribute("userEmail");
-		UserDto user = userService.findUser(userEmail);
-		model.addAttribute("user", user);
-		System.out.println(user);
+		Long userId = (Long)request.getSession().getAttribute("id");
+//		System.out.println("uuuuuuser id by session : " + userId);
+		model.addAttribute("userId", userId);
 		
 		/* user cv list */
-		List<CvDto> cvList = cvService.findCvByUser(user.getId()); // test
-		System.out.println(cvList);
+		List<CvDto> cvList = cvService.findCvByUser(userId); // test
+//		System.out.println("########### cvList : " + cvList);
 		model.addAttribute("cvList", cvList);
 		
 		/* 특정 cv detail */
 		CvDto cvDetail = cvService.findCvById(cvId);
+//		System.out.println("********** cvId : " + cvId);
+//		System.out.println("########### cvDetail : " + cvDetail);
 		model.addAttribute("cvDetail", cvDetail);
 		
 		/* eduList */
@@ -190,10 +179,13 @@ public class CvController {
 //	@PostMapping(value = "/cv-update-action")
 	@RequestMapping(value = "/cv-update-action", produces = "application/json;charset=UTF-8")
 //	public String cv_update_action(HttpServletRequest request, @ModelAttribute Cv cv, @ModelAttribute List<Awards> awardsList, @ModelAttribute Edu edu, @ModelAttribute Exp exp, Model model) {
-	public String cv_update_action(HttpServletRequest request, @ModelAttribute CvDto cv, @ModelAttribute EduDto edu, Model model, RedirectAttributes redirectAttributes) {
-
-		Long cvId = cv.getId();
-		cvService.saveCv(cv);
+	public String cv_update_action(HttpServletRequest request, @RequestParam Long cvId, @ModelAttribute CvDto cv, @ModelAttribute EduDto edu, Model model, RedirectAttributes redirectAttributes) {
+		System.out.println("cccccccccccc cv : " + cv);
+		System.out.println("ccccccccccc cvId " + cvId);
+		
+//		Long cvId = cv.getId();
+		cvService.updateCv(cvId, cv);
+		System.out.println("@@@@@@@@@@@@@@@@@ after update : ");
 //		List<Edu> eduList = (List<Edu>)request.getSession().getAttribute("eduList");
 //		for (int i = 0; i < eduList.size(); i++) {
 //			date 문제 해결 필요
