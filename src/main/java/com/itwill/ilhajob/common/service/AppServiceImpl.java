@@ -30,8 +30,8 @@ public class AppServiceImpl implements AppService {
 	}
 
 	@Override
-	public Long findAppCountByCorpId(String corpLoginId) {
-		return appRepository.countByCorpId(corpLoginId);
+	public Long findAppCountByCorpId(long id) {
+		return appRepository.countByCorpId(id);
 	}
 	
 	

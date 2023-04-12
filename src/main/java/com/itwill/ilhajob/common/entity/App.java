@@ -65,7 +65,4 @@ public class App {
 	@ToString.Exclude
 	private Corp corp;
 	
-	@OneToMany(mappedBy = "app",
-			   fetch = FetchType.LAZY)
-	private List<Message> messageList = new ArrayList<Message>();
 }
