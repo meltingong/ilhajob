@@ -37,6 +37,7 @@ public class AppServiceImpl implements AppService {
 	public void updateApp(long id, AppDto appDto) {
 		App updateApp = appRepository.findById(id).get();
 		appDto.setId(id);
+		appDto.setAppStatus(appDto.getAppStatus());
 		modelMapper.map(appDto, updateApp);
 		appRepository.save(updateApp);
 	}
