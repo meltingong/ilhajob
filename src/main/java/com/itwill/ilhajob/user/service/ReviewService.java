@@ -20,7 +20,7 @@ public interface ReviewService {
 	/*
 	 * 리뷰 삭제하기
 	 */
-	void deleteReview(Long reviewId) throws Exception;
+	void remove(Long reviewId) throws Exception;
 	
 	
 }

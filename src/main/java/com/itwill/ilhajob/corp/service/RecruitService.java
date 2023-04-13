@@ -23,6 +23,9 @@ public interface RecruitService {
 	//공고 상세
 	RecruitDto findRecruit(long id) throws Exception;
 	
+	//corpId(Long id)로 현재활성화중인 공고갯수 불러오기
+	Long countByCorpId(Long id) throws Exception;
+		
 	//마감 지났는지 여부 확인
 	//boolean isDeadLine(Date rcDeadline) throws Exception;
 	

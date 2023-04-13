@@ -308,11 +308,6 @@
         primary key (id)
     );
     
-    alter table app 
-       add constraint FKmafr801nwfcvndfs5h4wb21cx 
-       foreign key (corp_id) 
-       references corp;
- 
     
     alter table app 
        add constraint FKhaptmc50bdgwogvgkytx3b0h 
@@ -408,12 +403,6 @@
        add constraint FKnf66cq2r5a0ok0reveck54y8 
        foreign key (corp_id) 
        references corp;
- 
-    
-    alter table message 
-       add constraint FKlotoiprokecp5rauuhi4pggmp 
-       foreign key (app_id) 
-       references app;
  
     
     alter table message 

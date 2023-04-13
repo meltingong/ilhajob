@@ -1,13 +1,13 @@
 /*******************************개인회원관련**************************************/
 /**********************userinfo insert************************/
-insert into userinfo(id, user_age, user_email, user_password)
-values(USER_ID_SEQ.nextval, 20, 'test1@test.com', '1111');
-insert into userinfo(id, user_age, user_email, user_password)
-values(USER_ID_SEQ.nextval, 21, 'test2@test.com', '2222');
-insert into userinfo(id, user_age, user_email, user_password)
-values(USER_ID_SEQ.nextval, 22, 'test3@test.com', '3333');
-insert into userinfo(id, user_age, user_email, user_password)
-values(USER_ID_SEQ.nextval, 23, 'test4@test.com', '4444');
+insert into userinfo(id, user_age, user_email, user_password, role)
+values(USER_ID_SEQ.nextval, 20, 'test1@test.com', '1111', 1);
+insert into userinfo(id, user_age, user_email, user_password, role)
+values(USER_ID_SEQ.nextval, 21, 'test2@test.com', '2222', 1);
+insert into userinfo(id, user_age, user_email, user_password, role)
+values(USER_ID_SEQ.nextval, 22, 'test3@test.com', '3333', 1);
+insert into userinfo(id, user_age, user_email, user_password, role)
+values(USER_ID_SEQ.nextval, 23, 'test4@test.com', '4444', 1);
 
 /**********************edu insert****************************/
 insert into edu(id, edu_content, edu_end_date, edu_major, edu_name, edu_score, edu_start_date, user_id)
@@ -189,22 +189,22 @@ values(MANAGER_ID_SEQ.nextval, 'email@기업4.com', '댜댜댜', '010-5326-6477'
 
 /**********************recruit insert***************************/
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate,  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-04-05', '경력직', '무', 0, 4500, 'SW개발/보안 경력직 모집', 1);
+values(RECRUIT_ID_SEQ.nextval, sysdate,  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 0, 4500, 'SW개발/보안 경력직 모집', 1);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+1,  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-04-05', '경력직', '무', 0, 3500, '청소부', 2);
+values(RECRUIT_ID_SEQ.nextval, sysdate+1,  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 0, 3500, '청소부', 2);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+2,  '우아한 청년들에서 귀한 분을 모십니다.', '2023-04-05', '신입/경력', '무', 0, 4000, '부분별 경력/신입 인재영입', 3);
+values(RECRUIT_ID_SEQ.nextval, sysdate+2,  '우아한 청년들에서 귀한 분을 모십니다.', '2023-07-05', '신입/경력', '무', 0, 4000, '부분별 경력/신입 인재영입', 3);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+3,  '메타넷그룹의 사업 확장과 비즈니스 성장에 함께할 IT 전문성을 가진 인재들을 모십니다.', '2023-04-05', '경력직', '무', 0, 3600, '메타넷 그룹 경력직 공개채용', 4);
+values(RECRUIT_ID_SEQ.nextval, sysdate+3,  '메타넷그룹의 사업 확장과 비즈니스 성장에 함께할 IT 전문성을 가진 인재들을 모십니다.', '2023-07-05', '경력직', '무', 0, 3600, '메타넷 그룹 경력직 공개채용', 4);
 
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate,  'DB개발자 신입모집합니다.', '2023-04-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 1);
+values(RECRUIT_ID_SEQ.nextval, sysdate,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 1);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+8,  'DB개발자 신입모집합니다.', '2023-04-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 2);
+values(RECRUIT_ID_SEQ.nextval, sysdate+8,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 2);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+7,  'DB개발자 신입모집합니다.', '2023-04-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 3);
+values(RECRUIT_ID_SEQ.nextval, sysdate+7,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 3);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+6,  'DB개발자 신입모집합니다.', '2023-04-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 4);
+values(RECRUIT_ID_SEQ.nextval, sysdate+6,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 4);
 
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate,  '다큐브팀과 함께 국내 최초 기업용 음성비서를 만들어갈 동료를 찾고 있습니다.', sysdate+30, '경력', 'Springboot경험이 있는 분', 0, 5300, '다큐브- 시니어 백엔드 개발자', 1);
