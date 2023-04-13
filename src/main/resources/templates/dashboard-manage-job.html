@@ -91,7 +91,7 @@
                             <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
                             <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
                           </td>
-                          <td class="applied"><a href="#">3+ Applied</a></td>
+                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#">지원자 이력서 보기</a></td>
                           <td>
 						      <ul>
 						        <li th:text="|created:${recruit.rcDate}|"></li>
