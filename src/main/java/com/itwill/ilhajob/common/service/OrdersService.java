@@ -11,6 +11,5 @@ public interface OrdersService {
 	void removeOrder();
 	List<OrdersDto> findOrderByUser(long id);
 	List<OrdersDto> findOrderByCorp(long id);
-	void updateOrder(OrdersDto ordersDto);
-	OrdersDto reorderingCheck(String role, long id);
+	void reorderingCheckUpdate(String role, long id);
 }
