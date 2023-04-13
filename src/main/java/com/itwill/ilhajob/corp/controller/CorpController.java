@@ -166,10 +166,21 @@ public class CorpController {
 	}
 
 	@RequestMapping("/dashboard-manage-job")
-	public String corp_dashboard_manage_job(HttpServletRequest request, Model model) throws Exception {
+	public String corp_dashboard_manage_job(HttpServletRequest request,Model model) throws Exception {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto = corpService.findCorp(sCorpId);
+		CorpDto corpDto=corpService.findCorp(sCorpId);
+//		List<RecruitDto> recruitList=recruitService.findRecruitAll();
+//		List<RecruitDto> recruitList1=new ArrayList<>();
+//		for(RecruitDto recruitDto: recruitList) {
+//			if(recruitDto.getCorp().getId()==corpDto.getId()) {
+//				recruitList1.add(recruitDto);
+//			}
+//		}
+//		model.addAttribute("recruitList",recruitList);
+		
+		
 		model.addAttribute("corp", corpDto);
+		
 		
 		// 지원자 숫자 보여주기->일단 보류
 		//List<Integer> countList = new ArrayList<>();
@@ -247,9 +258,5 @@ public class CorpController {
     }
     
 }
-//	@ExceptionHandler(Exception.class)
-//	public String corp_exception_handler(Exception e) {
-//		System.out.println("에러..");
-//		return "shop-checkout";
-//	}
+
 
