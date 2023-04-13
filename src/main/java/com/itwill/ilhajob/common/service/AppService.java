@@ -12,7 +12,9 @@ public interface AppService {
 	
 	void deleteApp(Long id);
 	
+	//기업대쉬보드에서 사용
 	List<AppDto> findAllByRecruitId(long id);
+	//유저대쉬보드에서 사용
 	List<AppDto> findAllByUserId(long id);
 	
 	List<AppDto> findAllByCvId(long id);
