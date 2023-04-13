@@ -69,7 +69,6 @@ public class CvServiceImpl implements CvService{
 	@Override
 	public void removeById(Long id) {
 		cvRepository.deleteById(id);
-		cvRepository.flush();
 	}
 
 	@Override
