@@ -47,7 +47,7 @@ public class AppServiceImpl implements AppService {
 	}
 
 	/*
-	 * corp 등록한공고리스트뷰에서 공고하나 클릭시 등록된 이력서들 출력
+	 * 기업이 등록한 공고리스트뷰에서 공고하나 클릭시 appList출력하여 이력서리스트 확인
 	 */
 	@Transactional
 	@Override
@@ -57,6 +57,9 @@ public class AppServiceImpl implements AppService {
 				.map(app ->modelMapper.map(app, AppDto.class))
 				.collect(Collectors.toList());
 	}
+	/*
+	 * 구직자가 지원한 appList출력하여 공고리스트 확인
+	 */
 	@Transactional
 	@Override
 	public List<AppDto> findAllByUserId(long id) {
