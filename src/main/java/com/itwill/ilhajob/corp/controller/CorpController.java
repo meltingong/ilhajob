@@ -30,11 +30,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
+import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.entity.CorpImage;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
 
@@ -45,6 +47,8 @@ public class CorpController {
 	private CorpService corpService;
 	@Autowired
 	private CorpImageService corpImageService;
+	@Autowired
+	private RecruitService recruitService;
 //	@RequestMapping("/index")
 //	public String main() {
 //		String forward_path = "index";
@@ -63,10 +67,19 @@ public class CorpController {
 	}
 
 	@RequestMapping("corp-detail")
-	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId,Model model) throws Exception {
+	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId, HttpServletRequest request,Model model) throws Exception {
 		CorpDto corpDto=corpService.findCorp(corpLoginId);
-		System.out.println(corpDto);
 		model.addAttribute("corp", corpDto);
+		
+		//공고 목록 뿌리기
+		List<RecruitDto> recruitList=recruitService.findRecruitAll();
+		List<RecruitDto> recruitList1=new ArrayList<>();
+		for(RecruitDto recruitDto: recruitList) {
+			if(recruitDto.getCorp().getId()==corpDto.getId()) {
+				recruitList1.add(recruitDto);
+			}
+		}
+		model.addAttribute("recruitList",recruitList1);
 		return "corp-detail";
 
 	}
@@ -144,11 +157,11 @@ public class CorpController {
 
 	@PostMapping("/corp-update-action")
 	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto,
-			@RequestParam("corpEst") String corpEst, HttpServletRequest request)throws Exception {
+			 HttpServletRequest request)throws Exception {
 		Long id = corpDto.getId();
-		System.out.println(corpEst);
+		System.out.println(corpDto);
 		corpService.update(id, corpDto);
-		request.setAttribute("corLoginId", corpDto.getCorpLoginId());
+		request.setAttribute("corpLoginId", corpDto.getCorpLoginId());
 		return "corp-detail";
 	}
 
