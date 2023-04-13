@@ -127,13 +127,19 @@ public class CorpServiceImpl implements CorpService{
 	//회사의 리뷰목록 가져오기
 	@Override
 	public List<ReviewDto> findReviewList(Long corpId) {
+				List<Review> reviewList = reviewRepository.findByCorpId(corpId);
+				List<ReviewDto> reviewDtoList = reviewList.stream()
+						.map(review-> new ReviewDto(review.getId(),review.getReviewGrade(),review.getReviewTitle(),review.getReviewContent()))
+						.collect(Collectors.toList());
+			return reviewDtoList;	
+//				return reviewDtoList;
 //		Optional<Corp> optionalCorp = corpRepository.findById(corpId);
 //		List<Review> reviewList = optionalCorp.get().getReviewList();
 //		List<ReviewDto> reviewDtoList = reviewList.stream()
 //				.map(review-> new ReviewDto(review.getId(),review.getReviewGrade(),review.getReviewTitle(),review.getReviewContent()))
 //				.collect(Collectors.toList());
 //		return reviewDtoList;
-		return null;
+		//return null;
 	}
 	
 	
