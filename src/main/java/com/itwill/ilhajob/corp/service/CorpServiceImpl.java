@@ -131,12 +131,8 @@ public class CorpServiceImpl implements CorpService{
 				Optional<Review> OptionalReview = reviewRepository.findByCorpId(corpId);
 				List<Review> reviewList = new ArrayList<>();
 			
-				OptionalReview.get().getId();
-				OptionalReview.get().getReviewGrade();
-				OptionalReview.get().getReviewTitle();
-				OptionalReview.get().getReviewContent();
-				OptionalReview.get().getCorp();
-				OptionalReview.get().getUser();
+				
+				
 				
 				System.out.println(reviewList);
 				List<ReviewDto> reviewDtoList = reviewList.stream()
