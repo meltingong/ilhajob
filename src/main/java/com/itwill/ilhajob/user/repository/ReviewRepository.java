@@ -26,7 +26,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 	//List<Review> findByCorp(String CorpLoginId);
 	
 		//위 메소드 안되면 -> 아래꺼사용
-	List<Review> findByCorpId(Long corpId);
+	Optional<Review> findByCorpId(Long corpId);
 	
 	//Optional<List<Review>> findByCorp(String corpLoginId);
 	

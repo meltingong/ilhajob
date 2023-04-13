@@ -117,13 +117,23 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public List<MessageDto> findMessageList(Long userId) {
-		Optional<User> optionalUser = userRepository.findById(userId);
+		List<Message> messageList = messageRepository.findAll();
+		List<Message> findMessageList = new ArrayList<Message>();
+		for(int i = 0; i < messageList.size(); i++) {
+			if(messageList.get(i).getUser().getId() == userId) {
+				findMessageList.add(messageList.get(i));
+			}
+		}
+		System.out.println(findMessageList);
+		List<MessageDto> messageDtoList = findMessageList.stream().map(message-> new MessageDto(message.getId(),message.getMessageTitle(),message.getMessageContents(),message.getMessageDate())).collect(Collectors.toList());
+		
+//		Optional<User> optionalUser = userRepository.findById(userId);
 //		List<Message> messageList = optionalUser.get().getMessageList();
 //		List<MessageDto> messageDtoList = messageList.stream()
 //													.map(message-> modelMapper.map(messageList, MessageDto.class))
 //													.collect(Collectors.toList());
 //		return messageDtoList;
-		return null;
+		return messageDtoList;
 	}
 
 	@Override

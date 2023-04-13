@@ -74,11 +74,15 @@
                         </select>
                       </div>
                       
-                      <!-- <input type="hidden" name="userId" th:value="${userSeq}"/> -->
                       <input type="hidden" name="cvId" th:value="*{id}"/>
-                      <input type="hidden" name="cvName" th:value="*{cvName}"/>
                       <input type="hidden" name="userId" th:value="${userId}"/>
-
+                      
+                      <!-- Cv Name -->
+                      <div class="form-group col-lg-12 col-md-12">
+                        <label>제목</label>
+                        <input type="text" name="cvName" placeholder="((테스트))이력서 제목을 입력하세요." th:value="*{cvName}">
+                      </div>
+                      
                       <!-- About Company -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>자기소개</label>
@@ -95,13 +99,13 @@
 
                       <div class="form-group col-lg-12 col-md-12">
                         <!-- Resume / Education -->
-                        <div class="resume-outer" th:object="${eduList}" th:each="edu:${eduList}">
+                        <div class="resume-outer">
                           <div class="upper-title">
                             <h4>학력</h4>
                             <button class="add-info-btn" onclick="addEdu()"><span class="icon flaticon-plus"></span> 학력 추가</button>
                           </div>
                           <!-- Resume BLock -->
-                          <div class="resume-block">
+                          <div class="resume-block" th:object="${eduList}" th:each="edu:${eduList}">
                             <div class="inner">
 		                        <!-- <input type="hidden" name="eduSeq" th:value="${edu.eduSeq}"/> -->
                               <span class="name">E</span>

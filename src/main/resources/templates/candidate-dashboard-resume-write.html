@@ -47,7 +47,7 @@
     <section class="user-dashboard">
       <div class="dashboard-outer">
         <div class="upper-title-box">
-          <h3>My Resume</h3>
+          <h3>나의 이력서</h3>
           <div class="text">Ready to jump back in?</div>
         </div>
 
@@ -57,7 +57,7 @@
             <div class="ls-widget">
               <div class="tabs-box">
                 <div class="widget-title">
-                  <h4>My Profile</h4>
+                  <h4>이력서 작성</h4>
                 </div>
 
                 <div class="widget-content" th:object="${cvDetail}">
@@ -66,8 +66,8 @@
 
                       <!-- New Cv Name -->
                       <div class="form-group col-lg-12 col-md-12">
-                        <label>이력서 제목</label>
-                        <textarea placeholder="((테스트))이력서 제목을 입력하세요." name="cvName"></textarea>
+                        <label>제목</label>
+                        <input type="text" name="cvName" placeholder="((테스트))이력서 제목을 입력하세요.">
                       </div>
 
                       <!-- About Company -->
@@ -76,9 +76,9 @@
                         <textarea placeholder="자기소개서를 작성해주세요." name="cvDescription"></textarea>
                       </div>
                       
-                   		<input type="hidden" name="userSeq" th:value="${userSeq}"/>
-                   		<!-- <input type="hidden" name="user" th:object="${user}" th:value="*{id}"/> -->
-
+                   		<!-- <input type="hidden" name="userSeq" th:value="${userSeq}"/>
+                   		<input type="hidden" name="user" th:value="${userId}"/> -->
+                   		
                       <!-- 포트폴리오 -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>포트폴리오</label>
@@ -213,6 +213,7 @@
                      </div>
 
                       <!-- Search Select -->
+                      <!-- 
                       <div class="form-group col-lg-6 col-md-12">
                         <label>기타 보유능력</label>
                         <select data-placeholder="Categories" class="chosen-select multiple" multiple tabindex="4">
@@ -223,6 +224,7 @@
                           <option value="Management">Management</option>
                         </select>
                       </div>
+                       -->
 
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
