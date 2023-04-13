@@ -12,6 +12,8 @@ public interface RecruitRepository extends JpaRepository<Recruit, Long>{
 	//corpId(Long id)로 recruit List 불러오기
 	List<Recruit> findByCorpId(Long id);
 	
+	//corpId(Long id)로 현재활성화중인 공고갯수 불러오기
+	Long countByCorpId(Long id);
 	
 }
 

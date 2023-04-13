@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sound.sampled.ReverbType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.ilhajob.common.dto.AppDto;
+import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.user.dto.MessageDto;
@@ -45,8 +48,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	//@Autowired
-	//private AppService appService;
+	@Autowired
+	private AppService appService;
 
 	@Autowired
 	private ReviewService reviewService;
@@ -223,6 +226,19 @@ public class UserController {
 		return forwardPath;
 	}
 	
+	// 지원한 목록 보기
+	@LoginCheck
+	@RequestMapping("/candidate-dashboard-applied-job")
+	public String user_applied_job(HttpServletRequest request, Model model) throws Exception{
+		String forwardPath="";
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		request.setAttribute("loginUser", loginUser);
+ 		List<AppDto> appList = appService.findAllByUserId(loginUser.getId());
+ 		model.addAttribute("appList",appList);
+		forwardPath = "/candidate-dashboard-applied-job";
+		return forwardPath;
+	}
 			
 	/*
 	// 지원한 목록 보기
@@ -282,10 +298,11 @@ public class UserController {
 			
 		}
 		
+		@LoginCheck
 		@RequestMapping("/review_delete")
-		public String review_delete(@ModelAttribute ReviewDto reviewDto, HttpServletRequest request, @RequestParam Long id,@RequestParam("corpId") CorpDto corp) throws Exception{
-			userService.deleteReview(id);
-			return "redirect:corp-detail?corpId="+corp.getId();
+		public String review_delete(Long id,String corpLoginId) throws Exception{
+			reviewService.remove(id);
+			return "redirect:corp-detail?corpLoginId="+corpLoginId;
 		}
 
 }

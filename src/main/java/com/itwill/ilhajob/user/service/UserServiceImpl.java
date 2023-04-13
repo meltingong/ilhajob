@@ -175,12 +175,6 @@ public class UserServiceImpl implements UserService{
 		return modelMapper.map(review, ReviewDto.class);
 	}
 	
-	//리뷰 삭제
 	
-	@Override
-	public void deleteReview(Long reviewId) throws Exception {
-		reviewRepository.deleteById(reviewId);
-	}
-
 
 }

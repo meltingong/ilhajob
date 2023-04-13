@@ -59,7 +59,6 @@ public class RecruitServiceImpl implements RecruitService {
 	@Override
 	public RecruitDto create(RecruitDto recruitDto) throws Exception {
 		Recruit recruit = modelMapper.map(recruitDto, Recruit.class);
-		System.out.println(recruit);
 		recruit = recruitRepository.save(recruit);
 		return modelMapper.map(recruit, RecruitDto.class);
 	}
@@ -80,6 +79,11 @@ public class RecruitServiceImpl implements RecruitService {
 		recruitRepository.deleteById(id);
 	}
 	
+	//open jobs -3 부분에 넣기
+	@Override
+	public Long countByCorpId(Long id) throws Exception {
+		return recruitRepository.countByCorpId(id);
+	}
 	//마감일 됐는지 여부 확인
 //	@Override
 //	public boolean isDeadLine(Date rcDeadline) throws Exception {
