@@ -37,7 +37,7 @@ public class MessageServiceImpl implements MessageService{
 	public MessageDto updateMessage(MessageDto messageDto) {
 		Message message = messageRepository.findById(messageDto.getId()).orElse(null);
 		messageDto.setMessageContents(message.getMessageContents());
-		messageDto.setMessageTitle(messageDto.getMessageTitle());
+		messageDto.setMessageTitle(message.getMessageTitle());
 		messageDto.setMessageDate(message.getMessageDate());
 		modelMapper.map(messageDto, message);
 		message = messageRepository.save(message);
