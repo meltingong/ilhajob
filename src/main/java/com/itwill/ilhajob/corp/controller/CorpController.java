@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.type.LocalDateType;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,10 +33,13 @@ import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
+import com.itwill.ilhajob.corp.dto.ManagerDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.entity.CorpImage;
+import com.itwill.ilhajob.corp.entity.Manager;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
+import com.itwill.ilhajob.corp.repository.ManagerRepository;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.RecruitService;
@@ -55,6 +60,8 @@ public class CorpController {
 	@Autowired
 	private RecruitService recruitService;
 
+	@Autowired
+	private ManagerRepository managerRepository;
 	
 	@Autowired
 	private UserService userService;
@@ -62,6 +69,9 @@ public class CorpController {
 	@Autowired
 	private AppService appService;
 
+	@Autowired
+	private ModelMapper modelMapper;
+	
 //	@RequestMapping("/index")
 //	public String main() {
 //		String forward_path = "index";
@@ -74,7 +84,7 @@ public class CorpController {
 		List<CorpDto> corpList = corpService.findCorpAll();
 		model.addAttribute("corpList", corpList);
 		String forward_path = "corp-list";
-
+			
 		return forward_path;
 
 	}
@@ -226,6 +236,15 @@ public class CorpController {
 		return "dashboard-manage-job";
 	}
 	
+	//매니저리스트
+	/*
+	@RequestMapping("/dashboard-manager-list")
+	public String corp_dashboard_manager-list() throws Exception {
+		
+
+		return "dashboard-manager-list";
+	}
+	*/
 	//지원자 보기
 	@RequestMapping("/dashboard-applicants")
 	public String corp_dashboard_applicants(@RequestParam("id")int id, Model model) throws Exception {
@@ -301,12 +320,6 @@ public class CorpController {
             return "error"; // 에러 페이지 또는 에러 처리 로직을 반환
         }
     }
-    
-    
-    
-    
-    
-    
     
     
     
