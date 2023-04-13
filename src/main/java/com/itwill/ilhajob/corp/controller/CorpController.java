@@ -37,6 +37,7 @@ import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.RecruitService;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
 
@@ -80,6 +81,15 @@ public class CorpController {
 			}
 		}
 		model.addAttribute("recruitList",recruitList1);
+		
+		//리뷰 목록 뿌리기
+		List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
+		
+		
+		model.addAttribute("reviewList",reviewList);
+		
+		
+		
 		return "corp-detail";
 
 	}
@@ -245,6 +255,14 @@ public class CorpController {
             return "error"; // 에러 페이지 또는 에러 처리 로직을 반환
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 //	@ExceptionHandler(Exception.class)
