@@ -122,7 +122,7 @@ public class CvController {
 		model.addAttribute("cvList", cvList);
 		
 		/* 특정 cv detail */
-		CvDto cvDetail = cvService.findCvById(userId);
+		CvDto cvDetail = cvService.findCvById(cvId);
 		model.addAttribute("cvDetail", cvDetail);
 		
 		/* eduList */
@@ -198,7 +198,8 @@ public class CvController {
 	@LoginCheck
 //	@PostMapping(value = "/cv-delete-action")
 	@RequestMapping(value = "/cv-delete-action")
-	public String cv_delete_action(HttpServletRequest request, @RequestParam Long cvId) throws Exception{
+	public String cv_delete_action(HttpServletRequest request, @RequestParam(name = "cvId") Long cvId) throws Exception {
+		System.out.println("$$$$$$$$$$$$$$$$$$$ cvId : " + cvId);
 		cvService.removeById(cvId);
 		return "redirect:cv-list";
 	}

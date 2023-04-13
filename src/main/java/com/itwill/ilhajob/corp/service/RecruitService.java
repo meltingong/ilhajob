@@ -18,6 +18,8 @@ public interface RecruitService {
 	
 	List<RecruitDto> findRecruitAll() throws Exception;
 	
+	List<RecruitDto> findAllByCorpId(long id) throws Exception;
+	
 	//공고 상세
 	RecruitDto findRecruit(long id) throws Exception;
 	

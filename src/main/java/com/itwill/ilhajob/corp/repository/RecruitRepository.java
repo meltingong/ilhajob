@@ -10,7 +10,7 @@ import com.itwill.ilhajob.corp.entity.Recruit;
 @Repository
 public interface RecruitRepository extends JpaRepository<Recruit, Long>{
 	//corpId(Long id)로 recruit List 불러오기
-	//List<Recruit> findByCorpId(Long corpId);
+	List<Recruit> findByCorpId(Long id);
 	
 	
 }
