@@ -38,14 +38,14 @@ public class BlogCommentServiceImpl implements BlogCommentService{
 				.collect(Collectors.toList());
 	}
 	
-	/*
+	
 	@Override
 	public List<BlogCommentDto> selectByBlogComment(Long id) {
 		Optional<BlogComment> selectBlogComment = blogCommentRepository.findById(id);
 		return selectBlogComment.stream().map(blogComment -> modelMapper.map(blogComment,  BlogCommentDto.class))
 				.collect(Collectors.toList()) ;
 	}
-	*/
+	
 	
 	@Override
 	public BlogCommentDto insertBlogComment(BlogCommentDto blogCommentDto) throws Exception {

@@ -17,8 +17,8 @@ public interface BlogCommentService {
 	List<BlogCommentDto> selectAll();
 
 	/* selectByBlogComment(블로그seq로 찾기)
-	List<BlogCommentDto> selectByBlogComment(Long id);
 	 */
+	List<BlogCommentDto> selectByBlogComment(Long id);
 	
 	/*
 	 * blogComment insert
