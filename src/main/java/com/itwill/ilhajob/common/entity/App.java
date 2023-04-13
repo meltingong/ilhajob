@@ -48,14 +48,12 @@ public class App {
 	
 	private LocalDateTime appCreateDate;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "recruit_id")
-	@ToString.Exclude
 	private Recruit recruit;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cv_id")
-	@ToString.Exclude
 	private Cv cv;
 	
 }
