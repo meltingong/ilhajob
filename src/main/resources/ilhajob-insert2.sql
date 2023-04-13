@@ -246,32 +246,32 @@ values(RECRUIT_SCRAP_RC_SEQ_SEQ.nextval, 4, 'test4@test.com', 4);
 
 /*******************************관계테이블**************************************/
 /**********************app insert***************************/
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '2', 1, 1, sysdate);
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '0', 1, 2, sysdate);
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '0', 1, 3, sysdate);
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '1', 1, 4, sysdate);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '2', 1, 1, sysdate,1);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '0', 1, 2, sysdate,1);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '0', 1, 3, sysdate,1);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '1', 1, 4, sysdate,1);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '2', 1, 1, sysdate,1);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '0', 1, 2, sysdate,1);
 
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '2', 1, 1, sysdate);
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '0', 1, 2, sysdate);
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '1', 2, 3, sysdate);
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '1', 2, 4, sysdate);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '1', 2, 3, sysdate,2);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '1', 2, 4, sysdate,2);
 
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '0', 3, 1, sysdate);
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '0', 3, 2, sysdate);
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '0', 3, 3, sysdate);
-insert into app(id, app_status, cv_id, recruit_id, app_create_date)
-values(APP_ID_SEQ.nextval, '0', 3, 4, sysdate);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '0', 3, 1, sysdate,3);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '0', 3, 2, sysdate,3);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '0', 3, 3, sysdate,3);
+insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '0', 3, 4, sysdate,3);
 
 /**********************massage insert***************************/
 insert into message(id, message_contents, message_date, message_title, user_id)

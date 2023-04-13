@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
@@ -53,9 +54,14 @@ public class CorpController {
 	private CorpImageService corpImageService;
 	@Autowired
 	private RecruitService recruitService;
+
 	
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private AppService appService;
+
 //	@RequestMapping("/index")
 //	public String main() {
 //		String forward_path = "index";
@@ -101,8 +107,6 @@ public class CorpController {
 		
 		
 		List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
-		
-		
 		model.addAttribute("reviewList",reviewList);
 		
 		
@@ -193,12 +197,14 @@ public class CorpController {
 	}
 
 	@RequestMapping("/dashboard-manage-job")
-	public String corp_dashboard_manage_job(HttpServletRequest request, Model model) throws Exception {
+	public String corp_dashboard_manage_job(HttpServletRequest request,Model model) throws Exception {
+		//회사의 작성 공고 띄우기
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto = corpService.findCorp(sCorpId);
-		model.addAttribute("corp", corpDto);
+		CorpDto corpDto=corpService.findCorp(sCorpId);
+		List<RecruitDto> recruitList=recruitService.findAllByCorpId(corpDto.getId());
+		model.addAttribute("recruitList",recruitList);
 		
-		// 지원자 숫자 보여주기->일단 보류
+		// 지원자 숫자 보여주기-보류
 		//List<Integer> countList = new ArrayList<>();
 		//Long appCount = appService.findAppCountByCorpId(sCorpId);
 		//System.out.println(appCount);
@@ -211,7 +217,15 @@ public class CorpController {
 	
 	//지원자 보기
 	@RequestMapping("/dashboard-applicants")
-	public String corp_dashboard_applicants() {
+	public String corp_dashboard_applicants(@RequestParam("id")int id, Model model) throws Exception {
+		//지원자 이력서 리스트 불러오기
+		List<AppDto> appList=appService.findAllByRecruitId(id);
+		model.addAttribute("appList",appList);
+		
+		//해당 공고 디테일 뿌리기
+		RecruitDto recruit=recruitService.findRecruit(id);
+		model.addAttribute("recruit", recruit);
+		
 		return "dashboard-applicants";
 	}
 
@@ -282,9 +296,5 @@ public class CorpController {
     
     
 }
-//	@ExceptionHandler(Exception.class)
-//	public String corp_exception_handler(Exception e) {
-//		System.out.println("에러..");
-//		return "shop-checkout";
-//	}
+
 

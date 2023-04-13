@@ -47,8 +47,8 @@
     <section class="user-dashboard">
       <div class="dashboard-outer">
         <div class="upper-title-box">
-          <h3>All Aplicants</h3>
-          <div class="text">Ready to jump back in?</div>
+          <h3>이력서 목록</h3>
+          <div class="text">귀사 공고에 제출된 이력서 목록입니다</div>
         </div>
 
         <div class="row">
@@ -57,7 +57,7 @@
             <div class="ls-widget">
               <div class="tabs-box">
                 <div class="widget-title">
-                  <h4>Applicant</h4>
+                  <h4>이력서 전체 목록</h4>
 
                   <div class="chosen-outer">
                     <!--Tabs Box-->
@@ -84,7 +84,7 @@
 
                   <div class="tabs-box">
                     <div class="aplicants-upper-bar">
-                      <h6>Senior Product Designer</h6>
+                      <h6 th:text="${recruit.rcTitle}">Senior Product Designer</h6>
                       <ul class="aplicantion-status tab-buttons clearfix">
                         <li class="tab-btn active-btn totals" data-tab="#totals">Total(s): 6</li>
                         <li class="tab-btn approved" data-tab="#approved">Approved: 2</li>

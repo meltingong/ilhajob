@@ -23,8 +23,8 @@ class AppServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 	}
 
 	@Test
-	void testFindAllByCvId() {
-		System.out.println(appService.findAllByCvId(1L));
+	void testFindAllByUserId() {
+		System.out.println(appService.findAllByUserId(1L));
 	}
 
 }

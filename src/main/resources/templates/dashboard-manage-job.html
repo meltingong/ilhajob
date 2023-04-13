@@ -85,19 +85,20 @@
                       </thead>
 
                       <tbody>
-                        <tr th:each="recruit:${corp.recruitList}">
+                        <tr th:each="recruit:${recruitList}">
                         <!-- form자리 버튼 포스트로 넘길용도 -->
-                          <td>
-                            <a th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 th:text="${recruit.rcTitle}">Senior Full Stack Engineer, Creator Success</h6></a>
-                            <span th:text="${corp.corpAddress}" class="info"><i class="icon flaticon-map-locator"></i> London, UK</span>
+                          <td >
+                            <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
+                            <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
                           </td>
-                          <td class="applied"><a href="#">3+ Applied</a></td>
+                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#">지원자 이력서 보기</a></td>
                           <td>
 						      <ul>
-						        <li th:text="|created:${#dates.format(recruit.rcDate,'yyyy-MM-dd')}|"></li>
-						        <li th:text="|expired:${#dates.format(recruit.rcDeadline,'yyyy-MM-dd')}|"> </li>
+						        <li th:text="|created:${recruit.rcDate}|"></li>
+						        <li th:text="|expired:${recruit.rcDeadline}|"></li>
 						      </ul>
 						    </td>
+                         
                           <td class="status">Active</td>
                           <td>
                             <div class="option-box">
@@ -107,6 +108,7 @@
                               </ul>
                             </div>
                           </td>
+            
                         </tr>
                       </tbody>
                     </table>
