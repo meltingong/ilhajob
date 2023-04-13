@@ -34,7 +34,7 @@ USER_SEQ                 NUMBER(20)
 @ToString
 @Builder
 public class BlogDto {
-	private int blogSeq;
+	private Long id;
 	private String blogTitle;
 	private String blogContent;
 	private String blogImage;
