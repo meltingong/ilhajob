@@ -20,7 +20,7 @@ public class ReviewServiceImpl implements ReviewService {
 	ReviewRepository reviewRepository;
 
 	@Override
-	public void deleteReview(Long reviewId) throws Exception {
+	public void remove(Long reviewId) throws Exception {
 		reviewRepository.deleteById(reviewId);
 		
 	}

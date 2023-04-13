@@ -300,10 +300,9 @@ public class UserController {
 		
 		@LoginCheck
 		@RequestMapping("/review_delete")
-		public String review_delete(@RequestParam Long id,@RequestParam("corpLoginId") CorpDto corp) throws Exception{
-			
-			reviewService.deleteReview(id);
-			return "redirect:corp-detail?corpLoginId="+corp.getCorpLoginId();
+		public String review_delete(Long id,String corpLoginId) throws Exception{
+			reviewService.remove(id);
+			return "redirect:corp-detail?corpLoginId="+corpLoginId;
 		}
 
 }
