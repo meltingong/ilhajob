@@ -20,16 +20,4 @@ public class AwardsDto {
 	private String awardsContent;
 	@ToString.Exclude
 	private UserDto user;
-
-	private Long cvId;
-
-	@ToString.Exclude
-	private CvDto cv;
-	
-	public AwardsDto(Long id, String awardsName, LocalDateTime awardsDate, String awardsContent) {
-		this.id = id;
-		this.awardsName = awardsName;
-		this.awardsDate = awardsDate;
-		this.awardsContent = awardsContent;
-	}
 }

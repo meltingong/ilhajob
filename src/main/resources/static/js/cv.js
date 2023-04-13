@@ -100,14 +100,25 @@ function deleteExp(expSeq) {
 	console.log($('#expSeq'+expSeq).attr('value'));
 	console.log($('.default-form').serialize());
 }
-
+/**
 function deleteEdu(eduSeq) {
 	document.f.value=eduSeq;
 	$('#eduSeq'+eduSeq).value=eduSeq;
 	console.log(document.f.value);
 	console.log(">>>>"+$('#eduSeq'+eduSeq).value);
 
-	document.f.action = "info-delete-action";
+	document.f.action = "edu-delete-action";
+	document.f.method='POST';
+	document.f.submit();
+}
+*/
+function deleteEdu(eduId) {
+	document.f.value=eduId;
+	$('#eduId'+eduId).value=eduId;
+	console.log(document.f.value); // ok
+	console.log(">>>>"+$('#eduId'+eduId).value); // undefined
+
+	document.f.action = "edu-delete-action";
 	document.f.method='POST';
 	document.f.submit();
 }

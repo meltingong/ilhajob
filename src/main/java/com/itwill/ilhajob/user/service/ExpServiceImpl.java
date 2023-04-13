@@ -2,6 +2,7 @@ package com.itwill.ilhajob.user.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -29,12 +30,13 @@ public class ExpServiceImpl implements ExpService{
 
 	@Override
 	public ExpDto updateExp(Long id, ExpDto expDto) {
-		Optional<Exp> exp = expRepository.findById(id);
-		exp.get().setExpContent(expDto.getExpContent());
-		exp.get().setExpCorpName(expDto.getExpCorpName());
-		exp.get().setExpPosition(expDto.getExpPosition());
-		exp.get().setExpStartDate(expDto.getExpStartDate());
-		exp.get().setExpEndDate(expDto.getExpEndDate());
+		Exp exp = expRepository.findById(id).get();
+		exp.setExpContent(expDto.getExpContent());
+		exp.setExpCorpName(expDto.getExpCorpName());
+		exp.setExpPosition(expDto.getExpPosition());
+		exp.setExpStartDate(expDto.getExpStartDate());
+		exp.setExpEndDate(expDto.getExpEndDate());
+		expRepository.save(exp);
 		return modelMapper.map(exp, ExpDto.class);
 	}
 
@@ -46,13 +48,12 @@ public class ExpServiceImpl implements ExpService{
 	@Override
 	public List<ExpDto> findExpListByUserId(Long userId) {
 		List<Exp> expList = expRepository.findByUserId(userId);
-		return null;
+		return expList.stream().map(exp -> modelMapper.map(exp, ExpDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<ExpDto> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Exp> expList = expRepository.findAll();
+		return expList.stream().map(exp -> modelMapper.map(exp, ExpDto.class)).collect(Collectors.toList());
 	}
-
 }

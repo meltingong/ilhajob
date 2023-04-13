@@ -52,6 +52,7 @@ public class CvController {
 		String forwardpath = "";
 		Long userId = (Long)request.getSession().getAttribute("id");
 		List<CvDto> cvList = cvService.findByUserId(userId);
+		System.out.println("@@@####"  + cvList);
 		if(cvList != null) {
 			model.addAttribute("cvList", cvList);
 			forwardpath = "candidate-dashboard-cv-manager";
@@ -69,18 +70,15 @@ public class CvController {
 		model.addAttribute("user" + user);
 		Long userId = (Long)request.getSession().getAttribute("id");
 
-//		/* eduList */
-////		List<Edu> eduList = user.getEduList();
-//		List<EduDto> eduList = eduService.selectEduByUserSeq(userId);
-//		model.addAttribute("eduList", eduList);
-//		
-//		/* expList */
-////		List<Exp> expList = user.getExpList();
-//		List<ExpDto> expList = expService.selectByUserSeq(userId);
-//		model.addAttribute("expList", expList);
-//		
+		/* eduList */
+		List<EduDto> eduList = eduService.findEduListByUserId(userId);
+		model.addAttribute("eduList", eduList);
+		
+		/* expList */
+		List<ExpDto> expList = expService.findExpListByUserId(userId);
+		model.addAttribute("expList", expList);
+		
 		/* awardsList */
-//		List<Awards> awardsList = user.getAwardsList();
 		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
 		model.addAttribute("awardsList", awardsList);
 		
@@ -100,9 +98,23 @@ public class CvController {
 			forwardpath = "redirect:cv-write-form";
 		} else {
 			model.addAttribute("cvList", cvList);
+			
 			/* 가장 최근 작성한(cvId 기준) cv의 detail */
 			CvDto cvDetail = cvList.get(cvList.size()-1);
 			model.addAttribute("cvDetail", cvDetail);
+			
+			/* eduList */
+			List<EduDto> eduList = eduService.findEduListByUserId(userId);
+			model.addAttribute("eduList", eduList);
+			
+			/* expList */
+			List<ExpDto> expList = expService.findExpListByUserId(userId);
+			model.addAttribute("expList", expList);
+			
+			/* awardsList */
+			List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
+			model.addAttribute("awardsList", awardsList);
+			
 			forwardpath = "candidate-dashboard-resume";
 		}
 		return forwardpath;
@@ -118,21 +130,20 @@ public class CvController {
 		model.addAttribute("userId", userId);
 		
 		/* user cv list */
-		List<CvDto> cvList = cvService.findByUserId((Long)request.getSession().getAttribute("id")); // test
+		List<CvDto> cvList = cvService.findByUserId(userId);
 		model.addAttribute("cvList", cvList);
 		
 		/* 특정 cv detail */
 		CvDto cvDetail = cvService.findCvById(cvId);
 		model.addAttribute("cvDetail", cvDetail);
 		
-//		/* eduList */
-//		List<EduDto> eduList = cvDetail.getEduList();
-//		model.addAttribute("eduList", eduList);
-//		request.getSession().setAttribute("eduList", eduList);
-//		
-//		/* expList */
-//		List<ExpDto> expList = cvDetail.getExpList();
-//		model.addAttribute("expList", expList);
+		/* eduList */
+		List<EduDto> eduList = eduService.findEduListByUserId(userId);
+		model.addAttribute("eduList", eduList);
+		
+		/* expList */
+		List<ExpDto> expList = expService.findExpListByUserId(userId);
+		model.addAttribute("expList", expList);
 		
 		/* awardsList */
 		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
@@ -240,16 +251,14 @@ public class CvController {
 	
 	/** 일단 동기방식으로 테스트 */
 	@RequestMapping(value = "/edu-delete-action")
-	public String cv_info_delete_action(HttpServletRequest request, @ModelAttribute EduDto eduDto, @RequestParam("eduSeq") Long eduid, Model model, RedirectAttributes redirectAttributes) {
-//		System.out.println("======== eduSeq : " + eduSeq);
-//		System.out.println(eduSeq.replace(',', ' ').trim());
-////		System.out.println(edu.getEduSeq());
-//		eduService.deleteEduByEduSeq(Integer.parseInt(eduSeq.replace(',', ' ').trim()));
-//		
-//		int userSeq = (int)request.getSession().getAttribute("userSeq");
-//		int cvSeq = cvService.findCvListByUserSeq(userSeq).get(2).getCvSeq();
-//		
-//		redirectAttributes.addAttribute("cvSeq", cvSeq);
+	public String cv_info_delete_action(HttpServletRequest request, @ModelAttribute EduDto eduDto, @RequestParam("eduId") Long eduid, Model model, RedirectAttributes redirectAttributes) {
+		System.out.println("======== eduId : " + eduid);
+//		System.out.println(eduid.replace(',', ' ').trim());
+//		eduService.deleteEduByEduSeq(Integer.parseInt(eduid.replace(',', ' ').trim()));
+		eduService.deleteEdu(eduid);
+		Long userId = (Long)request.getSession().getAttribute("id");
+		Long cvId = cvService.findByUserId(userId).get(0).getId();
+		redirectAttributes.addAttribute("cvId", cvId);
 		
 		return "redirect:cv-detail";
 	}
