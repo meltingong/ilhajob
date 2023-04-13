@@ -1,7 +1,6 @@
 package com.itwill.ilhajob.user.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +14,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class AwardsDto {
-	private long id;
+	private Long id;
 	private String awardsName;
 	private LocalDateTime awardsDate;
 	private String awardsContent;
