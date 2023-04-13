@@ -133,28 +133,17 @@
 		          <div class="comment-box">
 		            <h4>Comment</h4>
 		            <!-- Comment -->
-		            <div class="comment">
+		            <div th:each="review:${reviewList}" class="comment">
 		              <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
 		              <div class="comment-info">
-		                <div class="user-name">Oscar Cafeo</div>
-		                <div class="title">Beautiful courses</div>
+		                <div th:text="${review.reviewTitle}" class="user-name">Oscar Cafeo</div>
+		                <div th:text="${review.reviewGrade}" class="title">Beautiful courses</div>
 		              </div>
-		              <div class="text">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
+		              <div th:text="${review.reviewContent}" class="text">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
 		            </div>
 		          </div>
 		
-		          <div class="comment-box">
-		            <!-- Comment -->
-		            <div class="comment">
-		              <div class="user-thumb"><img src="images/resource/avatar-2.jpg" alt=""></div>
-		              <div class="comment-info">
-		                <div class="user-name">Alex Morgan</div>
-		                <div class="title">Beautiful courses</div>
-		              </div>
-		              <div class="text">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
-		            </div>
-		          </div>
-		        </div>
+		        
 		
 		
 		        <!-- Comment Form -->
