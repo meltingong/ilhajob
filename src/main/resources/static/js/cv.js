@@ -36,13 +36,11 @@ function updateCv() {
 	console.log(document.f.cvDescription.value);
 	console.log(document.f.cvPortfolio.value);
 	console.log(document.f.userId.value);
-	/*
 	if (document.f.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
 		document.f.cvName.focus();
 		return false;
 	}
-	*/
 	if (document.f.cvDescription.value == "") {
 		alert("자기소개를 입력하세요.");
 		document.f.cvDescription.focus();

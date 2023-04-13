@@ -70,7 +70,7 @@
                         <label>이력서 선택</label>
                         <select class="chosen-select" onchange="changeCv()">
                           <option th:text="*{cvName}">My CV</option> <!-- 선택된 이력서 제목 -->
-                          <option th:each="cv:${cvList}" th:text="${cv.cvName}" th:value="${cv.id}">My CV</option>
+                          <option th:each="cv:${cvList}" th:id="cvId" th:text="${cv.cvName}" th:value="${cv.id}">My CV</option>
                         </select>
                       </div>
                       
