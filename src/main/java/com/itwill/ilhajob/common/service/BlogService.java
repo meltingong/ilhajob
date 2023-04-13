@@ -14,7 +14,9 @@ public interface BlogService {
 
 	List<BlogDto> selectAll();
 	
+
 	BlogDto updateBlog(Long id, BlogDto blogDto) throws Exception;
+
 	void deleteBlog(Long id) throws Exception;
 
 	BlogDto findBlog(Long id) throws Exception;

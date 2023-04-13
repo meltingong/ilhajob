@@ -16,10 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwill.ilhajob.common.dto.BlogDto;
 import com.itwill.ilhajob.common.entity.Blog;
 import com.itwill.ilhajob.common.repository.BlogRepository;
-import com.itwill.ilhajob.corp.dto.CorpDto;
-import com.itwill.ilhajob.corp.entity.Corp;
-import com.itwill.ilhajob.user.entity.User;
-import com.itwill.ilhajob.user.exception.UserNotFoundException;
 
 
 @Service
@@ -41,15 +37,17 @@ public class BlogServiceImpl implements BlogService {
         return modelMapper.map(blog, BlogDto.class);
 	}
 	
+
 	@Override
 	public BlogDto updateBlog(Long id,BlogDto blogDto) throws Exception {
-		Blog blog = blogRepository.findById(id).orElseThrow();
+		Blog blog = blogRepository.findById(id).orElseThrow(null);
 		blogDto.setBlogTitle(blog.getBlogTitle());
 		blogDto.setBlogImage(blog.getBlogImage());
 		blogDto.setBlogContent(blog.getBlogContent());
 		blog = blogRepository.save(blog);
 		return modelMapper.map(blog, BlogDto.class);
 	}
+
 	
 	@Override
 	public void deleteBlog(Long id) throws Exception {
