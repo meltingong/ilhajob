@@ -24,15 +24,14 @@ public class CvDto {
 	private String cvDescription;
 	private String cvPortfolio;
 
-	private List<AppDto> appList;
 	@ToString.Exclude
 	private UserDto user;
 
-	public CvDto(Long id, String cvName, String cvDescription, String cvPortfolio, UserDto user) {
-		this.id = id;
-		this.cvName = cvName;
-		this.cvDescription = cvDescription;
-		this.cvPortfolio = cvPortfolio;
-		this.user = user;
-	}
+//	public CvDto(Long id, String cvName, String cvDescription, String cvPortfolio, UserDto user) {
+//		this.id = id;
+//		this.cvName = cvName;
+//		this.cvDescription = cvDescription;
+//		this.cvPortfolio = cvPortfolio;
+//		this.user = user;
+//	}
 }

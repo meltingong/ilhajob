@@ -8,6 +8,8 @@ public interface AppService {
 	
 	void insertApp(AppDto appDto);
 	
+	void updateApp(long id, int appStatus);
+	
 	void deleteApp(Long id);
 	
 	List<AppDto> findAllByRecruitId(long id);

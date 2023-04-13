@@ -34,12 +34,15 @@ public class AppServiceImpl implements AppService {
 	}
 
 	//주로 appStatus 변경일듯
-	public void updateApp(long id, AppDto appDto) {
-		App updateApp = appRepository.findById(id).get();
-		appDto.setId(id);
-		appDto.setAppStatus(appDto.getAppStatus());
-		modelMapper.map(appDto, updateApp);
-		appRepository.save(updateApp);
+	@Transactional
+	@Override
+	public void updateApp(long id, int appStatus) {
+		App findApp = appRepository.findById(id).get();
+		AppDto updateDto = modelMapper.map(findApp, AppDto.class);
+		updateDto.setAppStatus(appStatus);
+		System.out.println(updateDto);
+		modelMapper.map(updateDto, findApp);
+		appRepository.save(findApp);
 	}
 	
 	@Override
