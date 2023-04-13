@@ -21,7 +21,7 @@ public class CorpDto {
 	private String corpPhone;
 	private String corpBusinessNo;
 	private String corpWebsite;
-	private LocalDateTime corpEst;
+	private String corpEst;
 	private String corpSize;
 	private String corpSales;
 	private String corpComment;

@@ -150,7 +150,12 @@ function uploadImage() {
                         <label >회사 이름</label>
                         <input type="text" name="corpName" th:value = "${corp.corpName}">
                       </div>
-
+                      
+                      <div class="form-group col-lg-6 col-md-12">
+                        <label >사업자 번호</label>
+                        <input type="text" name="corpBusinessNo" th:value = "${corp.corpBusinessNo}">
+                      </div>
+						
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>주소</label>
@@ -172,7 +177,8 @@ function uploadImage() {
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>회사설립일</label>
-                        <input type="text" name="corpEst" th:value="${corp.corpEst}">
+                        <input type="date" name="corpEst" th:value="${corp.corpEst}">
+                        <input type="text" th:value="${corp.corpEst}">
                       </div>
 
                       <!-- Input -->
@@ -180,7 +186,18 @@ function uploadImage() {
                         <label>직원수</label>
                         <input type="text" name="corpSize" th:value="${corp.corpSize}">
                       </div>
-
+					  
+                     <div class="form-group col-lg-6 col-md-12">
+                        <label>연매출</label>
+                        <input type="text" name="corpSales" th:value="${corp.corpSales}">
+                      </div>
+                      
+                     <div class="form-group col-lg-6 col-md-12">
+                        <label>산업</label>
+                        <input type="text" name="job" th:value="${corp.job}">
+                      </div>
+					  
+					  
                       <!-- Search Select -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>업종 </label>
@@ -202,7 +219,7 @@ function uploadImage() {
                       <!-- About Company -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>회사소개</label>
-                        <textarea th:value="${corp.corpComment}"></textarea>
+                        <input type="text" name="corpComment" th:value="${corp.corpComment}">
                       </div>
 
                       <!-- Input -->

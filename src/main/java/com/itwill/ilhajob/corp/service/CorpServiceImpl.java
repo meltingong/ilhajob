@@ -93,7 +93,7 @@ public class CorpServiceImpl implements CorpService{
 		corpDto.setId(id);
 		corpDto.setCorpLoginId(corp.getCorpLoginId());
 		corpDto.setCorpPassword(corp.getCorpPassword());
-		corpDto.setCorpEst((corpDto.getCorpEst()));
+		
 		modelMapper.map(corpDto, corp);
 		corp = corpRepository.save(corp);
 		return modelMapper.map(corp, CorpDto.class);
