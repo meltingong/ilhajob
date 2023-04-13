@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,15 @@ public class RecruitServiceImpl implements RecruitService {
 	@Override
 	public List<RecruitDto> findRecruitAll() throws Exception {
 		List<Recruit> recruitList = recruitRepository.findAll();
+		return recruitList.stream()
+				.map(recruit ->modelMapper.map(recruit, RecruitDto.class))
+				.collect(Collectors.toList());
+	}
+	
+	@Transactional
+	@Override
+	public List<RecruitDto> findAllByCorpId(long id) throws Exception {
+		List<Recruit> recruitList = recruitRepository.findByCorpId(id);
 		return recruitList.stream()
 				.map(recruit ->modelMapper.map(recruit, RecruitDto.class))
 				.collect(Collectors.toList());
