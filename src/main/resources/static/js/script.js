@@ -807,12 +807,19 @@
 	  event.preventDefault();
 	  this.blur();
 	  $.get(this.href, function(html) {
+		$('.modal').remove();
 	    $(html).appendTo('body').modal({
 	    	closeExisting: true,
 			fadeDuration: 300,
 			fadeDelay: 0.15
 	    });
 	  });
+	});
+
+	// Close modal
+	$('.close-modal').on('click', function(event){
+		event.preventDefault();
+		$(this).closest('.modal').remove();
 	});
 
 
@@ -1092,7 +1099,122 @@
     }
 
 	//login 
+	$(document).on('click', '#log-in', function(e) {
+		e.preventDefault();
+		let formData = {};
+		$.each($('#login-f').serializeArray(), function() {
+			formData[this.name] = this.value;
+		});
+		let jsonData = JSON.stringify(formData);
+		// Promise 객체 생성
+		let promise = $.ajax({
+			type: 'POST',
+			url: 'ajaxLogin',
+			data: jsonData,
+			contentType: 'application/json',
+			dataType: 'json'
+		});
 
+		// Promise 객체를 사용하여 Ajax 요청 처리
+		promise.then(function(response) {
+			// 서버로부터 받은 응답 데이터 처리
+			console.log(response);
+			console.log(response.message);
+
+			// 로그인 성공 시 처리
+			if (response.success) {
+				alert('로그인 성공');
+				window.location.href = '/final-project-team1-ilhajob';
+			}
+			// 로그인 실패 시 처리
+			else {
+				alert(response.message);
+				window.location.href = response.location;
+			}
+		})
+			.fail(function(xhr,status,error) {
+				// Ajax 요청 실패 시 처리
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+
+				let errorMsg = document.createElement('p');
+				errorMsg.style.textAlign = 'center';
+				errorMsg.style.color = 'red';
+				errorMsg.textContent = xhr.responseText;
+				let passwordInput = document.getElementById('password-field');
+				passwordInput.insertAdjacentElement('afterend', errorMsg);
+				$('#email').focus();
+			});
+	});
+	
+	//register
+	$(document).on('click', '#create-btn', function(e) {
+		e.preventDefault();
+		let formData = {};
+		$.each($('#create-f').serializeArray(), function() {
+			formData[this.name] = this.value;
+		});
+		let jsonData = JSON.stringify(formData);
+
+		// Promise 객체 생성
+		let promise = $.ajax({
+			type: 'POST',
+			url: 'ajaxLogin',
+			data: jsonData,
+			contentType: 'application/json',
+			dataType: 'json'
+		});
+
+/*		// Promise 객체를 사용하여 Ajax 요청 처리
+		promise.then(function(response) {
+			// 서버로부터 받은 응답 데이터 처리
+			console.log(response);
+			console.log(response.message);
+
+			// 로그인 성공 시 처리
+			if (response.success) {
+				alert('가입성공');
+				window.location.href = '/final-project-team1-ilhajob/login-popup';
+			}
+			// 로그인 실패 시 처리
+			else {
+				alert(response.message);
+				window.location.href = response.location;
+			}
+		})
+			.fail(function(xhr, status, error) {
+				// Ajax 요청 실패 시 처리
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			});*/
+	});
+	
+	$(document).on('click', '#candidate-btn', function(e) {
+		e.preventDefault();
+		$('.jquery-modal.blocker.current input#separate').val('user');
+    	$('.jquery-modal.blocker.current a#candidate-btn').toggleClass('btn-style-four btn-style-seven');
+    	$('.jquery-modal.blocker.current a#corp-btn').toggleClass('btn-style-seven btn-style-four');
+      	$('.jquery-modal.blocker.current input#id').attr('type','email');
+      	$('.jquery-modal.blocker.current input#id').attr('name','email');
+      	$('.jquery-modal.blocker.current input#id').attr('placeholder','User Email');
+      	$('.jquery-modal.blocker.current input#id').attr('id','email');
+      	$('label[for="id"]').attr('for','email');
+      	$('label[for="email"]').text('Email');
+	});
+	
+	$(document).on('click', '#corp-btn', function(e) {
+		$('.jquery-modal.blocker.current input#separate').val('corp');
+    	$('.jquery-modal.blocker.current a#candidate-btn').toggleClass('btn-style-seven btn-style-four');
+    	$('.jquery-modal.blocker.current a#corp-btn').toggleClass('btn-style-four btn-style-seven');
+      	$('.jquery-modal.blocker.current input#email').attr('type','text');
+      	$('.jquery-modal.blocker.current input#email').attr('name','id');
+      	$('.jquery-modal.blocker.current input#email').attr('placeholder','Login ID');
+      	$('.jquery-modal.blocker.current input#email').attr('id','id');
+      	$('label[for="email"]').attr('for','id');
+      	$('label[for="id"]').text('Login ID');
+	});
 
 	
 

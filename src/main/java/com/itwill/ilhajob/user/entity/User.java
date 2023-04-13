@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.user.entity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,8 @@ public class User {
 	
 	private String userPhone;
 	
+	private LocalDateTime userCreateDate;
+	
 	private String userSex;
 	
 	@Column(length = 600)
@@ -82,8 +85,6 @@ public class User {
 	
 	private String userImage;
 	
-	private char userStatus;
-	
 	private String snsType;
 	
 	private String snsId;
@@ -91,50 +92,6 @@ public class User {
 	private String job;
 	
 	private int role;
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.ALL)
-	private List<App> appList = new ArrayList<App>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.REMOVE)
-	private List<Cv> cvList = new ArrayList<Cv>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.REMOVE)
-	private List<Exp> expList = new ArrayList<Exp>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.ALL)
-	private List<Edu> eduList = new ArrayList<Edu>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.ALL)
-	private List<Awards> awardsList = new ArrayList<Awards>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.ALL)
-	private List<Review> reviewList = new ArrayList<Review>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.ALL)
-	private List<CorpBookmark> corpBookmarkList = new ArrayList<CorpBookmark>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.ALL)
-	private List<Blog> blogList = new ArrayList<Blog>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.ALL)
-	private List<BlogComment> blogCommentList = new ArrayList<BlogComment>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.PERSIST)
-	private List<Message> messageList = new ArrayList<Message>();
-	
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.PERSIST)
-	private List<Payment> paymentList = new ArrayList<Payment>();
 	
     @PrePersist
     public void prePersist() {

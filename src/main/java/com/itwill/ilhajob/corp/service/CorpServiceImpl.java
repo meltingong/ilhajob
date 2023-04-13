@@ -17,7 +17,10 @@ import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.corp.repository.CorpRepository;
+import com.itwill.ilhajob.user.dto.ReviewDto;
+import com.itwill.ilhajob.user.entity.Review;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.repository.ReviewRepository;
 
 
 
@@ -26,12 +29,14 @@ import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 public class CorpServiceImpl implements CorpService{
 	
 	private final CorpRepository corpRepository;
+	private final ReviewRepository reviewRepository;
 	private final ModelMapper modelMapper;
 	
 	@Autowired
-	public CorpServiceImpl(CorpRepository corpRepository, ModelMapper modelMapper) {
+	public CorpServiceImpl(CorpRepository corpRepository, ModelMapper modelMapper,ReviewRepository reviewRepository) {
 		this.corpRepository = corpRepository;
 		this.modelMapper = modelMapper;
+		this.reviewRepository = reviewRepository;
 	}
 
 	
@@ -118,12 +123,21 @@ public class CorpServiceImpl implements CorpService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	//회사의 리뷰목록 가져오기
 	@Override
-	public CorpDto findCorpWithReviews(String corpLoginId) throws Exception {
-		// TODO Auto-generated method stub
+	public List<ReviewDto> findReviewList(Long corpId) {
+//		Optional<Corp> optionalCorp = corpRepository.findById(corpId);
+//		List<Review> reviewList = optionalCorp.get().getReviewList();
+//		List<ReviewDto> reviewDtoList = reviewList.stream()
+//				.map(review-> new ReviewDto(review.getId(),review.getReviewGrade(),review.getReviewTitle(),review.getReviewContent()))
+//				.collect(Collectors.toList());
+//		return reviewDtoList;
 		return null;
 	}
+	
+	
+	
 
 	@Override
 	public List<CorpDto> findCorpAll() throws Exception {
@@ -148,5 +162,10 @@ public class CorpServiceImpl implements CorpService{
 		}
 		return result;
 	}
+
+
+
+
+	
 	
 }

@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
+import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.entity.CorpImage;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.corp.repository.CorpImageRepository;
@@ -24,7 +25,7 @@ public class CorpImageServiceImpl implements CorpImageService{
 	}
 	@Override
 	public CorpImageDto insertCorpImage(CorpImageDto corpImageDto) {
-		Optional<CorpImage> found = corpImageRepository.findById(corpImageDto.getCorpId());
+		Optional<CorpImage> found = corpImageRepository.findById(corpImageDto.getCorp().getId());
 		if(!found.isPresent()) {
 			ExistedCorpException exception = 
 					new ExistedCorpException("아이디가 없습니다 돌아가세요.");
@@ -40,6 +41,7 @@ public class CorpImageServiceImpl implements CorpImageService{
 		return modelMapper.map(found.get(), CorpImageDto.class);
 	}
 
+	
 	@Override
 	public List<CorpImageDto> selectAll() {
 		List<CorpImage> corpImageList = corpImageRepository.findAll();

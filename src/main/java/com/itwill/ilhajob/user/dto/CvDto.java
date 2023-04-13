@@ -17,7 +17,7 @@ import lombok.ToString;
 @Builder
 public class CvDto {
 
-	private Long cvSeq;
+	private Long id;
 	private String cvName;
 	private String cvDescription;
 	private String cvPortfolio;
@@ -27,8 +27,8 @@ public class CvDto {
 	@ToString.Exclude
 	private UserDto user;
 
-	public CvDto(Long cvSeq, String cvName, String cvDescription, String cvPortfolio, UserDto user) {
-		this.cvSeq = cvSeq;
+	public CvDto(Long id, String cvName, String cvDescription, String cvPortfolio, UserDto user) {
+		this.id = id;
 		this.cvName = cvName;
 		this.cvDescription = cvDescription;
 		this.cvPortfolio = cvPortfolio;

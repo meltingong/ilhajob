@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.user.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,18 +11,20 @@ import org.springframework.stereotype.Service;
 import com.itwill.ilhajob.user.dto.AwardsDto;
 import com.itwill.ilhajob.user.entity.Awards;
 import com.itwill.ilhajob.user.repository.AwardsRepository;
+import com.itwill.ilhajob.user.repository.UserRepository;
 
 @Service
 public class AwardsServiceImpl implements AwardsService {
 	
-	@Autowired
-	private AwardsRepository awardsRepository;
-	@Autowired
-	private ModelMapper mapper;	
+	private final AwardsRepository awardsRepository;
+	private final ModelMapper mapper;
+	private final UserRepository userRepository;
 	
-	public AwardsServiceImpl(AwardsRepository awardsRepository, ModelMapper mapper) {
+	public AwardsServiceImpl(AwardsRepository awardsRepository, ModelMapper mapper, UserRepository userRepository) {
 		this.awardsRepository = awardsRepository;
 		this.mapper = mapper;
+		this.userRepository = userRepository;
+		
 	}
 
 	@Override
@@ -49,9 +52,11 @@ public class AwardsServiceImpl implements AwardsService {
 
 	@Override
 	public List<AwardsDto> findAwardsByUserId(Long userId) {
-		List<Awards> tempList = awardsRepository.findAllById(userId);
-		List<AwardsDto> awardsList = tempList.stream().map(award -> mapper.map(tempList, AwardsDto.class)).collect(Collectors.toList());
-		return awardsList;
+//		List<Awards> tempList = userRepository.findById(userId).get().getAwardsList();
+//		List<AwardsDto> awardsList = tempList.stream().map(awards -> new AwardsDto(awards.getId(), awards.getAwardsName(), awards.getAwardsDate(), awards.getAwardsContent()))
+//									.collect(Collectors.toList());
+//		return awardsList;
+		return null;
 	}
 
 	@Override

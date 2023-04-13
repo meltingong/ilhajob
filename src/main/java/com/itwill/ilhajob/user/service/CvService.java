@@ -9,6 +9,9 @@ public interface CvService {
 	// save
 	CvDto saveCv(CvDto cvDto);
 	
+	// update
+	CvDto updateCv(Long id, CvDto cvDto);
+	
 	// remove by cv id
 	void removeById(Long id);
 	
@@ -16,7 +19,7 @@ public interface CvService {
 	CvDto findCvById(Long id);
 	
 	// find cv by user id
-	List<CvDto> findCvByUser(Long id);
+	List<CvDto> findCvByUserId(Long userId);
 	
 	// find all
 	List<CvDto> findCvAll();

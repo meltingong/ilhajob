@@ -2,12 +2,12 @@ package com.itwill.ilhajob.corp.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,8 +43,6 @@ public class CorpController {
 
 	@Autowired
 	private CorpService corpService;
-	@Autowired
-	private AppService appService;
 	@Autowired
 	private CorpImageService corpImageService;
 //	@RequestMapping("/index")
@@ -126,23 +124,31 @@ public class CorpController {
 	public String corp_dashboard_company_profile(HttpServletRequest request, Model model) throws Exception {
 
 		String forwardPath = "";
-
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto = corpService.findCorp(sCorpId);
+		/***********CorpImage 코프 로그인아이디로 리스트뽑아오기*****************/
+		List<CorpImageDto> corpImageList = corpImageService.selectAll();
+		List<CorpImageDto> corpImageList1 = new ArrayList<CorpImageDto>();
+		for (CorpImageDto corpImageDto : corpImageList) {
+			if(corpImageDto.getCorp().getCorpLoginId()==corpDto.getCorpLoginId()) {
+				corpImageList1.add(corpImageDto);
+			}
+		}
+		/*******************************************************************/
 		model.addAttribute("corp", corpDto);
+		model.addAttribute("corpImageList", corpImageList1);
 		forwardPath = "dashboard-company-profile";
-
+		
 		return forwardPath;
 	}
 
 	@PostMapping("/corp-update-action")
-	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto, HttpServletRequest request)throws Exception {
+	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto,
+			@RequestParam("corpEst") String corpEst, HttpServletRequest request)throws Exception {
 		Long id = corpDto.getId();
-		System.out.println(corpDto.getCorpEst());
-		
-		corpDto.setCorpEst(LocalDate.now());
+		System.out.println(corpEst);
 		corpService.update(id, corpDto);
-		request.setAttribute("corLoginpId", corpDto.getCorpLoginId());
+		request.setAttribute("corLoginId", corpDto.getCorpLoginId());
 		return "corp-detail";
 	}
 
@@ -205,10 +211,10 @@ public class CorpController {
                 CorpDto corp = corpService.findCorp((String)request.getSession().getAttribute("sUserId"));
                 
                 
-                CorpImageDto corpImage = new CorpImageDto(5,
-                									CorpImageUrl,
-                									1);
-                corpImageService.insertCorpImage(corpImage);
+//                CorpImageDto corpImage = new CorpImageDto(5,
+//                									CorpImageUrl,
+//                									1);
+//                corpImageService.insertCorpImage(corpImage);
                 // 파일 처리가 완료된 후에는 해당 정보를 모델에 추가하여 View로 전달
                 model.addAttribute("fileName", fileName);
 

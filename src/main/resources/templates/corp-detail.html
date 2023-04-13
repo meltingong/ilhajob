@@ -74,7 +74,10 @@
                 <h4>About Company</h4>
                 <p th:text="${corp.corpComment}">Moody’s Corporation, often referred to as Moody’s, is an American business and financial services company. It is the holding company for Moody’s Investors Service (MIS), an American credit rating agency, and Moody’s Analytics (MA), an American provider of financial analysis software and services.</p>
                 <p>Moody’s was founded by John Moody in 1909 to produce manuals of statistics related to stocks and bonds and bond ratings. Moody’s was acquired by Dun & Bradstreet in 1962. In 2000, Dun & Bradstreet spun off Moody’s Corporation as a separate company that was listed on the NYSE under MCO. In 2007, Moody’s Corporation was split into two operating divisions, Moody’s Investors Service, the rating agency, and Moody’s Analytics, with all of its other products.</p>
+                <h4>Company Welfare</h4>
+                <p th:text="${corp.corpWelfare}"></p>
                 <div class="row images-outer">
+                <h4>Company Images</h4>
                   <div class="col-lg-3 col-md-3 col-sm-6">
                     <figure class="image"><a href="images/resource/employers-single-1.png" class="lightbox-image" data-fancybox="gallery"><img src="images/resource/employers-single-1.png" alt=""></a></figure>
                   </div>
@@ -121,6 +124,11 @@
 
               </div>
               <!-- 여기 리뷰 삽입 -->
+                <div class="related-jobs">
+                <div class="title-box">
+                  <h3>ReView [리뷰]</h3>
+                  <div class="text">해당 기업에 대해 작성된 리뷰 리스트를 제공합니다.</div>
+                </div>
                <!-- Comments area -->
 		        <div class="comments-area">
 		          <!-- Comment Box -->

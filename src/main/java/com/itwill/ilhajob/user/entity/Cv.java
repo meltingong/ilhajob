@@ -62,6 +62,4 @@ public class Cv {
 	@OneToMany(mappedBy = "cv", cascade = CascadeType.PERSIST)
 	private List<Exp> explist = new ArrayList<Exp>();
 	
-//	@OneToMany(mappedBy = "cv", cascade = CascadeType.PERSIST)
-//	private List<App> applist = new ArrayList<App>();
 }

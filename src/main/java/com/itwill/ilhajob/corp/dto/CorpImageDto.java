@@ -19,5 +19,5 @@ import lombok.ToString;
 public class CorpImageDto {
 	long id;
 	String corpImage;
-	long corpId;
+	CorpDto corp;
 }

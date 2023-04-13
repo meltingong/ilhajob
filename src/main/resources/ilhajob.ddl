@@ -67,11 +67,10 @@
     
     create table app (
        id number(19,0) not null,
-        app_status CHAR(1) DEFAUlT '0',
-        corp_id number(19,0),
+        app_status number(1) DEFAUlT 0,
         cv_id number(19,0),
         recruit_id number(19,0),
-        user_id number(19,0),
+        app_create_date timestamp DEFAULT sysdate,
         primary key (id)
     );
  
@@ -122,7 +121,6 @@
         corp_phone varchar2(255 char),
         corp_sales varchar2(255 char),
         corp_size varchar2(255 char),
-        corp_status char(1 char) not null,
         corp_website varchar2(255 char),
         corp_welfare varchar2(600 char),
         job varchar2(255 char),
@@ -206,7 +204,6 @@
         message_contents varchar2(1000 char),
         message_date timestamp,
         message_title varchar2(255 char),
-        app_id number(19,0),
         user_id number(19,0),
         primary key (id)
     );
@@ -214,8 +211,9 @@
     
     create table orders (
        id number(19,0) not null,
+        order_start_date timestamp DEFAULT sysdate,
         order_end_date timestamp,
-        order_valid char(1 char) not null,
+        order_valid number(2) not null,
         corp_id number(19,0),
         product_id number(19,0),
         user_id number(19,0),
@@ -303,9 +301,9 @@
         user_name varchar2(255 char),
         user_password varchar2(255 char) not null,
         user_phone varchar2(255 char),
+        user_create_date timestamp DEFAULT sysdate,
         user_sex varchar2(255 char),
         user_skills varchar2(300 char),
-        user_status CHAR(1) DEFAULT '0',
         primary key (id)
     );
     

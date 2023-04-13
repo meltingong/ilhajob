@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.corp.controller;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -64,8 +65,8 @@ public class RecruitController {
 	   @PostMapping("/dashboard-post-job-action")
 	   public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto,HttpServletRequest request) throws Exception {
 		  CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
-		  recruitDto.setRcDate(new Date());
-		  recruitDto.setRcDeadline(new Date());
+		  recruitDto.setRcDate(LocalDateTime.now());
+		  recruitDto.setRcDeadline(LocalDateTime.now());
 		  recruitDto.setCorp(loginCorp);
 		  recruitDto = recruitService.create(recruitDto);
 	      String forward_path = "redirect:recruit-detail?id="+recruitDto.getId();
