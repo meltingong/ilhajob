@@ -125,14 +125,14 @@ public class CvController {
 		CvDto cvDetail = cvService.findCvById(cvId);
 		model.addAttribute("cvDetail", cvDetail);
 		
-		/* eduList */
-		List<EduDto> eduList = cvDetail.getEduList();
-		model.addAttribute("eduList", eduList);
-		request.getSession().setAttribute("eduList", eduList);
-		
-		/* expList */
-		List<ExpDto> expList = cvDetail.getExpList();
-		model.addAttribute("expList", expList);
+//		/* eduList */
+//		List<EduDto> eduList = cvDetail.getEduList();
+//		model.addAttribute("eduList", eduList);
+//		request.getSession().setAttribute("eduList", eduList);
+//		
+//		/* expList */
+//		List<ExpDto> expList = cvDetail.getExpList();
+//		model.addAttribute("expList", expList);
 		
 		/* awardsList */
 		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
@@ -199,7 +199,6 @@ public class CvController {
 //	@PostMapping(value = "/cv-delete-action")
 	@RequestMapping(value = "/cv-delete-action")
 	public String cv_delete_action(HttpServletRequest request, @RequestParam(name = "cvId") Long cvId) throws Exception {
-		System.out.println("$$$$$$$$$$$$$$$$$$$ cvId : " + cvId);
 		cvService.removeById(cvId);
 		return "redirect:cv-list";
 	}
