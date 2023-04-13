@@ -21,14 +21,14 @@ public class CorpDto {
 	private String corpPhone;
 	private String corpBusinessNo;
 	private String corpWebsite;
-	private String corpEst;
+	private LocalDateTime corpEst;
 	private String corpSize;
 	private String corpSales;
 	private String corpComment;
 	private String corpWelfare;
 	private String corpAddress;
 	private String job;
-	private int role;
+	private Integer role;
 	
 	/*
 	 *패쓰워드 일치여부 검사 

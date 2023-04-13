@@ -71,6 +71,7 @@
         cv_id number(19,0),
         recruit_id number(19,0),
         app_create_date timestamp DEFAULT sysdate,
+        user_id number(19,0),
         primary key (id)
     );
  
