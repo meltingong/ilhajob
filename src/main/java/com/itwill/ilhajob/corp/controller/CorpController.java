@@ -202,6 +202,10 @@ public class CorpController {
 		List<AppDto> appList=appService.findAllByRecruitId(id);
 		model.addAttribute("appList",appList);
 		
+		//이력서의 회원 정보 가져오기
+		List<AppDto> userList=appService.findAllByUserId(id);
+		model.addAttribute("userList",userList);
+		
 		//해당 공고 디테일 뿌리기
 		RecruitDto recruit=recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
