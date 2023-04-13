@@ -37,8 +37,11 @@ import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.RecruitService;
+import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.ReviewDto;
+import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.service.UserService;
 
 
 @Controller
@@ -50,6 +53,9 @@ public class CorpController {
 	private CorpImageService corpImageService;
 	@Autowired
 	private RecruitService recruitService;
+	
+	@Autowired
+	private UserService userService;
 //	@RequestMapping("/index")
 //	public String main() {
 //		String forward_path = "index";
@@ -66,11 +72,13 @@ public class CorpController {
 		return forward_path;
 
 	}
-
+	
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId, HttpServletRequest request,Model model) throws Exception {
 		CorpDto corpDto=corpService.findCorp(corpLoginId);
 		model.addAttribute("corp", corpDto);
+		
+		
 		
 		//공고 목록 뿌리기
 		List<RecruitDto> recruitList=recruitService.findRecruitAll();
@@ -83,6 +91,15 @@ public class CorpController {
 		model.addAttribute("recruitList",recruitList1);
 		
 		//리뷰 목록 뿌리기
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		request.setAttribute("loginUser", loginUser);
+		
+		if(request.getSession()== null) {
+			
+		}
+		
+		
 		List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
 		
 		

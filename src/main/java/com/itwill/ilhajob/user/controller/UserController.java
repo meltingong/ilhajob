@@ -282,8 +282,10 @@ public class UserController {
 			
 		}
 		
+		@LoginCheck
 		@RequestMapping("/review_delete")
-		public String review_delete(@ModelAttribute ReviewDto reviewDto, HttpServletRequest request, @RequestParam Long id,@RequestParam("corpId") CorpDto corp) throws Exception{
+		public String review_delete(@RequestParam Long id,@RequestParam("corpId") CorpDto corp) throws Exception{
+			
 			userService.deleteReview(id);
 			return "redirect:corp-detail?corpId="+corp.getId();
 		}

@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+function reviewDelete(){
+	document.d.action = "review_delete";
+	document.d.method='POST';
+	document.d.submit();
+}
+
+</script>
 
 
 <head>
@@ -140,6 +148,19 @@
 		                <div th:text="${review.reviewGrade}" class="title">Beautiful courses</div>
 		              </div>
 		              <div th:text="${review.reviewContent}" class="text">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
+		           
+		           		<form name="d">
+    					<input th:value="${review.corp.id}" type="hidden" name="corpId" /> 
+    					  
+    					<th:block th:if="${loginUser.id==review.user.id}">  
+    						<li><button data-text="Delete Aplication" onclick="reviewDelete()" th:value="${review.id}"><span class="la la-trash"></span></button></li>
+  						</th:block>  
+  						
+  						
+  						
+  					</form>
+		           
+		           
 		            </div>
 		          </div>
 		         </div>
