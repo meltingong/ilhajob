@@ -3,6 +3,7 @@ package com.itwill.ilhajob.corp.service;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -103,5 +104,28 @@ public class RecruitServiceImpl implements RecruitService {
             return "D-" + daysUntilDeadLine;
         }
 	}
+	
+	//corpId로 recruitList 불러오기
+//	@Override
+//	public List<RecruitDto> recruitList(Long corpId) throws Exception {
+//		//List<Recruit> recrList1=recruitRepository.findByCorpId(1L);
+//		
+//		List<Recruit> recruitList=recruitRepository.findByCorpId(corpId);
+//		
+//		System.out.println(recruitList);
+//		return recruitList.stream()
+//				.map(recruit ->modelMapper.map(recruit, RecruitDto.class))
+//				.collect(Collectors.toList());
+//		
+//		List<Recruit> recruitList=recruitRepository.findByCorpId(corpId);
+//		List<RecruitDto> recruitDtos=new ArrayList<>();
+//		for(Recruit recruit: recruitList) {
+//			RecruitDto recruitDto= modelMapper.map(recruit, RecruitDto.class);
+//			recruitDtos.add(recruitDto);
+//		}
+//			return recruitDtos;
+//	}
+//	
+	
 	
 }
