@@ -42,6 +42,7 @@ import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.repository.ManagerRepository;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.ReviewDto;
@@ -61,7 +62,7 @@ public class CorpController {
 	private RecruitService recruitService;
 
 	@Autowired
-	private ManagerRepository managerRepository;
+	private ManagerService managerService;
 	
 	@Autowired
 	private UserService userService;
@@ -69,8 +70,6 @@ public class CorpController {
 	@Autowired
 	private AppService appService;
 
-	@Autowired
-	private ModelMapper modelMapper;
 	
 //	@RequestMapping("/index")
 //	public String main() {
@@ -237,14 +236,18 @@ public class CorpController {
 	}
 	
 	//매니저리스트
-	/*
+	
 	@RequestMapping("/dashboard-manager-list")
-	public String corp_dashboard_manager-list() throws Exception {
+	public String corp_dashboard_manager_list(HttpServletRequest request,Model model) throws Exception{
+		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findCorp(sCorpId);
+		List<ManagerDto> managerList = managerService.findManagerByCorpID(corpDto.getId());
+		System.out.println(managerList);
+		model.addAttribute("managerList",managerList);
 		
-
 		return "dashboard-manager-list";
 	}
-	*/
+	
 	//지원자 보기
 	@RequestMapping("/dashboard-applicants")
 	public String corp_dashboard_applicants(@RequestParam("id")int id, Model model) throws Exception {

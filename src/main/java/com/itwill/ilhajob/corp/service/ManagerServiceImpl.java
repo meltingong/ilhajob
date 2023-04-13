@@ -34,14 +34,21 @@ public ManagerServiceImpl(ManagerRepository managerRepository, ModelMapper model
 
 	@Override
 	public ManagerDto findManager(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Manager> manager = managerRepository.findById(id);
+		if(!manager.isPresent()) {
+			new Exception();
+		}
+		return modelMapper.map(manager, ManagerDto.class);
 	}
 
 	@Override
 	public ManagerDto update(ManagerDto managerDto) throws Exception {
-		return null;
-	}
+		Optional<Manager> found = managerRepository.findById(managerDto.getId());
+			Manager updateManager = modelMapper.map(managerDto,Manager.class);
+			managerRepository.save(updateManager);
+			return managerDto;
+		}
+	
 
 	@Override
 	public void remove(Long id) throws Exception {

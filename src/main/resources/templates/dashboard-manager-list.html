@@ -85,21 +85,20 @@
                       </thead>
 
                       <tbody>
-                        <tr th:each="recruit:${recruitList}">
+                        <tr th:each="manager : ${managerList}">
                         <!-- form자리 버튼 포스트로 넘길용도 -->
                           <td >
-                            <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
+                            <a th:text="${manager.managerName}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
                             <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
                           </td>
-                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#">지원자 이력서 보기</a></td>
+                          <td class="applied"><a th:text="${manager.managerEmail}" href="#">지원자 이력서 보기</a></td>
                           <td>
 						      <ul>
-						        <li th:text="|created:${recruit.rcDate}|"></li>
-						        <li th:text="|expired:${recruit.rcDeadline}|"></li>
+						        <li th:text="${manager.managerPosition}"></li>
 						      </ul>
 						    </td>
                          
-                          <td class="status">Active</td>
+                          <td class="status" th:text="${manager.managerPhone}">Active</td>
                           <td>
                             <div class="option-box">
                               <ul class="option-list">
