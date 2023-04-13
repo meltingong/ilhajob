@@ -102,9 +102,10 @@ public class BlogController {
 		model.addAttribute("blogReadCount", blogService.updateViews(id));
 		
     
-		//댓글리스트 불러오기...안되네.....
+		/*댓글리스트 불러오기...안되네.....
 		List<BlogCommentDto> blogCommentList = blogCommentService.selectByBlogComment(id);
 		model.addAttribute("blogCommentList", blogCommentList);
+		*/
 		
 		return "blog-single";
 	}
