@@ -37,6 +37,7 @@ import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.RecruitService;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
 
@@ -80,6 +81,13 @@ public class CorpController {
 			}
 		}
 		model.addAttribute("recruitList",recruitList1);
+		
+		//리뷰 목록 뿌리기
+		List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
+		model.addAttribute("reviewList",reviewList);
+		
+		
+		
 		return "corp-detail";
 
 	}
@@ -157,19 +165,26 @@ public class CorpController {
 
 	@PostMapping("/corp-update-action")
 	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto,
-			@RequestParam("corpEst") String corpEst, HttpServletRequest request)throws Exception {
+			 HttpServletRequest request)throws Exception {
 		Long id = corpDto.getId();
-		System.out.println(corpEst);
+		System.out.println(corpDto);
 		corpService.update(id, corpDto);
-		request.setAttribute("corLoginId", corpDto.getCorpLoginId());
+		request.setAttribute("corpLoginId", corpDto.getCorpLoginId());
 		return "corp-detail";
 	}
 
 	@RequestMapping("/dashboard-manage-job")
-	public String corp_dashboard_manage_job(HttpServletRequest request, Model model) throws Exception {
+	public String corp_dashboard_manage_job(HttpServletRequest request,Model model) throws Exception {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto = corpService.findCorp(sCorpId);
+		CorpDto corpDto=corpService.findCorp(sCorpId);
+		//Long id=corpDto.getId();
+		RecruitDto recruitList=recruitService.findRecruit(corpDto.getId());
+		model.addAttribute("recruitList",recruitList);
+
+		
+		
 		model.addAttribute("corp", corpDto);
+		
 		
 		// 지원자 숫자 보여주기->일단 보류
 		//List<Integer> countList = new ArrayList<>();
@@ -246,10 +261,14 @@ public class CorpController {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
 }
-//	@ExceptionHandler(Exception.class)
-//	public String corp_exception_handler(Exception e) {
-//		System.out.println("에러..");
-//		return "shop-checkout";
-//	}
+
 

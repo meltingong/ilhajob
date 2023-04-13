@@ -51,9 +51,7 @@ public class CvController {
 	public String cv_list(HttpServletRequest request, Model model) {
 		String forwardpath = "";
 		Long userId = (Long)request.getSession().getAttribute("id");
-		System.out.println("userId : " + userId);
-		List<CvDto> cvList = cvService.findCvByUserId(userId);
-		System.out.println("$$$$ cvLIst + " + cvList);
+		List<CvDto> cvList = cvService.findByUserId(userId);
 		if(cvList != null) {
 			model.addAttribute("cvList", cvList);
 			forwardpath = "candidate-dashboard-cv-manager";
@@ -68,9 +66,6 @@ public class CvController {
 	@LoginCheck
 	@RequestMapping(value = "/cv-write-form")
 	public String cv_wirte_from(HttpServletRequest request, @ModelAttribute UserDto user, Model model) throws Exception {
-//	public String cv_wirte_from(@ModelAttribute User user, Model model) {
-//		int userSeq = Integer.parseInt(request.getParameter("userSeq"));
-		
 		model.addAttribute("user" + user);
 		Long userId = (Long)request.getSession().getAttribute("id");
 
@@ -100,13 +95,12 @@ public class CvController {
 		String forwardpath = "";
 		/* user cv list 가져오기 */
 		Long userId = (Long)request.getSession().getAttribute("id");
-		List<CvDto> cvList = cvService.findCvByUserId(userId);
-		System.out.println(cvList);
+		List<CvDto> cvList = cvService.findByUserId(userId);
 		if (cvList == null || cvList.size() == 0) {
 			forwardpath = "redirect:cv-write-form";
 		} else {
 			model.addAttribute("cvList", cvList);
-			/* 가장 최근 작성한 cv의 detail */
+			/* 가장 최근 작성한(cvId 기준) cv의 detail */
 			CvDto cvDetail = cvList.get(cvList.size()-1);
 			model.addAttribute("cvDetail", cvDetail);
 			forwardpath = "candidate-dashboard-resume";
@@ -114,25 +108,21 @@ public class CvController {
 		return forwardpath;
 	}
 	
-	/** cv detail param(cvId) 있을 때 
-	 * @throws Exception */
+	/** cv detail param(cvId) 있을 때 */
 	@LoginCheck
 	@RequestMapping(value = "/cv-detail")
 		public String cv_detail(HttpServletRequest request, @RequestParam Long cvId, Model model) throws Exception {
 		String forwardpath = "";
 		
 		Long userId = (Long)request.getSession().getAttribute("id");
-		System.out.println("uuuuuuser id by session : " + userId);
 		model.addAttribute("userId", userId);
 		
 		/* user cv list */
-		List<CvDto> cvList = cvService.findCvByUserId((Long)request.getSession().getAttribute("id")); // test
-		System.out.println("########### cvList : " + cvList);
+		List<CvDto> cvList = cvService.findByUserId((Long)request.getSession().getAttribute("id")); // test
 		model.addAttribute("cvList", cvList);
 		
 		/* 특정 cv detail */
-		CvDto cvDetail = cvService.findCvById(userId);
-		System.out.println("########### cvDetail : " + cvDetail);
+		CvDto cvDetail = cvService.findCvById(cvId);
 		model.addAttribute("cvDetail", cvDetail);
 		
 		/* eduList */
@@ -161,8 +151,7 @@ public class CvController {
 	@LoginCheck
 //	@PostMapping(value = "/cv-write-action")
 	@RequestMapping(value = "/cv-write-action")
-//	public String cv_write_action(@ModelAttribute Cv cv, @ModelAttribute List<Edu> eduList, RedirectAttributes redirectAttributes) {
-		public String cv_write_action(HttpServletRequest request, @ModelAttribute CvDto cv, RedirectAttributes redirectAttributes) {
+	public String cv_write_action(HttpServletRequest request, @ModelAttribute CvDto cv, RedirectAttributes redirectAttributes) {
 		try {
 			String userEmail = (String)request.getSession().getAttribute("sUserId");
 			UserDto user = userService.findUser(userEmail);
@@ -187,7 +176,6 @@ public class CvController {
 	@LoginCheck
 //	@PostMapping(value = "/cv-update-action")
 	@RequestMapping(value = "/cv-update-action", produces = "application/json;charset=UTF-8")
-//	public String cv_update_action(HttpServletRequest request, @ModelAttribute Cv cv, @ModelAttribute List<Awards> awardsList, @ModelAttribute Edu edu, @ModelAttribute Exp exp, Model model) {
 	public String cv_update_action(HttpServletRequest request, @RequestParam Long cvId , @ModelAttribute CvDto cv, @ModelAttribute EduDto edu, Model model, RedirectAttributes redirectAttributes) throws Exception {
 		String userEmail = (String)request.getSession().getAttribute("sUserId");
 		UserDto user = userService.findUser(userEmail);
@@ -210,7 +198,8 @@ public class CvController {
 	@LoginCheck
 //	@PostMapping(value = "/cv-delete-action")
 	@RequestMapping(value = "/cv-delete-action")
-	public String cv_delete_action(HttpServletRequest request, @RequestParam Long cvId) throws Exception{
+	public String cv_delete_action(HttpServletRequest request, @RequestParam(name = "cvId") Long cvId) throws Exception {
+		System.out.println("$$$$$$$$$$$$$$$$$$$ cvId : " + cvId);
 		cvService.removeById(cvId);
 		return "redirect:cv-list";
 	}

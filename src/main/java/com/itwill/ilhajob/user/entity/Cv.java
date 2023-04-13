@@ -52,14 +52,8 @@ public class Cv {
 	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;
+	
+	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<App> appList;
 
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.PERSIST)
-	private List<Awards> awardslist = new ArrayList<Awards>();
-	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.PERSIST)
-	private List<Edu> edulist = new ArrayList<Edu>();
-	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.PERSIST)
-	private List<Exp> explist = new ArrayList<Exp>();
-	
 }

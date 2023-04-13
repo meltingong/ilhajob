@@ -59,13 +59,13 @@ function updateCv() {
 }
 
 // cv delete
-function cvDelete() {
+function cvDelete(id) {
 	// 나중에 모달 등으로 수정하기
-	console.log('cvId value : ' + document.f.cvId.value);
+
 	if (window.confirm("정말 삭제하시겠습니까?")) {
-		document.f.method='POST';
-		document.f.action = "cv-delete-action";
-		document.f.submit();
+		document.getElementById('f'+id).method='POST';
+		document.getElementById('f'+id).action = "cv-delete-action";
+		document.getElementById('f'+id).submit();
 	}
 }
 

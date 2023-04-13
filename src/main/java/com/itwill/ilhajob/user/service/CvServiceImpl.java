@@ -1,8 +1,10 @@
 package com.itwill.ilhajob.user.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import java.util.stream.Collectors;import javax.swing.event.TableColumnModelListener;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import com.itwill.ilhajob.user.entity.Awards;
 import com.itwill.ilhajob.user.entity.Cv;
 import com.itwill.ilhajob.user.entity.Edu;
 import com.itwill.ilhajob.user.entity.Exp;
+import com.itwill.ilhajob.user.entity.User;
 import com.itwill.ilhajob.user.repository.CvRepository;
 import com.itwill.ilhajob.user.repository.UserRepository;
 
@@ -76,11 +79,9 @@ public class CvServiceImpl implements CvService{
 	}
 
 	@Override
-	public List<CvDto> findCvByUserId(Long userId) {
-//		List<Cv> tempList = userRepository.findById(userId).get().getCvList();
-//		List<CvDto> cvList = tempList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
-//		return cvList;
-		return null;
+	public List<CvDto> findByUserId(Long userId) {
+		List<Cv> cvList = cvRepository.findByUserId(userId);
+		return cvList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
 	}
 	 
 	@Override

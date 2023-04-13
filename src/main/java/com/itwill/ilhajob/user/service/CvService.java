@@ -19,7 +19,7 @@ public interface CvService {
 	CvDto findCvById(Long id);
 	
 	// find cv by user id
-	List<CvDto> findCvByUserId(Long userId);
+	List<CvDto> findByUserId(Long userId);
 	
 	// find all
 	List<CvDto> findCvAll();
