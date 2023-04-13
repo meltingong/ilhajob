@@ -2,6 +2,7 @@ package com.itwill.ilhajob.user.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,16 @@ public class MessageServiceImpl implements MessageService{
 		modelMapper.map(messageDto, message);
 		message = messageRepository.save(message);
 		return modelMapper.map(message, MessageDto.class);
+	}
+
+
+	@Override
+	public List<MessageDto> fineMessageOfUser(Long userId) {
+		List<Message> findMsgList = messageRepository.findByUserId(userId);
+		List<MessageDto> msgDtoList = findMsgList.stream()
+				.map(message -> modelMapper.map(message, MessageDto.class))
+				.collect(Collectors.toList());
+		return msgDtoList;
 	}
 
 }

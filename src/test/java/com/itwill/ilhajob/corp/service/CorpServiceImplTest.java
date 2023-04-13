@@ -7,19 +7,24 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.ilhajob.FinalProjectTeam1IlhajobApplicationTests;
+import com.itwill.ilhajob.corp.entity.Corp;
+import com.itwill.ilhajob.corp.repository.CorpRepository;
 
 class CorpServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 
 	@Autowired
 	CorpService corpService;
+	@Autowired
+	CorpRepository corpRepository;
 	
-	@Disabled
+	//@Disabled
 	@Test
 	void testLogin() throws Exception {
 		//System.out.println(corpService.findCorp("corp_01"));
-		System.out.println(corpService.findCorpAll());
+		Corp corp = corpRepository.findById(5L).orElse(null);
+		System.out.println(corp);
 	}
-	//@Disabled
+	@Disabled
 	@Test
 	void testFindCorp() throws Exception {
 		System.out.println(corpService.findCorp("corp_03"));

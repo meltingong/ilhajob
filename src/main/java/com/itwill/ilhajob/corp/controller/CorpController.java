@@ -157,11 +157,11 @@ public class CorpController {
 
 	@PostMapping("/corp-update-action")
 	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto,
-			@RequestParam("corpEst") String corpEst, HttpServletRequest request)throws Exception {
+			 HttpServletRequest request)throws Exception {
 		Long id = corpDto.getId();
-		System.out.println(corpEst);
+		System.out.println(corpDto);
 		corpService.update(id, corpDto);
-		request.setAttribute("corLoginId", corpDto.getCorpLoginId());
+		request.setAttribute("corpLoginId", corpDto.getCorpLoginId());
 		return "corp-detail";
 	}
 
