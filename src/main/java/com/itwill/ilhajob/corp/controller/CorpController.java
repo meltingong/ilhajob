@@ -215,13 +215,13 @@ public class CorpController {
 		List<RecruitDto> recruitList=recruitService.findAllByCorpId(corpDto.getId());
 		model.addAttribute("recruitList",recruitList);
 		
-		// 지원자 숫자 보여주기-보류
-		//List<Integer> countList = new ArrayList<>();
-		//Long appCount = appService.findAppCountByCorpId(sCorpId);
-		//System.out.println(appCount);
-		//model.addAttribute("appCount", appCount);
+		// 지원자 숫자 보여주기-일단 보류: 계속 rcId인식 못하고 다 3명으로 출력됨
+//		List<AppDto> appListCount=appService.findAllByRecruitId(corpDto.getId());
+//		Long appCount=(long) appListCount.size();
+//		System.out.println(">>>>>>>>>>"+appCount);
+//		model.addAttribute("appCount",appCount);
 		
-		//마감,진행 status도 일단 보류
+		//공고 마감,진행 여부 보여주는 status도 일단 보류
 
 		return "dashboard-manage-job";
 	}

@@ -1,5 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+	function beforeAscList(a,b){
+		var LocalDateTimeA=new LocalDateTime(a['']);
+	}
+	
+	
+	function ascList(){
+		
+	}
+	
+	
+	function beforeDescList(){
+			
+		}
+	
+	function descList(){
+		
+	}
+
+
+
+</script>
+
+
 
 <head>
   <meta charset="utf-8">
@@ -62,8 +86,8 @@
                   <div class="chosen-outer">
                     <!--Tabs Box-->
                     <select class="chosen-select">
-                      <option>Last 6 Months</option>
-                      <option>Last 12 Months</option>
+                      <option onclick="ascList()">날짜 오름차순</option>
+                      <option onclick="descList()">날짜 내림차순</option>
                       <option>Last 16 Months</option>
                       <option>Last 24 Months</option>
                       <option>Last 5 year</option>
