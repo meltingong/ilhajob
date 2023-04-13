@@ -103,16 +103,16 @@
                 </div>
 
                 <!-- Job Block -->
-                <div  class="job-block">
+                <div  th:each="recruit:${recruitList}" class="job-block">
                   <div class="inner-box">
                     <div class="content">
                       <span class="company-logo"><img src="images/resource/company-logo/1-3.png" alt=""></span>
-                      <h4><a href="#" >Product Designer / UI Designer</a></h4>
+                      <h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#" >Product Designer / UI Designer</a></h4>
                       <!-- h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#" >Product Designer / UI Designer</a></h4-->
                       <ul class="job-info" >
-                        <li class="icon flaticon-map-locator"><span></span></li>
-                        <li class="icon flaticon-clock-3"><span></span></li>
-                        <li class="icon flaticon-money"><span></span></li>
+                        <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}">주소</span></li>
+                        <li class="icon flaticon-clock-3"><span th:text="${recruit.rcDate}"></span></li>
+                        <li class="icon flaticon-money"><span th:text="${recruit.rcSalary}"></span></li>
                       </ul>
                       <ul class="job-other-info">
                         <li class="time">Full Time</li>

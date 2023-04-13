@@ -29,4 +29,7 @@ public interface RecruitService {
 	
 	//마감일 상태변화
 	String getStatus(Date rcDeadLine)throws Exception;
+	
+	//corpId로 recruitList 불러오기
+	//List<RecruitDto> recruitList(Long corpId)throws Exception; 
 }

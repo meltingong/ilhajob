@@ -216,7 +216,9 @@ public class UserController {
 	@RequestMapping("/alerts-remove")
 	public String user_alerts_remove(HttpServletRequest request,Long messageId) throws Exception {
 		String forwardPath="";
+
 		userService.removeMessageBySeq(messageId);
+
 		forwardPath="redirect:candidate-dashboard-job-alerts";
 		return forwardPath;
 	}
