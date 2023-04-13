@@ -52,8 +52,5 @@ public class Cv {
 	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;
-	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<App> appList;
 
 }

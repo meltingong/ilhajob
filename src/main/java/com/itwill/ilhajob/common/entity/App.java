@@ -45,7 +45,7 @@ public class App {
 	private Long id;
 	
 	@Column(columnDefinition = "NUMBER(1) DEFAUlT 0")
-	private int appStatus;
+	private Integer appStatus;
 	
 	private LocalDateTime appCreateDate;
 	

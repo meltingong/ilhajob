@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sound.sampled.ReverbType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -299,10 +300,10 @@ public class UserController {
 		
 		@LoginCheck
 		@RequestMapping("/review_delete")
-		public String review_delete(@RequestParam Long id,@RequestParam("corpId") CorpDto corp) throws Exception{
+		public String review_delete(@RequestParam Long id,@RequestParam("corpLoginId") CorpDto corp) throws Exception{
 			
-			userService.deleteReview(id);
-			return "redirect:corp-detail?corpId="+corp.getId();
+			reviewService.deleteReview(id);
+			return "redirect:corp-detail?corpLoginId="+corp.getCorpLoginId();
 		}
 
 }

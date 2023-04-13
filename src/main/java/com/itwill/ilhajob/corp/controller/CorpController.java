@@ -91,35 +91,46 @@ public class CorpController {
 	
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId, HttpServletRequest request,Model model) throws Exception {
-		CorpDto corpDto=corpService.findCorp(corpLoginId);
-		model.addAttribute("corp", corpDto);
-		
-		
-		
-		//공고 목록 뿌리기
-		List<RecruitDto> recruitList=recruitService.findRecruitAll();
-		List<RecruitDto> recruitList1=new ArrayList<>();
-		for(RecruitDto recruitDto: recruitList) {
-			if(recruitDto.getCorp().getId()==corpDto.getId()) {
-				recruitList1.add(recruitDto);
-			}
-		}
-		model.addAttribute("recruitList",recruitList1);
-		
-		//리뷰 목록 뿌리기
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
-		UserDto loginUser = userService.findUser(sUserId);
-		request.setAttribute("loginUser", loginUser);
-		
-		if(request.getSession()== null) {
+		if(sUserId ==null) {
+			CorpDto corpDto=corpService.findCorp(corpLoginId);
+			model.addAttribute("corp", corpDto);
 			
+			//공고 목록 뿌리기
+			List<RecruitDto> recruitList=recruitService.findRecruitAll();
+			List<RecruitDto> recruitList1=new ArrayList<>();
+			for(RecruitDto recruitDto: recruitList) {
+				if(recruitDto.getCorp().getId()==corpDto.getId()) {
+					recruitList1.add(recruitDto);
+				}
+			}
+			model.addAttribute("recruitList",recruitList1);
+			//리뷰 목록 뿌리기
+			
+			List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
+			model.addAttribute("reviewList",reviewList);
+		}else {
+			CorpDto corpDto=corpService.findCorp(corpLoginId);
+			model.addAttribute("corp", corpDto);
+			
+			//공고 목록 뿌리기
+			List<RecruitDto> recruitList=recruitService.findRecruitAll();
+			List<RecruitDto> recruitList1=new ArrayList<>();
+			for(RecruitDto recruitDto: recruitList) {
+				if(recruitDto.getCorp().getId()==corpDto.getId()) {
+					recruitList1.add(recruitDto);
+				}
+			}
+			model.addAttribute("recruitList",recruitList1);
+			//String sUserId = (String)request.getSession().getAttribute("sUserId");
+			UserDto loginUser = userService.findUser(sUserId);
+			request.setAttribute("loginUser", loginUser);
+			
+			//리뷰 목록 뿌리기
+			
+			List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
+			model.addAttribute("reviewList",reviewList);
 		}
-		
-		
-		List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
-		model.addAttribute("reviewList",reviewList);
-		
-		
 		
 		return "corp-detail";
 
@@ -240,6 +251,10 @@ public class CorpController {
 		//지원자 이력서 리스트 불러오기
 		List<AppDto> appList=appService.findAllByRecruitId(id);
 		model.addAttribute("appList",appList);
+		
+		//이력서의 회원 정보 가져오기
+		List<AppDto> userList=appService.findAllByUserId(id);
+		model.addAttribute("userList",userList);
 		
 		//해당 공고 디테일 뿌리기
 		RecruitDto recruit=recruitService.findRecruit(id);
