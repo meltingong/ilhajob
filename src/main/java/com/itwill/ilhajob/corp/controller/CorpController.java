@@ -177,14 +177,11 @@ public class CorpController {
 	public String corp_dashboard_manage_job(HttpServletRequest request,Model model) throws Exception {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto=corpService.findCorp(sCorpId);
+		//model.addAttribute("corp", corpDto);
 		//Long id=corpDto.getId();
-		RecruitDto recruitList=recruitService.findRecruit(corpDto.getId());
+		List<RecruitDto> recruitList=recruitService.findAllByCorpId(corpDto.getId());
 		model.addAttribute("recruitList",recruitList);
 
-		
-		
-		model.addAttribute("corp", corpDto);
-		
 		
 		// 지원자 숫자 보여주기->일단 보류
 		//List<Integer> countList = new ArrayList<>();
