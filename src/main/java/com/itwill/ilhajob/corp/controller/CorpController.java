@@ -84,8 +84,6 @@ public class CorpController {
 		
 		//리뷰 목록 뿌리기
 		List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
-		
-		
 		model.addAttribute("reviewList",reviewList);
 		
 		
@@ -179,14 +177,10 @@ public class CorpController {
 	public String corp_dashboard_manage_job(HttpServletRequest request,Model model) throws Exception {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto=corpService.findCorp(sCorpId);
-//		List<RecruitDto> recruitList=recruitService.findRecruitAll();
-//		List<RecruitDto> recruitList1=new ArrayList<>();
-//		for(RecruitDto recruitDto: recruitList) {
-//			if(recruitDto.getCorp().getId()==corpDto.getId()) {
-//				recruitList1.add(recruitDto);
-//			}
-//		}
-//		model.addAttribute("recruitList",recruitList);
+		//Long id=corpDto.getId();
+		RecruitDto recruitList=recruitService.findRecruit(corpDto.getId());
+		model.addAttribute("recruitList",recruitList);
+
 		
 		
 		model.addAttribute("corp", corpDto);
