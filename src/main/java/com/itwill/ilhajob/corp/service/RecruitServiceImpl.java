@@ -10,18 +10,15 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
-import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.corp.repository.RecruitRepository;
-import com.itwill.ilhajob.user.dto.UserDto;
-import com.itwill.ilhajob.user.entity.User;
-import com.itwill.ilhajob.user.exception.UserNotFoundException;
 
 @Service
 public class RecruitServiceImpl implements RecruitService {
@@ -29,6 +26,7 @@ public class RecruitServiceImpl implements RecruitService {
 	private RecruitRepository recruitRepository;
 	private ModelMapper modelMapper;
 	
+	@Autowired
 	public RecruitServiceImpl(RecruitRepository recruitRepository, ModelMapper modelMapper) {
 		this.recruitRepository = recruitRepository;
 		this.modelMapper = modelMapper;
@@ -36,6 +34,15 @@ public class RecruitServiceImpl implements RecruitService {
 	@Override
 	public List<RecruitDto> findRecruitAll() throws Exception {
 		List<Recruit> recruitList = recruitRepository.findAll();
+		return recruitList.stream()
+				.map(recruit ->modelMapper.map(recruit, RecruitDto.class))
+				.collect(Collectors.toList());
+	}
+	
+	@Transactional
+	@Override
+	public List<RecruitDto> findAllByCorpId(long id) throws Exception {
+		List<Recruit> recruitList = recruitRepository.findByCorpId(id);
 		return recruitList.stream()
 				.map(recruit ->modelMapper.map(recruit, RecruitDto.class))
 				.collect(Collectors.toList());

@@ -37,6 +37,7 @@ import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.RecruitService;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 
 
@@ -80,6 +81,13 @@ public class CorpController {
 			}
 		}
 		model.addAttribute("recruitList",recruitList1);
+		
+		//리뷰 목록 뿌리기
+		List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
+		model.addAttribute("reviewList",reviewList);
+		
+		
+		
 		return "corp-detail";
 
 	}
@@ -166,10 +174,14 @@ public class CorpController {
 	}
 
 	@RequestMapping("/dashboard-manage-job")
-	public String corp_dashboard_manage_job(HttpServletRequest request, Model model) throws Exception {
+	public String corp_dashboard_manage_job(HttpServletRequest request,Model model) throws Exception {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto = corpService.findCorp(sCorpId);
-		model.addAttribute("corp", corpDto);
+		CorpDto corpDto=corpService.findCorp(sCorpId);
+		//model.addAttribute("corp", corpDto);
+		//Long id=corpDto.getId();
+		List<RecruitDto> recruitList=recruitService.findAllByCorpId(corpDto.getId());
+		model.addAttribute("recruitList",recruitList);
+
 		
 		// 지원자 숫자 보여주기->일단 보류
 		//List<Integer> countList = new ArrayList<>();
@@ -246,10 +258,14 @@ public class CorpController {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
 }
-//	@ExceptionHandler(Exception.class)
-//	public String corp_exception_handler(Exception e) {
-//		System.out.println("에러..");
-//		return "shop-checkout";
-//	}
+
 
