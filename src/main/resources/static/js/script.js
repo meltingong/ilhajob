@@ -1117,13 +1117,8 @@
 
 		// Promise 객체를 사용하여 Ajax 요청 처리
 		promise.then(function(response) {
-			// 서버로부터 받은 응답 데이터 처리
-			console.log(response);
-			console.log(response.message);
-
 			// 로그인 성공 시 처리
 			if (response.success) {
-				alert('로그인 성공');
 				window.location.href = '/final-project-team1-ilhajob';
 			}
 			// 로그인 실패 시 처리
@@ -1132,19 +1127,19 @@
 				window.location.href = response.location;
 			}
 		})
-			.fail(function(xhr,status,error) {
+			.fail(function(xhr) {
 				// Ajax 요청 실패 시 처리
-				console.log(xhr);
-				console.log(status);
-				console.log(error);
-
 				let errorMsg = document.createElement('p');
 				errorMsg.style.textAlign = 'center';
 				errorMsg.style.color = 'red';
 				errorMsg.textContent = xhr.responseText;
 				let passwordInput = document.getElementById('password-field');
 				passwordInput.insertAdjacentElement('afterend', errorMsg);
-				$('#email').focus();
+				if(xhr.status === 5000 || xhr.status === 5300){
+					$('#email').focus();
+				}else if(xhr.status === 5301 || xhr.status === 5301){
+					$('#id').focus();
+				}
 			});
 	});
 	
@@ -1198,7 +1193,7 @@
     	$('.jquery-modal.blocker.current a#corp-btn').toggleClass('btn-style-seven btn-style-four');
       	$('.jquery-modal.blocker.current input#id').attr('type','email');
       	$('.jquery-modal.blocker.current input#id').attr('name','email');
-      	$('.jquery-modal.blocker.current input#id').attr('placeholder','User Email');
+      	$('.jquery-modal.blocker.current input#id').attr('placeholder','Email Address');
       	$('.jquery-modal.blocker.current input#id').attr('id','email');
       	$('label[for="id"]').attr('for','email');
       	$('label[for="email"]').text('Email');
@@ -1210,10 +1205,10 @@
     	$('.jquery-modal.blocker.current a#corp-btn').toggleClass('btn-style-four btn-style-seven');
       	$('.jquery-modal.blocker.current input#email').attr('type','text');
       	$('.jquery-modal.blocker.current input#email').attr('name','id');
-      	$('.jquery-modal.blocker.current input#email').attr('placeholder','Login ID');
+      	$('.jquery-modal.blocker.current input#email').attr('placeholder','ID');
       	$('.jquery-modal.blocker.current input#email').attr('id','id');
       	$('label[for="email"]').attr('for','id');
-      	$('label[for="id"]').text('Login ID');
+      	$('label[for="id"]').text('ID');
 	});
 
 	
