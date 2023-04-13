@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.lang.Nullable;
 
+import com.itwill.ilhajob.common.dto.AppDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,17 +23,15 @@ public class CvDto {
 	private String cvName;
 	private String cvDescription;
 	private String cvPortfolio;
-	private List<EduDto> eduList;
-	private List<ExpDto> expList;
-	private List<AwardsDto> awardsList;
+
 	@ToString.Exclude
 	private UserDto user;
 
-	public CvDto(Long id, String cvName, String cvDescription, String cvPortfolio, UserDto user) {
-		this.id = id;
-		this.cvName = cvName;
-		this.cvDescription = cvDescription;
-		this.cvPortfolio = cvPortfolio;
-		this.user = user;
-	}
+//	public CvDto(Long id, String cvName, String cvDescription, String cvPortfolio, UserDto user) {
+//		this.id = id;
+//		this.cvName = cvName;
+//		this.cvDescription = cvDescription;
+//		this.cvPortfolio = cvPortfolio;
+//		this.user = user;
+//	}
 }

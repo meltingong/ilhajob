@@ -38,8 +38,11 @@ import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.RecruitService;
+import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.ReviewDto;
+import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.service.UserService;
 
 
 @Controller
@@ -51,8 +54,14 @@ public class CorpController {
 	private CorpImageService corpImageService;
 	@Autowired
 	private RecruitService recruitService;
+
+	
+	@Autowired
+	private UserService userService;
+
 	@Autowired
 	private AppService appService;
+
 //	@RequestMapping("/index")
 //	public String main() {
 //		String forward_path = "index";
@@ -69,27 +78,49 @@ public class CorpController {
 		return forward_path;
 
 	}
-
+	
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId, HttpServletRequest request,Model model) throws Exception {
-		CorpDto corpDto=corpService.findCorp(corpLoginId);
-		model.addAttribute("corp", corpDto);
-		
-		//공고 목록 뿌리기
-		List<RecruitDto> recruitList=recruitService.findRecruitAll();
-		List<RecruitDto> recruitList1=new ArrayList<>();
-		for(RecruitDto recruitDto: recruitList) {
-			if(recruitDto.getCorp().getId()==corpDto.getId()) {
-				recruitList1.add(recruitDto);
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		if(sUserId ==null) {
+			CorpDto corpDto=corpService.findCorp(corpLoginId);
+			model.addAttribute("corp", corpDto);
+			
+			//공고 목록 뿌리기
+			List<RecruitDto> recruitList=recruitService.findRecruitAll();
+			List<RecruitDto> recruitList1=new ArrayList<>();
+			for(RecruitDto recruitDto: recruitList) {
+				if(recruitDto.getCorp().getId()==corpDto.getId()) {
+					recruitList1.add(recruitDto);
+				}
 			}
+			model.addAttribute("recruitList",recruitList1);
+			//리뷰 목록 뿌리기
+			
+			List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
+			model.addAttribute("reviewList",reviewList);
+		}else {
+			CorpDto corpDto=corpService.findCorp(corpLoginId);
+			model.addAttribute("corp", corpDto);
+			
+			//공고 목록 뿌리기
+			List<RecruitDto> recruitList=recruitService.findRecruitAll();
+			List<RecruitDto> recruitList1=new ArrayList<>();
+			for(RecruitDto recruitDto: recruitList) {
+				if(recruitDto.getCorp().getId()==corpDto.getId()) {
+					recruitList1.add(recruitDto);
+				}
+			}
+			model.addAttribute("recruitList",recruitList1);
+			//String sUserId = (String)request.getSession().getAttribute("sUserId");
+			UserDto loginUser = userService.findUser(sUserId);
+			request.setAttribute("loginUser", loginUser);
+			
+			//리뷰 목록 뿌리기
+			
+			List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
+			model.addAttribute("reviewList",reviewList);
 		}
-		model.addAttribute("recruitList",recruitList1);
-		
-		//리뷰 목록 뿌리기
-		List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
-		model.addAttribute("reviewList",reviewList);
-		
-		
 		
 		return "corp-detail";
 

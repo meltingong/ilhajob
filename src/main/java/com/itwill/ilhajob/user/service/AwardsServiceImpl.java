@@ -56,7 +56,8 @@ public class AwardsServiceImpl implements AwardsService {
 //		List<AwardsDto> awardsList = tempList.stream().map(awards -> new AwardsDto(awards.getId(), awards.getAwardsName(), awards.getAwardsDate(), awards.getAwardsContent()))
 //									.collect(Collectors.toList());
 //		return awardsList;
-		return null;
+		List<Awards> awardsList = awardsRepository.findByUserId(userId);
+		return awardsList.stream().map(awards -> mapper.map(awards, AwardsDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
