@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
+	/*
 	function beforeAscList(a,b){
 		var LocalDateTimeA=new LocalDateTime(a['']);
 	}
@@ -18,11 +19,18 @@
 	function descList(){
 		
 	}
-
-
-
+	*/
 </script>
-
+<script th:inline="javascript">
+	function getMessage(){
+		var message=sessionStorage.getItem('message');
+		if(message){
+			alert(message);
+			sessionStorage.removeItem('message');
+		}
+	}
+	
+</script>
 
 
 <head>
@@ -115,7 +123,7 @@
                             <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
                             <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
                           </td>
-                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#">지원자 이력서 보기</a></td>
+                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#" >지원자 이력서 보기</a></td>
                           <td>
 						      <ul>
 						        <li th:text="|Created:${recruit.rcDate}|"></li>
