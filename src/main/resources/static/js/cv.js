@@ -60,7 +60,7 @@ function updateCv() {
 	document.f.submit();
 }
 
-// cv update
+// cv delete
 function deleteCv() {
 	// 나중에 모달 등으로 수정하기
 	if (window.confirm("정말 삭제하시겠습니까?")) {
@@ -82,6 +82,7 @@ function changeCv() {
 
 // cv apply(예정)
 function apply() {
+	window.confirm("지원하시겠습니까?");
 	document.f.action = "cv-apply-action";
 	document.f.method='POST';
 	document.f.submit();
