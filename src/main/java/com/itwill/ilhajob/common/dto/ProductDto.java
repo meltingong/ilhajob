@@ -16,7 +16,7 @@ public class ProductDto {
 	private int pNo;
 	private String pName;
 	private int pPrice;
-	private int pEndMonth;
+	private long pEndMonth;
 	private String pImage;
 	private String pDiv;
 }

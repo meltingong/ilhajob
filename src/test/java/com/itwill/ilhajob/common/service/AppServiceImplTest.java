@@ -23,7 +23,7 @@ class AppServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 
 	@Test
 	void testUpdateApp() {
-		appService.updateApp(5L, 0);
+		appService.updateApp(5L, 3);
 	}
 	@Test
 	void testFindAllByUserId() {
