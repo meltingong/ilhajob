@@ -59,4 +59,24 @@ public class ModalController {
 
     	return new ResponseEntity<>(html, headers, HttpStatus.OK);
     }
+    
+    @GetMapping("/apply-popup")
+    public ResponseEntity<String> showApplyPopup() {
+    	String html = "";
+
+    	try {
+    	    Resource resource = new ClassPathResource("templates/apply-popup.html");
+    	    InputStream inputStream = resource.getInputStream();
+    	    html = new BufferedReader(new InputStreamReader(inputStream))
+    	         .lines().collect(Collectors.joining("\n"));
+    	} catch (IOException e) {
+    	     e.printStackTrace();
+    	     // 예외 처리
+    	}
+
+    	HttpHeaders headers = new HttpHeaders();
+    	headers.setContentType(MediaType.TEXT_HTML);
+
+    	return new ResponseEntity<>(html, headers, HttpStatus.OK);
+    }
 }
