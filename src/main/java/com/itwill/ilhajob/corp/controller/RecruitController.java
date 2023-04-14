@@ -110,10 +110,18 @@ public class RecruitController {
 //	   }
 //	   
 //	   
-//	   @PostMapping()
-//	   public String recruit_modify_form() {
-//		   return"";
-//	   }
+	   @PostMapping("/recruit-modify-form")
+	   public String recruit_modify_form(HttpServletRequest request,@RequestParam("id")Long id, Model model) throws Exception{
+		   //일단 회사 정보 뿌리기
+		   CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
+		   model.addAttribute("corp",loginCorp);
+		   
+		   //공고 상세 뿌리기
+		   RecruitDto recruit=recruitService.findRecruit(id);
+		   model.addAttribute("recruit",recruit);
+		   
+		   return "recruit-modify-form";
+	   }
 	   
 	   
 }
