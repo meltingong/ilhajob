@@ -56,9 +56,15 @@ public class UserRestController {
 			 return ResponseEntity.status(ResponseStatusCode.EXISTED_USER).body(e.getMessage());
 		}
 	   }else if(loginRequest.getSeparate().equals("corp")) {
-		   String id = loginRequest.getEmail();
+		   String id = loginRequest.getId();
 		   String password = loginRequest.getPassword();
-		   CorpDto corp = new CorpDto();
+		   CorpDto corp = new CorpDto(0L,id,password);
+		 try {
+			   corpService.create(corp);
+			   return ResponseEntity.ok().body("{\"success\": true, \"message\": \"가입 성공\"}");
+		   }catch (ExistedUserException e) {
+			   return ResponseEntity.status(ResponseStatusCode.NOT_FOUND_CORP).body(e.getMessage());
+		   }
 	   }
 	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"잘못된 형식입니다.\", \"location\": \"/final-project-team1-ilhajob\"}");
 	}
