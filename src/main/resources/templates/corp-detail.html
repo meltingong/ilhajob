@@ -140,8 +140,11 @@ function reviewDelete(){
                 </div> 
 
               </div>
-               	<form name="d">
-              <!-- 여기 리뷰 삽입 -->
+              
+	        
+		        
+		         	<form name="d">
+              <!-- 여기 리뷰 LIST -->
 	                <h3>Review [리뷰]</h3>
 	                  <div class="text">해당 기업의 리뷰 리스트를 제공합니다.</div>
 	               <!-- Comments area -->
@@ -166,35 +169,33 @@ function reviewDelete(){
     							<li><button data-text="Delete Aplication" onclick="reviewDelete()" th:value="${review.id}"><span class="la la-trash"></span></button></li>
   							</th:block>  
   						</th:block>  
-  					
-  						
-  						
-  					
-		           
 		           
 		            </div>
 		          </div>
 
 			</div>
 		        </form>  
-	        <!-- Comment Form -->
+		        
+		        <!-- Comment Form -->
+	        <th:block th:if = "${loginUser!=null}">
+               <th:block th:if="${count==0}"> <!--  -->
 		        <div class="comment-form default-form">
 		          <h4>리뷰 등록</h4>
-		         <form id ="review-form" name ="f" method="post" th:object="${review}">
+		         <form id ="review-form" name ="f" method="post" >
 		         	<input th:value="${corp.corpLoginId}" type="hidden" name="corpLoginId" />
 		         	
 		            <div class="row clearfix">
 		              <div class="col-lg-6 col-md-12 col-sm-12 form-group">
 		                <label>제목</label>
-		                <input th:value="${review?.reviewTitle}" type="text" name="reviewTitle" placeholder="리뷰제목" required>
+		                <input type="text" name="reviewTitle" placeholder="리뷰제목" required>
 		              </div>
 		              <div class="col-lg-6 col-md-12 col-sm-12 form-group">
 		                <label>평점</label>
-		                <input th:value="${review?.reviewGrade}"  type="text" name="reviewGrade" placeholder="평점" required>
+		                <input type="text" name="reviewGrade" placeholder="평점" required>
 		              </div>
 		              <div class="col-lg-12 col-md-12 col-sm-12 form-group">
 		                <label>댓글내용</label>
-		                <textarea th:value="${review?.reviewContent}"  name="reviewContent" placeholder="내용"></textarea>
+		                <textarea name="reviewContent" placeholder="내용"></textarea>
 		              </div>
 		              <div class="col-lg-12 col-md-12 col-sm-12 form-group">
 		                <button class="theme-btn btn-style-one" type="button" onClick="reviewCreate();" name="submit-form">리뷰 등록</button>
@@ -202,7 +203,15 @@ function reviewDelete(){
 		            </div>
 		          </form>
 		        </div>
+			        </th:block> <!--  -->
+			        
+		        </th:block>  
 		        <!--End Comment Form -->
+		        
+		        
+		        
+		        
+		        
             </div>
 
             <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">

@@ -21,13 +21,7 @@ public class ReviewDto {
 	private UserDto user;
 	private CorpDto corp;
 	
-//	public ReviewDto(Long id, int reviewGrade, String reviewTitle, String reviewContent) {
-//		super();
-//		this.id = id;
-//		this.reviewGrade = reviewGrade;
-//		this.reviewTitle = reviewTitle;
-//		this.reviewContent = reviewContent;
-//	}
+
 	
 	
 	

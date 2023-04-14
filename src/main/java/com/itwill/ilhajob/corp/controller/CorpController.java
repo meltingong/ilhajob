@@ -49,6 +49,7 @@ import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
 
 
@@ -67,6 +68,9 @@ public class CorpController {
 
 	@Autowired
 	private AppService appService;
+	
+	@Autowired
+	private ReviewService reviewService;
 
 	
 //	@RequestMapping("/index")
@@ -76,7 +80,6 @@ public class CorpController {
 //	}
 
 	@RequestMapping("/corp-list")
-
 	public String corp_list(Model model) throws Exception {
 		List<CorpDto> corpList = corpService.findCorpAll();
 		model.addAttribute("corpList", corpList);
@@ -89,6 +92,7 @@ public class CorpController {
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId, HttpServletRequest request,Model model) throws Exception {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		
 		if(sUserId ==null) {
 			CorpDto corpDto=corpService.findCorp(corpLoginId);
 			model.addAttribute("corp", corpDto);
@@ -121,6 +125,8 @@ public class CorpController {
 			model.addAttribute("recruitList",recruitList1);
 			//String sUserId = (String)request.getSession().getAttribute("sUserId");
 			UserDto loginUser = userService.findUser(sUserId);
+			long count = reviewService.isReviewDuplicate(loginUser.getId(),corpDto.getId());
+			model.addAttribute("count",count);
 			request.setAttribute("loginUser", loginUser);
 			
 			//리뷰 목록 뿌리기

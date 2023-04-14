@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.corp.controller;
 
+import java.io.Console;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
+import com.itwill.ilhajob.user.controller.LoginCheck;
 
 
 @Controller
@@ -51,6 +53,8 @@ public class RecruitController {
 	public String recruit_detail() {
 		return "redirect:index";	
 	}
+	
+	@LoginCheck
 	@RequestMapping(value = "/recruit-detail",params = "id")
 	public String recruit_detail(@RequestParam long id, Model model) throws Exception{
 		RecruitDto recruit = recruitService.findRecruit(id);
@@ -89,13 +93,27 @@ public class RecruitController {
 //	      return forward_path;
 //	   }
 	   
-	   //App table이 recruit 참조해서 안되는 중....
-	   @PostMapping("/recruit_delete_action")
-	   public String recruit_delete_action(@RequestParam("id")long id) throws Exception{
-		   System.out.println(">>>>>>>>>>>>>>"+id);
+	   //App table이 recruit 참조해서 안되는 중....?
+	   //app을 null로 만들고 save한 뒤에 삭제해보는 중
+	   @PostMapping("/recruit-delete-action")
+	   public String recruit_delete_action(@RequestParam("id")Long id) throws Exception{
+		   //CorpDto loginCorp=corpService.findCorp((String)(request.getSession().getAttribute("sCorpId")));
+		   System.out.println(">>>>>>>corp아이디>>>>>>>"+id);
+		  
 		   recruitService.remove(id);
 		   return "dashboard-manage-job";
 	   }
+	   
+//	   @PostMapping()
+//	   public String recruit_modify_action() {
+//		   return"";
+//	   }
+//	   
+//	   
+//	   @PostMapping()
+//	   public String recruit_modify_form() {
+//		   return"";
+//	   }
 	   
 	   
 }

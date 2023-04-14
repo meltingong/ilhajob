@@ -1155,13 +1155,18 @@
 		// Promise 객체 생성
 		let promise = $.ajax({
 			type: 'POST',
-			url: 'ajaxLogin',
+			url: 'ajaxRegister',
 			data: jsonData,
 			contentType: 'application/json',
 			dataType: 'json'
 		});
+		
+		var u_email = $('#email');
+		 
+        // 정규식 - 이메일 유효성 검사
+        var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-/*		// Promise 객체를 사용하여 Ajax 요청 처리
+		// Promise 객체를 사용하여 Ajax 요청 처리
 		promise.then(function(response) {
 			// 서버로부터 받은 응답 데이터 처리
 			console.log(response);
@@ -1183,7 +1188,16 @@
 				console.log(xhr);
 				console.log(status);
 				console.log(error);
-			});*/
+				let errorMsg = document.createElement('p');
+				errorMsg.style.textAlign = 'center';
+				errorMsg.style.color = 'red';
+				errorMsg.textContent = xhr.responseText;
+				let passwordInput = document.getElementById('password-field');
+				passwordInput.insertAdjacentElement('afterend', errorMsg);
+				if(xhr.status === 5200 || xhr.status === 5300){
+					$('#email').focus();
+				}
+			});
 	});
 	
 	$(document).on('click', '#candidate-btn', function(e) {

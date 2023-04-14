@@ -228,6 +228,11 @@ values(RECRUIT_ID_SEQ.nextval, sysdate,  '데이터센터 네트워크 설계, �
 insert into corp_image(id, corp_image, corp_id)
 values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg', 1);
 insert into corp_image(id, corp_image, corp_id)
+values(CORP_IMAGE_ID_SEQ.nextval, 'default2.jpg', 1);
+insert into corp_image(id, corp_image, corp_id)
+values(CORP_IMAGE_ID_SEQ.nextval, 'default3.jpg', 1);
+
+insert into corp_image(id, corp_image, corp_id)
 values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg', 2);
 insert into corp_image(id, corp_image, corp_id)
 values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg', 3);
