@@ -16,5 +16,10 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 	void testFindAllByCorpId() throws Exception {
 		System.out.println(recruitService.findAllByCorpId(1L));
 	}
+	
+	@Test
+	void testRemove() throws Exception {
+		recruitService.remove(1L);
+	}
 
 }
