@@ -794,7 +794,7 @@
 
 	// Custom Select Box
 	if ($('.sortby-select').length) {
-    	$('.sortby-select').select2();
+    /*	$('.sortby-select').select2();*/
 	}
 
 	// Tooltip
