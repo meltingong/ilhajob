@@ -2,9 +2,15 @@ package com.itwill.ilhajob.common.dto;
 
 import java.time.LocalDateTime;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class PaymentDto {
 	private long id;
 	private String payment_method;

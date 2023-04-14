@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.sound.sampled.ReverbType;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.user.dto.MessageDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.Review;
 import com.itwill.ilhajob.user.exception.ExistedReviewException;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
@@ -58,6 +60,8 @@ public class UserController {
 	
 	@Autowired
 	private CorpService corpService;
+	
+	
 
 
 	/**************Local Exception Handler*************
@@ -121,10 +125,12 @@ public class UserController {
 	// 회원 정보수정
 	@LoginCheck
 	@RequestMapping("/modify_action")
-	public String modify_action(@ModelAttribute UserDto userDto, HttpServletRequest request) throws Exception {
+	public String modify_action(@ModelAttribute UserDto userDto, HttpServletRequest request,String userPassword,String userPasswordConfirm) throws Exception {
 		String forwardPath = "";
 		Long id = (Long)request.getSession().getAttribute("id");
-		userService.update(id,userDto);
+		if(userPassword.equals(userPasswordConfirm)) {
+			userService.update(id,userDto);
+		}
 		forwardPath = "redirect:candidate-dashboard-profile";
 		return forwardPath;
 	}
@@ -306,29 +312,34 @@ public class UserController {
 		
 		@LoginCheck
 		@RequestMapping("/review_write_action")
-		public String review_write_action(@ModelAttribute ReviewDto reviewDto,HttpServletRequest request,@RequestParam("corpLoginId") String corpLoginId,Model model) throws Exception{
+		public String review_write_action(@ModelAttribute ReviewDto reviewDto,@ModelAttribute UserDto userDto ,HttpServletRequest request,@RequestParam("corpLoginId") String corpLoginId,Model model) throws Exception{
 			String forwardPath="";
-			try {	
+			//try {	
 			String sUserId = (String)request.getSession().getAttribute("sUserId");
 			UserDto loginUser = userService.findUser(sUserId);
 			CorpDto corpDto = corpService.findCorp(corpLoginId);
 			System.out.println(loginUser);
 			System.out.println(corpDto);
+			
+
 			reviewDto.setCorp(corpDto);
 			reviewDto.setUser(loginUser);
 			
+			
+			
+			
+			System.out.println(reviewDto);
 			request.setAttribute("loginUser", loginUser);
 			userService.insertReview(reviewDto);
-			System.out.println(reviewDto);
 			
 			
 			forwardPath="redirect:corp-detail?corpLoginId="+corpLoginId;
 			return forwardPath;
-		}catch (ExistedReviewException e) {
-			model.addAttribute("msg",e.getMessage());
-			forwardPath = "redirect:corp-detail?corpLoginId="+corpLoginId;
-			return forwardPath;
-		}
+		//}catch (ExistedReviewException e) {
+		//	model.addAttribute("msg",e.getMessage());
+		//	forwardPath = "redirect:corp-detail?corpLoginId="+corpLoginId;
+		//	return forwardPath;
+		//}
 			
 	}
 	

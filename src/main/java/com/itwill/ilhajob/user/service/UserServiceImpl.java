@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.NamingConventions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +89,7 @@ public class UserServiceImpl implements UserService{
         		-> new UserNotFoundException("존재하지 않습니다."));
         userDto.setId(id);
         userDto.setUserEmail(user.getUserEmail());
-        userDto.setUserPassword(user.getUserPassword());
+        //userDto.setUserPassword(user.getUserPassword());
         modelMapper.map(userDto, user);
         user = userRepository.save(user);
         return modelMapper.map(user, UserDto.class);
@@ -146,19 +147,20 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public ReviewDto insertReview(ReviewDto reviewDto) throws Exception {
-		boolean exists = reviewRepository.existsByUserAndCorp(reviewDto.getUser().getUserEmail(), reviewDto.getCorp().getCorpLoginId());
-		if (exists) {
-			ExistedReviewException exception = 
-					new ExistedReviewException(reviewDto.getUser().getUserEmail()+"회원님이 작성한 리뷰가 존재합니다."); //getUserEmail() -> getUserName으로 변경될예정~
-			exception.setData(reviewDto);
-			throw exception;
-		    // 특정 유저 + 기업 -> 조건에 맞는 리뷰가 이미 작성되어 있는 경우
-		} else {
+		//boolean exists = reviewRepository.existsByUserAndCorp(reviewDto.getUser().getId(), reviewDto.getCorp().getCorpLoginId());
+	//	if (exists) {
+		//	ExistedReviewException exception = 
+	//			new ExistedReviewException(reviewDto.getUser().getUserEmail()+"회원님이 작성한 리뷰가 존재합니다."); //getUserEmail() -> getUserName으로 변경될예정~
+		//	exception.setData(reviewDto);
+	//	throw exception;
+	    // 특정 유저 + 기업 -> 조건에 맞는 리뷰가 이미 작성되어 있는 경우
+	//	} else {
 		    // 특정 유저 + 기업 -> 조건에 맞는 리뷰가 작성이 안되어 있는 경우
 			Review review = modelMapper.map(reviewDto, Review.class);
+			
 			review = reviewRepository.save(review);
 			return modelMapper.map(review, ReviewDto.class);
-		}
+	//	}
 	}
 	
 	

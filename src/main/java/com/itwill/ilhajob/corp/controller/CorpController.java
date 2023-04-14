@@ -222,7 +222,7 @@ public class CorpController {
 		List<RecruitDto> recruitList=recruitService.findAllByCorpId(corpDto.getId());
 		model.addAttribute("recruitList",recruitList);
 		
-		//지원된 이력서 없다는 메세지 띄우기
+		//지원된 이력서 없다는 메세지 띄우기->콘솔에서는 띄워지는데 페이지에서는 안됨...
 		model.addAttribute("message",message);
 		System.out.println(">>>>>>"+message);
 		
