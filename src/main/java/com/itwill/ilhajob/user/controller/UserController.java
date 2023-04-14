@@ -21,9 +21,11 @@ import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.entity.Corp;
+import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.user.dto.MessageDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.exception.ExistedReviewException;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
@@ -53,6 +55,9 @@ public class UserController {
 
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private CorpService corpService;
 
 
 	/**************Local Exception Handler*************
@@ -282,7 +287,7 @@ public class UserController {
 	
 	//리뷰 작성
 		//corpSeq필요 -> delete할떄 appseq처럼 input hidden corpseq필요(redirect용)
-		@RequestMapping("/review_write_action")
+	/*	@RequestMapping("/review_write_action")
 		public String review_write_action(@ModelAttribute ReviewDto reviewDto, @RequestParam("corpId") String corpId, Model model,HttpServletRequest request) throws Exception{
 			request.getSession().setAttribute("sUserId", "test3@test.com");
 			String sUserId = (String)request.getSession().getAttribute("sUserId");
@@ -296,7 +301,40 @@ public class UserController {
 			String forwardPath = "redirect:corp-detail?corpId="+corpDto.getCorpLoginId();
 			return forwardPath;
 			
+		} */
+	
+		
+		@LoginCheck
+		@RequestMapping("/review_write_action")
+		public String review_write_action(@ModelAttribute ReviewDto reviewDto,HttpServletRequest request,@RequestParam("corpLoginId") String corpLoginId,Model model) throws Exception{
+			String forwardPath="";
+			try {	
+			String sUserId = (String)request.getSession().getAttribute("sUserId");
+			UserDto loginUser = userService.findUser(sUserId);
+			CorpDto corpDto = corpService.findCorp(corpLoginId);
+			System.out.println(loginUser);
+			System.out.println(corpDto);
+			reviewDto.setCorp(corpDto);
+			reviewDto.setUser(loginUser);
+			
+			request.setAttribute("loginUser", loginUser);
+			userService.insertReview(reviewDto);
+			System.out.println(reviewDto);
+			
+			
+			forwardPath="redirect:corp-detail?corpLoginId="+corpLoginId;
+			return forwardPath;
+		}catch (ExistedReviewException e) {
+			model.addAttribute("msg",e.getMessage());
+			forwardPath = "redirect:corp-detail?corpLoginId="+corpLoginId;
+			return forwardPath;
 		}
+			
+	}
+	
+	
+	
+		
 		
 		@LoginCheck
 		@RequestMapping("/review_delete")
