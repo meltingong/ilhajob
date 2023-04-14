@@ -14,6 +14,7 @@ import com.itwill.ilhajob.common.dto.LoginRequestDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
+import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
@@ -62,7 +63,7 @@ public class UserRestController {
 		 try {
 			   corpService.create(corp);
 			   return ResponseEntity.ok().body("{\"success\": true, \"message\": \"가입 성공\"}");
-		   }catch (ExistedUserException e) {
+		   }catch (ExistedCorpException e) {
 			   return ResponseEntity.status(ResponseStatusCode.NOT_FOUND_CORP).body(e.getMessage());
 		   }
 	   }
