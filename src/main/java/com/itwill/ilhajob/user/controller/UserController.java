@@ -328,7 +328,7 @@ public class UserController {
 			
 			
 			
-			request.setAttribute("loginUser", loginUser);
+			//request.setAttribute("loginUser", loginUser);
 			userService.insertReview(reviewDto);
 			
 			

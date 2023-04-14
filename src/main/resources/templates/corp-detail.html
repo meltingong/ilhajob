@@ -141,8 +141,8 @@ function reviewDelete(){
 
               </div>
               
-              
 	        <!-- Comment Form -->
+               <th:block th:if="${loginUser?.id!=review?.user?.id}"> <!--  -->
 		        <div class="comment-form default-form">
 		          <h4>리뷰 등록</h4>
 		         <form id ="review-form" name ="f" method="post" th:object="${review}">
@@ -167,10 +167,11 @@ function reviewDelete(){
 		            </div>
 		          </form>
 		        </div>
+		        </th:block> <!--  -->
 		        <!--End Comment Form -->
 		        
 		         	<form name="d">
-              <!-- 여기 리뷰 삽입 -->
+              <!-- 여기 리뷰 LIST -->
 	                <h3>Review [리뷰]</h3>
 	                  <div class="text">해당 기업의 리뷰 리스트를 제공합니다.</div>
 	               <!-- Comments area -->

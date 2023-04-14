@@ -88,6 +88,7 @@ public class CorpController {
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId, HttpServletRequest request,Model model) throws Exception {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		
 		if(sUserId ==null) {
 			CorpDto corpDto=corpService.findCorp(corpLoginId);
 			model.addAttribute("corp", corpDto);
