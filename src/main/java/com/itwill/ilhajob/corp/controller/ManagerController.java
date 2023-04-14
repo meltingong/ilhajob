@@ -50,7 +50,7 @@ public class ManagerController {
 
 	//매니저생성
 	@PostMapping("manager-create")
-    public String updateManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
+    public String createManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto=corpService.findCorp(sCorpId);
 		System.out.println("생성 컨트롤러 도착");
@@ -61,6 +61,20 @@ public class ManagerController {
 		
         return "redirect:dashboard-manager-list";
     }
+	
+	//매니저생성
+	@PostMapping("manager-update")
+	public String updateManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
+		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findCorp(sCorpId);
+		System.out.println("업데이트 컨트롤러 도착");
+		System.out.println(managerDto);
+		managerDto.setCorp(corpDto);
+		ManagerDto createManager = managerService.update(managerDto);
+		System.out.println(createManager+"생성완료");
+		
+		return "redirect:dashboard-manager-list";
+	}
 
 	
 }

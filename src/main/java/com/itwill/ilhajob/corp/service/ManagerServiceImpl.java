@@ -59,9 +59,10 @@ public ManagerServiceImpl(ManagerRepository managerRepository, ModelMapper model
 		if(!found.isPresent()) {
 			new Exception("해당 매니저는 없습니다");
 		}
-			Manager updateManager = modelMapper.map(managerDto,Manager.class);
-			managerRepository.save(updateManager);
-			return managerDto;
+			Manager manager = modelMapper.map(managerDto,Manager.class);
+			Manager updateManager = managerRepository.save(manager);
+			ManagerDto updateManagerDto = modelMapper.map(updateManager, ManagerDto.class);
+			return updateManagerDto;
 		}
 	
 

@@ -3,11 +3,32 @@
 
 <head>
 <script type="text/javascript">
-	function create_manager() {
-		document.f.action = "manager-create";
-		document.method='POST';
-		document.f.submit();
+	function create_manager() {	
+		document.form2.action = "manager-create";
+		document.form2.method='POST';
+		document.form2.submit();
 	}
+	/*
+	function update_manager(event) {
+		var form = event.target.parentNode;
+		console.log(form.val());
+		
+		this.form1.action = "manager-update";
+		console.log(2);
+		this.method='POST';
+		console.log(3);
+		this.form1.submit();
+		console.log(4);
+		
+	}
+	
+	*/
+	function delete_manager() {
+		document.update.action = "manager-delete";
+		document.method='POST';
+		document.update.submit();
+	}
+	
 </script>
 <meta charset="utf-8">
 <title>Superio | Just another HTML Template | Manage Jobs</title>
@@ -84,7 +105,7 @@
 
 								<div class="widget-content">
 									<div class="table-outer">
-										<form class="default-form" name="update" method="post">
+										
 											<table class="default-table manage-job-table">
 												<thead>
 													<tr>
@@ -97,38 +118,40 @@
 												</thead>
 												 
 												<tbody>
-													 <tr th:each="manager : ${managerList}"> 
+												
+													 <tr th:each="manager : ${managerList}">
+													 <form class="default-form" name="form1" method="post" action="/manager-update"> 
 														<!-- form자리 버튼 포스트로 넘길용도 -->
-														<td><input type="text" 
+														<td><input type="text" name="managerName"
 															th:value="${manager.managerName}"> <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
 														</td>
-														<td class="applied"><input type="text"
+														<td class="applied"><input type="text" name="managerEmail"
 															 th:value="${manager.managerEmail}"></td>
 														<td>
-																<input type="text"  th:value="${manager.managerPosition}">
+																<input type="text"  name="managerPosition" th:value="${manager.managerPosition}">
 														</td>
-
-														<td><input type="text" 
+														<td><input type="text" name="managerPhone"
 															class="status" th:value="${manager.managerPhone}"></td>
 														<td>
-															<div class="option-box">
+															<div class="option-box" >
 																<ul class="option-list">
-
-																	<li><button data-text="Modify Manager">
+			
+																	<li><button data-text="Modify Manager" type="submit" onclick="update_manager()">
 																			<span class="la la-check"></span>
-																		</button></li>
-																	<li><button data-text="Delete Manager">
+																				</button>
+																		</li>
+																	<li><button data-text="Delete Manager" type="button" >
 																			<span class="la la-trash"></span>
 																		</button></li>
 																</ul>
 															</div>
 														</td>
-
+														</form>
 													</tr>
 												</tbody>
 											</table>
-										</form>
-										<form class="default-form" name="f" method="post" >
+										
+										<form class="default-form" id="form2" name="form2" method="post" >
 											<table class="default-table manage-job-table">
 												<tbody>
 													<tr>
