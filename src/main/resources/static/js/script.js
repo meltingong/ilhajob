@@ -1160,12 +1160,12 @@
 			contentType: 'application/json',
 			dataType: 'json'
 		});
-		
+		/*
 		var u_email = $('#email');
 		 
         // 정규식 - 이메일 유효성 검사
         var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-
+		*/
 		// Promise 객체를 사용하여 Ajax 요청 처리
 		promise.then(function(response) {
 			// 서버로부터 받은 응답 데이터 처리
