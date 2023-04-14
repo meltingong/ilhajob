@@ -36,13 +36,11 @@ function updateCv() {
 	console.log(document.f.cvDescription.value);
 	console.log(document.f.cvPortfolio.value);
 	console.log(document.f.userId.value);
-	/*
 	if (document.f.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
 		document.f.cvName.focus();
 		return false;
 	}
-	*/
 	if (document.f.cvDescription.value == "") {
 		alert("자기소개를 입력하세요.");
 		document.f.cvDescription.focus();
@@ -100,14 +98,25 @@ function deleteExp(expSeq) {
 	console.log($('#expSeq'+expSeq).attr('value'));
 	console.log($('.default-form').serialize());
 }
-
+/**
 function deleteEdu(eduSeq) {
 	document.f.value=eduSeq;
 	$('#eduSeq'+eduSeq).value=eduSeq;
 	console.log(document.f.value);
 	console.log(">>>>"+$('#eduSeq'+eduSeq).value);
 
-	document.f.action = "info-delete-action";
+	document.f.action = "edu-delete-action";
+	document.f.method='POST';
+	document.f.submit();
+}
+*/
+function deleteEdu(eduId) {
+	document.f.value=eduId;
+	$('#eduId'+eduId).value=eduId;
+	console.log(document.f.value); // ok
+	console.log(">>>>"+$('#eduId'+eduId).value); // undefined
+
+	document.f.action = "edu-delete-action";
 	document.f.method='POST';
 	document.f.submit();
 }

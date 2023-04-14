@@ -79,7 +79,6 @@ public class CorpServiceImpl implements CorpService{
 	}
 
 	@Override
-	@Transactional
 	public CorpDto findCorp(String corpLoginId) throws Exception {
 		Optional<Corp> optionalCorp = corpRepository.findByCorpLoginId(corpLoginId);
 		Corp findCorp = optionalCorp.get();

@@ -67,13 +67,13 @@
                       <!-- New Cv Name -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>제목</label>
-                        <input type="text" name="cvName" placeholder="((테스트))이력서 제목을 입력하세요.">
+                        <input type="text" name="cvName" placeholder="이력서 제목을 입력하세요.">
                       </div>
 
                       <!-- About Company -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>자기소개서</label>
-                        <textarea placeholder="자기소개서를 작성해주세요." name="cvDescription"></textarea>
+                        <textarea placeholder="자기소개서를 입력하세요." name="cvDescription"></textarea>
                       </div>
                       
                    		<!-- <input type="hidden" name="userSeq" th:value="${userSeq}"/>
@@ -82,8 +82,7 @@
                       <!-- 포트폴리오 -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>포트폴리오</label>
-                        <!-- <textarea placeholder="포트폴리오를 업로드 사이트를 입력하세요." th:text="${cvDetail.cvPortfolio}"></textarea> -->
-                        <input type="text" name="cvPortfolio" placeholder="포트폴리오를 업로드 사이트를 입력하세요.">
+                        <input type="text" name="cvPortfolio" placeholder="포트폴리오를 입력하세요.">
                       </div>
                       <!-- 포트폴리오 -->
 
@@ -108,8 +107,9 @@
                                   <span class="year" th:text="${edu.eduEndDate}">2012 - 2014</span>
                                   <div class="edit-btns">
                                   <!-- 버튼 클릭 펑션 추가필 -->
-                                    <button type="button" onclick=""><span class="la la-pencil"></span></button>
-                                    <button type="button" onclick=""><span class="la la-trash"></span></button>
+     	                             <input type="hidden" th:id="'eduId(' + ${edu.id} + ')'" name="eduId" th:value="${edu.id}">
+                                    <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
+                                    <button type="button" th:id="'deleteEdu(' + ${edu.id} + ')'" th:onclick="'deleteEdu(' + ${edu.id} + ')'"  th:value="${edu.id}"><span class="la la-trash"></span></button>
                                   </div>
                                 </div>
                               </div>
@@ -117,7 +117,7 @@
 		                      
 		                      <!-- Input eduScore -->
 		                      <div class="form-group col-lg-12 col-md-12">
-		                        <label>(임시)학점</label>
+		                        <label>학점</label>
 		                        <input type="text" name="name" placeholder="학력 관련 추가 정보를 입력하세요." th:value="${edu.eduScore}">
 		                      </div>
 
@@ -228,7 +228,7 @@
 
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
-                        <button class="theme-btn btn-style-one" onclick="writeCv()">Save</button>
+                        <button class="theme-btn btn-style-one" onclick="writeCv()">저장하기</button>
                       </div>
                     </div>
                   </form>

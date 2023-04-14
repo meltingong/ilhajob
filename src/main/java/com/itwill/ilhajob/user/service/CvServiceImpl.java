@@ -52,16 +52,6 @@ public class CvServiceImpl implements CvService{
 		cv.setCvName(cvDto.getCvName());
 		cv.setCvDescription(cvDto.getCvDescription());
 		cv.setCvPortfolio(cvDto.getCvPortfolio());
-		/*
-		List<AwardsDto> awardsList = cvDto.getAwardsList();
-		cv.setAwardslist(awardsList.stream().map(awards -> modelMapper.map(awards, Awards.class)).collect(Collectors.toList()));
-		
-		List<EduDto> eduList = cvDto.getEduList();
-		cv.setEdulist(eduList.stream().map(edu -> modelMapper.map(edu, Edu.class)).collect(Collectors.toList()));
-		
-		List<ExpDto> expList = cvDto.getExpList();
-		cv.setExplist(expList.stream().map(exp -> modelMapper.map(exp, Exp.class)).collect(Collectors.toList()));
-		*/
 		cvRepository.save(cv);
 		return modelMapper.map(cv, CvDto.class);
 	};
@@ -81,6 +71,7 @@ public class CvServiceImpl implements CvService{
 	@Override
 	public List<CvDto> findByUserId(Long userId) {
 		List<Cv> cvList = cvRepository.findByUserId(userId);
+		System.out.println("@@@@@@" + cvList);
 		return cvList.stream().map(cv -> modelMapper.map(cv, CvDto.class)).collect(Collectors.toList());
 	}
 	 

@@ -15,7 +15,7 @@ spring:
     check-template-location: true
     mode: HTML
   datasource:
-    url: jdbc:oracle:thin:@182.237.126.19:1521:XE
+    url: jdbc:oracle:thin:@182.237.0126.19:1521:XE
     username: F2211JDEVELOPER#TEAM1
     password: F2211JDEVELOPER#TEAM1
   jpa:
@@ -34,7 +34,7 @@ spring:
 #    init:
 #      mode: always
 #      schema-locations:
-#      - classpath:ilhajob.ddl  
+#      - classpath:ilhajob.ddl
 #      data-locations:
 #      - classpath:ilhajob-insert2.sql
 #      continue-on-error: true

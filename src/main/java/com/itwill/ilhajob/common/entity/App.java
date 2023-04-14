@@ -45,16 +45,22 @@ public class App {
 	private Long id;
 	
 	@Column(columnDefinition = "NUMBER(1) DEFAUlT 0")
-	private int appStatus;
+	private Integer appStatus;
 	
 	private LocalDateTime appCreateDate;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "recruit_id")
 	private Recruit recruit;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "cv_id")
+	@ToString.Exclude
 	private Cv cv;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "user_id")
+	@ToString.Exclude
+	private User user;
 	
 }

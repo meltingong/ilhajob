@@ -70,7 +70,7 @@
                         <label>이력서 선택</label>
                         <select class="chosen-select" onchange="changeCv()">
                           <option th:text="*{cvName}">My CV</option> <!-- 선택된 이력서 제목 -->
-                          <option th:each="cv:${cvList}" th:text="${cv.cvName}" th:value="${cv.id}">My CV</option>
+                          <option th:each="cv:${cvList}" th:id="cvId" th:text="${cv.cvName}" th:value="${cv.id}">My CV</option>
                         </select>
                       </div>
                       
@@ -122,10 +122,13 @@
 								<!-- <input type="hidden" name="eduEndDate" th:value="${edu.eduEndDate}"/> -->
 								<span class="year" th:text="${edu.eduEndDate}">2012 - 2014</span>
                                   <div class="edit-btns">
-                                  <!-- 버튼 클릭 펑션 추가필 -->
+                                  <!--
      	                             <input type="hidden" th:id="'eduSeq(' + ${edu.eduSeq} + ')'" name="eduSeq" th:value="${edu.eduSeq}">
                                     <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
-                                    <button type="button" th:id="'deleteEdu(' + ${edu.eduSeq} + ')'" th:onclick="'deleteEdu(' + ${edu.eduSeq} + ')'"  th:value="${edu.eduSeq}"><span class="la la-trash"></span></button>
+                                    <button type="button" th:id="'deleteEdu(' + ${edu.eduSeq} + ')'" th:onclick="'deleteEdu(' + ${edu.eduSeq} + ')'" th:value="${edu.eduSeq}"><span class="la la-trash"></span></button>
+                                   -->
+                                    <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
+                                    <button type="button" th:onclick="deleteEdu()" th:value="${edu.id}"><span class="la la-trash"></span></button>
                                   </div>
                                 </div>
                               </div>
@@ -153,7 +156,7 @@
                           </div>
                           <!-- Resume BLock -->
                           <div class="resume-block" th:each="exp:${expList}">
-                          <input type="hidden" name="expSeq" th:value="${exp.expSeq}">
+                          <input type="hidden" name="expId" th:value="${exp.id}">
                             <div class="inner">
                               <span class="name">S</span>
                               <div class="title-box">
@@ -166,7 +169,7 @@
                                   <span class="year" th:value="${exp.expEndDate}" th:text="${exp.expEndDate}">2012 - 2014</span>
                                   <div class="edit-btns">
                                     <button><span class="la la-pencil" onclick=""></span></button>
-                                    <button><span class="la la-trash" th:value="${exp.expSeq}" onclick="deleteExp()"></span></button>
+                                    <button><span class="la la-trash" th:value="${exp.id}" onclick="deleteExp()"></span></button>
                                   </div>
                                 </div>
                               </div>
@@ -227,6 +230,7 @@
                      </div>
 
                       <!-- Search Select -->
+                      <!-- 
                       <div class="form-group col-lg-6 col-md-12">
                         <label>기타 보유능력</label>
                         <select data-placeholder="Categories" class="chosen-select multiple" multiple tabindex="4">
@@ -237,11 +241,13 @@
                           <option value="Management">Management</option>
                         </select>
                       </div>
+                       -->
 
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
-                        <button class="theme-btn btn-style-one" onclick="updateCv()">Save</button>
-                        <button class="theme-btn btn-style-one" onclick="apply()">Apply</button>
+                        <button class="theme-btn btn-style-one" onclick="updateCv()">저장하기</button>
+                        <button class="theme-btn btn-style-one" onclick="apply()">지원하기</button>
+                        <button class="theme-btn btn-style-one" onclick="deleteCv()">(임시)삭제하기</button>
                       </div>
                     </div>
                   </form>
