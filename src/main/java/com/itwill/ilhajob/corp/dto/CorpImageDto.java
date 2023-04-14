@@ -19,5 +19,6 @@ import lombok.ToString;
 public class CorpImageDto {
 	long id;
 	String corpImage;
+	@ToString.Exclude
 	CorpDto corp;
 }

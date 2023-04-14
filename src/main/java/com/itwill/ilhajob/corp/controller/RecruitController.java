@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.corp.controller;
 
+import java.io.Console;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -89,13 +90,27 @@ public class RecruitController {
 //	      return forward_path;
 //	   }
 	   
-	   //App table이 recruit 참조해서 안되는 중....
-	   @PostMapping("/recruit_delete_action")
-	   public String recruit_delete_action(@RequestParam("id")long id) throws Exception{
-		   System.out.println(">>>>>>>>>>>>>>"+id);
+	   //App table이 recruit 참조해서 안되는 중....?
+	   //app을 null로 만들고 save한 뒤에 삭제해보는 중
+	   @PostMapping("/recruit-delete-action")
+	   public String recruit_delete_action(@RequestParam("id")Long id) throws Exception{
+		   //CorpDto loginCorp=corpService.findCorp((String)(request.getSession().getAttribute("sCorpId")));
+		   System.out.println(">>>>>>>corp아이디>>>>>>>"+id);
+		  
 		   recruitService.remove(id);
 		   return "dashboard-manage-job";
 	   }
+	   
+//	   @PostMapping()
+//	   public String recruit_modify_action() {
+//		   return"";
+//	   }
+//	   
+//	   
+//	   @PostMapping()
+//	   public String recruit_modify_form() {
+//		   return"";
+//	   }
 	   
 	   
 }

@@ -147,20 +147,21 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public ReviewDto insertReview(ReviewDto reviewDto) throws Exception {
-		//boolean exists = reviewRepository.existsByUserAndCorp(reviewDto.getUser().getId(), reviewDto.getCorp().getCorpLoginId());
-	//	if (exists) {
-		//	ExistedReviewException exception = 
-	//			new ExistedReviewException(reviewDto.getUser().getUserEmail()+"회원님이 작성한 리뷰가 존재합니다."); //getUserEmail() -> getUserName으로 변경될예정~
-		//	exception.setData(reviewDto);
-	//	throw exception;
+		Long count = reviewRepository.countByUserIdAndCorpId(reviewDto.getUser().getId(), reviewDto.getCorp().getId());
+		System.out.println(">>>>>>>>>>>>>>>>>"+count);
+		if (count != 0) {
+			ExistedReviewException exception = 
+				new ExistedReviewException(reviewDto.getUser().getUserEmail()+"회원님이 작성한 리뷰가 존재합니다."); //getUserEmail() -> getUserName으로 변경될예정~
+			exception.setData(reviewDto);
+			throw exception;
 	    // 특정 유저 + 기업 -> 조건에 맞는 리뷰가 이미 작성되어 있는 경우
-	//	} else {
+		} else {
 		    // 특정 유저 + 기업 -> 조건에 맞는 리뷰가 작성이 안되어 있는 경우
 			Review review = modelMapper.map(reviewDto, Review.class);
 			
 			review = reviewRepository.save(review);
 			return modelMapper.map(review, ReviewDto.class);
-	//	}
+		}
 	}
 	
 	

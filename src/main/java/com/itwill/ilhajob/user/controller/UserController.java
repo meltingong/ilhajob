@@ -128,10 +128,12 @@ public class UserController {
 	public String modify_action(@ModelAttribute UserDto userDto, HttpServletRequest request,String userPassword,String userPasswordConfirm) throws Exception {
 		String forwardPath = "";
 		Long id = (Long)request.getSession().getAttribute("id");
+		
 		if(userPassword.equals(userPasswordConfirm)) {
 			userService.update(id,userDto);
 		}
 		forwardPath = "redirect:candidate-dashboard-profile";
+		
 		return forwardPath;
 	}
 	
@@ -314,13 +316,11 @@ public class UserController {
 		@RequestMapping("/review_write_action")
 		public String review_write_action(@ModelAttribute ReviewDto reviewDto,@ModelAttribute UserDto userDto ,HttpServletRequest request,@RequestParam("corpLoginId") String corpLoginId,Model model) throws Exception{
 			String forwardPath="";
-			//try {	
+			try {	
 			String sUserId = (String)request.getSession().getAttribute("sUserId");
 			UserDto loginUser = userService.findUser(sUserId);
 			CorpDto corpDto = corpService.findCorp(corpLoginId);
-			System.out.println(loginUser);
-			System.out.println(corpDto);
-			
+		
 
 			reviewDto.setCorp(corpDto);
 			reviewDto.setUser(loginUser);
@@ -328,18 +328,18 @@ public class UserController {
 			
 			
 			
-			System.out.println(reviewDto);
-			request.setAttribute("loginUser", loginUser);
+			//request.setAttribute("loginUser", loginUser);
 			userService.insertReview(reviewDto);
 			
 			
 			forwardPath="redirect:corp-detail?corpLoginId="+corpLoginId;
 			return forwardPath;
-		//}catch (ExistedReviewException e) {
-		//	model.addAttribute("msg",e.getMessage());
-		//	forwardPath = "redirect:corp-detail?corpLoginId="+corpLoginId;
-		//	return forwardPath;
-		//}
+		}catch (ExistedReviewException e) {
+			
+			model.addAttribute("msg",e.getMessage());
+			forwardPath = "redirect:corp-detail?corpLoginId="+corpLoginId;
+			return forwardPath;
+		}
 			
 	}
 	
