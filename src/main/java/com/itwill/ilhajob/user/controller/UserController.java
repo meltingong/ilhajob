@@ -128,10 +128,12 @@ public class UserController {
 	public String modify_action(@ModelAttribute UserDto userDto, HttpServletRequest request,String userPassword,String userPasswordConfirm) throws Exception {
 		String forwardPath = "";
 		Long id = (Long)request.getSession().getAttribute("id");
+		
 		if(userPassword.equals(userPasswordConfirm)) {
 			userService.update(id,userDto);
 		}
 		forwardPath = "redirect:candidate-dashboard-profile";
+		
 		return forwardPath;
 	}
 	
