@@ -27,7 +27,8 @@ class OrdersServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 //				.productId(1L)
 //				.build();
 //		ordersService.saveOrder(order);
-		System.out.println(ordersService.findOrderByCorp(1L));
+		ProductDto product = ProductDto.builder().id(1L).pEndMonth(90L).pPrice(30000).build();
+		ordersService.checkAndSaveOrder("user", 1L, product, "카드");
 	}
 
 }
