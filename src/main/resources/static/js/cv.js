@@ -4,10 +4,12 @@
  
  // cv write
  function writeCv() {
+	/*
 	console.log(document.f.cvName.value);
 	console.log(document.f.cvDescription.value);
 	console.log(document.f.cvPortfolio.value);
 	console.log(document.f.userSeq.value);
+	*/
 	if (document.f.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
 		document.f.cvName.focus();
@@ -30,12 +32,14 @@
 
 // cv update
 function updateCv() {
+	/*
 	console.log('dddddddd');
 	console.log(document.f.cvId.value);
 	console.log(document.f.cvName.value);
 	console.log(document.f.cvDescription.value);
 	console.log(document.f.cvPortfolio.value);
 	console.log(document.f.userId.value);
+	*/
 	if (document.f.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
 		document.f.cvName.focus();
@@ -56,17 +60,36 @@ function updateCv() {
 	document.f.submit();
 }
 
-// cv delete
-function cvDelete(id) {
+// cv update
+function deleteCv() {
 	// 나중에 모달 등으로 수정하기
-
 	if (window.confirm("정말 삭제하시겠습니까?")) {
-		document.getElementById('f'+id).method='POST';
-		document.getElementById('f'+id).action = "cv-delete-action";
-		document.getElementById('f'+id).submit();
+		  document.f.action = "cv-delete-action";
+		  document.f.method='POST';
+		  document.f.submit();
 	}
 }
 
+// cv change
+function changeCv() {
+  var cvId = document.querySelector('.chosen-select').value;
+  window.confirm("cvId = " + cvId);
+  document.querySelector('#cvId').value = cvId;
+  document.f.action = "cv-detail";
+  document.f.method='POST';
+  document.f.submit();
+}
+
+// cv apply(예정)
+function apply() {
+	document.f.action = "cv-apply-action";
+	document.f.method='POST';
+	document.f.submit();
+}
+
+
+// edu
+/*
 function deleteEdu(eduSeq) {
 	$('#eduSeq'+eduSeq).val(eduSeq);
 	console.log($('#eduSeq'+eduSeq).attr('value'));
@@ -75,29 +98,7 @@ function deleteEdu(eduSeq) {
 	document.f.method='POST';
 	document.f.submit();
 }
-
-
-
-
-
-
-/****************** 이하 작업중 */
-function addHtml() {
-	const addEduBtn = document.getElementById();
-}
-
-
-
-function addEdu() {
-
-}
-
-
-function deleteExp(expSeq) {
-	$('#expSeq'+expSeq).val(expSeq);
-	console.log($('#expSeq'+expSeq).attr('value'));
-	console.log($('.default-form').serialize());
-}
+*/
 /**
 function deleteEdu(eduSeq) {
 	document.f.value=eduSeq;
@@ -119,23 +120,21 @@ function deleteEdu(eduId) {
 	document.f.action = "edu-delete-action";
 	document.f.method='POST';
 	document.f.submit();
+
+function addEdu() {
+
 }
 
-// cv apply
+// exp
+function deleteExp(expSeq) {
+	$('#expSeq'+expSeq).val(expSeq);
+	console.log($('#expSeq'+expSeq).attr('value'));
+	console.log($('.default-form').serialize());
+}
+}
+
 function deleteExp() {
 	document.f.action = "exp-delete-action";
-	document.f.method='GET';
-	document.f.submit();
-}
-
-function apply() {
-	document.f.action = "cv-apply-action";
 	document.f.method='POST';
-	document.f.submit();
-}
-
-function changeCv() {
-	document.f.action = "cv-detail";
-	document.f.method='GET';
 	document.f.submit();
 }

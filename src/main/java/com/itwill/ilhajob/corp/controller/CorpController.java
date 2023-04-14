@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
@@ -60,9 +61,6 @@ public class CorpController {
 	private CorpImageService corpImageService;
 	@Autowired
 	private RecruitService recruitService;
-
-	@Autowired
-	private ManagerService managerService;
 	
 	@Autowired
 	private UserService userService;
@@ -108,7 +106,7 @@ public class CorpController {
 			
 			List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
 			model.addAttribute("reviewList",reviewList);
-		}else {
+			}else {
 			CorpDto corpDto=corpService.findCorp(corpLoginId);
 			model.addAttribute("corp", corpDto);
 			
@@ -217,44 +215,43 @@ public class CorpController {
 	}
 
 	@RequestMapping("/dashboard-manage-job")
-	public String corp_dashboard_manage_job(HttpServletRequest request,Model model) throws Exception {
+	public String corp_dashboard_manage_job(@ModelAttribute("message")String message,HttpServletRequest request,Model model) throws Exception {
 		//회사의 작성 공고 띄우기
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto=corpService.findCorp(sCorpId);
 		List<RecruitDto> recruitList=recruitService.findAllByCorpId(corpDto.getId());
 		model.addAttribute("recruitList",recruitList);
 		
+		//지원된 이력서 없다는 메세지 띄우기->콘솔에서는 띄워지는데 페이지에서는 안됨...
+		model.addAttribute("message",message);
+		System.out.println(">>>>>>"+message);
+		
 		// 지원자 숫자 보여주기->일단 보류
-		//List<Integer> countList = new ArrayList<>();
-		//Long appCount = appService.findAppCountByCorpId(sCorpId);
-		//System.out.println(appCount);
-		//model.addAttribute("appCount", appCount);
+//		List<Integer> countList = new ArrayList<>();
+//		Long appCount = appService.findAppCountByCorpId(sCorpId);
+//		System.out.println(appCount);
+//		model.addAttribute("appCount", appCount);
 		
 		//공고 마감,진행 여부 보여주는 status도 일단 보류
 
 		return "dashboard-manage-job";
 	}
 	
-	//매니저리스트
-	
-	@RequestMapping("/dashboard-manager-list")
-	public String corp_dashboard_manager_list(HttpServletRequest request,Model model) throws Exception{
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
-		List<ManagerDto> managerList = managerService.findManagerByCorpID(corpDto.getId());
-		System.out.println(managerList);
-		model.addAttribute("managerList",managerList);
 		
-		return "dashboard-manager-list";
-	}
-	
-	//지원자 보기
-	@RequestMapping("/dashboard-applicants")
-	public String corp_dashboard_applicants(@RequestParam("id")int id, Model model) throws Exception {
+		//지원자 관련
+		@RequestMapping(value="/dashboard-applicants", params="id")
+		public String corp_dashboard_applicants(@RequestParam("id")long id, Model model, RedirectAttributes redirectAttributes) throws Exception {
+			
 		//지원자 이력서 리스트 불러오기
 		List<AppDto> appList=appService.findAllByRecruitId(id);
-		model.addAttribute("appList",appList);
-		
+		//리스트 없을 때
+		if(appList.size()==0) { 
+			redirectAttributes.addFlashAttribute("message", "해당 공고에 제출된 이력서가 없습니다!");
+			return "redirect:dashboard-manage-job";
+		//리스트 있을 때	
+		}else { 
+			model.addAttribute("appList",appList);
+		}
 		//이력서의 회원 정보 가져오기
 		List<AppDto> userList=appService.findAllByUserId(id);
 		model.addAttribute("userList",userList);
@@ -265,8 +262,9 @@ public class CorpController {
 		
 		return "dashboard-applicants";
 	}
-
-
+	
+		
+		
 	// 검색기능
 	@GetMapping("/search")
 	public String searchCorp() {
