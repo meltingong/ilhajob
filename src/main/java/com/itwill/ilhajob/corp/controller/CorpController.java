@@ -61,9 +61,6 @@ public class CorpController {
 	private CorpImageService corpImageService;
 	@Autowired
 	private RecruitService recruitService;
-
-	@Autowired
-	private ManagerService managerService;
 	
 	@Autowired
 	private UserService userService;
@@ -109,7 +106,7 @@ public class CorpController {
 			
 			List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
 			model.addAttribute("reviewList",reviewList);
-		}else {
+			}else {
 			CorpDto corpDto=corpService.findCorp(corpLoginId);
 			model.addAttribute("corp", corpDto);
 			
@@ -240,18 +237,6 @@ public class CorpController {
 		return "dashboard-manage-job";
 	}
 	
-	//매니저리스트
-	
-	@RequestMapping("/dashboard-manager-list")
-	public String corp_dashboard_manager_list(HttpServletRequest request,Model model) throws Exception{
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
-		List<ManagerDto> managerList = managerService.findManagerByCorpID(corpDto.getId());
-		System.out.println(managerList);
-		model.addAttribute("managerList",managerList);
-		
-		return "dashboard-manager-list";
-	}
 		
 		//지원자 관련
 		@RequestMapping(value="/dashboard-applicants", params="id")
