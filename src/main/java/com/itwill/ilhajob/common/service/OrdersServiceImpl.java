@@ -42,8 +42,6 @@ public class OrdersServiceImpl implements OrdersService{
 		long period = 0;
 		if(role.equals("user")) {
 			ordersList = ordersRepository.findByUserId(id);
-			System.out.println(ordersList.get(ordersList.size()-1).getOrderEndDate().compareTo(LocalDateTime.now()));
-			
 			//주문내역이 없거나 종료일이 만료됐을 때 신규 주문, 결제 생성
 			if(ordersList.size()==0 || ordersList.get(ordersList.size()-1).getOrderEndDate().compareTo(LocalDateTime.now()) < 0) {
 				Orders saveOrder = saveOrder(role,id,productDto);
@@ -152,12 +150,25 @@ public class OrdersServiceImpl implements OrdersService{
 	private void savePayment(OrdersDto ordersDto, ProductDto productDto , String paymentMethod) {
 		PaymentDto paymentDto = PaymentDto.builder()
 				  .ordersId(ordersDto.getId()).userId(ordersDto.getUserId())
-				  .payment_date(LocalDateTime.now()).payment_price(productDto.getPPrice())
-				  .payment_method(paymentMethod).build();
+				  .paymentDate(LocalDateTime.now()).paymentPrice(productDto.getPPrice())
+				  .paymentMethod(paymentMethod).build();
 		paymentRepository.save(modelMapper.map(paymentDto, Payment.class));
 	}
 
-	
-	
+
+	@Override
+	public List<PaymentDto> findPayment(String role, long id) {
+	    List<Payment> paymentList;
+	    if (role.equals("user")) {
+	        paymentList = paymentRepository.findByUserId(id);
+	    } else {
+	        paymentList = paymentRepository.findByCorpId(id);
+	    }
+
+	    return paymentList.stream()
+	        .map(payment -> modelMapper.map(payment, PaymentDto.class))
+	        .collect(Collectors.toList());
+	}
+		
 	
 }
