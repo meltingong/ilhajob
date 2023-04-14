@@ -142,7 +142,8 @@ function reviewDelete(){
               </div>
               
 	        <!-- Comment Form -->
-               <th:block th:if="${loginUser?.id!=review?.user?.id}"> <!--  -->
+	        <th:block th:if = "${loginUser!=null}">
+               <th:block th:if="${loginUser?.id!=review?.user?.id} and ${review?.corp?.id == null}"> <!--  -->
 		        <div class="comment-form default-form">
 		          <h4>리뷰 등록</h4>
 		         <form id ="review-form" name ="f" method="post" th:object="${review}">
@@ -167,7 +168,9 @@ function reviewDelete(){
 		            </div>
 		          </form>
 		        </div>
-		        </th:block> <!--  -->
+			        </th:block> <!--  -->
+			        
+		        </th:block>  
 		        <!--End Comment Form -->
 		        
 		         	<form name="d">
