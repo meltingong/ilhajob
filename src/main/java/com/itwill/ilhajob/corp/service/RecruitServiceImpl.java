@@ -77,6 +77,7 @@ public class RecruitServiceImpl implements RecruitService {
 	@Override
 	public void remove(long id) throws Exception {
 		recruitRepository.deleteById(id);
+		recruitRepository.flush();
 	}
 	
 	//open jobs -3 부분에 넣기

@@ -57,17 +57,11 @@ public ManagerServiceImpl(ManagerRepository managerRepository, ModelMapper model
 
 	@Override
 	public List<ManagerDto> findManagerByCorpID(Long corpId) {
-		List<ManagerDto> managerDtoList =   managerRepository.findAll().stream()
+		List<Manager> managerList =   managerRepository.findByCorpId(corpId);
+		
+		return managerList.stream()
 				.map(manager -> modelMapper.map(manager, ManagerDto.class))
 				.collect(Collectors.toList());
-		List<ManagerDto> managerList = new ArrayList<ManagerDto>();
-		
-		for (ManagerDto managerDto : managerDtoList) {
-			if(managerDto.getCorp().getId()==corpId) {
-				managerList.add(managerDto);
-			}
-		}
-		return managerList;
 	}
 	
 }

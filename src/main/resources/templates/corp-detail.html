@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
+function reviewCreate(){
+	console.log(document.getElementById('review-form'));
+	document.f.action = "review_write_action";
+	document.f.method='POST';
+	document.f.submit();
+	
+}
+
 function reviewDelete(){
 	document.d.action = "review_delete";
 	document.d.method='POST';
@@ -171,23 +179,25 @@ function reviewDelete(){
 		        </form>  
 	        <!-- Comment Form -->
 		        <div class="comment-form default-form">
-		          <h4>Leave your thought here</h4>
-		          <form>
+		          <h4>리뷰 등록</h4>
+		         <form id ="review-form" name ="f" method="post" th:object="${review}">
+		         	<input th:value="${corp.corpLoginId}" type="hidden" name="corpLoginId" />
+		         	
 		            <div class="row clearfix">
 		              <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-		                <label>Your Name</label>
-		                <input type="text" name="username" placeholder="Name" required>
+		                <label>제목</label>
+		                <input th:value="${review?.reviewTitle}" type="text" name="reviewTitle" placeholder="리뷰제목" required>
 		              </div>
 		              <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-		                <label>Your Email</label>
-		                <input type="email" name="email" placeholder="Email" required>
+		                <label>평점</label>
+		                <input th:value="${review?.reviewGrade}"  type="text" name="reviewGrade" placeholder="평점" required>
 		              </div>
 		              <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-		                <label>Your Comment</label>
-		                <textarea name="message" placeholder="Write Comment"></textarea>
+		                <label>댓글내용</label>
+		                <textarea th:value="${review?.reviewContent}"  name="reviewContent" placeholder="내용"></textarea>
 		              </div>
 		              <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-		                <button class="theme-btn btn-style-one" type="submit" name="submit-form">Post Comment</button>
+		                <button class="theme-btn btn-style-one" type="button" onClick="reviewCreate();" name="submit-form">리뷰 등록</button>
 		              </div>
 		            </div>
 		          </form>

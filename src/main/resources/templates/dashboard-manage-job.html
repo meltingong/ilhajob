@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
-	function beforeAscList(a,b){
-		var LocalDateTimeA=new LocalDateTime(a['']);
-	}
-	
-	
-	function ascList(){
+	function recruitModify(){
 		
 	}
 	
-	
-	function beforeDescList(){
+	function recruitDelete(){
+		if(window.confirm("해당 공고를 삭제하시겠습니까?")){
+			const id=document.getElementById("id").value;
+			console.log(id);
+			document.recruitForm.method='POST';
+			document.recruitForm.action="recruit_delete_action";
+			document.recruitForm.submit();
 			
 		}
-	
-	function descList(){
-		
 	}
-
-
-
 </script>
 
+
+<script th:inline="javascript">
+/*
+	function getMessage(){
+		var message=sessionStorage.getItem('message');
+		if(message){
+			alert(message);
+			sessionStorage.removeItem('message');
+		}
+	}
+	*/
+</script>
 
 
 <head>
@@ -111,11 +117,12 @@
                       <tbody>
                         <tr th:each="recruit:${recruitList}">
                         <!-- form자리 버튼 포스트로 넘길용도 -->
+                        <form name="recruitForm" method="post">
                           <td >
                             <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
                             <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
                           </td>
-                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#">지원자 이력서 보기</a></td>
+                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#" >지원자 이력서 보기</a></td>
                           <td>
 						      <ul>
 						        <li th:text="|Created:${recruit.rcDate}|"></li>
@@ -126,13 +133,14 @@
                           <td class="status">Active</td>
                           <td>
                             <div class="option-box">
+                              	<input type="hidden" name="id" th:value="${recruit.id}"/>
                               <ul class="option-list">
-                                <li><button data-text="Modify Recruit"><span class="la la-pencil"></span></button></li>
-                                <li><button data-text="Delete Recruit"><span class="la la-trash"></span></button></li>
+                                <li><button data-text="Modify Recruit" value="수정" onClick="recruitModify();"><span class="la la-pencil"></span></button></li>
+                                <li><button data-text="Delete Recruit" value="삭제" onClick="recruitDelete();"><span class="la la-trash"></span></button></li>
                               </ul>
                             </div>
                           </td>
-            
+            			</form>
                         </tr>
                       </tbody>
                     </table>
