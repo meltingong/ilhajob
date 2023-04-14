@@ -88,4 +88,14 @@ public class RecruitController {
 //	      String forward_path = "redirect:recruit-list";
 //	      return forward_path;
 //	   }
+	   
+	   //App table이 recruit 참조해서 안되는 중....
+	   @PostMapping("/recruit_delete_action")
+	   public String recruit_delete_action(@RequestParam("id")long id) throws Exception{
+		   System.out.println(">>>>>>>>>>>>>>"+id);
+		   recruitService.remove(id);
+		   return "dashboard-manage-job";
+	   }
+	   
+	   
 }
