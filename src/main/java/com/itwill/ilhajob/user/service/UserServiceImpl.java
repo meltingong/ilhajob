@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService{
         		-> new UserNotFoundException("존재하지 않습니다."));
         userDto.setId(id);
         userDto.setUserEmail(user.getUserEmail());
-        userDto.setUserPassword(user.getUserPassword());
+        //userDto.setUserPassword(user.getUserPassword());
         modelMapper.map(userDto, user);
         user = userRepository.save(user);
         return modelMapper.map(user, UserDto.class);
