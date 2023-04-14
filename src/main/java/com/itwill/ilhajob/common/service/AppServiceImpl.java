@@ -14,6 +14,7 @@ import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.entity.App;
 import com.itwill.ilhajob.common.repository.AppRepository;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.user.repository.MessageRepository;
 
 @Service
 public class AppServiceImpl implements AppService {

@@ -78,7 +78,6 @@ public class CorpController {
 //	}
 
 	@RequestMapping("/corp-list")
-
 	public String corp_list(Model model) throws Exception {
 		List<CorpDto> corpList = corpService.findCorpAll();
 		model.addAttribute("corpList", corpList);
