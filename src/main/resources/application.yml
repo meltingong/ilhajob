@@ -16,8 +16,8 @@ spring:
     mode: HTML
   datasource:
     url: jdbc:oracle:thin:@182.237.0126.19:1521:XE
-    username: F2211JDEVELOPER#TEAM1
-    password: F2211JDEVELOPER#TEAM1
+    username: Jdeveloper01
+    password: Jdeveloper01
   jpa:
     show-sql: true
     generate-ddl: true
