@@ -102,11 +102,11 @@
                             <div class="inner-box">
                               <div class="content">
                                 <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
-                                <h4 class="name"><a href="#">Darlene Robertson</a></h4>
+                                <h4 class="name"><a th:href="@{cv-detail(id=${appList.cv.id})}" href="#" th:text="${appList.cv.cvName}">Darlene Robertson</a></h4>
                                 <ul class="candidate-info">
-                                  <li th:text="${recruit.rcPosition}" class="designation">UI Designer</li>
-                                  <li><span class="icon flaticon-map-locator"></span> London, UK</li>
-                                  <li><span class="icon flaticon-money"></span> $99 / hour</li>
+                                  <li th:text="|지원직무: ${recruit.rcPosition}|" class="designation">UI Designer</li>
+                                  <li th:text="|Description= ${appList.cv.cvDescription}|"><span class="icon flaticon-map-locator"></span> London, UK</li>
+                                  <li th:text="|Portfolio= ${appList.cv.cvPortfolio}|"><span class="icon flaticon-money"></span> $99 / hour</li>
                                 </ul>
                                 <ul class="post-tags">
                                   <li><a href="#">App</a></li>
