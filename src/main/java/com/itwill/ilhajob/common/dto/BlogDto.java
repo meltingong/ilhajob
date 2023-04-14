@@ -41,7 +41,7 @@ public class BlogDto {
 	private LocalDateTime blogDate;
 	private int blogReadCount;
 	private int blogLike;
-	private int userSeq;
+	private Long userId;
 	private int blogCateSeq;
 	
 	private List<BlogCommentDto> blogCommentList;

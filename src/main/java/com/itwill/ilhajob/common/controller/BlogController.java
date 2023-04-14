@@ -72,18 +72,10 @@ public class BlogController {
 	public String blog_write_action(@ModelAttribute BlogDto blog,
 									RedirectAttributes redirectAttributes)throws Exception {
 		blogService.insertBlog(blog);
-		// redirectAttributes.addAttribute("id",blog); 글쓰고나서 리스트말고 작성한 글로 가는거..안되네..
+		//redirectAttributes.addAttribute("id",blog); 작성글로 가야댐
 		return "redirect:blog-single";
-		 
 		}
 	
-	/*
-	 * int guest_no = guestService.insertGuest(guest);
-		redirectAttributes.addAttribute("guest_no",guest_no);
-		return "redirect:guest_view";
-	}
-	 */
-
 	
 	/*블로그 상세*/
 	//블로그 Seq가 없을 때
@@ -93,71 +85,19 @@ public class BlogController {
 	}
 	//블로그 Seq가 있을때
 	@RequestMapping(value = "/blog-single", params = "id")
-	public String blog_view(@RequestParam("id") Long id , Model model, @ModelAttribute BlogCommentDto blogCommentDto) throws Exception{
+	public String blog_view(@RequestParam("id") Long blogId , Model model, @ModelAttribute BlogCommentDto blogCommentDto) throws Exception{
 		//블로그 상세내용 불러오기
-		BlogDto blogDto = blogService.findBlog(id);
+		BlogDto blogDto = blogService.findBlog(blogId);
 		model.addAttribute("blog", blogDto);
 		
 		//블로그 조회수 업데이트
-		model.addAttribute("blogReadCount", blogService.updateViews(id));
+		model.addAttribute("blogReadCount", blogService.updateViews(blogId));
 		
     
-		//댓글리스트 불러오기...안되네.....
-		List<BlogCommentDto> blogCommentList = blogCommentService.selectByBlogComment(id);
+		//댓글리스트 불러오기
+		List<BlogCommentDto> blogCommentList = blogCommentService.findByBlogComment(blogId);
 		model.addAttribute("blogCommentList", blogCommentList);
-		
-		
 		return "blog-single";
-	}
-	
-	/*블로그 수정 안됨..*/
-
-	@PostMapping(value="/blog-modify-form",params = "!id")
-	public String blog_modify_form() {
-		return "redirect:blog-list";
-	}
-	
-	@PostMapping(value="/blog-modify-form", params = "id")
-	public String blog_modify_form(@RequestParam("id") Long id,Model model) throws Exception{
-		BlogDto blogDto = blogService.findBlog(id);
-		model.addAttribute("blog", blogDto);
-		return "blog-modify-form";
-	}
-	
-	/*
-	@PostMapping(value="/blog_modify_action")
-	public String blog_modify_action(@ModelAttribute Blog blog,RedirectAttributes redirectAttributes) throws Exception{
-		blogService.updateBlog(blog);
-		redirectAttributes.addAttribute("blogSeq", blog.getBlogSeq());
-		return "redirect:blog-single";
-	}
-	 */
-	
-	/*삭제
-	@PostMapping(value = "/blog-remove-action")
-	public String blog_remove_action(@RequestParam Long id) throws Exception{
-		blogService.deleteBlog(id);
-		return "redirect:blog-list";
-	}
-	
-	@PostMapping(value = "/blog_remove_action", params = "id")
-	public String blog_remove_action(@RequestParam("id") Long id, Model model) throws Exception{
-		BlogDto blogDto = blogService.deleteBlog(id);
-		model.addAttribute("blog", blogDto);
-		return "redirect:blog_list";
-	}
-	*/
-	
-	/*
-	 * 블로그 댓글 작성..안됨ㅠㅠㅋ
-	 */
-
-	@PostMapping("/blogcomment_write_action")
-	public String blogcomment_write_action(@ModelAttribute BlogCommentDto blogCommentDto,
-									RedirectAttributes redirectAttributes)throws Exception {
-		blogCommentService.insertBlogComment(blogCommentDto);
-		return "redirect:blog-single";
-	
 	}
 	
 

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.itwill.ilhajob.common.dto.BlogCommentDto;
 import com.itwill.ilhajob.common.entity.BlogComment;
 import com.itwill.ilhajob.common.repository.BlogCommentRepository;
+import com.itwill.ilhajob.user.dto.ReviewDto;
+import com.itwill.ilhajob.user.entity.Review;
 
 
 @Service
@@ -40,12 +42,24 @@ public class BlogCommentServiceImpl implements BlogCommentService{
 	
 	
 	@Override
-	public List<BlogCommentDto> selectByBlogComment(Long id) {
-		Optional<BlogComment> selectBlogComment = blogCommentRepository.findById(id);
-		return selectBlogComment.stream().map(blogComment -> modelMapper.map(blogComment,  BlogCommentDto.class))
-				.collect(Collectors.toList()) ;
+	public List<BlogCommentDto> findByBlogComment(Long blogId) {
+		List<BlogComment> commentList = blogCommentRepository.findAllById(blogId);
+		List<BlogCommentDto> commentDto = commentList.stream()
+												.map(blogComment -> modelMapper.map(blogComment, BlogCommentDto.class))
+												.collect(Collectors.toList());
+				return commentDto;
 	}
 	
+	/*
+	 public List<ReviewDto> findReviewList(Long corpId) {
+			List<Review> findReviewList = reviewRepository.findByCorpId(corpId);
+			List<ReviewDto> ReviewDtoList = findReviewList.stream()
+					.map(review -> modelMapper.map(review, ReviewDto.class))
+					.collect(Collectors.toList());
+			return ReviewDtoList;	
+
+	}
+	 */
 	
 	@Override
 	public BlogCommentDto insertBlogComment(BlogCommentDto blogCommentDto) throws Exception {

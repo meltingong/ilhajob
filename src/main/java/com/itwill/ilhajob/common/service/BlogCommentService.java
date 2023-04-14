@@ -18,12 +18,13 @@ public interface BlogCommentService {
 
 	/* selectByBlogComment(블로그seq로 찾기)
 	 */
-	List<BlogCommentDto> selectByBlogComment(Long id);
+	List<BlogCommentDto> findByBlogComment(Long blogId);
 	
 	/*
 	 * blogComment insert
 	 */
     BlogCommentDto insertBlogComment(BlogCommentDto blogComment) throws Exception;
+
 	
 	/*
     int updateBlogComment(BlogCommentDto blogComment);

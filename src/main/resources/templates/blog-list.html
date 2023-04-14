@@ -9,7 +9,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Superio | Just another HTML Template | Blog List</title>
+  <title>Superio | Just another HTML Template | Blog List v3</title>
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -41,7 +41,7 @@
     </header>
     <!--End Main Header -->
 
-       <!--Page Title-->
+    <!--Page Title-->
     <section class="page-title">
       <div class="auto-container">
         <div class="title-outer">
@@ -88,7 +88,7 @@
                     </div>
                     <div class="lower-content">
                       <ul class="post-meta">
-                        <li><p th:text="${#temporals.format(blog.blogDate,'yyyy-MM-dd')}">August 31, 2021</li>
+                        <li><p th:text="${#temporals.format(blog.blogDate,'yyyy-MM-dd')}" >August 31, 2021</li>
                         <li><p>12 Comment</li>
                         <li><p th:text="|${blog.blogReadCount} views|"></p>
                         <li><p th:text="${blog.blogLike}"></p>
@@ -128,8 +128,8 @@
               <ul>
                 <li class="prev"><a th:href="@{blog-list?page=}+${nowPage-1}"><i class="fa fa-arrow-left"></i></a></li>
                   <li th:each="page : ${#numbers.sequence(0,totalPage -1)}">
-     			  <a th:href="@{blog-list?page=}+${pageStat.index}" th:text="${pageStat.index+1}"></a>
-                <li class="next"><a th:href="@{blog-list?page=}+${nowPage+1}"></a><i class="fa fa-arrow-right" ></i></li>
+     			  <a th:href="@{blog-list?page=}+${pageStat.index}" th:text="${pageStat.index+1}"></a></li>
+                <li class="next"><a th:href="@{blog-list?page=}+${nowPage+1}"><i class="fa fa-arrow-right"></i></a></li>
               </ul>
 
               

@@ -28,6 +28,9 @@ public class BlogCommentDto {
 	private long id;
 	private String commentContent;
 	private LocalDateTime commentDate;
-	private int userSeq;
-	private int blogSeq;
+	private Long userId;
+	private Long blogId;
+	
+	@ToString.Exclude
+	private BlogDto blog;
 }
