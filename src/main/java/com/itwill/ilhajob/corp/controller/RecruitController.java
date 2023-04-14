@@ -21,6 +21,7 @@ import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
+import com.itwill.ilhajob.user.controller.LoginCheck;
 
 
 @Controller
@@ -52,6 +53,8 @@ public class RecruitController {
 	public String recruit_detail() {
 		return "redirect:index";	
 	}
+	
+	@LoginCheck
 	@RequestMapping(value = "/recruit-detail",params = "id")
 	public String recruit_detail(@RequestParam long id, Model model) throws Exception{
 		RecruitDto recruit = recruitService.findRecruit(id);
