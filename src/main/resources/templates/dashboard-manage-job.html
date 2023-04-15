@@ -2,17 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
 	function recruitModifyForm(){
-		document.recruitForm.method='POST';
 		document.recruitForm.action="recruit-modify-form";
+		document.recruitForm.method='POST';
 		document.recruitForm.submit();
 	}
 	
 	function recruitDelete(){
 		if(window.confirm("해당 공고를 삭제하시겠습니까?")){
-			//const id=document.getElementById("id").value;
-			//console.log(id);
-			document.recruitForm.method='POST';
+			const id=document.getElementById("id").value;
+			console.log(id);
+			console.log(document.recruitForm.id.value);
 			document.recruitForm.action="recruit-delete-action";
+			document.recruitForm.method='POST';
 			document.recruitForm.submit();
 			
 		}

@@ -6,7 +6,6 @@ import java.sql.Date;
 
 import javax.transaction.Transactional;
 
-import org.apache.ibatis.annotations.Update;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

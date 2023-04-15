@@ -74,6 +74,7 @@ public class RecruitServiceImpl implements RecruitService {
         recruit = recruitRepository.save(recruit);
         return modelMapper.map(recruit, RecruitDto.class);
 	}
+	@Transactional
 	@Override
 	public void remove(long id) throws Exception {
 		recruitRepository.deleteById(id);

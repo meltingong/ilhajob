@@ -23,7 +23,6 @@ import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
 
-
 @Controller
 public class RecruitController {
 	@Autowired
@@ -32,31 +31,31 @@ public class RecruitController {
 	private ManagerService managerService;
 	@Autowired
 	private RecruitService recruitService;
-	
-	@RequestMapping(value = {"/","/index"})
-	public String main(Model model) throws Exception{
+
+	@RequestMapping(value = { "/", "/index" })
+	public String main(Model model) throws Exception {
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
 		model.addAttribute("recruitList", recruitList);
 		String forward_path = "index";
 		return forward_path;
 	}
-	
+
 	@RequestMapping("/recruit-list")
-	public String recruit_list(Model model) throws Exception{
+	public String recruit_list(Model model) throws Exception {
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
 		model.addAttribute("recruitList", recruitList);
 		String forward_path = "recruit-list";
 		return forward_path;
 	}
-	
-	@RequestMapping(value = "/recruit-detail",params = "!id")
+
+	@RequestMapping(value = "/recruit-detail", params = "!id")
 	public String recruit_detail() {
-		return "redirect:index";	
+		return "redirect:index";
 	}
-	
+
 	@LoginCheck
-	@RequestMapping(value = "/recruit-detail",params = "id")
-	public String recruit_detail(@RequestParam long id, Model model) throws Exception{
+	@RequestMapping(value = "/recruit-detail", params = "id")
+	public String recruit_detail(@RequestParam long id, Model model) throws Exception {
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
 		List<ManagerDto> managerList = managerService.findManagerByCorpID(recruit.getCorp().getId());
@@ -64,26 +63,28 @@ public class RecruitController {
 		String forward_path = "recruit-detail";
 		return forward_path;
 	}
-	
-	   @RequestMapping("/dashboard-post-job")
-	   public String dashboard_post_job_form(HttpServletRequest request,Model model) throws Exception {
-		  CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
-	      model.addAttribute("corp",loginCorp);
-	      String forward_path = "dashboard-post-job";
-	      return forward_path;
-	   }
-	   @PostMapping("/dashboard-post-job-action")
-	   public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto,HttpServletRequest request) throws Exception {
-		  CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
-		  recruitDto.setRcDate(LocalDateTime.now());
-		  recruitDto.setRcDeadline(LocalDateTime.now());
-		  recruitDto.setCorp(loginCorp);
-		  recruitDto = recruitService.create(recruitDto);
-	      String forward_path = "redirect:recruit-detail?id="+recruitDto.getId();
-	      return forward_path;
-	   }
-	   
-	   //테스트아직 안함
+
+	@RequestMapping("/dashboard-post-job")
+	public String dashboard_post_job_form(HttpServletRequest request, Model model) throws Exception {
+		CorpDto loginCorp = corpService.findCorp((String) request.getSession().getAttribute("sCorpId"));
+		model.addAttribute("corp", loginCorp);
+		String forward_path = "dashboard-post-job";
+		return forward_path;
+	}
+
+	@PostMapping("/dashboard-post-job-action")
+	public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto, HttpServletRequest request)
+			throws Exception {
+		CorpDto loginCorp = corpService.findCorp((String) request.getSession().getAttribute("sCorpId"));
+		recruitDto.setRcDate(LocalDateTime.now());
+		recruitDto.setRcDeadline(LocalDateTime.now());
+		recruitDto.setCorp(loginCorp);
+		recruitDto = recruitService.create(recruitDto);
+		String forward_path = "redirect:recruit-detail?id=" + recruitDto.getId();
+		return forward_path;
+	}
+
+	// 테스트아직 안함
 //	   @PostMapping("/dashboard-post-remove-action")
 //	   public String dashboard_post_remove_action(@ModelAttribute RecruitDto recruitDto, HttpServletRequest request) throws Exception {
 //		  CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
@@ -92,36 +93,38 @@ public class RecruitController {
 //	      String forward_path = "redirect:recruit-list";
 //	      return forward_path;
 //	   }
-	   
-	   //App table이 recruit 참조해서 안되는 중....?
-	   //app을 null로 만들고 save한 뒤에 삭제해보는 중
-	   @PostMapping("/recruit-delete-action")
-	   public String recruit_delete_action(@RequestParam("id")Long id) throws Exception{
-		   //CorpDto loginCorp=corpService.findCorp((String)(request.getSession().getAttribute("sCorpId")));
-		   System.out.println(">>>>>>>corp아이디>>>>>>>"+id);
-		  
-		   recruitService.remove(id);
-		   return "dashboard-manage-job";
-	   }
-	   
+
+	// App table이 recruit 참조해서 안되는 중....?
+	// app을 null로 만들고 save한 뒤에 삭제해보는 중
+	@PostMapping("/recruit-delete-action")
+	public String recruit_delete_action(@RequestParam("id") long id) throws Exception {
+		// CorpDto
+		// loginCorp=corpService.findCorp((String)(request.getSession().getAttribute("sCorpId")));
+		System.out.println(">>>>>>>corp아이디>>>>>>>" + id);
+
+		recruitService.remove(id);
+//		return "dashboard-manage-job";
+		return "recruit-delete-action";
+	}
+
 //	   @PostMapping()
 //	   public String recruit_modify_action() {
 //		   return"";
 //	   }
 //	   
 //	   
-	   @PostMapping("/recruit-modify-form")
-	   public String recruit_modify_form(HttpServletRequest request,@RequestParam("id")Long id, Model model) throws Exception{
-		   //일단 회사 정보 뿌리기
-		   CorpDto loginCorp = corpService.findCorp((String)request.getSession().getAttribute("sCorpId"));
-		   model.addAttribute("corp",loginCorp);
-		   
-		   //공고 상세 뿌리기
-		   RecruitDto recruit=recruitService.findRecruit(id);
-		   model.addAttribute("recruit",recruit);
-		   
-		   return "recruit-modify-form";
-	   }
-	   
-	   
+//	@PostMapping("/recruit-modify-form")
+//	public String recruit_modify_form(HttpServletRequest request, @RequestParam("id") Long id, Model model)
+//			throws Exception {
+//		// 일단 회사 정보 뿌리기
+//		CorpDto loginCorp = corpService.findCorp((String) request.getSession().getAttribute("sCorpId"));
+//		model.addAttribute("corp", loginCorp);
+//
+//		// 공고 상세 뿌리기
+//		RecruitDto recruit = recruitService.findRecruit(id);
+//		model.addAttribute("recruit", recruit);
+//
+//		return "recruit-modify-form";
+//	}
+
 }

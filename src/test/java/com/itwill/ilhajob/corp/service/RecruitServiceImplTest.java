@@ -39,30 +39,10 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 //	}
 	
 //	App table 때문에 테스트 안됨->DataintegrityException....
-//	@Test
-//	void testRemove() throws Exception {
-		
-		
-//		List<AppDto> appList=appService.findAllByRecruitId(1L);
-//		System.out.println(appList);
-//		
-//		for (AppDto appDto : appList) {
-//			//Long appReId = appDto.getRecruit().getId();
-//			appDto.setRecruit(null);
-//			List<App> appEntityList = new ArrayList<App>();
-//			appEntityList = appList.stream().map(app -> modelMapper.map(app, App.class)).collect(Collectors.toList());
-//			for (App app : appEntityList) {
-//				appRepository.save(app);
-//			}
-//		}
-//		System.out.println(appList);
-//		EntityManager em;
-//		Recruit recruit=em.find(Recruit.class, 1L);
-//		recruitService.remove(1L);
-//		System.out.println(recruitService.findRecruit(1L));
-//		
-//		
-//	}
+	@Test
+	void testRemove() throws Exception {
+		recruitService.remove(16L);
+	}
 		
 /*		List<AppDto> appList=appService.findAllByRecruitId(1L);
 		System.out.println(appList);

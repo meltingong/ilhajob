@@ -318,7 +318,8 @@
     alter table app 
        add constraint FK5lafg6ip10co6ijiim6og71v5 
        foreign key (recruit_id) 
-       references recruit;
+       references recruit
+       on delete set null;
  
     
     alter table app 
@@ -456,7 +457,7 @@
     alter table recruit_tag 
        add constraint FKelwb3nmj9ngwt4p959nb6478n 
        foreign key (recruit_id) 
-       references recruit;
+       references recruit on delete cascade;
  
     
     alter table recruit_tag 
