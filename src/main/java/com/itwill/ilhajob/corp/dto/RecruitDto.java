@@ -37,7 +37,7 @@ public class RecruitDto {
 	private LocalDateTime rcDate;
 	private LocalDateTime rcDeadline;
 	private int rcReadCount;
-	@ToString.Exclude
+	//@ToString.Exclude
 	private CorpDto corp;
 	
 }

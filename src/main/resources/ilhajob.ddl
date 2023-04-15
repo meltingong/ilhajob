@@ -248,14 +248,14 @@
     
     create table recruit (
        id number(19,0) not null,
-        rc_content varchar2(1000 char) not null,
+        rc_content varchar2(1000 char),
         rc_date timestamp,
         rc_deadline timestamp,
         rc_position varchar2(255 char),
         rc_qualification varchar2(255 char),
         rc_read_count NUMBER(19) DEFAULT 0,
-        rc_salary number(10,0) not null,
-        rc_title varchar2(600 char) not null,
+        rc_salary number(10,0),
+        rc_title varchar2(600 char),
         corp_id number(19,0),
         primary key (id)
     );

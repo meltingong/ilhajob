@@ -110,14 +110,19 @@ public class RecruitController {
 	public String recruit_modify_form(HttpServletRequest request,@ModelAttribute RecruitDto recruitDto, Model model) throws Exception {
 		System.out.println("recruit update");
 		System.out.println(recruitDto);
+		//System.out.println(recruitDto.getCorp().getId()); //null뜸
 		// 일단 회사 로그인
 //		CorpDto loginCorp = corpService.findCorp((String) request.getSession().getAttribute("sCorpId"));
 //		model.addAttribute("corp", loginCorp);
 //		System.out.println("로그인 회사 정보"+loginCorp);
 //
-		
-//		RecruitDto recruit=recruitService.findRecruit(id);
-//		model.addAttribute("recruit",recruit);
+		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findCorp(sCorpId);
+		recruitDto.setCorp(corpDto);
+		RecruitDto updateRecruit=recruitService.update(recruitDto);
+		System.out.println(updateRecruit);
+		//RecruitDto recruit=recruitService.findRecruit(recruitDto.getId());
+		//model.addAttribute("recruit",recruit);
 
 		return "redirect:recruit-modify-form";
 	}
