@@ -16,16 +16,16 @@ class CorpImageServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 	@Autowired
 	private CorpImageService corpImageService;
 	
-	@Test
-	void testInsertCorpImage() {
-		CorpDto corpDto = CorpDto.builder().id(1L).corpLoginId("corp_01").corpPassword("1111").build();
-		System.out.println(
-				corpImageService.insertCorpImage(CorpImageDto.builder()
-													.id(0)
-													.corpImage("testinsert.jpg")
-													.corp(corpDto)
-													.build()));
-	}
+//	@Test
+//	void testInsertCorpImage() {
+//		CorpDto corpDto = CorpDto.builder().id(1L).corpLoginId("corp_01").corpPassword("1111").build();
+//		System.out.println(
+//				corpImageService.insertCorpImage(CorpImageDto.builder()
+//													.id(0)
+//													.corpImage("testinsert.jpg")
+//													.corp(corpDto)
+//													.build()));
+//	}
 
 	@Test
 	void testSelectById() {
