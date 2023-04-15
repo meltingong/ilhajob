@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.ManagerDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
@@ -53,7 +54,7 @@ public class RecruitController {
 		return "redirect:index";
 	}
 
-	@LoginCheck
+	//@LoginCheck
 	@RequestMapping(value = "/recruit-detail", params = "id")
 	public String recruit_detail(@RequestParam long id, Model model) throws Exception {
 		RecruitDto recruit = recruitService.findRecruit(id);
@@ -94,37 +95,31 @@ public class RecruitController {
 //	      return forward_path;
 //	   }
 
-	// App table이 recruit 참조해서 안되는 중....?
-	// app을 null로 만들고 save한 뒤에 삭제해보는 중
+	
 	@PostMapping("/recruit-delete-action")
-	public String recruit_delete_action(@RequestParam("id") long id) throws Exception {
-		// CorpDto
-		// loginCorp=corpService.findCorp((String)(request.getSession().getAttribute("sCorpId")));
-		System.out.println(">>>>>>>corp아이디>>>>>>>" + id);
-
-		recruitService.remove(id);
-//		return "dashboard-manage-job";
-		return "recruit-delete-action";
+	public String recruit_delete_action(@ModelAttribute RecruitDto recruitDto) throws Exception {
+		//System.out.println("삭제 전");
+		//System.out.println(">>>>>>>recruit>>>>>>>" + recruitDto);
+		System.out.println(recruitDto.getId());
+		recruitService.remove(recruitDto.getId());
+		//System.out.println("삭제 후");
+		return "redirect:dashboard-manage-job";
 	}
-
-//	   @PostMapping()
-//	   public String recruit_modify_action() {
-//		   return"";
-//	   }
-//	   
-//	   
-//	@PostMapping("/recruit-modify-form")
-//	public String recruit_modify_form(HttpServletRequest request, @RequestParam("id") Long id, Model model)
-//			throws Exception {
-//		// 일단 회사 정보 뿌리기
+ 
+	@PostMapping("/recruit-modify-form")
+	public String recruit_modify_form(HttpServletRequest request,@ModelAttribute RecruitDto recruitDto, Model model) throws Exception {
+		System.out.println("recruit update");
+		System.out.println(recruitDto);
+		// 일단 회사 로그인
 //		CorpDto loginCorp = corpService.findCorp((String) request.getSession().getAttribute("sCorpId"));
 //		model.addAttribute("corp", loginCorp);
+//		System.out.println("로그인 회사 정보"+loginCorp);
 //
-//		// 공고 상세 뿌리기
-//		RecruitDto recruit = recruitService.findRecruit(id);
-//		model.addAttribute("recruit", recruit);
-//
-//		return "recruit-modify-form";
-//	}
+		
+//		RecruitDto recruit=recruitService.findRecruit(id);
+//		model.addAttribute("recruit",recruit);
+
+		return "redirect:recruit-modify-form";
+	}
 
 }

@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
-	function recruitModifyForm(){
-		document.recruitForm.action="recruit-modify-form";
-		document.recruitForm.method='POST';
-		document.recruitForm.submit();
+	function recruitModifyForm(form){
+		form.action="recruit-modify-form";
+		form.method='POST';
+		form.submit();
 	}
 	
-	function recruitDelete(){
+	function recruitDelete(form){
 		if(window.confirm("해당 공고를 삭제하시겠습니까?")){
-			const id=document.getElementById("id").value;
-			console.log(id);
-			console.log(document.recruitForm.id.value);
-			document.recruitForm.action="recruit-delete-action";
-			document.recruitForm.method='POST';
-			document.recruitForm.submit();
+			//const id=document.getElementById("id").value;
+			//console.log(id);
+			//console.log(document.recruitForm.id.value);
+			form.action="recruit-delete-action";
+			form.method='POST';
+			form.submit();
 			
 		}
-		
+	}
+	/*	
 	 function recruitModifyAction(){
 		 
 	 }	
+	*/ 
 	 
-	 
-	}
 </script>
 
 
@@ -125,7 +125,7 @@
 
                       <tbody>
                         <tr th:each="recruit:${recruitList}">
-                        <form name="recruitForm" method="post">
+                        <form class="default-form" name="recruitForm" method="post">
                         <!-- form자리 버튼 포스트로 넘길용도 -->
                           <td >
                             <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
@@ -134,18 +134,20 @@
                           <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#" >지원자 이력서 보기</a></td>
                           <td>
 						      <ul>
-						        <li th:text="|Created:${recruit.rcDate}|"></li>
-						        <li th:text="|Expired:${recruit.rcDeadline}|"></li>
+						        <li th:text="|Created: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></li>
+						        <li th:text="|Expired: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></li>
 						      </ul>
 						    </td>
+						   
                          
                           <td class="status">Active</td>
                           <td>
                             <div class="option-box">
                               	<input type="hidden" name="id" th:value="${recruit.id}"/>
                               <ul class="option-list">
-                                <li><button data-text="Modify Recruit" value="수정" onClick="recruitModifyForm();"><span class="la la-pencil"></span></button></li>
-                                <li><button data-text="Delete Recruit" onClick="recruitDelete();"><span class="la la-trash"></span></button></li>
+                                <li><button data-text="Modify Recruit" type="button" onClick="recruitModifyForm(this.form)"><span class="la la-pencil"></span></button></li>
+                                <!-- li><button data-text="Modify Recruit" value="수정" onClick="recruitModifyForm();"><span class="la la-pencil"></span></button></li-->
+                                <li><button data-text="Delete Recruit" type="button" onClick="recruitDelete(this.form)"><span class="la la-trash"></span></button></li>
                               </ul>
                             </div>
                           </td>

@@ -28,7 +28,7 @@ public class RecruitDto {
 	CORP_ID          NOT NULL VARCHAR2(30)  
 	*/
 	
-	private long id;
+	private Long id;
 	private String rcTitle; 
 	private String rcPosition;
 	private String rcContent;

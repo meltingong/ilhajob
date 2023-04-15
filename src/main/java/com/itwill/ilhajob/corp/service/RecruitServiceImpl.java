@@ -63,16 +63,29 @@ public class RecruitServiceImpl implements RecruitService {
 		return modelMapper.map(recruit, RecruitDto.class);
 	}
 	@Override
-	public RecruitDto update(long id, RecruitDto recruitDto) throws Exception {
-		Optional<Recruit> optionalRecurit = recruitRepository.findById(id);
-		Recruit recruit = optionalRecurit.get();
-		recruitDto.setId(id);
-		recruitDto.setRcTitle(recruit.getRcTitle());
-		recruitDto.setRcContent(recruit.getRcContent());
-		recruitDto.setRcSalary(recruit.getRcSalary());
-        modelMapper.map(recruitDto, recruit);
-        recruit = recruitRepository.save(recruit);
-        return modelMapper.map(recruit, RecruitDto.class);
+	public RecruitDto update(RecruitDto recruitDto) throws Exception {
+		Optional<Recruit> optionalRecruit = recruitRepository.findById(recruitDto.getId());
+		Recruit recruit=modelMapper.map(recruitDto, Recruit.class);
+		Recruit updateRecruit=recruitRepository.save(recruit);
+		RecruitDto updateRecruitDto=modelMapper.map(updateRecruit, RecruitDto.class);
+		return updateRecruitDto;
+		
+//		Recruit recruit = optionalRecruit.get();
+//		recruit.setRcTitle(recruitDto.getRcTitle());
+//		recruit.setRcPosition(recruitDto.getRcPosition());
+//		recruit.setRcQualification(recruitDto.getRcQualification());
+//		recruit.setRcSalary(recruitDto.getRcSalary());
+//		recruitRepository.save(recruit);
+//		return modelMapper.map(recruit, RecruitDto.class);
+		
+		//수정2번
+//		recruitDto.setId(id);
+//		recruitDto.setRcTitle(recruit.getRcTitle());
+//		recruitDto.setRcContent(recruit.getRcContent());
+//		recruitDto.setRcSalary(recruit.getRcSalary());
+//      modelMapper.map(recruitDto, recruit);
+//      recruit = recruitRepository.save(recruit);
+//      return modelMapper.map(recruit, RecruitDto.class);
 	}
 	@Transactional
 	@Override
@@ -118,27 +131,7 @@ public class RecruitServiceImpl implements RecruitService {
         }
 	}
 	
-	//corpId로 recruitList 불러오기
-//	@Override
-//	public List<RecruitDto> recruitList(Long corpId) throws Exception {
-//		//List<Recruit> recrList1=recruitRepository.findByCorpId(1L);
-//		
-//		List<Recruit> recruitList=recruitRepository.findByCorpId(corpId);
-//		
-//		System.out.println(recruitList);
-//		return recruitList.stream()
-//				.map(recruit ->modelMapper.map(recruit, RecruitDto.class))
-//				.collect(Collectors.toList());
-//		
-//		List<Recruit> recruitList=recruitRepository.findByCorpId(corpId);
-//		List<RecruitDto> recruitDtos=new ArrayList<>();
-//		for(Recruit recruit: recruitList) {
-//			RecruitDto recruitDto= modelMapper.map(recruit, RecruitDto.class);
-//			recruitDtos.add(recruitDto);
-//		}
-//			return recruitDtos;
-//	}
-//	
+
 	
 	
 }

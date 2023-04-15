@@ -38,26 +38,23 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 //		System.out.println(recruitService.findAllByCorpId(1L));
 //	}
 	
-//	App table 때문에 테스트 안됨->DataintegrityException....
-	@Test
-	void testRemove() throws Exception {
-		recruitService.remove(16L);
-	}
+//	App table 때문에 테스트 안됨->on delete set null 추가함
+//	@Test
+//	void testRemove() throws Exception {
+//		recruitService.remove(1L);
+//	}
 		
-/*		List<AppDto> appList=appService.findAllByRecruitId(1L);
-		System.out.println(appList);
+
 
 	
-//	@Disabled
 //	@Test
 //	void testUpdate() throws Exception{
 //		RecruitDto updateRecruit=RecruitDto.builder()
+//										   .rcTitle("수정제목")
 //										   .rcContent("수정내용")
 //										   .rcPosition("수정직급")
 //										   .build();
-//		recruitService.update(1L, updateRecruit);
+//		recruitService.update(2L, updateRecruit);
 //	}
 	
-}
-*/
 }
