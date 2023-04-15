@@ -1160,12 +1160,13 @@
 			contentType: 'application/json',
 			dataType: 'json'
 		});
-		/*
-		var u_email = $('#email');
+		
+		
+		//var u_email = $('#email');
 		 
         // 정규식 - 이메일 유효성 검사
-        var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-		*/
+        // var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		
 		// Promise 객체를 사용하여 Ajax 요청 처리
 		promise.then(function(response) {
 			// 서버로부터 받은 응답 데이터 처리
@@ -1175,7 +1176,7 @@
 			// 로그인 성공 시 처리
 			if (response.success) {
 				alert('가입성공');
-				window.location.href = '/final-project-team1-ilhajob/login-popup';
+				$('#login-modal').modal('show');
 			}
 			// 로그인 실패 시 처리
 			else {
