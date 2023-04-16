@@ -113,19 +113,13 @@ public class RecruitController {
  
 	@RequestMapping("/recruit-modify-form")
 	public String recruit_modify_form(HttpServletRequest request,@ModelAttribute RecruitDto recruitDto, Model model) throws Exception {
-		System.out.println("recruit update");
-		System.out.println(recruitDto);
-		//System.out.println(recruitDto.getCorp().getId()); -> null뜸
-
 		// 일단 회사 정보가져와서 담기
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto=corpService.findCorp(sCorpId);
 		recruitDto.setCorp(corpDto);
 		
 		RecruitDto setRecruit=recruitService.findRecruit(recruitDto.getId());
-		//RecruitDto updateRecruit=recruitService.update(recruitDto);
 		System.out.println("setRecruit>>>"+setRecruit);
-		//RecruitDto recruit=recruitService.findRecruit(recruitDto.getId());
 		model.addAttribute("recruit",setRecruit);
 
 		return "recruit-modify-form";
@@ -133,10 +127,17 @@ public class RecruitController {
 	
 	//수정 action 테스트 중->The given id must not be null!뜨는 중
 	@RequestMapping("/recruit-modify-action")
-	public String recruit_modify_form(@ModelAttribute RecruitDto recruitDto,Model model,RedirectAttributes redirectAttributes,HttpServletRequest request) throws Exception {
-		recruitService.update(recruitDto);
-		redirectAttributes.addAttribute("id", recruitDto.getId());
-		return "dashboard-manage-job";
+	public String recruit_modify_action(@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
+		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findCorp(sCorpId);
+		recruitDto.setCorp(corpDto);
+		//System.out.println("pre modify action >>>>"+recruitDto);
+		
+		
+		RecruitDto checkRecruit = recruitService.update(recruitDto);
+		//System.out.println("update check>>>>"+checkRecruit);
+		model.addAttribute("id",recruitDto.getId());
+		return "redirect:recruit-detail?id=" + recruitDto.getId();
 		
 		//RecruitDto updateRecruit= recruitService.update(recruitDto);
 		//System.out.println("updateRecruit>>>"+updateRecruit);

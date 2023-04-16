@@ -123,6 +123,7 @@
                   <form name="f" class="default-form" method="post">
                     <div class="row">
                       <!-- Input -->
+                      <input type="hidden" name="id" th:value ="${recruit.id}">
                       <div class="form-group col-lg-12 col-md-12">
                         <label>공고 제목</label>
                         <input type="text" name="rcTitle" th:value ="${recruit.rcTitle}">
