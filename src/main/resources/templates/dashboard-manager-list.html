@@ -23,10 +23,10 @@
 	}
 	
 	*/
-	function delete_manager() {
-		document.update.action = "manager-delete";
+	function delete_manager(form) {
+		form.action = "manager-delete";
 		document.method='POST';
-		document.update.submit();
+		form.submit();
 	}
 	
 </script>
@@ -120,7 +120,7 @@
 												<tbody>
 												
 													 <tr th:each="manager : ${managerList}">
-													 <form class="default-form" name="form1" method="post" action="/manager-update"> 
+													 <form class="default-form" name="form1" method="post" action="manager-update"> 
 														<!-- form자리 버튼 포스트로 넘길용도 -->
 														<td><input type="text" name="managerName"
 															th:value="${manager.managerName}"> <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
@@ -131,16 +131,18 @@
 																<input type="text"  name="managerPosition" th:value="${manager.managerPosition}">
 														</td>
 														<td><input type="text" name="managerPhone"
-															class="status" th:value="${manager.managerPhone}"></td>
+															class="status" th:value="${manager.managerPhone}">
+															<input type="hidden" name="id"
+															class="status" th:value="${manager.id}"></td>
 														<td>
 															<div class="option-box" >
 																<ul class="option-list">
 			
-																	<li><button data-text="Modify Manager" type="submit" onclick="update_manager()">
+																	<li><button data-text="Modify Manager" type="submit">
 																			<span class="la la-check"></span>
 																				</button>
 																		</li>
-																	<li><button data-text="Delete Manager" type="button" >
+																	<li><button data-text="Delete Manager" type="button" onclick="delete_manager(this.form)">
 																			<span class="la la-trash"></span>
 																		</button></li>
 																</ul>
@@ -155,7 +157,7 @@
 											<table class="default-table manage-job-table">
 												<tbody>
 													<tr>
-														<td><input type="text" name="managerName">
+														<td ><input type="text" name="managerName">
 															<!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
 														</td>
 														<td class="applied"><input type="text" name="managerEmail"></td>
@@ -166,8 +168,8 @@
 														<td>
 															<div class="option-box">
 																<ul class="option-list">
-																	<li><button type="button" onclick="create_manager()" >
-																			<span class="la la-plus"></span>
+																	<li style="margin-left: 40px"><button type="button" onclick="create_manager()" >
+																			<span  class="la la-plus"></span>
 																		</button></li>
 																</ul>
 															</div>

@@ -235,8 +235,13 @@ function reviewDelete(){
                         </div>
                       </li>
                     </ul>
-
-                    <div class="btn-box"><a href="#"  onclick="location.href='${corpWebsite}'" class="theme-btn btn-style-three" th:text="${corp.corpWebsite}"><button>www.www.com</button></a></div>
+					<div class="btn-box">
+					  <a href="#" onclick="window.open('${corpWebsite}', '_blank')" class="theme-btn btn-style-three" th:text="${corp.corpWebsite}">
+					    <button>www.www.com</button>
+					  </a>
+					</div>
+					                    
+                    <!-- div class="btn-box"><a href="#"  onclick="location.href='${corpWebsite}'" class="theme-btn btn-style-three" th:text="${corp.corpWebsite}"><button>www.www.com</button></a></div-->
                   </div>
                 </div>
 

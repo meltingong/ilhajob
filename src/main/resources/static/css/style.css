@@ -7749,6 +7749,21 @@ Login Popup
   background: rgba(32, 33, 36, 0.5);
 }
 
+#register-modal {
+  max-width: 500px;
+  padding: 30px 40px 20px;
+  overflow: visible;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+#register-modal .social-btn-two {
+  padding: 10px 20px;
+}
+
+
+
 #login-modal {
   max-width: 500px;
   padding: 30px 40px 20px;
