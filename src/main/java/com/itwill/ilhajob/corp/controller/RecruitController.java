@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.corp.dto.CorpDto;
@@ -25,6 +26,8 @@ import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
+
+import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
 @Controller
 public class RecruitController {
@@ -129,14 +132,17 @@ public class RecruitController {
 	}
 	
 	//수정 action 테스트 중->The given id must not be null!뜨는 중
-//	@RequestMapping("/recruit-modify-action")
-//	public String recruit_modify_form(@ModelAttribute RecruitDto recruitDto,Model model,RedirectAttributes redirectAttributes,HttpServletRequest request) throws Exception {
-//		RecruitDto updateRecruit= recruitService.update(recruitDto);
-//		System.out.println("updateRecruit>>>"+updateRecruit);
-//		//redirectAttributes.addAttribute("id", recruitDto.getId());
-//		model.addAttribute("updateRecruit", updateRecruit);
-//		return "dashboard-manage-job";
-//	}
+	@RequestMapping("/recruit-modify-action")
+	public String recruit_modify_form(@ModelAttribute RecruitDto recruitDto,Model model,RedirectAttributes redirectAttributes,HttpServletRequest request) throws Exception {
+		recruitService.update(recruitDto);
+		redirectAttributes.addAttribute("id", recruitDto.getId());
+		return "dashboard-manage-job";
+		
+		//RecruitDto updateRecruit= recruitService.update(recruitDto);
+		//System.out.println("updateRecruit>>>"+updateRecruit);
+		//model.addAttribute("updateRecruit", updateRecruit);
+	}
+	
 	
 	
 }
