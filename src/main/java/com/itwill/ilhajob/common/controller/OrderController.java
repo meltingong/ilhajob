@@ -4,28 +4,39 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.itwill.ilhajob.common.dto.PaymentDto;
+import com.itwill.ilhajob.common.dto.ProductDto;
 import com.itwill.ilhajob.common.service.OrdersService;
+import com.itwill.ilhajob.common.service.ProductService;
 import com.itwill.ilhajob.user.dto.UserDto;
 
 @Controller
 public class OrderController {
 	
 	private final OrdersService ordersService;
+	private final ProductService productService;
 	
 	@Autowired
-	public OrderController(OrdersService ordersService) {
+	public OrderController(OrdersService ordersService, ProductService productService) {
 		this.ordersService = ordersService;
+		this.productService = productService;
 	}
 	
 	@GetMapping("/pricing")
-	public String pricing(HttpServletRequest request) {
-		//System.out.println(">>>>>>>>"+sUserId);
+	public String pricing(HttpServletRequest request,Model model) throws Exception {
+		if(request.getSession().getAttribute("role").equals("user")) {
+			List<ProductDto> productList = productService.selectByDiv("user");
+			model.addAttribute("productList", productList);
+		}
+		if(request.getSession().getAttribute("role").equals("corp")) {
+			model.addAttribute("productList", productService.selectByDiv("corp"));
+		}
 		String forwardPath = "pricing";
 		return forwardPath;
 	}
@@ -61,6 +72,13 @@ public class OrderController {
 		model.addAttribute("totalPrice", totalPrice);
 
 		forwardPath = "invoice";
+		return forwardPath;
+	}
+	
+	@GetMapping("/dashboard-packages")
+	public String packages(HttpServletRequest request) {
+		//System.out.println(">>>>>>>>"+sUserId);
+		String forwardPath = "dashboard-packages";
 		return forwardPath;
 	}
 }

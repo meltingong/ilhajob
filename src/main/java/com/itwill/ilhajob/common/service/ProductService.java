@@ -11,7 +11,7 @@ public interface ProductService {
 	ProductDto selectByNo(int pNo) throws Exception;
 	
 	//p_div로 상품 리스트 불러오기
-	List<ProductDto> selectAllByDiv(String pDiv) throws Exception;
+	List<ProductDto> selectByDiv(String pDiv) throws Exception;
 	
 	//update Product
 	int updateProduct(ProductDto productDto) throws Exception;

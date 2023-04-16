@@ -15,9 +15,11 @@ import com.itwill.ilhajob.common.repository.ProductRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	@Autowired
+
 	private final ProductRepository productRepository;
-	private ModelMapper modelMapper;
+	private final ModelMapper modelMapper;
+
+
 	
 	@Autowired
 	//constructor
@@ -33,8 +35,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 		
 	@Override
-	public List<ProductDto> selectAllByDiv(String pDiv) throws Exception {
-		List<Product> productList = productRepository.findAll();
+	public List<ProductDto> selectByDiv(String pDiv) throws Exception {
+		List<Product> productList = productRepository.findBypDiv(pDiv);
 		return productList.stream()
 				.map(product -> modelMapper.map(product, ProductDto.class))
 				.collect(Collectors.toList());

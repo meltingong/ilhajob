@@ -22,7 +22,7 @@ class CorpImageServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 		System.out.println(
 				corpImageService.insertCorpImage(CorpImageDto.builder()
 													.id(0)
-													.corpImage("testinsert.jpg")
+													.originalFileName("testinsert.jpg")
 													.corp(corpDto)
 													.build()));
 	}
