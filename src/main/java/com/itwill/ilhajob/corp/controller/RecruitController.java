@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.ManagerDto;
@@ -106,25 +108,35 @@ public class RecruitController {
 		return "redirect:dashboard-manage-job";
 	}
  
-	@PostMapping("/recruit-modify-form")
+	@RequestMapping("/recruit-modify-form")
 	public String recruit_modify_form(HttpServletRequest request,@ModelAttribute RecruitDto recruitDto, Model model) throws Exception {
 		System.out.println("recruit update");
 		System.out.println(recruitDto);
-		//System.out.println(recruitDto.getCorp().getId()); //null뜸
-		// 일단 회사 로그인
-//		CorpDto loginCorp = corpService.findCorp((String) request.getSession().getAttribute("sCorpId"));
-//		model.addAttribute("corp", loginCorp);
-//		System.out.println("로그인 회사 정보"+loginCorp);
-//
+		//System.out.println(recruitDto.getCorp().getId()); -> null뜸
+
+		// 일단 회사 정보가져와서 담기
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto=corpService.findCorp(sCorpId);
 		recruitDto.setCorp(corpDto);
-		RecruitDto updateRecruit=recruitService.update(recruitDto);
-		System.out.println(updateRecruit);
+		
+		RecruitDto setRecruit=recruitService.findRecruit(recruitDto.getId());
+		//RecruitDto updateRecruit=recruitService.update(recruitDto);
+		System.out.println("setRecruit>>>"+setRecruit);
 		//RecruitDto recruit=recruitService.findRecruit(recruitDto.getId());
-		//model.addAttribute("recruit",recruit);
+		model.addAttribute("recruit",setRecruit);
 
-		return "redirect:recruit-modify-form";
+		return "recruit-modify-form";
 	}
-
+	
+	//수정 action 테스트 중->The given id must not be null!뜨는 중
+//	@RequestMapping("/recruit-modify-action")
+//	public String recruit_modify_form(@ModelAttribute RecruitDto recruitDto,Model model,RedirectAttributes redirectAttributes,HttpServletRequest request) throws Exception {
+//		RecruitDto updateRecruit= recruitService.update(recruitDto);
+//		System.out.println("updateRecruit>>>"+updateRecruit);
+//		//redirectAttributes.addAttribute("id", recruitDto.getId());
+//		model.addAttribute("updateRecruit", updateRecruit);
+//		return "dashboard-manage-job";
+//	}
+	
+	
 }

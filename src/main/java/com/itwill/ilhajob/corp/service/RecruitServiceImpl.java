@@ -65,27 +65,28 @@ public class RecruitServiceImpl implements RecruitService {
 	@Override
 	public RecruitDto update(RecruitDto recruitDto) throws Exception {
 		Optional<Recruit> optionalRecruit = recruitRepository.findById(recruitDto.getId());
-		Recruit recruit=modelMapper.map(recruitDto, Recruit.class);
-		Recruit updateRecruit=recruitRepository.save(recruit);
-		RecruitDto updateRecruitDto=modelMapper.map(updateRecruit, RecruitDto.class);
-		return updateRecruitDto;
-		
-//		Recruit recruit = optionalRecruit.get();
+		Recruit recruit = optionalRecruit.get();
 //		recruit.setRcTitle(recruitDto.getRcTitle());
 //		recruit.setRcPosition(recruitDto.getRcPosition());
 //		recruit.setRcQualification(recruitDto.getRcQualification());
 //		recruit.setRcSalary(recruitDto.getRcSalary());
-//		recruitRepository.save(recruit);
-//		return modelMapper.map(recruit, RecruitDto.class);
+		//recruitRepository.save(recruit);
+		//return modelMapper.map(recruit, RecruitDto.class);
 		
-		//수정2번
-//		recruitDto.setId(id);
-//		recruitDto.setRcTitle(recruit.getRcTitle());
-//		recruitDto.setRcContent(recruit.getRcContent());
-//		recruitDto.setRcSalary(recruit.getRcSalary());
-//      modelMapper.map(recruitDto, recruit);
-//      recruit = recruitRepository.save(recruit);
-//      return modelMapper.map(recruit, RecruitDto.class);
+//		수정1번
+//		Recruit recruit=modelMapper.map(recruitDto, Recruit.class);
+//		Recruit updateRecruit=recruitRepository.save(recruit);
+//		RecruitDto updateRecruitDto=modelMapper.map(updateRecruit, RecruitDto.class);
+//		return updateRecruitDto;
+		
+//		수정2번
+		recruitDto.setId(recruit.getId());
+		recruitDto.setRcTitle(recruit.getRcTitle());
+		recruitDto.setRcContent(recruit.getRcContent());
+		recruitDto.setRcSalary(recruit.getRcSalary());
+      modelMapper.map(recruitDto, recruit);
+      recruit = recruitRepository.save(recruit);
+      return modelMapper.map(recruit, RecruitDto.class);
 	}
 	@Transactional
 	@Override

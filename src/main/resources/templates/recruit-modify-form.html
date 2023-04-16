@@ -1,7 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
-
+	function recruitModifyAction(){
+		if (document.f.rcTitle.value == "") {
+			alert("[공고 제목]을 입력하십시요.");
+			document.f.rcTitle.focus();
+			return;
+		}
+		if (document.f.rcContent.value == "") {
+			alert("[공고 내용]을 입력하십시요.");
+			document.f.rcContent.focus();
+			return;
+		}
+		if (document.f.rcSalary.value == "") {
+			alert("[급여]를 입력하십시요.");
+			document.f.rcSalary.focus();
+			return;
+		}
+		if (document.f.rcQualification.value == "") {
+			alert("[자격조건]을 입력하십시요.");
+			document.f.rcQualification.focus();
+			return;
+		}
+		if (document.f.corpWelfare.value == "") {
+			alert("[복리후생]을 입력하십시요.");
+			document.f.corpWelfare.focus();
+			return;
+		}
+		if (document.f.rcJob.value == "") {
+			alert("[업종]을 입력하십시요.");
+			document.f.rcJob.focus();
+			return;
+		}
+		if (document.f.rcPosition.value == "") {
+			alert("[구인직급]을 입력하십시요.");
+			document.f.rcPosition.focus();
+			return;
+		}
+		document.f.method='POST';
+		document.f.action = "recruit-modify-action";
+		document.f.submit();
+	}
 </script>
 <head>
   <meta charset="utf-8">
@@ -49,8 +88,8 @@
     <section class="user-dashboard">
       <div class="dashboard-outer">
         <div class="upper-title-box">
-          <h3>공고 등록</h3>
-          <div class="text">귀사의 구직 공고를 등록해주세요</div>
+          <h3>공고 수정</h3>
+          <div class="text">귀사의 구직 공고 수정 페이지입니다.</div>
         </div>
 
         <div class="row">
@@ -59,7 +98,7 @@
             <div class="ls-widget">
               <div class="tabs-box">
                 <div class="widget-title">
-                  <h4>공고 작성</h4>
+                  <h4>공고 수정</h4>
                 </div>
 
                 <div class="widget-content">
@@ -86,26 +125,26 @@
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>공고 제목</label>
-                        <input type="text" name="rcTitle" th:value ="${recruit.rCtitle}">
+                        <input type="text" name="rcTitle" th:value ="${recruit.rcTitle}">
                       </div>
 
                       <!-- About Company -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>공고 내용</label>
-                        <textarea name = "rcContent" th:text ="${recruit.rCtitle}"></textarea>
+                        <textarea name = "rcContent" th:text ="${recruit.rcContent}"></textarea>
                       </div>
 						
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>회사명</label>
-                        <input type="text" name="corpName" th:value ="${recruit.rCtitle}">
+                        <input disabled type="text" name="corpName" th:value ="${recruit.corp.corpName}">
                       </div>
                       
 
                       <!-- Search Select -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>업종 </label>
-                        <select data-placeholder="카테고리" class="chosen-select multiple" multiple tabindex="4" >
+                        <select data-placeholder="카테고리" class="chosen-select multiple" multiple tabindex="4" name="rcJob" >
                           <option value="Banking"></option>
                           <option value="Digital&Creative">Digital & Creative</option>
                           <option value="Retail">Retail</option>
@@ -129,7 +168,7 @@
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>급여</label>
-                        <input type="text" name="rcSalary" th:value="${recruit.rcSalary}">
+                        <input type="text" name="rcSalary" th:value ="${recruit.rcSalary}">
                         <!-- 
                         <select class="chosen-select">
                           <option>Select</option>
@@ -145,12 +184,12 @@
 
                       <div class="form-group col-lg-6 col-md-12">
                         <label>자격조건</label>
-                  		<input type="text" name="rcQualification" th:value="${recruit.rcSalary}">
+                  		<input type="text" name="rcQualification" th:value ="${recruit.rcQualification}">
                       </div>
                       
                       <div class="form-group col-lg-6 col-md-12">
                         <label>복리후생</label>
-                  		<input type="text" name="corpWelfare" th:value="${recruit.rCtitle}">
+                  		<input type="text" name="corpWelfare" th:value ="${recruit.corp.corpWelfare}">
                       </div>
 
                       <div class="form-group col-lg-6 col-md-12">
@@ -241,8 +280,7 @@
 
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12 text-right">
-                      <!-- input type="hidden" name="id" th:value="${recruit.id}"/-->
-                        <button class="theme-btn btn-style-one" type = "button" onClick="recruitModifyaction">공고수정</button>
+                        <button class="theme-btn btn-style-one" type ="button" onClick="recruitModifyAction();">공고수정</button>
                       </div>
                     </div>
                   </form>
