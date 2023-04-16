@@ -309,10 +309,12 @@ values(REVIEW_ID_SEQ.nextval, '리뷰 내용4-1', '4', '리뷰 제목4-1', 4,2);
 
 /*******************************태그**************************************/
 /**************************tag insert***************************/
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '태그1');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '태그2');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '태그3');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '태그4');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#가족같은분위기');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#우수기업');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#칼퇴근');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#자율복장');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#회식없음');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#교통비지원');
 
 /**************************corp_tag insert***********************/
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '1','1');
