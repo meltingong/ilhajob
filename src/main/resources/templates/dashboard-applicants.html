@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<!-- 이력서가 없을 때 메시지를 띄우는 부분 -->
+<!-- script th:if="${not #strings.isEmpty(errorMsg)}">
+    window.alert([[${errorMsg}]]);
+</script-->
+
 <head>
   <meta charset="utf-8">
   <title>Superio | Just another HTML Template | All Aplicants</title>
@@ -21,6 +26,7 @@
 </head>
 
 <body>
+	
 
   <div class="page-wrapper dashboard ">
 
@@ -483,6 +489,8 @@
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDaaCBm4FEmgKs5cfVrh3JYue3Chj1kJMw&#038;ver=5.2.4"></script>
   <script src="js/map-script.js"></script>
   <!--End Google Map APi-->
+  
+  
 </body>
 
 </html>
