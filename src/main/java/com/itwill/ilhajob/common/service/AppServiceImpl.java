@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.entity.App;
 import com.itwill.ilhajob.common.repository.AppRepository;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.corp.entity.Recruit;
+import com.itwill.ilhajob.corp.repository.RecruitRepository;
 import com.itwill.ilhajob.user.entity.Message;
 import com.itwill.ilhajob.user.repository.MessageRepository;
 
@@ -22,18 +25,31 @@ import com.itwill.ilhajob.user.repository.MessageRepository;
 public class AppServiceImpl implements AppService {
 
 	private final AppRepository appRepository;
+	private final RecruitRepository recruitRepository;
 	private final MessageRepository messageRepository; 
 	private final ModelMapper modelMapper;
 	
 	@Autowired	
-	public AppServiceImpl(AppRepository appRepository, MessageRepository messageRepository,ModelMapper modelMapper) {
+	public AppServiceImpl(AppRepository appRepository, 
+							RecruitRepository recruitRepository, 
+							MessageRepository messageRepository,
+							ModelMapper modelMapper) {
 		this.appRepository = appRepository;
+		this.recruitRepository = recruitRepository;
 		this.messageRepository = messageRepository;
 		this.modelMapper = modelMapper;
 	}
-
+	
+	//지원하기시 공고rcAppCount(지원자숫자) 증가
+	@Transactional
 	@Override
 	public void insertApp(AppDto appDto) {
+		RecruitDto recruitDto = appDto.getRecruit();
+		recruitDto.setRcAppCount(recruitDto.getRcAppCount()+1);
+		Recruit recruit = modelMapper.map(recruitDto, Recruit.class);
+		recruitRepository.saveAndFlush(recruit);
+		
+		appDto.setRecruit(modelMapper.map(recruit, RecruitDto.class));
 		App createApp = modelMapper.map(appDto, App.class);
 		appRepository.save(createApp);
 	}
@@ -89,8 +105,16 @@ public class AppServiceImpl implements AppService {
 		}
 	}
 	
+	@Transactional
 	@Override
 	public void deleteApp(Long id) {
+		App app = appRepository.findById(id).get();
+		AppDto appDto = modelMapper.map(app, AppDto.class);
+		RecruitDto recruitDto = appDto.getRecruit();
+		recruitDto.setRcAppCount(recruitDto.getRcAppCount()-1);
+		Recruit recruit = modelMapper.map(recruitDto, Recruit.class);
+		recruitRepository.saveAndFlush(recruit);
+		
 		appRepository.deleteById(id);
 	}
 

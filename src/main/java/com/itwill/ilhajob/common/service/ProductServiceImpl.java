@@ -1,6 +1,7 @@
 package com.itwill.ilhajob.common.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -28,9 +29,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public ProductDto selectByNo(int pNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null; 
+	public ProductDto selectById(long id) throws Exception {
+		Optional<Product> optionalProduct = productRepository.findById(id);
+		Product findProduct = optionalProduct.get();
+		return modelMapper.map(findProduct, ProductDto.class); 
 	}
 		
 	@Override
@@ -44,12 +46,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int updateProduct(ProductDto productDto) throws Exception {
 	    Product product = new Product();		
-		productDto.setPNo(1);
-		productDto.setPName("수정");
-		productDto.setPPrice(1);
-		productDto.setPEndMonth(4);
-		productDto.setPImage("수정");
-		productDto.setPDiv(null);
 		
 		return updateProduct(productDto);
 		

@@ -181,8 +181,12 @@
                      	  </span>
                       </li>
                     </ul>
-                    <div class="job-type" th:text="${corp.job}">Open Jobs – 2</div>
-                  </div>
+                     <span th:each="corpTag:${corpTagList}">
+                		<span th:each="tag:${tagList}">
+                    <span class="job-type" style ="margin-right:1px; margin-bottom: 5px" th:if="${corpTag.corpId}==${corp.id} and ${tag.tagId}==${corpTag.tagId}" th:text="${tag.tagName}">Open Jobs – 2</span>
+                  </span>
+                </span>
+                </div>
                 </div>
               </div>
 

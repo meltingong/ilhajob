@@ -330,24 +330,22 @@ insert into corp_bookmark(id, corp_id, user_id) values(BOOKMARK_ID_SEQ.nextval, 
 /*******************************결제관련**************************************/
 /**************************product insert************************/
 -- 개인회원 상품 insert => p_div : U
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 1, '상품이미지1', '개인회원상품1', 1, 10000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 2, '상품이미지2', '개인회원상품2', 2, 20000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 3, '상품이미지3', '개인회원상품3', 3, 30000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 4, '상품이미지4', '개인회원상품4', 4, 40000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 30, '개인회원상품1', 5500);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 60, '개인회원상품2', 9900);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 90, '개인회원상품3', 12900);
+
 
 -- 개인회원 상품 insert => p_div : C
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 5, '상품이미지5', '개인회원상품5', 5, 50000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 6, '상품이미지6', '개인회원상품6', 6, 60000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 7, '상품이미지7', '개인회원상품7', 7, 70000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 8, '상품이미지8', '개인회원상품8', 8, 80000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 30, '개인회원상품5', 20000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 60, '개인회원상품6', 35000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 90, '개인회원상품7', 45000);
+
 
 /**************************orders insert************************/
 -- 개인회원1 user_seq : 1로 개인상품 p_no 1주문하기
@@ -359,9 +357,6 @@ values(ORDERS_ID_SEQ.nextval, '2023/03/30', 'T', null, 2, 2);
 -- 개인회원3 user_seq : 3로 개인상품 p_no 3주문하기
 insert into orders(id, order_end_date, order_valid, corp_id, product_id, user_id)
 values(ORDERS_ID_SEQ.nextval, '2023/03/29', 'T', null, 3, 3);
--- 개인회원4 user_seq : 4로 개인상품 p_no 4주문하기
-insert into orders(id, order_end_date, order_valid, corp_id, product_id, user_id)
-values(ORDERS_ID_SEQ.nextval, '2023/03/28', 'T', null, 4, 4);
 
 /**************************payment insert************************/
 insert into payment(id, payment_date, payment_method, payment_price, corp_id, orders_id, user_id)
@@ -370,8 +365,7 @@ insert into payment(id, payment_date, payment_method, payment_price, corp_id, or
 values(PAYMENT_ID_SEQ.nextval, '2023/03/30', '카드 계산', 2, 2, 2, 2);
 insert into payment(id, payment_date, payment_method, payment_price, corp_id, orders_id, user_id)
 values(PAYMENT_ID_SEQ.nextval, '2023/03/29', '계좌 이체', 3, 3, 3, 3);
-insert into payment(id, payment_date, payment_method, payment_price, corp_id, orders_id, user_id)
-values(PAYMENT_ID_SEQ.nextval, '2023/03/28', '무통장 입금', 4, 4, 4, 4);
+
 
 /*******************************블로그게시판관련**************************************/
 /**************************blog_cate insert************************/

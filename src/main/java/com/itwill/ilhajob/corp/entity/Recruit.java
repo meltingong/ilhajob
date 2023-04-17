@@ -64,6 +64,12 @@ public class Recruit {
 	//@NonNull
 	private LocalDateTime rcDeadline;
 	
+	@Column(columnDefinition = "NUMBER(1) DEFAUlT 0")
+	private Integer rcStatus;
+	
+	@Column(columnDefinition = "NUMBER(1) DEFAUlT 0")
+	private Integer rcAppCount;
+	
 	@Column(columnDefinition = "NUMBER(19) DEFAULT 0")
 	private Long rcReadCount;
 	

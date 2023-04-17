@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.itwill.ilhajob.FinalProjectTeam1IlhajobApplicationTests;
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.entity.App;
+import com.itwill.ilhajob.corp.dto.RecruitDto;
 
 class AppServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 
@@ -21,6 +22,16 @@ class AppServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 //		System.out.println(appService.findAllByRecruitId(1L));
 //	}
 
+	@Test
+	void testCreateApp() {
+		RecruitDto recruitDto = RecruitDto.builder()
+										.rcAppCount(1)
+										.build();
+		AppDto appDto = AppDto.builder()
+							.recruit(recruitDto)
+							.build();
+		appService.insertApp(appDto);
+	}
 	@Test
 	void testUpdateApp() {
 		appService.updateApp(5L, 3);

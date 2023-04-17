@@ -35,7 +35,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.common.dto.AppDto;
+import com.itwill.ilhajob.common.dto.CorpTagDto;
+import com.itwill.ilhajob.common.dto.TagDto;
+import com.itwill.ilhajob.common.entity.Tag;
 import com.itwill.ilhajob.common.service.AppService;
+import com.itwill.ilhajob.common.service.CorpTagService;
+import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
 import com.itwill.ilhajob.corp.dto.ManagerDto;
@@ -76,6 +81,11 @@ public class CorpController {
 	@Autowired
 	private ReviewService reviewService;
 
+	@Autowired
+	private CorpTagService corpTagService;
+	
+	@Autowired
+	private TagService tagService;
 	
 //	@RequestMapping("/index")
 //	public String main() {
@@ -87,8 +97,13 @@ public class CorpController {
 	public String corp_list(Model model) throws Exception {
 		List<CorpDto> corpList = corpService.findCorpAll();
 		model.addAttribute("corpList", corpList);
+		
+		List<CorpTagDto> corpTagList = corpTagService.selectAll();
+		List<TagDto> tagList = tagService.selectAll();
+		model.addAttribute("corpTagList", corpTagList);
+		model.addAttribute("tagList", tagList);
 		String forward_path = "corp-list";
-			
+		
 		return forward_path;
 
 	}
@@ -104,9 +119,19 @@ public class CorpController {
 		System.out.println("공고개수>>>>>>"+recruitCount);
 		model.addAttribute("recruitCount", recruitCount);
 		
+		
 		if(sUserId ==null) {
 			CorpDto corpDto=corpService.findCorp(corpLoginId);
 			model.addAttribute("corp", corpDto);
+			
+			//기업 태그 리스트 뿌리기
+			List<CorpTagDto> corpTagList = corpTagService.selectAllByCorpId(corpDto.getId());
+			List<String> corpTagNameList = new ArrayList<String>();
+			for (CorpTagDto corpTag : corpTagList) {
+				corpTagNameList.add(tagService.selectTag(corpTag.getTagId()).getTagName());
+			}	
+			model.addAttribute("corpTagNameList", corpTagNameList);
+			
 			
 			//공고 목록 뿌리기
 			List<RecruitDto> recruitList=recruitService.findRecruitAll();
