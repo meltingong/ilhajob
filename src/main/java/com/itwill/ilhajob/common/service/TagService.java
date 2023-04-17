@@ -9,4 +9,6 @@ public interface TagService {
 
 	TagDto selectTag(Long id);
 
+	List<TagDto> selectAll();
+	
 }

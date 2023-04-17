@@ -11,5 +11,7 @@ public interface CorpTagService {
 	void deleteCorpTag(Long id);
 
 	List<CorpTagDto> selectAllByCorpId(Long corpid);
-
+	
+	List<CorpTagDto> selectAll();
+	
 }

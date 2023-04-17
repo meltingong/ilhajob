@@ -95,6 +95,11 @@ public class CorpController {
 	public String corp_list(Model model) throws Exception {
 		List<CorpDto> corpList = corpService.findCorpAll();
 		model.addAttribute("corpList", corpList);
+		
+		List<CorpTagDto> corpTagList = corpTagService.selectAll();
+		List<TagDto> tagList = tagService.selectAll();
+		model.addAttribute("corpTagList", corpTagList);
+		model.addAttribute("tagList", tagList);
 		String forward_path = "corp-list";
 		
 		return forward_path;
