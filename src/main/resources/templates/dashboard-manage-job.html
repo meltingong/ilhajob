@@ -96,13 +96,14 @@
 
                   <div class="chosen-outer">
                     <!--Tabs Box-->
-                    <select class="chosen-select">
-                      <option onclick="ascList()">날짜 오름차순</option>
-                      <option onclick="descList()">날짜 내림차순</option>
-                      <option>Last 16 Months</option>
-                      <option>Last 24 Months</option>
-                      <option>Last 5 year</option>
-                    </select>
+		         <select class="chosen-select" onchange="location.href='dashboard-manage-job?sortType='+this.value;">
+				  <option value="">Select an Option</option>
+				  <option value="rcDeadlineasc">마감일 오름차순</option>
+				  <option value="rcDeadlinedesc">마감일 내림차순</option>
+				  <option>Last 16 Months</option>
+				  <option>Last 24 Months</option>
+				  <option>Last 5 year</option>
+				</select>
                   </div>
                 </div>
 
@@ -136,8 +137,8 @@
 	                      </th:block>
                           <td>
 						      <ul>
-						        <li th:text="|Created: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></li>
-						        <li th:text="|Expired: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></li>
+						        <li th:text="|등록일: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></li>
+						        <li th:text="|미감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></li>
 						      </ul>
 						  </td>
 						  
