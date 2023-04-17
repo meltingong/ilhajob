@@ -52,4 +52,12 @@ public class CorpTagServiceImpl implements CorpTagService{
 				.map(corpTag ->modelMapper.map(corpTag, CorpTagDto.class))
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public List<CorpTagDto> selectAll() {
+		List<CorpTag> corpTagList = corpTagRepository.findAll();
+		return corpTagList.stream()
+				.map(corpTag ->modelMapper.map(corpTag, CorpTagDto.class))
+				.collect(Collectors.toList());
+	}
 }

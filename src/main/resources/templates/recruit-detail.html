@@ -194,10 +194,9 @@
                       </li>
                     </ul>
 
-                    <div class="btn-box"><a href="#" class="theme-btn btn-style-three" 
-                    								th:text="${recruit.corp.corpWebsite}"
-                    								th:href="@{recruit.corp.corpWebsite}">
-                    								www.invisionapp.com</a></div>
+                    <div class="btn-box">
+                    <a href="#" th:href="@{__${recruit.corp.corpWebsite}__}" class="theme-btn btn-style-three" th:text="${recruit.corp.corpWebsite}" target="_blank" th:if="${recruit.corp.corpWebsite != null}">
+                    www.invisionapp.com</a></div>
                   </div>
                 </div>
 

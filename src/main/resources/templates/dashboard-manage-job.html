@@ -17,12 +17,9 @@
 			form.submit();
 			
 		}
+		
 	}
-
-	
-	
-	
-	 
+ 
 </script>
 
 
@@ -130,16 +127,27 @@
                             <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
                             <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
                           </td>
-                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#" >지원자 이력서 보기</a></td>
+                          <th:block th:if = "${recruit.rcAppCount>0}">
+	                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" 
+	                          						 th:text="|지원자 ${recruit.rcAppCount} 명|"	href="#" >지원자 이력서 보기</a></td>
+	                      </th:block>
+	                      <th:block th:unless="${recruit.rcAppCount>0}">
+		                      <td>지원자 없음</td>
+	                      </th:block>
                           <td>
 						      <ul>
 						        <li th:text="|Created: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></li>
 						        <li th:text="|Expired: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></li>
 						      </ul>
-						    </td>
-						   
-                         
-                          <td class="status">Active</td>
+						  </td>
+						  
+						  <!-- 0:승인 , 1:게시중 , 2:만료 예상중... 결정필요-->
+                          <th:block th:if="${recruit.rcStatus==0}">
+                          	<td class="status">게시중</td>
+                          </th:block>
+                          <th:block th:if="${recruit.rcStatus==1}">
+                          	<td class="status-end">만료</td>
+                          </th:block>
                           <td>
                             <div class="option-box">
                               	<input type="hidden" name="id" th:value="${recruit.id}"/>

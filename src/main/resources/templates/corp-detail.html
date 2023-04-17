@@ -62,7 +62,7 @@ function reviewDelete(){
             <div class="inner-box">
               <div class="content">
                 <span class="company-logo"><img src="images/resource/company-logo/5-1.png" alt=""></span>
-                <h4><a th:text="${corp.corpName}" href="#" onclick="window.open('${corpWebsite}', '_blank')">Invision</a></h4>
+                <h4><a th:text="${corp.corpName}" href="#" th:href="@{__${corp.corpWebsite}__}" target="_blank" th:if="${corp.corpWebsite != null}">Invision</a></h4>
                 <ul class="job-info">
                   <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}"></span></li>
                   <li class="icon flaticon-telephone-1"><span th:text="${corp.corpPhone}"></span></li>
@@ -71,6 +71,9 @@ function reviewDelete(){
                 <ul class="job-other-info">
                   <li th:text="|★현재 진행중인 구직공고: ${recruitCount}개★|" class="time">
                   Open Jobs – 3
+                  </li>
+                   <li th:each ="str : ${corpTagNameList}" class="time">
+                   		<span th:text = "${str}"></span>
                   </li>
                 </ul>
               </div>
@@ -238,7 +241,7 @@ function reviewDelete(){
                       </li>
                     </ul>
 					<div class="btn-box">
-					  <a href="#" onclick="window.open('${corpWebsite}', '_blank')" class="theme-btn btn-style-three" th:text="${corp.corpWebsite}">
+					<a th:href="@{__${corp.corpWebsite}__}" class="theme-btn btn-style-three" th:text="${corp.corpWebsite}" target="_blank" th:if="${corp.corpWebsite != null}">
 					    <button>www.www.com</button>
 					  </a>
 					</div>

@@ -33,10 +33,12 @@ public class RecruitDto {
 	private String rcPosition;
 	private String rcContent;
 	private String rcQualification;
-	private int rcSalary;
+	private Integer rcSalary;
 	private LocalDateTime rcDate;
 	private LocalDateTime rcDeadline;
-	private int rcReadCount;
+	private Integer rcStatus;
+	private Integer rcAppCount;
+	private Integer rcReadCount;
 	//@ToString.Exclude
 	private CorpDto corp;
 	

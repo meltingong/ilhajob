@@ -12,6 +12,6 @@ import lombok.ToString;
 @Builder
 public class RecruitTagDto {
 		private int rcSeq;
-		private int tagId;
+		private long tagId;
 	}
 
