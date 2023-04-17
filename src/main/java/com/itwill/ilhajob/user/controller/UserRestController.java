@@ -1,17 +1,12 @@
 package com.itwill.ilhajob.user.controller;
 
-import java.util.concurrent.CompletableFuture;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.controller.ResponseStatusCode;
@@ -21,7 +16,6 @@ import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.corp.service.CorpService;
-import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
@@ -77,8 +71,11 @@ public class UserRestController {
 	}
 	
 
- 
-	
-	
+	@PostMapping("ajaxModify")
+	public ResponseEntity<Object> ajaxModify(@RequestBody LoginRequestDto loginRequest,HttpSession session) throws Exception {
+		
+		return null;
+	}
+
 	
 }

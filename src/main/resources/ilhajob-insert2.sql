@@ -321,68 +321,68 @@ values(REVIEW_ID_SEQ.nextval, '리뷰 내용4-1', '4', '리뷰 제목4-1', 4,2);
 
 /*******************************태그**************************************/
 /**************************tag insert***************************/
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#가족같은분위기');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#우수기업');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#칼퇴근');
 insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#자율복장');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#회식없음');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#교통비지원');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#재택근무');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#칼퇴근');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#대기업');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#중소기업');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#공기업');
 
 /**************************corp_tag insert***********************/
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '1','1');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '1','2');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '1','3');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '2','2');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '2','4');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '1','4');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '2','5');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '2','6');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '3','3');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '3','4');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '4','4');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '4','5');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '4','6');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '5','1');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '5','2');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '5','3');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '6','2');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '6','4');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '7','1');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '7','6');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '8','3');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '8','2');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '8','5');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '9','4');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '9','6');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '10','2');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '10','3');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '11','2');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '11','4');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '10','5');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '11','6');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '12','1');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '12','3');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '12','5');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '13','2');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '13','6');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '14','1');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '13','4');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '14','5');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '15','3');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '15','4');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '16','1');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '16','3');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '16','6');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '17','2');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '17','3');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '18','1');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '18','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '15','6');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '16','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '17','4');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '18','6');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '19','2');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '19','3');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '20','1');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '19','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '20','4');
 
 /**************************recruit_tag insert********************/
 insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '1', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '1', '2');
 insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '2', '1');
 insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '2', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '3', '1');
 insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '3', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '3', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '4', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '5', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '5', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '6', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '6', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '7', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '7', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '7', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '8', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '8', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '9', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '9', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '10', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '10', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '11', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '12', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '12', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '13', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '13', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '14', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '14', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '15', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '15', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '16', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '16', '3');
 
 /**************************corp_bookmark insert******************/
 insert into corp_bookmark(id, corp_id, user_id) values(BOOKMARK_ID_SEQ.nextval, 1, 1);
@@ -393,24 +393,21 @@ insert into corp_bookmark(id, corp_id, user_id) values(BOOKMARK_ID_SEQ.nextval, 
 /*******************************결제관련**************************************/
 /**************************product insert************************/
 -- 개인회원 상품 insert => p_div : U
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 1, '상품이미지1', '개인회원상품1', 1, 10000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 2, '상품이미지2', '개인회원상품2', 2, 20000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 3, '상품이미지3', '개인회원상품3', 3, 30000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 4, '상품이미지4', '개인회원상품4', 4, 40000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 30, '개인회원상품1', 5500);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 60, '개인회원상품2', 9900);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 90, '개인회원상품3', 12900);
+
 
 -- 개인회원 상품 insert => p_div : C
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 5, '상품이미지5', '개인회원상품5', 5, 50000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 6, '상품이미지6', '개인회원상품6', 6, 60000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 7, '상품이미지7', '개인회원상품7', 7, 70000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 8, '상품이미지8', '개인회원상품8', 8, 80000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 30, '개인회원상품5', 20000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 60, '개인회원상품6', 35000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 90, '개인회원상품7', 45000);
 
 /**************************orders insert************************/
 -- 개인회원1 user_seq : 1로 개인상품 p_no 1주문하기

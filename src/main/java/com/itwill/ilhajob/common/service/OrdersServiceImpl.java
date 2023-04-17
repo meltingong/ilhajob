@@ -52,8 +52,8 @@ public class OrdersServiceImpl implements OrdersService{
 			//종료일이 현재시간보다 남아있을 때 order의 종료일 현재시간으로 업데이트 및 valid 변경 후 새로운 주문, 결제 생성
 			OrdersDto findOrder = modelMapper.map(ordersList.get(ordersList.size()-1), OrdersDto.class);
 			//남은기간 + 새로 주문하는 상품의 기간
-			period = productDto.getPEndMonth();
-			productDto.setPEndMonth(period+Duration.between(LocalDateTime.now(),findOrder.getOrderEndDate()).toDays()); 
+			period = productDto.getProductPeriod();
+			productDto.setProductPeriod(period+Duration.between(LocalDateTime.now(),findOrder.getOrderEndDate()).toDays()); 
 			findOrder.setOrderEndDate(LocalDateTime.now());
 			findOrder.setOrderValid(0);
 			Orders updateOrder = modelMapper.map(findOrder, Orders.class);
@@ -73,8 +73,8 @@ public class OrdersServiceImpl implements OrdersService{
 				return true;
 			}
 			OrdersDto findOrder = modelMapper.map(ordersList.get(ordersList.size()-1), OrdersDto.class);
-			period = productDto.getPEndMonth();
-			productDto.setPEndMonth(period + Duration.between(LocalDateTime.now(), findOrder.getOrderEndDate()).toDays());
+			period = productDto.getProductPeriod();
+			productDto.setProductPeriod(period + Duration.between(LocalDateTime.now(), findOrder.getOrderEndDate()).toDays());
 			findOrder.setOrderEndDate(LocalDateTime.now());
 			findOrder.setOrderValid(0);
 			Orders updateOrder = modelMapper.map(findOrder, Orders.class);
@@ -141,7 +141,7 @@ public class OrdersServiceImpl implements OrdersService{
 
 	private Orders saveOrder(String role, long id, ProductDto productDto) {
 		OrdersDto createOrderDto = OrdersDto.builder().orderStartDate(LocalDateTime.now())
-				.orderEndDate(LocalDateTime.now().plusDays(productDto.getPEndMonth())).userId(id).orderValid(1)
+				.orderEndDate(LocalDateTime.now().plusDays(productDto.getProductPeriod())).userId(id).orderValid(1)
 				.productId(productDto.getId()).build();
 		Orders createOrder = modelMapper.map(createOrderDto, Orders.class);
 		return ordersRepository.save(createOrder);
@@ -150,7 +150,7 @@ public class OrdersServiceImpl implements OrdersService{
 	private void savePayment(OrdersDto ordersDto, ProductDto productDto , String paymentMethod) {
 		PaymentDto paymentDto = PaymentDto.builder()
 				  .ordersId(ordersDto.getId()).userId(ordersDto.getUserId())
-				  .paymentDate(LocalDateTime.now()).paymentPrice(productDto.getPPrice())
+				  .paymentDate(LocalDateTime.now()).paymentPrice(productDto.getPoductPrice())
 				  .paymentMethod(paymentMethod).build();
 		paymentRepository.save(modelMapper.map(paymentDto, Payment.class));
 	}
