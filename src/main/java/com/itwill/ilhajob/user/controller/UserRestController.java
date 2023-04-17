@@ -76,17 +76,8 @@ public class UserRestController {
 	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"잘못된 형식입니다.\", \"location\": \"/final-project-team1-ilhajob\"}");
 	}
 	
-	//작성중
-/*	@PostMapping("ajaxReviewCreate")
-	public ResponseEntity<Object> ajaxReviewCreate(@RequestBody ReviewDto reviewDto, HttpServletRequest request) throws Exception{
-		String sUserId = (String)request.getSession().getAttribute("sUserId");
-		UserDto loginUser = userService.findUser(sUserId);
-		//CorpDto corpDto = corpService.findCorp(corpLoginId);
-		userService.insertReview(reviewDto);
-		
-		return ResponseEntity.ok().body("{\"success\": true, \"message\": \"작성 성공\"}");
-		
-	} */
+
+ 
 	
 	
 	
