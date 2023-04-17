@@ -257,15 +257,25 @@ public class CorpController {
 		public String corp_dashboard_applicants(@RequestParam("id")long id, Model model, RedirectAttributes redirectAttributes) throws Exception {
 			
 		//지원자 이력서 리스트 불러오기
-		List<AppDto> appList=appService.findAllByRecruitId(id);
-		//리스트 없을 때
-		if(appList.size()==0) { 
-			redirectAttributes.addFlashAttribute("message", "해당 공고에 제출된 이력서가 없습니다!");
-			return "redirect:dashboard-manage-job";
-		//리스트 있을 때	
-		}else { 
-			model.addAttribute("appList",appList);
-		}
+		 try {
+	            List<AppDto> appList = appService.findAllByRecruitId(id);
+	            //리스트 있을 때	
+	            model.addAttribute("appList", appList);
+	        } catch (Exception e) {
+	        	//리스트 없을 때
+	            redirectAttributes.addFlashAttribute("message", e.getMessage());
+	            return "redirect:dashboard-manage-job";
+	        }
+		
+//		//리스트 없을 때
+//		if(appList.size()==0) { 
+//			redirectAttributes.addFlashAttribute("message", "해당 공고에 제출된 이력서가 없습니다!");
+//			return "redirect:dashboard-manage-job";
+//		//리스트 있을 때	
+//		}else { 
+//			model.addAttribute("appList",appList);
+//		}
+		 
 		//이력서의 회원 정보 가져오기
 		List<AppDto> userList=appService.findAllByUserId(id);
 		model.addAttribute("userList",userList);
