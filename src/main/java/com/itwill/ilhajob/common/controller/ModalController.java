@@ -107,11 +107,11 @@ public class ModalController {
     	String html = "";
     	Map<String, Object> responseData = new HashMap<>();
     	if(request.getSession().getAttribute("role").equals("user")) {
-    		long userId = (long)request.getSession().getAttribute("sUserId");
+    		long userId = (long)request.getSession().getAttribute("id");
     		responseData = ordersService.orderProductByUser(userId, productDto.getId());
     		
     	}else if(request.getSession().getAttribute("role").equals("corp")) {
-    		long corpId = (long)request.getSession().getAttribute("sCorpId");
+    		long corpId = (long)request.getSession().getAttribute("id");
     		responseData = ordersService.orderProductByCorp(corpId, productDto.getId());
     	}
         try {

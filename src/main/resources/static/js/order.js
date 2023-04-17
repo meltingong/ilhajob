@@ -14,25 +14,25 @@
 
 		// Promise 객체를 사용하여 Ajax 요청 처리
 		promise.then(function(responseData) {
-			console.log(responseData)
-			 let product = responseData.product;
+			console.log(responseData);
+			let product = responseData.product;
             // HTML 파일 추가
 			$(responseData.html).appendTo('body').modal({
 				closeExisting: true,
 				fadeDuration: 300,
 				fadeDelay: 0.15
 			});
-			$('.order-name').text(user.userName);
-			$('.order-phone').text(user.userPhone);
-			$('.order-email').text(user.userEmail);
-			$('.product-name').text(product.pname);
-			$('.product-total').text(product.pprice);
-			$('.amount').text(product.pprice);
+			$('#order-name').val(responseData.user.userName);
+			$('#order-phone').val(responseData.user.userPhone);
+			$('#order-email').val(responseData.user.userEmail);
+			$('.product-name').text(product.productName);
+			$('.product-total').text(product.productPrice);
+			$('.amount').text(product.productPrice);
 		})
-			.fail(function(xhr) {
+		.fail(function(xhr) {
 				// Ajax 요청 실패 시 처리
-				console.log(xhr);
-			});
+				window.location.href = 'errorPage';
+		});
 			
 	});
 	

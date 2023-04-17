@@ -15083,7 +15083,7 @@ CheckOut Page
 .order-model.modal {
   height: auto;
   padding: 0;
-  max-width: 1200px;
+  max-width: 800px;
   overflow: visible;
   background: none;
   box-shadow: 0px 6px 15px rgba(64, 79, 104, 0.05);
@@ -15091,7 +15091,7 @@ CheckOut Page
 }
 
 #order-modal {
-  max-width: 1200px;
+  max-width: 800px;
   padding: 30px 40px 20px;
   overflow: visible;
   background: #fff;
@@ -15241,7 +15241,7 @@ CheckOut Page
   color: #1b2032;
 }
 
-.checkout-form .coupen-outer .form-grou {
+.checkout-form .coupen-outer .form-group {
   position: relative;
   display: flex;
   justify-content: center;
@@ -15347,6 +15347,28 @@ CheckOut Page
   line-height: 22px;
   color: #202124;
   padding-top: 15px;
+}
+
+.radio-option label[for="label_order_bankList"]{
+  display: inline-block !important;
+  vertical-align: middle;
+  position: relative;
+  padding-left: 5px;
+  font-weight: 500;
+  font-size: 14px !important;
+  line-height: 15px;
+  margin-bottom: 0 !important
+}
+
+.line-data, .radio-box #label_order_bankList {
+  display: inline-block !important;
+  vertical-align: middle;
+  position: relative;
+  padding-left: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 15px;
+  margin-bottom: 0 !important
 }
 
 .payment-box {
