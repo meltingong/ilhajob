@@ -24,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -125,6 +126,7 @@ public class CorpController {
 			//공고 목록 뿌리기
 			List<RecruitDto> recruitList=recruitService.findRecruitAll();
 			List<RecruitDto> recruitList1=new ArrayList<>();
+			
 			for(RecruitDto recruitDto: recruitList) {
 				if(recruitDto.getCorp().getId()==corpDto.getId()) {
 					recruitList1.add(recruitDto);
@@ -237,8 +239,8 @@ public class CorpController {
 		model.addAttribute("recruitList",recruitList);
 		
 		//지원된 이력서 없다는 메세지 띄우기->콘솔에서는 띄워지는데 페이지에서는 안됨...
-		model.addAttribute("message",message);
-		System.out.println(">>>>>>"+message);
+		//model.addAttribute("message",message);
+		//System.out.println(">>>>>>"+message);
 		
 		// 지원자 숫자 보여주기->일단 보류
 //		List<Integer> countList = new ArrayList<>();
@@ -255,19 +257,20 @@ public class CorpController {
 		//지원자 관련
 		@RequestMapping(value="/dashboard-applicants", params="id")
 		public String corp_dashboard_applicants(@RequestParam("id")long id, Model model, RedirectAttributes redirectAttributes) throws Exception {
-			
 		//지원자 이력서 리스트 불러오기
 		 try {
-	            List<AppDto> appList = appService.findAllByRecruitId(id);
+	           List<AppDto>appList = appService.findAllByRecruitId(id);
 	            //리스트 있을 때	
 	            model.addAttribute("appList", appList);
+	            //model.addAttribute("errorMsg","");
 	        } catch (Exception e) {
 	        	//리스트 없을 때
-	            redirectAttributes.addFlashAttribute("message", e.getMessage());
+	            //redirectAttributes.addFlashAttribute("message", e.getMessage());
+	            //redirectAttributes.addFlashAttribute("alertType", "danger"); // alert 창 색상을 지정하기 위한 속성
+	            model.addAttribute("errorMsg", e.getMessage());
 	            return "redirect:dashboard-manage-job";
 	        }
-		
-//		//리스트 없을 때
+//		리스트 없을 때
 //		if(appList.size()==0) { 
 //			redirectAttributes.addFlashAttribute("message", "해당 공고에 제출된 이력서가 없습니다!");
 //			return "redirect:dashboard-manage-job";
