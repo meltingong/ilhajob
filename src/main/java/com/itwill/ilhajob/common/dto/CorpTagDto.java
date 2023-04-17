@@ -15,5 +15,5 @@ import lombok.ToString;
 public class CorpTagDto {
 	private long id;
 	private String corpId;
-	private int tagId;
+	private long tagId;
 }
