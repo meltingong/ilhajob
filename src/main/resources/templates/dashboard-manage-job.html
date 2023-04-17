@@ -127,7 +127,13 @@
                             <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
                             <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
                           </td>
-                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" href="#" >지원자 이력서 보기</a></td>
+                          <th:block th:if = "${recruit.rcAppCount>0}">
+	                          <td class="applied"><a th:href="@{dashboard-applicants(id=${recruit.id})}" 
+	                          						 th:text="|지원자 ${recruit.rcAppCount} 명|"	href="#" >지원자 이력서 보기</a></td>
+	                      </th:block>
+	                      <th:block th:unless="${recruit.rcAppCount>0}">
+		                      <td>지원자 없음</td>
+	                      </th:block>
                           <td>
 						      <ul>
 						        <li th:text="|Created: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></li>
