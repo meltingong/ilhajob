@@ -19,6 +19,7 @@ import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.entity.App;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.entity.Corp;
+import com.itwill.ilhajob.corp.repository.RecruitRepository;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.user.repository.MessageRepository;
 
@@ -29,11 +30,12 @@ class AppRepositoryTest extends FinalProjectTeam1IlhajobApplicationTests{
 	@Autowired
 	private MessageRepository messageRepository;
 	@Autowired
-	private CorpService corpService;
+	private RecruitRepository recruitRepository;
 	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
 	EntityManager entityManager;
+	
 	
 	@Test
 	@Transactional
@@ -54,12 +56,6 @@ class AppRepositoryTest extends FinalProjectTeam1IlhajobApplicationTests{
 	@Test
 	void testCountByCorpId() {
 		//System.out.println(appRepository.countByCorpId(1L));
-	}
-	@Test
-	void testCountByCorpId2() throws Exception {
-		CorpDto corpDto = corpService.findCorp("corp_01");
-		Corp corp = modelMapper.map(corpDto, Corp.class);
-		//System.out.println(appRepository.countByCorp(corp));
 	}
 
 	@Test

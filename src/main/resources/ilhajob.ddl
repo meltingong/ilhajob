@@ -254,6 +254,8 @@
         rc_position varchar2(255 char),
         rc_qualification varchar2(255 char),
         rc_read_count NUMBER(19) DEFAULT 0,
+        rc_status number(1) DEFAUlT 0,
+        rc_app_count number(1) DEFAUlT 0,
         rc_salary number(10,0),
         rc_title varchar2(600 char),
         corp_id number(19,0),
