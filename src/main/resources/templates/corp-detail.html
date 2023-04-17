@@ -169,7 +169,7 @@ function reviewDelete(){
 			          
 	    					<th:block th:if = "${loginUser!=null}">
     							 <th:block th:if="${loginUser.id==review.user.id}">  
-	    						<input th:value="${review.corp.corpLoginId}" type="hidden" name="corpLoginId" /> 
+	    						<input th:value="${review.corp.id}" type="hidden" name="corpId" /> 
 	    						<input th:value="${review.id}" type="hidden" name="id" /> 
     							<li><button data-text="Delete Aplication" onclick="reviewDelete()" th:value="${review.id}"><span class="la la-trash"></span></button></li>
   							</th:block>  
@@ -187,7 +187,7 @@ function reviewDelete(){
 		        <div class="comment-form default-form">
 		          <h4>리뷰 등록</h4>
 		         <form id ="review-form" name ="f" method="post" >
-		         	<input th:value="${corp.corpLoginId}" type="hidden" name="corpLoginId" />
+		         	<input th:value="${corp.id}" type="hidden" name="corpid" />
 		         	
 		            <div class="row clearfix">
 		              <div class="col-lg-6 col-md-12 col-sm-12 form-group">
