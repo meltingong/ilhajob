@@ -153,8 +153,9 @@
                   </select>
 
                   <select class="chosen-select" >
+                 	<option name="all">전체</option>
                   	<div th:each="tag: ${tagList}">
-                    <option name="tagName" th:text="${tag.tagName}">코프태그</option>
+                    <option name="tagName" th:if="${tag.tagId}>3" th:text="${tag.tagName}" >코프태그</option>
                     </div>
                   </select>
                 </div>
