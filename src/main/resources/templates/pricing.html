@@ -70,15 +70,15 @@
 									<!-- Pricing Table -->
 									<div class="pricing-table col-lg-4 col-md-6 col-sm-12" th:each="product:${productList}">
 										<div class="inner-box">
-											<div class="title" th:text="${product.pName}">Basic</div>
-											<div class="price" th:text="${product.pPrice}">
+											<div class="title" th:text="${product.productName}">Basic</div>
+											<div class="price" th:text="${product.productPrice}">
 												$199 <span class="duration">/ monthly</span>
 											</div>
 											<div class="table-content">
 												<ul>
 													<li><span>1 job posting</span></li>
 													<li><span>0 featured job</span></li>
-													<li><span th:text="${product.pEndMonth}">Job displayed for 20 days</span></li>
+													<li><span th:text="${product.productPeriod+'일'}">Job displayed for 20 days</span></li>
 													<li><span>Premium Support 24/7 </span></li>
 												</ul>
 											</div>

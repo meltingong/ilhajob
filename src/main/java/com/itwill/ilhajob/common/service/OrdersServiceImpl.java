@@ -213,7 +213,7 @@ public class OrdersServiceImpl implements OrdersService{
 	private void savePayment(OrdersDto ordersDto, ProductDto productDto , String paymentMethod) {
 		PaymentDto paymentDto = PaymentDto.builder()
 				.ordersId(ordersDto.getId()).userId(ordersDto.getUserId())
-				.paymentDate(LocalDateTime.now()).paymentPrice(productDto.getPoductPrice())
+				.paymentDate(LocalDateTime.now()).paymentPrice(productDto.getProductPrice())
 				.paymentMethod(paymentMethod).build();
 		paymentRepository.save(modelMapper.map(paymentDto, Payment.class));
 	}

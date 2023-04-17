@@ -31,8 +31,6 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "product_id_SEQ_gen")
 	private Long id;
 	
-	private int productNo;
-	
 	private String productName;
 	
 	private int productPrice;
