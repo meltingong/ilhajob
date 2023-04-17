@@ -27,7 +27,7 @@ class CorpServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 	@Disabled
 	@Test
 	void testFindCorp() throws Exception {
-		System.out.println(corpService.findCorp("corp_03"));
+		System.out.println(corpService.findByCorpLoginId("corp_03"));
 	}
 	@Disabled
 	@Test
