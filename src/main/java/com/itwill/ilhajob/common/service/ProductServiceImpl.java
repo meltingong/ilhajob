@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 		
 	@Override
 	public List<ProductDto> selectByDiv(String pDiv) throws Exception {
-		List<Product> productList = productRepository.findBypDiv(pDiv);
+		List<Product> productList = productRepository.findByproductDiv(pDiv);
 		return productList.stream()
 				.map(product -> modelMapper.map(product, ProductDto.class))
 				.collect(Collectors.toList());
