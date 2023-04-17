@@ -79,7 +79,7 @@ public class RecruitServiceImpl implements RecruitService {
 		recruitRepository.flush();
 	}
 
-	// open jobs -3 부분에 넣기
+	// open jobs -3: 공고 개수 불러오기
 	@Override
 	public Long countByCorpId(Long id) throws Exception {
 		return recruitRepository.countByCorpId(id);

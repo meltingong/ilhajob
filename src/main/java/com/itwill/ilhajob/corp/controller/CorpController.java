@@ -94,6 +94,13 @@ public class CorpController {
 	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId, HttpServletRequest request,Model model) throws Exception {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		
+		//공고 개수 불러오기
+		CorpDto corpDto1=corpService.findCorp(corpLoginId);
+		System.out.println("corpDto1>>>>>>"+corpDto1);
+		Long recruitCount=recruitService.countByCorpId(corpDto1.getId());
+		System.out.println("공고개수>>>>>>"+recruitCount);
+		model.addAttribute("recruitCount", recruitCount);
+		
 		if(sUserId ==null) {
 			CorpDto corpDto=corpService.findCorp(corpLoginId);
 			model.addAttribute("corp", corpDto);

@@ -62,19 +62,21 @@ function reviewDelete(){
             <div class="inner-box">
               <div class="content">
                 <span class="company-logo"><img src="images/resource/company-logo/5-1.png" alt=""></span>
-                <h4><a th:text="${corp.corpName}" href="#">Invision</a></h4>
+                <h4><a th:text="${corp.corpName}" href="#" onclick="window.open('${corpWebsite}', '_blank')">Invision</a></h4>
                 <ul class="job-info">
                   <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}"></span></li>
                   <li class="icon flaticon-telephone-1"><span th:text="${corp.corpPhone}"></span></li>
                   <li class="icon flaticon-mail"><span th:text="${corp.corpWebsite}"></span></li>
                 </ul>
                 <ul class="job-other-info">
-                  <li class="time">Open Jobs – 3</li>
+                  <li th:text="|★현재 진행중인 공고: ${recruitCount}개★|" class="time">
+                  Open Jobs – 3
+                  </li>
                 </ul>
               </div>
 
               <div class="btn-box">
-                <a href="#" class="theme-btn btn-style-one">Apply For Job</a>
+                <a  href="#" class="theme-btn btn-style-one">Apply For Job</a>
                 <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button>
               </div>
             </div>
@@ -145,7 +147,7 @@ function reviewDelete(){
 		        
 		         	<form name="d">
               <!-- 여기 리뷰 LIST -->
-	                <h3>Review [리뷰]</h3>
+	                <h3>Review [리뷰]</h3><br>
 	                  <div class="text">해당 기업의 리뷰 리스트를 제공합니다.</div>
 	               <!-- Comments area -->
 			        <div class="comments-area">
