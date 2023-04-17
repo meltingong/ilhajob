@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -21,13 +23,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.dto.ProductDto;
+import com.itwill.ilhajob.common.repository.OrdersRepository;
+import com.itwill.ilhajob.common.service.OrdersService;
 import com.itwill.ilhajob.common.service.ProductService;
+import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.service.UserService;
 
 @RestController
 public class ModalController {
 
+	private final ProductService productService;
+	private final OrdersService ordersService;
+	
 	@Autowired
-	private ProductService productService;
+	public ModalController(ProductService productService, OrdersService ordersService) {
+		this.productService = productService;
+		this.ordersService = ordersService;
+	}
 	
     @GetMapping("/login-popup")
     public ResponseEntity<String> showLoginPopup() {
@@ -89,22 +103,26 @@ public class ModalController {
     }
     
     @PostMapping("order-popup")
-    public ResponseEntity<Object> getProductInfo(@RequestBody ProductDto productDto) throws Exception {
-        ProductDto product = productService.selectById(productDto.getId());
-
-        String html = "";
+    public ResponseEntity<Object> getProductInfo(@RequestBody ProductDto productDto, HttpServletRequest request) throws Exception {
+    	String html = "";
+    	Map<String, Object> responseData = new HashMap<>();
+    	if(request.getSession().getAttribute("role").equals("user")) {
+    		long userId = (long)request.getSession().getAttribute("sUserId");
+    		responseData = ordersService.orderProductByUser(userId, productDto.getId());
+    		
+    	}else if(request.getSession().getAttribute("role").equals("corp")) {
+    		long corpId = (long)request.getSession().getAttribute("sCorpId");
+    		responseData = ordersService.orderProductByCorp(corpId, productDto.getId());
+    	}
         try {
             Resource resource = new ClassPathResource("templates/order-popup.html");
             InputStream inputStream = resource.getInputStream();
             html = new BufferedReader(new InputStreamReader(inputStream)).lines().collect(Collectors.joining("\n"));
         } catch (IOException e) {
             e.printStackTrace();
-            // 예외 처리
         }
 
-        Map<String, Object> responseData = new HashMap<>();
         responseData.put("html", html);
-        responseData.put("product", product);
 
         return ResponseEntity.ok(responseData);
     }

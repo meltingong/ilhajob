@@ -3,7 +3,10 @@ package com.itwill.ilhajob.common.service;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -17,21 +20,38 @@ import com.itwill.ilhajob.common.dto.PaymentDto;
 import com.itwill.ilhajob.common.dto.ProductDto;
 import com.itwill.ilhajob.common.entity.Orders;
 import com.itwill.ilhajob.common.entity.Payment;
+import com.itwill.ilhajob.common.entity.Product;
 import com.itwill.ilhajob.common.repository.OrdersRepository;
 import com.itwill.ilhajob.common.repository.PaymentRepository;
+import com.itwill.ilhajob.common.repository.ProductRepository;
+import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.entity.Corp;
+import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
+import com.itwill.ilhajob.corp.repository.CorpRepository;
+import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.User;
+import com.itwill.ilhajob.user.exception.UserNotFoundException;
+import com.itwill.ilhajob.user.repository.UserRepository;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class OrdersServiceImpl implements OrdersService{
 
+	private final ProductRepository productRepository;
 	private final OrdersRepository ordersRepository;
 	private final PaymentRepository paymentRepository; 
+	private final UserRepository userRepository;
+	private final CorpRepository corpRepository;
 	private final ModelMapper modelMapper;
 	
 	@Autowired
-	public OrdersServiceImpl(OrdersRepository ordersRepository, PaymentRepository paymentRepository ,ModelMapper modelMapper) {
+	public OrdersServiceImpl(ProductRepository productRepository, OrdersRepository ordersRepository, PaymentRepository paymentRepository
+							 ,UserRepository userRepository, CorpRepository corpRepository, ModelMapper modelMapper) {
+		this.productRepository = productRepository;
 		this.ordersRepository = ordersRepository;
 		this.paymentRepository = paymentRepository;
+		this.userRepository = userRepository;
+		this.corpRepository = corpRepository;
 		this.modelMapper = modelMapper;
 	}
 	
@@ -139,23 +159,6 @@ public class OrdersServiceImpl implements OrdersService{
 		}
 	}
 
-	private Orders saveOrder(String role, long id, ProductDto productDto) {
-		OrdersDto createOrderDto = OrdersDto.builder().orderStartDate(LocalDateTime.now())
-				.orderEndDate(LocalDateTime.now().plusDays(productDto.getProductPeriod())).userId(id).orderValid(1)
-				.productId(productDto.getId()).build();
-		Orders createOrder = modelMapper.map(createOrderDto, Orders.class);
-		return ordersRepository.save(createOrder);
-	}
-
-	private void savePayment(OrdersDto ordersDto, ProductDto productDto , String paymentMethod) {
-		PaymentDto paymentDto = PaymentDto.builder()
-				  .ordersId(ordersDto.getId()).userId(ordersDto.getUserId())
-				  .paymentDate(LocalDateTime.now()).paymentPrice(productDto.getPoductPrice())
-				  .paymentMethod(paymentMethod).build();
-		paymentRepository.save(modelMapper.map(paymentDto, Payment.class));
-	}
-
-
 	@Override
 	public List<PaymentDto> findPayment(String role, long id) {
 	    List<Payment> paymentList;
@@ -168,6 +171,51 @@ public class OrdersServiceImpl implements OrdersService{
 	    return paymentList.stream()
 	        .map(payment -> modelMapper.map(payment, PaymentDto.class))
 	        .collect(Collectors.toList());
+	}
+
+	@Override
+	public Map<String, Object> orderProductByUser(long user_id, long product_id) throws Exception{
+		User user = userRepository.findById(user_id).orElseThrow(()
+				-> new UserNotFoundException("존재하지 않습니다."));
+		UserDto findUser = modelMapper.map(user, UserDto.class);
+		Optional<Product> optionalProduct = productRepository.findById(product_id);
+		Product product = optionalProduct.get();
+		ProductDto findProduct = modelMapper.map(product, ProductDto.class);
+		Map<String, Object> data = new HashMap<>();
+		data.put("user", findUser);
+		data.put("product", findProduct);
+		return data;
+	}
+	
+	
+	@Override
+	public Map<String, Object> orderProductByCorp(long corp_id, long product_id) throws Exception{
+		Corp corp = corpRepository.findById(corp_id).orElseThrow(()
+				-> new CorpNotFoundException("존재하지 않습니다."));
+		CorpDto findCorp = modelMapper.map(corp, CorpDto.class);
+		Optional<Product> optionalProduct = productRepository.findById(product_id);
+		Product product = optionalProduct.get();
+		ProductDto findProduct = modelMapper.map(product, ProductDto.class);
+		Map<String, Object> data = new HashMap<>();
+		data.put("user", findCorp);
+		data.put("product", findProduct);
+		return data;
+	}
+
+	private Orders saveOrder(String role, long id, ProductDto productDto) {
+		OrdersDto createOrderDto = OrdersDto.builder().orderStartDate(LocalDateTime.now())
+				.orderEndDate(LocalDateTime.now().plusDays(productDto.getProductPeriod())).userId(id).orderValid(1)
+				.productId(productDto.getId()).build();
+		Orders createOrder = modelMapper.map(createOrderDto, Orders.class);
+		return ordersRepository.save(createOrder);
+	}
+	
+	private void savePayment(OrdersDto ordersDto, ProductDto productDto , String paymentMethod) {
+		PaymentDto paymentDto = PaymentDto.builder()
+				.ordersId(ordersDto.getId()).userId(ordersDto.getUserId())
+				.paymentDate(LocalDateTime.now()).paymentPrice(productDto.getPoductPrice())
+				.paymentMethod(paymentMethod).build();
+		paymentRepository.save(modelMapper.map(paymentDto, Payment.class));
 	}
 		
 	

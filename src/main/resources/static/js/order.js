@@ -22,6 +22,9 @@
 				fadeDuration: 300,
 				fadeDelay: 0.15
 			});
+			$('.order-name').text(user.userName);
+			$('.order-phone').text(user.userPhone);
+			$('.order-email').text(user.userEmail);
 			$('.product-name').text(product.pname);
 			$('.product-total').text(product.pprice);
 			$('.amount').text(product.pprice);
