@@ -172,7 +172,7 @@
                     <div class="company-title">
                       <div class="company-logo"><img src="images/resource/company-7.png" alt=""></div>
                       <h5 class="company-name" th:text="${recruit.corp.corpName}">InVision</h5>
-                      <a href="#" class="profile-link" th:href="@{corp-detail(corpLoginId=${recruit.corp.corpLoginId})}">
+                      <a href="#" class="profile-link" th:href="@{corp-detail(corpId=${recruit.corp.id})}">
                       		View company profile</a> <!-- th:href="@{corp-detail(corpId=${recruit.corp.corpId})}" 
                       									  th:href="@{recruit-detail(rcSeq=${recruit.rcSeq})}"   -->
                     </div>

@@ -11,7 +11,8 @@ import lombok.ToString;
 @ToString
 @Builder
 public class RecruitTagDto {
-		private int rcSeq;
+		private long id;
+		private long recruitId;
 		private long tagId;
 	}
 

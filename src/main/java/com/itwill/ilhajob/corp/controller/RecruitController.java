@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.ilhajob.common.dto.RecruitTagDto;
+import com.itwill.ilhajob.common.dto.TagDto;
+import com.itwill.ilhajob.common.service.RecruitTagService;
+import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.ManagerDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
@@ -37,7 +41,11 @@ public class RecruitController {
 	private ManagerService managerService;
 	@Autowired
 	private RecruitService recruitService;
-
+	@Autowired
+	private TagService tagService;
+	@Autowired
+	private RecruitTagService recruitTagService;
+	
 	@RequestMapping(value = { "/", "/index" })
 	public String main(Model model) throws Exception {
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
@@ -48,10 +56,20 @@ public class RecruitController {
 
 	@RequestMapping("/recruit-list")
 	public String recruit_list(Model model) throws Exception {
+		//공고리스트
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
 		model.addAttribute("recruitList", recruitList);
+		
+		//태그리스트
+		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
+		List<TagDto> tagList = tagService.selectAll();
+		model.addAttribute("recruitTagList", recruitTagList);
+		model.addAttribute("tagList", tagList);
+		
 		String forward_path = "recruit-list";
 		return forward_path;
+		
+		
 	}
 
 	@RequestMapping(value = "/recruit-detail", params = "!id")
@@ -72,7 +90,7 @@ public class RecruitController {
 
 	@RequestMapping("/dashboard-post-job")
 	public String dashboard_post_job_form(HttpServletRequest request, Model model) throws Exception {
-		CorpDto loginCorp = corpService.findCorp((String) request.getSession().getAttribute("sCorpId"));
+		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("sCorpId"));
 		model.addAttribute("corp", loginCorp);
 		String forward_path = "dashboard-post-job";
 		return forward_path;
@@ -81,7 +99,7 @@ public class RecruitController {
 	@PostMapping("/dashboard-post-job-action")
 	public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto, HttpServletRequest request)
 			throws Exception {
-		CorpDto loginCorp = corpService.findCorp((String) request.getSession().getAttribute("sCorpId"));
+		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("sCorpId"));
 		recruitDto.setRcDate(LocalDateTime.now());
 		recruitDto.setRcDeadline(LocalDateTime.now());
 		recruitDto.setCorp(loginCorp);
@@ -114,8 +132,8 @@ public class RecruitController {
 	@RequestMapping("/recruit-modify-form")
 	public String recruit_modify_form(HttpServletRequest request,@ModelAttribute RecruitDto recruitDto, Model model) throws Exception {
 		// 일단 회사 정보가져와서 담기
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		
 		RecruitDto setRecruit=recruitService.findRecruit(recruitDto.getId());
@@ -127,8 +145,8 @@ public class RecruitController {
 	
 	@RequestMapping("/recruit-modify-action")
 	public String recruit_modify_action(@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		recruitDto.setRcDate(LocalDateTime.now());
 		//마감일=등록일+30일로 설정
