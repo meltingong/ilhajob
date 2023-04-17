@@ -82,7 +82,7 @@ public class UserRestController {
 	 * 리뷰 작성중 ajax 방식
 	 */
 	
-	
+	//test x
 	/*
 	@PostMapping("/createReview")
 	public ResponseEntity<Object> createReview(@RequestBody ReviewDto reviewDto, HttpSession session) {
@@ -98,7 +98,4 @@ public class UserRestController {
 	    }
 	}
 	*/ //Review Ajax방식 작성중
-	
-	
-	
 }
