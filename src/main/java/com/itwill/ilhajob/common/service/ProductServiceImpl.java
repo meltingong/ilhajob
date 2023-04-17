@@ -46,12 +46,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int updateProduct(ProductDto productDto) throws Exception {
 	    Product product = new Product();		
-		productDto.setPNo(1);
-		productDto.setPName("수정");
-		productDto.setPPrice(1);
-		productDto.setPEndMonth(4);
-		productDto.setPImage("수정");
-		productDto.setPDiv(null);
 		
 		return updateProduct(productDto);
 		
