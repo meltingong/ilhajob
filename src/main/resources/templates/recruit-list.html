@@ -284,9 +284,16 @@
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
                       <ul class="job-other-info">
-                        <li class="time">Full Time</li>
-                        <li class="privacy">Private</li>
+                      	<!--  
+                      	<span th:each="recruitTag:${recruitTagList}">
+                      	<span th:each="tag:${tagList}">
+                        <li class="time" th:if = "${recruit.id}==${recruitTag.recruitId} and ${tag.id}==${recruitTag.tagId}"  th:text ="${tag.tagname}">Full Time</li>
+                        </span>
+                        </span>
+                        -->
+                        <!-- <li class="privacy">Private</li>
                         <li class="required">Urgent</li>
+                         -->
                       </ul>
                       <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     </div>

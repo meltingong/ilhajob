@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.ilhajob.common.dto.RecruitTagDto;
+import com.itwill.ilhajob.common.dto.TagDto;
+import com.itwill.ilhajob.common.service.RecruitTagService;
+import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.ManagerDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
@@ -37,7 +41,11 @@ public class RecruitController {
 	private ManagerService managerService;
 	@Autowired
 	private RecruitService recruitService;
-
+	@Autowired
+	private TagService tagService;
+	@Autowired
+	private RecruitTagService recruitTagService;
+	
 	@RequestMapping(value = { "/", "/index" })
 	public String main(Model model) throws Exception {
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
@@ -48,10 +56,20 @@ public class RecruitController {
 
 	@RequestMapping("/recruit-list")
 	public String recruit_list(Model model) throws Exception {
+		//공고리스트
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
 		model.addAttribute("recruitList", recruitList);
+		
+		//태그리스트
+		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
+		List<TagDto> tagList = tagService.selectAll();
+		model.addAttribute("recruitTagList", recruitTagList);
+		model.addAttribute("tagList", tagList);
+		
 		String forward_path = "recruit-list";
 		return forward_path;
+		
+		
 	}
 
 	@RequestMapping(value = "/recruit-detail", params = "!id")
