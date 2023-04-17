@@ -212,7 +212,7 @@ public class CorpController {
 
 		/************** login check **************/
 		//request.getSession().setAttribute("id", "1L"); //임시로 아이디 로그인상태
-		request.getSession().setAttribute("sCorpId", "1L"); //임시로 아이디 로그인상태
+		request.getSession().setAttribute("sCorpId", 1L); //임시로 아이디 로그인상태
 		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
 		if(sCorpId==null) {
 			forwardPath= "redirect:login";
@@ -253,7 +253,7 @@ public class CorpController {
 		Long id = corpDto.getId();
 		System.out.println(corpDto);
 		corpService.update(id, corpDto);
-		request.setAttribute("corpLoginId", corpDto.getCorpLoginId());
+		request.setAttribute("corpId", corpDto.getId());
 		return "corp-detail";
 	}
 
