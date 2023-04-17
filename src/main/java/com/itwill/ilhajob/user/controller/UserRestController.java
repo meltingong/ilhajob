@@ -16,6 +16,7 @@ import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
@@ -76,6 +77,28 @@ public class UserRestController {
 		
 		return null;
 	}
-
+	
+	/*
+	 * 리뷰 작성중 ajax 방식
+	 */
+	
+	
+	/*
+	@PostMapping("/createReview")
+	public ResponseEntity<Object> createReview(@RequestBody ReviewDto reviewDto, HttpSession session) {
+	    String userEmail = (String) session.getAttribute("userEmail");
+	    if(userEmail == null) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"로그인이 필요합니다.\", \"location\": \"/final-project-team1-ilhajob/login\"}");
+	    }
+	    try {
+	        userService.insertReview(reviewDto);
+	        return ResponseEntity.ok().body("{\"success\": true, \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"success\": false, \"message\": \"리뷰 작성에 실패했습니다. 잠시 후 다시 시도해주세요.\"}");
+	    }
+	}
+	*/ //Review Ajax방식 작성중
+	
+	
 	
 }
