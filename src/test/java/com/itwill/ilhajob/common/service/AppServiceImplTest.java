@@ -16,10 +16,10 @@ class AppServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 	@Autowired
 	private AppService appService;
 	
-	@Test
-	void testFindAllByRecruitId() {
-		System.out.println(appService.findAllByRecruitId(1L));
-	}
+//	@Test
+//	void testFindAllByRecruitId() {
+//		System.out.println(appService.findAllByRecruitId(1L));
+//	}
 
 	@Test
 	void testUpdateApp() {

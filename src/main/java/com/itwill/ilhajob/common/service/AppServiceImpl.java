@@ -99,12 +99,23 @@ public class AppServiceImpl implements AppService {
 	 */
 	@Transactional
 	@Override
-	public List<AppDto> findAllByRecruitId(long id) {
+	public List<AppDto> findAllByRecruitId(long id) throws Exception {
 		List<App> appList = appRepository.findAppsByRecruitId(id);
+		
+		//이력서 없을 때 예외 메세지 띄우기
+		if(appList.size()==0) {
+			throw new Exception("제출된 이력서가 없습니다!");
+		}
 		return appList.stream()
 				.map(app ->modelMapper.map(app, AppDto.class))
 				.collect(Collectors.toList());
 	}
+	
+	/*
+	 * 기업이 등록한 공고리스트뷰에서 공고하나 클릭시 appList출력하여 이력서리스트 확인->지원자 수 뽑기
+	 */
+
+	
 	/*
 	 * 구직자가 지원한 appList출력하여 공고리스트 확인
 	 */

@@ -125,14 +125,12 @@ public class RecruitController {
 		return "recruit-modify-form";
 	}
 	
-	//수정 action 테스트 중->The given id must not be null!뜨는 중
 	@RequestMapping("/recruit-modify-action")
 	public String recruit_modify_action(@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto=corpService.findCorp(sCorpId);
 		recruitDto.setCorp(corpDto);
 		//System.out.println("pre modify action >>>>"+recruitDto);
-		
 		
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
 		//System.out.println("update check>>>>"+checkRecruit);
