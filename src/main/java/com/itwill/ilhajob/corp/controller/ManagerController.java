@@ -37,8 +37,8 @@ public class ManagerController {
 	@RequestMapping("/dashboard-manager-list")
 	public String corp_dashboard_manager_list(HttpServletRequest request,Model model) throws Exception{
 		
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		List<ManagerDto> managerList = managerService.findManagerByCorpID(corpDto.getId());
 		
 		//System.out.println(managerList);
@@ -50,8 +50,8 @@ public class ManagerController {
 	//매니저생성
 	@PostMapping("manager-create")
     public String createManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		System.out.println("생성 컨트롤러 도착");
 		System.out.println(managerDto);
 		managerDto.setCorp(corpDto);
@@ -66,8 +66,8 @@ public class ManagerController {
 	public String updateManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
 		System.out.println("업데이트 컨트롤러 도착");
 		System.out.println(managerDto);
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		managerDto.setCorp(corpDto);
 		ManagerDto createManager = managerService.update(managerDto);
 		System.out.println(createManager+"업뎃완료");
