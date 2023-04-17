@@ -1,14 +1,36 @@
 (function($) {
-	$('.auto-container').on('click',function(e){
+	$('.call-order-modal').on('click', function(e) {
 		e.preventDefault();
-		console.log(e.target);
-		/*$.get(this.href, function(html) {
-	    	$(html).appendTo('body').modal({
-	    		closeExisting: true,
+		let productId = $(this).data('product-id');
+		let productIdJson = JSON.stringify({id: productId});
+		console.log(productIdJson);
+		let promise = $.ajax({
+			type: 'POST',
+			url: 'order-popup',
+			data: productIdJson,
+			contentType: 'application/json',
+			dataType: 'json'
+		});
+
+		// Promise 객체를 사용하여 Ajax 요청 처리
+		promise.then(function(responseData) {
+			console.log(responseData)
+			 let product = responseData.product;
+            // HTML 파일 추가
+			$(responseData.html).appendTo('body').modal({
+				closeExisting: true,
 				fadeDuration: 300,
 				fadeDelay: 0.15
-	    });
-	  });*/
+			});
+			$('.product-name').text(product.pname);
+			$('.product-total').text(product.pprice);
+			$('.amount').text(product.pprice);
+		})
+			.fail(function(xhr) {
+				// Ajax 요청 실패 시 처리
+				console.log(xhr);
+			});
+			
 	});
 	
 	

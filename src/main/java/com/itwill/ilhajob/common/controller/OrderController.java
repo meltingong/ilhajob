@@ -1,20 +1,41 @@
 package com.itwill.ilhajob.common.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.itwill.ilhajob.common.dto.LoginRequestDto;
 import com.itwill.ilhajob.common.dto.PaymentDto;
 import com.itwill.ilhajob.common.dto.ProductDto;
 import com.itwill.ilhajob.common.service.OrdersService;
 import com.itwill.ilhajob.common.service.ProductService;
+import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.exception.UserNotFoundException;
+
+import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
 public class OrderController {
