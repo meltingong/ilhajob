@@ -9310,6 +9310,9 @@ Registeration Banners
 .manage-job-table .status {
   color: #34A853;
 }
+.manage-job-table .status-end {
+  color: red;
+}
 
 .aplicants-upper-bar {
   position: relative;
