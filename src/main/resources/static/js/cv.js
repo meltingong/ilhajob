@@ -4,12 +4,6 @@
  
  // cv write
  function writeCv() {
-	/*
-	console.log(document.f.cvName.value);
-	console.log(document.f.cvDescription.value);
-	console.log(document.f.cvPortfolio.value);
-	console.log(document.f.userSeq.value);
-	*/
 	if (document.f.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
 		document.f.cvName.focus();
@@ -32,14 +26,6 @@
 
 // cv update
 function updateCv() {
-	/*
-	console.log('dddddddd');
-	console.log(document.f.cvId.value);
-	console.log(document.f.cvName.value);
-	console.log(document.f.cvDescription.value);
-	console.log(document.f.cvPortfolio.value);
-	console.log(document.f.userId.value);
-	*/
 	if (document.f.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
 		document.f.cvName.focus();
@@ -62,11 +48,10 @@ function updateCv() {
 
 // cv delete
 function deleteCv() {
-	// 나중에 모달 등으로 수정하기
 	if (window.confirm("정말 삭제하시겠습니까?")) {
-		  document.f.action = "cv-delete-action";
-		  document.f.method='POST';
-		  document.f.submit();
+	  document.f.action = "cv-delete-action";
+	  document.f.method='POST';
+	  document.f.submit();
 	}
 }
 
@@ -87,7 +72,6 @@ function apply() {
 	document.f.method='POST';
 	document.f.submit();
 }
-
 
 // edu
 /*
@@ -111,7 +95,7 @@ function deleteEdu(eduSeq) {
 	document.f.method='POST';
 	document.f.submit();
 }
-*/
+
 function deleteEdu(eduId) {
 	document.f.value=eduId;
 	$('#eduId'+eduId).value=eduId;
@@ -121,17 +105,70 @@ function deleteEdu(eduId) {
 	document.f.action = "edu-delete-action";
 	document.f.method='POST';
 	document.f.submit();
+}
+*/
 
 function addEdu() {
+  // 새로운 요소를 생성하고 클래스 이름을 추가합니다.
+  var newEduBlock = document.createElement("div");
+  newEduBlock.classList.add("edu-block");
+  // 새로운 요소의 내부 HTML을 설정합니다.
+  newEduBlock.innerHTML = `
+  <div class="resume-block">
+	  <div class="inner">
+	  <span class="name">E</span>
+      <div class="title-box">
+		  <div class="info-box">
+		  
+			  <input type=text name="eduMajor" placeholder="전공">
+			  <input type=text th:field="*{eduDto.eduName}" name="eduName" placeholder="학교명">
+		  </div>
+<div class="edit-box">
+      <!--
+      <input type="datetime-local" name ="eduStartDate" placeholder="시작날짜">
+      <input type="datetime-local" name ="eduEndDate" placeholder="종료날짜">
+      -->
+      <div class="edit-btns">
+      <button type="button" onclick="createEdu()"><span class="la la-pencil"></span></button>
+      <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
+      <button type="button"><span class="la la-trash"></span></button>
+      </div>
+       <div class="text">
+      <!-- Input eduScore -->
+      <div class="form-group col-lg-12 col-md-12">
+        <label>학점</label>
+        <input type="text" name="eduScore" placeholder="학점을 입력하세요.">
+      </div>
+       <!-- Input eduContent -->
+      <div class="form-group col-lg-12 col-md-12">
+        <label>추가 정보 입력</label>
+         <input type="text" name="eduContent" placeholder="학력 관련 추가 정보를 입력하세요.">
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+  `;
 
+  var eduList = document.getElementById("edu-block");
+  console.log(">>>>>>>>>> " + eduList);
+  var lastEduBlock = eduList.lastElementChild;
+
+  eduList.insertBefore(newEduBlock, lastEduBlock.nextSibling);
 }
 
+function createEdu() {
+	document.f.action = "edu-create";
+	document.f.method="POST";
+	document.f.submit();
+}
+
+/*
 // exp
 function deleteExp(expSeq) {
 	$('#expSeq'+expSeq).val(expSeq);
 	console.log($('#expSeq'+expSeq).attr('value'));
 	console.log($('.default-form').serialize());
-}
 }
 
 function deleteExp() {
@@ -139,3 +176,4 @@ function deleteExp() {
 	document.f.method='POST';
 	document.f.submit();
 }
+*/

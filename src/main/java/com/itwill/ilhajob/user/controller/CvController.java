@@ -220,20 +220,6 @@ public class CvController {
 		return map;
 	}
 	
-	/** 일단 동기방식으로 테스트 */
-	@RequestMapping(value = "/edu-delete-action")
-	public String cv_info_delete_action(HttpServletRequest request, @ModelAttribute EduDto eduDto, @RequestParam("eduId") Long eduid, Model model, RedirectAttributes redirectAttributes) {
-		System.out.println("======== eduId : " + eduid);
-//		System.out.println(eduid.replace(',', ' ').trim());
-//		eduService.deleteEduByEduSeq(Integer.parseInt(eduid.replace(',', ' ').trim()));
-		eduService.deleteEdu(eduid);
-		Long userId = (Long)request.getSession().getAttribute("id");
-		Long cvId = cvService.findByUserId(userId).get(0).getId();
-		redirectAttributes.addAttribute("cvId", cvId);
-		
-		return "redirect:cv-detail";
-	}
-	
 	@RequestMapping(value = "/exp-delete-action")
 	public String cv_exp_delete_action(HttpServletRequest request, @RequestParam int expSeq) {
 //		System.out.println("############### expSeq : " + expSeq);
