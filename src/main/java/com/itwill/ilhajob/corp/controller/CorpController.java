@@ -133,7 +133,7 @@ public class CorpController {
 			model.addAttribute("recruitList",recruitList1);
 			//String sUserId = (String)request.getSession().getAttribute("sUserId");
 			UserDto loginUser = userService.findUser(sUserId);
-			long count = reviewService.isReviewDuplicate(loginUser.getId(),corpDto.getId());
+			long count = reviewService.isReviewDuplicate(loginUser.getId(),corpDto.getId()); //이미 리뷰존재하면 1, 없으면 0
 			model.addAttribute("count",count);
 			request.setAttribute("loginUser", loginUser);
 			
