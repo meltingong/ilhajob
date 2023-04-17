@@ -330,21 +330,21 @@ insert into corp_bookmark(id, corp_id, user_id) values(BOOKMARK_ID_SEQ.nextval, 
 /*******************************결제관련**************************************/
 /**************************product insert************************/
 -- 개인회원 상품 insert => p_div : U
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'user', 1, '상품이미지1', '개인회원상품1', 1, 10000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'user', 2, '상품이미지2', '개인회원상품2', 2, 20000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'user', 3, '상품이미지3', '개인회원상품3', 3, 30000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 30, '개인회원상품1', 5500);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 60, '개인회원상품2', 9900);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 90, '개인회원상품3', 12900);
 
 
 -- 개인회원 상품 insert => p_div : C
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'corp', 4, '상품이미지5', '개인회원상품5', 5, 50000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'corp', 5, '상품이미지6', '개인회원상품6', 6, 60000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'corp', 6, '상품이미지7', '개인회원상품7', 7, 70000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 30, '개인회원상품5', 20000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 60, '개인회원상품6', 35000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 90, '개인회원상품7', 45000);
 
 
 /**************************orders insert************************/

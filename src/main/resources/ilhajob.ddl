@@ -236,12 +236,10 @@
     
     create table product (
        id number(19,0) not null,
-        p_div varchar2(255 char),
-        p_end_month number(10,0) not null,
-        p_image varchar2(255 char),
-        p_name varchar2(255 char),
-        p_no number(10,0) not null,
-        p_price number(10,0) not null,
+        product_div varchar2(255 char),
+        product_Period number(10,0) not null,
+        product_name varchar2(255 char),
+        product_price number(10,0) not null,
         primary key (id)
     );
  
