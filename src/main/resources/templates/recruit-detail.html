@@ -54,10 +54,14 @@
                         <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
-                      <ul class="job-other-info">
-                        <li class="time">Full Time</li>
+                      <ul class="job-other-info" >
+                      	<div th:each="str : ${recruitTagNameList}">
+                        <li class="time" th:text ="${str}">Full Time</li>
+                        <!--  
                         <li class="privacy">Private</li>
                         <li class="required">Urgent</li>
+                        -->
+                        </div>
                       </ul>
                     </div>
                   </div>

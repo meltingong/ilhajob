@@ -152,13 +152,10 @@
                     <option>매출크기</option>
                   </select>
 
-                  <select class="chosen-select">
-                    <option>Show 10</option>
-                    <option>Show 20</option>
-                    <option>Show 30</option>
-                    <option>Show 40</option>
-                    <option>Show 50</option>
-                    <option>Show 60</option>
+                  <select class="chosen-select" >
+                  	<div th:each="tag: ${tagList}">
+                    <option name="tagName" th:text="${tag.tagName}">코프태그</option>
+                    </div>
                   </select>
                 </div>
               </div>

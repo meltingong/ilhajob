@@ -2,6 +2,7 @@ package com.itwill.ilhajob.corp.controller;
 
 import java.io.Console;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -84,6 +85,18 @@ public class RecruitController {
 		model.addAttribute("recruit", recruit);
 		List<ManagerDto> managerList = managerService.findManagerByCorpID(recruit.getCorp().getId());
 		model.addAttribute("managerList", managerList);
+		
+		
+		//공고태그리스트 선별
+		List<RecruitTagDto> recruitTagList = recruitTagService.selectAllByRecruitId(id);
+		List<String> recruitTagNameList = new ArrayList<String>();
+		for (RecruitTagDto recruitTagDto : recruitTagList) {
+			TagDto tag = tagService.selectTag(recruitTagDto.getTagId());
+			recruitTagNameList.add(tag.getTagName());
+		}
+		model.addAttribute("recruitTagNameList", recruitTagNameList);
+		
+		
 		String forward_path = "recruit-detail";
 		return forward_path;
 	}
