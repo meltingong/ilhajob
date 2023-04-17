@@ -130,6 +130,9 @@ public class RecruitController {
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto=corpService.findCorp(sCorpId);
 		recruitDto.setCorp(corpDto);
+		recruitDto.setRcDate(LocalDateTime.now());
+		//마감일=등록일+30일로 설정
+		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
 		//System.out.println("pre modify action >>>>"+recruitDto);
 		
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
