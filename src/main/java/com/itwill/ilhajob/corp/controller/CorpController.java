@@ -109,11 +109,11 @@ public class CorpController {
 	}
 	
 	@RequestMapping("corp-detail")
-	public String corp_detail_view(@RequestParam("corpLoginId") String corpLoginId, HttpServletRequest request,Model model) throws Exception {
+	public String corp_detail_view(@RequestParam("corpId") Long corpId, HttpServletRequest request,Model model) throws Exception {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		
 		//공고 개수 불러오기
-		CorpDto corpDto1=corpService.findCorp(corpLoginId);
+		CorpDto corpDto1=corpService.findByCorpId(corpId);
 		System.out.println("corpDto1>>>>>>"+corpDto1);
 		Long recruitCount=recruitService.countByCorpId(corpDto1.getId());
 		System.out.println("공고개수>>>>>>"+recruitCount);
@@ -121,7 +121,7 @@ public class CorpController {
 		
 		
 		if(sUserId ==null) {
-			CorpDto corpDto=corpService.findCorp(corpLoginId);
+			CorpDto corpDto=corpService.findByCorpId(corpId);
 			model.addAttribute("corp", corpDto);
 			
 			//기업 태그 리스트 뿌리기
@@ -147,7 +147,7 @@ public class CorpController {
 			List<ReviewDto> reviewList = corpService.findReviewList(corpDto.getId());
 			model.addAttribute("reviewList",reviewList);
 			}else {
-			CorpDto corpDto=corpService.findCorp(corpLoginId);
+			CorpDto corpDto=corpService.findByCorpId(corpId);
 			model.addAttribute("corp", corpDto);
 			
 			//공고 목록 뿌리기
@@ -187,7 +187,7 @@ public class CorpController {
 		String forwardPath = "";
 		try {
 			corpService.login(corpDto.getCorpLoginId(), corpDto.getCorpPassword());
-			session.setAttribute("sCorpId", corpDto.getCorpLoginId());
+			session.setAttribute("sCorpId", corpDto.getId());
 			System.out.println(corpDto.getCorpLoginId());
 			forwardPath = "redirect:dashboard";
 		} catch (CorpNotFoundException e) {
@@ -211,15 +211,15 @@ public class CorpController {
 		String forwardPath = "";
 
 		/************** login check **************/
-		request.getSession().setAttribute("id", "1L"); //임시로 아이디 로그인상태
-		request.getSession().setAttribute("sCorpId", "corp_01"); //임시로 아이디 로그인상태
-		String sCorpId =(String)request.getSession().getAttribute("sCorpId");
+		//request.getSession().setAttribute("id", "1L"); //임시로 아이디 로그인상태
+		request.getSession().setAttribute("sCorpId", "1L"); //임시로 아이디 로그인상태
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
 		if(sCorpId==null) {
 			forwardPath= "redirect:login";
 		}else {
 			//System.out.println(loginCorp);
-			CorpDto loginCorp=corpService.findCorp(sCorpId);
-			request.setAttribute("loginCorp", loginCorp);
+			CorpDto loginCorp=corpService.findByCorpId(sCorpId);
+			request.setAttribute("corp", loginCorp);
 			forwardPath="dashboard";
 		}
 		return forwardPath;
@@ -229,8 +229,8 @@ public class CorpController {
 	public String corp_dashboard_company_profile(HttpServletRequest request, Model model) throws Exception {
 
 		String forwardPath = "";
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto = corpService.findCorp(sCorpId);
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto = corpService.findByCorpId(sCorpId);
 		/***********CorpImage 코프 로그인아이디로 리스트뽑아오기*****************/
 		List<CorpImageDto> corpImageList = corpImageService.selectAll();
 		List<CorpImageDto> corpImageList1 = new ArrayList<CorpImageDto>();
@@ -261,8 +261,8 @@ public class CorpController {
 	public String corp_dashboard_manage_job(@ModelAttribute("message")String message,HttpServletRequest request,
 											Model model, @RequestParam(value="sortType", required=false)String sortType) throws Exception {
 		//회사의 작성 공고 띄우기
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		List<RecruitDto> recruitList=recruitService.findAllByCorpId(corpDto.getId());
 		model.addAttribute("recruitList",recruitList);
 		
@@ -364,9 +364,6 @@ public class CorpController {
                 "C:\\2022-11-JAVA-DEVELOPER\\git_repositories\\final-project-team1-xxx\\src\\main\\resources\\imageUpload\\"
                 + fileName;
                 file.transferTo(new File(CorpImageUrl));
-                
-                
-                CorpDto corp = corpService.findCorp((String)request.getSession().getAttribute("sUserId"));
                 
                 
 //                CorpImageDto corpImage = new CorpImageDto(5,
