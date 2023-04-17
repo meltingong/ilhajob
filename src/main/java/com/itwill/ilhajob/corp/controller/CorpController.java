@@ -2,6 +2,8 @@
 package com.itwill.ilhajob.corp.controller;
 
 import java.io.File;
+import java.util.Comparator;
+
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -231,24 +233,39 @@ public class CorpController {
 	}
 
 	@RequestMapping("/dashboard-manage-job")
-	public String corp_dashboard_manage_job(@ModelAttribute("message")String message,HttpServletRequest request,Model model) throws Exception {
+	public String corp_dashboard_manage_job(@ModelAttribute("message")String message,HttpServletRequest request,
+											Model model, @RequestParam(value="sortType", required=false)String sortType) throws Exception {
 		//회사의 작성 공고 띄우기
 		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
 		CorpDto corpDto=corpService.findCorp(sCorpId);
 		List<RecruitDto> recruitList=recruitService.findAllByCorpId(corpDto.getId());
 		model.addAttribute("recruitList",recruitList);
 		
-		//지원된 이력서 없다는 메세지 띄우기->콘솔에서는 띄워지는데 페이지에서는 안됨...
-		//model.addAttribute("message",message);
-		//System.out.println(">>>>>>"+message);
-		
-		// 지원자 숫자 보여주기->일단 보류
-//		List<Integer> countList = new ArrayList<>();
-//		Long appCount = appService.findAppCountByCorpId(sCorpId);
-//		System.out.println(appCount);
-//		model.addAttribute("appCount", appCount);
-		
-		//공고 마감,진행 여부 보여주는 status도 일단 보류
+		//공고 정렬
+		//마감일 내림차순
+		if("rcDeadlinedesc".equalsIgnoreCase(sortType)){
+			recruitList.sort((o1,o2)->o2.getRcDeadline().compareTo(o1.getRcDeadline()));
+		}else {
+		//마감일 오름차순
+			recruitList.sort(Comparator.comparing(RecruitDto::getRcDeadline));
+		}
+		model.addAttribute("recruitList",recruitList);
+
+		//등록일 오름차순
+//		if("rcDateasc".equalsIgnoreCase(sortType)){
+//			recruitList.sort((o1,o2)->o2.getRcDate().compareTo(o1.getRcDate()));
+//		//등록일 내림차순	
+//		}else if("rcDatedesc".equalsIgnoreCase(sortType)){
+//			recruitList.sort(Comparator.comparing(RecruitDto::getRcDate).reversed());
+//		//마감일 오름차순
+//		}else if("rcDeadlineasc".equalsIgnoreCase(sortType)) {
+//			recruitList.sort(Comparator.comparing(RecruitDto::getRcDeadline));
+//		//마감일 내림차순
+//		}else {
+//			recruitList.sort(Comparator.comparing(RecruitDto::getRcDeadline).reversed());
+//		}
+//		model.addAttribute("recruitList",recruitList);
+				
 
 		return "dashboard-manage-job";
 	}
