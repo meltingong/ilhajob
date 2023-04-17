@@ -1,12 +1,17 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.util.concurrent.CompletableFuture;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.controller.ResponseStatusCode;
@@ -16,6 +21,7 @@ import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
@@ -69,5 +75,19 @@ public class UserRestController {
 	   }
 	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"잘못된 형식입니다.\", \"location\": \"/final-project-team1-ilhajob\"}");
 	}
+	
+	//작성중
+/*	@PostMapping("ajaxReviewCreate")
+	public ResponseEntity<Object> ajaxReviewCreate(@RequestBody ReviewDto reviewDto, HttpServletRequest request) throws Exception{
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		//CorpDto corpDto = corpService.findCorp(corpLoginId);
+		userService.insertReview(reviewDto);
+		
+		return ResponseEntity.ok().body("{\"success\": true, \"message\": \"작성 성공\"}");
+		
+	} */
+	
+	
 	
 }
