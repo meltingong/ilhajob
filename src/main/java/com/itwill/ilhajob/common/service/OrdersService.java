@@ -3,14 +3,13 @@ package com.itwill.ilhajob.common.service;
 import java.util.List;
 import java.util.Map;
 
-
 import com.itwill.ilhajob.common.dto.OrdersDto;
 import com.itwill.ilhajob.common.dto.PaymentDto;
 import com.itwill.ilhajob.common.dto.ProductDto;
 
 public interface OrdersService {
 	//Orders savaOrder(String role, long id, ProductDto productDto);
-	boolean checkAndSaveOrder(String role, long id, ProductDto productDto, String paymentMethod);
+	OrdersDto checkAndSaveOrder(String role, long id, ProductDto productDto, String paymentMethod);
 	void removeOrder();
 	List<OrdersDto> findOrderByUser(long id);
 	List<OrdersDto> findOrderByCorp(long id);

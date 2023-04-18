@@ -15391,8 +15391,16 @@ CheckOut Page
   
 }
 
+.payment-box label[for="bank-transfer"],
+.payment-box label[for="bank-deposit"],
+.payment-box label[for="naver-pay"],
+.payment-box label[for="kakao-pay"]{
+	padding-left: 5px;
+}
+
 .payment-box #card-select,
-.payment-box #bank-select{
+.payment-box #bank-select,
+.payment-box #deposit-select{
 	font-size:16px;
 	padding-left: 5px;
 }

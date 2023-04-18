@@ -1,9 +1,12 @@
 (function($) {
 	$('.call-order-modal').on('click', function(e) {
 		e.preventDefault();
+		if ($('.order-model.modal').length > 0) {
+			// 모달이 존재하는 경우
+			$('.order-model.modal').remove();
+		}
 		let productId = $(this).data('product-id');
 		let productIdJson = JSON.stringify({id: productId});
-		console.log(productIdJson);
 		let promise = $.ajax({
 			type: 'POST',
 			url: 'order-popup',
@@ -14,7 +17,6 @@
 
 		// Promise 객체를 사용하여 Ajax 요청 처리
 		promise.then(function(responseData) {
-			console.log(responseData);
 			let product = responseData.product;
             // HTML 파일 추가
 			$(responseData.html).appendTo('body').modal({
@@ -25,6 +27,7 @@
 			$('#order-name').val(responseData.user.userName);
 			$('#order-phone').val(responseData.user.userPhone);
 			$('#order-email').val(responseData.user.userEmail);
+			$('#product-id').val(product.id);
 			$('.product-name').text(product.productName);
 			$('.product-total').text(product.productPrice);
 			$('.amount').text(product.productPrice);
@@ -35,69 +38,89 @@
 		});
 			
 	});
-	
-	//신용/체크카드 선택시
-	$(document).on('change', '#credit-card', function(){
-		$(".payment-options").append("<div id='card-select'>카드사 선택<select name='select-credit' class='select2 sortby-select'><option value=''>--카드사 선택--</option><option value='KB국민카드'>KB국민카드</option><option value='신한카드'>신한카드</option><option value='삼성카드'>삼성카드</option></select></div>");
-	});
-
-	//계좌이체 선택시
-	$(document).on('change', '#bank-transfer', function(){
-		$(".payment-options").append("<div id='bank-select'>은행 선택<select name='select-bank' class='select2 sortby-select'><option value=''>--은행 선택--</option><option value='국민은행'>국민은행</option><option value='신한은행'>신한은행</option><option value='우리은행'>우리은행</option></select></div>");
-	});
-
-	//라디오 버튼 클릭 이벤트에서 생성된 div 요소 제거
-	$(document).on('click', 'input[name="payment-method"]', function(e){
-		$("#card-select, #bank-select").remove();
-	});
-	
-	
-	/*$(document).on('click', '#log-in', function(e) {
+		
+	$(document).on('click', '#pay-btn', function(e) {
 		e.preventDefault();
-		let formData = {};
-		$.each($('#login-f').serializeArray(), function() {
-			formData[this.name] = this.value;
-		});
-		let jsonData = JSON.stringify(formData);
-		// Promise 객체 생성
-		let promise = $.ajax({
-			type: 'POST',
-			url: 'ajaxLogin',
-			data: jsonData,
-			contentType: 'application/json',
-			dataType: 'json'
-		});
+		const productData = {
+			id: $('#product-id').val(),
+			productName: $('.product-name').text(),
+			productPrice: $('.product-total').text(),
+			orderTotal: $('.amount').text()
+		};
 
-		// Promise 객체를 사용하여 Ajax 요청 처리
-		promise.then(function(response) {
-			// 로그인 성공 시 처리
-			if (response.success) {
-				window.location.href = '/final-project-team1-ilhajob';
+		const userData = {
+			userName: $('#order-name').val(),
+			userPhone: $('#order-phone').val(),
+			userEmail: $('#order-email').val()
+		};
+
+		const paymentData = {
+			paymentMethod: $('input[name="payment-group"]:checked').val(),
+		};
+		
+		const currentDate = new Date();
+		const orderId = 'ORDER_' + currentDate.getFullYear() 
+		+ (currentDate.getMonth() + 1) + currentDate.getDate() 
+		+ currentDate.getHours() + currentDate.getMinutes() 
+		+ currentDate.getSeconds();
+		const orderData = {
+			orderId: orderId
+		};
+		$('.order-model.modal').remove();
+		const formData = {
+			productData: productData,
+			userData: userData,
+			paymentData: paymentData,
+			orderData: orderData
+		};
+		const jsonData = JSON.stringify(formData);
+		IMP.init("imp21102268");
+		//결제 api
+		IMP.request_pay({
+			pg: 'html5_inicis.INIBillTst',
+			pay_method: paymentData.paymentMethod,
+			merchant_uid: orderData.orderId, //상점에서 생성한 고유 주문번호
+			name: '주문명:' + productData.productName,
+			amount: 100,
+			buyer_email: userData.userEmail,
+			buyer_name: userData.userName,
+			buyer_tel: userData.userPhone,
+		}, function(rsp) { // callback 로직
+			console.log(rsp);
+			if (rsp.success) {
+				alert('결제가 완료되었습니다.');
+				// 결제 성공 시 처리할 로직을 추가하세요.
+				/*let promise = $.ajax({
+					type: 'POST',
+					url: 'order',
+					data: jsonData,
+					contentType: 'application/json',
+					dataType: 'json'
+				});
+
+				// Promise 객체를 사용하여 Ajax 요청 처리
+				promise.then(function(response) {
+					// 로그인 성공 시 처리
+					window.location.href = '/order-completed';
+				})
+				.fail(function(xhr) {
+						// Ajax 요청 실패 시 처리
+						alert("실패");
+				});*/
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+				alert(msg);
+				// 결제 실패 시 처리할 로직을 추가하세요.
 			}
-			// 로그인 실패 시 처리
-			else {
-				alert(response.message);
-				window.location.href = response.location;
-			}
-		})
-			.fail(function(xhr) {
-				// Ajax 요청 실패 시 처리
-				let errorMsg = document.createElement('p');
-				errorMsg.style.textAlign = 'center';
-				errorMsg.style.color = 'red';
-				errorMsg.textContent = xhr.responseText;
-				let passwordInput = document.getElementById('password-field');
-				passwordInput.insertAdjacentElement('afterend', errorMsg);
-				if (xhr.status === 5000 || xhr.status === 5300) {
-					$('#email').focus();
-				} else if (xhr.status === 5301 || xhr.status === 5301) {
-					$('#id').focus();
-				}
-			});
-	});*/
+		});
+		
+		
+	});
+	
+
 
 
 
 
 })(window.jQuery);
-
