@@ -13,5 +13,7 @@ public interface CorpTagService {
 	List<CorpTagDto> selectAllByCorpId(Long corpid);
 	
 	List<CorpTagDto> selectAll();
+
+	List<CorpTagDto> selectListByTagId(Long tagId);
 	
 }
