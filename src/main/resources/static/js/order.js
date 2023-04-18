@@ -101,7 +101,7 @@
 				// Promise 객체를 사용하여 Ajax 요청 처리
 				promise.then(function(response) {
 					// 로그인 성공 시 처리
-					window.location.href = '/order-completed';
+					window.location.href = '/final-project-team1-ilhajob/order-completed';
 				})
 				.fail(function(xhr) {
 						// Ajax 요청 실패 시 처리
