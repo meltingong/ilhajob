@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <script type="text/javascript">
+
+  function blogCreateForm() {
+  	window.location.href='blog-write-form';
+  }
+  </script>
 
 <head>
   <meta charset="utf-8">
@@ -8,7 +14,6 @@
   <!-- Stylesheets -->
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  
 
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
   <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -49,17 +54,55 @@
       </div>
     </section>
     <!--End Page Title-->
-
+</div>
     <!-- Sidebar Page Container -->
     <div class="sidebar-page-container">
       <div class="auto-container">
-        <div class="row">
+        <div class="row">      
+         <!-- 작성하기 버튼-->
+          <div style="margin-bottom: 10px">
+          <button type="button" class="theme-btn btn-style-one" style="float: right;" onclick="blogCreateForm();">작성하기</button>
+          </div>
+	 </div>
+    
           <!--Content Side-->
           <div class="content-side col-lg-12 col-md-12 col-sm-12">
             <div class="blog-grid">
               <div class="row">
+              
+               <!-- 
+									<tr th:each="blog:${blogList}" >
+										<td th:text="${}" width=50 align=center bgcolor="ffffff" height="20">158</td>
+										<td width=300 bgcolor="ffffff" style="padding-left:10">
+										<a	th:text="${guest.guest_title}" th:href="@{guest_view(guest_no=${guest.guest_no})}" href="guest_view?guest_no=158" class="user">제목</a></td>
+										<!-- th:href 링크걸때 앞에@ 붙이고 @{guest_view(guest_no=${guest.guest_no})} 요런식으로 th문법사용해야댐
+										<td th:text="${guest.guest_name}" width=120 align=center bgcolor="ffffff">테스트</td>
+										<td th:text="${guest.guest_date.substring(0,10)}" width=120 align=center bgcolor="ffffff">2023-02-15</td>
+									</tr>
+					 -->
                 <!-- News Block -->
-                <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                <div class="news-block col-lg-4 col-md-6 col-sm-12" th:each="blog : ${blogList}">
+                  <div class="inner-box">
+                    <div class="image-box">
+                      <figure class="image"><img src="images/resource/news-1.jpg" alt="" /></figure>
+                    </div>
+                    <div class="lower-content">
+                      <ul class="post-meta">
+                        <li><p th:text="${#temporals.format(blog.blogDate,'yyyy-MM-dd')}" >August 31, 2021</li>
+                        <li><p th:text="|${#lists.size(blog.blogCommentList)} Comment|"></li>
+                        <li><p th:text="|${blog.blogReadCount} views|"></p>
+                        <li><p th:text="${blog.blogLike}"></p>
+                      </ul>
+                      <h3><a th:text="${blog.blogTitle}" th:href="@{blog-single(id=${blog.id})}">Attract Sales And Profits</a></h3>
+                      <p class="text" th:text="|${#strings.substring(blog.blogContent,0,3)}...|">이거 만약 글자수가 몇자이상일때만 substring할수있게 못하나?</p>
+                      <a th:href="@{blog-single(id=${blog.id})}" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
+                    </div>
+                  </div>
+                </div>  
+                
+                
+                <!-- News Block -->
+                <!--<div class="news-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
                     <div class="image-box">
                       <figure class="image"><img src="images/resource/news-1.jpg" alt="" /></figure>
@@ -76,113 +119,39 @@
                   </div>
                 </div>
 
-                <!-- News Block -->
-                <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                  <div class="inner-box">
-                    <div class="image-box">
-                      <figure class="image"><img src="images/resource/news-2.jpg" alt="" /></figure>
-                    </div>
-                    <div class="lower-content">
-                      <ul class="post-meta">
-                        <li><a href="#">August 31, 2021</a></li>
-                        <li><a href="#">12 Comment</a></li>
-                      </ul>
-                      <h3><a href="blog-single.html">5 Tips For Your Job Interviews</a></h3>
-                      <p class="text">A job ravenously while Far much that one rank beheld after outside....</p>
-                      <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- News Block -->
-                <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                  <div class="inner-box">
-                    <div class="image-box">
-                      <figure class="image"><img src="images/resource/news-3.jpg" alt="" /></figure>
-                    </div>
-                    <div class="lower-content">
-                      <ul class="post-meta">
-                        <li><a href="#">August 31, 2021</a></li>
-                        <li><a href="#">12 Comment</a></li>
-                      </ul>
-                      <h3><a href="blog-single.html">An Overworked Newspaper Editor</a></h3>
-                      <p class="text">A job ravenously while Far much that one rank beheld after outside....</p>
-                      <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- News Block -->
-                <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                  <div class="inner-box">
-                    <div class="image-box">
-                      <figure class="image"><img src="images/resource/news-4.jpg" alt="" /></figure>
-                    </div>
-                    <div class="lower-content">
-                      <ul class="post-meta">
-                        <li><a href="#">August 31, 2021</a></li>
-                        <li><a href="#">12 Comment</a></li>
-                      </ul>
-                      <h3><a href="blog-single.html">Attract Sales And Profits</a></h3>
-                      <p class="text">A job ravenously while Far much that one rank beheld after outside....</p>
-                      <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- News Block -->
-                <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                  <div class="inner-box">
-                    <div class="image-box">
-                      <figure class="image"><img src="images/resource/news-5.jpg" alt="" /></figure>
-                    </div>
-                    <div class="lower-content">
-                      <ul class="post-meta">
-                        <li><a href="#">August 31, 2021</a></li>
-                        <li><a href="#">12 Comment</a></li>
-                      </ul>
-                      <h3><a href="blog-single.html">5 Tips For Your Job Interviews</a></h3>
-                      <p class="text">A job ravenously while Far much that one rank beheld after outside....</p>
-                      <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- News Block -->
-                <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                  <div class="inner-box">
-                    <div class="image-box">
-                      <figure class="image"><img src="images/resource/news-6.jpg" alt="" /></figure>
-                    </div>
-                    <div class="lower-content">
-                      <ul class="post-meta">
-                        <li><a href="#">August 31, 2021</a></li>
-                        <li><a href="#">12 Comment</a></li>
-                      </ul>
-                      <h3><a href="blog-single.html">An Overworked Newspaper Editor</a></h3>
-                      <p class="text">A job ravenously while Far much that one rank beheld after outside....</p>
-                      <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+            
+              </div>-->
 
               <!-- Pagination -->
               <nav class="ls-pagination">
-                <ul>
-                  <li class="prev"><a href="#"><i class="fa fa-arrow-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#" class="current-page">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li class="next"><a href="#"><i class="fa fa-arrow-right"></i></a></li>
-                </ul>
+                  <li th:each="page:${#numbers.sequence(0,totalPage -1)}" th:if="${page >= nowPage-1 and page <= nowPage+1}">
+                  <a th:href="@{blog-list?page=}+${pageStat.index}"></a></li>
+              <ul>
+                <li th:unless="${nowPage == 0}" class="prev"><a th:href="@{blog-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+                <li class="prev"><a th:unless="${nowPage == 0}" th:text="${nowPage}" th:href="@{blog-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+     			   <li><a class="current-page" th:text="${nowPage+1}" ></a></li>
+                <li class="next"><a th:unless="${nowPage == totalPage-1}" th:text="${nowPage+2}" th:href="@{blog-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+             	<li th:unless="${nowPage == totalPage-1}" class="next"><a th:href="@{blog-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+              </ul>
               </nav>
+
+
+               <!-- <th:block th:each="page:${#numbers.sequence(startPage,endPage)}"
+                th:text="${pageStat.index+1}">
+             <a th:if="${page != nowPage}" th:href="@{/blog-list(page=${page-1})}" th:text ="${page}"></a>
+             <strong th:if="${page==nowPage}" th:text ="${page}" style="color:red"></strong>
+             th:if="${page >= paging.number-5 and page <= paging.number+5}"-->
+
+                  
+                  <!-- <ul>
+                  <li><a class="current-page" th:text="${nowPage}" ></a></li>
+                </ul>-->
+              
             </div>
           </div>
         </div>
       </div>
-    </div>
+    <!--End Listing Page Section -->
     <!-- End Sidebar Container -->
 
     <!-- Main Footer -->
@@ -309,5 +278,3 @@
   <script src="js/script.js"></script>
 
 </body>
-
-</html>

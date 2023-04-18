@@ -18,22 +18,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+  
+  <!-- Handlebars -->
+	<!-- script  defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script-->
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 	
 </head>
 
-	<script>
-	 $(document).on('click','#search-button',function(){
-				var query = $("#query").val();
-				$.ajax({
-					type: "POST",
-					url: "/search",
-					data: {query: query},
-					success: function(resultMap) {
-						var corpList = resultMap.corpList;
-						console.log(corpList)
-					}
-				});
-			});
-	</script>
 <body>
 
   <div class="page-wrapper">
@@ -54,75 +46,26 @@
     <section class="page-title">
       <div class="auto-container">
       
+      
         <!-- Job Search Form -->
         <div class="job-search-form">
-          <form method="post" action="job-list-v8">
+          <form name="searchForm">
             <div class="row">
               <!-- Form Group -->
               <div class="form-group col-lg-5 col-md-12 col-sm-12">
                 <span class="icon flaticon-search-1"></span>
-                <input type="text" name="query" id="query" placeholder="회사명">
+                <input type="text" id="search-input" placeholder="회사명">
               </div>
-
-              <!-- Form Group -->
-              <!--  
-              <div class="form-group col-lg-3 col-md-12 col-sm-12 location">
-                <span class="icon flaticon-map-locator"></span>
-                <input type="text" name="field_name" placeholder="지역">
-              </div>
-              -->
-			<!--Form Group--> 
-              
-              <div class="form-group col-lg-5 col-md-12 col-sm-12 location">
-                <span class="icon flaticon-briefcase"></span>
-                <select class="chosen-select">
-                  <option value="">카테고리</option>
-                  <option value="44">웹프로그래머</option>
-                  <option value="106">응용프로그램</option>
-                  <option value="46">네트워크</option>
-                  <option value="48">웹 퍼블리싱</option>
-                  <option value="47">게임</option>
-                  <option value="45">디자인/ 컴퓨터 강사</option>
-                  <option value="105">빅데이터 ai</option>
-                  <option value="107">소프트웨어 하드웨어</option>
-                </select>
-              </div>
-			 
-			  
-              <!-- Form Group -->
               <div class="form-group col-lg-2 col-md-12 col-sm-12 text-right">
                 <button type="button" id = "search-button" class="theme-btn btn-style-one">기업 찾기</button>
               </div>
             </div>
           </form>
         </div>
-        <!-- Job Search Form -->
-		<!--  
-        <div class="top-filters">
-          <div class="form-group">
-            <select class="chosen-select">
-              <option>회사원규모순</option>
-              <option>신규순</option>
-              <option>이름순</option>
-              <option>매출순</option>
-              <option>Temporary</option>
-            </select>
-          </div>
+ <!-- 검색 결과 표시할 영역 -->       
+          <div id="search-result"></div>     
+ <!-- 검색 결과 표시할 영역 -->    
 
-          <div class="form-group">
-            <select class="chosen-select">
-              <option>Founded Date</option>
-              <option>New Jobs</option>
-              <option>Freelance</option>
-              <option>Full Time</option>
-              <option>Internship</option>
-              <option>Part Time</option>
-              <option>Temporary</option>
-            </select>
-          </div>
-        </div>
-      </div>
-       -->
     </section>
    
     <!--End Page Title-->
@@ -182,7 +125,7 @@
                     </ul>
                      <span th:each="corpTag:${corpTagList}">
                 		<span th:each="tag:${tagList}">
-                    <span class="job-type" style ="margin-right:1px; margin-bottom: 5px" th:if="${corpTag.corpId}==${corp.id} and ${tag.tagId}==${corpTag.tagId}" th:text="${tag.tagName}">Open Jobs – 2</span>
+                    <span class="job-type" style ="margin-right:1px; margin-bottom: 5px" th:if="${corpTag.corp.Id}==${corp.id} and ${tag.tagId}==${corpTag.tagId}" th:text="${tag.tagName}">Open Jobs – 2</span>
                   </span>
                 </span>
                 </div>
@@ -311,9 +254,70 @@
     <!-- End Main Footer -->
 
 
-  </div><!-- End Page Wrapper -->
-
-
+	  </div>
+	  <!-- End Page Wrapper -->
+	  
+  	<!-- corpName으로 검색하기 ajax 구현중 -->
+<script>
+$(document).ready(function() {
+	  $('#search-button').click(function(e) {
+	    e.preventDefault();
+	    var searchInput = $('#search-input').val();
+	    $.ajax({
+	      type: 'GET',
+	      url: '/search',
+	      data: { corpName: searchInput },
+	      dataType: 'json',
+	      success: function(result) {
+	        var template = Handlebars.compile($('#search-template').html());
+	        $('#search-result').html(template({ corpList: result }));
+	      },
+	      error: function(xhr, status, error) {
+	        console.log(error);
+	      }
+	    });
+	  });
+	});
+</script>
+  
+ <!-- corp-search-template: handlebars -->
+	<script type="text/x-handlebars-template" id="search-result-template">
+		{{#each corpList}}
+			   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                  <div class="inner-box">
+                    <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+                    <span class="featured">Featured</span>
+                    <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
+                    <h4><a href="/corp-detail?corpId={{id}}">{{corpName}}</a></h4>
+                    <ul class="job-info">
+                      <li><span class="icon flaticon-map-locator"></span>{{corpAddress}}</li>
+                      <li><span class="icon flaticon-briefcase" ></span>{{corpWelfare}}</li>
+                    </ul>
+						{{#each corpTags}}
+        					{{#each ../tagList}}
+         					 	{{#ifCond ../id '==' ../corpId}}
+           							 {{#ifCond tagId '==' tag.tagId}}
+              							<span class="job-type" style="margin-right:1px; margin-bottom: 5px">{{tag.tagName}}</span>
+           							 {{/ifCond}}
+          						{{/ifCond}}
+       						 {{/each}}
+      					{{/each}}
+                </div>
+                </div>
+		{{/each}}
+	</script>
+	<!-- 오류 안나면 /ul 밑에 태그 추가하기 
+	      {{#each corpTags}}
+        {{#each ../tagList}}
+          {{#ifCond ../id '==' ../corpId}}
+            {{#ifCond tagId '==' tag.tagId}}
+              <span class="job-type" style="margin-right:1px; margin-bottom: 5px">{{tag.tagName}}</span>
+            {{/ifCond}}
+          {{/ifCond}}
+        {{/each}}
+      {{/each}}-->
+	
+  <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/jquery.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>

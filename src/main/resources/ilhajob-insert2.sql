@@ -444,22 +444,62 @@ values(PAYMENT_ID_SEQ.nextval, '2023/03/28', '무통장 입금', 40000, 4, 4, 4)
 
 /*******************************블로그게시판관련**************************************/
 /**************************blog_cate insert************************/
-insert into blog_cate(blog_cate_seq, blog_cate_name) values(blog_cate_blog_cate_seq_SEQ.nextval, '카테고리1');
-insert into blog_cate(blog_cate_seq, blog_cate_name) values(blog_cate_blog_cate_seq_SEQ.nextval, '카테고리2');
-insert into blog_cate(blog_cate_seq, blog_cate_name) values(blog_cate_blog_cate_seq_SEQ.nextval, '카테고리3');
-insert into blog_cate(blog_cate_seq, blog_cate_name) values(blog_cate_blog_cate_seq_SEQ.nextval, '카테고리4');
+insert into blog_cate(id, blog_cate_name) values(BLOG_CATE_ID_SEQ.nextval, '카테고리1');
+insert into blog_cate(id, blog_cate_name) values(BLOG_CATE_ID_SEQ.nextval, '카테고리2');
+insert into blog_cate(id, blog_cate_name) values(BLOG_CATE_ID_SEQ.nextval, '카테고리3');
+insert into blog_cate(id, blog_cate_name) values(BLOG_CATE_ID_SEQ.nextval, '카테고리4');
 
 /******************************blog insert*************************/
 insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 1, '블로그 내용1', '2023/03/01', '이미지1', 1, 1, '블로그 제목1', 1);
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용1', '2023/03/01', '이미지1', 0, 0, '블로그 제목1', 1);
 insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 2, '블로그 내용2', '2023/03/02', '이미지2', 2, 2, '블로그 제목2', 2);
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용2', '2023/03/02', '이미지2', 0, 0, '블로그 제목2', 2);
 insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 3, '블로그 내용3', '2023/03/03', '이미지3', 3, 3, '블로그 제목3', 3);
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용3', '2023/03/03', '이미지3', 0, 0, '블로그 제목3', 3);
 insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 4, '블로그 내용4', '2023/03/04', '이미지4', 4, 4, '블로그 제목4', 4);
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용4', '2023/03/04', '이미지4', 0, 0, '블로그 제목4', 4);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용5', '2023/03/01', '이미지1', 0, 0, '블로그 제목5', 1);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용6', '2023/03/02', '이미지2' ,0, 0, '블로그 제목6', 2);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용7', '2023/03/03', '이미지3', 0, 0, '블로그 제목7', 3);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용8', '2023/03/04', '이미지4', 0, 0, '블로그 제목8', 4);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용9', '2023/03/01', '이미지1', 0, 0, '블로그 제목9', 1);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용10', '2023/03/02', '이미지2', 0, 0, '블로그 제목10', 2);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용11', '2023/03/03', '이미지3', 0, 0, '블로그 제목11', 3);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용12', '2023/03/04', '이미지4', 0, 0, '블로그 제목12', 4);
+nsert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용13', '2023/03/01', '이미지1', 0, 0, '블로그 제목13', 1);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용14', '2023/03/02', '이미지2', 0, 0, '블로그 제목14', 2);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용15', '2023/03/03', '이미지3', 0, 0, '블로그 제목15', 3);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용16', '2023/03/04', '이미지4', 0, 0, '블로그 제목16', 4);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용17', '2023/03/01', '이미지1', 0, 0, '블로그 제목17', 1);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용18', '2023/03/02', '이미지2', 0, 0, '블로그 제목18', 2);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용19', '2023/03/03', '이미지3', 0, 0, '블로그 제목19', 3);
+insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용20', '2023/03/04', '이미지4', 0, 0, '블로그 제목20', 4);
 
 /******************************blog_comment insert*****************/
+insert into blog_comment(id, comment_content, comment_date, blog_id, user_id)
+values(BLOG_COMMENT_ID_SEQ.nextval, '블로그 댓글내용1', '2023/03/01', 1, 1);
+insert into blog_comment(id, comment_content, comment_date, blog_id, user_id)
+values(BLOG_COMMENT_ID_SEQ.nextval, '블로그 댓글내용2', '2023/03/02', 2, 2);
+insert into blog_comment(id, comment_content, comment_date, blog_id, user_id)
+values(BLOG_COMMENT_ID_SEQ.nextval, '블로그 댓글내용3', '2023/03/03', 3, 3);
+insert into blog_comment(id, comment_content, comment_date, blog_id, user_id)
+values(BLOG_COMMENT_ID_SEQ.nextval, '블로그 댓글내용4', '2023/03/04', 4, 4);
 insert into blog_comment(id, comment_content, comment_date, blog_id, user_id)
 values(BLOG_COMMENT_ID_SEQ.nextval, '블로그 댓글내용1', '2023/03/01', 1, 1);
 insert into blog_comment(id, comment_content, comment_date, blog_id, user_id)

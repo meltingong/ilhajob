@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.controller.ResponseStatusCode;
@@ -82,20 +83,25 @@ public class UserRestController {
 	 * 리뷰 작성중 ajax 방식
 	 */
 	
-	//test x
-	/*
-	@PostMapping("/createReview")
-	public ResponseEntity<Object> createReview(@RequestBody ReviewDto reviewDto, HttpSession session) {
-	    String userEmail = (String) session.getAttribute("userEmail");
-	    if(userEmail == null) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"로그인이 필요합니다.\", \"location\": \"/final-project-team1-ilhajob/login\"}");
+	//test중 -> ResponseStatusCode.written_fail_review 에러(6001 직접만듦)으로 반환됨. -> console.log
+	
+	@PostMapping("createReviewAjax")
+	public ResponseEntity<Object> createReview(@RequestBody ReviewDto reviewDto, HttpSession session, @RequestParam("corpId")Long corpId) {
+	    String sUserId = (String) session.getAttribute("sUserId");
+	    if(sUserId == null) {
+	        return ResponseEntity.status(ResponseStatusCode.NOT_FOUND_USER).body("{\"success\": false, \"message\": \"로그인이 필요합니다.\", \"location\": \"/final-project-team1-ilhajob/login\"}");
 	    }
 	    try {
+	    	UserDto loginUser = userService.findUser(sUserId);
+	    	CorpDto corpDto = corpService.findByCorpId(corpId);
+	    	reviewDto.setCorp(corpDto);
+	    	reviewDto.setUser(loginUser);
 	        userService.insertReview(reviewDto);
+	        System.out.println("!!!!!!!!!!!!!!!!!!"+userService.insertReview(reviewDto));
 	        return ResponseEntity.ok().body("{\"success\": true, \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");
 	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"success\": false, \"message\": \"리뷰 작성에 실패했습니다. 잠시 후 다시 시도해주세요.\"}");
+	        return ResponseEntity.status(ResponseStatusCode.WRITTEN_FAIL_REVIEW).body("{\"success\": false, \"message\": \"리뷰 작성에 실패했습니다. 잠시 후 다시 시도해주세요.\"}");
 	    }
 	}
-	*/ //Review Ajax방식 작성중
+	 //Review Ajax방식 작성중
 }

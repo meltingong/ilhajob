@@ -73,54 +73,20 @@ function apply() {
 	document.f.submit();
 }
 
-// edu
-/*
-function deleteEdu(eduSeq) {
-	$('#eduSeq'+eduSeq).val(eduSeq);
-	console.log($('#eduSeq'+eduSeq).attr('value'));
-	console.log($('.default-form').serialize());
-	document.f.action = "edu-delete-action";
-	document.f.method='POST';
-	document.f.submit();
-}
-*/
-/**
-function deleteEdu(eduSeq) {
-	document.f.value=eduSeq;
-	$('#eduSeq'+eduSeq).value=eduSeq;
-	console.log(document.f.value);
-	console.log(">>>>"+$('#eduSeq'+eduSeq).value);
-
-	document.f.action = "edu-delete-action";
-	document.f.method='POST';
-	document.f.submit();
-}
-
-function deleteEdu(eduId) {
-	document.f.value=eduId;
-	$('#eduId'+eduId).value=eduId;
-	console.log(document.f.value); // ok
-	console.log(">>>>"+$('#eduId'+eduId).value); // undefined
-
-	document.f.action = "edu-delete-action";
-	document.f.method='POST';
-	document.f.submit();
-}
-*/
-
+/**************** edu ****************/
 function addEdu() {
   // 새로운 요소를 생성하고 클래스 이름을 추가합니다.
   var newEduBlock = document.createElement("div");
   newEduBlock.classList.add("edu-block");
   // 새로운 요소의 내부 HTML을 설정합니다.
   newEduBlock.innerHTML = `
-  <div class="resume-block">
+  <div class="resume-block" th:object="${eduList}" th:each="edu:${eduList}">
 	  <div class="inner">
 	  <span class="name">E</span>
 		      <div class="edit-btns">
 			      <button type="button" onclick="createEdu()"><span class="la la-pencil"></span></button>
 			      <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
-			      <button type="button"><span class="la la-trash"></span></button>
+			      <button type="button" onclick="deleteEdu()" name="eduId"><span class="la la-trash"></span></button>
 	      	  </div>
 	      	  <div class="row">
 			  
@@ -161,6 +127,18 @@ function addEdu() {
   var lastEduBlock = eduList.lastElementChild;
   eduList.insertBefore(newEduBlock, lastEduBlock.nextSibling);
 }
+
+function deleteEdu(eduId) {
+	confirm(">>>>>>> eduId : " + eduId + "typeof : " + typeof eduId);
+	$('#eduId'+eduId).val(eduId);
+	console.log($('#eduId'+eduId).attr('value'));
+	console.log($('.default-form').serialize());
+
+	document.f.action = "edu-delete-action";
+	document.f.method='POST';
+	document.f.submit();
+}
+
 
 function createEdu() {
 	

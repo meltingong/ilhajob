@@ -11,10 +11,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,59 +49,44 @@ public class EduController {
 	@RequestMapping(value = "/edu-create", method = RequestMethod.POST)
 	public String createEdu(
 			@RequestParam(name = "eduStartDate") String eduStartDate, 
-			@RequestParam(name = "eduEndDate") String eduEndDate, @ModelAttribute EduDto eduDto, 
-			HttpServletRequest request, Model model) {
+			@RequestParam(name = "eduEndDate") String eduEndDate, 
+			@RequestParam(name = "eduName") List<String> eduNameList,
+			@RequestParam(name = "eduMajor") List<String> eduMajorList,
+			@RequestParam(name = "eduScore") String eduScore,
+			@RequestParam(name = "eduContent") String eduContent,
+			@RequestParam(name="id") Long cvId,
+			HttpServletRequest request, Model model,
+			RedirectAttributes redirectAttributes) {
 		try {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>");
-			System.out.println(">>>>>>>>>eduDto : " + eduDto);
 			String userEmail = (String)request.getSession().getAttribute("sUserId");
 			UserDto user = userService.findUser(userEmail);
 			
+			EduDto eduDto = new EduDto();
+			
+			String eduName = eduNameList.get(eduNameList.size()-1);
+			String eduMajor = eduMajorList.get(eduMajorList.size()-1);
+			
+			eduDto.setEduName("");
+			eduDto.setEduName(eduName);
+			eduDto.setEduContent(eduContent);
+			eduDto.setEduMajor(eduMajor);
+			eduDto.setEduScore(eduScore);			
 			eduDto.setUser(user);
+			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			LocalDateTime startDateTime = LocalDateTime.parse(eduStartDate, formatter);
-			LocalDateTime endDateTime = LocalDateTime.parse(eduEndDate, formatter);
+			LocalDateTime startDateTime = LocalDate.parse(eduStartDate, formatter).atStartOfDay();
+			LocalDateTime endDateTime = LocalDate.parse(eduEndDate, formatter).atStartOfDay();
 			
 			eduDto.setEduStartDate(startDateTime);
-			eduDto.setEduStartDate(endDateTime);
+			eduDto.setEduEndDate(endDateTime);
 			eduService.createEdu(eduDto);
-			System.out.println(">>>>>>>>> edu : " + eduDto);
-			
-			Long userId = (Long)request.getSession().getAttribute("id");
-			List<CvDto> cvList = cvService.findByUserId(userId);
-			model.addAttribute("cvList", cvList);
-			
-			//* 가장 최근 작성한(cvId 기준) cv의 detail */
-			CvDto cvDetail = cvList.get(cvList.size()-1);
-			model.addAttribute("cvDetail", cvDetail);
-			
-			//* eduList */
-			List<EduDto> eduList = eduService.findEduListByUserId(userId);
-			model.addAttribute("eduList", eduList);
-			
-			//* expList */
-			List<ExpDto> expList = expService.findExpListByUserId(userId);
-			model.addAttribute("expList", expList);
-			
-			//* awardsList */
-			List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
-			model.addAttribute("awardsList", awardsList);
+
+			redirectAttributes.addAttribute("cvId", cvId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "redirect:cv-detail";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@RequestMapping(value = "/edu", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> addEdu(@RequestBody EduDto eduDto) {
@@ -112,6 +95,24 @@ public class EduController {
 		resultMap.put("data", data);
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "edu-delete-action", method = RequestMethod.POST)
+	public String deleteEdu(HttpServletRequest request, @RequestParam("eduId") String eduId, @RequestParam(name="id") Long cvId, Model model, RedirectAttributes redirectAttributes) {
+		System.out.println(">>>>>>>>>>>>>>> eduId " + eduId);
+		System.out.println(eduId.replace(',', ' ').trim());
+		System.out.println(">>>>>>>>>>>>>>> String -> Long eduId : " + Long.parseLong(eduId.replace(',', ' ').trim()));
+		Long longEduId = Long.parseLong(eduId.replace(',', ' ').trim());
+		eduService.deleteEdu(longEduId);
+		redirectAttributes.addAttribute("cvId", cvId);
+		return "redirect:cv-detail";
+	}
+	
+	
+	
+	
+	
+	
+	// ajax
 	
 	@RequestMapping(value="/edu/delete/{eduId}", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public Map<String, Object> deleteEdu(@PathVariable("eduId") Long eduId, HttpServletRequest request, RedirectAttributes redirectAttributes) {
