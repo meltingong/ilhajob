@@ -9,7 +9,7 @@ public interface BlogCommentService {
 	/*
 	 * findBlogComment(블로그댓글seq로 찾기)
 	 */
-	BlogCommentDto findBlogComment(Long id);
+	BlogCommentDto findBlogComment(long id) throws Exception;
 	
 	/*
 	 * selectAll(블로그댓글list)
@@ -24,21 +24,5 @@ public interface BlogCommentService {
 	 * blogComment insert
 	 */
     BlogCommentDto insertBlogComment(BlogCommentDto blogComment) throws Exception;
-
-	
-	/*
-    int updateBlogComment(BlogCommentDto blogComment);
-    int deleteBlogComment(int commentSeq);
-    List<BlogCommentDto> findByUserSeqCommnt(int userSeq);
-     */
-    
-    /*
-     * blogComment update
-     */
-    
-    /*
-     * blogComment delete
-     */
-
 
 }

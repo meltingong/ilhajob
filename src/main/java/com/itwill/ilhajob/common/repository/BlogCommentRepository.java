@@ -8,6 +8,5 @@ import com.itwill.ilhajob.common.entity.BlogComment;
 
 public interface BlogCommentRepository extends JpaRepository<BlogComment, Long>{
 
-	List<BlogComment> findAllById(Long blogId);
-
+	List<BlogComment> findByBlogId(Long blogId);
 }
