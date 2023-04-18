@@ -2,7 +2,12 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript">
 function reviewCreate(){
-	console.log(document.getElementById('review-form'));
+	
+	if (isNaN(document.f.reviewGrade.value)) {
+	    alert("숫자만 입력하세요.");
+	    document.f.reviewGrade.focus();
+	    return false;
+	}
 	document.f.action = "review_write_action";
 	document.f.method='POST';
 	document.f.submit();
