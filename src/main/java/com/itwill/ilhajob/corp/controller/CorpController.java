@@ -326,7 +326,7 @@ public class CorpController {
 	}
 	
 		
-		
+	/*	
 	// 검색기능 
 	@GetMapping("/search")
 	public String searchCorp() {
@@ -345,6 +345,7 @@ public class CorpController {
 		// 결과 페이지를 반환
 		return resultMap;
 	}
+	*/
 	
 	//이미지 업로드
     @PostMapping("/imageUpload")
@@ -381,7 +382,7 @@ public class CorpController {
         }
     }
     
-    
+    //corpName으로 검색 기능
     
 }
 

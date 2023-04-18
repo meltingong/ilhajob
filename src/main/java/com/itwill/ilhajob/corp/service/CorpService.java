@@ -58,6 +58,11 @@ public interface CorpService {
 	
 	//회사 리스트
 	public List<CorpDto> findCorpAll() throws Exception;
-
-	List<CorpDto> searchCorpList(String query) throws Exception;
+	
+	//회사 검색
+	//List<CorpDto> searchCorpList(String query) throws Exception;
+	
+	//corpName으로 검색 기능
+	List<CorpDto> searchByCorpName(String corpName) throws Exception;
+	
 }
