@@ -51,21 +51,33 @@ public class EduController {
 	@RequestMapping(value = "/edu-create", method = RequestMethod.POST)
 	public String createEdu(
 			@RequestParam(name = "eduStartDate") String eduStartDate, 
-			@RequestParam(name = "eduEndDate") String eduEndDate, @ModelAttribute EduDto eduDto, 
+			@RequestParam(name = "eduEndDate") String eduEndDate, 
+			@RequestParam(name = "eduName") String eduName,
+			@RequestParam(name = "eduMajor") String eduMajor,
+			@RequestParam(name = "eduScore") String eduScore,
+			@RequestParam(name = "eduContent") String eduContent,
+			/* @ModelAttribute EduDto eduDto, */
 			HttpServletRequest request, Model model) {
 		try {
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>");
-			System.out.println(">>>>>>>>>eduDto : " + eduDto);
 			String userEmail = (String)request.getSession().getAttribute("sUserId");
 			UserDto user = userService.findUser(userEmail);
 			
+			EduDto eduDto = new EduDto();
+			eduDto.setEduName(eduName);
+			eduDto.setEduContent(eduContent);
+			eduDto.setEduMajor(eduMajor);
+			eduDto.setEduScore(eduScore);			
 			eduDto.setUser(user);
+
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			LocalDateTime startDateTime = LocalDateTime.parse(eduStartDate, formatter);
-			LocalDateTime endDateTime = LocalDateTime.parse(eduEndDate, formatter);
+			LocalDateTime startDateTime = LocalDate.parse(eduStartDate, formatter).atStartOfDay();
+			System.out.println(">>>>>>>>>> " + startDateTime);
+			LocalDateTime endDateTime = LocalDate.parse(eduEndDate, formatter).atStartOfDay();
 			
 			eduDto.setEduStartDate(startDateTime);
-			eduDto.setEduStartDate(endDateTime);
+			eduDto.setEduEndDate(endDateTime);
+			System.out.println(">>>>>>>>> edu : " + eduDto);
 			eduService.createEdu(eduDto);
 			System.out.println(">>>>>>>>> edu : " + eduDto);
 			
