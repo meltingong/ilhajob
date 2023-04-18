@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -53,6 +54,7 @@ import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.repository.ManagerRepository;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.corp.service.CorpServiceImpl;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
@@ -401,6 +403,18 @@ public class CorpController {
 		forwardPath = "image-upload-test";
 		return forwardPath;
 	}
+//    @ResponseBody
+//    @GetMapping("/search")
+//    public List<CorpDto> searchByCorpName(@RequestParam("corpName")String corpName) throws Exception {
+//    	List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
+//    	return corpSearchList;
+//    }
+//    @RequestMapping(value="/search", method = RequestMethod.GET)
+//    public String searchByCorpName(@RequestParam("corpName")String corpName, Model model) throws Exception {
+//    	List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
+//    	model.addAttribute("corpSearchList",corpSearchList);
+//    	return "corp-list";
+//    }
 }
 
 

@@ -23,8 +23,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.itwill.ilhajob.common.dto.LoginRequestDto;
+import com.itwill.ilhajob.common.dto.OrdersDto;
 import com.itwill.ilhajob.common.dto.PaymentDto;
 import com.itwill.ilhajob.common.dto.ProductDto;
 import com.itwill.ilhajob.common.service.OrdersService;
@@ -69,11 +74,31 @@ public class OrderController {
 		return forwardPath;
 	}
 	
-	@GetMapping("/shop-checkout")
-	public String shopChecked(HttpServletRequest request) {
-		//System.out.println(">>>>>>>>"+sUserId);
-		String forwardPath = "shop-checkout";
-		return forwardPath;
+	@ResponseBody
+	@PostMapping("/order")
+	public ResponseEntity<String> orderSave(HttpServletRequest request) throws Exception {
+		String html = "shop-checkout";
+		//넘어온 string을 json형식으로 변환
+		StringBuilder buffer = new StringBuilder();
+		BufferedReader reader = request.getReader();
+		String line;
+		while ((line = reader.readLine()) != null) {
+			buffer.append(line);
+		}
+		String json = buffer.toString();
+		//json형식의 string을 gson객체로 변환 후 dto 매핑
+		Gson gson = new Gson();
+		JsonElement element = gson.fromJson(json, JsonElement.class);
+		JsonObject jsonObject = element.getAsJsonObject();
+		JsonObject userDataObject = jsonObject.getAsJsonObject("userData");
+		JsonObject productDataObject = jsonObject.getAsJsonObject("productData");
+		JsonObject paymentDataObject = jsonObject.getAsJsonObject("paymentData");
+		ProductDto productDto = gson.fromJson(productDataObject, ProductDto.class);
+		String role = (String)request.getSession().getAttribute("role");
+		long id = (long)request.getSession().getAttribute("id");
+		
+		ordersService.checkAndSaveOrder(role, id, productDto,paymentDataObject.get("paymentMethod").toString());
+		return ResponseEntity.ok(jsonObject.toString());
 	}
 	
 	@GetMapping("/order-completed")
