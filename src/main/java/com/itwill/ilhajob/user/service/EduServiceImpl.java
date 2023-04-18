@@ -58,4 +58,10 @@ public class EduServiceImpl implements EduService {
 		List<Edu> eduList = eduRepository.findAll();
 		return eduList.stream().map(edu -> modelMapper.map(edu, EduDto.class)).collect(Collectors.toList());
 	}
+
+	@Override
+	public EduDto findById(Long id) {
+		Edu edu = eduRepository.findById(id).get();
+		return modelMapper.map(edu, EduDto.class);
+	}
 }

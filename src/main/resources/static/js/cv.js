@@ -134,7 +134,7 @@ function deleteEdu(eduId) {
 	console.log($('#eduId'+eduId).attr('value'));
 	console.log($('.default-form').serialize());
 
-	document.f.action = "edu-delete-action";
+	document.f.action = "edu-delete";
 	document.f.method='POST';
 	document.f.submit();
 }
@@ -192,6 +192,85 @@ function createEdu() {
   */
 }
 
+function editEdu() {
+	function replaceWithInputElements(elements) {
+		console.log(">>>>>>> elements : " + elements)
+	  for (let i = 0; i < elements.length; i++) {
+	    const div = elements[i];
+	    const text = div.textContent;
+	    const input = document.createElement("input");
+	    
+	    // If the element has an ID of "eduStartDate" or "eduEndDate", set the input type to "date"
+	    if (div.id === "eduStartDate" || div.id === "eduEndDate") {
+	      input.type = "date";
+	    }
+	    
+	    input.value = text;
+	    input.style.border = "1px solid red";
+	    input.style.borderRadius = "5px";
+	    div.replaceWith(input);
+	  }
+	}
+  // 호출할 때 요소들을 배열로 전달합니다.
+  replaceWithInputElements([document.getElementById("eduName"), document.getElementById("eduMajor"), document.getElementById("eduScore"), document.getElementById("eduContent"), document.getElementById("eduStartDate"), document.getElementById("eduEndDate")]);
+  
+  // change the button's onclick event to call sendUpdate() instead of editUpdate()
+  // const button = document.getElementById("editBtn");
+  // button.onclick = sendUpdate;
+  
+  /* for문 돌리기 이전
+  // get the div element and its text content
+  const scoreDiv = document.getElementById("eduScore");
+  const scoreText = scoreDiv.textContent;
+  
+  const contentDiv = document.getElementById("eduContent");
+  const contentText = contentDiv.textContent;
+
+  // create a new input element and set its value to the div's text content
+  const scoreInput = document.createElement("input");
+  scoreInput.value = scoreText;
+  scoreInput.style.border = "1px solid red";
+  scoreInput.style.borderRadius = "5px";
+  scoreDiv.replaceWith(scoreInput);
+  
+  const contentInput = document.createElement("input");
+  contentInput.value = contentText;
+  contentInput.style.border = "1px solid red";
+  contentInput.style.borderRadius = "5px";
+  contentDiv.replaceWith(contentInput);
+  */
+}
+
+function updateEdu(eduId) {
+	confirm(">>>>>>> eduId : " + eduId + " typeof : " + typeof eduId);
+	$('#eduId'+eduId).val(eduId);
+	console.log($('#eduId'+eduId).attr('value'));
+	console.log($('.default-form').serialize());
+  document.f.action = "edu-update";
+  document.f.method = "POST";
+  document.f.submit();
+
+	/*
+  // get the input element and its value
+  const input = document.querySelector("input");
+  const text = input.value;
+
+  // send the text to the server or do something else with it
+  console.log("Sending text:", text);
+
+  // create a new div element and set its text content to the input's value
+  const div = document.createElement("div");
+  div.textContent = text;
+
+  // replace the input element with the new div element
+  input.replaceWith(div);
+
+  // change the button's onclick event to call editUpdate() again
+  const button = document.getElementById("myButton");
+  button.onclick = editUpdate;
+  */
+}
+	  
 /*
 // exp
 function deleteExp(expSeq) {
