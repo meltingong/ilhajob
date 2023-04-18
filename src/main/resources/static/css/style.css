@@ -15398,11 +15398,10 @@ CheckOut Page
 	padding-left: 5px;
 }
 
-.payment-box #card-select,
-.payment-box #bank-select,
-.payment-box #deposit-select{
+.checkout-form .error-message-phone,
+.checkout-form .error-message-email{
 	font-size:16px;
-	padding-left: 5px;
+	padding-left: 10px;
 }
 
 .payment-box .select2{
@@ -15467,6 +15466,7 @@ Order Slip
 .order-confirmation {
   position: relative;
   padding: 100px 0 70px;
+  background: #ffffff;
 }
 
 .order-confirmation .auto-container {
