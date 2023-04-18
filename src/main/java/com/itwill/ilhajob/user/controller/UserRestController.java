@@ -83,11 +83,11 @@ public class UserRestController {
 	 */
 	
 	//test x
-	/*
-	@PostMapping("/createReview")
+	
+	@PostMapping("createReview")
 	public ResponseEntity<Object> createReview(@RequestBody ReviewDto reviewDto, HttpSession session) {
-	    String userEmail = (String) session.getAttribute("userEmail");
-	    if(userEmail == null) {
+	    String sUserId = (String) session.getAttribute("sUserId");
+	    if(sUserId == null) {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"로그인이 필요합니다.\", \"location\": \"/final-project-team1-ilhajob/login\"}");
 	    }
 	    try {
@@ -97,5 +97,5 @@ public class UserRestController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"success\": false, \"message\": \"리뷰 작성에 실패했습니다. 잠시 후 다시 시도해주세요.\"}");
 	    }
 	}
-	*/ //Review Ajax방식 작성중
+	 //Review Ajax방식 작성중
 }
