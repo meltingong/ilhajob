@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -383,7 +384,12 @@ public class CorpController {
     }
     
     //corpName으로 검색 기능
-    
+    @RequestMapping(value="/api/corps", method = RequestMethod.GET)
+    public String searchByCorpName(@RequestParam("corpName")String corpName, Model model) throws Exception {
+    	List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
+    	model.addAttribute("corpSearchList",corpSearchList);
+    	return "corp-list";
+    }
 }
 
 
