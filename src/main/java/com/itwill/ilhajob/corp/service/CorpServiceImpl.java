@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -139,9 +140,6 @@ public class CorpServiceImpl implements CorpService{
 			return ReviewDtoList;	
 
 	}
-	
-	
-	
 
 	@Override
 	public List<CorpDto> findCorpAll() throws Exception {
@@ -155,20 +153,28 @@ public class CorpServiceImpl implements CorpService{
 	public boolean isDuplicateId(String corpLoginId) throws Exception {
 		return corpRepository.existsByCorpLoginId(corpLoginId);
 	}
+
+
 	
+//	@Override
+//	public List<CorpDto> searchCorpList(String query) throws Exception{
+//		List<CorpDto> result = this.findCorpAll();
+//		for(CorpDto corp:result) {
+//			if((corp.getCorpName().toLowerCase()).contains(query.toLowerCase())) {
+//				result.add(corp);
+//			}
+//		}
+//		return result;
+//	}
+
+	//corpName으로 검색 기능 
 	@Override
-	public List<CorpDto> searchCorpList(String query) throws Exception{
-		List<CorpDto> result = this.findCorpAll();
-		for(CorpDto corp:result) {
-			if((corp.getCorpName().toLowerCase()).contains(query.toLowerCase())) {
-				result.add(corp);
-			}
-		}
-		return result;
+	public List<CorpDto> searchByCorpName(String corpName) throws Exception {
+		List<Corp> corpList=corpRepository.findByCorpNameContaining(corpName);
+		return corpList.stream()
+				        .map(corp->modelMapper.map(corp, CorpDto.class))
+				        .collect(Collectors.toList());
 	}
-
-
-
 
 	
 	
