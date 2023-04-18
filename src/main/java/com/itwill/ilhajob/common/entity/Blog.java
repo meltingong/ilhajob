@@ -57,9 +57,6 @@ public class Blog {
 	@CreationTimestamp
 	private LocalDateTime blogDate;
 	
-	@CreationTimestamp
-	private LocalDateTime blogUpdateDate;
-	
 	private int blogReadCount;
 	
 	private int blogLike;

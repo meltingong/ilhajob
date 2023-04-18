@@ -105,7 +105,6 @@
     create table blog_cate (
        id number(19,0) not null,
        blog_cate_name varchar2(20 char) not null,
-       blog_id number(19,0),
        primary key (id)
     );
     
