@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.dto.CorpTagDto;
 import com.itwill.ilhajob.common.service.CorpTagService;
+import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.service.CorpService;
 
 @RestController
 public class CorpRestController {
 	@Autowired
 	private CorpTagService corpTagService;
+	@Autowired
+	private CorpService corpService;
 	
 	@GetMapping("/getTagData")
 	public Map<String, Object> getTagData(@RequestParam Long tagId){
@@ -25,4 +29,13 @@ public class CorpRestController {
 		System.out.println(corpTagList);
 		return map;
 	}
+	
+	//corpName으로 검색
+	@GetMapping("/search")
+	public List<CorpDto> searchByCorpName(@RequestParam("corpName")String corpName) throws Exception{
+		List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
+		return corpSearchList;
+	}
+	
+	
 }

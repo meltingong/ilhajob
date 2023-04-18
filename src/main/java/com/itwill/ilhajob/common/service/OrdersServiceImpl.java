@@ -57,7 +57,7 @@ public class OrdersServiceImpl implements OrdersService{
 	
 
 	@Override
-	public boolean checkAndSaveOrder(String role, long id, ProductDto productDto, String paymentMethod) {
+	public OrdersDto checkAndSaveOrder(String role, long id, ProductDto productDto, String paymentMethod) {
 		List<Orders> ordersList = new ArrayList<Orders>();
 		long period = 0;
 		if(role.equals("user")) {
@@ -67,7 +67,7 @@ public class OrdersServiceImpl implements OrdersService{
 				Orders saveOrder = saveOrder(role,id,productDto);
 				OrdersDto saveOrdersDto = modelMapper.map(saveOrder, OrdersDto.class);
 				savePayment(saveOrdersDto, productDto, paymentMethod);
-				return true;
+				return saveOrdersDto;
 			}
 			//종료일이 현재시간보다 남아있을 때 order의 종료일 현재시간으로 업데이트 및 valid 변경 후 새로운 주문, 결제 생성
 			OrdersDto findOrder = modelMapper.map(ordersList.get(ordersList.size()-1), OrdersDto.class);
@@ -83,14 +83,14 @@ public class OrdersServiceImpl implements OrdersService{
 			Orders saveOrder = saveOrder(role,id,productDto);
 			OrdersDto saveOrdersDto = modelMapper.map(saveOrder, OrdersDto.class);
 			savePayment(saveOrdersDto, productDto, paymentMethod);
-			return true;
+			return saveOrdersDto;
 
 		}else if(role.equals("corp")) {
 			if (ordersList.size() == 0 || ordersList.get(ordersList.size()-1).getOrderEndDate().compareTo(LocalDateTime.now()) < 0) {
 				Orders saveOrder = saveOrder(role,id,productDto);
 				OrdersDto saveOrdersDto = modelMapper.map(saveOrder, OrdersDto.class);
 				savePayment(saveOrdersDto, productDto, paymentMethod);
-				return true;
+				return saveOrdersDto;
 			}
 			OrdersDto findOrder = modelMapper.map(ordersList.get(ordersList.size()-1), OrdersDto.class);
 			period = productDto.getProductPeriod();
@@ -104,9 +104,9 @@ public class OrdersServiceImpl implements OrdersService{
 			Orders saveOrder = saveOrder(role,id,productDto);
 			OrdersDto saveOrdersDto = modelMapper.map(saveOrder, OrdersDto.class);
 			savePayment(saveOrdersDto, productDto, paymentMethod);
-			return true;
+			return saveOrdersDto;
 		}
-		return false;
+		return null;
 	}
 
 
