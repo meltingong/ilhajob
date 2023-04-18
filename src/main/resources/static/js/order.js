@@ -36,6 +36,21 @@
 			
 	});
 	
+	//신용/체크카드 선택시
+	$(document).on('change', '#credit-card', function(){
+		$(".payment-options").append("<div id='card-select'>카드사 선택<select name='select-credit' class='select2 sortby-select'><option value=''>--카드사 선택--</option><option value='KB국민카드'>KB국민카드</option><option value='신한카드'>신한카드</option><option value='삼성카드'>삼성카드</option></select></div>");
+	});
+
+	//계좌이체 선택시
+	$(document).on('change', '#bank-transfer', function(){
+		$(".payment-options").append("<div id='bank-select'>은행 선택<select name='select-bank' class='select2 sortby-select'><option value=''>--은행 선택--</option><option value='국민은행'>국민은행</option><option value='신한은행'>신한은행</option><option value='우리은행'>우리은행</option></select></div>");
+	});
+
+	//라디오 버튼 클릭 이벤트에서 생성된 div 요소 제거
+	$(document).on('click', 'input[name="payment-method"]', function(e){
+		$("#card-select, #bank-select").remove();
+	});
+	
 	
 	/*$(document).on('click', '#log-in', function(e) {
 		e.preventDefault();
@@ -85,3 +100,4 @@
 
 
 })(window.jQuery);
+
