@@ -1,6 +1,8 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.user.dto.AwardsDto;
@@ -43,22 +47,25 @@ public class EduController {
 	@Autowired
 	private ExpService expService;
 	
-	@RequestMapping(value = "/edu-create", method = RequestMethod.POST)
-	public String createEdu(@ModelAttribute EduDto eduDto, HttpServletRequest request, Model model) {
-		try {
-			/*
-			String startDateString = request.getParameter("startDate");
-			String endDateString = request.getParameter("endDate");
 
-			LocalDateTime eduStartDate = LocalDateTime.parse(startDateString, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-			LocalDateTime eduEndDate = LocalDateTime.parse(endDateString, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-			*/
+	@RequestMapping(value = "/edu-create", method = RequestMethod.POST)
+	public String createEdu(
+			@RequestParam(name = "eduStartDate") String eduStartDate, 
+			@RequestParam(name = "eduEndDate") String eduEndDate, @ModelAttribute EduDto eduDto, 
+			HttpServletRequest request, Model model) {
+		try {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>");
+			System.out.println(">>>>>>>>>eduDto : " + eduDto);
 			String userEmail = (String)request.getSession().getAttribute("sUserId");
 			UserDto user = userService.findUser(userEmail);
-			eduDto.setEduStartDate(LocalDateTime.now());
-			eduDto.setEduEndDate(LocalDateTime.now());
-			eduDto.setUser(user);
 			
+			eduDto.setUser(user);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDateTime startDateTime = LocalDateTime.parse(eduStartDate, formatter);
+			LocalDateTime endDateTime = LocalDateTime.parse(eduEndDate, formatter);
+			
+			eduDto.setEduStartDate(startDateTime);
+			eduDto.setEduStartDate(endDateTime);
 			eduService.createEdu(eduDto);
 			System.out.println(">>>>>>>>> edu : " + eduDto);
 			
@@ -66,19 +73,19 @@ public class EduController {
 			List<CvDto> cvList = cvService.findByUserId(userId);
 			model.addAttribute("cvList", cvList);
 			
-			/* 가장 최근 작성한(cvId 기준) cv의 detail */
+			//* 가장 최근 작성한(cvId 기준) cv의 detail */
 			CvDto cvDetail = cvList.get(cvList.size()-1);
 			model.addAttribute("cvDetail", cvDetail);
 			
-			/* eduList */
+			//* eduList */
 			List<EduDto> eduList = eduService.findEduListByUserId(userId);
 			model.addAttribute("eduList", eduList);
 			
-			/* expList */
+			//* expList */
 			List<ExpDto> expList = expService.findExpListByUserId(userId);
 			model.addAttribute("expList", expList);
 			
-			/* awardsList */
+			//* awardsList */
 			List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
 			model.addAttribute("awardsList", awardsList);
 		} catch (Exception e) {
@@ -86,6 +93,17 @@ public class EduController {
 		}
 		return "redirect:cv-detail";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/edu", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> addEdu(@RequestBody EduDto eduDto) {
