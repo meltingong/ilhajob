@@ -141,12 +141,16 @@ function deleteEdu(eduId) {
 
 
 function createEdu() {
-	/*
-	console.log(">>>>>>>>>>" + typeof document.getElementsByName("eduStartDate")[0].value);
-	var eduStartDate = new Date(document.getElementsByName("eduStartDate")[0].value + "T00:00:00");
-    console.log(">>>>>>>>>>" + eduStartDate);
+	
+	let eduStartDateStr = document.getElementById("eduStartDateInput").value;
+	
+	let eduStartDate = new Date(eduStartDateStr);
+	document.getElementById("eduStartDate").value = eduStartDate;
+    console.log(">>>>>>>>>>" + typeof eduStartDateStr);
     console.log(">>>>>>>>>>" + typeof eduStartDate);
-    var eduEndDate = new Date(document.getElementsByName("eduEndDate")[0].value + "T00:00:00");
+    console.log(">>>>>>>>>>" + typeof document.getElementById("eduStartDate").value);
+    
+    var eduEndDate = new Date(document.getElementById("eduEndDate").value + "T00:00:00");
     console.log(">>>>>>>>>>" + eduEndDate);
     
     var eduDto = {
@@ -157,11 +161,11 @@ function createEdu() {
         eduScore: document.getElementsByName("eduScore")[0].value,
         eduContent: document.getElementsByName("eduContent")[0].value
     };
-    */
     
-	document.f.action = "edu-create";
+    
+/*	document.f.action = "edu-create";
 	document.f.method='POST';
-	document.f.submit();
+	document.f.submit();*/
 
 	/*
 	const eduDto = {

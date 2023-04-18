@@ -148,7 +148,8 @@
     
     create table corp_image (
        id number(19,0) not null,
-        corp_image varchar2(255 char),
+        original_file_name varchar2(255 char),
+        stored_file_name varchar2(255 char),
         corp_id number(19,0),
         primary key (id)
     );

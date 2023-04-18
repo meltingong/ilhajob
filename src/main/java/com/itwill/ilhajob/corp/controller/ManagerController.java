@@ -48,6 +48,7 @@ public class ManagerController {
 	
 
 	//매니저생성
+	
 	@PostMapping("manager-create")
     public String createManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
 		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");

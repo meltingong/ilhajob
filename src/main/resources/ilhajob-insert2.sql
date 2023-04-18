@@ -234,19 +234,19 @@ insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualif
 values(RECRUIT_ID_SEQ.nextval, sysdate,  '데이터센터 네트워크 설계, 구축 및 운영', sysdate+90, '경력(5년 이상)', '네트워크 관련 다수의 프로젝트 경험', 0, 5000, '네트워크 구축 엔지니어 채용', 4);
 
 /**********************corp_image insert***************************/
-insert into corp_image(id, corp_image, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg', 1);
-insert into corp_image(id, corp_image, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default2.jpg', 1);
-insert into corp_image(id, corp_image, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default3.jpg', 1);
+insert into corp_image(id, original_file_name, stored_file_name, corp_id)
+values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 1);
+insert into corp_image(id, original_file_name, stored_file_name, corp_id)
+values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 1);
+insert into corp_image(id, original_file_name, stored_file_name, corp_id)
+values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 1);
 
-insert into corp_image(id, corp_image, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg', 2);
-insert into corp_image(id, corp_image, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg', 3);
-insert into corp_image(id, corp_image, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg', 4);
+insert into corp_image(id, original_file_name, stored_file_name, corp_id)
+values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 2);
+insert into corp_image(id, original_file_name, stored_file_name, corp_id)
+values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 3);
+insert into corp_image(id, original_file_name, stored_file_name, corp_id)
+values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 4);
 
 /**********************recruit_scrap insert*************************/
 insert into recruit_scrap(rc_seq, recruit_seq, user_email, user_seq)

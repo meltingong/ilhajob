@@ -25,5 +25,35 @@
     }
 });
 */
+
+
+	$(document).on('click', '#reviewCreate-btn', function(e) {
+		e.preventDefault();
+		let formData = {};
+		$.each($('#review-form').serializeArray(), function() {
+			formData[this.name] = this.value;
+		});
+		let jsonData = JSON.stringify(formData);
+		let promise = $.ajax({
+			type: 'POST',
+			url: 'createReviewAjax',
+			data: jsonData,
+			contentType: 'application/json',
+			dataType: 'json'
+		}); 
+	//promise 객체를 사용하여 Ajax 요청 처리 (resolve, reject)
+	promise.then(function(response){
+		if(response.success){
+			window.location.href = '/final-project-team1-ilhajob';
+		}
+		else{
+			alert(response.message);
+			window.location.href = response.location;
+		}
+	})
 	
 	
+	
+		
+	});
+
