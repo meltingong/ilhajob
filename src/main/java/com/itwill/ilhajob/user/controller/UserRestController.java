@@ -82,9 +82,9 @@ public class UserRestController {
 	 * 리뷰 작성중 ajax 방식
 	 */
 	
-	//test x
+	//test중 -> ResponseStatusCode.written_fail_review 에러(6001 직접만듦)으로 반환됨. -> console.log
 	
-	@PostMapping("createReview")
+	@PostMapping("createReviewAjax")
 	public ResponseEntity<Object> createReview(@RequestBody ReviewDto reviewDto, HttpSession session) {
 	    String sUserId = (String) session.getAttribute("sUserId");
 	    if(sUserId == null) {
@@ -92,6 +92,7 @@ public class UserRestController {
 	    }
 	    try {
 	        userService.insertReview(reviewDto);
+	        System.out.println("!!!!!!!!!!!!!!!!!!"+userService.insertReview(reviewDto));
 	        return ResponseEntity.ok().body("{\"success\": true, \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");
 	    } catch (Exception e) {
 	        return ResponseEntity.status(ResponseStatusCode.WRITTEN_FAIL_REVIEW).body("{\"success\": false, \"message\": \"리뷰 작성에 실패했습니다. 잠시 후 다시 시도해주세요.\"}");
