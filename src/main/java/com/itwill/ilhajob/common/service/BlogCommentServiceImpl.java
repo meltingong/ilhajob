@@ -62,6 +62,7 @@ public class BlogCommentServiceImpl implements BlogCommentService{
 		return modelMapper.map(blogComment,BlogCommentDto.class);
 	}
 	
+
 /*	@Override
 	public BlogCommentDto insertBlogComment(BlogCommentDto blogCommentDto) throws Exception {
 		BlogComment blogComment = modelMapper.map(blogCommentDto,BlogComment.class);
@@ -70,3 +71,6 @@ public class BlogCommentServiceImpl implements BlogCommentService{
 	}*/
 	
 }
+
+
+
