@@ -75,7 +75,7 @@
 					  <input type="hidden" name="cvId" id="cvId" value="">
 					</div>
                       
-                      <input type="hidden" name="id" th:value="*{id}"/>
+                      <input type="hidden" name="id" th:value="${cvDetail.id}"/>
                       <input type="hidden" name="userId" th:value="${userId}"/>
                       
                       <!-- Cv Name -->
@@ -128,8 +128,10 @@
                                     <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
                                     <button type="button" th:id="'deleteEdu(' + ${edu.eduSeq} + ')'" th:onclick="'deleteEdu(' + ${edu.eduSeq} + ')'" th:value="${edu.eduSeq}"><span class="la la-trash"></span></button>
                                    -->
+     	                            <input type="hidden" th:id="eduId+${edu.id}" name="eduId">
                                     <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
-                                    <button type="button" th:onclick="deleteEdu()" th:value="${edu.id}"><span class="la la-trash"></span></button>
+                                    <button type="button" th:id="'deleteEdu(' + ${edu.id} + ')'" th:onclick="'deleteEdu(' + ${edu.id} + ')'"><span class="la la-trash"></span></button>
+                                    <!-- <button type="button" th:id="'deleteEdu(' + ${edu.id} + ')'" th:onclick="deleteEdu(' + ${edu.id} + ')" th:value="${edu.id}" ><span class="la la-trash"></span></button> -->
                                   </div>
                                 </div>
                               </div>
