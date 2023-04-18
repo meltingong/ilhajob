@@ -58,12 +58,12 @@
     <!-- Sidebar Page Container -->
     <div class="sidebar-page-container">
       <div class="auto-container">
-        <div class="row">
-            <!-- 작성하기 버튼-->
+        <div class="row">      
+         <!-- 작성하기 버튼-->
           <div style="margin-bottom: 10px">
           <button type="button" class="theme-btn btn-style-one" style="float: right;" onclick="blogCreateForm();">작성하기</button>
           </div>
- </div>
+	 </div>
     
           <!--Content Side-->
           <div class="content-side col-lg-12 col-md-12 col-sm-12">
@@ -89,12 +89,12 @@
                     <div class="lower-content">
                       <ul class="post-meta">
                         <li><p th:text="${#temporals.format(blog.blogDate,'yyyy-MM-dd')}" >August 31, 2021</li>
-                        <li><p>12 Comment</li>
+                        <li><p th:text="|${#lists.size(blog.blogCommentList)} Comment|"></li>
                         <li><p th:text="|${blog.blogReadCount} views|"></p>
                         <li><p th:text="${blog.blogLike}"></p>
                       </ul>
                       <h3><a th:text="${blog.blogTitle}" th:href="@{blog-single(id=${blog.id})}">Attract Sales And Profits</a></h3>
-                      <p class="text" th:text="|${#strings.substring(blog.blogContent,0,3)}...|">A job ravenously while Far much that one rank beheld after outside....</p>
+                      <p class="text" th:text="|${#strings.substring(blog.blogContent,0,3)}...|">이거 만약 글자수가 몇자이상일때만 substring할수있게 못하나?</p>
                       <a th:href="@{blog-single(id=${blog.id})}" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
                     </div>
                   </div>
@@ -123,28 +123,29 @@
               </div>-->
 
               <!-- Pagination -->
-               <!-- Pagination -->
               <nav class="ls-pagination">
+                  <li th:each="page:${#numbers.sequence(0,totalPage -1)}" th:if="${page >= nowPage-1 and page <= nowPage+1}">
+                  <a th:href="@{blog-list?page=}+${pageStat.index}"></a></li>
               <ul>
-                <li class="prev"><a th:href="@{blog-list?page=}+${nowPage-1}"><i class="fa fa-arrow-left"></i></a></li>
-                  <li th:each="page : ${#numbers.sequence(0,totalPage -1)}">
-     			  <a th:href="@{blog-list?page=}+${pageStat.index}" th:text="${pageStat.index+1}"></a></li>
-                <li class="next"><a th:href="@{blog-list?page=}+${nowPage+1}"><i class="fa fa-arrow-right"></i></a></li>
+                <li th:unless="${nowPage == 0}" class="prev"><a th:href="@{blog-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+                <li class="prev"><a th:unless="${nowPage == 0}" th:text="${nowPage}" th:href="@{blog-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+     			   <li><a class="current-page" th:text="${nowPage+1}" ></a></li>
+                <li class="next"><a th:unless="${nowPage == totalPage-1}" th:text="${nowPage+2}" th:href="@{blog-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+             	<li th:unless="${nowPage == totalPage-1}" class="next"><a th:href="@{blog-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
               </ul>
+              </nav>
 
-              
-              
-              
 
-               <!-- <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+               <!-- <th:block th:each="page:${#numbers.sequence(startPage,endPage)}"
+                th:text="${pageStat.index+1}">
              <a th:if="${page != nowPage}" th:href="@{/blog-list(page=${page-1})}" th:text ="${page}"></a>
-             <strong th:if="${page==nowPage}" th:text ="${page}" style="color:red"></strong>-->
+             <strong th:if="${page==nowPage}" th:text ="${page}" style="color:red"></strong>
+             th:if="${page >= paging.number-5 and page <= paging.number+5}"-->
 
                   
                   <!-- <ul>
                   <li><a class="current-page" th:text="${nowPage}" ></a></li>
                 </ul>-->
-              </nav>
               
             </div>
           </div>

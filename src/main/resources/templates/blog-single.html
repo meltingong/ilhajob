@@ -110,7 +110,7 @@ function blogCommentCreateAction() {
         <div class="upper-box">
           <h3 th:text=${blog.blogTitle}>Keep your face always toward the sunshine - and shadows will fall behind you.</h3>
           <ul class="post-info">
-            <li ><span class="thumb"><img src="images/resource/thumb-1.png" alt=""></span> Alison Dawn</li>
+            <li ><span class="thumb"><img src="images/resource/thumb-1.png" alt=""></span><span th:text="${#strings.substringBefore(blog.user.userEmail,'@')}"></span></li>
             <li th:text="${#temporals.format(blog.blogDate,'yyyy-MM-dd')}" > August 31, 2021</li>
             <li th:text="|${#lists.size(blogCommentList)} Comment|"> Comment</li>
             <li th:text="|${blog.blogReadCount+1} views|">
@@ -136,8 +136,8 @@ function blogCommentCreateAction() {
             <div class="comment" th:each="blogComment : ${blogCommentList}">
               <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
               <div class="comment-info">
-                <div class="user-name" th:text=${blogComment.userId}>Oscar Cafeo</div>
-                <div class="title" th:text=${blogComment.commentDate}>Beautiful courses</div>
+                <div class="user-name" th:text="${#strings.substringBefore(blogComment.user.userEmail,'@')}">Oscar Cafeo</div>
+                <div class="title" th:text="${#temporals.format(blogComment.commentDate,'yyyy-MM-dd')}">Beautiful courses</div>
               </div>
               <div class="text" th:text="${blogComment.commentContent}" style="white-space: pre-wrap;">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
             </div>
@@ -148,12 +148,14 @@ function blogCommentCreateAction() {
         <div class="comment-form default-form">
           <h4>댓글 등록</h4>
     		<div>
-                <input type="text" name="blogId" required>
+                <input type="hidden" th:value="${blog.Id}" name="blogId">
               </div>
+                    <!-- 
               <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                <label>유저이름</label>
-                <input type="text" name="userId" placeholder="Name" required>
+        		 <label>유저이름</label>
+                <input type="hidden" name="userId" th:value="${blogComment.user.id}" placeholder="Name" required>
               </div>
+              -->
               <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                 <label>댓글내용</label>
                 <textarea name="commentContent" placeholder="Write Comment"></textarea>

@@ -3,6 +3,8 @@ package com.itwill.ilhajob.common.dto;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.itwill.ilhajob.user.dto.UserDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,9 +30,7 @@ public class BlogCommentDto {
 	private long id;
 	private String commentContent;
 	private LocalDateTime commentDate;
-	private Long userId;
+	private UserDto user;
 	private Long blogId;
-	
-	@ToString.Exclude
-	private BlogDto blog;
+
 }

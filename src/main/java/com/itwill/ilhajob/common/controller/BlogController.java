@@ -2,6 +2,8 @@ package com.itwill.ilhajob.common.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +23,9 @@ import com.itwill.ilhajob.common.dto.BlogDto;
 import com.itwill.ilhajob.common.entity.Blog;
 import com.itwill.ilhajob.common.service.BlogCommentService;
 import com.itwill.ilhajob.common.service.BlogService;
+import com.itwill.ilhajob.user.controller.LoginCheck;
+import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.service.UserService;
 
 
 @Controller
@@ -36,14 +41,20 @@ public class BlogController {
 	@Autowired
 	private BlogCommentService blogCommentService;
 	
+	@Autowired
+	private UserService userService;
+	
 	
 	@GetMapping("/blog-list")
 	public String blog_list(@PageableDefault(page=0, size=9, sort="id", direction=Sort.Direction.DESC) Pageable pageable, Model model) {
 	    Page<BlogDto> blogList = blogService.findAll(pageable);
 	    int nowPage = blogList.getPageable().getPageNumber();
+	  
 	    model.addAttribute("blogList", blogList);
 	    model.addAttribute("nowPage",nowPage);
         model.addAttribute("totalPage", blogList.getTotalPages());
+        model.addAttribute("prePage", blogList.previousOrFirstPageable().getPageNumber());
+        model.addAttribute("nextPage", blogList.nextOrLastPageable().getPageNumber());
 
 	    return "blog-list";
 	}
@@ -62,17 +73,24 @@ public class BlogController {
 	*/
 	
 	/*새 블로그 작성*/  
+	@LoginCheck
 	@RequestMapping("/blog-write-form")
-	public String blog_write_form() {
+	public String blog_write_form(HttpServletRequest request) throws Exception {
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		request.setAttribute("loginUser", loginUser);
 		return "blog-write-form";
 	}
 
 	
 	@PostMapping("/blog_write_action")
-	public String blog_write_action(@ModelAttribute BlogDto blog,
+	public String blog_write_action(@ModelAttribute BlogDto blog,HttpServletRequest request,
 									RedirectAttributes redirectAttributes)throws Exception {
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		blog.setUser(loginUser);
 		blogService.insertBlog(blog);
-		//redirectAttributes.addAttribute("id",blog); 작성글로 가야댐
+		//redirectAttributes.addAttribute("id",blog); 작성글로 가야됨...
 		return "redirect:blog-single";
 		}
 	
@@ -100,5 +118,22 @@ public class BlogController {
 		return "blog-single";
 	}
 	
+
+
+	/*
+	 * 블로그 댓글 작성
+	 */
+
+	@LoginCheck
+	@PostMapping("/blogcomment_write_action")
+	public String blogcomment_write_action(@ModelAttribute BlogCommentDto blogCommentDto, HttpServletRequest request,
+									RedirectAttributes redirectAttributes)throws Exception {
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		blogCommentDto.setUser(loginUser);
+		blogCommentService.insertBlogComment(blogCommentDto);
+		return "redirect:blog-single";
+	
+	}
 
 }
