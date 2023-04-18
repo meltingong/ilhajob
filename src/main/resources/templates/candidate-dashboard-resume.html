@@ -62,9 +62,9 @@
                 </div>
 
                 <div class="widget-content" th:object="${cvDetail}">
- 		<!-- ************ form start  ************ -->
-                  <form class="default-form" name="f">
                     <div class="row">
+		 		<!-- ************ cv form start  ************ -->
+                  <form class="default-form" name="cvForm">
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
 					  <label>이력서 선택</label>
@@ -97,8 +97,15 @@
                         <input type="text" name="cvPortfolio" th:value="${cvDetail.cvPortfolio}" placeholder="포트폴리오를 업로드 사이트를 입력하세요.">
                       </div>
                       <!-- 포트폴리오 -->
-
+                      </form>
+		 		<!-- ************ cv form end  ************ -->
+						
+					<!-- edu, exp, awards div -->
                       <div class="form-group col-lg-12 col-md-12">
+                      
+                      <!-- eduForm Start -->
+	                  <form class="default-form" name="eduForm" id="eduForm">
+	                  	<input type="hidden" name="id" th:value="${cvDetail.id}">
                         <!-- Resume / Education -->
                         <div class="resume-outer" id="edu-block">
                           <div class="upper-title">
@@ -122,11 +129,17 @@
 								<span class="year" th:text="${edu.eduStartDate}" id="eduStartDate">2012 - 2014</span>
 								<input type="hidden" name="eduEndDate" th:value="${edu.eduEndDate}"/>
 								<span class="year" th:text="${edu.eduEndDate}" id="eduEndDate">2012 - 2014</span>
-                                  <div class="edit-btns">
-     	                            <input type="hidden" th:id="eduId+${edu.id}" name="eduId">
+                                  <div class="edit-btns" id="eduBtn">
+                                  <!-- 
+     	                            <input type="hidden" th:id="eduId+${edu.id}" name="'eduId'+${eud.Id}">
                                     <button type="button" th:id="'editBtn(' + ${edu.id} + ')'"  th:onclick="'editEdu(' + ${edu.id} + ')'"><span class="la la-pencil"></span></button>
      	                            <button type="button" th:id="'updateEdu(' + ${edu.id} + ')'"  th:onclick="'updateEdu(' + ${edu.id} + ')'"><span class="la la-check-circle-o"></span></button>
                                     <button type="button" th:id="'deleteEdu(' + ${edu.id} + ')'" th:onclick="'deleteEdu(' + ${edu.id} + ')'"><span class="la la-trash"></span></button>
+                                   -->
+									  <input type="hidden" th:id="eduId+${edu.id}" name="eduId" >
+									  <button type="button" th:id="'editBtn(' + ${edu.id} + ')'" th:onclick="'editEdu(' + ${edu.id} + ')'"><span class="la la-pencil"></span></button>
+									  <button type="button" th:id="'updateEdu(' + ${edu.id} + ')'" th:onclick="'updateEdu(' + ${edu.id} + ')'"><span class="la la-check-circle-o"></span></button>
+									  <button type="button" th:id="'deleteEdu(' + ${edu.id} + ')'" th:onclick="'deleteEdu(' + ${edu.id} + ')'"><span class="la la-trash"></span></button>
                                   </div>
                                 </div>
                               </div>
@@ -157,7 +170,12 @@
                             </div>
                           </div>
                         </div>
-
+                       </form>
+                      <!-- eduForm End -->
+						
+						
+						<!-- expForm Start -->
+					<form class="default-form" name="expForm">
                         <!-- Resume / Work & Experience -->
                         <div class="resume-outer theme-blue">
                           <div class="upper-title">
@@ -192,20 +210,11 @@
                             </div>
                           </div>
                         </div>
+                      </form>
+					<!-- expForm End -->
 
-<!-- 
-		포트폴리오 파일 업로드
-                      <div class="form-group col-lg-6 col-md-12">
-                        <div class="uploading-outer">
-                          <div class="uploadButton">
-                            <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload" multiple />
-                            <label class="uploadButton-button ripple-effect" for="upload">Add Portfolio</label>
-                            <span class="uploadButton-file-name"></span>
-                          </div>
-                        </div>
-                      </div>
- -->
-
+				<!-- awardsForm Start -->
+					<form class="default-form" name="awardsForm">
                       <div class="form-group col-lg-12 col-md-12">
                         <!-- Resume / Awards -->
                         <div class="resume-outer theme-yellow">
@@ -239,17 +248,21 @@
                           </div>
                         </div>
                       </div>
+                      </form>
+				<!-- awardsForm End -->
+                      
                      </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
-                        <input type="hidden" name="update_apply_delete_id" th:value="*{id}"/>
                         <button class="theme-btn btn-style-one" onclick="updateCv()">저장하기</button>
                         <button class="theme-btn btn-style-one" onclick="apply()">지원하기</button>
                         <button class="theme-btn btn-style-one" onclick="deleteCv()">삭제하기</button>
                       </div>
                     </div>
-                  </form>
+                  <!-- 
+                   </form>
+                   -->
  		<!-- ************ form end  ************ -->
                 </div>
               </div>

@@ -26,32 +26,32 @@
 
 // cv update
 function updateCv() {
-	if (document.f.cvName.value == "") {
+	if (document.cvForm.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
-		document.f.cvName.focus();
+		document.cvForm.cvName.focus();
 		return false;
 	}
-	if (document.f.cvDescription.value == "") {
+	if (document.cvForm.cvDescription.value == "") {
 		alert("자기소개를 입력하세요.");
-		document.f.cvDescription.focus();
+		document.cvForm.cvDescription.focus();
 		return false;
 	}
-	if (document.f.cvPortfolio.value == "") {
+	if (document.cvForm.cvPortfolio.value == "") {
 		alert("포트폴리오를 입력하세요.");
-		document.f.cvPortfolio.focus();
+		document.cvForm.cvPortfolio.focus();
 		return false;
 	}
-	document.f.action = "cv-update-action";
-	document.f.method='POST';
-	document.f.submit();
+	document.cvForm.action = "cv-update-action";
+	document.cvForm.method='POST';
+	document.cvForm.submit();
 }
 
 // cv delete
 function deleteCv() {
 	if (window.confirm("정말 삭제하시겠습니까?")) {
-	  document.f.action = "cv-delete-action";
-	  document.f.method='POST';
-	  document.f.submit();
+	  document.cvForm.action = "cv-delete-action";
+	  document.cvForm.method='POST';
+	  document.cvForm.submit();
 	}
 }
 
@@ -60,9 +60,9 @@ function changeCv() {
   var cvId = document.querySelector('.chosen-select').value;
   window.confirm("cvId = " + cvId);
   document.querySelector('#cvId').value = cvId;
-  document.f.action = "cv-detail";
-  document.f.method='POST';
-  document.f.submit();
+  document.cvForm.action = "cv-detail";
+  document.cvForm.method='POST';
+  document.cvForm.submit();
 }
 
 // cv apply(예정)
@@ -84,8 +84,7 @@ function addEdu() {
 	  <div class="inner">
 	  <span class="name">E</span>
 		      <div class="edit-btns">
-			      <button type="button" onclick="createEdu()"><span class="la la-pencil"></span></button>
-			      <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
+			      <button type="button" onclick="createEdu()"><span class="la la-check-circle-o"></span></button>
 			      <button type="button" onclick="deleteEdu()" name="eduId"><span class="la la-trash"></span></button>
 	      	  </div>
 	      	  <div class="row">
@@ -134,14 +133,29 @@ function deleteEdu(eduId) {
 	console.log($('#eduId'+eduId).attr('value'));
 	console.log($('.default-form').serialize());
 
-	document.f.action = "edu-delete";
-	document.f.method='POST';
-	document.f.submit();
+	document.eduForm.action = "edu-delete";
+	document.eduForm.method='POST';
+	document.eduForm.submit();
+	/*
+	// eduId를 Long 타입으로 변환합니다.
+	const longEduId = parseInt(eduId);
+	confirm(">>>>>>> eduId : " + longEduId + "typeof : " + typeof longEduId);
+    // hidden input 태그의 value 속성 값을 longEduId로 설정합니다.
+	//$('#eduId'+eduId).val(longEduId);
+	$('#eduId'+eduId).val(longEduId);
+	//confirm(">>>>>> " + $('#eduId'+eduId));
+
+	//console.log($('#eduId'+eduId).attr('value'));
+	//console.log($('#eduForm').serialize());
+	document.eduForm.action = "edu-delete";
+	document.eduForm.method='POST';
+	document.eduForm.submit();
+	*/
 }
 
 
 function createEdu() {
-	
+	/*
 	let eduStartDateStr = document.getElementById("eduStartDateInput").value;
 	
 	let eduStartDate = new Date(eduStartDateStr);
@@ -161,11 +175,11 @@ function createEdu() {
         eduScore: document.getElementsByName("eduScore")[0].value,
         eduContent: document.getElementsByName("eduContent")[0].value
     };
+    */
     
-    
-/*	document.f.action = "edu-create";
-	document.f.method='POST';
-	document.f.submit();*/
+	document.eduForm.action = "edu-create";
+	document.eduForm.method='POST';
+	document.eduForm.submit();
 
 	/*
 	const eduDto = {

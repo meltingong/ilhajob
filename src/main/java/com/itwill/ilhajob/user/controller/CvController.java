@@ -181,7 +181,7 @@ public class CvController {
 	/** delete_action */
 	@LoginCheck
 	@RequestMapping(value = "/cv-delete-action", method = RequestMethod.POST)
-	public String cv_delete_action(HttpServletRequest request, @RequestParam(name = "update_apply_delete_id") Long cvId) throws Exception {
+	public String cv_delete_action(HttpServletRequest request, @RequestParam(name = "id") Long cvId) throws Exception {
 		cvService.removeById(cvId);
 		return "redirect:cv-detail";
 	}
