@@ -55,12 +55,11 @@ public class EduController {
 			@RequestParam(name = "eduScore") String eduScore,
 			@RequestParam(name = "eduContent") String eduContent,
 			@RequestParam(name="id") Long cvId,
-			HttpServletRequest request, Model model,
+			HttpServletRequest request,
 			RedirectAttributes redirectAttributes) {
 		try {
 			String userEmail = (String)request.getSession().getAttribute("sUserId");
 			UserDto user = userService.findUser(userEmail);
-			
 			EduDto eduDto = new EduDto();
 			
 			String eduName = eduNameList.get(eduNameList.size()-1);
@@ -96,8 +95,8 @@ public class EduController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value = "edu-delete-action", method = RequestMethod.POST)
-	public String deleteEdu(HttpServletRequest request, @RequestParam("eduId") String eduId, @RequestParam(name="id") Long cvId, Model model, RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "edu-delete", method = RequestMethod.POST)
+	public String deleteEdu(HttpServletRequest request, @RequestParam("eduId") String eduId, @RequestParam(name="id") Long cvId, RedirectAttributes redirectAttributes) {
 		System.out.println(">>>>>>>>>>>>>>> eduId " + eduId);
 		System.out.println(eduId.replace(',', ' ').trim());
 		System.out.println(">>>>>>>>>>>>>>> String -> Long eduId : " + Long.parseLong(eduId.replace(',', ' ').trim()));
@@ -107,7 +106,54 @@ public class EduController {
 		return "redirect:cv-detail";
 	}
 	
-	
+	@RequestMapping(value = "edu-update")
+	public String updateEdu(
+			@RequestParam(name = "eduId") String eduId, 
+			@RequestParam(name = "eduStartDate") List<String> eduStartDateList, 
+			@RequestParam(name = "eduEndDate") List<String> eduEndDateList, 
+			@RequestParam(name = "eduName") List<String> eduNameList,
+			@RequestParam(name = "eduMajor") List<String> eduMajorList,
+			@RequestParam(name = "eduScore") String eduScore,
+			@RequestParam(name = "eduContent") String eduContent,
+			@RequestParam(name="id") Long cvId, 
+			HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		try {
+			System.out.println(">>>>>>>>>>>>>>>>>> eduId : " + eduId);
+			
+			long longeduId = Long.parseLong(eduId.replaceAll(",", "").trim());
+			
+			System.out.println(">>>>>>>>> Long eduId : " + eduId);
+			
+			String userEmail = (String)request.getSession().getAttribute("sUserId");
+			UserDto user = userService.findUser(userEmail);
+			
+			EduDto thisEdu = eduService.findById(longeduId);
+			System.out.println(">>>>>>>>>> findbyid thisEdu : " + thisEdu);
+			
+			String eduName = eduNameList.get(eduNameList.size()-1);
+			String eduMajor = eduMajorList.get(eduMajorList.size()-1);
+			String eduStartDate = eduStartDateList.get(eduStartDateList.size()-1);
+			String eduEndDate = eduEndDateList.get(eduEndDateList.size()-1);
+			
+			thisEdu.setEduName(eduName);
+			thisEdu.setEduContent(eduContent);
+			thisEdu.setEduMajor(eduMajor);
+			thisEdu.setEduScore(eduScore);			
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+			LocalDateTime startDateTime = LocalDateTime.parse(eduStartDate, formatter);
+			LocalDateTime endDateTime = LocalDateTime.parse(eduEndDate, formatter);
+			
+			thisEdu.setEduStartDate(startDateTime);
+			thisEdu.setEduEndDate(endDateTime);
+			eduService.updateEdu(thisEdu.getId(), thisEdu);
+
+			redirectAttributes.addAttribute("cvId", cvId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:cv-detail";
+	}
 	
 	
 	

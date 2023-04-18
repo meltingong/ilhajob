@@ -107,31 +107,26 @@
                           </div>
                           <!-- Resume BLock -->
                           <div class="resume-block" th:object="${eduList}" th:each="edu:${eduList}">
-                            <div class="inner">
+                            <div class="inner" id="edit-block">
 		                        <!-- <input type="hidden" name="eduSeq" th:value="${edu.eduSeq}"/> -->
                               <span class="name">E</span>
                               <div class="title-box">
                                 <div class="info-box">
                                 <input type="hidden" name="eduName" th:value="${edu.eduName}"/>
-                                  <span th:text="${edu.eduName}">Modern College</span>
+                                  <span th:text="${edu.eduName}" id="eduName">Modern College</span>
                                 <input type="hidden" name="eduMajor" th:value="${edu.eduMajor}"/>
-                                  <h3 th:text="${edu.eduMajor}">Bachlors in Fine Arts</h3>
+                                  <h3 th:text="${edu.eduMajor}" id="eduMajor">Bachlors in Fine Arts</h3>
                                 </div>
                                 <div class="edit-box">
-                                <!-- <input type="hidden" name="eduStartDate" th:value="${edu.eduStartDate}"/> -->
-								<span class="year" th:text="${edu.eduStartDate}">2012 - 2014</span>
-								<!-- <input type="hidden" name="eduEndDate" th:value="${edu.eduEndDate}"/> -->
-								<span class="year" th:text="${edu.eduEndDate}">2012 - 2014</span>
+                                <input type="hidden" name="eduStartDate" th:value="${edu.eduStartDate}"/>
+								<span class="year" th:text="${edu.eduStartDate}" id="eduStartDate">2012 - 2014</span>
+								<input type="hidden" name="eduEndDate" th:value="${edu.eduEndDate}"/>
+								<span class="year" th:text="${edu.eduEndDate}" id="eduEndDate">2012 - 2014</span>
                                   <div class="edit-btns">
-                                  <!--
-     	                             <input type="hidden" th:id="'eduSeq(' + ${edu.eduSeq} + ')'" name="eduSeq" th:value="${edu.eduSeq}">
-                                    <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
-                                    <button type="button" th:id="'deleteEdu(' + ${edu.eduSeq} + ')'" th:onclick="'deleteEdu(' + ${edu.eduSeq} + ')'" th:value="${edu.eduSeq}"><span class="la la-trash"></span></button>
-                                   -->
      	                            <input type="hidden" th:id="eduId+${edu.id}" name="eduId">
-                                    <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
+                                    <button type="button" th:id="'editBtn(' + ${edu.id} + ')'"  th:onclick="'editEdu(' + ${edu.id} + ')'"><span class="la la-pencil"></span></button>
+     	                            <button type="button" th:id="'updateEdu(' + ${edu.id} + ')'"  th:onclick="'updateEdu(' + ${edu.id} + ')'"><span class="la la-check-circle-o"></span></button>
                                     <button type="button" th:id="'deleteEdu(' + ${edu.id} + ')'" th:onclick="'deleteEdu(' + ${edu.id} + ')'"><span class="la la-trash"></span></button>
-                                    <!-- <button type="button" th:id="'deleteEdu(' + ${edu.id} + ')'" th:onclick="deleteEdu(' + ${edu.id} + ')" th:value="${edu.id}" ><span class="la la-trash"></span></button> -->
                                   </div>
                                 </div>
                               </div>
@@ -139,7 +134,10 @@
 		                      <!-- Input eduScore -->
 		                      <div class="form-group col-lg-12 col-md-12">
 		                        <label>학점</label>
-		                        <div class="text" th:text="${edu.eduScore}">Edu Score</div>
+		                        <div>
+                                <input type="hidden" name="eduScore" th:value="${edu.eduScore}"/>
+		                        <div class="text" th:text="${edu.eduScore}" id="eduScore">Edu Score</div>
+		                        </div>
 		                        <!-- 
 		                         <input type="text" name="name" placeholder="학력 관련 추가 정보를 입력하세요." th:value="${edu.eduScore}">
 		                         -->
@@ -147,7 +145,10 @@
                                <!-- Input eduContent -->
 		                      <div class="form-group col-lg-12 col-md-12">
 		                        <label>추가 정보 입력</label>
-		                        <div class="text" th:text="${edu.eduContent}">Edu Content</div>
+		                        <div>
+                                <input type="hidden" name="eduContent" th:value="${edu.eduContent}"/>
+		                        <div class="text" th:text="${edu.eduContent}" id="eduContent">Edu Content</div>
+		                        </div>
 		                        <!-- 
 		                         <input type="text" name="name" placeholder="학력 관련 추가 정보를 입력하세요." th:value="${edu.eduContent}">
 		                         -->

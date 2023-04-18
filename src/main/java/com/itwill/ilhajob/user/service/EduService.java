@@ -10,6 +10,8 @@ public interface EduService {
 	EduDto updateEdu(Long id, EduDto eduDto);
 
 	void deleteEdu(Long id);
+	
+	EduDto findById(Long id);
 
 	List<EduDto> findEduListByUserId(Long userId);
 
