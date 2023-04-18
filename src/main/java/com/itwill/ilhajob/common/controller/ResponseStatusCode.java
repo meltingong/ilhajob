@@ -16,4 +16,6 @@ public class ResponseStatusCode {
 	public static final int LOGIN_FAIL = 5100;
 	public static final int EXISTED_USER = 5200;
 	public static final int UNAUTHORIZED_USER = 5400;
+	
+	public static final int WRITTEN_FAIL_REVIEW = 6001;
 }

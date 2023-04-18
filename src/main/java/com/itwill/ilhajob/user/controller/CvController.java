@@ -108,7 +108,7 @@ public class CvController {
 	
 	/** cv detail param(cvId) 있을 때 */
 	@LoginCheck
-	@RequestMapping(value = "/cv-detail", method = RequestMethod.POST)
+	@RequestMapping(value = "/cv-detail")
 		public String cv_detail(HttpServletRequest request, @RequestParam Long cvId, Model model) throws Exception {
 		String forwardpath = "";
 		

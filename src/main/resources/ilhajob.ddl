@@ -2,6 +2,7 @@
     drop table awards cascade constraints;
     drop table blog cascade constraints;
     drop table blog_comment cascade constraints;
+    drop table blog_cate cascade constraints;
     drop table corp cascade constraints;
     drop table corp_bookmark cascade constraints;
     drop table corp_image cascade constraints;
@@ -24,6 +25,7 @@
     drop sequence awards_id_seq;
     drop sequence blog_id_seq;
     drop sequence blog_comment_id_seq;
+    drop sequence blog_cate_id_seq;
     drop sequence bookmark_id_seq;
     drop sequence corp_id_seq;
     drop sequence corp_image_id_seq;
@@ -46,6 +48,7 @@
  create sequence awards_id_seq start with 1 increment by  1;
  create sequence blog_id_seq start with 1 increment by  1;
  create sequence blog_comment_id_seq start with 1 increment by  1;
+ create sequence blog_cate_id_seq start with 1 increment by  1;
  create sequence bookmark_id_seq start with 1 increment by  1;
  create sequence corp_id_seq start with 1 increment by  1;
  create sequence corp_image_id_seq start with 1 increment by  1;
@@ -99,6 +102,11 @@
         primary key (id)
     );
  
+    create table blog_cate (
+       id number(19,0) not null,
+       blog_cate_name varchar2(20 char) not null,
+       primary key (id)
+    );
     
     create table blog_comment (
        id number(19,0) not null,

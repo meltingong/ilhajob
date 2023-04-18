@@ -11,8 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.itwill.ilhajob.user.entity.User;
 
@@ -38,8 +41,9 @@ public class BlogComment {
 	@Column(nullable = false, length = 1000)
 	private String commentContent;
 	
+	@CreationTimestamp
 	private LocalDateTime commentDate;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	@ToString.Exclude
