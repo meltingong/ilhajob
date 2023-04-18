@@ -50,22 +50,29 @@ public class EduController {
 	public String createEdu(
 			@RequestParam(name = "eduStartDate") String eduStartDate, 
 			@RequestParam(name = "eduEndDate") String eduEndDate, 
-			@RequestParam(name = "eduName") String eduName,
-			@RequestParam(name = "eduMajor") String eduMajor,
+			@RequestParam(name = "eduName") List<String> eduNameList,
+			@RequestParam(name = "eduMajor") List<String> eduMajorList,
 			@RequestParam(name = "eduScore") String eduScore,
 			@RequestParam(name = "eduContent") String eduContent,
-			HttpServletRequest request, Model model) {
+			@RequestParam(name="id") Long cvId,
+			HttpServletRequest request, Model model,
+			RedirectAttributes redirectAttributes) {
 		try {
 			String userEmail = (String)request.getSession().getAttribute("sUserId");
 			UserDto user = userService.findUser(userEmail);
 			
 			EduDto eduDto = new EduDto();
+			
+			String eduName = eduNameList.get(eduNameList.size()-1);
+			String eduMajor = eduMajorList.get(eduMajorList.size()-1);
+			
+			eduDto.setEduName("");
 			eduDto.setEduName(eduName);
 			eduDto.setEduContent(eduContent);
 			eduDto.setEduMajor(eduMajor);
 			eduDto.setEduScore(eduScore);			
 			eduDto.setUser(user);
-
+			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDateTime startDateTime = LocalDate.parse(eduStartDate, formatter).atStartOfDay();
 			LocalDateTime endDateTime = LocalDate.parse(eduEndDate, formatter).atStartOfDay();
@@ -73,26 +80,8 @@ public class EduController {
 			eduDto.setEduStartDate(startDateTime);
 			eduDto.setEduEndDate(endDateTime);
 			eduService.createEdu(eduDto);
-			
-			Long userId = (Long)request.getSession().getAttribute("id");
-			List<CvDto> cvList = cvService.findByUserId(userId);
-			model.addAttribute("cvList", cvList);
-			
-			/* 가장 최근 작성한(cvId 기준) cv의 detail */
-			CvDto cvDetail = cvList.get(cvList.size()-1);
-			model.addAttribute("cvDetail", cvDetail);
-			
-			/* eduList */
-			List<EduDto> eduList = eduService.findEduListByUserId(userId);
-			model.addAttribute("eduList", eduList);
-			
-			/* expList */
-			List<ExpDto> expList = expService.findExpListByUserId(userId);
-			model.addAttribute("expList", expList);
-			
-			/* awardsList */
-			List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
-			model.addAttribute("awardsList", awardsList);
+
+			redirectAttributes.addAttribute("cvId", cvId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
