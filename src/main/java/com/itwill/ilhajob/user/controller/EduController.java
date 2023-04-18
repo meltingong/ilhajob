@@ -107,6 +107,24 @@ public class EduController {
 		return resultMap;
 	}
 	
+	@RequestMapping(value = "edu-delete-action", method = RequestMethod.POST)
+	public String deleteEdu(HttpServletRequest request, @RequestParam("eduId") String eduId, @RequestParam(name="id") Long cvId, Model model, RedirectAttributes redirectAttributes) {
+		System.out.println(">>>>>>>>>>>>>>> eduId " + eduId);
+		System.out.println(eduId.replace(',', ' ').trim());
+		System.out.println(">>>>>>>>>>>>>>> String -> Long eduId : " + Long.parseLong(eduId.replace(',', ' ').trim()));
+		Long longEduId = Long.parseLong(eduId.replace(',', ' ').trim());
+		eduService.deleteEdu(longEduId);
+		redirectAttributes.addAttribute("cvId", cvId);
+		return "redirect:cv-detail";
+	}
+	
+	
+	
+	
+	
+	
+	// ajax
+	
 	@RequestMapping(value="/edu/delete/{eduId}", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public Map<String, Object> deleteEdu(@PathVariable("eduId") Long eduId, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
