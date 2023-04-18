@@ -314,12 +314,12 @@ public class UserController {
 		
 		@LoginCheck
 		@RequestMapping("/review_write_action")
-		public String review_write_action(@ModelAttribute ReviewDto reviewDto,@ModelAttribute UserDto userDto ,HttpServletRequest request,@RequestParam("corpLoginId") String corpLoginId,Model model) throws Exception{
+		public String review_write_action(@ModelAttribute ReviewDto reviewDto,@ModelAttribute UserDto userDto ,HttpServletRequest request,@RequestParam("corpId") Long corpId,Model model) throws Exception{
 			String forwardPath="";
 			try {	
 			String sUserId = (String)request.getSession().getAttribute("sUserId");
 			UserDto loginUser = userService.findUser(sUserId);
-			CorpDto corpDto = corpService.findCorp(corpLoginId);
+			CorpDto corpDto = corpService.findByCorpId(corpId);
 		
 
 			reviewDto.setCorp(corpDto);
@@ -332,12 +332,12 @@ public class UserController {
 			userService.insertReview(reviewDto);
 			
 			
-			forwardPath="redirect:corp-detail?corpLoginId="+corpLoginId;
+			forwardPath="redirect:corp-detail?corpId="+corpId;
 			return forwardPath;
 		}catch (ExistedReviewException e) {
 			
 			model.addAttribute("msg",e.getMessage());
-			forwardPath = "redirect:corp-detail?corpLoginId="+corpLoginId;
+			forwardPath = "redirect:corp-detail?corpId="+corpId;
 			return forwardPath;
 		}
 			
@@ -349,9 +349,9 @@ public class UserController {
 		
 		@LoginCheck
 		@RequestMapping("/review_delete")
-		public String review_delete(Long id,String corpLoginId) throws Exception{
+		public String review_delete(Long id,Long corpId) throws Exception{
 			reviewService.remove(id);
-			return "redirect:corp-detail?corpLoginId="+corpLoginId;
+			return "redirect:corp-detail?corpId="+corpId;
 		}
 
 }

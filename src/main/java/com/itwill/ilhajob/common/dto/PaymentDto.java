@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PaymentDto {
 	private long id;
-	private String payment_method;
-	private int payment_price;
-	private LocalDateTime payment_date;
+	private String paymentMethod;
+	private int paymentPrice;
+	private LocalDateTime paymentDate;
 	private long ordersId;
 	private Long userId;
 	private Long corpId;

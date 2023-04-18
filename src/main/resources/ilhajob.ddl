@@ -245,26 +245,26 @@
     
     create table product (
        id number(19,0) not null,
-        p_div varchar2(255 char),
-        p_end_month number(10,0) not null,
-        p_image varchar2(255 char),
-        p_name varchar2(255 char),
-        p_no number(10,0) not null,
-        p_price number(10,0) not null,
+        product_div varchar2(255 char),
+        product_Period number(10,0) not null,
+        product_name varchar2(255 char),
+        product_price number(10,0) not null,
         primary key (id)
     );
  
     
     create table recruit (
        id number(19,0) not null,
-        rc_content varchar2(1000 char) not null,
+        rc_content varchar2(1000 char),
         rc_date timestamp,
         rc_deadline timestamp,
         rc_position varchar2(255 char),
         rc_qualification varchar2(255 char),
         rc_read_count NUMBER(19) DEFAULT 0,
-        rc_salary number(10,0) not null,
-        rc_title varchar2(600 char) not null,
+        rc_status number(1) DEFAUlT 0,
+        rc_app_count number(1) DEFAUlT 0,
+        rc_salary number(10,0),
+        rc_title varchar2(600 char),
         corp_id number(19,0),
         primary key (id)
     );
@@ -327,7 +327,8 @@
     alter table app 
        add constraint FK5lafg6ip10co6ijiim6og71v5 
        foreign key (recruit_id) 
-       references recruit;
+       references recruit
+       on delete set null;
  
     
     alter table app 
@@ -465,7 +466,7 @@
     alter table recruit_tag 
        add constraint FKelwb3nmj9ngwt4p959nb6478n 
        foreign key (recruit_id) 
-       references recruit;
+       references recruit on delete cascade;
  
     
     alter table recruit_tag 

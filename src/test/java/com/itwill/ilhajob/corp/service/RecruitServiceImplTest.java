@@ -38,46 +38,23 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 //		System.out.println(recruitService.findAllByCorpId(1L));
 //	}
 	
-//	App table 때문에 테스트 안됨->DataintegrityException....
+//	App table 때문에 테스트 안됨->on delete set null 추가함
 //	@Test
 //	void testRemove() throws Exception {
-		
-		
-//		List<AppDto> appList=appService.findAllByRecruitId(1L);
-//		System.out.println(appList);
-//		
-//		for (AppDto appDto : appList) {
-//			//Long appReId = appDto.getRecruit().getId();
-//			appDto.setRecruit(null);
-//			List<App> appEntityList = new ArrayList<App>();
-//			appEntityList = appList.stream().map(app -> modelMapper.map(app, App.class)).collect(Collectors.toList());
-//			for (App app : appEntityList) {
-//				appRepository.save(app);
-//			}
-//		}
-//		System.out.println(appList);
-//		EntityManager em;
-//		Recruit recruit=em.find(Recruit.class, 1L);
 //		recruitService.remove(1L);
-//		System.out.println(recruitService.findRecruit(1L));
-//		
-//		
 //	}
 		
-/*		List<AppDto> appList=appService.findAllByRecruitId(1L);
-		System.out.println(appList);
+
 
 	
-//	@Disabled
 //	@Test
 //	void testUpdate() throws Exception{
 //		RecruitDto updateRecruit=RecruitDto.builder()
+//										   .rcTitle("수정제목")
 //										   .rcContent("수정내용")
 //										   .rcPosition("수정직급")
 //										   .build();
-//		recruitService.update(1L, updateRecruit);
+//		recruitService.update(2L, updateRecruit);
 //	}
 	
-}
-*/
 }

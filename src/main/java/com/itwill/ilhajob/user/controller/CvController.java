@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +24,8 @@ import com.itwill.ilhajob.user.dto.EduDto;
 import com.itwill.ilhajob.user.dto.ExpDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.entity.Cv;
+import com.itwill.ilhajob.user.exception.ExistedUserException;
+import com.itwill.ilhajob.user.exception.UserNotFoundException;
 import com.itwill.ilhajob.user.service.AwardsService;
 import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.EduService;
@@ -189,11 +190,14 @@ public class CvController {
 	@LoginCheck
 //	@PostMapping("cv-apply-action")
 	@RequestMapping("cv-apply-action")
-	public String cv_apply_action(Model model, @ModelAttribute CvDto cvDto, @ModelAttribute RecruitDto rc) {
-		System.out.println(rc);
-		RecruitDto recruit = (RecruitDto)model.getAttribute("recruit");
+	public String cv_apply_action(HttpServletRequest request, Model model, @ModelAttribute CvDto cvDto, @ModelAttribute RecruitDto rc) throws Exception {
+//		System.out.println(">>>>>>>>>>>>>>>>>>> " + (RecruitDto)request.getSession().getAttribute("recruit"));
+		System.out.println(rc); // null
+		RecruitDto recruit = (RecruitDto)model.getAttribute("recruit"); // null
+		String userEmail = (String)request.getSession().getAttribute("sUserId");
+		UserDto user = userService.findUser(userEmail);
 		System.out.println("model.getAttribute('recruit')" + recruit);
-//		AppDto app = new AppDto(0, 'T', recruit, cvDto, cvDto.getUserSeq(), recruit.getCorp().getId(), recruit.getId());
+//		AppDto app = new AppDto(0, 0, LocalDateTime.now(), recruit, cvDto, user);
 //		System.out.println("##### before insert" + app);
 //		appService.insertApp(app);
 //		System.out.println("#### after insert" + app);
@@ -214,20 +218,6 @@ public class CvController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		return map;
-	}
-	
-	/** 일단 동기방식으로 테스트 */
-	@RequestMapping(value = "/edu-delete-action")
-	public String cv_info_delete_action(HttpServletRequest request, @ModelAttribute EduDto eduDto, @RequestParam("eduId") Long eduid, Model model, RedirectAttributes redirectAttributes) {
-		System.out.println("======== eduId : " + eduid);
-//		System.out.println(eduid.replace(',', ' ').trim());
-//		eduService.deleteEduByEduSeq(Integer.parseInt(eduid.replace(',', ' ').trim()));
-		eduService.deleteEdu(eduid);
-		Long userId = (Long)request.getSession().getAttribute("id");
-		Long cvId = cvService.findByUserId(userId).get(0).getId();
-		redirectAttributes.addAttribute("cvId", cvId);
-		
-		return "redirect:cv-detail";
 	}
 	
 	@RequestMapping(value = "/exp-delete-action")

@@ -12,10 +12,10 @@ class ProductServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests {
     @Autowired
     ProductService productService;
 	
-    @Disabled
+    //@Disabled
 	@Test
 	void testselectByNo() throws Exception {
-    	System.out.println(productService.selectByNo(1));	
+    	System.out.println(">>>>>>>"+productService.selectByDiv("user"));
 	}
 
 }

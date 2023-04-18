@@ -69,58 +69,67 @@ values(CV_ID_SEQ.nextval, '~~하드웨어용 자기소개~~', '하드개발이�
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울 중구 남대문시장10길 2 (회현동1가, MESA) 21층', '111-11-11111', '신세계아이앤씨는 디지털 기술로 새로운 영역에서 새로운 가치를 만들어내는 글로벌 리테일테크 전문기업입니다.', '1997-02-10', 'corp_01', '신세계아이앤씨',
-'1111', '02-3397-1234', '58억8100만원', '1,339명', 'http://shinsegae-inc.com', '연금,보험,휴무 상의 후 결정', null, null);
+'1111', '02-3397-1234', '58억8100만원', '1,339명', 'http://shinsegae-inc.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울 송파구 올림픽로35다길 32 (신천동) , 9층(예전빌딩)', '222-22-22222', '새로운 배달 인프라, 당신과 우아한청년들이 함께합니다.', '2015-11-10', 'corp_02', '우아한청년들',
-'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', null, null);
+'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null);
+
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+values(CORP_ID_SEQ.nextval, '서울 송파구 올림픽로35다길 32 (신천동) , 9층(예전빌딩)', '000-00-11111', '새로운 배달 인프라, 당신과 우아한청년들이 함께합니다.', '2015-11-10', 'corp_17', '우아한중년들',
+'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '응용프로그램', null);
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+values(CORP_ID_SEQ.nextval, '서울 송파구 올림픽로35다길 32 (신천동) , 9층(예전빌딩)', '000-00-00000', '새로운 배달 인프라, 당신과 우아한청년들이 함께합니다.', '2015-11-10', 'corp_18', '우아한장년들',
+'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '네트워크', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울 종로구 종로33길 15 연강빌딩', '333-33-33333', '메타넷디지털은 국내 IT산업의 선두반열에서 첨단의 정보기술을 개발해온 종합정보 서비스 회사입니다.', '1989-01-21', 'corp_03', '메타넷디지털(주)',
-'3333', '02-3704-5114', '5억7000만원', '1200명', 'http://metanetglobal.com', '연금,보험,휴무 상의 후 결정', null, null);
+'3333', '02-3704-5114', '5억7000만원', '1200명', 'http://metanetglobal.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울 강남구 테헤란로33길 5 (역삼동, JLK타워) JLK타워', '444-44-44444', '제이엘케이는 의료진단 분야, 원격의료분야, 데이터분야에서 세계를 선도하는 인공지능 플랫폼 기업입니다.', '2014-12-15', 'corp_04', '제이엘케이',
-'4444', '02-6925-6189', '40억 2000만원', '80명', 'http://jikgroup.com', '연금,보험,휴무 상의 후 결정', null, null);
+'4444', '02-6925-6189', '40억 2000만원', '80명', 'http://jikgroup.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울시 강남구', '123-456-7890', 'DB회사입니다.1', '2021-01-01', 'corp_05', '더문랩스',
-'5555', '02-1111-1111', '1000000000', '45', 'http://www.DBtest1.com', '칼퇴', null, null);
+'5555', '02-1111-1111', '1000000000', '45', 'http://www.DBtest1.com', '칼퇴', '응용프로그램', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울시 서초구', '123-456-7899', 'DB회사입니다.2', '2021-01-02', 'corp_06', '마켓링크',
-'6666', '02-2222-2222', '2000000000', '20', 'http://www.DBtest2.com', '칼퇴', null, null);
+'6666', '02-2222-2222', '2000000000', '20', 'http://www.DBtest2.com', '칼퇴', '응용프로그램', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울시 중랑구', '123-456-7898', 'DB회사입니다.3', '2021-01-03', 'corp_07', '디비에프아이에스',
-'7777', '02-3333-3333', '3000000000', '30', 'http://www.DBtest3.com', '칼퇴', null, null);
+'7777', '02-3333-3333', '3000000000', '30', 'http://www.DBtest3.com', '칼퇴', '네트워크', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울시 도봉구', '123-456-7897', 'DB회사입니다.4', '2021-01-04', 'corp_08', '대보정보통신',
-'8888', '02-4444-4444', '4000000000', '40', 'http://www.DBtest4.com', '칼퇴', null, null);
+'8888', '02-4444-4444', '4000000000', '40', 'http://www.DBtest4.com', '칼퇴', '네트워크', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울시 영등포구 여의나루로 67 신송빌딩 12 층', '763-87-02018', '다큐브는 국내 최초 기업 맞춤형 음성비서 서비스를 제공하는 B2B 전문기업 입니다.', '2021-01-19', 'corp_09', '다큐브(daquv)',
-'1313', '02-456-7891', '0', '20', 'http://daquv.com', '연금,보험,휴무,보상,주거비지원', null, null);
+'1313', '02-456-7891', '0', '20', 'http://daquv.com', '연금,보험,휴무,보상,주거비지원','게임', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울 강서구 공항대로 168 (마곡동) 마곡 747 타워 411~413', '206-81-84553', '(주)다이얼커뮤니케이션즈는 MaalTalk, VoIP Solutions, 화상회의솔루션 의 기술을 바탕으로 최적의 통합 커뮤니케이션 서비스를 제공하는 사업을 하고 있습니다.', '2003-09-06', 'corp_10', '(주)다이얼커뮤니케이션즈',
-'1414', '1577-7530', '12408000000', '18', 'http://www.maaltalk.com/', '연금,보험,휴무,보상', null, null);
+'1414', '1577-7530', '12408000000', '18', 'http://www.maaltalk.com/', '연금,보험,휴무,보상', '게임', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
 values(CORP_ID_SEQ.nextval, '서울 강남구 영동대로 502 (삼성동) 위메프', '842-86-00373', '테이블링은 스마트하게 예약과 대기가 가능한 서비스로 디지털 트렌스포메이션으로 탐색에서
 부터 식사 이후 까지의 모든 과정에서의 낭비가 없어진 세상 이라는 비전으로 전진 하고 있습니다.', '2016-04-14', 'corp_11', '(주) 테이블링',
-'1515', '02-1899-9195', '456300000000', '78', 'http://www.tabling.co.kr/', '연금,보험,휴무,보상,휴가', null, null);
+'1515', '02-1899-9195', '456300000000', '78', 'http://www.tabling.co.kr/', '연금,보험,휴무,보상,휴가', '게임', null);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
@@ -189,7 +198,7 @@ values(MANAGER_ID_SEQ.nextval, 'email@기업4.com', '댜댜댜', '010-5326-6477'
 
 /**********************recruit insert***************************/
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate,  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 0, 4500, 'SW개발/보안 경력직 모집', 1);
+values(RECRUIT_ID_SEQ.nextval, '2023-04-05',  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 0, 4500, 'SW개발/보안 경력직 모집', 1);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+1,  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 0, 3500, '청소부', 2);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
@@ -198,7 +207,7 @@ insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualif
 values(RECRUIT_ID_SEQ.nextval, sysdate+3,  '메타넷그룹의 사업 확장과 비즈니스 성장에 함께할 IT 전문성을 가진 인재들을 모십니다.', '2023-07-05', '경력직', '무', 0, 3600, '메타넷 그룹 경력직 공개채용', 4);
 
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 1);
+values(RECRUIT_ID_SEQ.nextval, '2023-02-05',  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 1);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+8,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 2);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
@@ -207,7 +216,7 @@ insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualif
 values(RECRUIT_ID_SEQ.nextval, sysdate+6,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 0, 3000, 'DB개발자 모집합니다', 4);
 
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate,  '다큐브팀과 함께 국내 최초 기업용 음성비서를 만들어갈 동료를 찾고 있습니다.', sysdate+30, '경력', 'Springboot경험이 있는 분', 0, 5300, '다큐브- 시니어 백엔드 개발자', 1);
+values(RECRUIT_ID_SEQ.nextval, '2023-03-05',  '다큐브팀과 함께 국내 최초 기업용 음성비서를 만들어갈 동료를 찾고 있습니다.', sysdate+30, '경력', 'Springboot경험이 있는 분', 0, 5300, '다큐브- 시니어 백엔드 개발자', 1);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+3,  '구성원의 성장을 테이블링의 성장이라 생각하고 구성원분들에게 긍정적인 동기부여를 할 수 있도록 노력하고 있습니다.', sysdate+30, '신입', '무', 0, 0, '개발자 구인[백엔드,프론트엔드,Android,iOS]', 2);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
@@ -215,8 +224,8 @@ values(RECRUIT_ID_SEQ.nextval, sysdate+5,  '메타넷그룹의 사업 확장과 
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+20,  '무신사와 함께 한국을 넘어 글로벌 무대에서 경쟁력 있는 서비스를 만들어갈 인재를 찾고 있습니다.', sysdate+30, '경력', '3년 이상의 개발 경력', 0, 0, 'Backend Engineer (플랫폼서비스본부)', 4);
 
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate,  '신입 네트워크 관리자 채용합니다.', sysdate+30, '신입', '관련 지식 보유자, 커뮤니케이션 스킬', 0, 3000, '네트워크 관리자 채용', 1);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id,rc_status)
+values(RECRUIT_ID_SEQ.nextval, '2023-01-05',  '신입 네트워크 관리자 채용합니다.', sysdate-10, '신입', '관련 지식 보유자, 커뮤니케이션 스킬', 0, 3000, '네트워크 관리자 채용', 1,1);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+10,  '계열사 시스템 운영 업무. IT인프라 기획 및 운영', sysdate+60, '경력무관', 'IT시스템 관련 기본 지식 보유', 0, 3800, '인프라 구축 엔지니어 채용', 2);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
@@ -253,30 +262,42 @@ values(RECRUIT_SCRAP_RC_SEQ_SEQ.nextval, 4, 'test4@test.com', 4);
 /**********************app insert***************************/
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '2', 1, 1, sysdate,1);
+update recruit set rc_app_count=rc_app_count+1 where id=1;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 1, 2, sysdate,1);
+update recruit set rc_app_count=rc_app_count+1 where id=2;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 1, 3, sysdate,1);
+update recruit set rc_app_count=rc_app_count+1 where id=3;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '1', 1, 4, sysdate,1);
+update recruit set rc_app_count=rc_app_count+1 where id=4;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '2', 1, 1, sysdate,1);
+update recruit set rc_app_count=rc_app_count+1 where id=1;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 1, 2, sysdate,1);
+update recruit set rc_app_count=rc_app_count+1 where id=2;
 
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '1', 2, 3, sysdate,2);
+update recruit set rc_app_count=rc_app_count+1 where id=3;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '1', 2, 4, sysdate,2);
+update recruit set rc_app_count=rc_app_count+1 where id=4;
 
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 3, 1, sysdate,3);
+update recruit set rc_app_count=rc_app_count+1 where id=1;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 3, 2, sysdate,3);
+update recruit set rc_app_count=rc_app_count+1 where id=2;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 3, 3, sysdate,3);
+update recruit set rc_app_count=rc_app_count+1 where id=3;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 3, 4, sysdate,3);
+update recruit set rc_app_count=rc_app_count+1 where id=4;
 
 /**********************massage insert***************************/
 insert into message(id, message_contents, message_date, message_title, user_id)
@@ -309,22 +330,68 @@ values(REVIEW_ID_SEQ.nextval, '리뷰 내용4-1', '4', '리뷰 제목4-1', 4,2);
 
 /*******************************태그**************************************/
 /**************************tag insert***************************/
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '태그1');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '태그2');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '태그3');
-insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '태그4');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#자율복장');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#재택근무');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#칼퇴근');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#대기업');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#중소기업');
+insert into tag(id, tag_name) values(TAG_ID_SEQ.nextval, '#공기업');
 
 /**************************corp_tag insert***********************/
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '1','1');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '2','2');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '3','3');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '4','4');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '1','4');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '2','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '3','4');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '4','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '5','3');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '6','4');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '7','6');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '8','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '9','4');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '10','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '11','6');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '12','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '13','4');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '14','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '15','6');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '16','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '17','4');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '18','6');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '19','5');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '20','4');
 
 /**************************recruit_tag insert********************/
 insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '1', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '1', '2');
 insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '2', '1');
 insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '2', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '3', '1');
 insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '3', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '3', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '4', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '5', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '5', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '6', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '6', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '7', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '7', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '7', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '8', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '8', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '9', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '9', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '10', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '10', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '11', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '12', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '12', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '13', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '13', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '14', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '14', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '15', '2');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '15', '3');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '16', '1');
+insert into recruit_tag(id, recruit_id, tag_id) values(RECRUIT_TAG_ID_SEQ_GEN.nextval, '16', '3');
 
 /**************************corp_bookmark insert******************/
 insert into corp_bookmark(id, corp_id, user_id) values(BOOKMARK_ID_SEQ.nextval, 1, 1);
@@ -335,24 +402,21 @@ insert into corp_bookmark(id, corp_id, user_id) values(BOOKMARK_ID_SEQ.nextval, 
 /*******************************결제관련**************************************/
 /**************************product insert************************/
 -- 개인회원 상품 insert => p_div : U
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 1, '상품이미지1', '개인회원상품1', 1, 10000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 2, '상품이미지2', '개인회원상품2', 2, 20000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 3, '상품이미지3', '개인회원상품3', 3, 30000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'U', 4, '상품이미지4', '개인회원상품4', 4, 40000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 30, '개인회원상품1', 5500);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 60, '개인회원상품2', 9900);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'user', 90, '개인회원상품3', 12900);
+
 
 -- 개인회원 상품 insert => p_div : C
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 5, '상품이미지5', '개인회원상품5', 5, 50000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 6, '상품이미지6', '개인회원상품6', 6, 60000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 7, '상품이미지7', '개인회원상품7', 7, 70000);
-insert into product(id, p_div, p_end_month, p_image, p_name, p_no, p_price)
-values(PRODUCT_ID_SEQ.nextval, 'C', 8, '상품이미지8', '개인회원상품8', 8, 80000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 30, '개인회원상품5', 20000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 60, '개인회원상품6', 35000);
+insert into product(id, product_div, product_period, product_name, product_price)
+values(PRODUCT_ID_SEQ.nextval, 'corp', 90, '개인회원상품7', 45000);
 
 /**************************orders insert************************/
 -- 개인회원1 user_seq : 1로 개인상품 p_no 1주문하기

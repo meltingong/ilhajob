@@ -88,10 +88,10 @@
 
                       <div class="form-group col-lg-12 col-md-12">
                         <!-- Resume / Education -->
-                        <div class="resume-outer">
+                        <div class="resume-outer" id="edu-block">
                           <div class="upper-title">
                             <h4>학력</h4>
-                            <button class="add-info-btn" onclick="addEdu()"><span class="icon flaticon-plus"></span> 학력 추가</button>
+                            <button type="button" class="add-info-btn" onclick="addEdu()"><span class="icon flaticon-plus"></span> 학력 추가</button>
                           </div>
                           <!-- Resume BLock -->
                           <div class="resume-block" th:each="edu:${eduList}" id="eduBlock">

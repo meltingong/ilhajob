@@ -54,10 +54,14 @@
                         <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
-                      <ul class="job-other-info">
-                        <li class="time">Full Time</li>
+                      <ul class="job-other-info" >
+                      	<div th:each="str : ${recruitTagNameList}">
+                        <li class="time" th:text ="${str}">Full Time</li>
+                        <!--  
                         <li class="privacy">Private</li>
                         <li class="required">Urgent</li>
+                        -->
+                        </div>
                       </ul>
                     </div>
                   </div>
@@ -172,7 +176,7 @@
                     <div class="company-title">
                       <div class="company-logo"><img src="images/resource/company-7.png" alt=""></div>
                       <h5 class="company-name" th:text="${recruit.corp.corpName}">InVision</h5>
-                      <a href="#" class="profile-link" th:href="@{corp-detail(corpLoginId=${recruit.corp.corpLoginId})}">
+                      <a href="#" class="profile-link" th:href="@{corp-detail(corpId=${recruit.corp.id})}">
                       		View company profile</a> <!-- th:href="@{corp-detail(corpId=${recruit.corp.corpId})}" 
                       									  th:href="@{recruit-detail(rcSeq=${recruit.rcSeq})}"   -->
                     </div>
@@ -194,10 +198,9 @@
                       </li>
                     </ul>
 
-                    <div class="btn-box"><a href="#" class="theme-btn btn-style-three" 
-                    								th:text="${recruit.corp.corpWebsite}"
-                    								th:href="@{recruit.corp.corpWebsite}">
-                    								www.invisionapp.com</a></div>
+                    <div class="btn-box">
+                    <a href="#" th:href="@{__${recruit.corp.corpWebsite}__}" class="theme-btn btn-style-three" th:text="${recruit.corp.corpWebsite}" target="_blank" th:if="${recruit.corp.corpWebsite != null}">
+                    www.invisionapp.com</a></div>
                   </div>
                 </div>
 

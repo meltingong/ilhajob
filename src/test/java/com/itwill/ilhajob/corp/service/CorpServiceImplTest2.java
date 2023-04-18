@@ -13,7 +13,7 @@ class CorpServiceImplTest2 extends FinalProjectTeam1IlhajobApplicationTests{
 	private CorpService corpService;
 	@Test
 	void testFindCorp() throws Exception {
-		System.out.println(corpService.findCorp("corp_01"));
+		System.out.println(corpService.findByCorpLoginId("corp_01"));
 	}
 
 }

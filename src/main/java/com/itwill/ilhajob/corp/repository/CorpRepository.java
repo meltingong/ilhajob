@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.corp.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +13,7 @@ public interface CorpRepository extends JpaRepository<Corp, Long> {
 	
     Optional<Corp> findByCorpLoginId(String corpLoginId);
     boolean existsByCorpLoginId(String corpLoginId);
+    
+    //corpName으로 검색기능
+    List<Corp> findByCorpNameContaining(String corpName);
 }

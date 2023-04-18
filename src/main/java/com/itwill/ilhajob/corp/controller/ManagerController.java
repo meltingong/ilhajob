@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.mapping.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -38,8 +37,8 @@ public class ManagerController {
 	@RequestMapping("/dashboard-manager-list")
 	public String corp_dashboard_manager_list(HttpServletRequest request,Model model) throws Exception{
 		
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		List<ManagerDto> managerList = managerService.findManagerByCorpID(corpDto.getId());
 		
 		//System.out.println(managerList);
@@ -50,9 +49,9 @@ public class ManagerController {
 
 	//매니저생성
 	@PostMapping("manager-create")
-    public String updateManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
-		String sCorpId = (String) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto=corpService.findCorp(sCorpId);
+    public String createManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		System.out.println("생성 컨트롤러 도착");
 		System.out.println(managerDto);
 		managerDto.setCorp(corpDto);
@@ -61,6 +60,31 @@ public class ManagerController {
 		
         return "redirect:dashboard-manager-list";
     }
+	
+	//매니저업데이트
+	@RequestMapping("manager-update")
+	public String updateManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
+		System.out.println("업데이트 컨트롤러 도착");
+		System.out.println(managerDto);
+		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		CorpDto corpDto=corpService.findByCorpId(sCorpId);
+		managerDto.setCorp(corpDto);
+		ManagerDto createManager = managerService.update(managerDto);
+		System.out.println(createManager+"업뎃완료");
+		
+		return "redirect:dashboard-manager-list";
+	}
+	
+	//매니저삭제
+	@RequestMapping("manager-delete")
+	public String deleteManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
+		System.out.println("삭제 컨트롤러 도착");
+		System.out.println(managerDto);
+		managerService.remove(managerDto.getId());
+		System.out.println("삭제완료");
+		
+		return "redirect:dashboard-manager-list";
+	}
 
 	
 }
