@@ -144,7 +144,7 @@ function addEdu() {
 			    <div class="edit-box">
 			  	<div class="form-group col-lg-6 col-md-12">
 			    <label>입학일</label><br>
-			      <input type="date" name ="eduStartDate"">
+			      <input type="date" name ="eduStartDate">
 			    </div>
 			  	<div class="form-group col-lg-6 col-md-12">
 			    <labe>졸업일</label><br>

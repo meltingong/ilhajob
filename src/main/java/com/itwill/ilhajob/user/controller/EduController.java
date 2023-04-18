@@ -11,10 +11,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,10 +54,8 @@ public class EduController {
 			@RequestParam(name = "eduMajor") String eduMajor,
 			@RequestParam(name = "eduScore") String eduScore,
 			@RequestParam(name = "eduContent") String eduContent,
-			/* @ModelAttribute EduDto eduDto, */
 			HttpServletRequest request, Model model) {
 		try {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>");
 			String userEmail = (String)request.getSession().getAttribute("sUserId");
 			UserDto user = userService.findUser(userEmail);
 			
@@ -72,32 +68,29 @@ public class EduController {
 
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDateTime startDateTime = LocalDate.parse(eduStartDate, formatter).atStartOfDay();
-			System.out.println(">>>>>>>>>> " + startDateTime);
 			LocalDateTime endDateTime = LocalDate.parse(eduEndDate, formatter).atStartOfDay();
 			
 			eduDto.setEduStartDate(startDateTime);
 			eduDto.setEduEndDate(endDateTime);
-			System.out.println(">>>>>>>>> edu : " + eduDto);
 			eduService.createEdu(eduDto);
-			System.out.println(">>>>>>>>> edu : " + eduDto);
 			
 			Long userId = (Long)request.getSession().getAttribute("id");
 			List<CvDto> cvList = cvService.findByUserId(userId);
 			model.addAttribute("cvList", cvList);
 			
-			//* 가장 최근 작성한(cvId 기준) cv의 detail */
+			/* 가장 최근 작성한(cvId 기준) cv의 detail */
 			CvDto cvDetail = cvList.get(cvList.size()-1);
 			model.addAttribute("cvDetail", cvDetail);
 			
-			//* eduList */
+			/* eduList */
 			List<EduDto> eduList = eduService.findEduListByUserId(userId);
 			model.addAttribute("eduList", eduList);
 			
-			//* expList */
+			/* expList */
 			List<ExpDto> expList = expService.findExpListByUserId(userId);
 			model.addAttribute("expList", expList);
 			
-			//* awardsList */
+			/* awardsList */
 			List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
 			model.addAttribute("awardsList", awardsList);
 		} catch (Exception e) {
@@ -105,17 +98,6 @@ public class EduController {
 		}
 		return "redirect:cv-detail";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@RequestMapping(value = "/edu", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> addEdu(@RequestBody EduDto eduDto) {
