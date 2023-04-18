@@ -112,10 +112,10 @@
                               <span class="name">E</span>
                               <div class="title-box">
                                 <div class="info-box">
-                                <input type="hidden" name="eduMajor" th:value="${edu.eduMajor}"/>
-                                  <h3 th:text="${edu.eduMajor}">Bachlors in Fine Arts</h3>
                                 <input type="hidden" name="eduName" th:value="${edu.eduName}"/>
                                   <span th:text="${edu.eduName}">Modern College</span>
+                                <input type="hidden" name="eduMajor" th:value="${edu.eduMajor}"/>
+                                  <h3 th:text="${edu.eduMajor}">Bachlors in Fine Arts</h3>
                                 </div>
                                 <div class="edit-box">
                                 <!-- <input type="hidden" name="eduStartDate" th:value="${edu.eduStartDate}"/> -->
@@ -139,12 +139,18 @@
 		                      <!-- Input eduScore -->
 		                      <div class="form-group col-lg-12 col-md-12">
 		                        <label>학점</label>
-		                        <input type="text" name="name" placeholder="학력 관련 추가 정보를 입력하세요." th:value="${edu.eduScore}">
+		                        <div class="text" th:text="${edu.eduScore}">Edu Score</div>
+		                        <!-- 
+		                         <input type="text" name="name" placeholder="학력 관련 추가 정보를 입력하세요." th:value="${edu.eduScore}">
+		                         -->
 		                      </div>
                                <!-- Input eduContent -->
 		                      <div class="form-group col-lg-12 col-md-12">
 		                        <label>추가 정보 입력</label>
+		                        <div class="text" th:text="${edu.eduContent}">Edu Content</div>
+		                        <!-- 
 		                         <input type="text" name="name" placeholder="학력 관련 추가 정보를 입력하세요." th:value="${edu.eduContent}">
+		                         -->
 		                      </div>
                               </div>
                             </div>
@@ -179,7 +185,8 @@
                            <!-- Input expContent -->
                               <div class="form-group col-lg-12 col-md-12">
 		                        <label>경력 상세</label>
-		                        <input type="text" name="name" placeholder="경력 관련 추가 정보를 입력하세요." th:value="${exp.expContent}">
+		                        <div class="text" th:text="${exp.expContent}"></div>
+		                        <!-- <input type="text" name="name" placeholder="경력 관련 추가 정보를 입력하세요." th:value="${exp.expContent}"> -->
 		                      </div>
                             </div>
                           </div>
@@ -208,7 +215,7 @@
                           <!-- Resume BLock -->
                           <div class="resume-block" th:each="awards:${awardsList}">
                             <div class="inner">
-                              <span class="name">Awards</span>
+                              <span class="name">A</span>
                               <div class="title-box">
                                 <div class="info-box">
                                   <h3 th:text="${awards.awardsName}">Perfect Attendance Programs</h3>
@@ -224,27 +231,14 @@
                               </div>
                               <div class="form-group col-lg-12 col-md-12">
                               	<label>수상 상세</label>
-		                        <input type="text" name="name" placeholder="수상관련 추가 정보를 입력하세요." th:value="${awards.awardsContent}">
+                              	<div class="text" th:text="${awards.awardsContent}"></div>
+		                        <!-- <input type="text" name="name" placeholder="수상관련 추가 정보를 입력하세요." th:value="${awards.awardsContent}"> -->
 	                      	  </div>
                             </div>
                           </div>
                         </div>
                       </div>
                      </div>
-
-                      <!-- Search Select -->
-                      <!-- 
-                      <div class="form-group col-lg-6 col-md-12">
-                        <label>기타 보유능력</label>
-                        <select data-placeholder="Categories" class="chosen-select multiple" multiple tabindex="4">
-                          <option value="Banking">Banking</option>
-                          <option value="Digital&Creative">Digital & Creative</option>
-                          <option value="Retail">Retail</option>
-                          <option value="Human Resources">Human Resources</option>
-                          <option value="Management">Management</option>
-                        </select>
-                      </div>
-                       -->
 
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
@@ -260,8 +254,6 @@
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </section>
@@ -271,9 +263,8 @@
     <div class="copyright-text">
       <p>© 2021 Superio. All Right Reserved.</p>
     </div>
-
+    
   </div><!-- End Page Wrapper -->
-
 
   <script src="js/jquery.js"></script>
   <script src="js/popper.min.js"></script>
