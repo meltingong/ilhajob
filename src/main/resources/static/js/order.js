@@ -78,6 +78,7 @@
 
 		const paymentData = {
 			paymentMethod: $('input[name="payment-group"]:checked').val(),
+			paymentPg: $('input[name="payment-group"]:checked').attr('data-pg')
 		};
 		
 		const currentDate = new Date();
@@ -99,7 +100,7 @@
 		IMP.init("imp21102268");
 		//결제 api
 		IMP.request_pay({
-			pg: 'html5_inicis.INIBillTst',
+			pg: paymentData.paymentPg,
 			pay_method: paymentData.paymentMethod,
 			merchant_uid: orderData.orderId, //상점에서 생성한 고유 주문번호
 			name: '주문명:' + productData.productName,
@@ -123,8 +124,8 @@
 				// Promise 객체를 사용하여 Ajax 요청 처리
 				promise.then(function(response) {
 					// 로그인 성공 시 처리					
-					// JSON 데이터를 LocalStorage에 저장
-					localStorage.setItem("data", response);
+					// response 문자열로 변환 후 LocalStorage에 저장
+					localStorage.setItem("data", JSON.stringify(response));
 					window.location.href="/final-project-team1-ilhajob/order-completed"
 				})
 				.fail(function(xhr) {
