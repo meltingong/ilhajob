@@ -118,7 +118,9 @@ public class UserRestController {
 		List<ReviewDto> data = new ArrayList<ReviewDto>();
 		try {
 			UserDto loginUser = userService.findUser(sUserId);
+			System.out.println("!!!!!!!!!"+loginUser);
 			CorpDto corpDto = corpService.findByCorpId(corpId);
+			System.out.println("!!!!!!!!!"+corpDto);
 			reviewDto.setUser(loginUser);
 			reviewDto.setCorp(corpDto);
 			userService.insertReview(reviewDto);
