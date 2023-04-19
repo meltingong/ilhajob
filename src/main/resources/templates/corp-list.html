@@ -28,30 +28,20 @@
   	<!-- corpName으로 검색하기 ajax 구현중 -->
 <script>
   $(document).ready(function() {
+    //카테고리 추가
+    var category=$('#category').val();
     $('#searchInput').on('input', function() {
       var input = $(this).val();
       $.ajax({
         url: '/search',
         method: 'GET',
         data: {
-          corpName: input
+          corpName: input,
+          category: category
         },
         success: function(results) {
           var template = Handlebars.compile($('#searchTemplate').html());
           $('#searchResults').html(template({ results: results }));
-          
-          var corpList=$("#corp-main-list");
-          //var searchResults = $("#searchResults"); // 검색 결과를 표시할 div
-          //var searchErrorMessage = $("#searchErrorMessage"); // 검색 결과가 없을 때 표시할 div
-          
-          // 검색 결과가 없을 경우 searchResults div를 숨기고 searchErrorMessage div를 보여줍니다.
-          if (corpList.children().length === 0) {
-            searchResults.hide();
-            searchErrorMessage.show();
-          //} else {
-          //  searchResults.show();
-          //  searchErrorMessage.hide();
-          }
         }
       });
     });
@@ -99,12 +89,29 @@
                 <span class="icon flaticon-search-1"></span>
                 <input type="text" id="searchInput" name="corpName" placeholder="기업명을 입력하세요.">
               </div>
+               <!-- 검색 카테고리 추가 -->
+              <div class="form-group col-lg-5 col-md-12 col-sm-12 location">
+                <span class="icon flaticon-briefcase"></span>
+                <select class="chosen-select" name="category">
+                  <option value="">카테고리</option>
+                  <option value="44">웹프로그래머</option>
+                  <option value="106">응용프로그램</option>
+                  <option value="46">네트워크</option>
+                  <option value="48">웹 퍼블리싱</option>
+                  <option value="47">게임</option>
+                  <option value="45">디자인/ 컴퓨터 강사</option>
+                  <option value="105">빅데이터 ai</option>
+                  <option value="107">소프트웨어 하드웨어</option>
+                </select>
+              </div>
+        
               <div class="form-group col-lg-2 col-md-12 col-sm-12 text-right">
                 <button type="submit" class="theme-btn btn-style-one">기업 찾기</button>
               </div>
             </div>
           </form>
         </div>
+        
  <!-- 검색 결과 표시할 영역 -->       
           <div id="searchResults"></div>  
          

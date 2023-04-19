@@ -175,7 +175,43 @@ public class CorpServiceImpl implements CorpService{
 				        .map(corp->modelMapper.map(corp, CorpDto.class))
 				        .collect(Collectors.toList());
 	}
+	//job으로만 검색 기능
+	@Override
+	public List<CorpDto> searchByjob(String job) throws Exception {
+		List<Corp> jobList=corpRepository.findByJobContaining(job);
+		return jobList.stream()
+		        .map(corp->modelMapper.map(corp, CorpDto.class))
+		        .collect(Collectors.toList());
+	}
 
-	
-	
+	//corpName이랑 job으로 검색 기능
+	@Override
+	public List<CorpDto> searchCorps(String corpName, String job) throws Exception {
+		//corpName, job 둘 다 알 때
+		if (corpName != null && !corpName.isEmpty() && job != null && !job.isEmpty()) {
+		    List<Corp> corpNameJobList=corpRepository.findByCorpNameContainingAndJobContaining(corpName, job);  
+			return corpNameJobList.stream()
+			        .map(corp->modelMapper.map(corp, CorpDto.class))
+			        .collect(Collectors.toList());
+			//corpName만 알 때
+		    } else if (corpName != null && !corpName.isEmpty()) {
+		    	List<Corp> corpNameList=corpRepository.findByCorpNameContaining(corpName);
+		      return corpNameList.stream()
+				        .map(corp->modelMapper.map(corp, CorpDto.class))
+				        .collect(Collectors.toList());
+		    //job만 알 때
+		    } else if (job != null && !job.isEmpty()) {
+		    	List<Corp> corpJobList=corpRepository.findByJobContaining(job);
+		    	return corpJobList.stream()
+				        .map(corp->modelMapper.map(corp, CorpDto.class))
+				        .collect(Collectors.toList());
+		    //corpName이랑 job 둘 다 모를 때->전체 리스트 띄우기
+		    } else {
+		    	List<Corp> corpAllList=corpRepository.findAll();
+		      return corpAllList.stream()
+				        .map(corp->modelMapper.map(corp, CorpDto.class))
+				        .collect(Collectors.toList());
+		    }
+		  }
+
 }

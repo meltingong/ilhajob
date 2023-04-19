@@ -16,4 +16,10 @@ public interface CorpRepository extends JpaRepository<Corp, Long> {
     
     //corpName으로 검색기능
     List<Corp> findByCorpNameContaining(String corpName);
+    
+    //job으로만 검색기능
+    List<Corp> findByJobContaining(String job);
+    
+    //corpname이랑 job으로 검색하기
+    List<Corp> findByCorpNameContainingAndJobContaining(String corpName, String job);
 }
