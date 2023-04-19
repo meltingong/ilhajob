@@ -30,6 +30,7 @@
 	$(document).on('click', '#reviewCreate-btn', function(e) {
 		e.preventDefault();
 		let formData = {};
+		formData['corpId'] = $('#corpId').val();
 		$.each($('#review-form').serializeArray(), function() {
 			formData[this.name] = this.value;
 		});
@@ -50,7 +51,12 @@
 			alert(response.message);
 			window.location.href = response.location;
 		}
-	})
+	}) .fail(function(xhr, status, error) {
+				// Ajax 요청 실패 시 처리
+				console.log(xhr);
+				console.log(status);
+				console.log(error); 
+				});
 	
 	
 	
