@@ -44,6 +44,8 @@
 		}); 
 	//promise 객체를 사용하여 Ajax 요청 처리 (resolve, reject)
 	promise.then(function(response){
+		console.log(response);
+		console.log(response.message);
 		if(response.success){
 			window.location.href = '/final-project-team1-ilhajob';
 		}
