@@ -109,7 +109,7 @@
                 <div class="showing-result">
                   <div class="text">Showing <!-- <strong>41-60</strong> of  --><strong th:text = "${corpList.size()}"></strong> employer</div>
                 </div>
-                	<button class ="changeTag" name="all">전체</button>
+                	<button class ="changeTag" name="all" value ="전체">전체</button>
                 	
                   	<div th:each="tag: ${tagList}"th:if="${tag.tagId}>3" >
                     <button class="changeTag" name="${tag.tagName}"  th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
@@ -330,34 +330,33 @@ $(document).ready(function() {
 		{{/each}}
 	</script>
 	
-	<script type="text/x-handlebars-template" id="tag-filter-template">
-			{{#each data}}
-		<div class="row">
+		<script type="text/x-handlebars-template" id="tag-filter-template">
+			<div class="row">
+				{{#each data}}
 			   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div class="inner-box">
+                  <div class="inner-box" >
                     <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     <span class="featured">Featured</span>
                     <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
                     <h4><a href="corp-detail?corpId={{corp.id}}">{{corp.corpName}}</a></h4>
                     <ul class="job-info">
-                      <li><span class="icon flaticon-map-locator" ></span>
+                      <li><span class="icon flaticon-map-locator" style="margin-top:23px"></span>
                       	  <span><br/>{{corp.corpAddress}}
                       	  </span>
                       </li>
-                      <li><span class="icon flaticon-briefcase" ></span>
+						</ul>
+ 						<ul class="job-info">
+                     		 <li><span class="icon flaticon-briefcase">
+						  </span>
                      	  <span>{{corp.corpWelfare}}
                      	  </span>
-                      </li>
-                    </ul>
-                		<span {{#each tagData}}>
-                   		 <span class="job-type" style ="margin-right:1px; margin-bottom: 5px" {{#if (eq tagId corp.tagId)}}>{{tagName}}</span>
-                 		 {{/if}}
-						</span>
-						{{/each}}
+                    		  </li>
+						</ul>
+						<span class="job-type" style="margin-right:1px; margin-bottom: 5px">{{tag.tagName}}</span>
                 </div>
                 </div>
-			</div>
 				{{/each}}
+			</div>
 	</script>
 	<!-- 오류 안나면 /ul 밑에 태그 추가하기 
 	      {{#each corpTags}}
