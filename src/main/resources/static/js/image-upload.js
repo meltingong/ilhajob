@@ -6,11 +6,12 @@ $('#init-page').click(function(e){
 	e.preventDefault();
 });
 
-
+//$('#init-page').trigger('click');
 //====================================================
 
+
 /* 이미지 미리보기 */
-function readURL(input) {
+/*function readURL(input) {
 	if (input.files && input.files[0]) {
 		let reader = new FileReader();
 		reader.onload = function(e) {
@@ -19,7 +20,7 @@ function readURL(input) {
 		};
 		reader.readAsDataURL(input.files[0]);
 	}
-}
+}*/
 /* 
 //미리보기 여러개
 function readURL(input) {
@@ -63,6 +64,4 @@ function readURL(input) {
 		}
 	});
 	*/
-
-$('#init-page').trigger('click');
 

@@ -132,6 +132,8 @@
         corp_size varchar2(255 char),
         corp_website varchar2(255 char),
         corp_welfare varchar2(600 char),
+        corp_original_file_name varchar2(255 char),
+        corp_stored_file_name varchar2(255 char),
         job varchar2(255 char),
         role NUMBER(1) DEFAULT 2,
         primary key (id)
