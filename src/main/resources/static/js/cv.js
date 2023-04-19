@@ -220,6 +220,7 @@ function editEdu() {
 	    }
 	    
 	    input.value = text;
+	    input.name = div.id;
 	    input.style.border = "1px solid red";
 	    input.style.borderRadius = "5px";
 	    div.replaceWith(input);
@@ -260,9 +261,9 @@ function updateEdu(eduId) {
 	$('#eduId'+eduId).val(eduId);
 	console.log($('#eduId'+eduId).attr('value'));
 	console.log($('.default-form').serialize());
-  document.f.action = "edu-update";
-  document.f.method = "POST";
-  document.f.submit();
+  document.eduForm.action = "edu-update";
+  document.eduForm.method = "POST";
+  document.eduForm.submit();
 
 	/*
   // get the input element and its value

@@ -44,12 +44,12 @@ public class EduController {
 
 	@RequestMapping(value = "/edu-create", method = RequestMethod.POST)
 	public String createEdu(
-			@RequestParam(name = "eduStartDate") String eduStartDate, 
-			@RequestParam(name = "eduEndDate") String eduEndDate, 
+			@RequestParam(name = "eduStartDate") List<String> eduStartDateList, 
+			@RequestParam(name = "eduEndDate") List<String> eduEndDateList, 
 			@RequestParam(name = "eduName") List<String> eduNameList,
 			@RequestParam(name = "eduMajor") List<String> eduMajorList,
-			@RequestParam(name = "eduScore") String eduScore,
-			@RequestParam(name = "eduContent") String eduContent,
+			@RequestParam(name = "eduScore") List<String> eduScoreList,
+			@RequestParam(name = "eduContent") List<String> eduContentList,
 			@RequestParam(name="id") Long cvId,
 			HttpServletRequest request,
 			RedirectAttributes redirectAttributes) {
@@ -58,10 +58,13 @@ public class EduController {
 			UserDto user = userService.findUser(userEmail);
 			EduDto eduDto = new EduDto();
 			
+			String eduStartDate = eduStartDateList.get(eduStartDateList.size()-1);
+			String eduEndDate = eduEndDateList.get(eduEndDateList.size()-1);
 			String eduName = eduNameList.get(eduNameList.size()-1);
 			String eduMajor = eduMajorList.get(eduMajorList.size()-1);
+			String eduScore = eduScoreList.get(eduScoreList.size()-1);
+			String eduContent = eduContentList.get(eduContentList.size()-1);
 			
-			eduDto.setEduName("");
 			eduDto.setEduName(eduName);
 			eduDto.setEduContent(eduContent);
 			eduDto.setEduMajor(eduMajor);
@@ -69,6 +72,8 @@ public class EduController {
 			eduDto.setUser(user);
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			System.out.println(">>>>>>>>>>>>>>>>>> eduStartDate : " + eduStartDate);
+			System.out.println(">>>>>>>>>>>>>>>>>> eduEndDate : " + eduEndDate);
 			LocalDateTime startDateTime = LocalDate.parse(eduStartDate, formatter).atStartOfDay();
 			LocalDateTime endDateTime = LocalDate.parse(eduEndDate, formatter).atStartOfDay();
 			
@@ -109,36 +114,30 @@ public class EduController {
 			@RequestParam(name = "eduEndDate") List<String> eduEndDateList, 
 			@RequestParam(name = "eduName") List<String> eduNameList,
 			@RequestParam(name = "eduMajor") List<String> eduMajorList,
-			@RequestParam(name = "eduScore") String eduScore,
-			@RequestParam(name = "eduContent") String eduContent,
+			@RequestParam(name = "eduScore") List<String> eduScoreList,
+			@RequestParam(name = "eduContent") List<String> eduContentList,
 			@RequestParam(name="id") Long cvId, 
-			HttpServletRequest request, RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes) {
 		try {
-			System.out.println(">>>>>>>>>>>>>>>>>> eduId : " + eduId);
-			
-			long longeduId = Long.parseLong(eduId.replaceAll(",", "").trim());
-			
-			System.out.println(">>>>>>>>> Long eduId : " + eduId);
-			
-			String userEmail = (String)request.getSession().getAttribute("sUserId");
-			UserDto user = userService.findUser(userEmail);
+			long longeduId = Long.parseLong(eduId.replace(",", " ").trim());
 			
 			EduDto thisEdu = eduService.findById(longeduId);
-			System.out.println(">>>>>>>>>> findbyid thisEdu : " + thisEdu);
 			
 			String eduName = eduNameList.get(eduNameList.size()-1);
 			String eduMajor = eduMajorList.get(eduMajorList.size()-1);
 			String eduStartDate = eduStartDateList.get(eduStartDateList.size()-1);
 			String eduEndDate = eduEndDateList.get(eduEndDateList.size()-1);
+			String eduScore = eduScoreList.get(eduScoreList.size()-1);
+			String eduContent = eduContentList.get(eduContentList.size()-1);
 			
 			thisEdu.setEduName(eduName);
 			thisEdu.setEduContent(eduContent);
 			thisEdu.setEduMajor(eduMajor);
 			thisEdu.setEduScore(eduScore);			
 			
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-			LocalDateTime startDateTime = LocalDateTime.parse(eduStartDate, formatter);
-			LocalDateTime endDateTime = LocalDateTime.parse(eduEndDate, formatter);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDateTime startDateTime = LocalDate.parse(eduStartDate, formatter).atStartOfDay();
+			LocalDateTime endDateTime = LocalDate.parse(eduEndDate, formatter).atStartOfDay();
 			
 			thisEdu.setEduStartDate(startDateTime);
 			thisEdu.setEduEndDate(endDateTime);
