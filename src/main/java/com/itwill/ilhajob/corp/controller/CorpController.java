@@ -416,6 +416,8 @@ public class CorpController {
 	        } else {
 	            corpSearchList = corpService.searchCorps(corpName, job);
 	        }
+	        //검색 결과 없을 때
+	        model.addAttribute("noResults", corpSearchList.isEmpty());
 	        model.addAttribute("corpList", corpSearchList);
 	    } catch (Exception e) {
 	        // 예외 처리
