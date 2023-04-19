@@ -1,5 +1,10 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,7 +90,7 @@ public class UserRestController {
 	
 	//test중 -> ResponseStatusCode.written_fail_review 에러(6001 직접만듦)으로 반환됨. -> console.log
 	
-	@PostMapping("createReviewAjax")
+/*	@PostMapping("/createReviewAjax")
 	public ResponseEntity<Object> createReview(@RequestBody ReviewDto reviewDto, HttpSession session, @RequestParam("corpId")Long corpId) {
 	    String sUserId = (String) session.getAttribute("sUserId");
 	    if(sUserId == null) {
@@ -102,6 +107,39 @@ public class UserRestController {
 	    } catch (Exception e) {
 	        return ResponseEntity.status(ResponseStatusCode.WRITTEN_FAIL_REVIEW).body("{\"success\": false, \"message\": \"리뷰 작성에 실패했습니다. 잠시 후 다시 시도해주세요.\"}");
 	    }
+	}*/
+	
+	@PostMapping(value = "createReviewAjax", produces = "application/json;charset=UTF-8")
+	public Map<String, Object> review_write_Action(@RequestBody ReviewDto reviewDto, HttpSession session, @RequestParam("corpId")Long corpId){
+		String sUserId = (String) session.getAttribute("sUserId");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		int code=1;
+		String msg="성공";
+		List<ReviewDto> data = new ArrayList<ReviewDto>();
+		try {
+			UserDto loginUser = userService.findUser(sUserId);
+			CorpDto corpDto = corpService.findByCorpId(corpId);
+			reviewDto.setUser(loginUser);
+			reviewDto.setCorp(corpDto);
+			userService.insertReview(reviewDto);
+			code = 1;
+			msg = "성공";
+			data.add(reviewDto);
+		} catch (Exception e) {
+			code = 2;
+			msg = "리뷰작성실패";
+			e.printStackTrace();
+		}
+		resultMap.put("code", code);
+		resultMap.put("msg", msg);
+		resultMap.put("data", data);
+		
+		
+		return resultMap;
 	}
-	 //Review Ajax방식 작성중
+	
+	
+	
+	
+	
 }
