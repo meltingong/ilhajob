@@ -25,6 +25,29 @@
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  	
 </head>
+	<!-- corpName으로 검색하기 ajax 구현중 -->
+	<script>
+		$(function(){
+			$("#search-button").on("click",function(){
+				var corpName=$("input[name='corpName']").val();
+				$.ajax({
+					type:"GET",
+					url:"/api/corps?corpName=" + corpName,
+					dataType:"json",
+					success:function(data){
+						var source=$("#search-result-template").html();
+						var template=Handlebars.compile(source);
+						$("#search-result").html(template({ results:data }));
+						console.log(data);
+					},
+					error:function(xhr,status,error){
+						console.error(error);
+					}
+				});
+			});
+		});
+	</script>
+		
 
 <body>
 
@@ -87,6 +110,11 @@
                 <div class="showing-result">
                   <div class="text">Showing <!-- <strong>41-60</strong> of  --><strong th:text = "${corpList.size()}"></strong> employer</div>
                 </div>
+                	<button class ="changeTag" name="all" value ="전체">전체</button>
+                	
+                  	<div th:each="tag: ${tagList}"th:if="${tag.tagId}>3" >
+                    <button class="changeTag" name="${tag.tagName}"  th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
+                    </div>	
                 <div class="sort-by">
                   <select class="chosen-select">
                     <option>필터</option>
@@ -96,16 +124,10 @@
                     <option>매출크기</option>
                   </select>
 
-                  <select class="chosen-select" >
-                 	<option name="all">전체</option>
-                  	<div th:each="tag: ${tagList}">
-                    <option name="tagName" th:if="${tag.tagId}>3" th:text="${tag.tagName}" >코프태그</option>
-                    </div>
-                  </select>
                 </div>
               </div>
 
-
+			  <div id="corp-main-list">
               <div class="row">
                 <!-- Company Block Four -->
                 <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12" th:each="corp : ${corpList}">
@@ -131,6 +153,7 @@
                 </span>
                 </div>
                 </div>
+              </div>
               </div>
 
               <!-- Pagination -->
@@ -308,6 +331,35 @@
                 </div>
 		{{/each}}
 	</script>
+	
+		<script type="text/x-handlebars-template" id="tag-filter-template">
+			<div class="row">
+				{{#each data}}
+			   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                  <div class="inner-box" >
+                    <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+                    <span class="featured">Featured</span>
+                    <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
+                    <h4><a href="corp-detail?corpId={{corp.id}}">{{corp.corpName}}</a></h4>
+                    <ul class="job-info">
+                      <li><span class="icon flaticon-map-locator" style="margin-top:23px"></span>
+                      	  <span><br/>{{corp.corpAddress}}
+                      	  </span>
+                      </li>
+						</ul>
+ 						<ul class="job-info">
+                     		 <li><span class="icon flaticon-briefcase">
+						  </span>
+                     	  <span>{{corp.corpWelfare}}
+                     	  </span>
+                    		  </li>
+						</ul>
+						<span class="job-type" style="margin-right:1px; margin-bottom: 5px">{{tag.tagName}}</span>
+                </div>
+                </div>
+				{{/each}}
+			</div>
+	</script>
 	<!-- 오류 안나면 /ul 밑에 태그 추가하기 
 	      {{#each corpTags}}
         {{#each ../tagList}}
@@ -335,6 +387,8 @@
   <script src="js/owl.js"></script>
   <script src="js/wow.js"></script>
   <script src="js/script.js"></script>
+  
+  <script src="js/app_corp.js" type="module"></script>
 </body>
 
 </html>

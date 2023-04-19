@@ -30,10 +30,18 @@
 	$(document).on('click', '#reviewCreate-btn', function(e) {
 		e.preventDefault();
 		let formData = {};
+		let corpId = $('.comment-form.default-form #corpId').val();
+		let reviewData = {}; 
 		$.each($('#review-form').serializeArray(), function() {
-			formData[this.name] = this.value;
+			reviewData[this.name] = this.value;
 		});
+		formData = {
+			corpId: corpId,
+			reviewData: reviewData
+		}
+		console.log(formData);
 		let jsonData = JSON.stringify(formData);
+		console.log(jsonData);
 		let promise = $.ajax({
 			type: 'POST',
 			url: 'createReviewAjax',
@@ -41,18 +49,25 @@
 			contentType: 'application/json',
 			dataType: 'json'
 		}); 
-	//promise 객체를 사용하여 Ajax 요청 처리 (resolve, reject)
-	promise.then(function(response){
-		if(response.success){
-			window.location.href = '/final-project-team1-ilhajob';
-		}
-		else{
-			alert(response.message);
-			window.location.href = response.location;
-		}
-	})
-	
-	
+		//promise 객체를 사용하여 Ajax 요청 처리 (resolve, reject)
+		promise.then(function(response) {
+			console.log(response);
+			console.log(response.message);
+			if (response.success) {
+				window.location.href = '/final-project-team1-ilhajob';
+			}
+			else {
+				alert(response.message);
+				window.location.href = response.location;
+			}
+		}).fail(function(xhr, status, error) {
+			// Ajax 요청 실패 시 처리
+			console.log(xhr);
+			console.log(status);
+			console.log(error);
+		});
+
+
 	
 		
 	});

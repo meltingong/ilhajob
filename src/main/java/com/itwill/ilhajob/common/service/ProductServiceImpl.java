@@ -31,8 +31,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductDto selectById(long id) throws Exception {
 		Optional<Product> optionalProduct = productRepository.findById(id);
-		Product findProduct = optionalProduct.get();
-		return modelMapper.map(findProduct, ProductDto.class); 
+		if(optionalProduct.isPresent()){
+			Product findProduct = optionalProduct.get();
+			return modelMapper.map(findProduct, ProductDto.class);
+		}
+		return null;
 	}
 		
 	@Override
@@ -45,11 +48,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public int updateProduct(ProductDto productDto) throws Exception {
-	    Product product = new Product();		
-		
-		return updateProduct(productDto);
-		
-	    
+		return 0;
 	}
 	
 	

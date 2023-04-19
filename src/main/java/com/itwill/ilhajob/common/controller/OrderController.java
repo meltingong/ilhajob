@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +55,7 @@ public class OrderController {
 		this.productService = productService;
 	}
 	
-	@GetMapping("/pricing")
+	@GetMapping("/product")
 	public String pricing(HttpServletRequest request,Model model) throws Exception {
 		if(request.getSession().getAttribute("role").equals("user")) {
 			List<ProductDto> productList = productService.selectByDiv("user");
@@ -63,7 +64,7 @@ public class OrderController {
 		if(request.getSession().getAttribute("role").equals("corp")) {
 			model.addAttribute("productList", productService.selectByDiv("corp"));
 		}
-		String forwardPath = "pricing";
+		String forwardPath = "product";
 		return forwardPath;
 	}
 	
@@ -77,7 +78,6 @@ public class OrderController {
 	@ResponseBody
 	@PostMapping("/order")
 	public ResponseEntity<String> orderSave(HttpServletRequest request) throws Exception {
-		String html = "shop-checkout";
 		//넘어온 string을 json형식으로 변환
 		StringBuilder buffer = new StringBuilder();
 		BufferedReader reader = request.getReader();
@@ -97,13 +97,20 @@ public class OrderController {
 		String role = (String)request.getSession().getAttribute("role");
 		long id = (long)request.getSession().getAttribute("id");
 		
-		ordersService.checkAndSaveOrder(role, id, productDto,paymentDataObject.get("paymentMethod").toString());
+		OrdersDto saveOrdersDto = ordersService.checkAndSaveOrder(role, id, productDto,paymentDataObject.get("paymentMethod").toString());
+		JsonObject orderDataObject = new JsonObject();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+		orderDataObject.addProperty("id", saveOrdersDto.getId());
+		orderDataObject.addProperty("orderStartDate", saveOrdersDto.getOrderStartDate().format(formatter));
+		orderDataObject.addProperty("orderEndDate", saveOrdersDto.getOrderEndDate().format(formatter));
+		orderDataObject.addProperty("orderValid", saveOrdersDto.getOrderValid());
+		jsonObject.add("orderData", orderDataObject);
+		
 		return ResponseEntity.ok(jsonObject.toString());
 	}
 	
 	@GetMapping("/order-completed")
 	public String orderCompleted(HttpServletRequest request) {
-		//System.out.println(">>>>>>>>"+sUserId);
 		String forwardPath = "order-completed";
 		return forwardPath;
 	}

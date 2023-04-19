@@ -38,9 +38,12 @@
 		});
 			
 	});
-		
+	//결제요청
 	$(document).on('click', '#pay-btn', function(e) {
 		e.preventDefault();
+		//modal창 끄기
+		$('.jquery-modal.blocker.current').css('display', 'none');
+		
 		const productData = {
 			id: $('#product-id').val(),
 			productName: $('.product-name').text(),
@@ -53,9 +56,29 @@
 			userPhone: $('#order-phone').val(),
 			userEmail: $('#order-email').val()
 		};
+		
+		const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // 이메일 정규식
+		const phoneRegEx = /^\d{3}-\d{4}-\d{4}$/; // 전화번호 형식 정규식
+
+		if (!phoneRegEx.test(userData.userPhone)) {
+			$('#order-phone').siblings('.error-message-phone').text('전화번호를 올바르게 입력해주세요.').show();
+			$('#order-phone').focus();
+			return;
+		} else {
+			$('#order-phone').siblings('.error-message-phone').hide();
+		}
+		
+		if (!emailRegEx.test(userData.userEmail)) { // 이메일 유효성 검사
+			$('#order-email').siblings('.error-message-email').text('이메일을 올바르게 입력해주세요.').show();
+			$('#order-email').focus();
+			return false;
+		} else {
+			$('#order-email').siblings('.error-message-email').hide();
+		}
 
 		const paymentData = {
 			paymentMethod: $('input[name="payment-group"]:checked').val(),
+			paymentPg: $('input[name="payment-group"]:checked').attr('data-pg')
 		};
 		
 		const currentDate = new Date();
@@ -66,7 +89,7 @@
 		const orderData = {
 			orderId: orderId
 		};
-		$('.order-model.modal').remove();
+		
 		const formData = {
 			productData: productData,
 			userData: userData,
@@ -77,7 +100,7 @@
 		IMP.init("imp21102268");
 		//결제 api
 		IMP.request_pay({
-			pg: 'html5_inicis.INIBillTst',
+			pg: paymentData.paymentPg,
 			pay_method: paymentData.paymentMethod,
 			merchant_uid: orderData.orderId, //상점에서 생성한 고유 주문번호
 			name: '주문명:' + productData.productName,
@@ -90,7 +113,7 @@
 			if (rsp.success) {
 				alert('결제가 완료되었습니다.');
 				// 결제 성공 시 처리할 로직을 추가하세요.
-				/*let promise = $.ajax({
+				let promise = $.ajax({
 					type: 'POST',
 					url: 'order',
 					data: jsonData,
@@ -100,27 +123,41 @@
 
 				// Promise 객체를 사용하여 Ajax 요청 처리
 				promise.then(function(response) {
-					// 로그인 성공 시 처리
-					window.location.href = '/order-completed';
+					// 로그인 성공 시 처리					
+					// response 문자열로 변환 후 LocalStorage에 저장
+					localStorage.setItem("data", JSON.stringify(response));
+					window.location.href="/final-project-team1-ilhajob/order-completed"
 				})
 				.fail(function(xhr) {
 						// Ajax 요청 실패 시 처리
-						alert("실패");
-				});*/
+						alert("결제에 성공했습니다.");
+				});
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 				alert(msg);
-				// 결제 실패 시 처리할 로직을 추가하세요.
 			}
 		});
-		
-		
 	});
 	
-
-
-
+	$(document).on('keyup','#order-phone',function(e){
+		// 입력값에서 숫자만 추출
+		const numbersOnly = this.value.replace(/[^0-9]/g, '');
+		// 전화번호 형식으로 변환
+		let formattedNumber = '';
+		if (numbersOnly.length > 3) {
+			formattedNumber += numbersOnly.substr(0, 3) + '-';
+			if (numbersOnly.length > 7) {
+				formattedNumber += numbersOnly.substr(3, 4) + '-' + numbersOnly.substr(7);
+			} else {
+				formattedNumber += numbersOnly.substr(3);
+			}
+		} else {
+			formattedNumber += numbersOnly;
+		}
+		// 입력값 갱신
+		this.value = formattedNumber.substr(0, 13);
+	});
 
 
 })(window.jQuery);

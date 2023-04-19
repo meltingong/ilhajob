@@ -26,32 +26,32 @@
 
 // cv update
 function updateCv() {
-	if (document.f.cvName.value == "") {
+	if (document.cvForm.cvName.value == "") {
 		alert("이력서 제목을 입력하세요.");
-		document.f.cvName.focus();
+		document.cvForm.cvName.focus();
 		return false;
 	}
-	if (document.f.cvDescription.value == "") {
+	if (document.cvForm.cvDescription.value == "") {
 		alert("자기소개를 입력하세요.");
-		document.f.cvDescription.focus();
+		document.cvForm.cvDescription.focus();
 		return false;
 	}
-	if (document.f.cvPortfolio.value == "") {
+	if (document.cvForm.cvPortfolio.value == "") {
 		alert("포트폴리오를 입력하세요.");
-		document.f.cvPortfolio.focus();
+		document.cvForm.cvPortfolio.focus();
 		return false;
 	}
-	document.f.action = "cv-update-action";
-	document.f.method='POST';
-	document.f.submit();
+	document.cvForm.action = "cv-update-action";
+	document.cvForm.method='POST';
+	document.cvForm.submit();
 }
 
 // cv delete
 function deleteCv() {
 	if (window.confirm("정말 삭제하시겠습니까?")) {
-	  document.f.action = "cv-delete-action";
-	  document.f.method='POST';
-	  document.f.submit();
+	  document.cvForm.action = "cv-delete-action";
+	  document.cvForm.method='POST';
+	  document.cvForm.submit();
 	}
 }
 
@@ -60,9 +60,9 @@ function changeCv() {
   var cvId = document.querySelector('.chosen-select').value;
   window.confirm("cvId = " + cvId);
   document.querySelector('#cvId').value = cvId;
-  document.f.action = "cv-detail";
-  document.f.method='POST';
-  document.f.submit();
+  document.cvForm.action = "cv-detail";
+  document.cvForm.method='POST';
+  document.cvForm.submit();
 }
 
 // cv apply(예정)
@@ -84,8 +84,7 @@ function addEdu() {
 	  <div class="inner">
 	  <span class="name">E</span>
 		      <div class="edit-btns">
-			      <button type="button" onclick="createEdu()"><span class="la la-pencil"></span></button>
-			      <button type="button" onclick="updateEdu()"><span class="la la-pencil"></span></button>
+			      <button type="button" onclick="createEdu()"><span class="la la-check-circle-o"></span></button>
 			      <button type="button" onclick="deleteEdu()" name="eduId"><span class="la la-trash"></span></button>
 	      	  </div>
 	      	  <div class="row">
@@ -134,14 +133,29 @@ function deleteEdu(eduId) {
 	console.log($('#eduId'+eduId).attr('value'));
 	console.log($('.default-form').serialize());
 
-	document.f.action = "edu-delete-action";
-	document.f.method='POST';
-	document.f.submit();
+	document.eduForm.action = "edu-delete";
+	document.eduForm.method='POST';
+	document.eduForm.submit();
+	/*
+	// eduId를 Long 타입으로 변환합니다.
+	const longEduId = parseInt(eduId);
+	confirm(">>>>>>> eduId : " + longEduId + "typeof : " + typeof longEduId);
+    // hidden input 태그의 value 속성 값을 longEduId로 설정합니다.
+	//$('#eduId'+eduId).val(longEduId);
+	$('#eduId'+eduId).val(longEduId);
+	//confirm(">>>>>> " + $('#eduId'+eduId));
+
+	//console.log($('#eduId'+eduId).attr('value'));
+	//console.log($('#eduForm').serialize());
+	document.eduForm.action = "edu-delete";
+	document.eduForm.method='POST';
+	document.eduForm.submit();
+	*/
 }
 
 
 function createEdu() {
-	
+	/*
 	let eduStartDateStr = document.getElementById("eduStartDateInput").value;
 	
 	let eduStartDate = new Date(eduStartDateStr);
@@ -161,11 +175,11 @@ function createEdu() {
         eduScore: document.getElementsByName("eduScore")[0].value,
         eduContent: document.getElementsByName("eduContent")[0].value
     };
+    */
     
-    
-/*	document.f.action = "edu-create";
-	document.f.method='POST';
-	document.f.submit();*/
+	document.eduForm.action = "edu-create";
+	document.eduForm.method='POST';
+	document.eduForm.submit();
 
 	/*
 	const eduDto = {
@@ -192,6 +206,86 @@ function createEdu() {
   */
 }
 
+function editEdu() {
+	function replaceWithInputElements(elements) {
+		console.log(">>>>>>> elements : " + elements)
+	  for (let i = 0; i < elements.length; i++) {
+	    const div = elements[i];
+	    const text = div.textContent;
+	    const input = document.createElement("input");
+	    
+	    // If the element has an ID of "eduStartDate" or "eduEndDate", set the input type to "date"
+	    if (div.id === "eduStartDate" || div.id === "eduEndDate") {
+	      input.type = "date";
+	    }
+	    
+	    input.value = text;
+	    input.name = div.id;
+	    input.style.border = "1px solid red";
+	    input.style.borderRadius = "5px";
+	    div.replaceWith(input);
+	  }
+	}
+  // 호출할 때 요소들을 배열로 전달합니다.
+  replaceWithInputElements([document.getElementById("eduName"), document.getElementById("eduMajor"), document.getElementById("eduScore"), document.getElementById("eduContent"), document.getElementById("eduStartDate"), document.getElementById("eduEndDate")]);
+  
+  // change the button's onclick event to call sendUpdate() instead of editUpdate()
+  // const button = document.getElementById("editBtn");
+  // button.onclick = sendUpdate;
+  
+  /* for문 돌리기 이전
+  // get the div element and its text content
+  const scoreDiv = document.getElementById("eduScore");
+  const scoreText = scoreDiv.textContent;
+  
+  const contentDiv = document.getElementById("eduContent");
+  const contentText = contentDiv.textContent;
+
+  // create a new input element and set its value to the div's text content
+  const scoreInput = document.createElement("input");
+  scoreInput.value = scoreText;
+  scoreInput.style.border = "1px solid red";
+  scoreInput.style.borderRadius = "5px";
+  scoreDiv.replaceWith(scoreInput);
+  
+  const contentInput = document.createElement("input");
+  contentInput.value = contentText;
+  contentInput.style.border = "1px solid red";
+  contentInput.style.borderRadius = "5px";
+  contentDiv.replaceWith(contentInput);
+  */
+}
+
+function updateEdu(eduId) {
+	confirm(">>>>>>> eduId : " + eduId + " typeof : " + typeof eduId);
+	$('#eduId'+eduId).val(eduId);
+	console.log($('#eduId'+eduId).attr('value'));
+	console.log($('.default-form').serialize());
+  document.eduForm.action = "edu-update";
+  document.eduForm.method = "POST";
+  document.eduForm.submit();
+
+	/*
+  // get the input element and its value
+  const input = document.querySelector("input");
+  const text = input.value;
+
+  // send the text to the server or do something else with it
+  console.log("Sending text:", text);
+
+  // create a new div element and set its text content to the input's value
+  const div = document.createElement("div");
+  div.textContent = text;
+
+  // replace the input element with the new div element
+  input.replaceWith(div);
+
+  // change the button's onclick event to call editUpdate() again
+  const button = document.getElementById("myButton");
+  button.onclick = editUpdate;
+  */
+}
+	  
 /*
 // exp
 function deleteExp(expSeq) {
