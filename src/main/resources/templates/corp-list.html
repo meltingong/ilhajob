@@ -26,29 +26,47 @@
  	
 </head>
   	<!-- corpName으로 검색하기 ajax 구현중 -->
-	<script>
-	$(document).ready(function() {
-		  $('#search-button').click(function(e) {
-		    e.preventDefault();
-		    var searchInput = $('#search-input').val();
-		    $.ajax({
-		      type: 'GET',
-		      url: '/search',
-		      data: { corpName: searchInput },
-		      dataType: 'json',
-		      success: function(result) {
-		    	console.log(result);
-		        var template = Handlebars.compile($('#search-template').html());
-		        $('#search-result').html(template({ corpList: result }));
-		      },
-		      error: function(xhr, status, error) {
-		        console.log(error);
-		      }
-		    });
-		  });
-		});
-	</script>
+<script>
+  $(document).ready(function() {
+    $('#searchInput').on('input', function() {
+      var input = $(this).val();
+      $.ajax({
+        url: '/search',
+        method: 'GET',
+        data: {
+          corpName: input
+        },
+        success: function(results) {
+          var template = Handlebars.compile($('#searchTemplate').html());
+          $('#searchResults').html(template({ results: results }));
+          
+          var corpList=$("#corp-main-list");
+          //var searchResults = $("#searchResults"); // 검색 결과를 표시할 div
+          //var searchErrorMessage = $("#searchErrorMessage"); // 검색 결과가 없을 때 표시할 div
+          
+          // 검색 결과가 없을 경우 searchResults div를 숨기고 searchErrorMessage div를 보여줍니다.
+          if (corpList.children().length === 0) {
+            searchResults.hide();
+            searchErrorMessage.show();
+          //} else {
+          //  searchResults.show();
+          //  searchErrorMessage.hide();
+          }
+        }
+      });
+    });
+  });
+  </script> 
+	<!--script>
+		$(function(){
+			$("#search-form").submit(function(event){
+				event.preventDefault();
+				var corpName=$("#corpName").val();
+				window.location.href="/final-project-team1-ilhajob/search?corpName="+corpName;
+			});
+		});	
 		
+	</script-->
 
 <body>
 
@@ -73,23 +91,25 @@
       
         <!-- Job Search Form -->
         <div class="job-search-form">
-          <form name="searchForm">
+          <form id="search-form" th:action="@{/search}" method="get">
             <div class="row">
               <!-- Form Group -->
               <div class="form-group col-lg-5 col-md-12 col-sm-12">
               
                 <span class="icon flaticon-search-1"></span>
-                <input type="text" id="search-input" placeholder="기업명을 입력하세요.">
+                <input type="text" id="searchInput" name="corpName" placeholder="기업명을 입력하세요.">
               </div>
               <div class="form-group col-lg-2 col-md-12 col-sm-12 text-right">
-                <button type="button" id = "search-button" class="theme-btn btn-style-one">기업 찾기</button>
+                <button type="submit" class="theme-btn btn-style-one">기업 찾기</button>
               </div>
             </div>
           </form>
         </div>
  <!-- 검색 결과 표시할 영역 -->       
-          <div id="search-result"></div>     
- <!-- 검색 결과 표시할 영역 -->    
+          <div id="searchResults"></div>  
+         
+ <!-- 검색어 없을 때 표시할 영역 -->    
+ 		  <div id="searchErrorMessage" th:text="${errorMsg}"></div>
 
     </section>
    
@@ -156,7 +176,6 @@
                 </div>
               </div>
               </div>
-
               <!-- Pagination -->
               <nav class="ls-pagination">
                 <ul>
@@ -283,31 +302,25 @@
 	  <!-- End Page Wrapper -->
   
  <!-- corp-search-template: handlebars -->
-	<script type="text/x-handlebars-template" id="search-result-template">
-		{{#each corpList}}
-			   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                  <div class="inner-box">
-                    <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    <span class="featured">Featured</span>
-                    <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
-                    <h4><a href="/corp-detail?corpId={{id}}">{{corpName}}</a></h4>
-                    <ul class="job-info">
-                      <li><span class="icon flaticon-map-locator"></span>{{corpAddress}}</li>
-                      <li><span class="icon flaticon-briefcase" ></span>{{corpWelfare}}</li>
-                    </ul>
-						{{#each corpTags}}
-        					{{#each ../tagList}}
-         					 	{{#ifCond ../id '==' ../corpId}}
-           							 {{#ifCond tagId '==' tag.tagId}}
-              							<span class="job-type" style="margin-right:1px; margin-bottom: 5px">{{tag.tagName}}</span>
-           							 {{/ifCond}}
-          						{{/ifCond}}
-       						 {{/each}}
-      					{{/each}}
-                </div>
-                </div>
-		{{/each}}
-	</script>
+<script id="searchTemplate" type="text/x-handlebars-template">
+  {{#each results}}
+  <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
+    <div class="inner-box">
+      <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+      <span class="featured">Featured</span>
+      <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
+      <h4><a href="/corp-detail?corpId={{id}}">{{corpName}}</a></h4>
+      <ul class="job-info">
+        <li><span class="icon flaticon-map-locator"></span>{{corpAddress}}</li>
+        <li><span class="icon flaticon-briefcase"></span>{{corpWelfare}}</li>
+      </ul>
+      {{#each tags}}
+      <span class="job-type" style="margin-right: 1px; margin-bottom: 5px">{{tag.tagName}}</span>
+      {{/each}}
+    </div>
+  </div>
+  {{/each}}
+</script>
 	
 		<script type="text/x-handlebars-template" id="tag-filter-template">
 			<div class="row">
@@ -337,17 +350,6 @@
 				{{/each}}
 			</div>
 	</script>
-	<!-- 오류 안나면 /ul 밑에 태그 추가하기 
-	      {{#each corpTags}}
-        {{#each ../tagList}}
-          {{#ifCond ../id '==' ../corpId}}
-            {{#ifCond tagId '==' tag.tagId}}
-              <span class="job-type" style="margin-right:1px; margin-bottom: 5px">{{tag.tagName}}</span>
-            {{/ifCond}}
-          {{/ifCond}}
-        {{/each}}
-      {{/each}}-->
-	
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/jquery.js"></script>
   <script src="js/popper.min.js"></script>

@@ -378,14 +378,7 @@ public class CorpController {
             return "error"; // 에러 페이지 또는 에러 처리 로직을 반환
         }
     }
-    
-    //corpName으로 검색 기능
-    @RequestMapping(value="/api/corps", method = RequestMethod.GET)
-    public String searchByCorpName(@RequestParam("corpName")String corpName, Model model) throws Exception {
-    	List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
-    	model.addAttribute("corpSearchList",corpSearchList);
-    	return "corp-list";
-    }
+   
     
     @RequestMapping("/image-test")
 	public String image_test(HttpServletRequest request, Model model) throws Exception {
@@ -403,18 +396,29 @@ public class CorpController {
 		forwardPath = "image-upload-test";
 		return forwardPath;
 	}
-//    @ResponseBody
-//    @GetMapping("/search")
-//    public List<CorpDto> searchByCorpName(@RequestParam("corpName")String corpName) throws Exception {
-//    	List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
-//    	return corpSearchList;
-//    }
+    
+    //corpName으로 검색
 //    @RequestMapping(value="/search", method = RequestMethod.GET)
 //    public String searchByCorpName(@RequestParam("corpName")String corpName, Model model) throws Exception {
+//    	System.out.println("컨트롤러 도착>>>");
 //    	List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
+//    	System.out.println("corpSearList>>>>>"+corpSearchList);
 //    	model.addAttribute("corpSearchList",corpSearchList);
 //    	return "corp-list";
 //    }
+//    
+    @RequestMapping(value="/search", method = RequestMethod.GET)
+    public String searchByCorpName(@RequestParam("corpName")String corpName, Model model) {
+        try {
+            List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
+            model.addAttribute("corpList",corpSearchList);
+        } catch (Exception e) {
+            // 예외 처리
+            e.printStackTrace();
+            model.addAttribute("errorMsg", "검색어를 찾을 수 없습니다!");
+        }
+        return "corp-list";
+    }
 }
 
 

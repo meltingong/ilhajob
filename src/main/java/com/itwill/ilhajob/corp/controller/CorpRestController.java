@@ -59,11 +59,13 @@ public class CorpRestController {
 	}
 	
 	//corpName으로 검색
-	@GetMapping("/search")	
-	public List<CorpDto> searchByCorpName(@RequestParam("corpName")String corpName) throws Exception{
-		List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
-		return corpSearchList;
-	}
+//	@GetMapping("/search")	
+//	public List<CorpDto> searchByCorpName(@RequestParam("corpName")String corpName) throws Exception{
+//		System.out.println("검색 컨트롤러");
+//		List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
+//		System.out.println("searchList>>>>>>>>>"+corpSearchList);
+//		return corpSearchList;
+//	}
 	
 	
 }
