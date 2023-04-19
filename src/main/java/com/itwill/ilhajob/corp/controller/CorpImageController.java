@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,14 +34,17 @@ public class CorpImageController {
 	@Autowired
 	private CorpImageService corpImageService;
 	
+	
+	// 여러이미지 업로드
 	@ResponseBody
-	@PostMapping(value = "/image-upload-ajax")
-	public String imageUploadAjax(@RequestParam("images") List<MultipartFile> images, HttpServletRequest request) throws Exception {
+	@PostMapping(value = "/image-upload-action")
+	public String image_upload_action(@RequestParam("images") List<MultipartFile> images, HttpServletRequest request) throws Exception {
 		request.getSession().setAttribute("sCorpId", 1L); //임시로 아이디 로그인상태
 		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
 		CorpDto corp=corpService.findByCorpId(sCorpId);
 		
-		String absolutePath="c://final-project-team1-ilhajob//"+corp.getCorpName()+"//";
+		String absolutePath="c://final-project-team1-ilhajob//upload//"+corp.getCorpName()+"//";
+		
 		File folder = new File(absolutePath);
 		if(!folder.exists()) {
 			folder.mkdir();
