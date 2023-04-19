@@ -5,6 +5,24 @@
 <!-- script th:if="${not #strings.isEmpty(errorMsg)}">
     window.alert([[${errorMsg}]]);
 </script-->
+<script type="text/javascript">
+	//이력서 승인 버튼 클릭 시
+	function approveCv(form){
+		form.action="cv-approve-action";
+		form.method='POST';
+		form.submit();
+	}
+	
+	//이력서 거절 버튼 클릭 시
+	function rejectCv(form){
+		form.action="cv-reject-action";
+		form.method='POST';
+		form.submit();
+	}
+
+</script>
+
+
 
 <head>
   <meta charset="utf-8">
@@ -105,6 +123,8 @@
                         
                           <!-- Candidate block three -->
                           <div th:each="appList:${appList}" class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
+                  <!-- form 자리 -->
+                          <form class="default-form" name="cvCheckForm" method="post">
                             <div class="inner-box">
                               <div class="content">
                                 <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
@@ -122,15 +142,18 @@
                               </div>
                               <div class="option-box">
                                 <ul class="option-list">
+                                <input type="text" name="id" th:value="${appList.cv.id}">
                                   <!-- li><button data-text="View Aplication"><span class="la la-eye"></span></button></li-->
-                                  <li><button data-text="Approve Aplication"><span class="la la-check"></span></button></li>
-                                  <li><button data-text="Reject Aplication"><span class="la la-times-circle"></span></button></li>
+                                  <li><button data-text="Approve Aplication" type="button" onClick="approveCv(this.form);"><span class="la la-check"></span></button></li>
+                                  <li><button data-text="Reject Aplication" type="button" onClick="rejectCv(this.form);"><span class="la la-times-circle"></span></button></li>
                                   <li><button data-text="Delete Aplication"><span class="la la-trash"></span></button></li>
                                 </ul>
                               </div>
                             </div>
+                            </form>
+			      <!-- form 자리 -->
                           </div>
-
+						
                           <!-- Candidate block three -->
                           <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
                             <div class="inner-box">

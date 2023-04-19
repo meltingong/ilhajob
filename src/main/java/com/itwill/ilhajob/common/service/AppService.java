@@ -8,7 +8,7 @@ public interface AppService {
 	
 	void insertApp(AppDto appDto);
 	
-	void updateApp(long id, int appStatus);
+	AppDto updateApp(long id, int appStatus);
 	
 	void deleteApp(Long id);
 	

@@ -271,21 +271,6 @@ public class CorpController {
 		}
 		model.addAttribute("recruitList", recruitList);
 
-		// 등록일 오름차순
-//		if("rcDateasc".equalsIgnoreCase(sortType)){
-//			recruitList.sort((o1,o2)->o2.getRcDate().compareTo(o1.getRcDate()));
-//		//등록일 내림차순	
-//		}else if("rcDatedesc".equalsIgnoreCase(sortType)){
-//			recruitList.sort(Comparator.comparing(RecruitDto::getRcDate).reversed());
-//		//마감일 오름차순
-//		}else if("rcDeadlineasc".equalsIgnoreCase(sortType)) {
-//			recruitList.sort(Comparator.comparing(RecruitDto::getRcDeadline));
-//		//마감일 내림차순
-//		}else {
-//			recruitList.sort(Comparator.comparing(RecruitDto::getRcDeadline).reversed());
-//		}
-//		model.addAttribute("recruitList",recruitList);
-
 		return "dashboard-manage-job";
 	}
 
@@ -385,20 +370,6 @@ public class CorpController {
 		forwardPath = "image-upload-test";
 		return forwardPath;
 	}
-
-	// corpName으로만 검색
-//	@RequestMapping(value = "/search", method = RequestMethod.GET)
-//	public String searchByCorpName(@RequestParam("corpName") String corpName, Model model) {
-//		try {
-//			List<CorpDto> corpSearchList = corpService.searchByCorpName(corpName);
-//			model.addAttribute("corpList", corpSearchList);
-//		} catch (Exception e) {
-//			// 예외 처리
-//			e.printStackTrace();
-//			model.addAttribute("errorMsg", "검색어를 찾을 수 없습니다!");
-//		}
-//		return "corp-list";
-//	}
 
 	// corpName, job 둘 중 하나만 알아도 + 둘다 알때 검색할 수 있는 기능
 	@RequestMapping(value = "/search", method = RequestMethod.GET)

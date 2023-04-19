@@ -57,13 +57,13 @@ public class AppServiceImpl implements AppService {
 	//주로 appStatus 변경
 	@Transactional
 	@Override
-	public void updateApp(long id, int appStatus) {
+	public AppDto updateApp(long id, int appStatus) {
 		/*
 		 * appStatus
 		 * 0 : 접수중(디폴트)
-		 * 1 : 접수확인
-		 * 2 : 합격
-		 * ?? 3 : 불합격
+		 * 1 : [제출된 이력서 클릭 시]접수확인
+		 * 2 : [승인 버튼 클릭 시]합격
+		 * ?? 3 : [거절 버튼 클릭 시]불합격
 		 */
 		App findApp = appRepository.findById(id).get();
 		AppDto updateDto = modelMapper.map(findApp, AppDto.class);
@@ -103,6 +103,7 @@ public class AppServiceImpl implements AppService {
 		else {
 			
 		}
+			return modelMapper.map(findApp, AppDto.class);
 	}
 	
 	@Transactional
@@ -134,11 +135,6 @@ public class AppServiceImpl implements AppService {
 				.map(app ->modelMapper.map(app, AppDto.class))
 				.collect(Collectors.toList());
 	}
-	
-	/*
-	 * 기업이 등록한 공고리스트뷰에서 공고하나 클릭시 appList출력하여 이력서리스트 확인->지원자 수 뽑기
-	 */
-
 	
 	/*
 	 * 구직자가 지원한 appList출력하여 공고리스트 확인
