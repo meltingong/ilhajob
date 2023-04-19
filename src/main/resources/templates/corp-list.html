@@ -53,8 +53,9 @@
             <div class="row">
               <!-- Form Group -->
               <div class="form-group col-lg-5 col-md-12 col-sm-12">
+              
                 <span class="icon flaticon-search-1"></span>
-                <input type="text" id="search-input" placeholder="회사명">
+                <input type="text" id="search-input" placeholder="기업명을 입력하세요.">
               </div>
               <div class="form-group col-lg-2 col-md-12 col-sm-12 text-right">
                 <button type="button" id = "search-button" class="theme-btn btn-style-one">기업 찾기</button>
@@ -258,27 +259,28 @@
 	  <!-- End Page Wrapper -->
 	  
   	<!-- corpName으로 검색하기 ajax 구현중 -->
-<script>
-$(document).ready(function() {
-	  $('#search-button').click(function(e) {
-	    e.preventDefault();
-	    var searchInput = $('#search-input').val();
-	    $.ajax({
-	      type: 'GET',
-	      url: '/search',
-	      data: { corpName: searchInput },
-	      dataType: 'json',
-	      success: function(result) {
-	        var template = Handlebars.compile($('#search-template').html());
-	        $('#search-result').html(template({ corpList: result }));
-	      },
-	      error: function(xhr, status, error) {
-	        console.log(error);
-	      }
-	    });
-	  });
-	});
-</script>
+	<script>
+	$(document).ready(function() {
+		  $('#search-button').click(function(e) {
+		    e.preventDefault();
+		    var searchInput = $('#search-input').val();
+		    $.ajax({
+		      type: 'GET',
+		      url: '/search',
+		      data: { corpName: searchInput },
+		      dataType: 'json',
+		      success: function(result) {
+		    	console.log(result);
+		        var template = Handlebars.compile($('#search-template').html());
+		        $('#search-result').html(template({ corpList: result }));
+		      },
+		      error: function(xhr, status, error) {
+		        console.log(error);
+		      }
+		    });
+		  });
+		});
+	</script>
   
  <!-- corp-search-template: handlebars -->
 	<script type="text/x-handlebars-template" id="search-result-template">
