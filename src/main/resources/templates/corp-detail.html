@@ -166,10 +166,10 @@ function reviewDelete(){
 			            <div th:each="review:${reviewList}" class="comment">
 			              <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
 			              <div class="comment-info">
-			                <div th:text="${review.reviewTitle}" class="user-name">Oscar Cafeo</div>
-			                <div th:text="${review.reviewGrade}+'점'" class="title">Beautiful courses</div>
+			                <div th:text="${review.reviewTitle}" class="review-title">Oscar Cafeo</div>
+			                <div th:text="${review.reviewGrade}+'점'" class="review-grade">Beautiful courses</div>
 			              </div>
-			              <div th:text="${review.reviewContent}" class="text">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
+			              <div th:text="${review.reviewContent}" class="review-content">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</div>
 			           
 			          
 	    					<th:block th:if = "${loginUser!=null}">
@@ -191,8 +191,8 @@ function reviewDelete(){
                <th:block th:if="${count==0}"> <!--  -->
 		        <div class="comment-form default-form">
 		          <h4>리뷰 등록</h4>
+		         <input th:value="${corp.id}" type="hidden" id="corpId" name="corpId" />
 		         <form id ="review-form" name ="f" method="post" >
-		         	<input th:value="${corp.id}" type="hidden" name="corpId" />
 		         	
 		            <div class="row clearfix">
 		              <div class="col-lg-6 col-md-12 col-sm-12 form-group">

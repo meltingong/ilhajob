@@ -133,6 +133,7 @@
                                   <!-- 
      	                            <input type="hidden" th:id="eduId+${edu.id}" name="'eduId'+${eud.Id}">
                                     <button type="button" th:id="'editBtn(' + ${edu.id} + ')'"  th:onclick="'editEdu(' + ${edu.id} + ')'"><span class="la la-pencil"></span></button>
+                                    <button type="button" th:id="'editBtn(' + ${edu.id} + ')'"  th:onclick="'editEdu(' + ${edu.id} + ')'"><span class="la la-pencil"></span></button>
      	                            <button type="button" th:id="'updateEdu(' + ${edu.id} + ')'"  th:onclick="'updateEdu(' + ${edu.id} + ')'"><span class="la la-check-circle-o"></span></button>
                                     <button type="button" th:id="'deleteEdu(' + ${edu.id} + ')'" th:onclick="'deleteEdu(' + ${edu.id} + ')'"><span class="la la-trash"></span></button>
                                    -->
@@ -148,7 +149,7 @@
 		                      <div class="form-group col-lg-12 col-md-12">
 		                        <label>학점</label>
 		                        <div>
-                                <input type="hidden" name="eduScore" th:value="${edu.eduScore}"/>
+                                <input type="hidden" name="eduScore" th:value="${edu.eduScore}">
 		                        <div class="text" th:text="${edu.eduScore}" id="eduScore">Edu Score</div>
 		                        </div>
 		                        <!-- 
