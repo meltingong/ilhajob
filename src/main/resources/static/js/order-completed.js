@@ -8,10 +8,10 @@
 		
 		$(".order-info #order-id").text(data.orderData.id);
 		$(".order-info #order-date").text(data.orderData.orderStartDate);
-		$(".order-info #order-total").text(productPrice.toLocaleString+"원");
+		$(".order-info #order-total").text(productPrice.toLocaleString()+"원");
 		$(".order-info #order-method").text(data.paymentData.paymentMethod);
 		$(".product-name").text(data.productData.productName);
-		$(".product-total").text(productPrice.toLocaleString+"원");
+		$(".product-total").text(productPrice.toLocaleString()+"원");
 		$(".order-period").text(data.orderData.orderEndDate);
 		$(".amount").text(data.productData.orderTotal);
 		

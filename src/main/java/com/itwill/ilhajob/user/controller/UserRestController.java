@@ -1,13 +1,21 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.itwill.ilhajob.common.controller.ResponseStatusCode;
 import com.itwill.ilhajob.common.dto.LoginRequestDto;
 import com.itwill.ilhajob.common.service.AppService;
@@ -89,9 +100,17 @@ public class UserRestController {
 	 */
 	
 	//test중 -> ResponseStatusCode.written_fail_review 에러(6001 직접만듦)으로 반환됨. -> console.log
-	
-/*	@PostMapping("/createReviewAjax")
-	public ResponseEntity<Object> createReview(@RequestBody ReviewDto reviewDto, HttpSession session, @RequestParam("corpId")Long corpId) {
+
+	@PostMapping("/createReviewAjax")
+	public ResponseEntity<String> createReview(HttpSession session, HttpServletRequest request, @RequestBody String requestData) throws Exception {
+		//넘어온 string을 json형식으로 변환
+		Gson gson = new Gson();
+		JsonElement element = gson.fromJson(requestData, JsonElement.class);
+		JsonObject jsonObject = element.getAsJsonObject();
+		long corpId = jsonObject.get("corpId").getAsLong();
+		JsonObject reviewObject = jsonObject.getAsJsonObject("reviewData");
+		ReviewDto reviewDto = gson.fromJson(reviewObject, ReviewDto.class);
+		
 	    String sUserId = (String) session.getAttribute("sUserId");
 	    if(sUserId == null) {
 	        return ResponseEntity.status(ResponseStatusCode.NOT_FOUND_USER).body("{\"success\": false, \"message\": \"로그인이 필요합니다.\", \"location\": \"/final-project-team1-ilhajob/login\"}");
@@ -107,38 +126,38 @@ public class UserRestController {
 	    } catch (Exception e) {
 	        return ResponseEntity.status(ResponseStatusCode.WRITTEN_FAIL_REVIEW).body("{\"success\": false, \"message\": \"리뷰 작성에 실패했습니다. 잠시 후 다시 시도해주세요.\"}");
 	    }
-	}*/
-	
-	@PostMapping(value = "createReviewAjax", produces = "application/json;charset=UTF-8")
-	public Map<String, Object> review_write_Action(@RequestBody ReviewDto reviewDto, HttpSession session, @RequestParam("corpId")Long corpId){
-		String sUserId = (String) session.getAttribute("sUserId");
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		int code=1;
-		String msg="성공";
-		List<ReviewDto> data = new ArrayList<ReviewDto>();
-		try {
-			UserDto loginUser = userService.findUser(sUserId);
-			System.out.println("!!!!!!!!!"+loginUser);
-			CorpDto corpDto = corpService.findByCorpId(corpId);
-			System.out.println("!!!!!!!!!"+corpDto);
-			reviewDto.setUser(loginUser);
-			reviewDto.setCorp(corpDto);
-			userService.insertReview(reviewDto);
-			code = 1;
-			msg = "성공";
-			data.add(reviewDto);
-		} catch (Exception e) {
-			code = 2;
-			msg = "리뷰작성실패";
-			e.printStackTrace();
-		}
-		resultMap.put("code", code);
-		resultMap.put("msg", msg);
-		resultMap.put("data", data);
-		
-		
-		return resultMap;
 	}
+	
+//	@PostMapping(value = "createReviewAjax", produces = "application/json;charset=UTF-8")
+//	public Map<String, Object> review_write_Action(@RequestBody ReviewDto reviewDto, HttpSession session, @RequestParam("corpId")String corpId){
+//		String sUserId = (String) session.getAttribute("sUserId");
+//		Map<String, Object> resultMap = new HashMap<String, Object>();
+//		int code=1;
+//		String msg="성공";
+//		List<ReviewDto> data = new ArrayList<ReviewDto>();
+//		try {
+//			UserDto loginUser = userService.findUser(sUserId);
+//			System.out.println("!!!!!!!!!"+loginUser);
+//			CorpDto corpDto = corpService.findByCorpId(Long.parseLong(corpId));
+//			System.out.println("!!!!!!!!!"+corpDto);
+//			reviewDto.setUser(loginUser);
+//			reviewDto.setCorp(corpDto);
+//			userService.insertReview(reviewDto);
+//			code = 1;
+//			msg = "성공";
+//			data.add(reviewDto);
+//		} catch (Exception e) {
+//			code = 2;
+//			msg = "리뷰작성실패";
+//			e.printStackTrace();
+//		}
+//		resultMap.put("code", code);
+//		resultMap.put("msg", msg);
+//		resultMap.put("data", data);
+//		
+//		
+//		return resultMap;
+//	}
 	
 	
 	
