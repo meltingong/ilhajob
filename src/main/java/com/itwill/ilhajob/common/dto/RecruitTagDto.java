@@ -1,5 +1,7 @@
 package com.itwill.ilhajob.common.dto;
 
+import com.itwill.ilhajob.corp.dto.RecruitDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +14,7 @@ import lombok.ToString;
 @Builder
 public class RecruitTagDto {
 		private long id;
-		private long recruitId;
+		private RecruitDto recruit;
 		private long tagId;
 	}
 

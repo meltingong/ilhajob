@@ -385,11 +385,27 @@
                      	  <span>{{corp.corpWelfare}}
                      	  </span>
                     		  </li>
-							</ul>
+						</ul>
+						{{#each tagData}}
+								{{#ifCond ../tagId ../tagId}}
+									<span class="job-type" style="margin-right:1px; margin-bottom: 5px" text = {{tagName}}></span>
+								{{/ifCond}}		
+						{{/each}}
                 	</div>
                 </div>
 				{{/each}}
 			</div>
+	</script>
+	<script>
+    // Handlebars Helper: if 조건문을 위한 커스텀 헬퍼
+    Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+        if (parseInt(v1) === parseInt(v2)) {
+            return options.fn(this);
+            console.log(if서)
+        } else {
+            return options.inverse(this);
+        }
+    });
 	</script>
 	<!-- 오류 안나면 /ul 밑에 태그 추가하기 
 	      {{#each corpTags}}

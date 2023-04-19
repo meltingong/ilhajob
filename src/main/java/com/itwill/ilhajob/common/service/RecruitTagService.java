@@ -14,5 +14,6 @@ public interface RecruitTagService {
 	List<RecruitTagDto> selectAllByRecruitId(long recruitId);
 
 	List<RecruitTagDto> selectAll();
-
+	
+	List<RecruitTagDto> selectAllBytagId(long tagId);
 }

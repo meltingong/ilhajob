@@ -8,4 +8,5 @@ import com.itwill.ilhajob.common.entity.RecruitTag;
 
 public interface RecruitTagRepository extends JpaRepository<RecruitTag, Long>{
 	public List<RecruitTag> findByRecruitId(long recruitId);
+	public List<RecruitTag> findByTagId(long tagId);
 }
