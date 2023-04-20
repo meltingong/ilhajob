@@ -8,16 +8,21 @@ import javax.sound.sampled.ReverbType;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
@@ -125,16 +130,20 @@ public class UserController {
 	// 회원 정보수정
 	@LoginCheck
 	@RequestMapping("/modify_action")
-	public String modify_action(@ModelAttribute UserDto userDto, HttpServletRequest request,String userPassword,String userPasswordConfirm) throws Exception {
-		String forwardPath = "";
+	public ResponseEntity<String> modify_action(@RequestBody String requestData, HttpServletRequest request) throws Exception {
 		Long id = (Long)request.getSession().getAttribute("id");
+		Gson gson = new Gson();
+		JsonObject jsonObject = gson.fromJson(requestData, JsonObject.class);
+		String userPassword = jsonObject.get("userPassword").getAsString();
+		String userPasswordConfirm = jsonObject.get("userPasswordConfirm").getAsString();
+		jsonObject.remove("userPasswordConfirm");
+		UserDto userDto = gson.fromJson(jsonObject, UserDto.class);
 		
 		if(userPassword.equals(userPasswordConfirm)) {
 			userService.update(id,userDto);
 		}
-		forwardPath = "redirect:candidate-dashboard-profile";
 		
-		return forwardPath;
+		return ResponseEntity.ok().body("{\"location\": \"candidate-dashboard-profile\"}");
 	}
 	
 	
