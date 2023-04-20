@@ -55,9 +55,11 @@ public class CorpImageController {
 		absPath.add("upload/");
 		absPath.add("logo/");
 		
+		String urlPath="";
 		String absolutePath="c://final-project-team1-ilhajob/";
 		for (String string : absPath) {
 			absolutePath+=string;
+			urlPath+=string;
 			File folder = new File(absolutePath);
 			if(!folder.exists()) {
 				folder.mkdir();
@@ -66,42 +68,18 @@ public class CorpImageController {
 				System.out.println(folder+"이미 폴더가 존재합니다");
 			}
 		}
-		
-		//상대경로 저장
-		String staticPath="";
-		String relativePath="src/main/resources/";
-		for (String string : absPath) {
-			relativePath+=string;
-			staticPath+=string;
-			File folder = new File(relativePath);
-			if(!folder.exists()) {
-				//folder.mkdir();
-				System.out.println(folder+"폴더가 생성되었습니다");
-			}else {
-				System.out.println(folder+"이미 폴더가 존재합니다");
-			}
-		}
-		
 		// MultipartFile 배열로 받은 파일을 처리하는 로직
 	    for (MultipartFile image : images) {
 	        if (!image.isEmpty()) {
-	            String fileName = corp.getId()+"_"+image.getOriginalFilename();
+	            String fileName = image.getOriginalFilename();
+	            String saveFileName = corp.getId()+"_logo"+fileName.substring(fileName.lastIndexOf("."));
 	            // 파일 저장 로직
 	            try {
 	                byte[] bytes = image.getBytes();
 	                Path path = Paths.get(absolutePath + fileName);
 	                Files.write(path, bytes);
-	                //Path rePath = Paths.get(relativePath + fileName);
-	                //Files.write(rePath, bytes);
-	                //corpImage create
-//	                CorpImageDto corpImageDto = CorpImageDto.builder()
-//	                										.originalFileName(fileName)
-//	                										.storedFileName(absolutePath + fileName)
-//	                										.corp(corp)
-//	                										.build();
-//	                corpImageService.insertCorpImage(corpImageDto);
 	                corp.setCorpOriginalFileName(fileName);
-	                corp.setCorpStoredFileName(staticPath + fileName);
+	                corp.setCorpStoredFileName(urlPath + fileName);
 	                corpService.update(corp.getId(), corp);
 	                ResourceRefresher.refreshResources("classpath:/upload/logo/**");
 	                return ResponseEntity.ok().body("{\"success\": true, \"imagePath\": \"" + corp.getCorpStoredFileName() + "\", \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");

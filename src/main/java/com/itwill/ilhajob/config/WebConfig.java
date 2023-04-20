@@ -44,7 +44,6 @@ public class WebConfig implements WebMvcConfigurer{
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/upload/logo/**")
-            .addResourceLocations("classpath:/upload/logo/")
             .addResourceLocations("file:C://final-project-team1-ilhajob//upload//logo//")
             .setCachePeriod(0);
     }
