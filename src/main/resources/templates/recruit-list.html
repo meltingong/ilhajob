@@ -309,17 +309,19 @@
               </div>
             </div>
 
-              <!-- Pagination -->
+ <!-- Pagination 시작-->
               <nav class="ls-pagination mb-5">
-                <ul>
-                  <li class="prev"><a href="#"><i class="fa fa-arrow-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#" class="current-page">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li class="next"><a href="#"><i class="fa fa-arrow-right"></i></a></li>
-                </ul>
-              </nav>
-
+                <li th:each="page:${#numbers.sequence(0,totalPage -1)}" th:if="${page >= nowPage-1 and page <= nowPage+1}">
+	                 	 <a th:href="@{recruit-list?page=}+${pageStat.index}"></a></li>
+			              <ul>
+			                <li th:unless="${nowPage == 0}" class="prev"><a th:href="@{recruit-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+			                <li class="prev"><a th:unless="${nowPage == 0}" th:text="${nowPage}" th:href="@{recruit-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+			     			   <li><a class="current-page" th:text="${nowPage+1}" ></a></li>
+			                <li class="next"><a th:unless="${nowPage == totalPage-1}" th:text="${nowPage+2}" th:href="@{recruit-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+			             	<li th:unless="${nowPage == totalPage-1}" class="next"><a th:href="@{recruit-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+			              </ul>
+           			  </nav>
+<!-- Pagination 끝-->
               <!-- Call To Action -->
               <div class="call-to-action-four style-two">
                 <h5>Recruiting?</h5>

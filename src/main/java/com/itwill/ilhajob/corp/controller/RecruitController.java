@@ -1,6 +1,7 @@
 package com.itwill.ilhajob.corp.controller;
 
 import java.io.Console;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,8 +10,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +40,6 @@ import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.service.CvService;
 
-import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
 @Controller
 public class RecruitController {
@@ -54,20 +58,31 @@ public class RecruitController {
 	@Autowired
 	private CvService cvService;
 	
-	@RequestMapping(value = { "/", "/index" })
-	public String main(Model model) throws Exception {
-		List<RecruitDto> recruitList = recruitService.findRecruitAll();
-		model.addAttribute("recruitList", recruitList);
-		String forward_path = "index";
-		return forward_path;
-	}
+	
+//	@RequestMapping(value = { "/", "/index" })
+//	public String main(Model model) throws Exception {
+//		List<RecruitDto> recruitList = recruitService.findRecruitAll();
+//		model.addAttribute("recruitList", recruitList);
+//		String forward_path = "index";
+//		return forward_path;
+//	}
 
-	@RequestMapping("/recruit-list")
-	public String recruit_list(Model model) throws Exception {
-		//공고리스트
-		List<RecruitDto> recruitList = recruitService.findRecruitAll();
-		model.addAttribute("recruitList", recruitList);
-		
+	@GetMapping("/recruit-list")
+	public String recruit_list(@RequestParam(defaultValue = "0") int page,
+	                        @RequestParam(defaultValue = "6") int size,
+	                        Model model) throws Exception {
+		//페이징 기능 추가->일단 6개씩 나오게 해놓음
+	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+	    Page<RecruitDto> recruitPage = recruitService.findAll(pageable);
+	    int nowPage = recruitPage.getNumber();
+	    
+	    //이전, 다음페이지 설정해야함...
+	    model.addAttribute("recruitList", recruitPage.getContent());
+	    model.addAttribute("nowPage", nowPage);
+	    model.addAttribute("totalPage", recruitPage.getTotalPages());
+	    model.addAttribute("prePage", recruitPage.hasPrevious() ? recruitPage.previousPageable().getPageNumber() : 0);
+	    model.addAttribute("nextPage", recruitPage.hasNext() ? recruitPage.nextPageable().getPageNumber() : recruitPage.getTotalPages() - 1);
+	
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
@@ -79,6 +94,24 @@ public class RecruitController {
 		
 		
 	}
+	
+//	@RequestMapping("/recruit-list")
+//	public String recruit_list(Model model) throws Exception {
+//		//공고리스트
+//		List<RecruitDto> recruitList = recruitService.findRecruitAll();
+//		model.addAttribute("recruitList", recruitList);
+//		
+//		//태그리스트
+//		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
+//		List<TagDto> tagList = tagService.selectAll();
+//		model.addAttribute("recruitTagList", recruitTagList);
+//		model.addAttribute("tagList", tagList);
+//		
+//		String forward_path = "recruit-list";
+//		return forward_path;
+//		
+//		
+//	}
 
 	@RequestMapping(value = "/recruit-detail", params = "!id")
 	public String recruit_detail() {
