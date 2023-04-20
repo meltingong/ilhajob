@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.corp.service;
 
+import java.awt.print.Pageable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,9 +43,6 @@ public class CorpServiceImpl implements CorpService{
 		this.reviewRepository = reviewRepository;
 	}
 
-	
-	
-	
 	@Override
 	public CorpDto create(CorpDto corpDto) throws ExistedCorpException, Exception {
 		//1.아이디중복체크
@@ -213,5 +213,19 @@ public class CorpServiceImpl implements CorpService{
 				        .collect(Collectors.toList());
 		    }
 		  }
+
+	//corpList 페이징 기능
+	@Override
+	public Page<CorpDto> getCorpList(int page, int size) throws Exception {
+		PageRequest pageable=PageRequest.of(page, size);
+		Page<Corp> corpPage=corpRepository.findAll(pageable);
+		return corpPage.map(corp->modelMapper.map(corp, CorpDto.class));
+	}
+	
+	
+	
+	
+	
+	
 
 }

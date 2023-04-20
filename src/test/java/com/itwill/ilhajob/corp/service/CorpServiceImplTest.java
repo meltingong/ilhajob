@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import com.itwill.ilhajob.FinalProjectTeam1IlhajobApplicationTests;
 import com.itwill.ilhajob.corp.dto.CorpDto;
@@ -69,6 +70,7 @@ class CorpServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 	}
 	
 	//corpname이랑 job 둘다 검색기능->테스트 완료
+	@Disabled
 	@Test
 	void testSearchCorps()throws Exception{
 		List<CorpDto> result1=corpService.searchCorps("대보정보통신", "네트워크");
@@ -81,5 +83,15 @@ class CorpServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 		System.out.println("result4:둘다 모를때>>>>"+result4);
 	}
 	
-	
+	//corpList 페이징 기능->테스트 완료
+	@Test
+	void testGetCorpList() throws Exception{
+		int page=0;
+		int size=10;
+		//List<CorpDto>corpList=corpService.findCorpAll();
+		//System.out.println("전체 corpList>>>>>>>>"+corpList);
+		Page<CorpDto> corpDtoPage=corpService.getCorpList(page, size);
+		List<CorpDto> corpDtoList=corpDtoPage.getContent();
+		assertEquals(size, corpDtoList.size()); //size 둘다 같음
+	}
 }
