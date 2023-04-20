@@ -1,17 +1,13 @@
 package com.itwill.ilhajob.corp.service;
 
-import java.awt.print.Pageable;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -214,12 +210,19 @@ public class CorpServiceImpl implements CorpService{
 		    }
 		  }
 
-	//corpList 페이징 기능
+	//corpList 페이징 기능...수정해야할 듯
 	@Override
 	public Page<CorpDto> getCorpList(int page, int size) throws Exception {
 		PageRequest pageable=PageRequest.of(page, size);
 		Page<Corp> corpPage=corpRepository.findAll(pageable);
 		return corpPage.map(corp->modelMapper.map(corp, CorpDto.class));
+	}
+	
+	//corpList 페이징 기능->수정된 버전
+	@Override
+	public Page<CorpDto> findAll(Pageable pageable) {
+		Page<Corp> corpList=corpRepository.findAll(pageable);
+		return corpList.map(corp->modelMapper.map(corp, CorpDto.class));
 	}
 	
 	
