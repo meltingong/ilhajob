@@ -460,12 +460,8 @@
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
                       <ul class="job-other-info">
-						{{#each tagData}}
-                      	<div>
-						{{#ifCond ../tagId ../tagId}}
-                        <li class="time" >{{tagName}}</li>
-                        {{/ifCond}}	
-						</div>
+						{{#each tagNameList}}
+                        <li class="time" >{{this}}</li>
 						{{/each}}
                         <!--  
                          <li class="privacy">Private</li>

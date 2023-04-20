@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.corp.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.dto.CorpTagDto;
+import com.itwill.ilhajob.common.dto.CorpTagWithNameDto;
 import com.itwill.ilhajob.common.dto.TagDto;
 import com.itwill.ilhajob.common.service.CorpTagService;
 import com.itwill.ilhajob.common.service.TagService;
@@ -37,23 +39,41 @@ public class CorpRestController {
 		if(data.get("tagId").equals("전체")) {
 			System.out.println(data.get("tagId"));
 			List<CorpTagDto> corpTagList = corpTagService.selectAll();
-			System.out.println("전체실행완료");
-			map.put("data", corpTagList);
+			List<CorpTagWithNameDto> corpTagNameList = new ArrayList<CorpTagWithNameDto>();
 			List<TagDto> tagList = tagService.selectAll();
-			map.put("tagData", tagList);
+			for(CorpTagDto corpTag:corpTagList) {
+				for(TagDto tag:tagList) {
+					if(tag.getTagId()==corpTag.getTagId()) {
+						corpTagNameList.add(new CorpTagWithNameDto(corpTag.getId(),
+																   corpTag.getCorp(),
+																   corpTag.getTagId(),
+																   tag.getTagName()));
+					}
+				}
+			}
+			System.out.println("전체실행완료");
+			map.put("data", corpTagNameList);
 			return map;
 		}else {
 		//일부태그선택
 		Long tagId = Long.parseLong(data.get("tagId"));
 		System.out.println(tagId);
 		List<CorpTagDto> corpTagList= corpTagService.selectListByTagId(tagId);
-		map.put("data", corpTagList);
-		System.out.println("태그선택실행완료");
+		List<CorpTagWithNameDto> corpTagNameList = new ArrayList<CorpTagWithNameDto>();
 		List<TagDto> tagList = tagService.selectAll();
-		map.put("tagData", tagList);
-		
-		TagDto tag = tagService.selectTag(tagId);
-		map.put("tag", tag);
+		for(CorpTagDto corpTag:corpTagList) {
+			for(TagDto tag:tagList) {
+				if(tag.getTagId()==corpTag.getTagId()) {
+					corpTagNameList.add(new CorpTagWithNameDto(corpTag.getId(),
+															   corpTag.getCorp(),
+															   corpTag.getTagId(),
+															   tag.getTagName()));
+				}
+			}
+		}
+		System.out.println("태그선택실행완료");
+		System.out.println(corpTagNameList);
+		map.put("data", corpTagNameList);
 		return map;
 		}
 		
