@@ -134,8 +134,7 @@ function update(){
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>회사설립일</label>
-                        <input type="date" name="corpEst" th:value="${corp.corpEst}">
-                        <input type="text" th:value="${corp.corpEst}">
+                        <input type="text" name = "date" th:value="${#temporals.format(corp.corpEst, 'yyyy-MM-dd')}">
                       </div>
 
                       <!-- Input -->

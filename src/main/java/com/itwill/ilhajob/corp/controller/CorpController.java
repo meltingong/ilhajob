@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,7 @@ import com.itwill.ilhajob.common.service.CorpTagService;
 import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
+import com.itwill.ilhajob.corp.dto.CorpResponseDto;
 import com.itwill.ilhajob.corp.dto.ManagerDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Corp;
@@ -254,13 +256,33 @@ public class CorpController {
 	}
 
 	@PostMapping("/corp-update-action")
-	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto, HttpServletRequest request)
+	public String corp_update_action(@ModelAttribute("corp") CorpResponseDto corpDto, @RequestParam("date") String date,
+			HttpServletRequest request)
 			throws Exception {
 		Long id = corpDto.getId();
 		System.out.println(corpDto);
-		corpService.update(id, corpDto);
-		request.setAttribute("corpId", corpDto.getId());
-		return "corp-detail";
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime time = LocalDate.parse(date, formatter).atStartOfDay();
+		CorpDto corp = CorpDto.builder().corpAddress(corpDto.getCorpAddress())
+										.corpBusinessNo(corpDto.getCorpBusinessNo())
+										.corpComment(corpDto.getCorpComment())
+										.corpEst(time)
+										.corpName(corpDto.getCorpName())
+										.corpLoginId(corpDto.getCorpLoginId())
+										.corpPhone(corpDto.getCorpPhone())
+										.corpPassword(corpDto.getCorpPassword())
+										.corpOriginalFileName(corpDto.getCorpOriginalFileName())
+										.corpSales(corpDto.getCorpSales())
+										.corpWebsite(corpDto.getCorpWebsite())
+										.corpSize(corpDto.getCorpSize())
+										.corpWelfare(corpDto.getCorpWelfare())
+										.corpStoredFileName(corpDto.getCorpStoredFileName()).build();
+		
+		corpService.update(id, corp);
+		request.setAttribute("corpId", id);
+		return "redirect:corp-detail?corpId="+id;
+		
 	}
 
 	@RequestMapping("/dashboard-manage-job")
