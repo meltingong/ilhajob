@@ -183,7 +183,7 @@ public class RecruitController {
 		//model.addAttribute("updateRecruit", updateRecruit);
 	}
 	
-	//공고리스트-지원자이력서보기-승인 버튼 클릭 시
+	//공고리스트-지원자 이력서보기-승인 버튼 클릭 시
 	@RequestMapping("/cv-approve-action")
 	public String cv_approve_action(@ModelAttribute AppDto appDto){
 		System.out.println("승인 전 컨트롤러 확인");
@@ -194,7 +194,7 @@ public class RecruitController {
 		System.out.println("update된 appDtp>>>>"+approveAppDto); //recruit, cv다 불러옴 +appStatus 2되는 것 확인
 		return "redirect:dashboard-applicants?id="+approveAppDto.getRecruit().getId();
 	}
-	//공고리스트-지원자이력서보기-거절 버튼 클릭 시
+	//공고리스트-지원자 이력서보기-거절 버튼 클릭 시
 	@RequestMapping("/cv-reject-action")
 	public String cv_reject_action(@ModelAttribute AppDto appDto) {
 		appDto.setAppStatus(3);

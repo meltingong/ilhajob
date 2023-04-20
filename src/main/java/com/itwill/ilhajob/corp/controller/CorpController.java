@@ -283,7 +283,17 @@ public class CorpController {
 			List<AppDto> appList = appService.findAllByRecruitId(id);
 			// 리스트 있을 때
 			model.addAttribute("appList", appList);
-			// model.addAttribute("errorMsg","");
+			//appStatus=2인것만 따로 담기(승인)
+			List<AppDto> approveList=appList.stream().filter(appDto->appDto.getAppStatus()==2)
+													 .collect(Collectors.toList());
+			System.out.println("approveList>>>>>>>>>"+approveList);
+			model.addAttribute("approveList",approveList);
+			//appStatus=3인것만 따로 담기(거절)
+			List<AppDto> rejectList=appList.stream().filter(appDto->appDto.getAppStatus()==3)
+													.collect(Collectors.toList());
+			model.addAttribute("rejectList",rejectList);
+			
+			
 		} catch (Exception e) {
 			// 리스트 없을 때
 			// redirectAttributes.addFlashAttribute("message", e.getMessage());
@@ -295,11 +305,15 @@ public class CorpController {
 
 		// 이력서의 회원 정보 가져오기
 		List<AppDto> userList = appService.findAllByUserId(id);
+		System.out.println("이력서 회원 정보 확인>>>>>"+userList);
 		model.addAttribute("userList", userList);
 
 		// 해당 공고 디테일 뿌리기
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
+		
+		
+		
 
 		return "dashboard-applicants";
 	}
