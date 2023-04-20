@@ -15,6 +15,6 @@ import lombok.ToString;
 public class RecruitTagDto {
 		private long id;
 		private RecruitDto recruit;
-		private long tagId;
+		private TagDto tag;
 	}
 

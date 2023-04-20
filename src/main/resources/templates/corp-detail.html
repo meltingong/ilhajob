@@ -77,8 +77,8 @@ function reviewDelete(){
                   <li th:text="|★현재 진행중인 구직공고: ${recruitCount}개★|" class="time">
                   Open Jobs – 3
                   </li>
-                   <li th:each ="str : ${corpTagNameList}" class="time">
-                   		<span th:text = "${str}"></span>
+                   <li th:each ="corpTag : ${corpTagList}" class="time">
+                   		<span th:text = "${corpTag.tag.tagName}"></span>
                   </li>
                 </ul>
               </div>

@@ -101,6 +101,7 @@ public class CorpController {
 //		String forward_path = "index";
 //		return forward_path;
 //	}
+
 	
 	@GetMapping("/corp-list")
 	public String corp_list(@RequestParam(defaultValue = "0") int page,
@@ -118,14 +119,15 @@ public class CorpController {
 	    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
 	    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
 	    
-	    List<CorpTagDto> corpTagList = corpTagService.selectAll();
-	    List<TagDto> tagList = tagService.selectAll();
-	    model.addAttribute("corpTagList", corpTagList);
-	    model.addAttribute("tagList", tagList);
+		List<CorpTagDto> corpTagList = corpTagService.selectAll();
+		List<TagDto> tagList = tagService.selectAll();
+		model.addAttribute("tagList", tagList);
+		model.addAttribute("corpTagList", corpTagList);
+		String forward_path = "corp-list";
 	    
 	    return "corp-list";
 	}
-	
+
 //	@RequestMapping("/corp-list")
 //	public String corp_list(@RequestParam(defaultValue = "0") int page,
 //	                        @RequestParam(defaultValue = "12") int size,
@@ -170,11 +172,7 @@ public class CorpController {
 
 			// 기업 태그 리스트 뿌리기
 			List<CorpTagDto> corpTagList = corpTagService.selectAllByCorpId(corpDto.getId());
-			List<String> corpTagNameList = new ArrayList<String>();
-			for (CorpTagDto corpTag : corpTagList) {
-				corpTagNameList.add(tagService.selectTag(corpTag.getTagId()).getTagName());
-			}
-			model.addAttribute("corpTagNameList", corpTagNameList);
+			model.addAttribute("corpTagList", corpTagList);
 
 			// 공고 목록 뿌리기
 			List<RecruitDto> recruitList = recruitService.findRecruitAll();

@@ -38,7 +38,9 @@ public class UserDto {
     private String userPhone;
     private LocalDateTime userCreateDate;
     private String userSex;
+    private Integer userPostCode;
     private String userAddress;
+    private String userAddressDetail;
     private String userCareer;
     private Integer userAge;
     private String userFinalEducation;
