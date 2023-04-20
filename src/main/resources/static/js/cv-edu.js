@@ -12,37 +12,40 @@ function addEdu() {
   <div class="resume-block" th:object="${eduList}" th:each="edu:${eduList}">
 	  <div class="inner">
 	  <span class="name">E</span>
-		      <div class="edit-btns">
+	  	<div class="title-box">
+	  		  <div class="col-lg-11 col-md-11"></div>
+		      <div class="edit-btns col-lg-1 col-md-1">
 			      <button type="button" onclick="createEdu()"><span class="la la-check-circle-o"></span></button>
 			      <button type="button" onclick="deleteEdu()" name="eduId"><span class="la la-trash"></span></button>
 	      	  </div>
+	     </div>
 	      	  <div class="row">
 			  
-			  	<div class="form-group col-lg-6 col-md-12">
+			  	<div class="form-group col-lg-6 col-md-6">
 		        <label>학교명</label>
 				  <input type=text id="eduName" name="eduName" placeholder="학교명">
 			    </div>
-			  	<div class="form-group col-lg-6 col-md-12">
+			  	<div class="form-group col-lg-6 col-md-6">
 		        <label>전공</label>
 				  <input type=text id="eduMajor" name="eduMajor" placeholder="전공">
 				</div>
-			    <div class="form-group col-lg-6 col-md-12">
+			    <div class="form-group col-lg-6 col-md-6">
 			    <label>학점</label>
 			    <input type="text" id="eduScore" name="eduScore" placeholder="학점을 입력하세요.">
 			    </div>
-			    <div class="form-group col-lg-6 col-md-12">
+			    <div class="form-group col-lg-6 col-md-6">
 			    <label>추가 정보 입력</label>
 			    <input type="text" id="eduContent" name="eduContent" placeholder="학력 관련 추가 정보를 입력하세요.">
 			    </div>
 			    
 			    <div class="edit-box">
-			  	<div class="form-group col-lg-6 col-md-12">
+			  	<div class="form-group col-lg-6 col-md-6">
 			    <label>입학일</label><br>
-			      <input type="date" id="eduStartDate" name ="eduStartDate">
+			      <input type="date" id="eduStartDate" name ="eduStartDate" class="year edit-box">
 			    </div>
-			  	<div class="form-group col-lg-6 col-md-12">
-			    <labe>졸업일</label><br>
-			      <input type="date" id="eduEndDate" name ="eduEndDate">
+			  	<div class="form-group col-lg-6 col-md-6">
+			    <label>졸업일</label><br>
+			      <input type="date" id="eduEndDate" name ="eduEndDate" class="year edit-box">
 			    </div>
 		        </div>
 		  </div>
