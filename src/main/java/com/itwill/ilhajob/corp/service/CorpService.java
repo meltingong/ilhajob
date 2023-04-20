@@ -62,7 +62,13 @@ public interface CorpService {
 	//회사 검색
 	//List<CorpDto> searchCorpList(String query) throws Exception;
 	
-	//corpName으로 검색 기능
+	//corpName으로만 검색 기능
 	List<CorpDto> searchByCorpName(String corpName) throws Exception;
+	
+	//job으로만 검색 기능
+	List<CorpDto> searchByjob(String job) throws Exception;
+	
+	//corpName이랑 job으로 검색 기능
+	List<CorpDto> searchCorps(String corpName, String job) throws Exception;
 	
 }

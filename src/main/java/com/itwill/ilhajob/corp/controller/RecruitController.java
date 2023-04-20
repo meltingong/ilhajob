@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.dto.RecruitTagDto;
 import com.itwill.ilhajob.common.dto.TagDto;
+import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.common.service.RecruitTagService;
 import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
@@ -31,6 +33,7 @@ import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
+import com.itwill.ilhajob.user.service.CvService;
 
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
@@ -46,6 +49,10 @@ public class RecruitController {
 	private TagService tagService;
 	@Autowired
 	private RecruitTagService recruitTagService;
+	@Autowired
+	private AppService appService;
+	@Autowired
+	private CvService cvService;
 	
 	@RequestMapping(value = { "/", "/index" })
 	public String main(Model model) throws Exception {
@@ -176,6 +183,26 @@ public class RecruitController {
 		//model.addAttribute("updateRecruit", updateRecruit);
 	}
 	
+	//공고리스트-지원자이력서보기-승인 버튼 클릭 시
+	@RequestMapping("/cv-approve-action")
+	public String cv_approve_action(@ModelAttribute AppDto appDto){
+		System.out.println("승인 전 컨트롤러 확인");
+		System.out.println("appDto>>>>>>>>"+appDto); //appstatus=0,cv=null인 상태
+		appDto.setAppStatus(2);
+		System.out.println("appDto 승인 버튼 클릭 후>>>>"+appDto); //appstatus=2로 변경됨
+		AppDto approveAppDto=appService.updateApp(appDto.getId(), appDto.getAppStatus());
+		System.out.println("update된 appDtp>>>>"+approveAppDto); //recruit, cv다 불러옴 +appStatus 2되는 것 확인
+		return "redirect:dashboard-applicants?id="+approveAppDto.getRecruit().getId();
+	}
+	//공고리스트-지원자이력서보기-거절 버튼 클릭 시
+	@RequestMapping("/cv-reject-action")
+	public String cv_reject_action(@ModelAttribute AppDto appDto) {
+		appDto.setAppStatus(3);
+		System.out.println("appDto 거절 버튼 클릭 후>>>>"+appDto);
+		AppDto rejectAppDto=appService.updateApp(appDto.getId(), appDto.getAppStatus());
+		System.out.println("reject된 appDto>>>>"+rejectAppDto); //recruit, cv다 불러옴 +appStatus 3되는 것 확인
+		return "redirect:dashboard-applicants?id="+rejectAppDto.getRecruit().getId();
+	}
 	
 	
 }

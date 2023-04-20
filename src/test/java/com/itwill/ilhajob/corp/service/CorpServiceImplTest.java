@@ -43,7 +43,8 @@ class CorpServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 		fail("Not yet implemented"); // TODO
 	}
 	
-	//corpName으로 검색기능구현
+	//corpName으로 검색기능구현->테스트 완료
+	@Disabled
 	@Test
 	void testSearchBycorpName()throws Exception {
 		Corp corp1=corpRepository.findById(2L).orElse(null);
@@ -57,5 +58,28 @@ class CorpServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 		System.out.println("result1:회사이름 일부만 쳤을때>>>>>>>>>>"+result1);
 		System.out.println("result2:회사이름 전체 쳤을때>>>>>>>>>>"+result2);
 	}
+	//job으로 검색기능구현->테스트 완료
+	@Disabled
+	@Test
+	void testSearchByJob()throws Exception{
+		List<CorpDto> result1=corpService.searchByjob("웹프로그래머");
+		List<CorpDto> result2=corpService.searchByjob("응용프로그램");
+		System.out.println("result1:웹프로그래머>>>>>"+result1);
+		System.out.println("result2:응용프로그램>>>>>"+result2);
+	}
+	
+	//corpname이랑 job 둘다 검색기능->테스트 완료
+	@Test
+	void testSearchCorps()throws Exception{
+		List<CorpDto> result1=corpService.searchCorps("대보정보통신", "네트워크");
+		List<CorpDto> result2=corpService.searchCorps("우아", "");
+		List<CorpDto> result3=corpService.searchCorps("", "게임");
+		List<CorpDto> result4=corpService.searchCorps("", "");
+		System.out.println("result1:둘다 알 때>>>>"+result1);
+		System.out.println("result2:이름만 알 때>>>>"+result2);
+		System.out.println("result3:job만 알 때>>>>"+result3);
+		System.out.println("result4:둘다 모를때>>>>"+result4);
+	}
+	
 	
 }

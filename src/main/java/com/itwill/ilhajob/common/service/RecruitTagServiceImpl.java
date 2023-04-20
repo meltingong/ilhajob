@@ -62,4 +62,12 @@ public class RecruitTagServiceImpl implements RecruitTagService{
 				.map(recruitTag ->modelMapper.map(recruitTag, RecruitTagDto.class))
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public List<RecruitTagDto> selectAllBytagId(long tagId) {
+		List<RecruitTag> recruitTagList = recruitTagRepository.findByTagId(tagId);
+		return recruitTagList.stream()
+				.map(recruitTag ->modelMapper.map(recruitTag, RecruitTagDto.class))
+				.collect(Collectors.toList());
+	}
 }

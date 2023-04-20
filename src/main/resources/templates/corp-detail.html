@@ -191,8 +191,8 @@ function reviewDelete(){
                <th:block th:if="${count==0}"> <!--  -->
 		        <div class="comment-form default-form">
 		          <h4>리뷰 등록</h4>
-		         <input th:value="${corp.id}" type="hidden" id="corpId" name="corpId" />
 		         <form id ="review-form" name ="f" method="post" >
+		         <input th:value="${corp.id}" type="hidden" id="corpId" name="corpId" />
 		         	
 		            <div class="row clearfix">
 		              <div class="col-lg-6 col-md-12 col-sm-12 form-group">
@@ -208,8 +208,8 @@ function reviewDelete(){
 		                <textarea name="reviewContent" placeholder="내용"></textarea>
 		              </div>
 		              <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-		            <!--ajax     <button class="theme-btn btn-style-one" type="button" onClick="reviewCreate();" name="submit-form">리뷰 등록</button> -->     
-		          <button class="theme-btn btn-style-one" type="button" id="reviewCreate-btn" name="reviewCreate-btn">리뷰 등록</button>  
+		           <button class="theme-btn btn-style-one" type="button" onClick="reviewCreate()" name="submit-form">리뷰 등록</button>    
+		          <!--ajax      <button class="theme-btn btn-style-one" type="button" id="reviewCreate-btn" name="reviewCreate-btn">리뷰 등록</button> -->    
 		              </div>
 		            </div>
 		          </form>
