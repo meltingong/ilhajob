@@ -294,7 +294,7 @@
                       <ul class="job-other-info">
                       	<div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
-                        <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
+                        <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
                         </div>
                         </div>
                         <!--  
@@ -460,13 +460,13 @@
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
                       <ul class="job-other-info">
-						{{#each tagData}}
-                      	<div>
-						{{#ifCond ../tagId ../tagId}}
+						
+						{{#each tagList}}
                         <li class="time" >{{tagName}}</li>
-                        {{/ifCond}}	
-						</div>
 						{{/each}}
+						{{#unless tagList}}
+						<li class="time" >{{tag.tagName}}</li>
+						{{/unless}}
                         <!--  
                          <li class="privacy">Private</li>
                         <li class="required">Urgent</li>

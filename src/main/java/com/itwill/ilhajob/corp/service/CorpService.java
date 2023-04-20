@@ -1,7 +1,10 @@
 package com.itwill.ilhajob.corp.service;
 
+
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.user.dto.ReviewDto;
@@ -70,5 +73,11 @@ public interface CorpService {
 	
 	//corpName이랑 job으로 검색 기능
 	List<CorpDto> searchCorps(String corpName, String job) throws Exception;
+	
+	//corpList paging 기능...수정해야할 듯
+	Page<CorpDto> getCorpList(int page, int size) throws Exception;
+	
+	//corpList paging 수정 후
+	Page<CorpDto> findAll(Pageable pageable);
 	
 }

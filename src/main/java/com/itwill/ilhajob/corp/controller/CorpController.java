@@ -99,11 +99,26 @@ public class CorpController {
 	public String corp_list(Model model) throws Exception {
 		List<CorpDto> corpList = corpService.findCorpAll();
 		model.addAttribute("corpList", corpList);
+		
+		//안돌아감...다시하자
+//		Page<CorpDto> corpPage = corpService.getCorpList(page, size);
+//		int nowPage = corpPage.getPageable().getPageNumber();
+//		model.addAttribute("corpList", corpPage);
+//		model.addAttribute("page",corpPage);
+//		model.addAttribute("nowPage", nowPage);
+//		model.addAttribute("totalPage", corpPage.getTotalPages());
+//	    //이전 페이지
+//		Pageable prePageable = corpPage.previousOrFirstPageable();
+//		model.addAttribute("prePage", prePageable.getPageNumber());
+//		//다음 페이지
+//		Pageable nextPageable = corpPage.nextOrLastPageable();
+//		int nextPage = corpPage.hasNext() ? nextPageable.getPageNumber() : corpPage.getTotalPages() - 1;
+//		model.addAttribute("nextPage", nextPage);
 
 		List<CorpTagDto> corpTagList = corpTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
-		model.addAttribute("corpTagList", corpTagList);
 		model.addAttribute("tagList", tagList);
+		model.addAttribute("corpTagList", corpTagList);
 		String forward_path = "corp-list";
 
 		return forward_path;
@@ -128,11 +143,7 @@ public class CorpController {
 
 			// 기업 태그 리스트 뿌리기
 			List<CorpTagDto> corpTagList = corpTagService.selectAllByCorpId(corpDto.getId());
-			List<String> corpTagNameList = new ArrayList<String>();
-			for (CorpTagDto corpTag : corpTagList) {
-				corpTagNameList.add(tagService.selectTag(corpTag.getTagId()).getTagName());
-			}
-			model.addAttribute("corpTagNameList", corpTagNameList);
+			model.addAttribute("corpTagList", corpTagList);
 
 			// 공고 목록 뿌리기
 			List<RecruitDto> recruitList = recruitService.findRecruitAll();
@@ -283,7 +294,17 @@ public class CorpController {
 			List<AppDto> appList = appService.findAllByRecruitId(id);
 			// 리스트 있을 때
 			model.addAttribute("appList", appList);
-			// model.addAttribute("errorMsg","");
+			//appStatus=2인것만 따로 담기(승인)
+			List<AppDto> approveList=appList.stream().filter(appDto->appDto.getAppStatus()==2)
+													 .collect(Collectors.toList());
+			System.out.println("approveList>>>>>>>>>"+approveList);
+			model.addAttribute("approveList",approveList);
+			//appStatus=3인것만 따로 담기(거절)
+			List<AppDto> rejectList=appList.stream().filter(appDto->appDto.getAppStatus()==3)
+													.collect(Collectors.toList());
+			model.addAttribute("rejectList",rejectList);
+			
+			
 		} catch (Exception e) {
 			// 리스트 없을 때
 			// redirectAttributes.addFlashAttribute("message", e.getMessage());
@@ -295,11 +316,15 @@ public class CorpController {
 
 		// 이력서의 회원 정보 가져오기
 		List<AppDto> userList = appService.findAllByUserId(id);
+		System.out.println("이력서 회원 정보 확인>>>>>"+userList);
 		model.addAttribute("userList", userList);
 
 		// 해당 공고 디테일 뿌리기
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
+		
+		
+		
 
 		return "dashboard-applicants";
 	}
