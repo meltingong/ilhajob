@@ -11,12 +11,16 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.user.dto.EduDto;
@@ -27,8 +31,8 @@ import com.itwill.ilhajob.user.service.EduService;
 import com.itwill.ilhajob.user.service.ExpService;
 import com.itwill.ilhajob.user.service.UserService;
 
-@Controller
-public class EduController {
+@RestController
+public class EduRestController {
 	
 	@Autowired
 	private EduService eduService;
@@ -41,30 +45,23 @@ public class EduController {
 	@Autowired
 	private ExpService expService;
 	
-
-	@RequestMapping(value = "/edu-create", method = RequestMethod.POST)
-	public String createEdu(
-			@RequestParam(name = "eduStartDate") List<String> eduStartDateList, 
-			@RequestParam(name = "eduEndDate") List<String> eduEndDateList, 
-			@RequestParam(name = "eduName") List<String> eduNameList,
-			@RequestParam(name = "eduMajor") List<String> eduMajorList,
-			@RequestParam(name = "eduScore") List<String> eduScoreList,
-			@RequestParam(name = "eduContent") List<String> eduContentList,
+	@PostMapping(value = "/edu", produces = "application/json;charset=UTF-8")
+	public Map<String, Object> createEdu(
+			@RequestParam(name = "eduStartDate") String eduStartDate, 
+			@RequestParam(name = "eduEndDate") String eduEndDate, 
+			@RequestParam(name = "eduName") String eduName,
+			@RequestParam(name = "eduMajor") String eduMajor,
+			@RequestParam(name = "eduScore") String eduScore,
+			@RequestParam(name = "eduContent") String eduContent,
 			@RequestParam(name="id") Long cvId,
 			HttpServletRequest request,
 			RedirectAttributes redirectAttributes) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			String userEmail = (String)request.getSession().getAttribute("sUserId");
 			UserDto user = userService.findUser(userEmail);
 			EduDto eduDto = new EduDto();
-			
-			String eduStartDate = eduStartDateList.get(eduStartDateList.size()-1);
-			String eduEndDate = eduEndDateList.get(eduEndDateList.size()-1);
-			String eduName = eduNameList.get(eduNameList.size()-1);
-			String eduMajor = eduMajorList.get(eduMajorList.size()-1);
-			String eduScore = eduScoreList.get(eduScoreList.size()-1);
-			String eduContent = eduContentList.get(eduContentList.size()-1);
-			
+
 			eduDto.setEduName(eduName);
 			eduDto.setEduContent(eduContent);
 			eduDto.setEduMajor(eduMajor);
@@ -81,33 +78,43 @@ public class EduController {
 			eduDto.setEduEndDate(endDateTime);
 			eduService.createEdu(eduDto);
 
+			System.out.println(">>>>>>>>>>>>>>>> createEdu : " + eduDto);
+			eduService.updateEdu(cvId, eduDto);
+			System.out.println(">>>>>>>>>>>>>>>> updateEdu : " + eduDto);
+			List<EduDto> eduList = eduService.findEduListByUserId(user.getId());
+			resultMap.put("eduList", eduList);
+			
 			redirectAttributes.addAttribute("cvId", cvId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:cv-detail";
+		return resultMap;
 	}
 	
 	@RequestMapping(value = "/edu", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> addEdu(@RequestBody EduDto eduDto) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		EduDto data = eduService.createEdu(eduDto);
-		resultMap.put("data", data);
+		EduDto edu = eduService.createEdu(eduDto);
+		List<EduDto> eduList = eduService.findEduListByUserId(edu.getUser().getId());
+		resultMap.put("eduList", eduList);
 		return resultMap;
 	}
 	
-	@RequestMapping(value = "edu-delete", method = RequestMethod.POST)
-	public String deleteEdu(HttpServletRequest request, @RequestParam("eduId") String eduId, @RequestParam(name="id") Long cvId, RedirectAttributes redirectAttributes) {
-		System.out.println(">>>>>>>>>>>>>>> eduId " + eduId);
-		System.out.println(eduId.replace(',', ' ').trim());
-		System.out.println(">>>>>>>>>>>>>>> String -> Long eduId : " + Long.parseLong(eduId.replace(',', ' ').trim()));
-		Long longEduId = Long.parseLong(eduId.replace(',', ' ').trim());
-		eduService.deleteEdu(longEduId);
-		redirectAttributes.addAttribute("cvId", cvId);
-		return "redirect:cv-detail";
-	}
+	@DeleteMapping(value = "/edu/{eduId}", produces = "application/json;charset=UTF-8")
+	public Map<String, Object> deleteEdu(HttpServletRequest request, @PathVariable(value="eduId") String eduId,  RedirectAttributes redirectAttributes) {
+		  Long longEduId = Long.parseLong(eduId.replace(',', ' ').trim());
+		  eduService.deleteEdu(longEduId);
+		  Long userId = (Long)request.getSession().getAttribute("id");
+		  List<EduDto> eduList = eduService.findEduListByUserId(userId);
+		  
+		  
+		  // 리다이렉트할 cvId 전달
+		  Map<String, Object> resultMap = new HashMap<>();
+		  resultMap.put("eduList", eduList);
+		  return resultMap;
+		}
 	
-	@RequestMapping(value = "edu-update")
+	@PutMapping(value = "edu-update")
 	public String updateEdu(
 			@RequestParam(name = "eduId") String eduId, 
 			@RequestParam(name = "eduStartDate") List<String> eduStartDateList, 
@@ -150,39 +157,4 @@ public class EduController {
 		return "redirect:cv-detail";
 	}
 	
-	
-	
-	
-	// ajax
-	
-	@RequestMapping(value="/edu/delete/{eduId}", method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public Map<String, Object> deleteEdu(@PathVariable("eduId") Long eduId, HttpServletRequest request, RedirectAttributes redirectAttributes) {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		System.out.println(">>>>>>>>>> eduId : " + eduId);
-//		System.out.println(eduid.replace(',', ' ').trim());
-//		eduService.deleteEduByEduSeq(Integer.parseInt(eduid.replace(',', ' ').trim()));
-		int code = 1;
-		String msg = "success";
-		List<EduDto> eduData = new ArrayList<EduDto>();
-		try {
-			eduService.deleteEdu(eduId);
-			Long userId = (Long)request.getSession().getAttribute("id");
-			eduData = eduService.findEduListByUserId(userId);
-			
-			// RedirectAttributes
-			Long cvId = cvService.findByUserId(userId).get(0).getId();
-			redirectAttributes.addAttribute("cvId", cvId);
-			//return new ResponseEntity<>(eduList, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			//return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			code = 2;
-			msg = "fail";
-		}
-		resultMap.put("code", code);
-		resultMap.put("msg", msg);
-		resultMap.put("eduData", eduData);
-		
-		return resultMap;
-	}
 }

@@ -11,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.common.service.AppService;
@@ -23,9 +25,6 @@ import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.dto.EduDto;
 import com.itwill.ilhajob.user.dto.ExpDto;
 import com.itwill.ilhajob.user.dto.UserDto;
-import com.itwill.ilhajob.user.entity.Cv;
-import com.itwill.ilhajob.user.exception.ExistedUserException;
-import com.itwill.ilhajob.user.exception.UserNotFoundException;
 import com.itwill.ilhajob.user.service.AwardsService;
 import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.EduService;
@@ -109,7 +108,7 @@ public class CvController {
 	/** cv detail param(cvId) 있을 때 */
 	@LoginCheck
 	@RequestMapping(value = "/cv-detail")
-		public String cv_detail(HttpServletRequest request, @RequestParam Long cvId, Model model) throws Exception {
+	public String cv_detail(HttpServletRequest request, @RequestParam Long cvId, Model model) throws Exception {
 		String forwardpath = "";
 		
 		Long userId = (Long)request.getSession().getAttribute("id");
@@ -142,12 +141,11 @@ public class CvController {
 		forwardpath = "candidate-dashboard-resume";
 		return forwardpath;
 	}
-	
+		
 	/************************* cv action *******************************/
 	/** write_action */
 	@LoginCheck
-//	@PostMapping(value = "/cv-write-action")
-	@RequestMapping(value = "/cv-write-action")
+	@PostMapping(value = "/cv-write-action")
 	public String cv_write_action(HttpServletRequest request, @ModelAttribute CvDto cv, RedirectAttributes redirectAttributes) {
 		try {
 			String userEmail = (String)request.getSession().getAttribute("sUserId");
@@ -166,8 +164,8 @@ public class CvController {
 	
 	/** update_action */
 	@LoginCheck
-	@RequestMapping(value = "/cv-update-action", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public String cv_update_action(HttpServletRequest request, @RequestParam(name = "id") Long cvId , @ModelAttribute CvDto cv, @ModelAttribute EduDto edu, Model model, RedirectAttributes redirectAttributes) throws Exception {
+	@PostMapping(value = "/cv-update-action")
+	public String cv_update_action(HttpServletRequest request, @RequestParam(name = "id") Long cvId , @ModelAttribute CvDto cv, RedirectAttributes redirectAttributes) throws Exception {
 		String userEmail = (String)request.getSession().getAttribute("sUserId");
 		UserDto user = userService.findUser(userEmail);
 		cv.setUser(user);
@@ -210,21 +208,4 @@ public class CvController {
 		return "redirect:index";
 	}
 
-	/** << ajax >> edu_write_action */
-	@LoginCheck
-//	@PostMapping(value = "/cv-update-action")
-	@RequestMapping(value = "/ajax-send", produces = "application/json;charset=UTF-8")
-	public Map<String, Object> cv_update_action(HttpServletRequest request) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		return map;
-	}
-	
-	@RequestMapping(value = "/exp-delete-action")
-	public String cv_exp_delete_action(HttpServletRequest request, @RequestParam int expSeq) {
-//		System.out.println("############### expSeq : " + expSeq);
-//		expService.deleteExp(expSeq);
-		return "redirect:cv-detail";
-	}
-	
 }
