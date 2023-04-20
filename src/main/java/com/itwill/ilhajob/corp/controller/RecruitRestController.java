@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.dto.CorpTagDto;
-import com.itwill.ilhajob.common.dto.CorpTagWithNameDto;
 import com.itwill.ilhajob.common.dto.RecruitTagDto;
-import com.itwill.ilhajob.common.dto.RecruitTagWithNameDto;
+import com.itwill.ilhajob.common.dto.RecruitTagListDto;
 import com.itwill.ilhajob.common.dto.TagDto;
 import com.itwill.ilhajob.common.service.RecruitTagService;
 import com.itwill.ilhajob.common.service.TagService;
@@ -34,69 +33,37 @@ public class RecruitRestController {
 	public Map<String,Object> getRecruitTagData(@RequestBody Map<String,String> data) throws Exception{
 		System.out.println("컨트롤러도착");
 		Map<String, Object> map = new HashMap<String,Object>();
-		
+		List<RecruitDto> recruitList = recruitService.findRecruitAll();
+		Long id = 0L;
+		List<TagDto> tagList = new ArrayList<TagDto>();
 		//전체태그선택
 		if(data.get("tagId").equals("전체")) {
-			System.out.println(data.get("tagId"));
-			List<RecruitDto> recruitList = recruitService.findRecruitAll();
 			List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
-			List<RecruitTagWithNameDto> recruitTagNameList = new ArrayList<RecruitTagWithNameDto>();
-			List<TagDto> tagList = tagService.selectAll();
+			List<RecruitTagListDto> recruitTagListDto = new ArrayList<RecruitTagListDto>();
 			for(RecruitDto recruit : recruitList) {
-				List<String> nameList = new ArrayList<String>();
-				long id = 0;
-				RecruitDto recruitDto = new RecruitDto();
-				long tagID = 0;
+				tagList=new ArrayList<TagDto>();
 				for(RecruitTagDto recruitTag:recruitTagList) {
-					for(TagDto tag:tagList) {
-						if(recruit.getId()==recruitTag.getRecruit().getId()) {
-							if(tag.getTagId()==recruitTag.getTagId()) {
-								nameList.add(tag.getTagName());
+					
+					if(recruitTag.getRecruit().getId()==recruit.getId()) {
 								id = recruitTag.getId();
-								recruitDto = recruitTag.getRecruit();
-								tagID = recruitTag.getTagId();
-								}
-						}
-						}
+								tagList.add(recruitTag.getTag());
 					}
-				 recruitTagNameList.add(new RecruitTagWithNameDto(id,
-															 recruitDto,
-															 tagID,
-									                         nameList));
+					
+				}
+				recruitTagListDto.add(RecruitTagListDto.builder().id(id).recruit(recruit).tagList(tagList).build());
 			}
-			System.out.println(recruitTagNameList);
-			map.put("data", recruitTagNameList);
+			map.put("data", recruitTagListDto);
 			System.out.println("전체실행완료");
 			return map;
 		}else {
-		//일부태그선택
+		//일부태그선택시
 		Long tagId = Long.parseLong(data.get("tagId"));
-		List<RecruitTagDto> recruitTagList= recruitTagService.selectAllBytagId(tagId);
+		List<RecruitTagDto> recruitTagList = recruitTagService.selectAllBytagId(tagId);
+
+		map.put("data", recruitTagList);
 		System.out.println("전체실행완료");
-		List<RecruitTagWithNameDto> recruitTagNameList = new ArrayList<RecruitTagWithNameDto>();
-		List<TagDto> tagList = tagService.selectAll();
-			
-			for(RecruitTagDto recruitTag:recruitTagList) {
-				List<String> nameList = new ArrayList<String>();
-				long id = 0;
-				RecruitDto recruitDto = null;
-				long tagID = 0;
-				for(TagDto tag:tagList) {
-						if(tag.getTagId()==recruitTag.getTagId()) {
-							nameList.add(tag.getTagName());
-							id = recruitTag.getId();
-							recruitDto = recruitTag.getRecruit();
-							tagID = recruitTag.getTagId();
-							}
-				}
-			 recruitTagNameList.add(new RecruitTagWithNameDto(id,
-														 recruitDto,
-														 tagID,
-								                         nameList));
-		}
-		map.put("data", recruitTagNameList);
-		System.out.println("태그선택실행완료");
 		return map;
+		
 		}
 	}
 }

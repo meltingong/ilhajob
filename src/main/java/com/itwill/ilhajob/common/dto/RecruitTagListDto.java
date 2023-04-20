@@ -14,10 +14,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class RecruitTagWithNameDto {
+public class RecruitTagListDto {
 		private long id;
 		private RecruitDto recruit;
-		private long tagId;
-		private List<String> tagNameList;
+		private List<TagDto> tagList;
 	}
 

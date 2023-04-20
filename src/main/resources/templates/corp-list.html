@@ -185,17 +185,16 @@
 													th:text="${corp.corpName}"></a>
 											</h4>
 											<ul class="job-info">
-												<li><span class="icon flaticon-map-locator"></span> <span
-													th:text="${corp.corpAddress}"><br /> </span></li>
-												<li><span class="icon flaticon-briefcase"></span> <span
-													th:text="${corp.corpWelfare}"> </span></li>
+												<li><span class="icon flaticon-map-locator"></span>
+												<span th:text="${corp.corpAddress}"><br /> </span>
+												</li>
+												<li><span class="icon flaticon-briefcase"></span> 
+													<span th:text="${corp.corpWelfare}"> </span>
+												</li>
 											</ul>
-											<span th:each="corpTag:${corpTagList}"> <span
-												th:each="tag:${tagList}"> <span class="job-type"
+											<span th:each="corpTag:${corpTagList}"><span class="job-type"
 													style="margin-right: 1px; margin-bottom: 5px"
-													th:if="${corpTag.corp.Id}==${corp.id} and ${tag.tagId}==${corpTag.tagId}"
-													th:text="${tag.tagName}">Open Jobs – 2</span>
-											</span>
+													th:if="${corpTag.corp.Id}==${corp.id}" th:text="${corpTag.tag.tagName}">Open Jobs – 2</span>
 											</span>
 										</div>
 									</div>
@@ -386,7 +385,7 @@
                      	  </span>
                     		  </li>
 						</ul>
-							<span class="job-type" style="margin-right:1px; margin-bottom: 5px" >{{tagName}}</span>
+							<span class="job-type" style="margin-right:1px; margin-bottom: 5px" >{{tag.tagName}}</span>
                 	</div>
                 </div>
 				{{/each}}

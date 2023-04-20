@@ -102,8 +102,8 @@ public class CorpController {
 
 		List<CorpTagDto> corpTagList = corpTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
-		model.addAttribute("corpTagList", corpTagList);
 		model.addAttribute("tagList", tagList);
+		model.addAttribute("corpTagList", corpTagList);
 		String forward_path = "corp-list";
 
 		return forward_path;
@@ -128,11 +128,7 @@ public class CorpController {
 
 			// 기업 태그 리스트 뿌리기
 			List<CorpTagDto> corpTagList = corpTagService.selectAllByCorpId(corpDto.getId());
-			List<String> corpTagNameList = new ArrayList<String>();
-			for (CorpTagDto corpTag : corpTagList) {
-				corpTagNameList.add(tagService.selectTag(corpTag.getTagId()).getTagName());
-			}
-			model.addAttribute("corpTagNameList", corpTagNameList);
+			model.addAttribute("corpTagList", corpTagList);
 
 			// 공고 목록 뿌리기
 			List<RecruitDto> recruitList = recruitService.findRecruitAll();

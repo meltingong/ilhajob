@@ -98,7 +98,7 @@ public class RecruitController {
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAllByRecruitId(id);
 		List<String> recruitTagNameList = new ArrayList<String>();
 		for (RecruitTagDto recruitTagDto : recruitTagList) {
-			TagDto tag = tagService.selectTag(recruitTagDto.getTagId());
+			TagDto tag = tagService.selectTag(recruitTagDto.getTag().getTagId());
 			recruitTagNameList.add(tag.getTagName());
 		}
 		model.addAttribute("recruitTagNameList", recruitTagNameList);
