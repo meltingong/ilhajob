@@ -13,7 +13,7 @@
 		$(".product-name").text(data.productData.productName);
 		$(".product-total").text(productPrice.toLocaleString()+"원");
 		$(".order-period").text(data.orderData.orderEndDate);
-		$(".amount").text(data.productData.orderTotal);
+		$(".amount").text(productPrice.toLocaleString()+"원");
 		
 	});
 

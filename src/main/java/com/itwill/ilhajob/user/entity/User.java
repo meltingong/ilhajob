@@ -69,8 +69,14 @@ public class User {
 	
 	private String userSex;
 	
+	@Column
+	private Integer userPostCode;
+
 	@Column(length = 600)
 	private String userAddress;
+	
+	@Column(length = 600)
+	private String userAddressDetail;
 		
 	private String userCareer;
 	
