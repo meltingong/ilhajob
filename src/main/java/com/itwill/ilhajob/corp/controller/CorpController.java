@@ -99,6 +99,21 @@ public class CorpController {
 	public String corp_list(Model model) throws Exception {
 		List<CorpDto> corpList = corpService.findCorpAll();
 		model.addAttribute("corpList", corpList);
+		
+		//안돌아감...다시하자
+//		Page<CorpDto> corpPage = corpService.getCorpList(page, size);
+//		int nowPage = corpPage.getPageable().getPageNumber();
+//		model.addAttribute("corpList", corpPage);
+//		model.addAttribute("page",corpPage);
+//		model.addAttribute("nowPage", nowPage);
+//		model.addAttribute("totalPage", corpPage.getTotalPages());
+//	    //이전 페이지
+//		Pageable prePageable = corpPage.previousOrFirstPageable();
+//		model.addAttribute("prePage", prePageable.getPageNumber());
+//		//다음 페이지
+//		Pageable nextPageable = corpPage.nextOrLastPageable();
+//		int nextPage = corpPage.hasNext() ? nextPageable.getPageNumber() : corpPage.getTotalPages() - 1;
+//		model.addAttribute("nextPage", nextPage);
 
 		List<CorpTagDto> corpTagList = corpTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
