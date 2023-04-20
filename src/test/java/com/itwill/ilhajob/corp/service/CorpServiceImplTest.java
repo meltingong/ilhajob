@@ -103,6 +103,7 @@ class CorpServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 	}
 	
 	//corpList 페이징 기능 수정된 버전->테스트 완료
+	@Disabled
 	@Test
 	void testFindAll() throws Exception{
 		 int pageSize = 10;

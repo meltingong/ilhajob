@@ -22,6 +22,12 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.type.LocalDateType;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.common.dto.AppDto;
+import com.itwill.ilhajob.common.dto.BlogDto;
 import com.itwill.ilhajob.common.dto.CorpTagDto;
 import com.itwill.ilhajob.common.dto.TagDto;
 import com.itwill.ilhajob.common.entity.Tag;
@@ -94,37 +101,57 @@ public class CorpController {
 //		String forward_path = "index";
 //		return forward_path;
 //	}
-
-	@RequestMapping("/corp-list")
-	public String corp_list(Model model) throws Exception {
-		List<CorpDto> corpList = corpService.findCorpAll();
-		model.addAttribute("corpList", corpList);
-		
-		//안돌아감...다시하자
-//		Page<CorpDto> corpPage = corpService.getCorpList(page, size);
-//		int nowPage = corpPage.getPageable().getPageNumber();
-//		model.addAttribute("corpList", corpPage);
-//		model.addAttribute("page",corpPage);
-//		model.addAttribute("nowPage", nowPage);
-//		model.addAttribute("totalPage", corpPage.getTotalPages());
-//	    //이전 페이지
-//		Pageable prePageable = corpPage.previousOrFirstPageable();
-//		model.addAttribute("prePage", prePageable.getPageNumber());
-//		//다음 페이지
-//		Pageable nextPageable = corpPage.nextOrLastPageable();
-//		int nextPage = corpPage.hasNext() ? nextPageable.getPageNumber() : corpPage.getTotalPages() - 1;
-//		model.addAttribute("nextPage", nextPage);
-
-		List<CorpTagDto> corpTagList = corpTagService.selectAll();
-		List<TagDto> tagList = tagService.selectAll();
-		model.addAttribute("corpTagList", corpTagList);
-		model.addAttribute("tagList", tagList);
-		String forward_path = "corp-list";
-
-		return forward_path;
-
+	
+	@GetMapping("/corp-list")
+	public String corp_list(@RequestParam(defaultValue = "0") int page,
+	                        @RequestParam(defaultValue = "12") int size,
+	                        Model model) throws Exception {
+		//페이징 기능 추가->일단 12개씩 나오게 해놓음
+	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+	    Page<CorpDto> corpPage = corpService.findAll(pageable);
+	    int nowPage = corpPage.getNumber();
+	    
+	    //이전, 다음페이지 설정해야함...
+	    model.addAttribute("corpList", corpPage.getContent());
+	    model.addAttribute("nowPage", nowPage);
+	    model.addAttribute("totalPage", corpPage.getTotalPages());
+	    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
+	    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
+	    
+	    List<CorpTagDto> corpTagList = corpTagService.selectAll();
+	    List<TagDto> tagList = tagService.selectAll();
+	    model.addAttribute("corpTagList", corpTagList);
+	    model.addAttribute("tagList", tagList);
+	    
+	    return "corp-list";
 	}
-
+	
+//	@RequestMapping("/corp-list")
+//	public String corp_list(@RequestParam(defaultValue = "0") int page,
+//	                        @RequestParam(defaultValue = "12") int size,
+//	                        Model model) throws Exception {
+//	    String forward_path = "corp-list";
+//	    //페이징 기능 추가
+//	    Page<CorpDto> corpPage=corpService.getCorpList(page, size);
+//	    System.out.println("corpPage>>>>>>"+corpPage); //corpPage>>>>>>Page 1 of 2 containing com.itwill.ilhajob.corp.dto.CorpDto instances
+//	    System.out.println("page는 뭐임??>>>>>>>"+page); //0
+//	    model.addAttribute("corpList",corpPage.getContent());
+//	    model.addAttribute("page",corpPage);
+//	    
+//	    // 현재 페이지 정보와 총 페이지 수를 모델에 추가
+//	    model.addAttribute("currentPage",corpPage.getPageable());
+//	    System.out.println("currentPage는 뭐임??>>>>>>"+corpPage.getPageable());
+//	    model.addAttribute("totalPages", corpPage.getTotalPages());
+//
+//	    List<CorpTagDto> corpTagList = corpTagService.selectAll();
+//	    List<TagDto> tagList = tagService.selectAll();
+//	    model.addAttribute("corpTagList", corpTagList);
+//	    model.addAttribute("tagList", tagList);
+//
+//	    return forward_path;
+//	}
+	
+	
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpId") Long corpId, HttpServletRequest request, Model model)
 			throws Exception {
