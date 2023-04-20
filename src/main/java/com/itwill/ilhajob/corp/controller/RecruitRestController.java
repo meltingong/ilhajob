@@ -34,12 +34,13 @@ public class RecruitRestController {
 		System.out.println("컨트롤러도착");
 		Map<String, Object> map = new HashMap<String,Object>();
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
+		List<RecruitTagListDto> recruitTagListDto = new ArrayList<RecruitTagListDto>();
 		Long id = 0L;
 		List<TagDto> tagList = new ArrayList<TagDto>();
 		//전체태그선택
 		if(data.get("tagId").equals("전체")) {
 			List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
-			List<RecruitTagListDto> recruitTagListDto = new ArrayList<RecruitTagListDto>();
+			
 			for(RecruitDto recruit : recruitList) {
 				tagList=new ArrayList<TagDto>();
 				for(RecruitTagDto recruitTag:recruitTagList) {
@@ -59,9 +60,19 @@ public class RecruitRestController {
 		//일부태그선택시
 		Long tagId = Long.parseLong(data.get("tagId"));
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAllBytagId(tagId);
-
-		map.put("data", recruitTagList);
-		System.out.println("전체실행완료");
+		
+		for(RecruitTagDto recruitTag:recruitTagList) {
+			tagList= new ArrayList<TagDto>();
+			Long rId = recruitTag.getRecruit().getId();
+			List<RecruitTagDto> recruitTagListByRecruitid = recruitTagService.selectAllByRecruitId(rId);
+			for(RecruitTagDto recruitTagDto: recruitTagListByRecruitid) {
+				tagList.add(recruitTagDto.getTag());
+			}
+			recruitTagListDto.add(RecruitTagListDto.builder().id(id).recruit(recruitTag.getRecruit()).tagList(tagList).build());
+		}
+		
+		map.put("data", recruitTagListDto);
+		System.out.println("태그선택실행완료");
 		return map;
 		
 		}
