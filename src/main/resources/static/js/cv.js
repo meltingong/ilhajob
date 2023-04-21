@@ -78,7 +78,7 @@ $('.call-modal-apply').on('click', function(event) {
 	});
 	$('#apply-btn').on('click', function(e){
 		let jsonData = data.cvList[select.selectedIndex];
-		
+		console.log(jsonData);
 		alert("지원완료");
 	});
 	
