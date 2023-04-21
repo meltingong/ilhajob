@@ -45,7 +45,7 @@ public class Orders {
 	private LocalDateTime orderEndDate;
 	//상품구매 목록 확인시 order_valid로 만료 표시
 	
-	private int orderValid;
+	private String orderValid;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_id")
