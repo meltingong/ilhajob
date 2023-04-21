@@ -129,9 +129,14 @@ public class OrderController {
 	}
 	
 	@GetMapping("/dashboard-packages")
-	public String packages(HttpServletRequest request) {
+	public String packages(HttpServletRequest request) throws Exception {
+		String forwardPath = "";
+		Long id=(Long)request.getSession().getAttribute("id");
+		List<OrdersDto> orderList = ordersService.findOrderByUser(id);
+		request.setAttribute("orderList", orderList);
 		//System.out.println(">>>>>>>>"+sUserId);
-		String forwardPath = "dashboard-packages";
+		forwardPath="dashboard-packages";
+		
 		return forwardPath;
 	}
 }
