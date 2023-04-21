@@ -172,7 +172,6 @@ public class RecruitController {
 //	      return forward_path;
 //	   }
 
-	@Transactional
 	@PostMapping("/recruit-delete-action")
 	public String recruit_delete_action(@ModelAttribute RecruitDto recruitDto) throws Exception {
 		System.out.println("삭제 전");
