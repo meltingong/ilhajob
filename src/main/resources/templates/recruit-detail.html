@@ -174,7 +174,8 @@
                 <div class="sidebar-widget company-widget">
                   <div class="widget-content">
                     <div class="company-title">
-                      <div class="company-logo"><img src="images/resource/company-7.png" alt=""></div>
+                    <!-- img 60x60 -->
+                      <div class="company-logo"><img th:src="${recruit.corp.corpStoredFileName}"src="images/resource/company-7.png" alt=""></div>
                       <h5 class="company-name" th:text="${recruit.corp.corpName}">InVision</h5>
                       <a href="#" class="profile-link" th:href="@{corp-detail(corpId=${recruit.corp.id})}">
                       		View company profile</a> <!-- th:href="@{corp-detail(corpId=${recruit.corp.corpId})}" 
