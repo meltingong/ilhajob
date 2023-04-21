@@ -1,4 +1,4 @@
-package com.itwill.ilhajob.sns;
+package com.itwill.ilhajob.sns.kakao;
 
 import java.io.IOException;
 import java.net.URI;

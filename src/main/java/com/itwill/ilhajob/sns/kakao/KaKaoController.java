@@ -1,4 +1,4 @@
-package com.itwill.ilhajob.sns;
+package com.itwill.ilhajob.sns.kakao;
 
 import java.util.UUID;
 
