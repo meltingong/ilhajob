@@ -9,12 +9,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.dto.RecruitScrapDto;
 import com.itwill.ilhajob.user.entity.RecruitScrap;
 import com.itwill.ilhajob.user.repository.RecruitScrapRepository;
 
 @Service
-public class RecruitScrapServiceImpl {
+public class RecruitScrapServiceImpl implements RecruitScrapService{
 	
 	@Autowired
 	RecruitScrapRepository recruitScrapRepository;
@@ -47,6 +48,13 @@ public class RecruitScrapServiceImpl {
 		return scrapList.stream()
 				.map(recruitScrap -> modelMapper.map(recruitScrap, RecruitScrapDto.class))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public RecruitScrapDto sellectById(long id) {
+		Optional<RecruitScrap> scrap = recruitScrapRepository.findById(id);
+		RecruitScrapDto recruitScrap = modelMapper.map(scrap.get(), RecruitScrapDto.class);
+		return recruitScrap;
 	}
 	
 	

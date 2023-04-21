@@ -108,7 +108,12 @@ public class CorpController {
 	@GetMapping("/corp-list")
 	public String corp_list(@RequestParam(defaultValue = "0") int page,
 	                        @RequestParam(defaultValue = "12") int size,
+	                        @ModelAttribute CorpDto corpDto,
+	                        @ModelAttribute RecruitDto recruitDto,
+	                        HttpServletRequest request,
 	                        Model model) throws Exception {
+		String forward_path="";
+		
 		//페이징 기능 추가->일단 12개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
 	    Page<CorpDto> corpPage = corpService.findAll(pageable);
@@ -125,37 +130,40 @@ public class CorpController {
 		List<TagDto> tagList = tagService.selectAll();
 		model.addAttribute("tagList", tagList);
 		model.addAttribute("corpTagList", corpTagList);
-		String forward_path = "corp-list";
+		
+		//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
+//		List<RecruitDto> recruitAllList=recruitService.findRecruitAll(); 
+//		System.out.println("recruitAllList공고 전체 다 나오기??>>>>"+recruitAllList); //전체공고 다 나옴, 총 17개
+//		for(RecruitDto recruit: recruitAllList) {
+//			Long recruitListCount=recruitService.countByCorpId(recruit.getCorp().getId());
+//			System.out.println("recruitListCount나와랏>>>>>>"+recruitListCount);
+//			model.addAttribute("recruitListCount",recruitListCount);
+//			if(recruitListCount>0) {
+//				model.addAttribute("isFeatured", true);
+//			}else {
+//				model.addAttribute("isFeatured",false);
+//			}
+//		}->recruit를 corp로 바꿔서 해보기...주체가 recruit라서 타임리프 쓰기 애매함
+		//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함---수정하는 중...칼럼 새로 파야할 듯
+		List<CorpDto> corpAllList=corpService.findCorpAll();
+		List<RecruitDto> recruitAllList=recruitService.findRecruitAll();
+		List<Long> corpListCount=new ArrayList<>(); //여기다 담기..?
+		System.out.println("corpAllList전체 뽑아~~>>>>"+corpAllList); //22개 다 나오는데 recruit까지는 안나옴
+		System.out.println("recruitAllList전체 뽑아~~>>>>"+recruitAllList); //17개 다 나오고 corp까지 같이 나옴
+		System.out.println("corpDto>>>>>"+corpDto); //다 null임
+		System.out.println("recruitDto>>>>>"+recruitDto);//다 null임
+		for(CorpDto corp:corpAllList) {
+			Long count=recruitService.countByCorpId(corp.getId());
+			System.out.println("회사의 공고카운트뽑기>>>>>>"+count);
+			corpListCount.add(count);
+		}
+		model.addAttribute("corpListCount",corpListCount);
+	
+		forward_path = "corp-list";
 	    
-	    return "corp-list";
+	    return forward_path;
 	}
 
-//	@RequestMapping("/corp-list")
-//	public String corp_list(@RequestParam(defaultValue = "0") int page,
-//	                        @RequestParam(defaultValue = "12") int size,
-//	                        Model model) throws Exception {
-//	    String forward_path = "corp-list";
-//	    //페이징 기능 추가
-//	    Page<CorpDto> corpPage=corpService.getCorpList(page, size);
-//	    System.out.println("corpPage>>>>>>"+corpPage); //corpPage>>>>>>Page 1 of 2 containing com.itwill.ilhajob.corp.dto.CorpDto instances
-//	    System.out.println("page는 뭐임??>>>>>>>"+page); //0
-//	    model.addAttribute("corpList",corpPage.getContent());
-//	    model.addAttribute("page",corpPage);
-//	    
-//	    // 현재 페이지 정보와 총 페이지 수를 모델에 추가
-//	    model.addAttribute("currentPage",corpPage.getPageable());
-//	    System.out.println("currentPage는 뭐임??>>>>>>"+corpPage.getPageable());
-//	    model.addAttribute("totalPages", corpPage.getTotalPages());
-//
-//	    List<CorpTagDto> corpTagList = corpTagService.selectAll();
-//	    List<TagDto> tagList = tagService.selectAll();
-//	    model.addAttribute("corpTagList", corpTagList);
-//	    model.addAttribute("tagList", tagList);
-//
-//	    return forward_path;
-//	}
-	
-	
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpId") Long corpId, HttpServletRequest request, Model model)
 			throws Exception {
@@ -246,7 +254,7 @@ public class CorpController {
 	}
 	
 	@RequestMapping("/corp_logout_action")
-	public String corp_logout_action(@ModelAttribute("fcorp")CorpDto corpDto,HttpServletRequest request, HttpSession session) {
+	public String corp_logout_action(@ModelAttribute("fcorp")CorpDto corpDto,HttpServletRequest request) {
 		String forwardPath="";
 		request.getSession().invalidate();
 		forwardPath="redirect:index";

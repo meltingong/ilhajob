@@ -17,7 +17,7 @@ $('.changeTag').click(function(e){
 						'application/json;charset=UTF-8',
 						JSON.stringify(sendData),
 						function(resultJson){
-							console.log("제이슨 받아왔다");
+							console.log("제이슨 받아오기 성공");
 								View.render("#recruit-tag-template",resultJson,"#recruit-main-list");
 						},
 						true); //비동기

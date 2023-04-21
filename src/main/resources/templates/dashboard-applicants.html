@@ -135,9 +135,15 @@
                                   <li th:text="|Portfolio= ${appList.cv.cvPortfolio}|"><span class="icon flaticon-money"></span> $99 / hour</li>
                                 </ul>
                                 <ul class="post-tags">
-                                  <li><a href="#">App</a></li>
-                                  <li><a href="#">Design</a></li>
-                                  <li><a href="#">Digital</a></li>
+                                <th:block th:if="${appList.appStatus==2}">
+                                  <li>합격</li>
+                                </th:block>
+                                <th:block th:if="${appList.appStatus==3}">
+                                  <li>불합격</li>
+                                  </th:block>
+                                  <th:block th:if="${appList.appStatus==0}">
+                                  <li>접수중</li>
+                                  </th:block>
                                 </ul>
                               </div>
                               <div class="option-box">
@@ -173,10 +179,16 @@
                                   <li th:text="|Description= ${appList.cv.cvDescription}|"><span class="icon flaticon-map-locator"></span> London, UK</li>
                                   <li th:text="|Portfolio= ${appList.cv.cvPortfolio}|"><span class="icon flaticon-money"></span> $99 / hour</li>
                                 </ul>
-                                <ul class="post-tags">
-                                  <li><a href="#">App</a></li>
-                                  <li><a href="#">Design</a></li>
-                                  <li><a href="#">Digital</a></li>
+                                 <ul class="post-tags">
+                                <th:block th:if="${appList.appStatus==2}">
+                                  <li>합격</li>
+                                </th:block>
+                                <th:block th:if="${appList.appStatus==3}">
+                                  <li>불합격</li>
+                                  </th:block>
+                                  <th:block th:if="${appList.appStatus==0}">
+                                  <li>접수중</li>
+                                  </th:block>
                                 </ul>
                               </div>
                               <div class="option-box">
@@ -213,9 +225,15 @@
                                   <li th:text="|Portfolio= ${appList.cv.cvPortfolio}|"><span class="icon flaticon-money"></span> $99 / hour</li>
                                 </ul>
                                 <ul class="post-tags">
-                                  <li><a href="#">App</a></li>
-                                  <li><a href="#">Design</a></li>
-                                  <li><a href="#">Digital</a></li>
+                                <th:block th:if="${appList.appStatus==2}">
+                                  <li>합격</li>
+                                </th:block>
+                                <th:block th:if="${appList.appStatus==3}">
+                                  <li>불합격</li>
+                                  </th:block>
+                                  <th:block th:if="${appList.appStatus==0}">
+                                  <li>접수중</li>
+                                  </th:block>
                                 </ul>
                               </div>
                               <div class="option-box">

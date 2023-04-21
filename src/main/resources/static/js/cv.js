@@ -50,11 +50,47 @@ function changeCv() {
 }
 
 // cv apply(예정)
-function apply() {
+//Open modal in AJAX callback
+$('.call-modal-apply').on('click', function(event) {
+  event.preventDefault();
+  this.blur();
+  
+  $.get(this.href, function(data) {
+	$('.modal').remove();
+	
+    $(data.html).appendTo('body').modal({
+    	closeExisting: true,
+		fadeDuration: 300,
+		fadeDelay: 0.15
+    });
+    
+	let select = document.querySelector('.chosen-select');
+	// 새로운 option 요소 생성
+	$.each(data.cvList, function(index, value) {
+		console.log(index,value);
+		let option = document.createElement('option');
+		option.value = value.id; // option 요소의 값 설정(cv.id)
+		option.textContent = value.cvName; // option 요소의 텍스트 설정
+		select.appendChild(option);
+	});
+	select.addEventListener('change', function() {
+		console.log('Selected index:',select.selectedIndex);
+	});
+	$('#apply-btn').on('click', function(e){
+		let jsonData = data.cvList[select.selectedIndex];
+		console.log(jsonData);
+		alert("지원완료");
+	});
+	
+  });
+  
+});
+
+/*function apply() {
 	window.confirm("지원하시겠습니까?");
 	document.f.action = "cv-apply-action";
 	document.f.method='POST';
 	document.f.submit();
-}
+}*/
 
  /**************** edu ****************/

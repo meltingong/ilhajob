@@ -139,6 +139,7 @@
         corp_welfare varchar2(600 char),
         corp_original_file_name varchar2(255 char),
         corp_stored_file_name varchar2(255 char),
+        rc_count number(1) DEFAULT 0,
         job varchar2(255 char),
         role NUMBER(1) DEFAULT 2,
         primary key (id)
@@ -308,7 +309,9 @@
         role NUMBER(1) DEFAULT 1,
         sns_id varchar2(255 char),
         sns_type varchar2(255 char),
+        user_post_code number(10),
         user_address varchar2(600 char),
+        user_address_detail varchar2(600 char),
         user_age number(10,0),
         user_career varchar2(255 char),
         user_email varchar2(255 char) not null,
