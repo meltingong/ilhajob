@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.dto.AwardsDto;
 import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.dto.EduDto;
@@ -44,6 +46,8 @@ public class CvController {
 	private EduService eduService;
 	@Autowired
 	private ExpService expService;
+	@Autowired
+	private RecruitService recruitService;
 	@Autowired 
 	private AppService appService;
 	@Autowired
@@ -188,19 +192,24 @@ public class CvController {
 	
 	/*********************** cv apply action *************************/
 	@LoginCheck
-//	@PostMapping("cv-apply-action")
-	@RequestMapping("cv-apply-action")
-	public String cv_apply_action(HttpServletRequest request, Model model, @ModelAttribute CvDto cvDto, @ModelAttribute RecruitDto rc) throws Exception {
-		System.out.println(rc); // null
-		RecruitDto recruit = (RecruitDto)model.getAttribute("recruit"); // null
+	@ResponseBody
+	@PostMapping("cv-apply-action")
+	public String cv_apply_action(@RequestBody Map<String, Object> requestData ,HttpServletRequest request ) throws Exception {
+		System.out.println("지원 액션 json: "+requestData);
+		
+		RecruitDto recruit = recruitService.findRecruit(Long.valueOf((Integer)requestData.get("recruitId"))); // null
+		System.out.println("공고 확인"+recruit);
+		
+		CvDto cv = cvService.findCvById(Long.valueOf((Integer)requestData.get("id")));
+		System.out.println("이력서 확인"+cv);
+		
 		String userEmail = (String)request.getSession().getAttribute("sUserId");
 		UserDto user = userService.findUser(userEmail);
-		System.out.println("model.getAttribute('recruit')" + recruit);
-		AppDto app = new AppDto(0, 0, LocalDateTime.now(), recruit, cvDto, user);
-		System.out.println("##### before insert" + app);
+		
+		AppDto app = new AppDto(0, 0, LocalDateTime.now(), recruit, cv, user);
 		appService.insertApp(app);
 		System.out.println("#### after insert" + app);
-		return "redirect:candidate-dashboard-applied-job";
+		return "success";
 	}
 	
 	/************** Get 방식 요청 처리 */

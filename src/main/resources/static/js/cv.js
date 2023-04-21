@@ -54,6 +54,7 @@ function changeCv() {
 $('.call-modal-apply').on('click', function(event) {
   event.preventDefault();
   this.blur();
+  let recruitId = $(this).data('recruit-id');
   
   $.get(this.href, function(data) {
 	$('.modal').remove();
@@ -78,8 +79,23 @@ $('.call-modal-apply').on('click', function(event) {
 	});
 	$('#apply-btn').on('click', function(e){
 		let jsonData = data.cvList[select.selectedIndex];
+		jsonData.recruitId = recruitId;
 		
-		alert("지원완료");
+		console.log(jsonData);
+		$.ajax({
+			url: "cv-apply-action",
+			type: "POST",
+			data: JSON.stringify(jsonData),
+			contentType: 'application/json',
+			dataType: 'json',
+			async: false,
+			success: function(data) {
+				alert("지원완료",data);
+			},
+			error: function() {
+				alert("지원실패");
+			}
+		});
 	});
 	
   });
