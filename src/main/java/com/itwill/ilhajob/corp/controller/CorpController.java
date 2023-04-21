@@ -98,11 +98,10 @@ public class CorpController {
 	@Autowired
 	private TagService tagService;
 
-	@RequestMapping("/index")
-	public String main() {
-		String forward_path = "index";
-		return forward_path;
-	}
+//	@RequestMapping("/index")
+//	public String main() {
+//		return "redirect:/";
+//	}
 
 	
 	@GetMapping("/corp-list")

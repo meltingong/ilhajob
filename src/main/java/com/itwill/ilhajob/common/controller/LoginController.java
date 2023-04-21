@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.common.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ import com.itwill.ilhajob.user.service.UserService;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
-public class AuthController {
+public class LoginController {
 	
 	private final UserService userService;
 	private final CorpService corpService;
 	
 	@Autowired
-	public AuthController(UserService userService, CorpService corpService) {
+	public LoginController(UserService userService, CorpService corpService) {
 		this.userService = userService;
 		this.corpService = corpService;
 	}
@@ -65,6 +66,12 @@ public class AuthController {
 			}
 	    }
 	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"잘못된 형식입니다.\", \"location\": \"/final-project-team1-ilhajob\"}");
+	}
+	
+	@PostMapping("logout")
+	public ResponseEntity<String> logout(HttpSession session) throws Exception {
+		if(session != null)session.invalidate();
+	    return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그아웃 성공\", \"location\": \"/index\"}");
 	}
 
 }
