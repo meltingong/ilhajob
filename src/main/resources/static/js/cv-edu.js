@@ -90,21 +90,6 @@ function createEdu() {
     var cvId = document.querySelector('.chosen-select').value;
     document.querySelector('#cvId').value = cvId;
 
-/*
-  console.log(">>>>>>>>> " + eduDto.eduName);
-  console.log(">>>>>>>>> " + eduDto.eduMajor);
-  console.log(">>>>>>>>> " + eduDto.eduScore);
-  console.log(">>>>>>>>> " + eduDto.eduContent);
-  console.log(">>>>>>>>> " + eduDto.eduStartDate);
-  console.log(">>>>>>>>> " + eduDto.eduEndDate);
-  console.log(">>>>>>>>> eduName type " + typeof eduDto.eduName);
-  console.log(">>>>>>>>> eduMajor type " + typeof eduDto.eduMajor);
-  console.log(">>>>>>>>> eduScore type " + typeof eduDto.eduScore);
-  console.log(">>>>>>>>> eduContent type " + typeof eduDto.eduContent);
-  console.log(">>>>>>>>> start date type " + typeof eduDto.eduStartDate);
-  console.log(">>>>>>>>> end date type " + typeof eduDto.eduEndDate);
-*/
-
   $.ajax({
     url: "edu",
     type: "POST",
@@ -146,18 +131,8 @@ function updateEdu(eduId) {
 	let eduContent = $("#eduContent" + eduId).val();
 	let eduStartDate = $("#eduStartDate" + eduId).val();
 	let eduEndDate = $("#eduEndDate" + eduId).val();
-    let cvId = document.querySelector('.chosen-select').value;
-	//let name = document.getElementById("eduName" + eduId);
-	//let eduName = name.value;
-	/*
-	let eduMajor = document.getElementById("eduMajor(" + eduId + ")").value;
-	let eduScore = document.getElementById("eduScore(" + eduId + ")").value;
-	let eduContent = document.getElementById("eduContent(" + eduId + ")").value;
-	let eduStartDate = document.getElementById("eduStartDate(" + eduId + ")").value;
-	let eduEndDate = document.getElementById("eduEndDate(" + eduId + ")").value;
-    document.querySelector('#cvId').value = cvId;
-    */
-    
+    let cvId = $('.chosen-select').val();
+
 	console.log(">>>>> eduId : " + eduId);
     console.log(">>>>> eduName : " + eduName);
     console.log(">>>>> eduMajor : " + eduMajor);

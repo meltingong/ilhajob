@@ -41,6 +41,13 @@ public class ExpController {
 		UserDto user = userService.findUser(userId);
 		
 		ExpDto expDto = new ExpDto();
+		
+		expCorpName = expCorpName.replace(",", "");
+		expPosition = expPosition.replace(",", "");
+		expContent = expContent.replace(",", "");
+		expStartDate = expStartDate.replace(",", "");
+		expEndDate = expEndDate.replace(",", "");
+		
 		expDto.setExpCorpName(expCorpName);
 		expDto.setExpPosition(expPosition);
 		expDto.setExpContent(expContent);

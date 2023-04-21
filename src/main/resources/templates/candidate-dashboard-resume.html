@@ -148,12 +148,12 @@
                               	<div class="form-group col-lg-6 col-md-6">
                               	<label>입학일</label><br>
                                 <input type="date" class="year" style=display:none name="eduStartDate" th:id="eduStartDate+${edu.id}" value="">
-                                <span class="year year-span" th:value="${edu.eduStartDate}" th:text="${edu.eduStartDate}">2012 - 2014</span>
+                                <span class="year year-span" th:value="${edu.eduStartDate}" th:text="${#temporals.format(edu.eduStartDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                               	</div>
                               	<div class="form-group col-lg-6 col-md-6">
                               	<label>졸업일</label><br>
                                 <input type="date" class="year" style=display:none name="eduEndDate" th:id="eduEndDate+${edu.id}" value="">
-                                <span class="year year-span" th:value="${edu.eduEndDate}" th:text="${edu.eduEndDate}">2012 - 2014</span>
+                                <span class="year year-span" th:value="${edu.eduEndDate}" th:text="${#temporals.format(edu.eduStartDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                               	</div>
                               </div> <!-- row end -->
                              </div>
