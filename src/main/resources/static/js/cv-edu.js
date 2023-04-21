@@ -9,25 +9,23 @@ function addEdu() {
   newEduBlock.classList.add("edu-block");
   // 새로운 요소의 내부 HTML을 설정
   newEduBlock.innerHTML = `
-  <div class="resume-block" th:object="${eduList}" th:each="edu:${eduList}">
+  <div class="resume-block"">
 	  <div class="inner">
 	  <span class="name">E</span>
 	  	<div class="title-box">
 	  		  <div class="col-lg-11 col-md-11"></div>
 		      <div class="edit-btns col-lg-1 col-md-1">
 			      <button type="button" onclick="createEdu()"><span class="la la-check-circle-o"></span></button>
-			      <button type="button" onclick="deleteEdu()" name="eduId"><span class="la la-trash"></span></button>
 	      	  </div>
 	     </div>
 	      	  <div class="row">
-			  
 			  	<div class="form-group col-lg-6 col-md-6">
 		        <label>학교명</label>
-				  <input type=text id="eduName" name="eduName" placeholder="학교명">
+				  <input type=text id="eduName" name="eduName" placeholder="학교명을 입력하세요.">
 			    </div>
 			  	<div class="form-group col-lg-6 col-md-6">
 		        <label>전공</label>
-				  <input type=text id="eduMajor" name="eduMajor" placeholder="전공">
+				  <input type=text id="eduMajor" name="eduMajor" placeholder="전공을 입력하세요.">
 				</div>
 			    <div class="form-group col-lg-6 col-md-6">
 			    <label>학점</label>
@@ -41,11 +39,11 @@ function addEdu() {
 			    <div class="edit-box">
 			  	<div class="form-group col-lg-6 col-md-6">
 			    <label>입학일</label><br>
-			      <input type="date" id="eduStartDate" name ="eduStartDate" class="year edit-box">
+			      <input type="date" class="year" id="eduStartDate" name ="eduStartDate">
 			    </div>
 			  	<div class="form-group col-lg-6 col-md-6">
 			    <label>졸업일</label><br>
-			      <input type="date" id="eduEndDate" name ="eduEndDate" class="year edit-box">
+			      <input type="date" class="year" id="eduEndDate" name ="eduEndDate">
 			    </div>
 		        </div>
 		  </div>
@@ -72,6 +70,7 @@ function deleteEdu(eduId) {
     	success: function(response) {
       	console.log(response);
       	alert("success");
+      	location.reload();
    	 },
     	error: function(xhr, status, error) {
      	console.log(error);
@@ -120,7 +119,7 @@ function createEdu() {
     },
     success: function(response) {
       alert("success");
-      //render("#eduForm",resultJson,"#edu-template");
+      location.reload();
     },
     error: function(xhr, status, error) {
       alert("fail");
@@ -131,47 +130,33 @@ function createEdu() {
 // editEdu() : 학력을 수정하기 위해 input 태그로 변경
 function editEdu(eduId) {
 	$('#eduId'+eduId).val(eduId);
-	console.log($('#eduId'+eduId).attr('value'));
-	console.log(document.getElementById("eduName(" + eduId + ")"));
-	function replaceWithInputElements(elements) {
-		console.log(">>>>>>> elements : " + elements)
-	  for (let i = 0; i < elements.length; i++) {
-	    const div = elements[i];
-	    const text = div.textContent;
-	    const input = document.createElement("input");
-	    
-	    if (div.id === "eduStartDate(" + eduId + ")" || div.id === "eduEndDate(" + eduId + ")") {
-	      input.type = "date";
-	    }
-	    
-	    input.value = text;
-	    input.name = div.id;
-	    input.style.border = "1px solid red";
-	    input.style.borderRadius = "5px";
-	    div.replaceWith(input);
-	  }
-	}
-  // 호출할 때 요소들을 배열로 전달합니다.
-  replaceWithInputElements([ 
-	document.getElementById("eduName(" + eduId + ")"), 
-	document.getElementById("eduMajor(" + eduId + ")"), 
-	document.getElementById("eduScore(" + eduId + ")"), 
-	document.getElementById("eduContent(" + eduId + ")"), 
-	document.getElementById("eduStartDate(" + eduId + ")"), 
-	document.getElementById("eduEndDate(" + eduId + ")")
-	]);
+    console.log(">>>>>>>>>>>> " + eduId);
+    const EduBlock = document.querySelector(`#eduBlock${eduId}`);
+    const inputs = EduBlock.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => input.removeAttribute('readonly'));
+    EduBlock.querySelectorAll('input[type="date"]').forEach(input => input.style.display = 'block');
+    EduBlock.querySelectorAll('.year-span').forEach(span => span.style.display = 'none');
 }
 
 // updateEdu() : 학력 수정(작업중)
 function updateEdu(eduId) {
-	let eduName = document.getElementsByName("eduName(" + eduId + ")")[0].value;
-	let eduMajor = document.getElementsByName("eduMajor(" + eduId + ")")[0].value;
-	let eduScore = document.getElementsByName("eduScore(" + eduId + ")")[0].value;
-	let eduContent = document.getElementsByName("eduContent(" + eduId + ")")[0].value;
-	let eduStartDate = document.getElementsByName("eduStartDate(" + eduId + ")")[0].value;
-	let eduEndDate = document.getElementsByName("eduEndDate(" + eduId + ")")[0].value;
-    var cvId = document.querySelector('.chosen-select').value;
+	let eduName = $("#eduName" + eduId).val();
+	let eduMajor = $("#eduMajor" + eduId).val();
+	let eduScore = $("#eduScore" + eduId).val();
+	let eduContent = $("#eduContent" + eduId).val();
+	let eduStartDate = $("#eduStartDate" + eduId).val();
+	let eduEndDate = $("#eduEndDate" + eduId).val();
+    let cvId = document.querySelector('.chosen-select').value;
+	//let name = document.getElementById("eduName" + eduId);
+	//let eduName = name.value;
+	/*
+	let eduMajor = document.getElementById("eduMajor(" + eduId + ")").value;
+	let eduScore = document.getElementById("eduScore(" + eduId + ")").value;
+	let eduContent = document.getElementById("eduContent(" + eduId + ")").value;
+	let eduStartDate = document.getElementById("eduStartDate(" + eduId + ")").value;
+	let eduEndDate = document.getElementById("eduEndDate(" + eduId + ")").value;
     document.querySelector('#cvId').value = cvId;
+    */
     
 	console.log(">>>>> eduId : " + eduId);
     console.log(">>>>> eduName : " + eduName);
@@ -196,7 +181,7 @@ function updateEdu(eduId) {
     },
     success: function(response) {
       alert("success");
-      //render("#eduForm",resultJson,"#edu-template");
+      location.reload();
     },
     error: function(xhr, status, error) {
       alert("fail");

@@ -13,10 +13,10 @@ function addAwards() {
     <div class="inner">
       <span class="name">A</span>
       <div class="title-box">
-      	<div class="edit-btns col-lg-10 col-md-10"></div>
-          <div class="edit-btns col-lg-2 col-md-2">
+      	<div class="edit-btns col-lg-11 col-md-11"></div>
+          <div class="edit-btns col-lg-1 col-md-1">
           	<input type="hidden" name="awardsId">
-          	<button type="button" onclick="createAwards()" class="add-info-btn"><span class="la la-check-circle-o"></span></button>
+          	<button type="button" onclick="createAwards()"><span class="la la-check-circle-o"></span></button>
           </div>
          </div>
       <div class="row">
