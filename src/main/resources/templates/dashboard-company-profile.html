@@ -25,6 +25,11 @@ function update(){
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+  <!-- 추가 개발 js 파일 -->
+  <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="js/image-upload.js" type="module"></script>
+  <!-- 추가 개발 js 파일 끝 -->
 </head>
 
 <body>
@@ -68,33 +73,26 @@ function update(){
                 </div>
 
                 <div class="widget-content">
-                 <div id="init-page" href="#">로고등록</div> <!-- 페이지진입 이미지폼 생성 -->
-				 <script id="image-upload-form" type="text/x-handlebars-template">
+				 
 				  <div class="form-group col-lg-6 col-md-12">
-                        <label >로고</label>
-                        <div class="text">최대 파일 크기는 1MB이고 최소 치수는 330x300이며 적합한 파일은 .jpg 및 .png입니다</div>
+                  	<label >로고</label>
+                  	<div>
+				     <img id="uploaded-logo" th:src="${corp.corpStoredFileName}" th:if="${corp.corpStoredFileName != null}" alt="" style="width:150px" />
+				    </div>
+                  	<div class="text">최대 파일 크기는 1MB이고 최소 치수는 330x300이며 적합한 파일은 .jpg 및 .png입니다</div>
                   </div>
                   <form id="image-form" enctype = "multipart/form-data">
 					<div class="uploading-outer">
 				     <div class="uploadButton">
-				       <input class="uploadButton-input" type="file" name="images" accept="image/*" id="upload" multiple onchange="readURL(this);">
+				       <input class="uploadButton-input" type="file" name="images" accept="image/*" id="upload" multiple>
 				       <label class="uploadButton-button ripple-effect" for="upload">
-				          <img id="preview" src="" alt="" style="width:150px" /> </label>
+				          <img id="preview" src="" alt="" style="width:150px" /></label>
 				       <span class="uploadButton-file-name"></span>
-					   <button class="theme-btn btn-style-one" id="upload-btn" onclick="imageUpload(this);">업로드</button>
+					   <button class="theme-btn btn-style-one" id="corp-logo-upload-btn">업로드</button>
 				     </div>
 				    </div>
 				  </form>
-				 </script>
-				 
-         		 <script id="image-logo" type="text/x-handlebars-template">
-         		 	<img width="150px" height="150px" alt="" src={{imagePath}}>
-         		 </script>
-         		 
-				  <div id="image-content">
-				  
-				  </div>
-				  
+
                   <form class="default-form" name = "f" method="post">
                     <div class="row">
                       <!-- Input -->
@@ -102,6 +100,8 @@ function update(){
                       <input type="hidden" name="corpLoginId" th:value = "${corp.corpLoginId}">
                       <input type="hidden" name="corpPassword" th:value = "${corp.corpPassword}">
                       <input type="hidden" name="job" th:value = "${corp.job}">
+                      <input type="hidden" name="corpStoredFileName" th:value = "${corp.corpStoredFileName}" >
+                      
 
                       <div class="form-group col-lg-6 col-md-12">
                         <label >회사 이름</label>
@@ -114,9 +114,17 @@ function update(){
                       </div>
 						
                       <!-- Input -->
-                      <div class="form-group col-lg-6 col-md-12">
-                        <label>주소</label>
-                        <input type="text" name="corpAddress" th:value = "${corp.corpAddress}">
+                      <div class="form-group col-lg-12 col-md-12">
+                        <label>회사 주소</label>
+                      	<div class="form-group col-lg-3 col-md-6" id="address-postcode">
+                          <input type="text" th:value="${corp.corpPostCode}" id="postCode" name="corpPostCode" class="d_form mini" placeholder="우편번호">
+                        </div>
+                        <div class="form-group col-lg-6 col-md-12" id="address-road">
+                            <input type="text" th:value="${corp.corpAddress}" id="address" name="corpAddress" class="d_form std" placeholder="주소">
+                        </div>
+                        <div class="form-group col-lg-8 col-md-12" id="address-detail">
+                          <input type="text" th:value="${corp.corpAddressDetail}" id="addressDetail" name="corpAddressDetail" class="d_form" placeholder="상세주소">
+                        </div>
                       </div>
 
                       <!-- Input -->
@@ -134,8 +142,7 @@ function update(){
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>회사설립일</label>
-                        <input type="date" name="corpEst" th:value="${corp.corpEst}">
-                        <input type="text" th:value="${corp.corpEst}">
+                        <input type="text" name = "date" th:value="${#temporals.format(corp.corpEst, 'yyyy-MM-dd')}">
                       </div>
 
                       <!-- Input -->
@@ -248,8 +255,8 @@ function update(){
 
                 <div class="widget-content">
                   <form class="default-form">
-                    <div class="row">
-                      <!-- Input -->
+                    <!-- <div class="row">
+                      Input
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Country</label>
                         <select class="chosen-select">
@@ -261,7 +268,7 @@ function update(){
                         </select>
                       </div>
 
-                      <!-- Input -->
+                      Input
                       <div class="form-group col-lg-6 col-md-12">
                         <label>City</label>
                         <select class="chosen-select">
@@ -273,34 +280,34 @@ function update(){
                         </select>
                       </div>
 
-                      <!-- Input -->
+                      Input
                       <div class="form-group col-lg-12 col-md-12">
                         <label>Complete Address</label>
                         <input type="text" name="name" placeholder="329 Queensberry Street, North Melbourne VIC 3051, Australia.">
                       </div>
 
-                      <!-- Input -->
+                      Input
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Find On Map</label>
                         <input type="text" name="name" placeholder="329 Queensberry Street, North Melbourne VIC 3051, Australia.">
                       </div>
 
-                      <!-- Input -->
+                      Input
                       <div class="form-group col-lg-3 col-md-12">
                         <label>Latitude</label>
                         <input type="text" name="name" placeholder="Melbourne">
                       </div>
 
-                      <!-- Input -->
+                      Input
                       <div class="form-group col-lg-3 col-md-12">
                         <label>Longitude</label>
                         <input type="text" name="name" placeholder="Melbourne">
                       </div>
 
-                      <!-- Input -->
+                      Input
                       <div class="form-group col-lg-12 col-md-12">
                         <button class="theme-btn btn-style-three">Search Location</button>
-                      </div>
+                      </div> -->
 
 
                       <div class="form-group col-lg-12 col-md-12">
@@ -350,60 +357,13 @@ function update(){
   <script src="js/rellax.min.js"></script>
   <script src="js/owl.js"></script>
   <script src="js/wow.js"></script>
+  <script src="js/profile.js"></script>
   <script src="js/script.js"></script>
-  
-  <!-- 추가 개발 js 파일 -->
-  <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
-  <script src="js/image-upload.js" type="module"></script>
-  <!-- 추가 개발 js 파일 끝 -->
   
   <!--Google Map APi Key-->
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDaaCBm4FEmgKs5cfVrh3JYue3Chj1kJMw&#038;ver=5.2.4"></script>
   <script src="js/map-script.js"></script>
   <!--End Google Map APi-->
 </body>
-<!-- handlebars html 내부코드에 있는 함수정의 -->
-<script>
-function readURL(input) {
-	if (input.files && input.files[0]) {
-		let reader = new FileReader();
-		reader.onload = function(e) {
-			$('#preview')
-				.attr('src', e.target.result);
-		};
-		reader.readAsDataURL(input.files[0]);
-	}
-};
-//이미지 여러개
-function imageUpload(input){
-	let formData = new FormData();
-	let files = $('input[name="images"]').get(0).files;
-	if (files.length > 0) {
-		for (let i = 0; i < files.length; i++) {
-			formData.append("images", files[i]);
-		}
-		console.log(formData.getAll("images"));
-		$.ajax({
-			url: "image-upload-action",
-			type: "POST",
-			data: formData,
-			processData: false,
-			contentType: false,
-			success: function(response) {
-				if(response.success==true){
-					alert(response);
-					View.render("#image-logo",response,"#image-content");
-				}else{
-					alert(response);
-				}
-			},
-			error: function() {
-				alert("이미지 업로드 error");
-			}
-		});
-	} else {
-		alert("No images selected.");
-	}
-};
-</script>
 </html>
+

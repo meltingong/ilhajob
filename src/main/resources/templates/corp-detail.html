@@ -40,6 +40,7 @@ function reviewDelete(){
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f247f5f61cc50440b7f98463c59221b6"></script>
 </head>
 
 <body>
@@ -66,10 +67,10 @@ function reviewDelete(){
           <div class="job-block-seven">
             <div class="inner-box">
               <div class="content">
-                <span class="company-logo"><img src="images/resource/company-logo/5-1.png" alt=""></span>
+                <span class="company-logo"><img th:src="${corp.corpStoredFileName}" src="images/resource/company-logo/5-1.png" alt="" style="width:150px"></span>
                 <h4><a th:text="${corp.corpName}" href="#" th:href="@{__${corp.corpWebsite}__}" target="_blank" th:if="${corp.corpWebsite != null}">Invision</a></h4>
                 <ul class="job-info">
-                  <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}"></span></li>
+                  <li class="icon flaticon-map-locator"><span th:utext="${corp.corpAddress}+ '<br>&nbsp;&nbsp;' + ${corp.corpAddressDetail}"></span></li>
                   <li class="icon flaticon-telephone-1"><span th:text="${corp.corpPhone}"></span></li>
                   <li class="icon flaticon-mail"><span th:text="${corp.corpWebsite}"></span></li>
                 </ul>
@@ -77,8 +78,8 @@ function reviewDelete(){
                   <li th:text="|★현재 진행중인 구직공고: ${recruitCount}개★|" class="time">
                   Open Jobs – 3
                   </li>
-                   <li th:each ="str : ${corpTagNameList}" class="time">
-                   		<span th:text = "${str}"></span>
+                   <li th:each ="corpTag : ${corpTagList}" class="time">
+                   		<span th:text = "${corpTag.tag.tagName}"></span>
                   </li>
                 </ul>
               </div>
@@ -103,7 +104,8 @@ function reviewDelete(){
                 <h4>Company Welfare</h4>
                 <p th:text="${corp.corpWelfare}"></p>
                 <div class="row images-outer">
-                <h4>Company Images</h4>
+				<!--                 
+				<h4>Company Images</h4>
                   <div class="col-lg-3 col-md-3 col-sm-6">
                     <figure class="image"><a href="images/resource/employers-single-1.png" class="lightbox-image" data-fancybox="gallery"><img src="images/resource/employers-single-1.png" alt=""></a></figure>
                   </div>
@@ -115,7 +117,8 @@ function reviewDelete(){
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-6">
                     <figure class="image"><a href="images/resource/employers-single-4.png" class="lightbox-image" data-fancybox="gallery"><img src="images/resource/employers-single-4.png" alt=""></a></figure>
-                  </div>
+                  </div> 
+                -->
                 </div>
                 <p>Moody’s Corporation, often referred to as Moody’s, is an American business and financial services company. It is the holding company for Moody’s Investors Service (MIS), an American credit rating agency, and Moody’s Analytics (MA), an American provider of financial analysis software and services.</p>
                 <p>Moody’s was founded by John Moody in 1909 to produce manuals of statistics related to stocks and bonds and bond ratings. Moody’s was acquired by Dun & Bradstreet in 1962. In 2000, Dun & Bradstreet spun off Moody’s Corporation as a separate company that was listed on the NYSE under MCO. In 2007, Moody’s Corporation was split into two operating divisions, Moody’s Investors Service, the rating agency, and Moody’s Analytics, with all of its other products.</p>
@@ -136,7 +139,7 @@ function reviewDelete(){
                       <h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#" >Product Designer / UI Designer</a></h4>
                       <!-- h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#" >Product Designer / UI Designer</a></h4-->
                       <ul class="job-info" >
-                        <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}">주소</span></li>
+                        <li class="icon flaticon-map-locator"><span th:utext="${corp.corpAddress}+ '<br>&nbsp;&nbsp;' + ${corp.corpAddressDetail}">주소</span></li>
                         <li class="icon flaticon-clock-3"><span th:text="${recruit.rcDate}"></span></li>
                         <li class="icon flaticon-money"><span th:text="${recruit.rcSalary}"></span></li>
                       </ul>
@@ -236,7 +239,7 @@ function reviewDelete(){
                       <li>Founded in: <span th:text="${corp.corpEst}">2011</span></li>
                       <li>Phone: <span th:text="${corp.corpPhone}">123 456 7890</span></li>
                       <li>Website: <span th:text="${corp.corpWebsite}">info@joio.com</span></li>
-                      <li>Location: <span th:text="${corp.corpAddress}">London, UK</span></li>
+                      <li>Location: <span th:utext="${corp.corpAddress} + '<br>' + ${corp.corpAddressDetail}">London, UK</span></li>
                       <li>Social media:
                         <div class="social-links">
                           <a href="#"><i class="fab fa-facebook-f"></i></a>

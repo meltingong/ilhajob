@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.user.dto.AwardsDto;
@@ -189,16 +191,15 @@ public class CvController {
 //	@PostMapping("cv-apply-action")
 	@RequestMapping("cv-apply-action")
 	public String cv_apply_action(HttpServletRequest request, Model model, @ModelAttribute CvDto cvDto, @ModelAttribute RecruitDto rc) throws Exception {
-//		System.out.println(">>>>>>>>>>>>>>>>>>> " + (RecruitDto)request.getSession().getAttribute("recruit"));
 		System.out.println(rc); // null
 		RecruitDto recruit = (RecruitDto)model.getAttribute("recruit"); // null
 		String userEmail = (String)request.getSession().getAttribute("sUserId");
 		UserDto user = userService.findUser(userEmail);
 		System.out.println("model.getAttribute('recruit')" + recruit);
-//		AppDto app = new AppDto(0, 0, LocalDateTime.now(), recruit, cvDto, user);
-//		System.out.println("##### before insert" + app);
-//		appService.insertApp(app);
-//		System.out.println("#### after insert" + app);
+		AppDto app = new AppDto(0, 0, LocalDateTime.now(), recruit, cvDto, user);
+		System.out.println("##### before insert" + app);
+		appService.insertApp(app);
+		System.out.println("#### after insert" + app);
 		return "redirect:candidate-dashboard-applied-job";
 	}
 	

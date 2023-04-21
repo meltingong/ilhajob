@@ -41,9 +41,13 @@ public class WebConfig implements WebMvcConfigurer{
         converters.add(new MappingJackson2HttpMessageConverter());
     }
     
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/upload/**")
-//                .addResourceLocations("file:/c:/final-project-team1-ilhajob/upload/");
-//    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/upload/logo/**")
+            .addResourceLocations("file:C://final-project-team1-ilhajob//upload//logo//")
+            .setCachePeriod(0);
+        registry.addResourceHandler("/upload/profile/**")
+        .addResourceLocations("file:C://final-project-team1-ilhajob//upload//profile//")
+        .setCachePeriod(0);
+    }
 }

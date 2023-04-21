@@ -45,8 +45,8 @@
         <div class="title-outer">
           <h1>Find Jobs</h1>
           <ul class="page-breadcrumb">
-            <li><a href="index">Home</a></li>
-            <li>Jobs</li>
+            <li>구직공고 목록입니다</li>
+            <li><a href="index">메인으로 돌아가기</a></li>
           </ul>
         </div>
       </div>
@@ -248,7 +248,7 @@
               <div class="ls-switcher">
                 <div class="showing-result show-filters">
                   <button type="button" class="theme-btn toggle-filters"><span class="icon icon-filter"></span> Filter</button>
-                  <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> jobs</div>
+                  <div class="text">Showing <strong th:text="${recruitList.size()}">41-60</strong> of <strong></strong> Recruits</div>
                 </div>
                 <button class="changeTag" name="all" value="전체">전체</button>
                 <div th:each="tag: ${tagList}" th:if="${tag.tagId}<4">
@@ -256,23 +256,23 @@
 					th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
                 </div>
                 <div class="sort-by">
-                  <select class="chosen-select">
+                  <!-- select class="chosen-select">
                     <option>New Jobs</option>
                     <option>Freelance</option>
                     <option>Full Time</option>
                     <option>Internship</option>
                     <option>Part Time</option>
                     <option>Temporary</option>
-                  </select>
+                  </select-->
 
-                  <select class="chosen-select">
+                  <!-- select class="chosen-select">
                     <option>Show 10</option>
                     <option>Show 20</option>
                     <option>Show 30</option>
                     <option>Show 40</option>
                     <option>Show 50</option>
                     <option>Show 60</option>
-                  </select>
+                  </select-->
                 </div>
               </div>
 			<div id="recruit-main-list">
@@ -294,7 +294,7 @@
                       <ul class="job-other-info">
                       	<div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
-                        <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
+                        <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
                         </div>
                         </div>
                         <!--  
@@ -309,17 +309,19 @@
               </div>
             </div>
 
-              <!-- Pagination -->
+ <!-- Pagination 시작-->
               <nav class="ls-pagination mb-5">
-                <ul>
-                  <li class="prev"><a href="#"><i class="fa fa-arrow-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#" class="current-page">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li class="next"><a href="#"><i class="fa fa-arrow-right"></i></a></li>
-                </ul>
-              </nav>
-
+                <li th:each="page:${#numbers.sequence(0,totalPage -1)}" th:if="${page >= nowPage-1 and page <= nowPage+1}">
+	                 	 <a th:href="@{recruit-list?page=}+${pageStat.index}"></a></li>
+			              <ul>
+			                <li th:unless="${nowPage == 0}" class="prev"><a th:href="@{recruit-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+			                <li class="prev"><a th:unless="${nowPage == 0}" th:text="${nowPage}" th:href="@{recruit-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+			     			   <li><a class="current-page" th:text="${nowPage+1}" ></a></li>
+			                <li class="next"><a th:unless="${nowPage == totalPage-1}" th:text="${nowPage+2}" th:href="@{recruit-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+			             	<li th:unless="${nowPage == totalPage-1}" class="next"><a th:href="@{recruit-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+			              </ul>
+           			  </nav>
+<!-- Pagination 끝-->
               <!-- Call To Action -->
               <div class="call-to-action-four style-two">
                 <h5>Recruiting?</h5>
@@ -460,9 +462,13 @@
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
                       <ul class="job-other-info">
-						{{#each tagNameList}}
-                        <li class="time" >{{this}}</li>
+						
+						{{#each tagList}}
+                        <li class="time" >{{tagName}}</li>
 						{{/each}}
+						{{#unless tagList}}
+						<li class="time" >{{tag.tagName}}</li>
+						{{/unless}}
                         <!--  
                          <li class="privacy">Private</li>
                         <li class="required">Urgent</li>

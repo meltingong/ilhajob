@@ -2,6 +2,7 @@
 package com.itwill.ilhajob.corp.controller;
 
 import java.io.File;
+
 import java.util.Comparator;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,12 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.type.LocalDateType;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +45,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.common.dto.AppDto;
+import com.itwill.ilhajob.common.dto.BlogDto;
 import com.itwill.ilhajob.common.dto.CorpTagDto;
 import com.itwill.ilhajob.common.dto.TagDto;
 import com.itwill.ilhajob.common.entity.Tag;
@@ -89,27 +98,64 @@ public class CorpController {
 	@Autowired
 	private TagService tagService;
 
-//	@RequestMapping("/index")
-//	public String main() {
-//		String forward_path = "index";
-//		return forward_path;
-//	}
-
-	@RequestMapping("/corp-list")
-	public String corp_list(Model model) throws Exception {
-		List<CorpDto> corpList = corpService.findCorpAll();
-		model.addAttribute("corpList", corpList);
-
-		List<CorpTagDto> corpTagList = corpTagService.selectAll();
-		List<TagDto> tagList = tagService.selectAll();
-		model.addAttribute("corpTagList", corpTagList);
-		model.addAttribute("tagList", tagList);
-		String forward_path = "corp-list";
-
+	@RequestMapping("/index")
+	public String main() {
+		String forward_path = "index";
 		return forward_path;
-
 	}
 
+	
+	@GetMapping("/corp-list")
+	public String corp_list(@RequestParam(defaultValue = "0") int page,
+	                        @RequestParam(defaultValue = "12") int size,
+	                        Model model) throws Exception {
+		//페이징 기능 추가->일단 12개씩 나오게 해놓음
+	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+	    Page<CorpDto> corpPage = corpService.findAll(pageable);
+	    int nowPage = corpPage.getNumber();
+	    
+	    //이전, 다음페이지 설정해야함...
+	    model.addAttribute("corpList", corpPage.getContent());
+	    model.addAttribute("nowPage", nowPage);
+	    model.addAttribute("totalPage", corpPage.getTotalPages());
+	    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
+	    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
+	    
+		List<CorpTagDto> corpTagList = corpTagService.selectAll();
+		List<TagDto> tagList = tagService.selectAll();
+		model.addAttribute("tagList", tagList);
+		model.addAttribute("corpTagList", corpTagList);
+		String forward_path = "corp-list";
+	    
+	    return "corp-list";
+	}
+
+//	@RequestMapping("/corp-list")
+//	public String corp_list(@RequestParam(defaultValue = "0") int page,
+//	                        @RequestParam(defaultValue = "12") int size,
+//	                        Model model) throws Exception {
+//	    String forward_path = "corp-list";
+//	    //페이징 기능 추가
+//	    Page<CorpDto> corpPage=corpService.getCorpList(page, size);
+//	    System.out.println("corpPage>>>>>>"+corpPage); //corpPage>>>>>>Page 1 of 2 containing com.itwill.ilhajob.corp.dto.CorpDto instances
+//	    System.out.println("page는 뭐임??>>>>>>>"+page); //0
+//	    model.addAttribute("corpList",corpPage.getContent());
+//	    model.addAttribute("page",corpPage);
+//	    
+//	    // 현재 페이지 정보와 총 페이지 수를 모델에 추가
+//	    model.addAttribute("currentPage",corpPage.getPageable());
+//	    System.out.println("currentPage는 뭐임??>>>>>>"+corpPage.getPageable());
+//	    model.addAttribute("totalPages", corpPage.getTotalPages());
+//
+//	    List<CorpTagDto> corpTagList = corpTagService.selectAll();
+//	    List<TagDto> tagList = tagService.selectAll();
+//	    model.addAttribute("corpTagList", corpTagList);
+//	    model.addAttribute("tagList", tagList);
+//
+//	    return forward_path;
+//	}
+	
+	
 	@RequestMapping("corp-detail")
 	public String corp_detail_view(@RequestParam("corpId") Long corpId, HttpServletRequest request, Model model)
 			throws Exception {
@@ -128,11 +174,7 @@ public class CorpController {
 
 			// 기업 태그 리스트 뿌리기
 			List<CorpTagDto> corpTagList = corpTagService.selectAllByCorpId(corpDto.getId());
-			List<String> corpTagNameList = new ArrayList<String>();
-			for (CorpTagDto corpTag : corpTagList) {
-				corpTagNameList.add(tagService.selectTag(corpTag.getTagId()).getTagName());
-			}
-			model.addAttribute("corpTagNameList", corpTagNameList);
+			model.addAttribute("corpTagList", corpTagList);
 
 			// 공고 목록 뿌리기
 			List<RecruitDto> recruitList = recruitService.findRecruitAll();
@@ -202,6 +244,15 @@ public class CorpController {
 		}
 		return forwardPath;
 	}
+	
+	@RequestMapping("/corp_logout_action")
+	public String corp_logout_action(@ModelAttribute("fcorp")CorpDto corpDto,HttpServletRequest request, HttpSession session) {
+		String forwardPath="";
+		request.getSession().invalidate();
+		forwardPath="redirect:index";
+		return forwardPath;
+	}
+	
 
 	/*****************************************************************************
 	 * 대쉬보드
@@ -236,20 +287,23 @@ public class CorpController {
 		List<CorpImageDto> corpImageList = corpImageService.findAllByCorpId(sCorpId);
 		/*******************************************************************/
 		model.addAttribute("corp", corpDto);
-		model.addAttribute("corpImageList", corpImageList);
 		forwardPath = "dashboard-company-profile";
 
 		return forwardPath;
 	}
 
 	@PostMapping("/corp-update-action")
-	public String corp_update_action(@ModelAttribute("corp") CorpDto corpDto, HttpServletRequest request)
+	public String corp_update_action(@ModelAttribute("corp") CorpDto corp, @RequestParam("date") String date,
+			HttpServletRequest request)
 			throws Exception {
-		Long id = corpDto.getId();
-		System.out.println(corpDto);
-		corpService.update(id, corpDto);
-		request.setAttribute("corpId", corpDto.getId());
-		return "corp-detail";
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime time = LocalDate.parse(date, formatter).atStartOfDay();
+		corp.setCorpEst(time);
+		corpService.update(corp.getId(), corp);
+		request.setAttribute("corpId", corp.getId());
+		return "redirect:corp-detail?corpId="+corp.getId();
+		
 	}
 
 	@RequestMapping("/dashboard-manage-job")
@@ -335,71 +389,36 @@ public class CorpController {
 	 * resultMap.put("corpList", searchResults); // 결과 페이지를 반환 return resultMap; }
 	 */
 
-	// 이미지 업로드
-	@PostMapping("/imageUpload")
-	public String handleImageUpload(MultipartFile file, Model model, HttpServletRequest request) throws Exception {
-		if (!file.isEmpty()) {
-			try {
-				// 파일 저장 로직 구현 (예: 서버에 파일 저장, 파일 정보 DB에 저장 등)
-				String fileName = file.getOriginalFilename();
-				String CorpImageUrl = "C:\\2022-11-JAVA-DEVELOPER\\git_repositories\\final-project-team1-xxx\\src\\main\\resources\\imageUpload\\"
-						+ fileName;
-				file.transferTo(new File(CorpImageUrl));
-
-//                CorpImageDto corpImage = new CorpImageDto(5,
-//                									CorpImageUrl,
-//                									1);
-//                corpImageService.insertCorpImage(corpImage);
-				// 파일 처리가 완료된 후에는 해당 정보를 모델에 추가하여 View로 전달
-				model.addAttribute("fileName", fileName);
-
-				// 업로드 처리가 완료된 후에는 성공 페이지 또는 결과 페이지를 반환
-				return "/dashboard"; // 성공 페이지 또는 결과 페이지를 반환
-
-			} catch (IOException e) {
-				// 파일 업로드 처리 중에 예외 발생 시 에러 처리
-				model.addAttribute("error", "Failed to upload file. Error: " + e.getMessage());
-				return "error"; // 에러 페이지 또는 에러 처리 로직을 반환
-			}
-		} else {
-			// 업로드된 파일이 없는 경우 예외 처리 또는 에러 처리
-			model.addAttribute("error", "No file uploaded.");
-			return "error"; // 에러 페이지 또는 에러 처리 로직을 반환
-		}
-	}
-
-	@RequestMapping("/image-test")
-	public String image_test(HttpServletRequest request, Model model) throws Exception {
-
-		String forwardPath = "";
-		request.getSession().setAttribute("sCorpId", 1L); // 임시로 아이디 로그인상태
-		Long sCorpId = (Long) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto = corpService.findByCorpId(sCorpId);
-		/*********** CorpImage 코프 로그인아이디로 리스트뽑아오기 *****************/
-		List<CorpImageDto> corpImageList = corpImageService.findAllByCorpId(sCorpId);
-		/*******************************************************************/
-		model.addAttribute("corp", corpDto);
-		model.addAttribute("corpImageList", corpImageList);
-		System.out.println("===========================================");
-		forwardPath = "image-upload-test";
-		return forwardPath;
-	}
-
 	// corpName, job 둘 중 하나만 알아도 + 둘다 알때 검색할 수 있는 기능
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String searchCorps(@RequestParam("corpName") String corpName, @RequestParam("job") String job,
+	public String searchCorps(@RequestParam("corpName") String corpName, 
+							  @RequestParam("job") String job,
+							  @RequestParam(defaultValue = "0") int page,
+		                      @RequestParam(defaultValue = "12") int size,
+							  Pageable pageable,
 	                          Model model) {
 	    try {
 	        List<CorpDto> corpSearchList = new ArrayList<>();
+	      //페이징 기능 추가->일단 12개씩 나오게 해놓음
+		    Pageable pageable1 = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+		    Page<CorpDto> corpPage = corpService.findAll(pageable1);
+		    int nowPage = corpPage.getNumber();
+		    
+		    //이전, 다음페이지 설정해야함...
+		    model.addAttribute("corpList", corpPage.getContent());
+		    model.addAttribute("nowPage", nowPage);
+		    model.addAttribute("totalPage", corpPage.getTotalPages());
+		    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
+		    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
 	        // corpName만 알때
 	        if (job.isEmpty()) {
-	            corpSearchList = corpService.searchByCorpName(corpName);
+	            corpSearchList = corpService.searchByCorpName(corpName,pageable1);
 	        // job만 알 때
 	        } else if(corpName.isEmpty()){
-	            corpSearchList = corpService.searchByjob(job);
+	            corpSearchList = corpService.searchByjob(job,pageable1);
 	        // 둘 다 알 때
 	        } else {
-	            corpSearchList = corpService.searchCorps(corpName, job);
+	            corpSearchList = corpService.searchCorps(corpName, job,pageable1);
 	        }
 	        //검색 결과 없을 때
 	        model.addAttribute("noResults", corpSearchList.isEmpty());

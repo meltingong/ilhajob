@@ -1,8 +1,13 @@
 package com.itwill.ilhajob.corp.service;
 
+
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
@@ -36,5 +41,11 @@ public interface RecruitService {
 	String getStatus(Date rcDeadLine)throws Exception;
 	
 	//corpId로 recruitList 불러오기
-	//List<RecruitDto> recruitList(Long corpId)throws Exception; 
+	//List<RecruitDto> recruitList(Long corpId)throws Exception;
+	
+	//recruitList Paging 기능
+	Page<RecruitDto> getRecruitList(int Page, int size) throws Exception;
+	Page<RecruitDto> findAll(Pageable pageable)throws Exception;
+	
+	
 }

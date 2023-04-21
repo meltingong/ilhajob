@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import com.itwill.ilhajob.FinalProjectTeam1IlhajobApplicationTests;
 import com.itwill.ilhajob.common.dto.AppDto;
@@ -43,10 +44,7 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 //	void testRemove() throws Exception {
 //		recruitService.remove(1L);
 //	}
-		
 
-
-	
 //	@Test
 //	void testUpdate() throws Exception{
 //		RecruitDto updateRecruit=RecruitDto.builder()
@@ -56,5 +54,16 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 //										   .build();
 //		recruitService.update(2L, updateRecruit);
 //	}
+	
+	@Test
+	void testGetRecruitList() throws Exception{
+		int page=0;
+		int size=10;
+		Page<RecruitDto> recruitDtoPage=recruitService.getRecruitList(page, size);
+		List<RecruitDto> recruitDtoList=recruitDtoPage.getContent();
+		assertEquals(size, recruitDtoList.size());
+	}
+	
+	
 	
 }

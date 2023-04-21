@@ -165,16 +165,16 @@ public class CorpServiceImpl implements CorpService{
 
 	//corpName으로 검색 기능 
 	@Override
-	public List<CorpDto> searchByCorpName(String corpName) throws Exception {
-		List<Corp> corpList=corpRepository.findByCorpNameContaining(corpName);
+	public List<CorpDto> searchByCorpName(String corpName, Pageable pageable) throws Exception {
+		List<Corp> corpList=corpRepository.findByCorpNameContaining(corpName, pageable);
 		return corpList.stream()
 				        .map(corp->modelMapper.map(corp, CorpDto.class))
 				        .collect(Collectors.toList());
 	}
 	//job으로만 검색 기능
 	@Override
-	public List<CorpDto> searchByjob(String job) throws Exception {
-		List<Corp> jobList=corpRepository.findByJobContaining(job);
+	public List<CorpDto> searchByjob(String job, Pageable pageable) throws Exception {
+		List<Corp> jobList=corpRepository.findByJobContaining(job, pageable);
 		return jobList.stream()
 		        .map(corp->modelMapper.map(corp, CorpDto.class))
 		        .collect(Collectors.toList());
@@ -182,22 +182,22 @@ public class CorpServiceImpl implements CorpService{
 
 	//corpName이랑 job으로 검색 기능
 	@Override
-	public List<CorpDto> searchCorps(String corpName, String job) throws Exception {
+	public List<CorpDto> searchCorps(String corpName, String job, Pageable pageable) throws Exception {
 		//corpName, job 둘 다 알 때
 		if (corpName != null && !corpName.isEmpty() && job != null && !job.isEmpty()) {
-		    List<Corp> corpNameJobList=corpRepository.findByCorpNameContainingAndJobContaining(corpName, job);  
+		    List<Corp> corpNameJobList=corpRepository.findByCorpNameContainingAndJobContaining(corpName, job, pageable);  
 			return corpNameJobList.stream()
 			        .map(corp->modelMapper.map(corp, CorpDto.class))
 			        .collect(Collectors.toList());
 			//corpName만 알 때
 		    } else if (corpName != null && !corpName.isEmpty()) {
-		    	List<Corp> corpNameList=corpRepository.findByCorpNameContaining(corpName);
+		    	List<Corp> corpNameList=corpRepository.findByCorpNameContaining(corpName, pageable);
 		      return corpNameList.stream()
 				        .map(corp->modelMapper.map(corp, CorpDto.class))
 				        .collect(Collectors.toList());
 		    //job만 알 때
 		    } else if (job != null && !job.isEmpty()) {
-		    	List<Corp> corpJobList=corpRepository.findByJobContaining(job);
+		    	List<Corp> corpJobList=corpRepository.findByJobContaining(job, pageable);
 		    	return corpJobList.stream()
 				        .map(corp->modelMapper.map(corp, CorpDto.class))
 				        .collect(Collectors.toList());

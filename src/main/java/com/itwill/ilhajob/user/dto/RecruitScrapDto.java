@@ -1,7 +1,7 @@
-package com.itwill.ilhajob.common.dto;
+package com.itwill.ilhajob.user.dto;
 
 
-import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.dto.RecruitDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,9 +14,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class CorpTagWithNameDto {
-	private long id;
-	private CorpDto corp;
-	private long tagId;
-	private String tagName;
+public class RecruitScrapDto {
+	private Long id;
+	private UserDto user;
+	private RecruitDto recruit;
 }

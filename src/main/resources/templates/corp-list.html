@@ -156,13 +156,13 @@
 										th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
 								</div>
 								<div class="sort-by">
-									<select class="chosen-select">
+									<!-- select class="chosen-select">
 										<option>필터</option>
 										<option>회사원규모</option>
 										<option>신규등록순</option>
 										<option>회사명순</option>
 										<option>매출크기</option>
-									</select>
+									</select-->
 
 								</div>
 							</div>
@@ -179,23 +179,23 @@
 											</button>
 											<span class="featured">Featured</span> <span
 												class="company-logo"><img
+												th:src="${corp.corpStoredFileName}" style="width:80px"
 												src="images/resource/company-logo/6-1.png" alt=""></span>
 											<h4>
 												<a th:href="@{/corp-detail(corpId=${corp.id})}"
 													th:text="${corp.corpName}"></a>
 											</h4>
 											<ul class="job-info">
-												<li><span class="icon flaticon-map-locator"></span> <span
-													th:text="${corp.corpAddress}"><br /> </span></li>
-												<li><span class="icon flaticon-briefcase"></span> <span
-													th:text="${corp.corpWelfare}"> </span></li>
+												<li><span class="icon flaticon-map-locator"></span>
+												<span th:utext="${corp.corpAddress}+ '<br>' + ${corp.corpAddressDetail}"><br /> </span>
+												</li>
+												<li><span class="icon flaticon-briefcase"></span> 
+													<span th:text="${corp.corpWelfare}"> </span>
+												</li>
 											</ul>
-											<span th:each="corpTag:${corpTagList}"> <span
-												th:each="tag:${tagList}"> <span class="job-type"
+											<span th:each="corpTag:${corpTagList}"><span class="job-type"
 													style="margin-right: 1px; margin-bottom: 5px"
-													th:if="${corpTag.corp.Id}==${corp.id} and ${tag.tagId}==${corpTag.tagId}"
-													th:text="${tag.tagName}">Open Jobs – 2</span>
-											</span>
+													th:if="${corpTag.corp.Id}==${corp.id}" th:text="${corpTag.tag.tagName}">Open Jobs – 2</span>
 											</span>
 										</div>
 									</div>
@@ -203,8 +203,20 @@
 							</div>
 							<!-- 검색어 없을 때 표시할 영역 -->
 							<!--  div class="alert alert-warning" style="color: white;"></div-->
-							<!-- Pagination -->
-							<nav class="ls-pagination">
+<!-- Pagination 시작 -->
+
+        		<nav class="ls-pagination">
+	                  <li th:each="page:${#numbers.sequence(0,totalPage -1)}" th:if="${page >= nowPage-1 and page <= nowPage+1}">
+	                 	 <a th:href="@{corp-list?page=}+${pageStat.index}"></a></li>
+			              <ul>
+			                <li th:unless="${nowPage == 0}" class="prev"><a th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+			                <li class="prev"><a th:unless="${nowPage == 0}" th:text="${nowPage}" th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+			     			   <li><a class="current-page" th:text="${nowPage+1}" ></a></li>
+			                <li class="next"><a th:unless="${nowPage == totalPage-1}" th:text="${nowPage+2}" th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+			             	<li th:unless="${nowPage == totalPage-1}" class="next"><a th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+			              </ul>
+           			  </nav>
+							<!-- nav class="ls-pagination">
 								<ul>
 									<li class="prev"><a href="#"><i
 											class="fa fa-arrow-left"></i></a></li>
@@ -214,7 +226,27 @@
 									<li class="next"><a href="#"><i
 											class="fa fa-arrow-right"></i></a></li>
 								</ul>
-							</nav>
+							</nav-->
+					<!-- pagination 수정전 : 페이지는 넘어가는데 동그라미, 화살표 인식 못함-->
+						<!--nav class="ls-pagination" th:if="${page.totalPages > 1}">
+							    <ul>
+							        <li class="prev" th:classappend="${page.first ? 'disabled' : ''}">
+							            <a th:href="@{${#httpServletRequest.requestURI.replace('/final-project-team1-ilhajob', '')}(page=${page.number - 1},size=${page.size})},size=${page.size})}">
+							                <i class="fa fa-arrow-left"></i>
+							            </a>
+							        </li>
+							        <li th:each="i : ${#numbers.sequence(1, page.totalPages)}" th:class="${page.number == i ? 'active' : ''}">
+							            <a th:href="@{${#httpServletRequest.requestURI.replace('/final-project-team1-ilhajob', '')}(page=${i},size=${page.size})}" th:text="${i}"></a>
+							        </li>
+							        <li class="next" th:classappend="${page.last ? 'disabled' : ''}">
+							            <a th:href="@{${#httpServletRequest.requestURI.replace('/final-project-team1-ilhajob', '')}(page=${page.number + 1},size=${page.size})}">
+							                <i class="fa fa-arrow-right"></i>
+							            </a>
+							        </li>
+							    </ul>
+							</nav-->	
+<!-- Pagination 끝 -->
+							
 						</div>
 					</div>
 				</div>
@@ -353,7 +385,7 @@
       <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
       <h4><a href="/corp-detail?corpId={{id}}">{{corpName}}</a></h4>
       <ul class="job-info">
-        <li><span class="icon flaticon-map-locator"></span>{{corpAddress}}</li>
+        <li><span class="icon flaticon-map-locator"></span>{{corpAddress}}<br>{{corpAddressDetail}}</li>
         <li><span class="icon flaticon-briefcase"></span>{{corpWelfare}}</li>
       </ul>
       {{#each tags}}
@@ -386,7 +418,7 @@
                      	  </span>
                     		  </li>
 						</ul>
-							<span class="job-type" style="margin-right:1px; margin-bottom: 5px" >{{tagName}}</span>
+							<span class="job-type" style="margin-right:1px; margin-bottom: 5px" >{{tag.tagName}}</span>
                 	</div>
                 </div>
 				{{/each}}
