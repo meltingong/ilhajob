@@ -61,7 +61,7 @@ public class ModalController {
     	     e.printStackTrace();
     	     // 예외 처리
     	}
-
+    	
     	HttpHeaders headers = new HttpHeaders();
     	headers.setContentType(MediaType.TEXT_HTML);
 
