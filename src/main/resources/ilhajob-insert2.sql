@@ -51,6 +51,8 @@ values(CV_ID_SEQ.nextval, '~~자기소개2~~', '테스트2이력서', 'https://g
 insert into cv(id, cv_description, cv_name, cv_portfolio, user_id)
 values(CV_ID_SEQ.nextval, '~~자기소개3~~', '웹개발이력서', 'https://github.com/테스트3/', 3);
 insert into cv(id, cv_description, cv_name, cv_portfolio, user_id)
+values(CV_ID_SEQ.nextval, '~~소개소개~~', '개발이력서', 'https://tttt3.com/', 3);
+insert into cv(id, cv_description, cv_name, cv_portfolio, user_id)
 values(CV_ID_SEQ.nextval, '~~하드웨어용 자기소개~~', '하드개발이력서', 'https://github.com/테스트4/', 4);
 
 /**********************recruit_scrap insert******************************/

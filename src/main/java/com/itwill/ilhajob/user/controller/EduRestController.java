@@ -40,10 +40,6 @@ public class EduRestController {
 	private CvService cvService;
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private AwardsService awardsService;
-	@Autowired
-	private ExpService expService;
 	
 	@PostMapping(value = "/edu", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> createEdu(

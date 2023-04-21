@@ -54,6 +54,7 @@ function changeCv() {
 $('.call-modal-apply').on('click', function(event) {
   event.preventDefault();
   this.blur();
+  let recruitId = $(this).data('recruit-id');
   
   $.get(this.href, function(data) {
 	$('.modal').remove();
@@ -69,20 +70,44 @@ $('.call-modal-apply').on('click', function(event) {
 	$.each(data.cvList, function(index, value) {
 		console.log(index,value);
 		let option = document.createElement('option');
-		option.value = value.id; // option 요소의 값 설정
+		option.value = value.id; // option 요소의 값 설정(cv.id)
 		option.textContent = value.cvName; // option 요소의 텍스트 설정
 		select.appendChild(option);
+	});
+	select.addEventListener('change', function() {
+		console.log('Selected index:',select.selectedIndex);
+	});
+	$('#apply-btn').on('click', function(e){
+		let jsonData = data.cvList[select.selectedIndex];
+		jsonData.recruitId = recruitId;
+		
+		console.log(jsonData);
+		$.ajax({
+			url: "cv-apply-action",
+			type: "POST",
+			data: JSON.stringify(jsonData),
+			contentType: 'application/json',
+			dataType: 'json',
+			async: false,
+			success: function(data) {
+				alert(data);
+				location.href="/final-project-team1-ilhajob/recruit-detail?id="+recruitId;
+			},
+			error: function() {
+				alert("지원실패");
+			}
+		});
 	});
 	
   });
   
 });
 
-function apply() {
+/*function apply() {
 	window.confirm("지원하시겠습니까?");
 	document.f.action = "cv-apply-action";
 	document.f.method='POST';
 	document.f.submit();
-}
+}*/
 
  /**************** edu ****************/
