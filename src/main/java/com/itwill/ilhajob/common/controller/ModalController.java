@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,9 @@ import com.itwill.ilhajob.common.service.OrdersService;
 import com.itwill.ilhajob.common.service.ProductService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.UserService;
 
 @RestController
@@ -36,11 +39,13 @@ public class ModalController {
 
 	private final ProductService productService;
 	private final OrdersService ordersService;
+	private final CvService cvService;
 	
 	@Autowired
-	public ModalController(ProductService productService, OrdersService ordersService) {
+	public ModalController(ProductService productService, OrdersService ordersService, CvService cvService) {
 		this.productService = productService;
 		this.ordersService = ordersService;
+		this.cvService = cvService;
 	}
 	
     @GetMapping("/login-popup")
@@ -83,7 +88,12 @@ public class ModalController {
     }
     
     @GetMapping("/apply-popup")
-    public ResponseEntity<String> showApplyPopup() {
+    public ResponseEntity<Object> showApplyPopup(HttpServletRequest request) {
+    	Map<String, Object> responseData = new HashMap<>();
+    	Long userId = (Long)request.getSession().getAttribute("id");
+		/* user cv list */
+		List<CvDto> cvList = cvService.findByUserId(userId);
+		responseData.put("cvList", cvList);
     	String html = "";
 
     	try {
@@ -95,11 +105,8 @@ public class ModalController {
     	     e.printStackTrace();
     	     // 예외 처리
     	}
-
-    	HttpHeaders headers = new HttpHeaders();
-    	headers.setContentType(MediaType.TEXT_HTML);
-
-    	return new ResponseEntity<>(html, headers, HttpStatus.OK);
+    	responseData.put("html", html);
+    	return ResponseEntity.ok(responseData);
     }
     
     @PostMapping("order-popup")

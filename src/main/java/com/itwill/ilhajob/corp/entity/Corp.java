@@ -73,5 +73,8 @@ public class Corp {
 	@Column(columnDefinition = "NUMBER(1) DEFAULT 2")
 	private Integer role;
 	
+	@Column(columnDefinition = "NUMBER(1) DEFAUlT 0")
+	private Integer rcCount;
+	
 }
 
