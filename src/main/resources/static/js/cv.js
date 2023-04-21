@@ -90,7 +90,8 @@ $('.call-modal-apply').on('click', function(event) {
 			dataType: 'json',
 			async: false,
 			success: function(data) {
-				alert("지원완료",data);
+				alert(data);
+				location.href="/final-project-team1-ilhajob/recruit-detail?id="+recruitId;
 			},
 			error: function() {
 				alert("지원실패");
