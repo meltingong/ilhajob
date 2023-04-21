@@ -1,8 +1,7 @@
 package com.itwill.ilhajob.user.dto;
 
 
-import com.itwill.ilhajob.corp.entity.Recruit;
-import com.itwill.ilhajob.user.entity.User;
+import com.itwill.ilhajob.corp.dto.RecruitDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +16,6 @@ import lombok.ToString;
 @Builder
 public class RecruitScrapDto {
 	private Long id;
-	private User user;
-	private Recruit recruit;
+	private UserDto user;
+	private RecruitDto recruit;
 }
