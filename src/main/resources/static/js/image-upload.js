@@ -8,22 +8,8 @@ import *  as View from "./view.js";
 
 //$('#init-page').trigger('click');
 //====================================================
-var uploadButtonCorp = {
-        $button: $('.uploadButton-input-corp'),
-        $nameField: $('.uploadButton-file-name-corp')
-    };
-uploadButtonCorp.$button.on('change', function() {
-    _populateFileField($(this));
-});
 
-function _populateFileField($button) {
-    var selectedFile = [];
-    for (var i = 0; i < $button.get(0).files.length; ++i) {
-        selectedFile.push($button.get(0).files[i].name + '<br>');
-    }
-    uploadButtonCorp.$nameField.html(selectedFile);
-}
-
+//업로드전 프리뷰 썸네일
 $('#upload').change(function(){
 	let input = this;
 	if (input.files && input.files[0]) {
@@ -36,17 +22,6 @@ $('#upload').change(function(){
 	}
 });
 
-$('#corp-image-upload').change(function(){
-	let input = this;
-	if (input.files && input.files[0]) {
-		let reader = new FileReader();
-		reader.onload = function(e) {
-			$('#corp-image-preview')
-				.attr('src', e.target.result);
-		};
-		reader.readAsDataURL(input.files[0]);
-	}
-});
 //기업 로고 이미지 업로드
 $('#corp-logo-upload-btn').click(function() {
 	let formData = new FormData();
@@ -65,7 +40,6 @@ $('#corp-logo-upload-btn').click(function() {
 			success: function(data) {
 				alert(data);
 				window.location.href="/final-project-team1-ilhajob/dashboard-company-profile"
-				//View.render("#image-upload-form",data,"#image-content");
 			},
 			error: function() {
 				alert("이미지 업로드 error");
@@ -76,16 +50,16 @@ $('#corp-logo-upload-btn').click(function() {
 	}
 });
 
-//기업 이미지 여러장 업로드
-$('#corp-logo-upload-btn').click(function() {
+//유저 프로필 이미지 업로드
+$('#user-profile-upload-btn').click(function() {
 	let formData = new FormData();
-	let files = $('input[name="corp-images"]').get(0).files;
+	let files = $('input[name="images"]').get(0).files;
 	if (files.length > 0) {
 		for (let i = 0; i < files.length; i++) {
-			formData.append("corp-images", files[i]);
+			formData.append("images", files[i]);
 		}
 		$.ajax({
-			url: "corp-image-upload-action",
+			url: "user-profile-upload-action",
 			type: "POST",
 			data: formData,
 			async: false,
@@ -93,8 +67,7 @@ $('#corp-logo-upload-btn').click(function() {
 			contentType: false,
 			success: function(data) {
 				alert(data);
-				window.location.href="/final-project-team1-ilhajob/dashboard-company-profile"
-				//View.render("#image-upload-form",data,"#image-content");
+				window.location.href="/final-project-team1-ilhajob/candidate-dashboard-profile"
 			},
 			error: function() {
 				alert("이미지 업로드 error");
@@ -104,4 +77,6 @@ $('#corp-logo-upload-btn').click(function() {
 		alert("No images selected.");
 	}
 });
+
+
 

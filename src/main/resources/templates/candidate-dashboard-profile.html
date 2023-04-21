@@ -18,6 +18,7 @@
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="js/image-upload.js" type="module"></script>
 </head>
 
 <body>
@@ -62,14 +63,24 @@
 
                 <div class="widget-content">
 
-                  <div class="uploading-outer">
-                    <div class="uploadButton">
-                      <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload" multiple />
-                      <label class="uploadButton-button ripple-effect" for="upload">Browse Logo</label>
-                      <span class="uploadButton-file-name"></span>
-                    </div>
-                    <div class="text">Max file size is 1MB, Minimum dimension: 330x300 And Suitable files are .jpg & .png</div>
+                  <div class="form-group col-lg-6 col-md-12">
+                  	<label >프로필사진</label>
+                  	<div>
+				     <img id="uploaded-logo" th:src="${loginUser.userImage}" th:if="${loginUser.userImage != null}" alt="" style="width:150px" />
+				    </div>
+                  	<div class="text">최대 파일 크기는 1MB이고 최소 치수는 330x300이며 적합한 파일은 .jpg 및 .png입니다</div>
                   </div>
+                  <form id="image-form" enctype = "multipart/form-data">
+					<div class="uploading-outer">
+				     <div class="uploadButton">
+				       <input class="uploadButton-input" type="file" name="images" accept="image/*" id="upload" multiple>
+				       <label class="uploadButton-button ripple-effect" for="upload">
+				          <img id="preview" src="" alt="" style="width:150px" /></label>
+				       <span class="uploadButton-file-name"></span>
+					   <button class="theme-btn btn-style-one" id="user-profile-upload-btn">업로드</button>
+				     </div>
+				    </div>
+				  </form>
 
                   <form name="f" class="default-form" method ="POST">
                     <div class="row">
