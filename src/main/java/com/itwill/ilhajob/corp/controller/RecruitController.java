@@ -204,6 +204,7 @@ public class RecruitController {
 		recruitDto.setRcDate(LocalDateTime.now());
 		//마감일=등록일+30일로 설정
 		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		recruitDto.setRcStatus(0);
 		//System.out.println("pre modify action >>>>"+recruitDto);
 		
 		RecruitDto checkRecruit = recruitService.update(recruitDto);

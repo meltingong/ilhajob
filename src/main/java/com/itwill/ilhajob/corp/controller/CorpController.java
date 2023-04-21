@@ -113,7 +113,6 @@ public class CorpController {
 	                        HttpServletRequest request,
 	                        Model model) throws Exception {
 		String forward_path="";
-		String sUserId = (String) request.getSession().getAttribute("sUserId");
 		
 		//페이징 기능 추가->일단 12개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
