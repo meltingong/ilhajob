@@ -468,7 +468,7 @@
     alter table recruit_tag 
        add constraint FKelwb3nmj9ngwt4p959nb6478n 
        foreign key (recruit_id) 
-       references recruit on delete cascade;
+       references recruit on delete set null;
  
     
     alter table recruit_tag 
