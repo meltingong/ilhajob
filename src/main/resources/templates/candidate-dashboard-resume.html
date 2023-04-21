@@ -167,53 +167,55 @@
                       
 					<!-- expForm Start -->
 					<form class="default-form" name="expForm">
+					  <input type="hidden" name="cvId" th:value="${cvDetail.id}">
                         <!-- Resume / Work & Experience -->
-                        <div class="resume-outer theme-blue"id="exp-block">
+                        <div class="resume-outer theme-blue" id="exp-block">
                           <div class="upper-title">
                             <h4>경력 사항</h4>
                             <button type="button" onclick="addExp()" class="add-info-btn"><span class="icon flaticon-plus"></span> 경력 추가</button>
                           </div>
                           <!-- Resume BLock -->
-                          <div class="resume-block" th:each="exp:${expList}" >
-                          <input type="hidden" name="expId" th:value="${exp.id}">
+                          <div class="resume-block" th:each="exp:${expList}" th:id="expBlock+${exp.id}">
                               <div class="title-box"></div>                          
                             <div class="inner">
                               <span class="name">S</span>
                               <div class="title-box">
                                   <div class="edit-btns col-lg-10 col-md-10"></div>
                                   <div class="edit-btns col-lg-2 col-md-2">
+                                  	<input type="hidden" th:id="expId+${exp.id}" name="expId">
                                     <button type="button" th:id="'editExpBtn(' + ${exp.id} + ')'" th:onclick="'editExp(' + ${exp.id} + ')'"><span class="la la-pencil"></span></button>
                                     <button type="button" th:id="'updateExpBtn(' + ${exp.id} + ')'" th:onclick="'updateExp(' + ${exp.id} + ')'"><span class="la la-check-square-o"></span></button>
-                                    <button><span class="la la-trash" th:value="${exp.id}" onclick="deleteExp()"></span></button>
+                                    <button type="button" th:id="'deleteExpBtn(' + ${exp.id} + ')'" th:onclick="'deleteExp(' + ${exp.id}+ ')'"><span class="la la-trash"></span></button>
+                                    
                                   </div>
                               </div>
                               <div class="row">
                                 <div class="col-lg-6 col-md-6 form-group">
                                   <label>회사</label>
                                   <!-- <span th:text="${exp.expCorpName}" th:value="${exp.expCorpName}">Spotify Inc.</span> -->
-		                          <input type="text" class="text" th:placeholder="${exp.expCorpName}" readonly>
+		                          <input type="text" class="text" name="expCorpName" th:placeholder="${exp.expCorpName}" readonly>
                                   <!-- <h3 th:text="${exp.expPosition}" th:value="${exp.expPosition}">Product Designer</h3> -->
                                 </div>
                                 <div class="col-lg-6 col-md-6 form-group">
                                   <label>직무</label>
-		                        <input type="text" class="text" th:placeholder="${exp.expPosition}" readonly>
+		                        <input type="text" class="text" name="expPosition" th:placeholder="${exp.expPosition}" readonly>
                                 </div>
                               </div> 
                            <!-- Input expContent -->
                               <div class="form-group col-lg-12 col-md-12">
 		                        <label>경력 상세</label>
-		                        <input type="text" class="text" th:placeholder="${exp.expContent}" readonly>
+		                        <input type="text" class="text" name="expContent" th:placeholder="${exp.expContent}" readonly>
 		                      </div>
 		                        <!-- <input type="text" name="name" placeholder="경력 관련 추가 정보를 입력하세요." th:value="${exp.expContent}"> -->
                                 <div class="edit-box">
                                 <div class="form-group col-lg-6 col-md-6">
 		            			<label>경력 시작일</label><br>
-                                  <input type="date" class="year" style=display:none id="hiddenStartDate">
+                                  <input type="date" class="year" style=display:none id="hiddenStartDate" name="expStartDate">
                                   <span class="year year-span" th:value="${exp.expStartDate}" th:text="${exp.expStartDate}">2012 - 2014</span>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
 		            			<label>경력 종료일</label>
-                                  <input type="date" class="year" style=display:none id="hiddenEndDate"><br>
+                                  <input type="date" class="year" style=display:none id="hiddenEndDate" name="expEndDate"><br>
                                   <span class="year year-span" th:value="${exp.expEndDate}" th:text="${exp.expEndDate}">2012 - 2014</span>
                                 </div>
                                 </div>

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CorpDto {
+public class CorpResponseDto {
 	private Long id;
 	private String corpLoginId;
 	private String corpPassword;
@@ -21,7 +21,6 @@ public class CorpDto {
 	private String corpPhone;
 	private String corpBusinessNo;
 	private String corpWebsite;
-	private LocalDateTime corpEst;
 	private String corpSize;
 	private String corpSales;
 	private String corpOriginalFileName;
@@ -49,7 +48,7 @@ public class CorpDto {
 
 
 
-	public CorpDto(Long id, String corpLoginId, String corpPassword) {
+	public CorpResponseDto(Long id, String corpLoginId, String corpPassword) {
 		this.id = id;
 		this.corpLoginId = corpLoginId;
 		this.corpPassword = corpPassword;

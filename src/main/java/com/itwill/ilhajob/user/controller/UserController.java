@@ -133,15 +133,8 @@ public class UserController {
 	public ResponseEntity<String> modify_action(@RequestBody String requestData, HttpServletRequest request) throws Exception {
 		Long id = (Long)request.getSession().getAttribute("id");
 		Gson gson = new Gson();
-		JsonObject jsonObject = gson.fromJson(requestData, JsonObject.class);
-		String userPassword = jsonObject.get("userPassword").getAsString();
-		String userPasswordConfirm = jsonObject.get("userPasswordConfirm").getAsString();
-		jsonObject.remove("userPasswordConfirm");
-		UserDto userDto = gson.fromJson(jsonObject, UserDto.class);
-		
-		if(userPassword.equals(userPasswordConfirm)) {
-			userService.update(id,userDto);
-		}
+		UserDto userDto = gson.fromJson(requestData, UserDto.class);
+		userService.update(id,userDto);
 		
 		return ResponseEntity.ok().body("{\"location\": \"candidate-dashboard-profile\"}");
 	}

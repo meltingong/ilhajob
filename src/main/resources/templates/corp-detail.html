@@ -36,10 +36,13 @@ function reviewDelete(){
   <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
   <!-- Responsive -->
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+  <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f247f5f61cc50440b7f98463c59221b6"></script> -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f247f5f61cc50440b7f98463c59221b6&libraries=services"></script>
 </head>
 
 <body>
@@ -69,7 +72,7 @@ function reviewDelete(){
                 <span class="company-logo"><img th:src="${corp.corpStoredFileName}" src="images/resource/company-logo/5-1.png" alt="" style="width:150px"></span>
                 <h4><a th:text="${corp.corpName}" href="#" th:href="@{__${corp.corpWebsite}__}" target="_blank" th:if="${corp.corpWebsite != null}">Invision</a></h4>
                 <ul class="job-info">
-                  <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}"></span></li>
+                  <li class="icon flaticon-map-locator"><span th:utext="${corp.corpAddress}+ '<br>&nbsp;&nbsp;' + ${corp.corpAddressDetail}"></span></li>
                   <li class="icon flaticon-telephone-1"><span th:text="${corp.corpPhone}"></span></li>
                   <li class="icon flaticon-mail"><span th:text="${corp.corpWebsite}"></span></li>
                 </ul>
@@ -138,7 +141,7 @@ function reviewDelete(){
                       <h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#" >Product Designer / UI Designer</a></h4>
                       <!-- h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#" >Product Designer / UI Designer</a></h4-->
                       <ul class="job-info" >
-                        <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}">주소</span></li>
+                        <li class="icon flaticon-map-locator"><span th:utext="${corp.corpAddress}+ '<br>&nbsp;&nbsp;' + ${corp.corpAddressDetail}">주소</span></li>
                         <li class="icon flaticon-clock-3"><span th:text="${recruit.rcDate}"></span></li>
                         <li class="icon flaticon-money"><span th:text="${recruit.rcSalary}"></span></li>
                       </ul>
@@ -238,7 +241,9 @@ function reviewDelete(){
                       <li>Founded in: <span th:text="${corp.corpEst}">2011</span></li>
                       <li>Phone: <span th:text="${corp.corpPhone}">123 456 7890</span></li>
                       <li>Website: <span th:text="${corp.corpWebsite}">info@joio.com</span></li>
-                      <li>Location: <span th:text="${corp.corpAddress}">London, UK</span></li>
+                      <li>Location: <span th:utext="${corp.corpAddress} + '<br>' + ${corp.corpAddressDetail}">London, UK</span>
+                      				<input type="hidden"  id="corp-location" th:value="${corp.corpAddress}">
+                      </li>
                       <li>Social media:
                         <div class="social-links">
                           <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -263,19 +268,17 @@ function reviewDelete(){
                   <h4 class="widget-title">Job Location</h4>
                   <div class="widget-content">
                     <div class="map-outer mb-0">
-                      <div class="map-canvas" data-zoom="12" data-lat="-37.817085" data-lng="144.955631" data-type="roadmap" data-hue="#ffc400" data-title="Envato" data-icon-path="images/resource/map-marker.png" data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
+                      <div class="map-kakao" id="map-kakao" style="width:350px;height:400px;"></div>
+                   </div>
+                 </div>
+                 </div>
               </aside>
+             </div>
             </div>
           </div>
         </div>
-      </div>
     </section>
+    </div>
     <!-- End Job Detail Section -->
 
 
@@ -376,6 +379,7 @@ function reviewDelete(){
           </div>
         </div>
       </div>
+    </footer>
     <!-- Main Footer -->
     <footer class="main-footer alternate5">
       <div class="auto-container">
@@ -482,7 +486,6 @@ function reviewDelete(){
 
   </div><!-- End Page Wrapper -->
 
-
   <script src="js/jquery.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
@@ -498,11 +501,9 @@ function reviewDelete(){
   <script src="js/owl.js"></script>
   <script src="js/wow.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/maps.js"></script>
   <script src="js/review.js"></script>
-  <!--Google Map APi Key-->
-  <script src="http://maps.google.com/maps/api/js?key=AIzaSyDaaCBm4FEmgKs5cfVrh3JYue3Chj1kJMw&#038;ver=5.2.4"></script>
-  <script src="js/map-script.js"></script>
-  <!--End Google Map APi-->
+  
 </body>
 
 </html>

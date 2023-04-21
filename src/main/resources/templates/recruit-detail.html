@@ -18,6 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f247f5f61cc50440b7f98463c59221b6&libraries=services"></script>
 </head>
 
 <body>
@@ -53,16 +54,16 @@
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                         <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                      </ul>
-                      <ul class="job-other-info" >
+                       </ul>
+ <!--                     <ul class="job-other-info" >
                       	<div th:each="str : ${recruitTagNameList}">
-                        <li class="time" th:text ="${str}">Full Time</li>
-                        <!--  
+                          <li class="time" th:text ="${str}">Full Time</li>
+                         
                         <li class="privacy">Private</li>
                         <li class="required">Urgent</li>
-                        -->
+                       
                         </div>
-                      </ul>
+                        </ul -->
                     </div>
                   </div>
                 </div>
@@ -84,7 +85,8 @@
                   <li>
                     <i class="icon icon-location"></i>
                     <h5>Location:</h5>
-                    <span th:text="${recruit.corp.corpAddress}">London, UK</span>
+                    <span th:utext="${recruit.corp.corpAddress} + '<br>' + ${recruit.corp.corpAddressDetail}">London, UK</span>
+                    <input type="hidden"  id="corp-location" th:value="${recruit.corp.corpAddress}">
                   </li>
                   <li>
                     <i class="icon icon-user-2"></i>
@@ -116,20 +118,10 @@
                 <h4>Key Responsibilities</h4>
                 <ul class="list-style-three">
                   <li th:text="${recruit.rcContent}">Be involved in every step of the product design cycle from discovery to developer handoff and user acceptance testing.</li>
-                  <li>Work with BAs, product managers and tech teams to lead the Product Design</li>
-                  <li>Maintain quality of the design process and ensure that when designs are translated into code they accurately reflect the design specifications.</li>
-                  <li>Accurately estimate design tickets during planning sessions.</li>
-                  <li>Contribute to sketching sessions involving non-designersCreate, iterate and maintain UI deliverables including sketch files, style guides, high fidelity prototypes, micro interaction specifications and pattern libraries.</li>
-                  <li>Ensure design choices are data led by identifying assumptions to test each sprint, and work with the analysts in your team to plan moderated usability test sessions.</li>
-                  <li>Design pixel perfect responsive UI’s and understand that adopting common interface patterns is better for UX than reinventing the wheel</li>
-                  <li>Present your work to the wider business at Show & Tell sessions.</li>
                 </ul>
                 <h4>Skill & Experience</h4>
                 <ul class="list-style-three">
                   <li th:text="${recruit.corp.corpWelfare}">You have at least 3 years’ experience working as a Product Designer.</li>
-                  <li>You have experience using Sketch and InVision or Framer X</li>
-                  <li>You have some previous experience working in an agile environment – Think two-week sprints.</li>
-                  <li>You are familiar using Jira and Confluence in your workflow</li>
                 </ul>
               </div>
               <!-- 채용담당자 -->
@@ -174,7 +166,8 @@
                 <div class="sidebar-widget company-widget">
                   <div class="widget-content">
                     <div class="company-title">
-                      <div class="company-logo"><img src="images/resource/company-7.png" alt=""></div>
+                    <!-- img 60x60 -->
+                      <div class="company-logo"><img th:src="${recruit.corp.corpStoredFileName}"src="images/resource/company-7.png" alt=""></div>
                       <h5 class="company-name" th:text="${recruit.corp.corpName}">InVision</h5>
                       <a href="#" class="profile-link" th:href="@{corp-detail(corpId=${recruit.corp.id})}">
                       		View company profile</a> <!-- th:href="@{corp-detail(corpId=${recruit.corp.corpId})}" 
@@ -207,26 +200,9 @@
                 <div class="sidebar-widget contact-widget">
                   <h4 class="widget-title">Contact Us</h4>
                   <div class="widget-content">
-                    <!-- Comment Form -->
-                    <div class="default-form">
-                      <!--Comment Form-->
-                      <form>
-                        <div class="row clearfix">
-                          <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <input type="text" name="username" placeholder="Your Name" required>
-                          </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <input type="email" name="email" placeholder="Email Address" required>
-                          </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <textarea class="darma" name="message" placeholder="Message"></textarea>
-                          </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <button class="theme-btn btn-style-one" type="submit" name="submit-form">Send Message</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
+                   <div class="map-outer mb-0">
+                      <div class="map-kakao" id="map-kakao" style="width:350px;height:400px;"></div>
+                   </div>
                   </div>
                 </div>
               </aside>
@@ -422,11 +398,8 @@
   <script src="js/rellax.min.js"></script>
   <script src="js/owl.js"></script>
   <script src="js/wow.js"></script>
+  <script src="js/maps.js"></script>
   <script src="js/script.js"></script>
-  <!--Google Map APi Key-->
-  <script src="http://maps.google.com/maps/api/js?key=AIzaSyDaaCBm4FEmgKs5cfVrh3JYue3Chj1kJMw&#038;ver=5.2.4"></script>
-  <script src="js/map-script.js"></script>
-  <!--End Google Map APi-->
 </body>
 
 </html>

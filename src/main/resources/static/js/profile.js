@@ -87,17 +87,17 @@
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("userAddressDetail").value = extraAddr;
+                    document.getElementById("addressDetail").value = extraAddr;
                 
                 } else {
-                    document.getElementById("userAddressDetail").value = '';
+                    document.getElementById("addressDetail").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('userPostCode').value = data.zonecode;
-                document.getElementById("userAddress").value = addr;
+                document.getElementById('postCode').value = data.zonecode;
+                document.getElementById("address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("userAddressDetail").focus();
+                document.getElementById("addressDetail").focus();
             }
         }).open();
 	});

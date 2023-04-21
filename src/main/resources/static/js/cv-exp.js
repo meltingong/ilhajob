@@ -1,22 +1,23 @@
 /**
- * 
+ * exp
  */
  
- // addEdu() : 새로운 학력 영역을 추가
+ // addExp() : 새로운 경력 영역을 추가
 function addExp() {
   // 새로운 요소를 생성하고 클래스 이름을 추가
   var newEduBlock = document.createElement("div");
   newEduBlock.classList.add("exp-block");
   // 새로운 요소의 내부 HTML을 설정
   newEduBlock.innerHTML = `
-  <div class="resume-block" th:each="exp:${expList}">
+  <div class="resume-block">
   <input type="hidden" name="expId">
     <div class="inner">
       <span class="name">S</span>
       <div class="title-box">
-          <div class="col-lg-10 col-md-10"></div>
-          <div class="edit-btns form-group col-lg-2 col-md-2">
-            <button><span class="la la-check-circle-o" th:id="createExp" th:onclick="createExp()"></span></button>
+          <div class="col-lg-11 col-md-11"></div>
+          <div class="edit-btns form-group col-lg-1 col-md-1">
+            <button type="button" onclick="createExp()" class="add-info-btn"><span class="la la-check-circle-o"></span></button>
+
           </div>
       </div>
       <div class="row">
@@ -31,17 +32,17 @@ function addExp() {
         
 	      <div class="form-group col-lg-12 col-md-12">
 	        <label>경력상세</label>
-	        <input type="text" name="" placeholder="경력의 상세 내용을 입력하세요.">
+	        <input type="text" id="expContent" name="expContent" placeholder="경력의 상세 내용을 입력하세요.">
 	      </div>
       
         <div class="edit-box">
 	        <div class="form-group col-lg-6 col-md-6">
 		     <label>경력 시작일</label><br>
-	          <input type="date" id="expStartDate" class="year edit-box">
+	          <input type="date" id="expStartDate" name="expStartDate" class="year edit-box">
 	        </div>
 	        <div class="form-group col-lg-6 col-md-6">
 		     <label>경력 종료일</label><br>
-	          <input type="date" id="expEndDate" class="year edit-box">
+	          <input type="date" id="expEndDate" name="expEndDate" class="year edit-box">
 	        </div>
         </div>
      	 </div> <!-- row end -->
@@ -59,28 +60,38 @@ function addExp() {
 
 // createExp() : 새로운 경력을 추가
 function createExp() {
-    let expDto = {
-	
-}
-    $.ajax({
-        url: "/exp-create",
-        data: {
-			expCorpName : expCorpName,
-			expPosition : expPosition,
-			expContent : expContent,
-			expStartDate : expStartDate,
-			expEndDate : expEndDate,
-			  },
-        type:"POST",
-        cache: false
-    })
+  document.expForm.action = "exp-create";
+  document.expForm.method = "POST";
+  document.expForm.submit();
+  console.log(">>>>>>>> exp create success");
 }
 
 function editExp(expId) {
-	$('#expId'+expId).val(expId);
-	console.log(">>>>>>>>>>>> " + expId);
-	const inputs = document.querySelectorAll('#exp-block input[type="text"]');
-	inputs.forEach(input => input.removeAttribute('readonly'));
-	document.querySelectorAll('#exp-block input[type="date"]').forEach(input => input.style.display = 'block');
-	document.querySelectorAll('#exp-block .year-span').forEach(span => span.style.display = 'none');
+    $('#expId'+expId).val(expId);
+    console.log(">>>>>>>>>>>> " + expId);
+    const expBlock = document.querySelector(`#expBlock${expId}`);
+    const inputs = expBlock.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => input.removeAttribute('readonly'));
+    expBlock.querySelectorAll('input[type="date"]').forEach(input => input.style.display = 'block');
+    expBlock.querySelectorAll('.year-span').forEach(span => span.style.display = 'none');
 }
+
+function updateExp(expId) {
+  console.log(">>> updateExp(expId) : " + expId);
+  $('#expId'+expId).val(expId);
+  console.log($('#expId'+expId).attr('value'));
+  document.expForm.action = "exp-update";
+  document.expForm.method = "POST";
+  document.expForm.submit();
+}
+
+function deleteExp(expId) {
+  console.log(">>> deleteExp(expId) : " + expId);
+  $('#expId'+expId).val(expId);
+  console.log($('#expId'+expId).attr('value'));
+  document.expForm.action = "exp-delete";
+  document.expForm.method = "POST";
+  document.expForm.submit();
+  console.log(">>>>>>>> exp delete success");
+}
+
