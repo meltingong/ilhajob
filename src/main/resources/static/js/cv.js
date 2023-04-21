@@ -56,9 +56,6 @@ $('.call-modal-apply').on('click', function(event) {
   this.blur();
   
   $.get(this.href, function(data) {
-	console.log(data.cvList);
-	console.log(data.cvList[0].id);
-	console.log(data.html.type);
 	$('.modal').remove();
 	
     $(data.html).appendTo('body').modal({
@@ -68,7 +65,6 @@ $('.call-modal-apply').on('click', function(event) {
     });
     
 	let select = document.querySelector('.chosen-select');
-	console.log(select);
 	// 새로운 option 요소 생성
 	$.each(data.cvList, function(index, value) {
 		console.log(index,value);
@@ -77,7 +73,6 @@ $('.call-modal-apply').on('click', function(event) {
 		option.textContent = value.cvName; // option 요소의 텍스트 설정
 		select.appendChild(option);
 	});
-	// 새로운 option 요소를 select 요소에 추가
 	
   });
   
