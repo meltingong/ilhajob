@@ -40,6 +40,7 @@ function reviewDelete(){
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f247f5f61cc50440b7f98463c59221b6"></script>
 </head>
 
 <body>
@@ -69,7 +70,7 @@ function reviewDelete(){
                 <span class="company-logo"><img src="images/resource/company-logo/5-1.png" alt=""></span>
                 <h4><a th:text="${corp.corpName}" href="#" th:href="@{__${corp.corpWebsite}__}" target="_blank" th:if="${corp.corpWebsite != null}">Invision</a></h4>
                 <ul class="job-info">
-                  <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}"></span></li>
+                  <li class="icon flaticon-map-locator"><span th:utext="${corp.corpAddress}+ '<br>&nbsp;&nbsp;' + ${corp.corpAddressDetail}"></span></li>
                   <li class="icon flaticon-telephone-1"><span th:text="${corp.corpPhone}"></span></li>
                   <li class="icon flaticon-mail"><span th:text="${corp.corpWebsite}"></span></li>
                 </ul>
@@ -136,7 +137,7 @@ function reviewDelete(){
                       <h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#" >Product Designer / UI Designer</a></h4>
                       <!-- h4><a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#" >Product Designer / UI Designer</a></h4-->
                       <ul class="job-info" >
-                        <li class="icon flaticon-map-locator"><span th:text="${corp.corpAddress}">주소</span></li>
+                        <li class="icon flaticon-map-locator"><span th:utext="${corp.corpAddress}+ '<br>&nbsp;&nbsp;' + ${corp.corpAddressDetail}">주소</span></li>
                         <li class="icon flaticon-clock-3"><span th:text="${recruit.rcDate}"></span></li>
                         <li class="icon flaticon-money"><span th:text="${recruit.rcSalary}"></span></li>
                       </ul>
@@ -236,7 +237,7 @@ function reviewDelete(){
                       <li>Founded in: <span th:text="${corp.corpEst}">2011</span></li>
                       <li>Phone: <span th:text="${corp.corpPhone}">123 456 7890</span></li>
                       <li>Website: <span th:text="${corp.corpWebsite}">info@joio.com</span></li>
-                      <li>Location: <span th:text="${corp.corpAddress}">London, UK</span></li>
+                      <li>Location: <span th:utext="${corp.corpAddress} + '<br>' + ${corp.corpAddressDetail}">London, UK</span></li>
                       <li>Social media:
                         <div class="social-links">
                           <a href="#"><i class="fab fa-facebook-f"></i></a>

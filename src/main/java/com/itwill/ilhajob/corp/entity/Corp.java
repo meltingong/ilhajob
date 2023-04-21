@@ -59,8 +59,14 @@ public class Corp {
 	@Column(length = 600)
 	private String corpWelfare;
 	
+	private Integer corpPostCode;
+
 	@Column(length = 600)
 	private String corpAddress;
+
+	@Column(length = 600)
+	private String corpAddressDetail;
+	
 	
 	private String job;
 	

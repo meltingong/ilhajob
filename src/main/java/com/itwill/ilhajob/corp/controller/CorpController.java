@@ -293,7 +293,9 @@ public class CorpController {
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime time = LocalDate.parse(date, formatter).atStartOfDay();
-		CorpDto corp = CorpDto.builder().corpAddress(corpDto.getCorpAddress())
+		CorpDto corp = CorpDto.builder().corpPostCode(corpDto.getCorpPostCode())
+										.corpAddress(corpDto.getCorpAddress())
+										.corpAddressDetail(corpDto.getCorpAddressDetail())
 										.corpBusinessNo(corpDto.getCorpBusinessNo())
 										.corpComment(corpDto.getCorpComment())
 										.corpEst(time)

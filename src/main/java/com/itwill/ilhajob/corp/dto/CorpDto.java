@@ -28,7 +28,9 @@ public class CorpDto {
     private String corpStoredFileName;
 	private String corpComment;
 	private String corpWelfare;
+	private Integer corpPostCode;
 	private String corpAddress;
+	private String corpAddressDetail;
 	private String job;
 	private Integer role;
 	

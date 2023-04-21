@@ -120,7 +120,9 @@
     
     create table corp (
        id number(19,0) not null,
+        corp_post_code number(10),
         corp_address varchar2(600 char),
+        corp_address_detail varchar2(600 char),
         corp_business_no varchar2(255 char),
         corp_comment varchar2(1000 char),
         corp_est timestamp,

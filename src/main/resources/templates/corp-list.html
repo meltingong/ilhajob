@@ -186,7 +186,7 @@
 											</h4>
 											<ul class="job-info">
 												<li><span class="icon flaticon-map-locator"></span>
-												<span th:text="${corp.corpAddress}"><br /> </span>
+												<span th:utext="${corp.corpAddress}+ '<br>' + ${corp.corpAddressDetail}"><br /> </span>
 												</li>
 												<li><span class="icon flaticon-briefcase"></span> 
 													<span th:text="${corp.corpWelfare}"> </span>
@@ -384,7 +384,7 @@
       <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
       <h4><a href="/corp-detail?corpId={{id}}">{{corpName}}</a></h4>
       <ul class="job-info">
-        <li><span class="icon flaticon-map-locator"></span>{{corpAddress}}</li>
+        <li><span class="icon flaticon-map-locator"></span>{{corpAddress}}<br>{{corpAddressDetail}}</li>
         <li><span class="icon flaticon-briefcase"></span>{{corpWelfare}}</li>
       </ul>
       {{#each tags}}
