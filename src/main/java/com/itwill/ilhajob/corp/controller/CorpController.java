@@ -279,39 +279,22 @@ public class CorpController {
 		List<CorpImageDto> corpImageList = corpImageService.findAllByCorpId(sCorpId);
 		/*******************************************************************/
 		model.addAttribute("corp", corpDto);
-		model.addAttribute("corpImageList", corpImageList);
 		forwardPath = "dashboard-company-profile";
 
 		return forwardPath;
 	}
 
 	@PostMapping("/corp-update-action")
-	public String corp_update_action(@ModelAttribute("corp") CorpResponseDto corpDto, @RequestParam("date") String date,
+	public String corp_update_action(@ModelAttribute("corp") CorpDto corp, @RequestParam("date") String date,
 			HttpServletRequest request)
 			throws Exception {
-		Long id = corpDto.getId();
-		System.out.println(corpDto);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime time = LocalDate.parse(date, formatter).atStartOfDay();
-		CorpDto corp = CorpDto.builder().corpAddress(corpDto.getCorpAddress())
-										.corpBusinessNo(corpDto.getCorpBusinessNo())
-										.corpComment(corpDto.getCorpComment())
-										.corpEst(time)
-										.corpName(corpDto.getCorpName())
-										.corpLoginId(corpDto.getCorpLoginId())
-										.corpPhone(corpDto.getCorpPhone())
-										.corpPassword(corpDto.getCorpPassword())
-										.corpOriginalFileName(corpDto.getCorpOriginalFileName())
-										.corpSales(corpDto.getCorpSales())
-										.corpWebsite(corpDto.getCorpWebsite())
-										.corpSize(corpDto.getCorpSize())
-										.corpWelfare(corpDto.getCorpWelfare())
-										.corpStoredFileName(corpDto.getCorpStoredFileName()).build();
-		
-		corpService.update(id, corp);
-		request.setAttribute("corpId", id);
-		return "redirect:corp-detail?corpId="+id;
+		corp.setCorpEst(time);
+		corpService.update(corp.getId(), corp);
+		request.setAttribute("corpId", corp.getId());
+		return "redirect:corp-detail?corpId="+corp.getId();
 		
 	}
 
