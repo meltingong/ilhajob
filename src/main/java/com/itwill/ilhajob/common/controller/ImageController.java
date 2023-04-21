@@ -1,4 +1,4 @@
-package com.itwill.ilhajob.corp.controller;
+package com.itwill.ilhajob.common.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,18 +31,60 @@ import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
 import com.itwill.ilhajob.corp.service.CorpImageService;
 import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.service.UserService;
 
+/*
+ * 이미지 업로드 ajax 요청 코드 => image-upload.js
+ */
 @Controller
-public class CorpImageController {
-
+public class ImageController {
+	
 	@Autowired
 	private CorpService corpService;
 	@Autowired
-	private CorpImageService corpImageService;
-	@Autowired
-	private ResourceLoader resourceLoader;
+	private UserService userService;
 	
 	
+	public String board_main_upload_action(@RequestParam("images") List<MultipartFile> images, HttpServletRequest request) throws Exception {
+		/*
+		 * 구현필요
+		 */
+		return null;
+	}
+	
+	// 유저프로필 업로드
+	@ResponseBody
+	@PostMapping(value = "/user-profile-upload-action")
+	public String user_profile_upload_action(@RequestParam("images") List<MultipartFile> images, HttpServletRequest request) throws Exception {
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		
+		//절대경로 profile은 config에서 경로등록
+		Map<String, String> pathMap = makeDir("profile");
+		
+		// MultipartFile 배열로 받은 파일을 처리하는 로직
+	    for (MultipartFile image : images) {
+	        if (!image.isEmpty()) {
+	            String fileName = image.getOriginalFilename();
+	            String saveFileName = loginUser.getUserEmail()+"_profile"+fileName.substring(fileName.lastIndexOf("."));
+	            // 파일 저장 로직
+	            try {
+	                byte[] bytes = image.getBytes();
+	                Path path = Paths.get(pathMap.get("absolutePath") + saveFileName);
+	                Files.write(path, bytes);
+	                loginUser.setUserImage(pathMap.get("urlPath") + saveFileName);
+	                userService.update(loginUser.getId(), loginUser);
+	                //return ResponseEntity.ok().body("{\"success\": true, \"imagePath\": \"" + corp.getCorpStoredFileName() + "\", \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");
+	            } catch (IOException e) {
+	            	//return ResponseEntity.status(5101).body("{\"success\": false, \"message\": \"이미지 업로드 실패.\"}");
+	            	return "이미지 업로드 실패...";
+	            }
+	        }
+	    }
+	    return "이미지 업로드 완료";
+	}
+		
 	// 기업로고 업로드
 	@ResponseBody
 	@PostMapping(value = "/corp-logo-upload-action")
@@ -50,24 +93,9 @@ public class CorpImageController {
 		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
 		CorpDto corp=corpService.findByCorpId(sCorpId);
 		
-		//절대경로 저장
-		List<String> absPath = new ArrayList<String>();
-		absPath.add("upload/");
-		absPath.add("logo/");
+		//절대경로 logo은 config에서 경로등록
+		Map<String, String> pathMap = makeDir("logo");
 		
-		String urlPath="";
-		String absolutePath="c:/final-project-team1-ilhajob/";
-		for (String string : absPath) {
-			absolutePath+=string;
-			urlPath+=string;
-			File folder = new File(absolutePath);
-			if(!folder.exists()) {
-				folder.mkdir();
-				System.out.println(folder+"폴더가 생성되었습니다");
-			}else {
-				System.out.println(folder+"이미 폴더가 존재합니다");
-			}
-		}
 		// MultipartFile 배열로 받은 파일을 처리하는 로직
 	    for (MultipartFile image : images) {
 	        if (!image.isEmpty()) {
@@ -76,23 +104,24 @@ public class CorpImageController {
 	            // 파일 저장 로직
 	            try {
 	                byte[] bytes = image.getBytes();
-	                Path path = Paths.get(absolutePath + saveFileName);
+	                Path path = Paths.get(pathMap.get("absolutePath") + saveFileName);
 	                Files.write(path, bytes);
 	                corp.setCorpOriginalFileName(saveFileName);
-	                corp.setCorpStoredFileName(urlPath + saveFileName);
+	                corp.setCorpStoredFileName(pathMap.get("urlPath") + saveFileName);
 	                corpService.update(corp.getId(), corp);
 	                //return ResponseEntity.ok().body("{\"success\": true, \"imagePath\": \"" + corp.getCorpStoredFileName() + "\", \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");
-	                return "이미지 업로드 완료";
 	            } catch (IOException e) {
 	            	//return ResponseEntity.status(5101).body("{\"success\": false, \"message\": \"이미지 업로드 실패.\"}");
 	            	return "이미지 업로드 실패...";
 	            }
 	        }
 	    }
-	    return null;
+	    return "이미지 업로드 완료";
 	}
 	
+	//폴더메이킹
 	public Map<String, String> makeDir(String path){
+		Map<String, String> map = new HashMap<String,String>();
 		//절대경로 저장
 		List<String> absPath = new ArrayList<String>();
 		absPath.add("upload/");
@@ -100,11 +129,15 @@ public class CorpImageController {
 		
 		String urlPath="";
 		String absolutePath="c:/final-project-team1-ilhajob/";
+		File folder = new File(absolutePath);
+		if(!folder.exists()) {
+			folder.mkdir();
+		}
 		
 		for (String string : absPath) {
 			absolutePath+=string;
 			urlPath+=string;
-			File folder = new File(absolutePath);
+			folder = new File(absolutePath);
 			if(!folder.exists()) {
 				folder.mkdir();
 				System.out.println(folder+"폴더가 생성되었습니다");
@@ -112,7 +145,9 @@ public class CorpImageController {
 				System.out.println(folder+"이미 폴더가 존재합니다");
 			}
 		}
-		return null;
+		map.put("absolutePath", absolutePath);
+		map.put("urlPath", urlPath);
+		return map;
 	}
 
 }
