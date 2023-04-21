@@ -154,10 +154,11 @@ public class CorpController {
 		System.out.println("recruitDto>>>>>"+recruitDto);//다 null임
 		for(CorpDto corp:corpAllList) {
 			Long count=recruitService.countByCorpId(corp.getId());
-			System.out.println("회사의 공고카운트뽑기>>>>>>"+count);
-			corpListCount.add(count);
+			//System.out.println("회사의 공고카운트뽑기>>>>>>"+count);
+			corp.setRcCount(count.intValue());
+		
 		}
-		model.addAttribute("corpListCount",corpListCount);
+		model.addAttribute("count",corpDto);
 	
 		forward_path = "corp-list";
 	    
