@@ -106,7 +106,6 @@ public class ModalController {
     	     // 예외 처리
     	}
     	responseData.put("html", html);
-    	System.out.println(responseData);
     	return ResponseEntity.ok(responseData);
     }
     

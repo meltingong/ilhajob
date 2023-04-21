@@ -69,20 +69,28 @@ $('.call-modal-apply').on('click', function(event) {
 	$.each(data.cvList, function(index, value) {
 		console.log(index,value);
 		let option = document.createElement('option');
-		option.value = value.id; // option 요소의 값 설정
+		option.value = value.id; // option 요소의 값 설정(cv.id)
 		option.textContent = value.cvName; // option 요소의 텍스트 설정
 		select.appendChild(option);
+	});
+	select.addEventListener('change', function() {
+		console.log('Selected index:',select.selectedIndex);
+	});
+	$('#apply-btn').on('click', function(e){
+		let jsonData = data.cvList[select.selectedIndex];
+		
+		alert("지원완료");
 	});
 	
   });
   
 });
 
-function apply() {
+/*function apply() {
 	window.confirm("지원하시겠습니까?");
 	document.f.action = "cv-apply-action";
 	document.f.method='POST';
 	document.f.submit();
-}
+}*/
 
  /**************** edu ****************/
