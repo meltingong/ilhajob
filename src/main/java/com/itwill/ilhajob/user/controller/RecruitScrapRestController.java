@@ -31,7 +31,6 @@ public class RecruitScrapRestController {
 	
 	
 	//공고 스크랩 리스트 출력
-	@ResponseBody
 	@PostMapping(value = "delete-recruit-scrap", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> refresh_form(@RequestBody Map<String, String> params) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
