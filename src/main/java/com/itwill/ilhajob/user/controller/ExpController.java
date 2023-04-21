@@ -37,8 +37,6 @@ public class ExpController {
 			RedirectAttributes redirectAttributes
 			) throws Exception {
 		
-		System.out.println(">>>>>>>>>>>> expStartDate : " + expStartDate);
-		
 		String userId = (String)request.getSession().getAttribute("sUserId");
 		UserDto user = userService.findUser(userId);
 		
@@ -55,14 +53,44 @@ public class ExpController {
 		expDto.setUser(user);
 		
 		expService.createExp(expDto);
-		System.out.println(">>>>>>>>>>>> expDto : " + expDto);
 		redirectAttributes.addAttribute("cvId", cvId);
 		return "redirect:cv-detail";
 	}
 	
 	@PostMapping(value = "/exp-update")
-	public String updateExp() {
-		return "";
+	public String updateExp(
+			@RequestParam(name="expId") String id,
+			@RequestParam(name="expCorpName") String expCorpName,
+			@RequestParam(name="expPosition") String expPosition,
+			@RequestParam(name="expContent") String expContent,
+			@RequestParam(name="expStartDate") String expStartDate,
+			@RequestParam(name="expEndDate") String expEndDate,
+			@RequestParam String cvId , RedirectAttributes redirectAttributes) {
+		ExpDto expDto = new ExpDto();
+		
+		Long expId = Long.parseLong(id.replaceAll(",", ""));
+		
+		String[] beforeReplace = {expCorpName, expPosition, expContent, expStartDate, expEndDate};
+		String[] afterReplace = new String[beforeReplace.length];
+		for (int i = 0; i < beforeReplace.length; i++) {
+			afterReplace[i] = beforeReplace[i].replace(",", "");
+		}
+		
+		expStartDate = afterReplace[3];
+		expEndDate = afterReplace[4];
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime startDateTime = LocalDate.parse(expStartDate, formatter).atStartOfDay();
+		LocalDateTime endDateTime = LocalDate.parse(expEndDate, formatter).atStartOfDay();
+		
+		expDto.setExpCorpName(afterReplace[0]);
+		expDto.setExpPosition(afterReplace[1]);
+		expDto.setExpContent(afterReplace[2]);
+		expDto.setExpStartDate(startDateTime);
+		expDto.setExpEndDate(endDateTime);
+		expService.updateExp(expId, expDto);
+		redirectAttributes.addAttribute("cvId", cvId);
+		return "redirect:cv-detail";
 	}
 	
 	@PostMapping(value = "/exp-delete")

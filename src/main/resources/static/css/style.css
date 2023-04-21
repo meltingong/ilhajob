@@ -8278,6 +8278,11 @@ Login Section
 /*==========================
 Map Listing Item
 ===========================*/
+#map-kakao {
+  border-radius: 15px;
+}
+
+
 #map .infoBox {
   margin-left: -45px;
   margin-bottom: 15px;

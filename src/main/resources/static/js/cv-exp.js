@@ -67,16 +67,22 @@ function createExp() {
 }
 
 function editExp(expId) {
-	$('#expId'+expId).val(expId);
-	console.log(">>>>>>>>>>>> " + expId);
-	const inputs = document.querySelectorAll('#exp-block input[type="text"]');
-	inputs.forEach(input => input.removeAttribute('readonly'));
-	document.querySelectorAll('#exp-block input[type="date"]').forEach(input => input.style.display = 'block');
-	document.querySelectorAll('#exp-block .year-span').forEach(span => span.style.display = 'none');
+    $('#expId'+expId).val(expId);
+    console.log(">>>>>>>>>>>> " + expId);
+    const expBlock = document.querySelector(`#expBlock${expId}`);
+    const inputs = expBlock.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => input.removeAttribute('readonly'));
+    expBlock.querySelectorAll('input[type="date"]').forEach(input => input.style.display = 'block');
+    expBlock.querySelectorAll('.year-span').forEach(span => span.style.display = 'none');
 }
 
-function updateExp() {
-	
+function updateExp(expId) {
+  console.log(">>> updateExp(expId) : " + expId);
+  $('#expId'+expId).val(expId);
+  console.log($('#expId'+expId).attr('value'));
+  document.expForm.action = "exp-update";
+  document.expForm.method = "POST";
+  document.expForm.submit();
 }
 
 function deleteExp(expId) {
@@ -86,6 +92,6 @@ function deleteExp(expId) {
   document.expForm.action = "exp-delete";
   document.expForm.method = "POST";
   document.expForm.submit();
-  //console.log(">>>>>>>> exp delete success");
+  console.log(">>>>>>>> exp delete success");
 }
 
