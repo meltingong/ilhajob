@@ -156,13 +156,13 @@
 										th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
 								</div>
 								<div class="sort-by">
-									<!-- select class="chosen-select">
+									<select class="chosen-select">
 										<option>필터</option>
 										<option>회사원규모</option>
 										<option>신규등록순</option>
 										<option>회사명순</option>
 										<option>매출크기</option>
-									</select-->
+									</select>
 
 								</div>
 							</div>
@@ -170,15 +170,17 @@
 							<div id="corp-main-list">
 								<div class="row">
 									<!-- Company Block Four -->
-									<div
-										class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12"
-										th:each="corp : ${corpList}">
+						
+									<div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12"
+										th:each="corp, corpCount : ${corpList}, ${corpListCount}">
 										<div class="inner-box">
-											<button class="bookmark-btn">
+											<!-- button class="bookmark-btn">
 												<span class="flaticon-bookmark"></span>
-											</button>
-											<span class="featured">Featured</span> <span
-												class="company-logo"><img
+											</button-->
+											<tr>
+											<span class="featured" th:if="${corpCount} > 0">Featured</span> 
+											</tr>
+											<span class="company-logo"><img
 												th:src="${corp.corpStoredFileName}" style="width:80px"
 												src="images/resource/company-logo/6-1.png" alt=""></span>
 											<h4>
