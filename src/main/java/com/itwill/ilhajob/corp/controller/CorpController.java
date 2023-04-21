@@ -145,7 +145,7 @@ public class CorpController {
 //				model.addAttribute("isFeatured",false);
 //			}
 //		}->recruit를 corp로 바꿔서 해보기...주체가 recruit라서 타임리프 쓰기 애매함
-		
+		//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함---수정하는 중...칼럼 새로 파야할 듯
 		List<CorpDto> corpAllList=corpService.findCorpAll();
 		List<RecruitDto> recruitAllList=recruitService.findRecruitAll();
 		List<Long> corpListCount=new ArrayList<>(); //여기다 담기..?
