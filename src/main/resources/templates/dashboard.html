@@ -32,7 +32,7 @@
 
     <!-- Main Header-->
     <header class="main-header header-shaddow">
-     <div id="main-header" th:include="include_common_top_dashboard::include_common_top_dashboard"></div>
+     <div id="main-header" th:insert="include_common_top_dashboard::include_common_top_dashboard"></div>
     </header>
     <!--End Main Header -->
 
@@ -40,7 +40,7 @@
     <div class="sidebar-backdrop"></div>
 
     <!-- User Sidebar -->
-   	<div id="user-sidebar" th:include="corp-sidebar::corp-sidebar"></div>
+   	<div id="user-sidebar" th:insert="corp-sidebar::corp-sidebar"></div>
     <!-- End User Sidebar -->
 
     <!-- Dashboard -->
