@@ -33,6 +33,7 @@ public class CorpDto {
 	private String corpAddressDetail;
 	private String job;
 	private Integer role;
+	private Integer rcCount;
 	
 	
 	
