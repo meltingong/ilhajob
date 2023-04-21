@@ -98,11 +98,11 @@ public class CorpController {
 	@Autowired
 	private TagService tagService;
 
-//	@RequestMapping("/index")
-//	public String main() {
-//		String forward_path = "index";
-//		return forward_path;
-//	}
+	@RequestMapping("/index")
+	public String main() {
+		String forward_path = "index";
+		return forward_path;
+	}
 
 	
 	@GetMapping("/corp-list")
@@ -244,6 +244,15 @@ public class CorpController {
 		}
 		return forwardPath;
 	}
+	
+	@RequestMapping("/corp_logout_action")
+	public String corp_logout_action(@ModelAttribute("fcorp")CorpDto corpDto,HttpServletRequest request, HttpSession session) {
+		String forwardPath="";
+		request.getSession().invalidate();
+		forwardPath="redirect:index";
+		return forwardPath;
+	}
+	
 
 	/*****************************************************************************
 	 * 대쉬보드

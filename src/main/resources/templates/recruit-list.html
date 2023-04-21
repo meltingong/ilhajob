@@ -45,8 +45,8 @@
         <div class="title-outer">
           <h1>Find Jobs</h1>
           <ul class="page-breadcrumb">
-            <li><a href="index">Home</a></li>
-            <li>Jobs</li>
+            <li>구직공고 목록입니다</li>
+            <li><a href="index">메인으로 돌아가기</a></li>
           </ul>
         </div>
       </div>
@@ -248,7 +248,7 @@
               <div class="ls-switcher">
                 <div class="showing-result show-filters">
                   <button type="button" class="theme-btn toggle-filters"><span class="icon icon-filter"></span> Filter</button>
-                  <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> jobs</div>
+                  <div class="text">Showing <strong th:text="${recruitList.size()}">41-60</strong> of <strong></strong> Recruits</div>
                 </div>
                 <button class="changeTag" name="all" value="전체">전체</button>
                 <div th:each="tag: ${tagList}" th:if="${tag.tagId}<4">
@@ -256,23 +256,23 @@
 					th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
                 </div>
                 <div class="sort-by">
-                  <select class="chosen-select">
+                  <!-- select class="chosen-select">
                     <option>New Jobs</option>
                     <option>Freelance</option>
                     <option>Full Time</option>
                     <option>Internship</option>
                     <option>Part Time</option>
                     <option>Temporary</option>
-                  </select>
+                  </select-->
 
-                  <select class="chosen-select">
+                  <!-- select class="chosen-select">
                     <option>Show 10</option>
                     <option>Show 20</option>
                     <option>Show 30</option>
                     <option>Show 40</option>
                     <option>Show 50</option>
                     <option>Show 60</option>
-                  </select>
+                  </select-->
                 </div>
               </div>
 			<div id="recruit-main-list">
