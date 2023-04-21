@@ -246,7 +246,7 @@ public class CorpController {
 	}
 	
 	@RequestMapping("/corp_logout_action")
-	public String corp_logout_action(@ModelAttribute("fcorp")CorpDto corpDto,HttpServletRequest request, HttpSession session) {
+	public String corp_logout_action(@ModelAttribute("fcorp")CorpDto corpDto,HttpServletRequest request) {
 		String forwardPath="";
 		request.getSession().invalidate();
 		forwardPath="redirect:index";

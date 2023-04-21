@@ -167,7 +167,7 @@
               <aside class="sidebar">
                 <div class="btn-box">
                   <!-- <a href="#" class="theme-btn btn-style-one">Apply For Job</a> -->
-                  <a href="apply-popup" class="theme-btn btn-style-one call-modal">지원하기</a>
+                  <a href="apply-popup" class="theme-btn btn-style-one call-modal-apply">지원하기</a>
                   <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button>
                 </div>
 
@@ -429,5 +429,37 @@
   <script src="js/map-script.js"></script>
   <!--End Google Map APi-->
 </body>
-
+<script type="text/javascript">
+	//Open modal in AJAX callback
+	$('.call-modal-apply').on('click', function(event) {
+	  event.preventDefault();
+	  this.blur();
+	  
+	  $.get(this.href, function(data) {
+		console.log(data.cvList);
+		console.log(data.cvList[0].id);
+		console.log(data.html.type);
+		$('.modal').remove();
+		
+	    $(data.html).appendTo('body').modal({
+	    	closeExisting: true,
+			fadeDuration: 300,
+			fadeDelay: 0.15
+	    });
+	    
+		let select = document.querySelector('.chosen-select');
+		console.log(select);
+		// 새로운 option 요소 생성
+		$.each(obj, function(key, value) {
+			let option = document.createElement('option');
+			option.value = data.cvList[0].id; // option 요소의 값 설정
+			option.textContent = data.cvList[0].cvName; // option 요소의 텍스트 설정
+		});
+		// 새로운 option 요소를 select 요소에 추가
+		select.appendChild(option);
+		
+	  });
+	  
+	});
+</script>
 </html>
