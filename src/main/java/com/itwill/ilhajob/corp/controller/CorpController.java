@@ -2,6 +2,7 @@
 package com.itwill.ilhajob.corp.controller;
 
 import java.io.File;
+
 import java.util.Comparator;
 
 import java.io.IOException;
@@ -53,7 +54,6 @@ import com.itwill.ilhajob.common.service.CorpTagService;
 import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.CorpImageDto;
-import com.itwill.ilhajob.corp.dto.CorpResponseDto;
 import com.itwill.ilhajob.corp.dto.ManagerDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Corp;
@@ -98,11 +98,11 @@ public class CorpController {
 	@Autowired
 	private TagService tagService;
 
-//	@RequestMapping("/index")
-//	public String main() {
-//		String forward_path = "index";
-//		return forward_path;
-//	}
+	@RequestMapping("/index")
+	public String main() {
+		String forward_path = "index";
+		return forward_path;
+	}
 
 	
 	@GetMapping("/corp-list")
@@ -244,6 +244,15 @@ public class CorpController {
 		}
 		return forwardPath;
 	}
+	
+	@RequestMapping("/corp_logout_action")
+	public String corp_logout_action(@ModelAttribute("fcorp")CorpDto corpDto,HttpServletRequest request, HttpSession session) {
+		String forwardPath="";
+		request.getSession().invalidate();
+		forwardPath="redirect:index";
+		return forwardPath;
+	}
+	
 
 	/*****************************************************************************
 	 * 대쉬보드
@@ -278,38 +287,19 @@ public class CorpController {
 		List<CorpImageDto> corpImageList = corpImageService.findAllByCorpId(sCorpId);
 		/*******************************************************************/
 		model.addAttribute("corp", corpDto);
-		model.addAttribute("corpImageList", corpImageList);
 		forwardPath = "dashboard-company-profile";
 
 		return forwardPath;
 	}
 
 	@PostMapping("/corp-update-action")
-	public String corp_update_action(@ModelAttribute("corp") CorpResponseDto corpDto, @RequestParam("date") String date,
+	public String corp_update_action(@ModelAttribute("corp") CorpDto corp, @RequestParam("date") String date,
 			HttpServletRequest request)
 			throws Exception {
-		Long id = corpDto.getId();
-		System.out.println(corpDto);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime time = LocalDate.parse(date, formatter).atStartOfDay();
-		CorpDto corp = CorpDto.builder().corpPostCode(corpDto.getCorpPostCode())
-										.corpAddress(corpDto.getCorpAddress())
-										.corpAddressDetail(corpDto.getCorpAddressDetail())
-										.corpBusinessNo(corpDto.getCorpBusinessNo())
-										.corpComment(corpDto.getCorpComment())
-										.corpEst(time)
-										.corpName(corpDto.getCorpName())
-										.corpLoginId(corpDto.getCorpLoginId())
-										.corpPhone(corpDto.getCorpPhone())
-										.corpPassword(corpDto.getCorpPassword())
-										.corpOriginalFileName(corpDto.getCorpOriginalFileName())
-										.corpSales(corpDto.getCorpSales())
-										.corpWebsite(corpDto.getCorpWebsite())
-										.corpSize(corpDto.getCorpSize())
-										.corpWelfare(corpDto.getCorpWelfare())
-										.corpStoredFileName(corpDto.getCorpStoredFileName()).build();
-		
+		corp.setCorpEst(time);
 		corpService.update(id, corp);
 		request.setAttribute("corpId", id);
 		return "redirect:corp-detail?corpId="+id;
@@ -451,19 +441,34 @@ public class CorpController {
 
 	// corpName, job 둘 중 하나만 알아도 + 둘다 알때 검색할 수 있는 기능
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String searchCorps(@RequestParam("corpName") String corpName, @RequestParam("job") String job,
+	public String searchCorps(@RequestParam("corpName") String corpName, 
+							  @RequestParam("job") String job,
+							  @RequestParam(defaultValue = "0") int page,
+		                      @RequestParam(defaultValue = "12") int size,
+							  Pageable pageable,
 	                          Model model) {
 	    try {
 	        List<CorpDto> corpSearchList = new ArrayList<>();
+	      //페이징 기능 추가->일단 12개씩 나오게 해놓음
+		    Pageable pageable1 = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+		    Page<CorpDto> corpPage = corpService.findAll(pageable1);
+		    int nowPage = corpPage.getNumber();
+		    
+		    //이전, 다음페이지 설정해야함...
+		    model.addAttribute("corpList", corpPage.getContent());
+		    model.addAttribute("nowPage", nowPage);
+		    model.addAttribute("totalPage", corpPage.getTotalPages());
+		    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
+		    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
 	        // corpName만 알때
 	        if (job.isEmpty()) {
-	            corpSearchList = corpService.searchByCorpName(corpName);
+	            corpSearchList = corpService.searchByCorpName(corpName,pageable1);
 	        // job만 알 때
 	        } else if(corpName.isEmpty()){
-	            corpSearchList = corpService.searchByjob(job);
+	            corpSearchList = corpService.searchByjob(job,pageable1);
 	        // 둘 다 알 때
 	        } else {
-	            corpSearchList = corpService.searchCorps(corpName, job);
+	            corpSearchList = corpService.searchCorps(corpName, job,pageable1);
 	        }
 	        //검색 결과 없을 때
 	        model.addAttribute("noResults", corpSearchList.isEmpty());

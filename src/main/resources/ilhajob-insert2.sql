@@ -399,6 +399,14 @@ insert into corp_bookmark(id, corp_id, user_id) values(BOOKMARK_ID_SEQ.nextval, 
 insert into corp_bookmark(id, corp_id, user_id) values(BOOKMARK_ID_SEQ.nextval, 3, 3);
 insert into corp_bookmark(id, corp_id, user_id) values(BOOKMARK_ID_SEQ.nextval, 4, 4);
 
+/**************************recruit_scrap insert******************/
+insert into recruit_scrap(id, recruit_id, user_id) values(RECRUIT_SCRAP_ID_SEQ.nextval, 1, 1);
+insert into recruit_scrap(id, recruit_id, user_id) values(RECRUIT_SCRAP_ID_SEQ.nextval, 2, 1);
+insert into recruit_scrap(id, recruit_id, user_id) values(RECRUIT_SCRAP_ID_SEQ.nextval, 3, 2);
+insert into recruit_scrap(id, recruit_id, user_id) values(RECRUIT_SCRAP_ID_SEQ.nextval, 4, 2);
+insert into recruit_scrap(id, recruit_id, user_id) values(RECRUIT_SCRAP_ID_SEQ.nextval, 1, 3);
+insert into recruit_scrap(id, recruit_id, user_id) values(RECRUIT_SCRAP_ID_SEQ.nextval, 4, 3);
+
 /*******************************결제관련**************************************/
 /**************************product insert************************/
 -- 개인회원 상품 insert => p_div : U

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -171,14 +172,13 @@ public class RecruitController {
 //	      return forward_path;
 //	   }
 
-	
 	@PostMapping("/recruit-delete-action")
 	public String recruit_delete_action(@ModelAttribute RecruitDto recruitDto) throws Exception {
-		//System.out.println("삭제 전");
-		//System.out.println(">>>>>>>recruit>>>>>>>" + recruitDto);
+		System.out.println("삭제 전");
+		System.out.println(">>>>>>>recruit>>>>>>>" + recruitDto);
 		System.out.println(recruitDto.getId());
 		recruitService.remove(recruitDto.getId());
-		//System.out.println("삭제 후");
+		System.out.println("삭제 후");
 		return "redirect:dashboard-manage-job";
 	}
  

@@ -20,6 +20,7 @@
     drop table review cascade constraints;
     drop table tag cascade constraints;
     drop table userinfo cascade constraints;
+    drop table recruit_scrap cascade constraints;
     
     drop sequence app_id_seq;
     drop sequence awards_id_seq;
@@ -43,6 +44,7 @@
     drop sequence review_id_seq;
     drop sequence tag_id_seq;
     drop sequence user_id_seq;
+    drop sequence recruit_scrap_id_seq;
     
  create sequence app_id_seq start with 1 increment by  1;
  create sequence awards_id_seq start with 1 increment by  1;
@@ -66,6 +68,7 @@
  create sequence review_id_seq start with 1 increment by  1;
  create sequence tag_id_seq start with 1 increment by  1;
  create sequence user_id_seq start with 1 increment by  1;
+ create sequence recruit_scrap_id_seq start with 1 increment by  1;
  
     
     create table app (
@@ -321,6 +324,12 @@
         primary key (id)
     );
     
+     create table recruit_scrap (
+       id number(19,0) not null,
+        recruit_id number(19,0),
+        user_id number(19,0),
+        primary key (id)
+    )
     
     alter table app 
        add constraint FKhaptmc50bdgwogvgkytx3b0h 
@@ -484,8 +493,18 @@
        foreign key (corp_id) 
        references corp;
  
-    
+ 	
     alter table review 
        add constraint FKamsd01dhdcxmcoyfwhfrakb18 
        foreign key (user_id) 
        references userinfo;
+       
+    alter table recruit_scrap 
+       add constraint FK6jj2rpr54ffao7g8jxxs1uu2d 
+       foreign key (recruit_id) 
+       references recruit
+       
+    alter table recruit_scrap 
+       add constraint FK8h4chxoe3bo4wkn8uxep3k2ia 
+       foreign key (user_id) 
+       references userinfo

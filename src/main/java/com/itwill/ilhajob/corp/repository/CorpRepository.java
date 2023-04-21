@@ -2,6 +2,7 @@ package com.itwill.ilhajob.corp.repository;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -18,13 +19,13 @@ public interface CorpRepository extends JpaRepository<Corp, Long> {
     boolean existsByCorpLoginId(String corpLoginId);
     
     //corpName으로 검색기능
-    List<Corp> findByCorpNameContaining(String corpName);
+    List<Corp> findByCorpNameContaining(String corpName, Pageable pageable);
     
     //job으로만 검색기능
-    List<Corp> findByJobContaining(String job);
+    List<Corp> findByJobContaining(String job,Pageable pageable);
     
     //corpName이랑 job으로 검색하기
-    List<Corp> findByCorpNameContainingAndJobContaining(String corpName, String job);
+    List<Corp> findByCorpNameContainingAndJobContaining(String corpName, String job,Pageable pageable);
     
     //paging 기능 구현
     Page<Corp> findAll(Pageable pageable);

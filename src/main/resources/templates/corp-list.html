@@ -156,13 +156,13 @@
 										th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
 								</div>
 								<div class="sort-by">
-									<select class="chosen-select">
+									<!-- select class="chosen-select">
 										<option>필터</option>
 										<option>회사원규모</option>
 										<option>신규등록순</option>
 										<option>회사명순</option>
 										<option>매출크기</option>
-									</select>
+									</select-->
 
 								</div>
 							</div>
@@ -179,6 +179,7 @@
 											</button>
 											<span class="featured">Featured</span> <span
 												class="company-logo"><img
+												th:src="${corp.corpStoredFileName}" style="width:80px"
 												src="images/resource/company-logo/6-1.png" alt=""></span>
 											<h4>
 												<a th:href="@{/corp-detail(corpId=${corp.id})}"
