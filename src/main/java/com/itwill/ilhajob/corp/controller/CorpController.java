@@ -300,9 +300,9 @@ public class CorpController {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime time = LocalDate.parse(date, formatter).atStartOfDay();
 		corp.setCorpEst(time);
-		corpService.update(id, corp);
-		request.setAttribute("corpId", id);
-		return "redirect:corp-detail?corpId="+id;
+		corpService.update(corp.getId(), corp);
+		request.setAttribute("corpId", corp.getId());
+		return "redirect:corp-detail?corpId="+corp.getId();
 		
 	}
 
