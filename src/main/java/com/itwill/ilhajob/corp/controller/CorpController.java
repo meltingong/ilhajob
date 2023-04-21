@@ -389,56 +389,6 @@ public class CorpController {
 	 * resultMap.put("corpList", searchResults); // 결과 페이지를 반환 return resultMap; }
 	 */
 
-	// 이미지 업로드
-	@PostMapping("/imageUpload")
-	public String handleImageUpload(MultipartFile file, Model model, HttpServletRequest request) throws Exception {
-		if (!file.isEmpty()) {
-			try {
-				// 파일 저장 로직 구현 (예: 서버에 파일 저장, 파일 정보 DB에 저장 등)
-				String fileName = file.getOriginalFilename();
-				String CorpImageUrl = "C:\\2022-11-JAVA-DEVELOPER\\git_repositories\\final-project-team1-xxx\\src\\main\\resources\\imageUpload\\"
-						+ fileName;
-				file.transferTo(new File(CorpImageUrl));
-
-//                CorpImageDto corpImage = new CorpImageDto(5,
-//                									CorpImageUrl,
-//                									1);
-//                corpImageService.insertCorpImage(corpImage);
-				// 파일 처리가 완료된 후에는 해당 정보를 모델에 추가하여 View로 전달
-				model.addAttribute("fileName", fileName);
-
-				// 업로드 처리가 완료된 후에는 성공 페이지 또는 결과 페이지를 반환
-				return "/dashboard"; // 성공 페이지 또는 결과 페이지를 반환
-
-			} catch (IOException e) {
-				// 파일 업로드 처리 중에 예외 발생 시 에러 처리
-				model.addAttribute("error", "Failed to upload file. Error: " + e.getMessage());
-				return "error"; // 에러 페이지 또는 에러 처리 로직을 반환
-			}
-		} else {
-			// 업로드된 파일이 없는 경우 예외 처리 또는 에러 처리
-			model.addAttribute("error", "No file uploaded.");
-			return "error"; // 에러 페이지 또는 에러 처리 로직을 반환
-		}
-	}
-
-	@RequestMapping("/image-test")
-	public String image_test(HttpServletRequest request, Model model) throws Exception {
-
-		String forwardPath = "";
-		request.getSession().setAttribute("sCorpId", 1L); // 임시로 아이디 로그인상태
-		Long sCorpId = (Long) request.getSession().getAttribute("sCorpId");
-		CorpDto corpDto = corpService.findByCorpId(sCorpId);
-		/*********** CorpImage 코프 로그인아이디로 리스트뽑아오기 *****************/
-		List<CorpImageDto> corpImageList = corpImageService.findAllByCorpId(sCorpId);
-		/*******************************************************************/
-		model.addAttribute("corp", corpDto);
-		model.addAttribute("corpImageList", corpImageList);
-		System.out.println("===========================================");
-		forwardPath = "image-upload-test";
-		return forwardPath;
-	}
-
 	// corpName, job 둘 중 하나만 알아도 + 둘다 알때 검색할 수 있는 기능
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String searchCorps(@RequestParam("corpName") String corpName, 
