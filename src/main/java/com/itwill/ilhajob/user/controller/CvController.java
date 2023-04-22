@@ -28,6 +28,7 @@ import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.dto.EduDto;
 import com.itwill.ilhajob.user.dto.ExpDto;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.exception.UserNotFoundException;
 import com.itwill.ilhajob.user.service.AwardsService;
 import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.EduService;
@@ -58,7 +59,10 @@ public class CvController {
 	@RequestMapping(value = "/cv-write-form")
 	public String cv_wirte_from(HttpServletRequest request, Model model) throws Exception {
 		Long userId = (Long)request.getSession().getAttribute("id");
+		String userEmail = (String)request.getSession().getAttribute("sUserId");
+		UserDto user = userService.findUser(userEmail);		
 		model.addAttribute("userId" + userId);
+		model.addAttribute("user" + user);
 
 		/* eduList */
 		List<EduDto> eduList = eduService.findEduListByUserId(userId);
@@ -79,11 +83,16 @@ public class CvController {
 	/** cv detail param(cvId) 없을 때 */
 	@LoginCheck
 	@RequestMapping(value = "/cv-detail", params = "!cvId")
-	public String cv_detail(HttpServletRequest request, Model model) {
+	public String cv_detail(HttpServletRequest request, Model model) throws Exception {
 		String forwardpath = "";
 		/* user cv list 가져오기 */
 		Long userId = (Long)request.getSession().getAttribute("id");
+		String userEmail = (String)request.getSession().getAttribute("sUserId");
+		UserDto user = userService.findUser(userEmail);
+		model.addAttribute("userId", userId);
+		model.addAttribute("user" + user);
 		List<CvDto> cvList = cvService.findByUserId(userId);
+		
 		if (cvList == null || cvList.size() == 0) {
 			forwardpath = "redirect:cv-write-form";
 		} else {
@@ -117,7 +126,10 @@ public class CvController {
 		String forwardpath = "";
 		
 		Long userId = (Long)request.getSession().getAttribute("id");
+		String userEmail = (String)request.getSession().getAttribute("sUserId");
+		UserDto user = userService.findUser(userEmail);		
 		model.addAttribute("userId", userId);
+		model.addAttribute("user" + user);
 		
 		/* user cv list */
 		List<CvDto> cvList = cvService.findByUserId(userId);
