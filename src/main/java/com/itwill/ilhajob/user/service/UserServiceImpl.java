@@ -81,6 +81,12 @@ public class UserServiceImpl implements UserService{
 		User findUser = optionalUser.get();
 		return modelMapper.map(findUser, UserDto.class);
 	}
+	/*
+	@Override
+	public boolean findKakaoUser(String snsId) throws Exception {
+		return userRepository.findBySnsId(snsId);
+	}
+	*/
 
 	@Override
 	@Transactional
@@ -101,7 +107,14 @@ public class UserServiceImpl implements UserService{
 				-> new UserNotFoundException("User not found for id : " + id));
         userRepository.delete(user);
 	}
+	
+	@Override
+	public void remove(String userEmail) throws Exception {
+		User user = userRepository.findByUserEmail(userEmail).orElseThrow(()-> new UserNotFoundException("해당 유저를 찾을 수 없습니다"));
+		userRepository.delete(user);
+	}
 
+	
 	@Override
 	public boolean isDuplicateEmail(String userEmail) throws Exception {
 		return userRepository.existsByUserEmail(userEmail);
@@ -177,6 +190,9 @@ public class UserServiceImpl implements UserService{
 		review = reviewRepository.save(review);
 		return modelMapper.map(review, ReviewDto.class);
 	}
+
+
+	
 	
 	
 

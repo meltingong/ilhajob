@@ -8,21 +8,16 @@ import javax.sound.sampled.ReverbType;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
@@ -130,13 +125,16 @@ public class UserController {
 	// 회원 정보수정
 	@LoginCheck
 	@RequestMapping("/modify_action")
-	public ResponseEntity<String> modify_action(@RequestBody String requestData, HttpServletRequest request) throws Exception {
+	public String modify_action(@ModelAttribute UserDto userDto, HttpServletRequest request,String userPassword,String userPasswordConfirm) throws Exception {
+		String forwardPath = "";
 		Long id = (Long)request.getSession().getAttribute("id");
-		Gson gson = new Gson();
-		UserDto userDto = gson.fromJson(requestData, UserDto.class);
-		userService.update(id,userDto);
 		
-		return ResponseEntity.ok().body("{\"location\": \"candidate-dashboard-profile\"}");
+		if(userPassword.equals(userPasswordConfirm)) {
+			userService.update(id,userDto);
+		}
+		forwardPath = "redirect:candidate-dashboard-profile";
+		
+		return forwardPath;
 	}
 	
 	
@@ -203,10 +201,12 @@ public class UserController {
 	// 회원 탈퇴
 	@LoginCheck
 	@RequestMapping("/delete-action")
-	public String user_delete(HttpServletRequest request) throws Exception {
+	public String user_delete(HttpServletRequest request, HttpSession session) throws Exception {
 		String forwardPath="";
-		Long id = (Long)request.getSession().getAttribute("id");
-		userService.remove(id);
+		
+		String userEmail = (String)request.getSession().getAttribute("sUserId");
+		
+		userService.remove(userEmail);
 		request.getSession().invalidate();
 		forwardPath = "redirect:index";
 		return forwardPath;
