@@ -57,8 +57,7 @@ public class RecruitScrapController {
 																.recruit(recruitService.findRecruit(id))
 																.user(loginUser).build());
 			}else {
-				System.out.println(id);
-				//recruitScrapService.deleteScrap(id);
+				recruitScrapService.deleteScrapByUserIdAndRecruitId(loginUser.getId(),id);
 			}
 			
 			return "redirect:recruit-list";

@@ -44,6 +44,24 @@ public class RecruitScrapServiceImpl implements RecruitScrapService{
 		}
 	}
 	
+	public void deleteScrapByUserIdAndRecruitId(long userId, long recruitId) throws Exception{
+		List<RecruitScrap> recruitScrapList = recruitScrapRepository.findByUserId(userId);
+		RecruitScrapDto scrap = null;
+		List<RecruitScrapDto> scrapList = recruitScrapList.stream()
+											.map(recruitScrap -> modelMapper.map(recruitScrap, RecruitScrapDto.class))
+											.collect(Collectors.toList());
+		for (RecruitScrapDto recruitScrapDto : scrapList) {
+			if((recruitScrapDto.getRecruit().getId()==recruitId)) {
+				scrap = recruitScrapDto;
+			}
+		}
+		if(scrap!=null) {
+			recruitScrapRepository.deleteById(scrap.getId());
+		}else {
+			throw new Exception("삭제하려는 스크랩이 없습니다.");
+		}
+	}
+	
 	//유저의 공고스크랩 리스트
 	public List<RecruitScrapDto> sellectByUserId(long userId){
 		List<RecruitScrap> scrapList = recruitScrapRepository.findByUserId(userId);
