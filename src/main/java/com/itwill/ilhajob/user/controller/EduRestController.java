@@ -3,7 +3,6 @@ package com.itwill.ilhajob.user.controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,18 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.user.dto.EduDto;
 import com.itwill.ilhajob.user.dto.UserDto;
-import com.itwill.ilhajob.user.service.AwardsService;
-import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.EduService;
-import com.itwill.ilhajob.user.service.ExpService;
 import com.itwill.ilhajob.user.service.UserService;
 
 @RestController
@@ -36,8 +30,6 @@ public class EduRestController {
 	
 	@Autowired
 	private EduService eduService;
-	@Autowired
-	private CvService cvService;
 	@Autowired
 	private UserService userService;
 	

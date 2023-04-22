@@ -69,12 +69,12 @@ function deleteEdu(eduId) {
     	data: $('.default-form').serialize(),
     	success: function(response) {
       	console.log(response);
-      	alert("success");
+      	//alert("success");
       	location.reload();
    	 },
     	error: function(xhr, status, error) {
      	console.log(error);
-      	alert("fail");
+      	//alert("fail");
     }
   });
 }
@@ -103,11 +103,12 @@ function createEdu() {
       id : cvId
     },
     success: function(response) {
-      alert("success");
+      //alert("success");
       location.reload();
     },
     error: function(xhr, status, error) {
-      alert("fail");
+      //alert("fail");
+      console.log("fail");
     }
   });
 }
@@ -155,11 +156,12 @@ function updateEdu(eduId) {
       id : cvId
     },
     success: function(response) {
-      alert("success");
+      //alert("success");
       location.reload();
     },
     error: function(xhr, status, error) {
-      alert("fail");
+      //alert("fail");
+      console.log("fail");
     }
   });
 }

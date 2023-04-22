@@ -209,12 +209,12 @@
                                 <div class="form-group col-lg-6 col-md-6">
 		            			<label>경력 시작일</label><br>
                                   <input type="date" class="year" style=display:none id="hiddenStartDate" name="expStartDate">
-                                  <span class="year year-span" th:value="${exp.expStartDate}" th:text="${exp.expStartDate}">2012 - 2014</span>
+                                  <span class="year year-span" th:value="${exp.expStartDate}" th:text="${#temporals.format(exp.expStartDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
 		            			<label>경력 종료일</label>
                                   <input type="date" class="year" style=display:none id="hiddenEndDate" name="expEndDate"><br>
-                                  <span class="year year-span" th:value="${exp.expEndDate}" th:text="${exp.expEndDate}">2012 - 2014</span>
+                                  <span class="year year-span" th:value="${exp.expEndDate}" th:text="${#temporals.format(exp.expEndDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                                 </div>
                                 </div>
 		                      </div>
@@ -264,7 +264,7 @@
                                 <div class="form-group col-lg-12 col-md-12">
                                 <label>수상일</label><br>
                                 <input type="date" class="year" style=display:none id="hiddenStartDate" name="awardsDate">
-                                  <span class="year year-span" th:value="${awards.awardsDate}" th:text="${awards.awardsDate}">2012 - 2014</span>
+                                  <span class="year year-span" th:value="${awards.awardsDate}" th:text="${#temporals.format(awards.awardsDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                                 </div>
 <!--                                   <span class="year" th:text="${awards.awardsDate}">2012 - 2014</span>
                                   <div class="edit-btns">
@@ -286,7 +286,6 @@
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
                         <button class="theme-btn btn-style-one" onclick="updateCv()">저장하기</button>
-                        <button class="theme-btn btn-style-one" onclick="apply()">지원하기</button>
                         <button class="theme-btn btn-style-one" onclick="deleteCv()">삭제하기</button>
                       </div>
                     </div>
