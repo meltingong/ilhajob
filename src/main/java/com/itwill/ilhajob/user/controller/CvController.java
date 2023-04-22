@@ -224,7 +224,7 @@ public class CvController {
 	}
 	
 	/************** Get 방식 요청 처리 */
-	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action"}) // cv-apply-action 추가하기
+	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action"})
 	public String cv_get() {
 		return "redirect:index";
 	}

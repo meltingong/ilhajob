@@ -89,6 +89,43 @@ function createEdu() {
     let eduEndDate = $('#eduEndDate').val();
     var cvId = document.querySelector('.chosen-select').value;
     document.querySelector('#cvId').value = cvId;
+    let pattern = /^[1-9]\d*(\.\d{1,2})?$/;
+    
+	if (eduName == "") {
+		alert("학교를 입력하세요.");
+		$('#eduName').focus();
+		return false;
+	}
+	if (eduMajor == "") {
+		alert("전공을 입력하세요.");
+		$('#eduMajor').focus();
+		return false;
+	}
+	if (eduScore == "") {
+		alert("학점을 입력하세요.");
+		$('#eduScore').focus();
+		return false;
+	}
+	if (!pattern.test(eduScore)) {
+		alert("유효한 학점이 아닙니다. 다시 입력하세요.");
+		$('#eduScore').focus();
+		return false;
+	}
+	if (eduContent == "") {
+		alert("추가 정보를 입력하세요.");
+		$('#eduContent').focus();
+		return false;
+	}
+	if (eduStartDate == "") {
+		alert("입학일을 입력하세요.");
+		$('#eduStartDate').focus();
+		return false;
+	}
+	if (eduEndDate == "") {
+		alert("졸업일을 입력하세요.");
+		$('#eduEndDate').focus();
+		return false;
+	}
 
   $.ajax({
     url: "edu",
@@ -124,7 +161,7 @@ function editEdu(eduId) {
     EduBlock.querySelectorAll('.year-span').forEach(span => span.style.display = 'none');
 }
 
-// updateEdu() : 학력 수정(작업중)
+// updateEdu() : 학력 수정
 function updateEdu(eduId) {
 	let eduName = $("#eduName" + eduId).val();
 	let eduMajor = $("#eduMajor" + eduId).val();
@@ -133,6 +170,7 @@ function updateEdu(eduId) {
 	let eduStartDate = $("#eduStartDate" + eduId).val();
 	let eduEndDate = $("#eduEndDate" + eduId).val();
     let cvId = $('.chosen-select').val();
+    let pattern = /^[1-9]\d*(\.\d{1,2})?$/;
 
 	console.log(">>>>> eduId : " + eduId);
     console.log(">>>>> eduName : " + eduName);
@@ -141,6 +179,42 @@ function updateEdu(eduId) {
     console.log(">>>>> eduContent : " + eduContent);
     console.log(">>>>> eduStartDate : " + eduStartDate);
     console.log(">>>>> eduEndDate : " + eduEndDate);
+    
+	if (eduName == "") {
+	alert("학교를 입력하세요.");
+		$('#eduName' + eduId).focus();
+		return false;
+	}
+	if (eduMajor == "") {
+		alert("전공을 입력하세요.");
+		$('#eduMajor' + eduId).focus();
+		return false;
+	}
+	if (eduScore == "") {
+		alert("학점을 입력하세요.");
+		$('#eduScore' + eduId).focus();
+		return false;
+	}
+	if (!pattern.test(eduScore)) {
+	alert("유효한 학점이 아닙니다. 다시 입력하세요.");
+	$('#eduScore').focus();
+	return false;
+	}
+	if (eduContent == "") {
+		alert("추가 정보를 입력하세요.");
+		$('#eduContent' + eduId).focus();
+		return false;
+	}
+	if (eduStartDate == "") {
+		alert("입학일을 입력하세요.");
+		$('#eduStartDate' + eduId).focus();
+		return false;
+	}
+	if (eduEndDate == "") {
+		alert("졸업일을 입력하세요.");
+		$('#eduEndDate' + eduId).focus();
+		return false;
+	}
     
     $.ajax({
     url: "edu-update",
