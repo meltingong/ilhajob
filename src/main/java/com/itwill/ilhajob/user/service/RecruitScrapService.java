@@ -12,4 +12,6 @@ public interface RecruitScrapService {
 	public List<RecruitScrapDto> sellectByUserId(long userId);
 	
 	public RecruitScrapDto sellectById(long id);
+	
+	public RecruitScrapDto sellectByUserIdAndRecruitId(long userId,long recruitId);
 }

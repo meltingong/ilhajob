@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.ilhajob.corp.repository.RecruitRepository;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.dto.RecruitScrapDto;
 import com.itwill.ilhajob.user.entity.RecruitScrap;
@@ -17,6 +18,7 @@ import com.itwill.ilhajob.user.repository.RecruitScrapRepository;
 @Service
 public class RecruitScrapServiceImpl implements RecruitScrapService{
 	
+
 	@Autowired
 	RecruitScrapRepository recruitScrapRepository;
 	@Autowired
@@ -55,6 +57,21 @@ public class RecruitScrapServiceImpl implements RecruitScrapService{
 		Optional<RecruitScrap> scrap = recruitScrapRepository.findById(id);
 		RecruitScrapDto recruitScrap = modelMapper.map(scrap.get(), RecruitScrapDto.class);
 		return recruitScrap;
+	}
+
+	@Override
+	public RecruitScrapDto sellectByUserIdAndRecruitId(long userId, long recruitId) {
+		List<RecruitScrap> recruitScrapList = recruitScrapRepository.findByUserId(userId);
+		RecruitScrapDto scrap = null;
+		List<RecruitScrapDto> scrapList = recruitScrapList.stream()
+											.map(recruitScrap -> modelMapper.map(recruitScrap, RecruitScrapDto.class))
+											.collect(Collectors.toList());
+		for (RecruitScrapDto recruitScrapDto : scrapList) {
+			if((recruitScrapDto.getRecruit().getId()==recruitId)) {
+				scrap = recruitScrapDto;
+			}
+		}
+		return scrap;
 	}
 	
 	

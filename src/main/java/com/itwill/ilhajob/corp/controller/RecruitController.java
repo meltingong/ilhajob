@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
@@ -102,9 +103,32 @@ public class RecruitController {
 		UserDto loginUser = userService.findUser(sUserId);
 		System.out.print("아이디"+loginUser.getId());
 		model.addAttribute("loginUser", loginUser);
+		
+		
+		//로그인시에만 스크랩 (북마크)로고 출력
 		if(loginUser!=null) {
 			List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
-			System.out.print("스크랩리스트"+recruitScrapList);
+			List<RecruitDto> recruitList = recruitService.findRecruitAll();
+			//스크랩확인 카운트 리스트
+			List<Integer> countList = new ArrayList<Integer>();
+			countList.add(0); //테이블은 1부터 id가 있으니 처음은 0
+			
+			for(RecruitDto recruit :recruitList) {
+			    boolean hasRecruitScrap = false; // 리크루트 스크랩이 있는지 여부를 나타내는 변수
+			    for(RecruitScrapDto recruitscrap:recruitScrapList) {
+			        if(recruit.getId() == recruitscrap.getRecruit().getId()) {
+			            hasRecruitScrap = true; // 리크루트 스크랩이 있을 때
+			            break; // 리크루트 스크랩이 있으면 반복문 종료
+			        }
+			    }
+			    if(hasRecruitScrap) {
+			        countList.add(1); // 리크루트 스크랩이 있을 때
+			    } else {
+			        countList.add(0); // 리크루트 스크랩이 없을 때
+			    }
+			}
+			
+			model.addAttribute("countList", countList);
 			model.addAttribute("recruitScrapList", recruitScrapList);
 			model.addAttribute("loginUser", loginUser);
 		}

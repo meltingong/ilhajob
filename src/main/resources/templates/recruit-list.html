@@ -302,16 +302,16 @@
                         <li class="required">Urgent</li>
                         -->
                       </ul>
-                      <!-- 리크루트 스크랩 고쳐야함 -->
+                      <!-- 리크루트 스크랩 ajax로 -->
                       <div th:if = "${loginUser.id}!=null">
-                      <div th:each="recruitScrap : ${recruitScrapList}">
-                     	 <button th:value="${recruit.id}" class="bookmark-btn">
-	                     	 	<img th:if ="${recruitScrap.recruit.id==recruit.id}" src="images/bookmark.png" style="width: 23px"  id="check-bookmark"/>
-	                     	 	<span th:unless ="${recruitScrap.recruit.id==recruit.id}" class="flaticon-bookmark" id="check-bookmark"></span>
-                     	 </button>
-             		 </div>
+                      	<form action="recruit_scrap_insert_delete">
+							<button th:value="${recruit.id}" class="bookmark-btn" name = "id" id="check-bookmark" type="submit">
+									<img src="images/bookmark.png" style="width: 23px"  th:if="${countList[recruit.id]==1}">
+									<span class="flaticon-bookmark" th:if="${countList[recruit.id]==0}"></span>
+							</button>
+							</form>
+					</div>
 
-                    </div>
                   </div>
                 </div>
               </div>
