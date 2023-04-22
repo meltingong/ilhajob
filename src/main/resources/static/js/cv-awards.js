@@ -22,18 +22,18 @@ function addAwards() {
       <div class="row">
       	<div class="col-lg-6 col-md-6 form-group">
       	<label>수상명</label>
-      	<input type="text" class="text" name="awardsName" placeholder="수상명을 입력하세요.">
+      	<input type="text" class="text" name="awardsName" id="awardsName" placeholder="수상명을 입력하세요.">
           <span></span>
       	</div>
       	<div class="col-lg-6 col-md-6 form-group">
       	<label>수상 상세</label>
-      	<input type="text" class="text" name="awardsContent" placeholder="수상의 상세내용을 입력하세요">
+      	<input type="text" class="text" name="awardsContent" id="awardsContent" placeholder="수상의 상세내용을 입력하세요">
       	</div>
       	
         <div class="edit-box">
         <div class="form-group col-lg-12 col-md-12">
         <label>수상일</label><br>
-        <input type="date" class="year" id="hiddenStartDate" name="awardsDate">
+        <input type="date" class="year" id="awardsDate" name="awardsDate">
         </div>
         </div>
       </div> <!-- row end -->
@@ -48,6 +48,29 @@ function addAwards() {
 }
 
 function createAwards() {
+	let awardsName = $("#awardsName").val();
+	let awardsContent = $("#awardsContent").val();
+	let awardsDate = $("#awardsDate").val();
+	console.log(awardsName);
+	console.log(awardsContent);
+	console.log(awardsDate);
+	
+	if (awardsName == "") {
+	alert("수상명을 입력하세요.");
+	$("#awardsName").focus();
+	return false;
+	}
+	if (awardsContent == "") {
+	alert("수상의 상세 내용을 입력하세요.");
+	$("#awardsContent").focus();
+	return false;
+	}
+	if (awardsDate == "") {
+	alert("수상한 날짜를 입력하세요.");
+	$("#awardsDate").focus();
+	return false;
+	}
+	
   document.awardsForm.action = "awards-create";
   document.awardsForm.method = "POST";
   document.awardsForm.submit();
@@ -66,8 +89,32 @@ function editAwards(awardsId) {
 
 function updateAwards(awardsId) {
   console.log(">>> updateAwards(awardsId) : " + awardsId);
+
+  let awardsName = $("#awardsName"+awardsId).val();
+  let awardsContent = $("#awardsContent"+awardsId).val();
+  let awardsDate = $("#awardsDate"+awardsId).val();
+  	
+  console.log(">>> awardsDate : " + awardsDate);
+  
+	if (awardsName == "") {
+	alert("수상명을 입력하세요.");
+	$("#awardsName" + awardsId).focus();
+	return false;
+	}
+	if (awardsContent == "") {
+	alert("수상의 상세 내용을 입력하세요.");
+	$("#awardsContent" + awardsId).focus();
+	return false;
+	}
+	if (awardsDate == "") {
+	alert("수상한 날짜를 입력하세요.");
+	$("#awardsDate"+awardsId).focus();
+	return false;
+	}
+  
   $('#awardsId'+awardsId).val(awardsId);
   console.log($('#awardsId'+awardsId).attr('value'));
+
   document.awardsForm.action = "awards-update";
   document.awardsForm.method = "POST";
   document.awardsForm.submit();

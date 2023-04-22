@@ -210,29 +210,29 @@
                                 <div class="col-lg-6 col-md-6 form-group">
                                   <label>회사</label>
                                   <!-- <span th:text="${exp.expCorpName}" th:value="${exp.expCorpName}">Spotify Inc.</span> -->
-		                          <input type="text" class="text" name="expCorpName" th:placeholder="${exp.expCorpName}" readonly>
+		                          <input type="text" class="text" name="expCorpName" th:id="expCorpName+${exp.id}" th:placeholder="${exp.expCorpName}" readonly>
                                   <!-- <h3 th:text="${exp.expPosition}" th:value="${exp.expPosition}">Product Designer</h3> -->
                                 </div>
                                 <div class="col-lg-6 col-md-6 form-group">
                                   <label>직무</label>
-		                        <input type="text" class="text" name="expPosition" th:placeholder="${exp.expPosition}" readonly>
+		                        <input type="text" class="text" name="expPosition" th:id="expPosition+${exp.id}" th:placeholder="${exp.expPosition}" readonly>
                                 </div>
                               </div> 
                            <!-- Input expContent -->
                               <div class="form-group col-lg-12 col-md-12">
 		                        <label>경력 상세</label>
-		                        <input type="text" class="text" name="expContent" th:placeholder="${exp.expContent}" readonly>
+		                        <input type="text" class="text" name="expContent"  th:id="expContent+${exp.id}" th:placeholder="${exp.expContent}" readonly>
 		                      </div>
 		                        <!-- <input type="text" name="name" placeholder="경력 관련 추가 정보를 입력하세요." th:value="${exp.expContent}"> -->
                                 <div class="edit-box">
                                 <div class="form-group col-lg-6 col-md-6">
 		            			<label>경력 시작일</label><br>
-                                  <input type="date" class="year" style=display:none id="hiddenStartDate" name="expStartDate">
+                                  <input type="date" class="year" style=display:none th:id="expStartDate+${exp.id}" name="expStartDate">
                                   <span class="year year-span" th:value="${exp.expStartDate}" th:text="${#temporals.format(exp.expStartDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
 		            			<label>경력 종료일</label>
-                                  <input type="date" class="year" style=display:none id="hiddenEndDate" name="expEndDate"><br>
+                                  <input type="date" class="year" style=display:none th:id="expEndDate+${exp.id}" name="expEndDate"><br>
                                   <span class="year year-span" th:value="${exp.expEndDate}" th:text="${#temporals.format(exp.expEndDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                                 </div>
                                 </div>
@@ -268,28 +268,20 @@
                               <div class="row">
                               	<div class="col-lg-6 col-md-6 form-group">
                               	<label>수상명</label>
-                              	<input type="text" class="text" name="awardsName" th:placeholder="${awards.awardsName}" readonly>
-                                  <!-- <h3 th:text="${awards.awardsName}">Perfect Attendance Programs</h3> -->
+                              	<input type="text" class="text" name="awardsName" th:id="awardsName+${awards.id}" th:placeholder="${awards.awardsName}" readonly>
                                   <span></span>
                               	</div>
                               	<div class="col-lg-6 col-md-6 form-group">
                               	<label>수상 상세</label>
-                              	<input type="text" class="text" name="awardsContent" th:placeholder="${awards.awardsContent}" readonly>
-                              	<!-- <div class="text" th:text="${awards.awardsContent}"></div> -->
-		                        <!-- <input type="text" name="name" placeholder="수상관련 추가 정보를 입력하세요." th:value="${awards.awardsContent}"> -->
+                              	<input type="text" class="text" name="awardsContent" th:id="awardsContent+${awards.id}" th:placeholder="${awards.awardsContent}" readonly>
                               	</div>
                               	
                                 <div class="edit-box">
                                 <div class="form-group col-lg-12 col-md-12">
                                 <label>수상일</label><br>
-                                <input type="date" class="year" style=display:none id="hiddenStartDate" name="awardsDate">
+                                <input type="date" class="year" style=display:none th:id="awardsDate+${awards.id}" name="awardsDate">
                                   <span class="year year-span" th:value="${awards.awardsDate}" th:text="${#temporals.format(awards.awardsDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                                 </div>
-<!--                                   <span class="year" th:text="${awards.awardsDate}">2012 - 2014</span>
-                                  <div class="edit-btns">
-                                    <button><span class="la la-pencil" onclick=""></span></button>
-                                    <button><span class="la la-trash" onclick="deleteAwards()"></span></button>
-                                  </div> -->
                                 </div>
                               </div> <!-- row end -->
                               
@@ -352,6 +344,7 @@
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDaaCBm4FEmgKs5cfVrh3JYue3Chj1kJMw&#038;ver=5.2.4"></script>
   <script src="js/map-script.js"></script>
   <!--End Google Map APi-->
+  
 </body>
 
 </html>

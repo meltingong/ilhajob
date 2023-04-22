@@ -106,20 +106,20 @@
                       </div>
                    </form>
 		 		<!-- ************ cv form end  ************ -->
-						
-					<!-- edu, exp, awards div -->
+<!-- 						
+					edu, exp, awards div
                       <div class="form-group col-lg-12 col-md-12">
                       
-                      <!-- eduForm Start -->
+                      eduForm Start
 	                  <form class="default-form" name="eduForm" id="eduForm">
 	                  	<input type="hidden" name="id" th:value="${cvId}">
-                        <!-- Resume / Education -->
+                        Resume / Education
                         <div class="resume-outer" id="edu-block">
                           <div class="upper-title">
                             <h4>학력</h4>
                             <button type="button" class="add-info-btn" onclick="addEdu()"><span class="icon flaticon-plus"></span> 학력 추가</button>
                           </div>
-                          <!-- Resume BLock -->
+                          Resume BLock
                           <div class="resume-block" th:object="${eduList}" th:each="edu:${eduList}" th:id="eduBlock+${edu.id}">
                             <div class="inner" id="edit-block">
                               <span class="name">E</span>
@@ -161,24 +161,24 @@
                                 <input type="date" class="year" style=display:none name="eduEndDate" th:id="eduEndDate+${edu.id}" value="">
                                 <span class="year year-span" th:value="${edu.eduEndDate}" th:text="${#temporals.format(edu.eduStartDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                               	</div>
-                              </div> <!-- row end -->
+                              </div> row end
                              </div>
                             </div>
                           </div>
                         </div>
                        </form>
-                      <!-- eduForm End -->
+                      eduForm End
                       
-					<!-- expForm Start -->
+					expForm Start
 					<form class="default-form" name="expForm">
 					  <input type="hidden" name="cvId" th:value="${cvId}">
-                        <!-- Resume / Work & Experience -->
+                        Resume / Work & Experience
                         <div class="resume-outer theme-blue" id="exp-block">
                           <div class="upper-title">
                             <h4>경력 사항</h4>
                             <button type="button" onclick="addExp()" class="add-info-btn"><span class="icon flaticon-plus"></span> 경력 추가</button>
                           </div>
-                          <!-- Resume BLock -->
+                          Resume BLock
                           <div class="resume-block" th:each="exp:${expList}" th:id="expBlock+${exp.id}">
                             <div class="inner">
                               <span class="name">S</span>
@@ -195,21 +195,21 @@
                               <div class="row">
                                 <div class="col-lg-6 col-md-6 form-group">
                                   <label>회사</label>
-                                  <!-- <span th:text="${exp.expCorpName}" th:value="${exp.expCorpName}">Spotify Inc.</span> -->
+                                  <span th:text="${exp.expCorpName}" th:value="${exp.expCorpName}">Spotify Inc.</span>
 		                          <input type="text" class="text" name="expCorpName" th:placeholder="${exp.expCorpName}" readonly>
-                                  <!-- <h3 th:text="${exp.expPosition}" th:value="${exp.expPosition}">Product Designer</h3> -->
+                                  <h3 th:text="${exp.expPosition}" th:value="${exp.expPosition}">Product Designer</h3>
                                 </div>
                                 <div class="col-lg-6 col-md-6 form-group">
                                   <label>직무</label>
 		                        <input type="text" class="text" name="expPosition" th:placeholder="${exp.expPosition}" readonly>
                                 </div>
                               </div> 
-                           <!-- Input expContent -->
+                           Input expContent
                               <div class="form-group col-lg-12 col-md-12">
 		                        <label>경력 상세</label>
 		                        <input type="text" class="text" name="expContent" th:placeholder="${exp.expContent}" readonly>
 		                      </div>
-		                        <!-- <input type="text" name="name" placeholder="경력 관련 추가 정보를 입력하세요." th:value="${exp.expContent}"> -->
+		                        <input type="text" name="name" placeholder="경력 관련 추가 정보를 입력하세요." th:value="${exp.expContent}">
                                 <div class="edit-box">
                                 <div class="form-group col-lg-6 col-md-6">
 		            			<label>경력 시작일</label><br>
@@ -226,19 +226,19 @@
                             </div>
                           </div>
                       </form>
-					<!-- expForm End -->
+					expForm End
 
-				<!-- awardsForm Start -->
+				awardsForm Start
 					<form class="default-form" name="awardsForm">
 		   			<input type="hidden" name="cvId" th:value="${cvId}">
                       <div class="form-group col-lg-12 col-md-12">
-                        <!-- Resume / Awards -->
+                        Resume / Awards
                         <div class="resume-outer theme-yellow" id="awards-block">
                           <div class="upper-title">
                             <h4>수상</h4>
                             <button type="button" onclick="addAwards()" class="add-info-btn"><span class="icon flaticon-plus"></span>수상 추가</button>
                           </div>
-                          <!-- Resume BLock -->
+                          Resume BLock
                           <div class="resume-block" th:each="awards:${awardsList}" th:id="awardsBlock+${awards.id}">
                             <div class="inner">
                               <span class="name">A</span>
@@ -255,14 +255,14 @@
                               	<div class="col-lg-6 col-md-6 form-group">
                               	<label>수상명</label>
                               	<input type="text" class="text" name="awardsName" th:placeholder="${awards.awardsName}" readonly>
-                                  <!-- <h3 th:text="${awards.awardsName}">Perfect Attendance Programs</h3> -->
+                                  <h3 th:text="${awards.awardsName}">Perfect Attendance Programs</h3>
                                   <span></span>
                               	</div>
                               	<div class="col-lg-6 col-md-6 form-group">
                               	<label>수상 상세</label>
                               	<input type="text" class="text" name="awardsContent" th:placeholder="${awards.awardsContent}" readonly>
-                              	<!-- <div class="text" th:text="${awards.awardsContent}"></div> -->
-		                        <!-- <input type="text" name="name" placeholder="수상관련 추가 정보를 입력하세요." th:value="${awards.awardsContent}"> -->
+                              	<div class="text" th:text="${awards.awardsContent}"></div>
+		                        <input type="text" name="name" placeholder="수상관련 추가 정보를 입력하세요." th:value="${awards.awardsContent}">
                               	</div>
                               	
                                 <div class="edit-box">
@@ -271,23 +271,23 @@
                                 <input type="date" class="year" style=display:none id="hiddenStartDate" name="awardsDate">
                                   <span class="year year-span" th:value="${awards.awardsDate}" th:text="${#temporals.format(awards.awardsDate, 'yyyy-MM-dd')}">2012 - 2014</span>
                                 </div>
-<!--                                   <span class="year" th:text="${awards.awardsDate}">2012 - 2014</span>
+                                  <span class="year" th:text="${awards.awardsDate}">2012 - 2014</span>
                                   <div class="edit-btns">
                                     <button><span class="la la-pencil" onclick=""></span></button>
                                     <button><span class="la la-trash" onclick="deleteAwards()"></span></button>
-                                  </div> -->
+                                  </div>
                                 </div>
-                              </div> <!-- row end -->
+                              </div> row end
                               
                               </div>
                           </div>
                         </div>
                       </div>
                       </form>
-				<!-- awardsForm End -->
+				awardsForm End
                       
                      </div>
-
+ -->
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
                         <button class="theme-btn btn-style-one" onclick="writeCv()">저장하기</button>

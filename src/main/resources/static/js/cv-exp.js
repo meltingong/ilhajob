@@ -60,6 +60,38 @@ function addExp() {
 
 // createExp() : 새로운 경력을 추가
 function createExp() {
+  let expCorpName = $('#expCorpName').val();
+  let expPosition = $('#expPosition').val();
+  let expContent = $('#expContent').val();
+  let expStartDate = $('#expStartDate').val();
+  let expEndDate = $('#expEndDate').val();
+  
+  if(expCorpName == "") {
+  alert("회사명을 입력하세요.");
+  $('#expCorpName').focus()
+  return false;
+  }
+  if(expPosition == "") {
+  alert("직무를 입력하세요.");
+  $('#expPosition').focus();
+  return false;
+  }
+  if(expContent == "") {
+  alert("경력관련 상세정보를 입력하세요.");
+  $('#expContent').focus();
+  return false;
+  }
+  if(expStartDate == "") {
+  alert("경력 시작일을 입력하세요.");
+  $('#expStartDate').focus();
+  return false;
+  }
+  if(expEndDate == "") {
+  alert("경력 종료일을 입력하세요.");
+  $('#expEndDate').focus();
+  return false;
+  }
+  
   document.expForm.action = "exp-create";
   document.expForm.method = "POST";
   document.expForm.submit();
@@ -80,6 +112,39 @@ function updateExp(expId) {
   console.log(">>> updateExp(expId) : " + expId);
   $('#expId'+expId).val(expId);
   console.log($('#expId'+expId).attr('value'));
+  
+    let expCorpName = $('#expCorpName'+expId).val();
+  let expPosition = $('#expPosition'+expId).val();
+  let expContent = $('#expContent'+expId).val();
+  let expStartDate = $('#expStartDate'+expId).val();
+  let expEndDate = $('#expEndDate'+expId).val();
+  
+  if(expCorpName == "") {
+  alert("회사명을 입력하세요.");
+  $('#expCorpName'+expId).focus()
+  return false;
+  }
+  if(expPosition == "") {
+  alert("직무를 입력하세요.");
+  $('#expPosition'+expId).focus();
+  return false;
+  }
+  if(expContent == "") {
+  alert("경력관련 상세정보를 입력하세요.");
+  $('#expContent'+expId).focus();
+  return false;
+  }
+  if(expStartDate == "") {
+  alert("경력 시작일을 입력하세요.");
+  $('#expStartDate'+expId).focus();
+  return false;
+  }
+  if(expEndDate == "") {
+  alert("경력 종료일을 입력하세요.");
+  $('#expEndDate'+expId).focus();
+  return false;
+  }
+  
   document.expForm.action = "exp-update";
   document.expForm.method = "POST";
   document.expForm.submit();

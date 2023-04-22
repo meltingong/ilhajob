@@ -15,7 +15,7 @@ function addEdu() {
 	  	<div class="title-box">
 	  		  <div class="col-lg-11 col-md-11"></div>
 		      <div class="edit-btns col-lg-1 col-md-1">
-			      <button type="button" onclick="createEdu()"><span class="la la-check-circle-o"></span></button>
+			      <button type="button" onclick="createEdu()"><span class="la la-check-circle-o"></span></button>      
 	      	  </div>
 	     </div>
 	      	  <div class="row">
