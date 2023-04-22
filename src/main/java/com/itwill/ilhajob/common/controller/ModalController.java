@@ -24,15 +24,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.dto.ProductDto;
-import com.itwill.ilhajob.common.repository.OrdersRepository;
 import com.itwill.ilhajob.common.service.OrdersService;
 import com.itwill.ilhajob.common.service.ProductService;
-import com.itwill.ilhajob.corp.dto.CorpDto;
-import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.user.dto.AwardsDto;
 import com.itwill.ilhajob.user.dto.CvDto;
-import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.dto.EduDto;
+import com.itwill.ilhajob.user.dto.ExpDto;
+import com.itwill.ilhajob.user.service.AwardsService;
 import com.itwill.ilhajob.user.service.CvService;
-import com.itwill.ilhajob.user.service.UserService;
+import com.itwill.ilhajob.user.service.EduService;
+import com.itwill.ilhajob.user.service.ExpService;
 
 @RestController
 public class ModalController {
@@ -40,12 +41,18 @@ public class ModalController {
 	private final ProductService productService;
 	private final OrdersService ordersService;
 	private final CvService cvService;
+	private final EduService eduService;
+	private final ExpService expService;
+	private final AwardsService awardsService;
 	
 	@Autowired
-	public ModalController(ProductService productService, OrdersService ordersService, CvService cvService) {
+	public ModalController(ProductService productService, OrdersService ordersService, CvService cvService, EduService eduService, ExpService expService, AwardsService awardsService) {
 		this.productService = productService;
 		this.ordersService = ordersService;
 		this.cvService = cvService;
+		this.eduService = eduService;
+		this.expService = expService;
+		this.awardsService = awardsService;
 	}
 	
     @GetMapping("/login-popup")
@@ -93,7 +100,16 @@ public class ModalController {
     	Long userId = (Long)request.getSession().getAttribute("id");
 		/* user cv list */
 		List<CvDto> cvList = cvService.findByUserId(userId);
+		/* edu list */
+		List<EduDto> eduList = eduService.findEduListByUserId(userId);
+		/* exp list */
+		List<ExpDto> expList = expService.findExpListByUserId(userId);
+		/* awards list */
+		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
 		responseData.put("cvList", cvList);
+		responseData.put("eduList", eduList);
+		responseData.put("expList", expList);
+		responseData.put("awardsList", awardsList);
     	String html = "";
 
     	try {

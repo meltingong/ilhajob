@@ -49,7 +49,7 @@ function changeCv() {
   document.cvForm.submit();
 }
 
-// cv apply(예정)
+// cv apply
 //Open modal in AJAX callback
 $('.call-modal-apply').on('click', function(event) {
   event.preventDefault();
@@ -80,6 +80,9 @@ $('.call-modal-apply').on('click', function(event) {
 	$('#apply-btn').on('click', function(e){
 		let jsonData = data.cvList[select.selectedIndex];
 		jsonData.recruitId = recruitId;
+		jsonData.eduList = data.eduList;
+		jsonData.expList = data.expList;
+		jsonData.awardsList = data.awardsList;
 		
 		console.log(jsonData);
 		$.ajax({
@@ -102,12 +105,3 @@ $('.call-modal-apply').on('click', function(event) {
   });
   
 });
-
-/*function apply() {
-	window.confirm("지원하시겠습니까?");
-	document.f.action = "cv-apply-action";
-	document.f.method='POST';
-	document.f.submit();
-}*/
-
- /**************** edu ****************/
