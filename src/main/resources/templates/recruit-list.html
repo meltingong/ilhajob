@@ -302,7 +302,15 @@
                         <li class="required">Urgent</li>
                         -->
                       </ul>
-                      <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
+                      <!-- 리크루트 스크랩 고쳐야함 -->
+                      <div th:if = "${loginUser.id}!=null">
+                      <div th:each="recruitScrap : ${recruitScrapList}">
+                     	 <button th:value="${recruit.id}" class="bookmark-btn">
+	                     	 	<img th:if ="${recruitScrap.recruit.id==recruit.id}" src="images/bookmark.png" style="width: 23px"  id="check-bookmark"/>
+	                     	 	<span th:unless ="${recruitScrap.recruit.id==recruit.id}" class="flaticon-bookmark" id="check-bookmark"></span>
+                     	 </button>
+             		 </div>
+
                     </div>
                   </div>
                 </div>
@@ -401,6 +409,7 @@
   <script src="js/script.js"></script>
 	
 	<script src="js/app_recruit.js" type="module"></script>
+	<script src="js/app_recruit_scrap.js" type="module"></script>
 </body>
 
 </html>

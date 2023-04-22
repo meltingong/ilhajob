@@ -19,3 +19,20 @@ $(document).on('click','#deleteScrap',function(e){
 								true);
 			e.preventDefault();	
 });
+var bookmark = $('.flaticon-bookmark')
+$(document).on('click','#check-bookmark',function(){
+	
+		console.log("펑션접근");
+		
+		var backColor = bookmark.css('color');
+		if(backColor==="white"){
+			bookmark.css("green");
+		}else if(backColor==="green"){
+			bookmark.css("white");
+		}
+		console.log("적용완료");
+
+});
+
+
+

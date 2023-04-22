@@ -252,7 +252,9 @@ values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob
 insert into corp_image(id, original_file_name, stored_file_name, corp_id)
 values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 4);
 
+
 /**********************recruit_scrap insert*************************/
+/*
 insert into recruit_scrap(rc_seq, recruit_seq, user_email, user_seq)
 values(RECRUIT_SCRAP_RC_SEQ_SEQ.nextval, 1, 'test1@test.com', 1);
 insert into recruit_scrap(rc_seq, recruit_seq, user_email, user_seq)
@@ -261,7 +263,7 @@ insert into recruit_scrap(rc_seq, recruit_seq, user_email, user_seq)
 values(RECRUIT_SCRAP_RC_SEQ_SEQ.nextval, 3, 'test3@test.com', 3);
 insert into recruit_scrap(rc_seq, recruit_seq, user_email, user_seq)
 values(RECRUIT_SCRAP_RC_SEQ_SEQ.nextval, 4, 'test4@test.com', 4);
-
+*/
 /*******************************관계테이블**************************************/
 /**********************app insert***************************/
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)

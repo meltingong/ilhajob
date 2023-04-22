@@ -39,7 +39,12 @@ import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
+import com.itwill.ilhajob.user.dto.RecruitScrapDto;
+import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.User;
 import com.itwill.ilhajob.user.service.CvService;
+import com.itwill.ilhajob.user.service.RecruitScrapService;
+import com.itwill.ilhajob.user.service.UserService;
 
 
 @Controller
@@ -58,8 +63,10 @@ public class RecruitController {
 	private AppService appService;
 	@Autowired
 	private CvService cvService;
-	
-	
+	@Autowired
+	private RecruitScrapService recruitScrapService;
+	@Autowired
+	private UserService userService;
 //	@RequestMapping(value = { "/", "/index" })
 //	public String main(Model model) throws Exception {
 //		List<RecruitDto> recruitList = recruitService.findRecruitAll();
@@ -71,7 +78,7 @@ public class RecruitController {
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,
 	                        @RequestParam(defaultValue = "6") int size,
-	                        Model model) throws Exception {
+	                        Model model,HttpServletRequest request) throws Exception {
 		//페이징 기능 추가->일단 6개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
 	    Page<RecruitDto> recruitPage = recruitService.findAll(pageable);
@@ -89,6 +96,18 @@ public class RecruitController {
 		List<TagDto> tagList = tagService.selectAll();
 		model.addAttribute("recruitTagList", recruitTagList);
 		model.addAttribute("tagList", tagList);
+		
+		//스크랩리스트(로그인아이디가 있다면 북마크리스트 넣어줌)
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		System.out.print("아이디"+loginUser.getId());
+		model.addAttribute("loginUser", loginUser);
+		if(loginUser!=null) {
+			List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
+			System.out.print("스크랩리스트"+recruitScrapList);
+			model.addAttribute("recruitScrapList", recruitScrapList);
+			model.addAttribute("loginUser", loginUser);
+		}
 		
 		String forward_path = "recruit-list";
 		return forward_path;
