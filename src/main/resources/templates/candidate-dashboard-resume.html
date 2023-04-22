@@ -50,7 +50,7 @@
       <div class="dashboard-outer">
         <div class="upper-title-box">
           <h3>이력서 관리</h3>
-          <div class="text">Ready to jump back in?</div>
+          <div class="text">이력서를 관리하세요.</div>
         </div>
 
         <div class="row">
@@ -82,20 +82,19 @@
                       <!-- Cv Name -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>제목</label>
-                        <input type="text" name="cvName" placeholder="((테스트))이력서 제목을 입력하세요." th:value="*{cvName}">
+                        <input type="text" name="cvName" th:value="*{cvName}">
                       </div>
                       
                       <!-- About Company -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>자기소개</label>
-                        <textarea placeholder="이력서를 작성하세요." th:text="${cvDetail.cvDescription}" name="cvDescription"></textarea>
+                        <textarea th:text="${cvDetail.cvDescription}" name="cvDescription"></textarea>
                       </div>
 
                       <!-- 포트폴리오 -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>포트폴리오</label>
-                        <!-- <textarea placeholder="포트폴리오를 업로드 사이트를 입력하세요." th:text="${cvDetail.cvPortfolio}"></textarea> -->
-                        <input type="text" name="cvPortfolio" th:value="${cvDetail.cvPortfolio}" placeholder="포트폴리오를 업로드 사이트를 입력하세요.">
+                        <input type="text" name="cvPortfolio" th:value="${cvDetail.cvPortfolio}">
                       </div>
                       <!-- 포트폴리오 -->
                       </form>
