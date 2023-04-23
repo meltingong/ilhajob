@@ -320,7 +320,7 @@ Handlebars.registerHelper("if_eq", function(value, comparison, options) {
                         -->
                       </ul>
                       <!-- 리크루트 스크랩 ajax로 -->
-                      <div th:if = "${loginUser.id}!=null">
+                      <div th:if = "${loginUser}!=null">
                       	<form action="recruit_scrap_insert_delete">
 							<button th:value="${recruit.id}" class="bookmark-btn" name = "id" id="check-bookmark" type="submit">
 									<img src="images/bookmark.png" style="width: 23px"  th:if="${countList[recruit.id]==1}">
