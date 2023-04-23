@@ -21,22 +21,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 <script type="text/javascript">
-//재정의
-Handlebars.registerHelper("if_eq", function(value, comparison, options) {
-	  if (value === comparison) {
-	    return options.fn(this);
-	  } else {
-	    return options.inverse(this);
-	  }
-	});
-
-	Handlebars.registerHelper("unless_eq", function(value, comparison, options) {
-	  if (value !== comparison) {
-	    return options.fn(this);
-	  } else {
-	    return options.inverse(this);
-	  }
-	});
+//Handlebars 커스텀 헬퍼: ifEqual
+Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
+  return (v1 === v2) ? options.fn(this) : options.inverse(this);
+});
 </script>
 </head>
 
@@ -400,15 +388,16 @@ Handlebars.registerHelper("if_eq", function(value, comparison, options) {
                         <li class="required">Urgent</li>
                         -->
                       </ul>
-							<!--
-							<form action="recruit_scrap_insert_delete">
-								<button class="bookmark-btn" name="id" id="check-bookmark" type="submit" value="{{recruit.id}}">
-								{{#if countList.[recruit.id]}}
-								<img src="images/bookmark.png" style="width: 23px" >{{/if}}
-								{{#unless countList.[recruit.id]}}<span class="flaticon-bookmark"></span>{{/unless}}
-								</button>
-							</form>
-							-->
+ 								 <form action="recruit_scrap_insert_delete">
+   									 <button class="bookmark-btn" name="id" id="check-bookmark" type="submit" value={{recruit.id}}>
+    									  {{#ifEqual countList.[recruitTag.recruit.id] 1}}
+     									   <img src="images/bookmark.png" style="width: 23px">
+    									  {{/ifEqual}}
+     									 {{#ifEqual countList.[recruitTag.recruit.id] 0}}
+     									   <span class="flaticon-bookmark"></span>
+    									  {{/ifEqual}}
+   									 </button>
+ 								</form>
                     </div>
                   </div>
                 </div>

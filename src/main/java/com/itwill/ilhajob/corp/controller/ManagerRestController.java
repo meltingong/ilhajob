@@ -26,11 +26,11 @@ public class ManagerRestController {
 	@Autowired
 	private ManagerService managerService;
 	//매니저생성
-		@PostMapping(value = "/manager", produces = "application/json;charset=UTF-8" )
-	    public Map<String,Object> create(@RequestBody Map<Object,String> reqMap, HttpServletRequest request) throws Exception {
+		@PostMapping(value = "manager", produces = "application/json;charset=UTF-8" )
+	    public Map<String,Object> create(@RequestBody Map<String,String> reqMap, HttpServletRequest request) throws Exception {
 			Map<String,Object> map = new HashMap<String, Object>();
-			System.out.println("아주도착");
-			Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+			System.out.println("레스트 컨트롤러 도착");
+			Long sCorpId =(Long)request.getSession().getAttribute("id");
 			CorpDto corpDto=corpService.findByCorpId(sCorpId);
 			System.out.println("생성 컨트롤러 도착");
 			System.out.println(reqMap);
@@ -43,13 +43,8 @@ public class ManagerRestController {
 			ManagerDto createManager = managerService.create(manager);
 			System.out.println(createManager+"생성완료");
 			List<ManagerDto> managerList = managerService.findManagerByCorpID(sCorpId);
-			int code= 1;
-			String msg="실패";
 			
-			map.put("msg", msg);
-			map.put("code", code);
-			map.put("managerList", managerList);
-			
+			map.put("data", managerList);
 	        return map;
 	    }
 }

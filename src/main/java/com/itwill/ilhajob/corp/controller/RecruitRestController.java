@@ -49,10 +49,13 @@ public class RecruitRestController {
 		List<TagDto> tagList = new ArrayList<TagDto>();
 		
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
-		UserDto loginUser = userService.findUser(sUserId);
-		System.out.print("아이디:"+loginUser.getId());
+		UserDto loginUser = null;
+		if(sUserId!=null) {
+			loginUser = userService.findUser(sUserId);
+		}
 		map.put("loginUser", loginUser);
 		
+		if(loginUser!=null) {
 		//스크랩 (북마크)로고 출력
 			List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
 			//스크랩확인 카운트 리스트
@@ -75,6 +78,7 @@ public class RecruitRestController {
 			}
 			System.out.println("로그인유저:"+loginUser+"카운트"+countList+"스크랩리스트"+recruitScrapList);
 			map.put("countList", countList);
+		}
 		//전체태그선택
 		if(data.get("tagId").equals("전체")) {
 			List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();

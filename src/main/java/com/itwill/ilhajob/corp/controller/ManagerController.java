@@ -37,7 +37,7 @@ public class ManagerController {
 	@RequestMapping("/dashboard-manager-list")
 	public String corp_dashboard_manager_list(HttpServletRequest request,Model model) throws Exception{
 		
-		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		List<ManagerDto> managerList = managerService.findManagerByCorpID(corpDto.getId());
 		
@@ -51,7 +51,7 @@ public class ManagerController {
 	
 	@PostMapping("manager-create")
     public String createManager(@ModelAttribute ManagerDto managerDto, HttpServletRequest request,Model model) throws Exception {
-		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		System.out.println("생성 컨트롤러 도착");
 		System.out.println(managerDto);
