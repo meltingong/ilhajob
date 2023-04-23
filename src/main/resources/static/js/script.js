@@ -1,3 +1,17 @@
+/* sidebar active 변경 */
+$(document).ready(function() {
+  var currentUrl = window.location.href;
+  var links = document.querySelectorAll('.navigation li a');
+
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].href === currentUrl) {
+      links[i].parentNode.classList.add('active');
+    }
+  }
+});
+/* sidebar active 변경 */
+
+
 (function($) {
 	
 	"use strict";
