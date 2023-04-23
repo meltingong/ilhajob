@@ -9,6 +9,7 @@
 </head>
 
 <div th:fragment="include_common_top_dashboard">
+	<th:block th:if = "${#session.getAttribute('role') == 'user'}">
       <div class="container-fluid">
         <!-- Main box -->
         <div class="main-box">
@@ -24,25 +25,12 @@
                   <span>홈</span>
                 </li>
 
-                <li class="dropdown has-mega-menu" id="has-mega-menu">
+                <li class="dropdown">
                   <span>공고</span>
-                  <div class="mega-menu">
-                    <div class="mega-menu-bar row">
-                      <div class="column col-lg-3 col-md-3 col-sm-12">
-                          <h3>공고</h3>
-                        <ul>
-                          <li><a href="recruit-list">공고리스트</a></li>
-                        </ul>
-                      </div>
+                     <ul>
+                        <li><a href="recruit-list">공고리스트</a></li>
+                     </ul>
 
-                      <div class="column col-lg-3 col-md-3 col-sm-12">
-                        <!-- <h3>Jobs Single</h3>-->
-                        <ul>
-                          <!--<li><a href="recruit-detail">공고상세보기</a></li>-->
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
                 </li>
 
                 <li class="dropdown">
@@ -62,10 +50,10 @@
                       </ul>
                     </li>
                     -->
-                    <li><a href="dashboard">기업 대시보드</a></li>
+                    <!-- <li><a href="dashboard">기업 대시보드</a></li> -->
                   </ul>
                 </li>
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                   <span>구직자</span>
                   <ul>
                     <li class="dropdown">
@@ -83,7 +71,7 @@
                     </li>
                     <li><a href="candidate-dashboard">구직자 상세보기</a></li>
                   </ul>
-                </li>
+                </li> -->
                 <li class="dropdown">
                   <span>블로그</span>
                   <ul>
@@ -212,6 +200,7 @@
 
       <!-- Mobile Nav -->
       <div id="nav-mobile"></div>
+      </th:block>
     </div>
     
   <script src="js/jquery.js"></script>

@@ -55,6 +55,7 @@ public class KaKaoController {
    			 session=request.getSession();
    			 
    			 session.setAttribute("sUserId", kakaoProfile.getKakao_account().email);
+   			 session.setAttribute("role", "user");
    			 request.setAttribute("kakaoProfile", kakaoProfile);
    			 
    			 Cookie authorize_access_token=new Cookie("authorize-access-token", access_token);
@@ -75,6 +76,7 @@ public class KaKaoController {
 	   			 session=request.getSession();
 	   			 
 	   			 session.setAttribute("sUserId", kakaoProfile.getKakao_account().email);
+	   			 session.setAttribute("role", "user");
 	   			 request.setAttribute("kakaoProfile", kakaoProfile);
 	   			 
 	   			 Cookie authorize_access_token=new Cookie("authorize-access-token", access_token);

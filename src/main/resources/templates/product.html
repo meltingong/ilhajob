@@ -38,12 +38,17 @@
 				th:include="include_common_top_dashboard::include_common_top_dashboard"></div>
 		</header>
 		<!--End Main Header -->
-
+		
 		<!-- Sidebar Backdrop -->
 		<div class="sidebar-backdrop"></div>
-
+		
 		<!-- User Sidebar -->
-		<div id="user-sidebar" th:include="user-sidebar::user-sidebar"></div>
+		<th:block th:if="${#session.getAttribute('role') == 'user'}">
+		<div class="user-sidebar" th:include="user-sidebar::user-sidebar"></div>
+		<th:block>
+		<th:block th:if="${#session.getAttribute('role') == 'corp}">
+		<div class="user-sidebar" th:include="corp-sidebar::corp-sidebar"></div>
+		<th:block>
 		<!-- End User Sidebar -->
 
 		<!-- Dashboard -->

@@ -54,6 +54,7 @@ public class NaverController {
         	// 위 코드는 session객체에 담긴 정보를 초기화 하는 코드.
         	session=request.getSession();
         	session.setAttribute("sUserId", naverLoginProfile.getEmail());
+        	session.setAttribute("role", "user");
         	request.setAttribute("naverProfile", naverLoginProfile);
         	
         	return "redirect:index";
@@ -74,6 +75,7 @@ public class NaverController {
         		session.invalidate();
         		session = request.getSession();
         		session.setAttribute("sUserId", naverLoginProfile.getEmail());
+        		session.setAttribute("role", "user");
         		request.setAttribute("naverProfile", naverLoginProfile);
         		
         		return "redirect:index";
