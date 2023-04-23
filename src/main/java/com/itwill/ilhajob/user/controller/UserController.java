@@ -23,6 +23,7 @@ import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.dto.MessageDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
@@ -31,6 +32,7 @@ import com.itwill.ilhajob.user.exception.ExistedReviewException;
 import com.itwill.ilhajob.user.exception.ExistedUserException;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
+import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.MessageService;
 import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
@@ -61,6 +63,9 @@ public class UserController {
 	@Autowired
 	private CorpService corpService;
 	
+	@Autowired
+	private CvService cvService;
+	
 	
 
 
@@ -89,11 +94,23 @@ public class UserController {
 	//회원 대시보드 보기
 	@LoginCheck
 	@RequestMapping("/candidate-dashboard")
-	public String dashboard(HttpServletRequest request) throws Exception {
+	public String dashboard(HttpServletRequest request, Model model) throws Exception {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		//System.out.println(">>>>>>>>"+sUserId);
 		UserDto loginUser = userService.findUser(sUserId);
 		request.setAttribute("loginUser", loginUser);
+ 		
+		// app list
+		List<AppDto> appList = appService.findAllByUserId(loginUser.getId());
+ 		model.addAttribute("appList", appList);
+ 		
+ 		// cvList
+ 		List<CvDto> cvList = cvService.findByUserId(loginUser.getId()); 		
+ 		model.addAttribute("cvList", cvList);
+ 		
+ 		// message list
+ 		List<MessageDto> messageList = userService.findMessageList(loginUser.getId());
+		model.addAttribute("messageList", messageList);
 		String forwardPath = "candidate-dashboard";
 		return forwardPath;
 	}

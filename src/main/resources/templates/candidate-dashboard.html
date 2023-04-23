@@ -51,47 +51,47 @@
           <div class="text">Ready to jump back in?</div>
         </div>
         <div class="row">
-          <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
+          <div onclick="location.href='candidate-dashboard-applied-job'" class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
             <div class="ui-item">
               <div class="left">
                 <i class="icon flaticon-briefcase"></i>
               </div>
               <div class="right">
-                <h4>22</h4>
-                <p>Posted Jobs</p>
+                <h4 th:text="${appList.size()}">22</h4>
+                <p>지원한 공고</p>
               </div>
             </div>
           </div>
-          <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
+          <div onclick="location.href='cv-detail'" class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
             <div class="ui-item ui-red">
               <div class="left">
                 <i class="icon la la-file-invoice"></i>
               </div>
               <div class="right">
-                <h4>9382</h4>
-                <p>Application</p>
+                <h4 th:text="${cvList.size()}">9382</h4>
+                <p>작성한 이력서</p>
               </div>
             </div>
           </div>
-          <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
+          <div onclick="location.href='candidate-dashboard-job-alerts'" class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
             <div class="ui-item ui-yellow">
               <div class="left">
                 <i class="icon la la-comment-o"></i>
               </div>
               <div class="right">
-                <h4>74</h4>
-                <p>Messages</p>
+                <h4 th:text="${messageList.size()}">74</h4>
+                <p>공고 알림</p>
               </div>
             </div>
           </div>
-          <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
+          <div onclick="location.href='candidate-dashboard-shortlisted-resume'" class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
             <div class="ui-item ui-green">
               <div class="left">
                 <i class="icon la la-bookmark-o"></i>
               </div>
               <div class="right">
                 <h4>32</h4>
-                <p>Shortlist</p>
+                <p>스크랩한 공고</p>
               </div>
             </div>
           </div>
@@ -129,16 +129,19 @@
             <!-- Notification Widget -->
             <div class="notification-widget ls-widget">
               <div class="widget-title">
-                <h4>Notifications</h4>
+                <h4>알림</h4>
               </div>
               <div class="widget-content">
-                <ul class="notification-list">
-                  <li><span class="icon flaticon-briefcase"></span> <strong>Wade Warren</strong> applied for a job <span class="colored">Web Developer</span></li>
+                <ul class="notification-list" th:each="message:${messageList}">
+                  <li><span class="icon flaticon-briefcase"></span> <strong th:text="${message.messageTitle}">Wade Warren</strong>
+                  <span class="colored right" style="float:right" th:text="${#temporals.format(message.messageDate, 'yyyy-MM-dd')}">Web Developer</span></li>
+                  <!-- 
                   <li><span class="icon flaticon-briefcase"></span> <strong>Henry Wilson</strong> applied for a job <span class="colored">Senior Product Designer</span></li>
                   <li class="success"><span class="icon flaticon-briefcase"></span> <strong>Raul Costa</strong> applied for a job <span class="colored">Product Manager, Risk</span></li>
                   <li><span class="icon flaticon-briefcase"></span> <strong>Jack Milk</strong> applied for a job <span class="colored">Technical Architect</span></li>
                   <li class="success"><span class="icon flaticon-briefcase"></span> <strong>Michel Arian</strong> applied for a job <span class="colored">Software Engineer</span></li>
                   <li><span class="icon flaticon-briefcase"></span> <strong>Ali Tufan</strong> applied for a job <span class="colored">UI Designer</span></li>
+                   -->
                 </ul>
               </div>
             </div>
@@ -149,16 +152,17 @@
             <!-- applicants Widget -->
             <div class="applicants-widget ls-widget">
               <div class="widget-title">
-                <h4>Recent Applicants</h4>
+                <h4>지원한 공고 목록 미리보기</h4>
+                <span><a href="candidate-dashboard-applied-job">자세히 보러가기</a></span>
               </div>
               <div class="widget-content">
                 <div class="row">
                   <!-- Candidate block three -->
-                  <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
+                  <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12" th:each="app:${appList}">
                     <div class="inner-box">
                       <div class="content">
                         <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
-                        <h4 class="name"><a href="#">Darlene Robertson</a></h4>
+                        <h4 class="name" th:text="${app.recruit.rcTitle}"><a href="#">Darlene Robertson</a></h4>
                         <ul class="candidate-info">
                           <li class="designation">UI Designer</li>
                           <li><span class="icon flaticon-map-locator"></span> London, UK</li>
@@ -180,8 +184,8 @@
                       </div>
                     </div>
                   </div>
-
-                  <!-- Candidate block three -->
+<!-- 
+                  Candidate block three
                   <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                       <div class="content">
@@ -209,7 +213,7 @@
                     </div>
                   </div>
 
-                  <!-- Candidate block three -->
+                  Candidate block three
                   <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                       <div class="content">
@@ -237,7 +241,7 @@
                     </div>
                   </div>
 
-                  <!-- Candidate block three -->
+                  Candidate block three
                   <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                       <div class="content">
@@ -265,7 +269,7 @@
                     </div>
                   </div>
 
-                  <!-- Candidate block three -->
+                  Candidate block three
                   <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                       <div class="content">
@@ -293,7 +297,7 @@
                     </div>
                   </div>
 
-                  <!-- Candidate block three -->
+                  Candidate block three
                   <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
                       <div class="content">
@@ -319,7 +323,7 @@
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
