@@ -9,5 +9,5 @@ import com.itwill.ilhajob.user.entity.Exp;
 
 @Repository
 public interface ExpRepository extends JpaRepository<Exp, Long> {
-	List<Exp> findByUserId(Long userId);
+	List<Exp> findByUserIdOrderByExpEndDateDesc(Long userId);
 }

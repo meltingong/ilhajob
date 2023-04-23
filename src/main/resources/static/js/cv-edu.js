@@ -89,7 +89,7 @@ function createEdu() {
     let eduEndDate = $('#eduEndDate').val();
     var cvId = document.querySelector('.chosen-select').value;
     document.querySelector('#cvId').value = cvId;
-    let pattern = /^[1-9]\d*(\.\d{1,2})?$/;
+    let pattern = /^(?:4(?:\.[0-4]?[0-9]?)?|[0-3](?:\.[0-9]{1,2})?|0?\.[0-9]{1,2})$/;
     
 	if (eduName == "") {
 		alert("학교를 입력하세요.");
@@ -170,7 +170,7 @@ function updateEdu(eduId) {
 	let eduStartDate = $("#eduStartDate" + eduId).val();
 	let eduEndDate = $("#eduEndDate" + eduId).val();
     let cvId = $('.chosen-select').val();
-    let pattern = /^[1-9]\d*(\.\d{1,2})?$/;
+    let pattern = /^(?:4(?:\.[0-4]?[0-9]?)?|[0-3](?:\.[0-9]{1,2})?|0?\.[0-9]{1,2})$/;
 
 	console.log(">>>>> eduId : " + eduId);
     console.log(">>>>> eduName : " + eduName);

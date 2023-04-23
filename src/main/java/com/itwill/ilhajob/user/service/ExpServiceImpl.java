@@ -47,7 +47,7 @@ public class ExpServiceImpl implements ExpService{
 
 	@Override
 	public List<ExpDto> findExpListByUserId(Long userId) {
-		List<Exp> expList = expRepository.findByUserId(userId);
+		List<Exp> expList = expRepository.findByUserIdOrderByExpEndDateDesc(userId);
 		return expList.stream().map(exp -> modelMapper.map(exp, ExpDto.class)).collect(Collectors.toList());
 	}
 

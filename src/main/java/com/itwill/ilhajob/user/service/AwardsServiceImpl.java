@@ -52,7 +52,7 @@ public class AwardsServiceImpl implements AwardsService {
 
 	@Override
 	public List<AwardsDto> findAwardsByUserId(Long userId) {
-		List<Awards> awardsList = awardsRepository.findByUserId(userId);
+		List<Awards> awardsList = awardsRepository.findByUserIdOrderByAwardsDateDesc(userId);
 		return awardsList.stream().map(awards -> modelMapper.map(awards, AwardsDto.class)).collect(Collectors.toList());
 	}
 

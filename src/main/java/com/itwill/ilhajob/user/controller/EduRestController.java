@@ -90,14 +90,15 @@ public class EduRestController {
 	
 	@DeleteMapping(value = "/edu/{eduId}", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> deleteEdu(HttpServletRequest request, @PathVariable(value="eduId") String eduId,  RedirectAttributes redirectAttributes) {
+		  Map<String, Object> resultMap = new HashMap<>();
 		  Long longEduId = Long.parseLong(eduId.replace(',', ' ').trim());
 		  eduService.deleteEdu(longEduId);
 		  Long userId = (Long)request.getSession().getAttribute("id");
+
+		  int code = 1;
 		  List<EduDto> eduList = eduService.findEduListByUserId(userId);
 		  
-		  
-		  // 리다이렉트할 cvId 전달
-		  Map<String, Object> resultMap = new HashMap<>();
+		  resultMap.put("code", code);
 		  resultMap.put("eduList", eduList);
 		  return resultMap;
 		}

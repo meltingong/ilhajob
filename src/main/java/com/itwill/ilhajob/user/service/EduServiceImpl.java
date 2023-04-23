@@ -49,7 +49,7 @@ public class EduServiceImpl implements EduService {
 
 	@Override
 	public List<EduDto> findEduListByUserId(Long userId) {
-		List<Edu> eduList = eduRepository.findByUserId(userId);
+		List<Edu> eduList = eduRepository.findByUserIdOrderByEduEndDateDesc(userId);
 		return eduList.stream().map(edu -> modelMapper.map(edu, EduDto.class)).collect(Collectors.toList());
 	}
 

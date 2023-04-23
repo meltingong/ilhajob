@@ -9,5 +9,5 @@ import com.itwill.ilhajob.user.entity.Edu;
 
 @Repository
 public interface EduRepository extends JpaRepository<Edu, Long> {
-	List<Edu> findByUserId(Long userId);
+	List<Edu> findByUserIdOrderByEduEndDateDesc(Long userId);
 }

@@ -9,5 +9,5 @@ import com.itwill.ilhajob.user.entity.Awards;
 
 @Repository
 public interface AwardsRepository extends JpaRepository<Awards, Long> {
-	List<Awards> findByUserId(Long userId);
+	List<Awards> findByUserIdOrderByAwardsDateDesc(Long userId);
 }
