@@ -1283,6 +1283,7 @@ $(document).ready(function() {
         // 변경 성공시
         if (response.success) {
             alert(response.message);
+             window.location.href = "/final-project-team1-ilhajob/dashboard-change-password";
         }
         // 변경 실패 시 
         else {
