@@ -68,13 +68,15 @@ public class RecruitController {
 	private RecruitScrapService recruitScrapService;
 	@Autowired
 	private UserService userService;
-//	@RequestMapping(value = { "/", "/index" })
-//	public String main(Model model) throws Exception {
-//		List<RecruitDto> recruitList = recruitService.findRecruitAll();
-//		model.addAttribute("recruitList", recruitList);
-//		String forward_path = "index";
-//		return forward_path;
-//	}
+	
+	//home에 recruitList 뿌리기
+	@RequestMapping(value = { "/", "/index" })
+	public String main(Model model) throws Exception {
+		List<RecruitDto> recruitList = recruitService.findRecruitAll();
+		model.addAttribute("recruitList", recruitList);
+		String forward_path = "index";
+		return forward_path;
+	}
 
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,
