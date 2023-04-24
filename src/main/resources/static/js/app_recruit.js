@@ -1,6 +1,31 @@
 import * as View from "./view.js";
 import * as Request from "./request.js";
 
+Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
+  return (v1 === v2) ? options.fn(this) : options.inverse(this);
+});
+Handlebars.registerHelper('eq', function(a, b) {
+	  return a === b;
+});
+Handlebars.registerHelper('not', function(value) {
+    return !value;
+});
+Handlebars.registerHelper('subtract', function(a, b) {
+    return a - b;
+});
+Handlebars.registerHelper('add', function(a, b) {
+    return a + b;
+});
+Handlebars.registerHelper('gte', function(a, b) {
+    return a >= b;
+});
+Handlebars.registerHelper('lte', function(a, b) {
+    return a <= b;
+});
+Handlebars.registerHelper('and', function(a, b) {
+  return a && b;
+});
+
 $('.changeTag').click(function(e){
 	console.log("펑션접근");
 	/*
@@ -8,11 +33,11 @@ $('.changeTag').click(function(e){
 	*/
 	
 		let sendData={
-			tagId:$(this).val()
+			tagId:parseInt($(this).val())
 		};
 	console.log(sendData);
-	Request.ajaxRequest('getRecruitTag',
-					    'POST',
+	Request.ajaxRequest('recruitTags',
+					    'GET',
 						'application/json;charset=UTF-8',
 						JSON.stringify(sendData),
 						function(resultJson){
