@@ -96,8 +96,9 @@ $('.call-modal-apply').on('click', function(event) {
 				alert(data);
 				location.href="/final-project-team1-ilhajob/recruit-detail?id="+recruitId;
 			},
-			error: function() {
-				alert("지원실패");
+			error: function(data) {
+				alert("이력서 지원실패",data);
+				$('.modal').remove();
 			}
 		});
 	});

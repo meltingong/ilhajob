@@ -74,6 +74,7 @@
     create table app (
        id number(19,0) not null,
         app_status number(1) DEFAUlT 0,
+        app_cv_name varchar2(255 char),
         cv_id number(19,0),
         recruit_id number(19,0),
         app_create_date timestamp DEFAULT sysdate,
@@ -137,7 +138,6 @@
         corp_size varchar2(255 char),
         corp_website varchar2(255 char),
         corp_welfare varchar2(600 char),
-        corp_original_file_name varchar2(255 char),
         corp_stored_file_name varchar2(255 char),
         rc_count number(1) DEFAULT 0,
         job varchar2(255 char),

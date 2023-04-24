@@ -213,12 +213,12 @@ public class CvController {
 	public String cv_apply_action(@RequestBody Map<String, Object> requestData ,HttpServletRequest request ) throws Exception {
 		RecruitDto recruit = recruitService.findRecruit(Long.valueOf((Integer)requestData.get("recruitId"))); // null
 		CvDto cv = cvService.findCvById(Long.valueOf((Integer)requestData.get("id")));
-		UserDto user = (UserDto)requestData.get("user");
+		UserDto user = userService.findUser((String)request.getSession().getAttribute("sUserId"));
 		
 		Map<String, String> pathMap = ImageController.makeDir("cv");
-		String saveFileName = cv.getId()+"_cv"+user.getUserName()+".json";
+		String saveFileName = cv.getId()+"_cv"+user.getId()+"_user"+".json";
 		try {
-			AppDto app = new AppDto(0, 0, LocalDateTime.now(), recruit, cv, user);
+			AppDto app = new AppDto(0, 0, LocalDateTime.now(), saveFileName,recruit, cv, user);
 			
 			//pathMap.get("urlPath") + saveFileName;
 			appService.insertApp(app);

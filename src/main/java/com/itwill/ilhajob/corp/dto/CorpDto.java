@@ -24,7 +24,6 @@ public class CorpDto {
 	private LocalDateTime corpEst;
 	private String corpSize;
 	private String corpSales;
-	private String corpOriginalFileName;
     private String corpStoredFileName;
 	private String corpComment;
 	private String corpWelfare;

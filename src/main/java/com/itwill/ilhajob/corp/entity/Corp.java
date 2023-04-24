@@ -50,7 +50,6 @@ public class Corp {
 	
 	private String corpSales;
 	
-	private String corpOriginalFileName;
     private String corpStoredFileName;
 	
 	@Column(length = 1000)

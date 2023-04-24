@@ -53,10 +53,10 @@ public class App {
 	private Integer appStatus;
 	
 	private LocalDateTime appCreateDate;
+	private String appCvName; 
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "recruit_id")
-	
 	private Recruit recruit;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)

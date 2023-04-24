@@ -27,6 +27,7 @@ public class AppDto {
 	private long id;
 	private int appStatus;
 	private LocalDateTime appCreateDate;
+	private String appCvName; 
 	
 	private RecruitDto recruit;
 	//@ToString.Exclude

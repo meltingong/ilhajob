@@ -67,7 +67,7 @@ public class ImageController {
 	    for (MultipartFile image : images) {
 	        if (!image.isEmpty()) {
 	            String fileName = image.getOriginalFilename();
-	            String saveFileName = loginUser.getUserEmail()+"_profile"+fileName.substring(fileName.lastIndexOf("."));
+	            String saveFileName = loginUser.getId()+"_profile"+fileName.substring(fileName.lastIndexOf("."));
 	            // 파일 저장 로직
 	            try {
 	                byte[] bytes = image.getBytes();
@@ -89,8 +89,7 @@ public class ImageController {
 	@ResponseBody
 	@PostMapping(value = "/corp-logo-upload-action")
 	public String corp_logo_upload_action(@RequestParam("images") List<MultipartFile> images, HttpServletRequest request) throws Exception {
-		request.getSession().setAttribute("sCorpId", 1L); //임시로 아이디 로그인상태
-		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corp=corpService.findByCorpId(sCorpId);
 		
 		//절대경로 logo은 config에서 경로등록
@@ -106,7 +105,6 @@ public class ImageController {
 	                byte[] bytes = image.getBytes();
 	                Path path = Paths.get(pathMap.get("absolutePath") + saveFileName);
 	                Files.write(path, bytes);
-	                corp.setCorpOriginalFileName(saveFileName);
 	                corp.setCorpStoredFileName(pathMap.get("urlPath") + saveFileName);
 	                corpService.update(corp.getId(), corp);
 	                //return ResponseEntity.ok().body("{\"success\": true, \"imagePath\": \"" + corp.getCorpStoredFileName() + "\", \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");
