@@ -89,10 +89,28 @@ public class UserRestController {
 	}
 	
 
-	@PostMapping("ajaxModify")
-	public ResponseEntity<Object> ajaxModify(@RequestBody LoginRequestDto loginRequest,HttpSession session) throws Exception {
+	@PostMapping("dashboard-change-password")
+	public ResponseEntity<Object> ajaxModifyPassword(@RequestBody LoginRequestDto loginRequest,HttpSession session ) throws Exception {
+		String sUserId = (String)session.getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		String password = loginUser.getUserPassword();
+		String oldPassword = loginRequest.getOldPassword();
+		String newPassword = loginRequest.getNewPassword();
+		String newPasswordConfirm = loginRequest.getNewPasswordConfirm();
 		
-		return null;
+		
+		if(oldPassword != null && !password.equals(oldPassword)) {
+		    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"기존 비밀번호와 일치하지 않습니다.\", \"location\": \"/final-project-team1-ilhajob/dashboard-change-password\"}");
+		}else if(oldPassword.equals(password) && !newPassword.equals(newPasswordConfirm)) {
+			 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"비밀번호 확인이 일치하지 않습니다.\", \"location\": \"/final-project-team1-ilhajob/dashboard-change-password\"}");
+		}else {
+			Long id = loginUser.getId();
+			String email = loginUser.getUserEmail();
+			UserDto user = new UserDto(id,email,newPassword);
+			userService.update(id, user);
+			return ResponseEntity.ok().body("{\"success\": true, \"message\": \"비밀번호 변경완료\"}");
+		}
+		
 	}
 	
 	/*

@@ -11,4 +11,7 @@ public class LoginRequestDto {
 	private String email; // user 로그인 아이디
 	private String id;// corp 로그인 아이디
 	private String password; // 로그인 비밀번호
+	private String oldPassword; // 비밀번호 변경 시 기존 비밀번호
+	private String newPassword; // 변경할 비밀번호
+	private String newPasswordConfirm; // 변경할 비밀번호 확인
 }
