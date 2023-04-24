@@ -8,6 +8,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,8 +45,10 @@ public class RecruitRestController {
 	private RecruitScrapService recruitScrapService;
 	
 	@PostMapping(value="/getRecruitTag", produces = "application/json;charset=UTF-8")
-	public Map<String,Object> getRecruitTagData(@RequestBody Map<String,String> data,HttpServletRequest request) throws Exception{
-		System.out.println("컨트롤러도착");
+	public Map<String,Object> getRecruitTagData(@RequestParam(defaultValue = "0") int page,
+												@RequestParam(defaultValue = "6") int size,
+												@RequestBody Map<String,String> data, Model model, HttpServletRequest request) throws Exception{
+		
 		Map<String, Object> map = new HashMap<String,Object>();
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
 		List<RecruitTagListDto> recruitTagListDto = new ArrayList<RecruitTagListDto>();
@@ -76,7 +83,6 @@ public class RecruitRestController {
 			        countList.add(0); // 리크루트 스크랩이 없을 때
 			    }
 			}
-			System.out.println("로그인유저:"+loginUser+"카운트"+countList+"스크랩리스트"+recruitScrapList);
 			map.put("countList", countList);
 		}
 		//전체태그선택
@@ -114,8 +120,16 @@ public class RecruitRestController {
 		}
 		
 		map.put("data", recruitTagListDto);
-		System.out.println("태그선택실행완료");
 		System.out.println(map);
+		
+		Pageable pageable = PageRequest.of(page, size,Sort.Direction.ASC,"id");
+		Page<RecruitDto> recruitTagPage = recruitTagService.selectRecruitsByTagId(Long.parseLong(data.get("tagId")), pageable);
+		map.put("recruitList", recruitTagPage.getContent());
+		map.put("nowPage", recruitTagPage.getNumber());
+		map.put("totalPage", recruitTagPage.getTotalPages());
+		map.put("prePage", recruitTagPage.hasPrevious() ? recruitTagPage.previousPageable().getPageNumber() : 0);
+		map.put("nextPage", recruitTagPage.hasNext() ? recruitTagPage.nextPageable().getPageNumber() : recruitTagPage.getTotalPages() - 1);
+	    map.put("page", recruitTagPage);	    
 		return map;
 		
 		}

@@ -2,7 +2,6 @@ import * as View from "./view.js";
 import * as Request from "./request.js";
 
 $('.changeTag').click(function(e){
-	console.log("펑션접근");
 	/*
 		url,method,contentType,sendData,function,async
 	*/
@@ -16,7 +15,6 @@ $('.changeTag').click(function(e){
 						'application/json;charset=UTF-8',
 						JSON.stringify(sendData),
 						function(resultJson){
-							console.log("제이슨 받아왔다");
 								View.render("#tag-filter-template",resultJson,"#corp-main-list");
 						},
 						true); //비동기

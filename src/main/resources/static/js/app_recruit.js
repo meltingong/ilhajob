@@ -1,7 +1,6 @@
 import * as View from "./view.js";
 import * as Request from "./request.js";
 
-
 $('.changeTag').click(function(e){
 	console.log("펑션접근");
 	/*
