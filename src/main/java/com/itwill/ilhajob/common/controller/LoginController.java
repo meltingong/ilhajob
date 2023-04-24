@@ -44,6 +44,7 @@ public class LoginController {
 				session.setAttribute("id", loginUser.getId());
 				session.setAttribute("role", "user");
 				session.setAttribute("sUserId", loginRequest.getEmail());
+				session.setAttribute("msgList", userService.findMessageList(loginUser.getId()));
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
 			}catch (UserNotFoundException e) {
 				return ResponseEntity.status(ResponseStatusCode.NOT_FOUND_USER).body(e.getMessage());
