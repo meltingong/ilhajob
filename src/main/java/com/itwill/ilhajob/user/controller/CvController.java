@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itwill.ilhajob.common.controller.ImageController;
 import com.itwill.ilhajob.common.dto.AppDto;
@@ -216,7 +217,7 @@ public class CvController {
 		UserDto user = userService.findUser((String)request.getSession().getAttribute("sUserId"));
 		
 		Map<String, String> pathMap = ImageController.makeDir("cv");
-		String saveFileName = cv.getId()+"_cv"+user.getId()+"_user"+".json";
+		String saveFileName = pathMap.get("absolutePath")+cv.getId()+"_cv"+user.getId()+"_user"+".json";
 		try {
 			AppDto app = new AppDto(0, 0, LocalDateTime.now(), saveFileName,recruit, cv, user);
 			
@@ -225,7 +226,7 @@ public class CvController {
 			//json파일 폴더에 저장
 			ObjectMapper mapper = new ObjectMapper();
 	        String json = mapper.writeValueAsString(requestData);
-	        Path filePath = Paths.get(pathMap.get("absolutePath") + saveFileName);
+	        Path filePath = Paths.get(saveFileName);
 	        Files.write(filePath, json.getBytes());
 		}catch (Exception e) {
 			return "이력서 지원 실패";
@@ -264,6 +265,15 @@ public class CvController {
 		/* awardsList */
 		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
 		model.addAttribute("awardsList", awardsList);
+		
+		//절대경로 파일 불러오기
+		AppDto appDto = appService.findById(15L);
+		Path filePath = Paths.get(appDto.getAppCvName());
+		byte[] jsonData = Files.readAllBytes(filePath);
+		// JSON 파싱 후 Map<k, v> 객체로 변환
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> map = mapper.readValue(jsonData, new TypeReference<Map<String, Object>>(){});
+		System.out.println(map);
 		
 		return "applied-cv-detail";
 	}
