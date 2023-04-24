@@ -140,7 +140,7 @@
             </button>
 			
 			<th:block th:if="${session.sUserId != null}">
-			  <button class="menu-btn">
+			  <button class="menu-btn" onclick="location.href='candidate-dashboard-job-alerts'">
 			    <span class="count" th:if="${session.msgList != null and session.msgList.size() != 0}" th:text="${session.msgList.size()}">1</span>
 			    <span class="icon la la-bell"></span>
 			  </button>

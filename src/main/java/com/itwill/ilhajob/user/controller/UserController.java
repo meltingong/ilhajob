@@ -25,6 +25,7 @@ import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.user.dto.CvDto;
 import com.itwill.ilhajob.user.dto.MessageDto;
+import com.itwill.ilhajob.user.dto.RecruitScrapDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.entity.Review;
@@ -34,6 +35,7 @@ import com.itwill.ilhajob.user.exception.PasswordMismatchException;
 import com.itwill.ilhajob.user.exception.UserNotFoundException;
 import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.MessageService;
+import com.itwill.ilhajob.user.service.RecruitScrapService;
 import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
 
@@ -65,6 +67,9 @@ public class UserController {
 	
 	@Autowired
 	private CvService cvService;
+	
+	@Autowired
+	private RecruitScrapService recruitScrapService;
 	
 	
 
@@ -111,6 +116,11 @@ public class UserController {
  		// message list
  		List<MessageDto> messageList = userService.findMessageList(loginUser.getId());
 		model.addAttribute("messageList", messageList);
+		
+		//
+		List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
+		model.addAttribute("recruitScrapList", recruitScrapList);
+		
 		String forwardPath = "candidate-dashboard";
 		return forwardPath;
 	}
