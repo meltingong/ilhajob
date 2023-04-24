@@ -74,6 +74,13 @@ public class RecruitController {
 	public String main(Model model) throws Exception {
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
 		model.addAttribute("recruitList", recruitList);
+		
+		//태그리스트
+		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
+		List<TagDto> tagList = tagService.selectAll();
+		model.addAttribute("recruitTagList", recruitTagList);
+		model.addAttribute("tagList", tagList);
+		
 		String forward_path = "index";
 		return forward_path;
 	}
