@@ -6,15 +6,16 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.itwill.ilhajob.common.dto.AppDto;
-import com.itwill.ilhajob.common.dto.CorpTagDto;
 import com.itwill.ilhajob.common.dto.RecruitTagDto;
-import com.itwill.ilhajob.common.entity.CorpTag;
 import com.itwill.ilhajob.common.entity.RecruitTag;
-import com.itwill.ilhajob.common.repository.CorpTagRepository;
 import com.itwill.ilhajob.common.repository.RecruitTagRepository;
+import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.corp.entity.Recruit;
 
 @Service
 public class RecruitTagServiceImpl implements RecruitTagService{
@@ -69,5 +70,18 @@ public class RecruitTagServiceImpl implements RecruitTagService{
 		return recruitTagList.stream()
 				.map(recruitTag ->modelMapper.map(recruitTag, RecruitTagDto.class))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Page<RecruitDto> getRecruitTagList(int Page, int size, long tagId) throws Exception {
+		PageRequest pageable=PageRequest.of(Page, size);
+		Page<Recruit> recruitTagPage=recruitTagRepository.findRecruitsByTagId(tagId, pageable);
+		return recruitTagPage.map(recruitTag->modelMapper.map(recruitTag, RecruitDto.class));
+	}
+
+	@Override
+	public Page<RecruitDto> selectRecruitsByTagId(long tagId, Pageable pageable) {
+	    Page<Recruit> recruitList = recruitTagRepository.findRecruitsByTagId(tagId, pageable);
+	    return recruitList.map(recruit -> modelMapper.map(recruit, RecruitDto.class));
 	}
 }
