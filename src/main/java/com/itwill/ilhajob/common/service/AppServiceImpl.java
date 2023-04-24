@@ -52,6 +52,13 @@ public class AppServiceImpl implements AppService {
 		appDto.setRecruit(modelMapper.map(recruit, RecruitDto.class));
 		App createApp = modelMapper.map(appDto, App.class);
 		appRepository.save(createApp);
+		
+		Message applyMessage = new Message();
+		applyMessage.setMessageTitle("["+createApp.getRecruit().getRcTitle()+"] 이력서 접수 완료.");
+		applyMessage.setMessageContents(createApp.getUser().getUserName()+"님의 합격을 기원합니다.");
+		applyMessage.setMessageDate(LocalDateTime.now());
+		applyMessage.setUser(createApp.getUser());
+		applyMessage = messageRepository.save(applyMessage);
 	}
 
 	//주로 appStatus 변경
