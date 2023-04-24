@@ -2,6 +2,7 @@ package com.itwill.ilhajob.corp.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -80,4 +81,8 @@ public interface CorpService {
 	//corpList paging 수정 후
 	Page<CorpDto> findAll(Pageable pageable);
 	
+	//corpId로 rcCount
+	public Long getRcCountByCorpId(Long corpId) throws Exception;
+	public Map<Long,Long> getRcCountByCorpIdList(List<Long>corpIdList);
+
 }

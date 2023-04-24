@@ -131,21 +131,9 @@ public class CorpController {
 		model.addAttribute("corpTagList", corpTagList);
 		
 		//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
-		List<CorpDto> corpAllList=corpService.findCorpAll();
-		List<RecruitDto> recruitAllList=recruitService.findRecruitAll();
-		List<Long> corpListCount=new ArrayList<>(); //여기다 담기..?
-		System.out.println("corpAllList전체 뽑아~~>>>>"+corpAllList); //22개 다 나오는데 recruit까지는 안나옴
-		System.out.println("recruitAllList전체 뽑아~~>>>>"+recruitAllList); //17개 다 나오고 corp까지 같이 나옴
-		System.out.println("corpDto>>>>>"+corpDto); //다 null임
-		System.out.println("recruitDto>>>>>"+recruitDto);//다 null임
-		for(CorpDto corp:corpAllList) {
-			Long count=recruitService.countByCorpId(corp.getId());
-			//System.out.println("회사의 공고카운트뽑기>>>>>>"+count);
-			corp.setRcCount(count.intValue());
-		
-		}
-		model.addAttribute("count",corpDto);
-	
+		Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
+				corpPage.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
+		model.addAttribute("rcCountMap", rcCountMap);
 		forward_path = "corp-list";
 	    
 	    return forward_path;

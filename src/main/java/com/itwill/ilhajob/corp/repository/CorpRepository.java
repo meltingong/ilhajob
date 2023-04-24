@@ -29,4 +29,5 @@ public interface CorpRepository extends JpaRepository<Corp, Long> {
     
     //paging 기능 구현
     Page<Corp> findAll(Pageable pageable);
+    
 }
