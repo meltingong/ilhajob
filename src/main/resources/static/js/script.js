@@ -1306,7 +1306,7 @@ $(document).ready(function() {
         console.log(status);
         console.log(error);
         let errorMsg = document.createElement('p');
-        errorMsg.style.textAlign = 'center';
+        errorMsg.style.textAlign = 'left';
         errorMsg.style.color = 'red';
         errorMsg.textContent = xhr.responseText;
         let passwordInput = document.getElementById('password-field');
