@@ -290,7 +290,7 @@ public class CorpController {
 	public String corp_dashboard_company_profile(HttpServletRequest request, Model model) throws Exception {
 
 		String forwardPath = "";
-		Long sCorpId = (Long) request.getSession().getAttribute("sCorpId");
+		Long sCorpId = (Long) request.getSession().getAttribute("id");
 		CorpDto corpDto = corpService.findByCorpId(sCorpId);
 		/*********** CorpImage 코프 로그인아이디로 리스트뽑아오기 *****************/
 		List<CorpImageDto> corpImageList = corpImageService.findAllByCorpId(sCorpId);
@@ -319,7 +319,7 @@ public class CorpController {
 	public String corp_dashboard_manage_job(@ModelAttribute("message") String message, HttpServletRequest request,
 			Model model, @RequestParam(value = "sortType", required = false) String sortType) throws Exception {
 		// 회사의 작성 공고 띄우기
-		Long sCorpId = (Long) request.getSession().getAttribute("sCorpId");
+		Long sCorpId = (Long) request.getSession().getAttribute("id");
 		CorpDto corpDto = corpService.findByCorpId(sCorpId);
 		List<RecruitDto> recruitList = recruitService.findAllByCorpId(corpDto.getId());
 		model.addAttribute("recruitList", recruitList);
