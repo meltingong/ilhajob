@@ -36,7 +36,7 @@ public class RecruitTagServiceImpl implements RecruitTagService{
 		if(found.isPresent()) {
 			new Exception("이미 같은 태그가 존재합니다");
 		}
-		recruitTagRepository.save(found.get());
+		recruitTagRepository.save(recruitTag);
 	}
 	
 	@Override

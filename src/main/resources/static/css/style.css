@@ -5463,7 +5463,7 @@ Main Header
   display: block;
   text-align: center;
   opacity: 1;
-  font-size: 15px;
+  font-size: 20px;
   line-height: 30px;
   font-weight: 400;
   color: #202124;
@@ -5690,7 +5690,7 @@ Main Header
 
 .main-header .menu-btn .icon {
   font-size: 24px;
-  color: #696969;
+  color:white;
 }
 
 .main-header .menu-btn .count {
@@ -8975,7 +8975,7 @@ Preloader
   margin-top: -25px;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url(../images/favicon.png);
+  background-image: url(../images/돋보기작게.jpg);
   content: "";
 }
 
@@ -19526,7 +19526,7 @@ Banner Section Four
   font-weight: 500;
   font-size: 50px;
   line-height: 68px;
-  color: #FFFFFF;
+  color:white;
 }
 
 .banner-section-four .popular-searches {
