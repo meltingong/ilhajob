@@ -4,6 +4,11 @@
 <head>
   <meta charset="utf-8">
   <title>Superio | Just another HTML Template | Job List v4</title>
+  
+  <style>
+  		.hidden-img { display: none;}
+  		.show-img { display: block;}
+  </style>
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -310,11 +315,11 @@ Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
                       <!-- 리크루트 스크랩 ajax로 -->
                       <div th:if = "${loginUser}!=null">
                       	<form action="recruit_scrap_insert_delete">
-							<button th:value="${recruit.id}" class="bookmark-btn" name = "id" id="check-bookmark" type="submit">
-									<img src="images/bookmark.png" style="width: 23px"  th:if="${countList[recruit.id]==1}">
-									<span class="flaticon-bookmark" th:if="${countList[recruit.id]==0}"></span>
+							<button th:value="${recruit.id}" class="bookmark-btn" name = "id" id="check-bookmark" type="button">
+									<img id = "id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;"  th:classappend="${countList[recruit.id]==1} ? 'show-img' : 'hidden-img'">
+									<img id = "id2" src="images/bookmark-bin.png" th:classappend="${countList[recruit.id]==0} ? 'show-img' : 'hidden-img'" style="width: 17px; margin-left: 5px;"></img>
 							</button>
-							</form>
+						</form>
 					</div>
 
                   </div>
@@ -389,6 +394,7 @@ Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
                         <li class="required">Urgent</li>
                         -->
                       </ul>
+							
  								 <form action="recruit_scrap_insert_delete">
    									 <button class="bookmark-btn" name="id" id="check-bookmark" type="submit" value={{recruit.id}}>
     									  {{#ifEqual countList.[recruitTag.recruit.id] 1}}

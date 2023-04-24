@@ -255,5 +255,6 @@
 .flaticon-money:before { content: "\f1e0"; }
 .flaticon-money-2:before { content: "\f1e1"; }
 .flaticon-bookmark:before { content: "\f1e2"; }
+#flaticon-bookmark:before { content: "\f1e2"; }
 .flaticon-search-2:before { content: "\f1e3"; }
 .flaticon-search-3:before { content: "\f1e4"; }
