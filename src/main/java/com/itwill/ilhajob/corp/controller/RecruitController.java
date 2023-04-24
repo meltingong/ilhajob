@@ -189,7 +189,7 @@ public class RecruitController {
 
 	@RequestMapping("/dashboard-post-job")
 	public String dashboard_post_job_form(HttpServletRequest request, Model model) throws Exception {
-		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("sCorpId"));
+		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
 		model.addAttribute("corp", loginCorp);
 		String forward_path = "dashboard-post-job";
 		return forward_path;
@@ -198,7 +198,7 @@ public class RecruitController {
 	@PostMapping("/dashboard-post-job-action")
 	public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto, HttpServletRequest request)
 			throws Exception {
-		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("sCorpId"));
+		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
 		recruitDto.setRcDate(LocalDateTime.now());
 		recruitDto.setRcDeadline(LocalDateTime.now());
 		recruitDto.setCorp(loginCorp);
@@ -230,7 +230,7 @@ public class RecruitController {
 	@RequestMapping("/recruit-modify-form")
 	public String recruit_modify_form(HttpServletRequest request,@ModelAttribute RecruitDto recruitDto, Model model) throws Exception {
 		// 일단 회사 정보가져와서 담기
-		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		
@@ -243,7 +243,7 @@ public class RecruitController {
 	
 	@RequestMapping("/recruit-modify-action")
 	public String recruit_modify_action(@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
-		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		recruitDto.setRcDate(LocalDateTime.now());
