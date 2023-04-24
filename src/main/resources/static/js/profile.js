@@ -41,7 +41,7 @@
 					})
 					.then(data => {
 						console.log(data);
-						window.location.href=candidate-dashboard-profile;
+						window.location.href="/final-project-team1-ilhajob/candidate-dashboard-profile";
 					})
 					.catch(error => {
 						console.error(error);
