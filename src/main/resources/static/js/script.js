@@ -1341,6 +1341,9 @@ $(document).ready(function() {
       	$('.jquery-modal.blocker.current input#id').attr('id','email');
       	$('label[for="id"]').attr('for','email');
       	$('label[for="email"]').text('Email');
+  		$('.jquery-modal.blocker.current #or').show();
+      	$('.jquery-modal.blocker.current #snsLogin').show();
+      	
 	});
 	
 	$(document).on('click', '#corp-btn', function(e) {
@@ -1353,6 +1356,8 @@ $(document).ready(function() {
       	$('.jquery-modal.blocker.current input#email').attr('id','id');
       	$('label[for="email"]').attr('for','id');
       	$('label[for="id"]').text('ID');
+      	$('.jquery-modal.blocker.current #or').hide();
+      	$('.jquery-modal.blocker.current #snsLogin').hide();
 	});
 	
 	$('.logout').on('click',(e)=>{
