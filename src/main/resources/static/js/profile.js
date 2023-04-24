@@ -21,7 +21,7 @@
 				for (let [key, value] of formData.entries()) {
 					jsonData[key] = value;
 				}
-				console.log(jsonData);
+				console.log(JSON.stringify(jsonData));
 /*				const formJson = {};
 				$.each($('.default-form').serializeArray(), function() {
 					formJson[this.name] = this.value;
@@ -41,7 +41,7 @@
 					})
 					.then(data => {
 						console.log(data);
-						window.location.href=data.location;
+						window.location.href=candidate-dashboard-profile;
 					})
 					.catch(error => {
 						console.error(error);
