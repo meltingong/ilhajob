@@ -22,6 +22,7 @@ public class CvDto {
 	private String cvName;
 	private String cvDescription;
 	private String cvPortfolio;
+	private String cvImage;
 	@ToString.Exclude
 	private UserDto user;
 }
