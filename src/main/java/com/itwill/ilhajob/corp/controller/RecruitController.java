@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,6 +85,13 @@ public class RecruitController {
 		String forward_path = "index";
 		return forward_path;
 	}
+	
+	@GetMapping("increase-readCount-action")
+	public String increase_readCount(@PathVariable Long id) throws Exception {
+		recruitService.increaseReadCount(id);
+		return "recruit-detail";
+	}
+	
 
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,

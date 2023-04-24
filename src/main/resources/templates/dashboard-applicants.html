@@ -136,10 +136,10 @@
                                 </ul>
                                 <ul class="post-tags">
                                 <th:block th:if="${appList.appStatus==2}">
-                                  <li style="color:green; font-weight:bold; ">합격</li>
+                                  <li style="color:green; font-weight:bold; background-color:#BDECB6">합격</li>
                                 </th:block>
                                 <th:block th:if="${appList.appStatus==3}">
-                                  <li style="color: red; font-weight: bold;">불합격</li>
+                                  <li style="color: red; font-weight: bold; background-color: mistyrose">불합격</li>
                                   </th:block>
                                   <th:block th:if="${appList.appStatus==0}">
                                   <li style="color: black; font-weight: bold;">접수중</li>
@@ -181,7 +181,7 @@
                                 </ul>
                                  <ul class="post-tags">
                                 <th:block th:if="${appList.appStatus==2}">
-                                  <li style="color:green; font-weight:bold;">합격</li>
+                                  <li style="color:green; font-weight:bold; background-color:#BDECB6">합격</li>
                                 </th:block>
                                 <th:block th:if="${appList.appStatus==3}">
                                   <li>불합격</li>
@@ -229,7 +229,7 @@
                                   <li>합격</li>
                                 </th:block>
                                 <th:block th:if="${appList.appStatus==3}">
-                                  <li style="color: red; font-weight: bold;">불합격</li>
+                                  <li style="color: red; font-weight: bold; background-color: mistyrose">불합격</li>
                                   </th:block>
                                   <th:block th:if="${appList.appStatus==0}">
                                   <li>접수중</li>
