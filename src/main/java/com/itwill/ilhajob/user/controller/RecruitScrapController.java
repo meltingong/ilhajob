@@ -42,6 +42,7 @@ public class RecruitScrapController {
 		
 		
 	//공고 스크랩 추가/제거
+		/*
 		@LoginCheck
 		@GetMapping("recruit_scrap_insert_delete")
 		public String recruit_scrap_insert_delete(HttpServletRequest request,@RequestParam int id) throws Exception {
@@ -62,5 +63,6 @@ public class RecruitScrapController {
 			
 			return "redirect:recruit-list";
 		}
+		*/
 		
 }
