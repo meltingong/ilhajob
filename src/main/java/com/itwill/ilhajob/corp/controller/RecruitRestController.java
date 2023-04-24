@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.corp.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +14,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +27,9 @@ import com.itwill.ilhajob.common.dto.RecruitTagListDto;
 import com.itwill.ilhajob.common.dto.TagDto;
 import com.itwill.ilhajob.common.service.RecruitTagService;
 import com.itwill.ilhajob.common.service.TagService;
+import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.dto.RecruitScrapDto;
 import com.itwill.ilhajob.user.dto.UserDto;
@@ -43,6 +48,8 @@ public class RecruitRestController {
 	private UserService userService;
 	@Autowired
 	private RecruitScrapService recruitScrapService;
+	@Autowired
+	private CorpService corpService;
 	
 	@PostMapping(value="/getRecruitTag", produces = "application/json;charset=UTF-8")
 	public Map<String,Object> getRecruitTagData(@RequestParam(defaultValue = "0") int page,
@@ -134,6 +141,41 @@ public class RecruitRestController {
 		
 		}
 	}
+	
+	//리쿠르트 태그 생성 (AJAX방식)
+	@PostMapping(value = "recruit-tag-insert-action", produces = "application/json;charset=UTF-8")
+	public Map<String, Object> recruit_tag_insert_action(HttpServletRequest request,@RequestBody Map<String,String> reMap) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Long id = Long.parseLong(reMap.get("tagId"));
+		Long rid = Long.parseLong(reMap.get("reqId"));
+		System.out.println("태그아이디:"+id+"리크루트 아이디:"+rid);
+		
+		RecruitDto recruitDto = recruitService.findRecruit(rid);
+		System.out.println(id);
+		
+		//공고 태그생성
+		recruitTagService.insertRecruitTag(new RecruitTagDto(0, recruitDto, tagService.selectTag(id)));
+		
+		//태그리스트 - 공고태그 연산작업 
+				List<RecruitTagDto> recruitTagList = recruitTagService.selectAllByRecruitId(rid);
+				List<TagDto>rTagList = new ArrayList<TagDto>();
+				for (RecruitTagDto recruitTagDto : recruitTagList) {
+					rTagList.add(recruitTagDto.getTag());
+				}
+				
+				List<TagDto>tagList = tagService.selectAll().subList(0, 3); //태그 1~3번만 출력
+				tagList.removeAll(rTagList);
+		
+				
+		map.put("tagList",tagList);
+		map.put("recruitTagList",recruitTagList);		
+		map.put("recruit",recruitDto);		
+		return map;
+		
+		
+		
+	}
+	
 }
 
 	

@@ -234,10 +234,25 @@ public class RecruitController {
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		
+		//태그리스트 - 공고태그 연산작업 
+		List<RecruitTagDto> recruitTagList = recruitTagService.selectAllByRecruitId(recruitDto.getId());
+		List<TagDto>rTagList = new ArrayList<TagDto>();
+		for (RecruitTagDto recruitTagDto : recruitTagList) {
+			rTagList.add(recruitTagDto.getTag());
+		}
+		
+		List<TagDto>tagList = tagService.selectAll().subList(0, 3); //태그 1~3번만 출력
+		tagList.removeAll(rTagList);
+		System.out.println(tagList);
+		
+		
 		RecruitDto setRecruit=recruitService.findRecruit(recruitDto.getId());
 		System.out.println("setRecruit>>>"+setRecruit);
 		model.addAttribute("recruit",setRecruit);
-
+		model.addAttribute("tagList",tagList);
+		model.addAttribute("recruitTagList",recruitTagList);
+		
+		
 		return "recruit-modify-form";
 	}
 	
@@ -253,6 +268,8 @@ public class RecruitController {
 		//System.out.println("pre modify action >>>>"+recruitDto);
 		
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
+		
+		
 		//System.out.println("update check>>>>"+checkRecruit);
 		model.addAttribute("id",recruitDto.getId());
 		return "redirect:recruit-detail?id=" + recruitDto.getId();
