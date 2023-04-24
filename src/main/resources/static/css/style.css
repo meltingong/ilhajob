@@ -5463,7 +5463,7 @@ Main Header
   display: block;
   text-align: center;
   opacity: 1;
-  font-size: 15px;
+  font-size: 20px;
   line-height: 30px;
   font-weight: 400;
   color: #202124;
@@ -19526,7 +19526,7 @@ Banner Section Four
   font-weight: 500;
   font-size: 50px;
   line-height: 68px;
-  color: #FFFFFF;
+  color:white;
 }
 
 .banner-section-four .popular-searches {
