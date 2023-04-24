@@ -106,3 +106,12 @@ $('.call-modal-apply').on('click', function(event) {
   });
   
 });
+
+function appliedCvView(appId){
+  console.log(">>> appliedCvView(appId) : " + appId);
+  $('#appliedCvBtn'+appId).val(appId);
+  console.log($('#appliedCvBtn'+appId).attr('value'));
+  document.f.action = "applied-cv-detail";
+  document.f.method='POST';
+  document.f.submit();
+}

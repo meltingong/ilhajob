@@ -134,7 +134,7 @@ window.onload = function() {
                             <div class="option-box">
                               <ul class="option-list">
                          		<input type="hidden" name="appId" th:value="${app.id}"/>  
-                                <li><button data-text="View Aplication"><span class="la la-eye"></span></button></li>
+                                <li><button type="button" data-text="View Aplication" th:id="appliedCvBtn+${app.id}" th:onclick="'appliedCvView(' + ${app.id} + ')'"><span class="la la-eye"></span></button></li>
                                 <li><button data-text="Delete Aplication"><span class="la la-trash"></span></button></li>
                               </ul>
                             </div>
@@ -179,6 +179,7 @@ window.onload = function() {
   <script src="js/wow.js"></script>
   <script src="js/knob.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/cv.js"></script>
   
 <!--   <script>
 	/*
