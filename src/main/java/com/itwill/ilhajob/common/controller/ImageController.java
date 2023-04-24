@@ -120,7 +120,7 @@ public class ImageController {
 	}
 	
 	//폴더메이킹
-	public Map<String, String> makeDir(String path){
+	public static Map<String, String> makeDir(String path){
 		Map<String, String> map = new HashMap<String,String>();
 		//절대경로 저장
 		List<String> absPath = new ArrayList<String>();
