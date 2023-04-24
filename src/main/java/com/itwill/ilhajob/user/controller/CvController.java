@@ -233,10 +233,50 @@ public class CvController {
 		return "이력서 지원 완료";
 	}
 	
+	/* 테스트 중 임의로 cvId 저장해 둠 */
+	@RequestMapping(value = "applied-cv-detail")
+	public String applied_cv_detail(HttpServletRequest request, @RequestParam(required = false) Long cvId, Model model) throws Exception {
+		String forwardpath = "";
+		
+		Long userId = (Long)request.getSession().getAttribute("id");
+		String userEmail = (String)request.getSession().getAttribute("sUserId");
+		UserDto user = userService.findUser(userEmail);		
+		model.addAttribute("userId", userId);
+		model.addAttribute("user", user);
+		
+		/* user cv list */
+		List<CvDto> cvList = cvService.findByUserId(userId);
+		model.addAttribute("cvList", cvList);
+		
+		/* 특정 cv detail */
+		Long testCvId = 3L;
+		CvDto cvDetail = cvService.findCvById(testCvId);
+		model.addAttribute("cvDetail", cvDetail);
+		
+		/* eduList */
+		List<EduDto> eduList = eduService.findEduListByUserId(userId);
+		model.addAttribute("eduList", eduList);
+		
+		/* expList */
+		List<ExpDto> expList = expService.findExpListByUserId(userId);
+		model.addAttribute("expList", expList);
+		
+		/* awardsList */
+		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
+		model.addAttribute("awardsList", awardsList);
+		
+		return "applied-cv-detail";
+	}
+	
+	@RequestMapping("test")
+	public String applied_cv_detail_test() {
+		// 기존 템플릿 참고용 -> 완성 후 없애기
+		return "applied-cv-detail-test";
+	}
+	
 	/************** Get 방식 요청 처리 */
 	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action"})
 	public String cv_get() {
 		return "redirect:index";
 	}
-
 }
