@@ -54,6 +54,8 @@ public class NaverController {
         	// 위 코드는 session객체에 담긴 정보를 초기화 하는 코드.
         	session=request.getSession();
         	session.setAttribute("sUserId", naverLoginProfile.getEmail());
+        	UserDto findUser = userService.findUser(naverLoginProfile.getEmail());
+        	session.setAttribute("id", findUser.getId());
         	session.setAttribute("role", "user");
         	request.setAttribute("naverProfile", naverLoginProfile);
         	
