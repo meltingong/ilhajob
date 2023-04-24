@@ -1249,23 +1249,37 @@ $(document).ready(function() {
     let newPasswordError = $('#newPasswordError');
     let newPasswordConfirmError = $('#newPasswordConfirmError');
     let regPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*#?&])[A-Za-z\d$@!%*#?&]{8,}$/;
-   
+ 
+
     if(oldPasswordInput.val() === ''){
 	  oldPasswordError.text('기존 비밀번호를 입력해주세요');
       oldPasswordError.show();
       oldPasswordError.addClass('error-message1');
       return false;
-    }else if(!regPassword.test(newPasswordInput.val())){
+    }else{
+	 oldPasswordError.hide(); // 해당 코드 추가
+     oldPasswordError.removeClass('error-message1'); // 해당 코드 추가
+	}
+	
+   if(!regPassword.test(newPasswordInput.val())){
       newPasswordError.text('비밀번호는 최소 8자리 이상, 대,소문자/숫자/특수문자를 모두 포함해야 합니다.');
       newPasswordError.show();
       newPasswordError.addClass('error-message2');
       return false;
-	}else if(newPassowrdConfirmInput.val() === ''){
+     }else{
+	 newPasswordError.hide(); // 해당 코드 추가
+     newPasswordError.removeClass('error-message1'); // 해당 코드 추가
+	 }
+	 
+	if(newPassowrdConfirmInput.val() === ''){
 	  newPasswordConfirmError.text('비밀번호 확인을 입력해주세요');
       newPasswordConfirmError.show();
       newPasswordConfirmError.addClass('error-message3');
       return false;
-    }
+    }else{
+	 newPasswordConfirmError.hide(); // 해당 코드 추가
+     newPasswordConfirmError.removeClass('error-message1'); // 해당 코드 추가
+	}
     
     let jsonData = JSON.stringify(formData);
 
