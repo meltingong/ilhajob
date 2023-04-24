@@ -57,21 +57,18 @@
           <div class="col-lg-12">
             <!-- Ls widget -->
             <div class="ls-widget">
-              <div class="tabs-box">
-                <div class="widget-title">
-                  <h4>내 이력서</h4>
-                </div>
-
-                <div class="widget-content" th:object="${cvDetail}">
-                    <div class="row">
+            <div class="tabs-box">
+            <div class="widget-title">
+            	<h4>기본 인적사항</h4>
+            </div>
+                <div class="widget-content" id="widget-content-userinfo">
                 <!-- user profile image start -->
-                  <div class="form-group col-lg-6 col-md-12">
+                  <div class="form-group col-lg-12 col-md-12">
                   	<label >프로필사진</label>
 				    <div th:if="${user != null}">
 					  <img id="uploaded-logo" th:src="${user.userImage}" alt="" style="width:150px" />
 					</div>
                   	<div class="text">최대 파일 크기는 1MB이고 최소 치수는 330x300이며 적합한 파일은 .jpg 및 .png입니다</div>
-                  </div>
                   <form id="image-form" enctype = "multipart/form-data">
 					<div class="uploading-outer">
 				     <div class="uploadButton">
@@ -83,8 +80,69 @@
 				     </div>
 				    </div>
 				  </form>
+                  </div>
                 <!-- user profile image end -->
+                
+                <form class="default-form">
+                <div class="row">        
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>이름</label>
+                    <input type="text" th:value="${user.userName}" name="userName" disabled="disabled">
+                  </div>
                     
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>연락처</label>
+                    <input type="text" th:value="${user.userPhone}" name="userPhone" disabled="disabled">
+                  </div>
+                    
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>나이</label>
+                    <input type="text" th:value="${user.userAge}" name="userAge" disabled="disabled">
+                  </div>
+                    
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>성별</label>
+                    <input type="text" th:value="${user.userSex}" name="userSex" disabled="disabled">
+                  </div>
+                    
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>이메일</label>
+                    <input type="text" th:value="${user.userEmail}" name="userEmail" disabled="disabled">
+                  </div>
+                  
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>어학능력</label>
+                    <input type="text" th:value="${user.userLanguage}" name="userLanguage" disabled="disabled">
+		           </div>
+                    
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>주소</label>
+                    <div class="form-group col-lg-3 col-md-6" id="address-postcode-disable">
+                          <input type="text" th:value="${user.userPostCode}" name="userPostCode" class="d_form mini" placeholder="우편번호" disabled="disabled">
+                        </div>
+                        <div class="form-group col-lg-6 col-md-12" id="address-road-disable">
+                            <input type="text" th:value="${user.userAddress}" name="userAddress" class="d_form std" placeholder="주소" disabled="disabled">
+                        </div>
+                        <div class="form-group col-lg-8 col-md-12" id="address-detail-disable">
+                          <input type="text" th:value="${user.userAddressDetail}" id="addressDetail" name="userAddressDetail" class="d_form" placeholder="상세주소" disabled="disabled">
+                        </div>
+                  </div>
+                    
+                  </div> <!-- row end -->
+                </form>    
+               </div> <!-- widget content end -->
+            </div> <!-- tabs-box end -->
+            </div> <!-- ls-widget end(userinfo) -->
+            </div>
+            
+            
+            <div class="ls-widget">
+              <div class="tabs-box">
+                <div class="widget-title">
+                  <h4>내 이력서</h4>
+                </div>
+                <div class="widget-content" th:object="${cvDetail}">
+                    <div class="row">
 		 		<!-- ************ cv form start  ************ -->
                   <form class="default-form" name="cvForm">
                       <!-- Input -->

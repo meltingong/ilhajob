@@ -95,7 +95,7 @@ public class CvController {
 		String userEmail = (String)request.getSession().getAttribute("sUserId");
 		UserDto user = userService.findUser(userEmail);
 		model.addAttribute("userId", userId);
-		model.addAttribute("user" + user);
+		model.addAttribute("user", user);
 		List<CvDto> cvList = cvService.findByUserId(userId);
 		
 		if (cvList == null || cvList.size() == 0) {
@@ -134,7 +134,7 @@ public class CvController {
 		String userEmail = (String)request.getSession().getAttribute("sUserId");
 		UserDto user = userService.findUser(userEmail);		
 		model.addAttribute("userId", userId);
-		model.addAttribute("user" + user);
+		model.addAttribute("user", user);
 		
 		/* user cv list */
 		List<CvDto> cvList = cvService.findByUserId(userId);
