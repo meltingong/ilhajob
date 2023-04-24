@@ -1231,9 +1231,6 @@ $(document).ready(function() {
 				errorMsg.textContent = xhr.responseText;
 				let passwordInput = document.getElementById('password-field');
 				passwordInput.insertAdjacentElement('afterend', errorMsg);
-				if(xhr.status === 5200 || xhr.status === 5300){
-					$('#email').focus();
-				}
 			});
 	});
 	
