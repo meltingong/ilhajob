@@ -127,6 +127,15 @@ public class AppServiceImpl implements AppService {
 	}
 
 	/*
+	 * 지원받은 or 지원한 이력서 상세보기(appCvName경로의 json파일)
+	 */
+	@Override
+	public AppDto findById(Long id){
+		App findApp = appRepository.findById(id).get();
+		return modelMapper.map(findApp,AppDto.class);
+	}
+	
+	/*
 	 * 기업이 등록한 공고리스트뷰에서 공고하나 클릭시 appList출력하여 이력서리스트 확인
 	 */
 	@Transactional
