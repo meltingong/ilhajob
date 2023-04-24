@@ -98,10 +98,10 @@ public class CorpController {
 	@Autowired
 	private TagService tagService;
 
-//	@RequestMapping("/index")
-//	public String main() {
-//		return "redirect:/";
-//	}
+	@RequestMapping("/index")
+	public String main() {
+		return "redirect:/";
+	}
 
 	
 	@GetMapping("/corp-list")

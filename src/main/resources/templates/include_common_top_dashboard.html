@@ -9,7 +9,6 @@
 </head>
 
 <div th:fragment="include_common_top_dashboard">
-	<th:block th:if = "${#session.getAttribute('role') == 'user'}">
       <div class="container-fluid">
         <!-- Main box -->
         <div class="main-box">
@@ -127,7 +126,14 @@
           </div>
 
          <div class="outer-box">
-
+         
+         	<div class="btn-box">
+            <th:block th:if = "${session.sUserId == null} and ${session.sCorpId == null}">
+              <a href="login-popup" class="theme-btn btn-style-six call-modal">로그인 / 회원가입</a>
+              <a href="dashboard-post-job" class="theme-btn btn-style-five">채용 공고</a>
+            </th:block>
+         
+			<th:block th:if = "${session.sUserId != null} or ${session.sCorpId != null}">
             <button class="menu-btn">
               <span class="count">1</span>
               <span class="icon la la-heart-o"></span>
@@ -174,6 +180,7 @@
               </th:block>
               </ul>
             </div>
+            </th:block>
           </div>
         </div>
       </div>
@@ -200,22 +207,4 @@
 
       <!-- Mobile Nav -->
       <div id="nav-mobile"></div>
-      </th:block>
     </div>
-    
-  <script src="js/jquery.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/chosen.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery-ui.min.js"></script>
-  <script src="js/jquery.fancybox.js"></script>
-  <script src="js/jquery.modal.min.js"></script>
-  <script src="js/mmenu.polyfills.js"></script>
-  <script src="js/mmenu.js"></script>
-  <script src="js/appear.js"></script>
-  <script src="js/ScrollMagic.min.js"></script>
-  <script src="js/rellax.min.js"></script>
-  <script src="js/owl.js"></script>
-  <script src="js/wow.js"></script>
-  <script src="js/knob.js"></script>
-  <script src="js/script.js"></script>
