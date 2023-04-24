@@ -138,10 +138,13 @@
               <span class="count">1</span>
               <span class="icon la la-heart-o"></span>
             </button>
-
-            <button class="menu-btn">
-              <span class="icon la la-bell"></span>
-            </button>
+			
+			<th:block th:if="${session.sUserId != null}">
+			  <button class="menu-btn">
+			    <span class="count" th:if="${session.msgList != null and session.msgList.size() != 0}" th:text="${session.msgList.size()}">1</span>
+			    <span class="icon la la-bell"></span>
+			  </button>
+			</th:block>
 
             <!-- Dashboard Option -->
             <div class="dropdown dashboard-option">
