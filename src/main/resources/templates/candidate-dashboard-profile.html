@@ -89,13 +89,18 @@
                         <label>이름</label>
                         <input type="text" th:value="${loginUser.userName}" name="userName" disabled="disabled">
                       </div>
-
-                      <!-- Input -->
-                      <div class="form-group col-lg-6 col-md-12">
+					
+					  <div class="form-group col-lg-6 col-md-12">
+                        <label>Sex</label>
+                        <input type="text" th:value="${loginUser.userSex}" name="userSex" disabled="disabled">
+                      </div>
+					
+                     <!-- Input -->
+                     <!--   <div class="form-group col-lg-6 col-md-12">
                         <label>Job Title</label>
                        <input type="text" th:value="${loginUser.job}"  name="job" disabled="disabled">
                       </div>
-
+ -->
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Phone</label>
@@ -108,17 +113,13 @@
                          <input type="text" th:value="${loginUser.userEmail}" name="userEmail" disabled="disabled" >
                       </div>
 					
-                     <div class="form-group col-lg-6 col-md-12">
-                        <label>Sex</label>
-                        <input type="text" th:value="${loginUser.userSex}" name="userSex" disabled="disabled">
-                      </div>
-
+                   
                       <!-- Input -->
-                      <div class="form-group col-lg-6 col-md-12">
+                     <!--  <div class="form-group col-lg-6 col-md-12">
                         <label>Career</label>
                         <input type="text" th:value="${loginUser.userCareer}" name="userCareer" disabled="disabled">
                       </div>
-                      
+                       -->
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
                         <label>Address</label>
@@ -140,11 +141,11 @@
                       </div>
 
                       <!-- Input -->
-                      <div class="form-group col-lg-6 col-md-12">
+                     <!--  <div class="form-group col-lg-6 col-md-12">
                         <label>Final Education</label>
                         <input type="text" th:value="${loginUser.userFinalEducation}" name="userFinalEducation" disabled="disabled">
                       </div>
-
+ -->
   					   <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Languages</label>
@@ -157,7 +158,8 @@
                         <label>Skills</label>
                         <input type="text" th:value="${loginUser.userSkills}" name="userSkills" disabled="disabled">
                       </div>
-
+						<div>
+						</div>
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
                         <!-- <button class="theme-btn btn-style-one" onClick ="modifyAction()">저장</button> -->
