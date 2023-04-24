@@ -272,8 +272,8 @@ public class CorpController {
 
 		/************** login check **************/
 		// request.getSession().setAttribute("id", "1L"); //임시로 아이디 로그인상태
-		request.getSession().setAttribute("id", 1L); // 임시로 아이디 로그인상태
-		request.getSession().setAttribute("role", "corp"); // 임시로 아이디 로그인상태
+		//request.getSession().setAttribute("id", 1L); // 임시로 아이디 로그인상태
+		//request.getSession().setAttribute("role", "corp"); // 임시로 아이디 로그인상태
 		Long sCorpId = (Long) request.getSession().getAttribute("id");
 		if (sCorpId == null) {
 			forwardPath = "redirect:login";
