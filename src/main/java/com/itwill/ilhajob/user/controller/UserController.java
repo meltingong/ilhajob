@@ -169,6 +169,7 @@ public class UserController {
 			UserDto loginUser = userService.login(userDto.getUserEmail(),userDto.getUserPassword());
 			session.setAttribute("id", loginUser.getId());
 			session.setAttribute("sUserId", userDto.getUserEmail());
+			session.setAttribute("msgList", userService.findMessageList(loginUser.getId()));
 			forwardPath = "redirect:index";
 		}catch (UserNotFoundException e) {
 			e.printStackTrace();

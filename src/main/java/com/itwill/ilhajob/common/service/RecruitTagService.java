@@ -2,8 +2,11 @@ package com.itwill.ilhajob.common.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.itwill.ilhajob.common.dto.RecruitTagDto;
-import com.itwill.ilhajob.common.entity.RecruitTag;
+import com.itwill.ilhajob.corp.dto.RecruitDto;
 
 public interface RecruitTagService {
 
@@ -16,4 +19,7 @@ public interface RecruitTagService {
 	List<RecruitTagDto> selectAll();
 	
 	List<RecruitTagDto> selectAllBytagId(long tagId);
+	
+	Page<RecruitDto> getRecruitTagList(int Page, int size, long tagId) throws Exception;
+	Page<RecruitDto> selectRecruitsByTagId(long tagId, Pageable pageble);
 }

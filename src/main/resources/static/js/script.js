@@ -1231,11 +1231,90 @@ $(document).ready(function() {
 				errorMsg.textContent = xhr.responseText;
 				let passwordInput = document.getElementById('password-field');
 				passwordInput.insertAdjacentElement('afterend', errorMsg);
-				if(xhr.status === 5200 || xhr.status === 5300){
-					$('#email').focus();
-				}
 			});
 	});
+	
+	//비밀번호 변경
+	$(document).on('click', '#passwordUpdate-btn', function(e) {
+    e.preventDefault();
+    let formData = {};
+    $.each($('#update-f').serializeArray(), function() {
+        formData[this.name] = this.value;
+    });
+
+    let oldPasswordInput = $('#oldPassword-field');
+    let oldPasswordError = $('#oldPasswordError');
+    let newPasswordInput = $('#newPassword-field');
+    let newPassowrdConfirmInput = $('#newPasswordConfirm-field');
+    let newPasswordError = $('#newPasswordError');
+    let newPasswordConfirmError = $('#newPasswordConfirmError');
+    let regPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*#?&])[A-Za-z\d$@!%*#?&]{8,}$/;
+   
+    if(oldPasswordInput.val() === ''){
+	  oldPasswordError.text('기존 비밀번호를 입력해주세요');
+      oldPasswordError.show();
+      oldPasswordError.addClass('error-message1');
+      return false;
+    }else if(!regPassword.test(newPasswordInput.val())){
+      newPasswordError.text('비밀번호는 최소 8자리 이상, 대,소문자/숫자/특수문자를 모두 포함해야 합니다.');
+      newPasswordError.show();
+      newPasswordError.addClass('error-message2');
+      return false;
+	}else if(newPassowrdConfirmInput.val() === ''){
+	  newPasswordConfirmError.text('비밀번호 확인을 입력해주세요');
+      newPasswordConfirmError.show();
+      newPasswordConfirmError.addClass('error-message3');
+      return false;
+    }
+    
+    let jsonData = JSON.stringify(formData);
+
+    // Promise 객체 생성
+    let promise = $.ajax({
+        type: 'POST',
+        url: 'dashboard-change-password',
+        data: jsonData,
+        contentType: 'application/json',
+        dataType: 'json'
+    });
+    
+    // Promise 객체를 사용하여 Ajax 요청 처리
+    promise.then(function(response) {
+        // 변경 성공시
+        if (response.success) {
+            alert(response.message);
+             window.location.href = "/final-project-team1-ilhajob/dashboard-change-password";
+        }
+        // 변경 실패 시 
+        else {
+            alert(response.message);
+            if (response.oldPasswordError) {
+                oldPasswordError.text(response.oldPasswordError);
+                oldPasswordError.show();
+                oldPasswordInput.addClass('error-message1');
+            }
+            else if(response.newPasswordConfirm){
+                newPasswordConfirmError.text(response.newPasswordConfirmError);
+                newPasswordConfirmError.show();
+                newPasswordConfirmError.addClass('error-message3');
+            }
+                window.location.href = response.location;
+        }
+    })
+    .fail(function(xhr, status, error) {
+        // Ajax 요청 실패 시 처리
+        console.log(xhr);
+        console.log(status);
+        console.log(error);
+        let errorMsg = document.createElement('p');
+        errorMsg.style.textAlign = 'left';
+        errorMsg.style.color = 'red';
+        errorMsg.textContent = xhr.responseText;
+        let passwordInput = document.getElementById('password-field');
+        passwordInput.insertAdjacentElement('afterend', errorMsg);
+    });
+});
+	
 	
 	$(document).on('click', '#candidate-btn', function(e) {
 		e.preventDefault();

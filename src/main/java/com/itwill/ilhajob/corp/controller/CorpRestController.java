@@ -31,15 +31,12 @@ public class CorpRestController {
 	
 	@PostMapping(value="/getTagData", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> getTagData(@RequestBody Map<String,String> data){
-		System.out.println("컨트롤러도착");
 		Map<String, Object> map = new HashMap<String,Object>();
 		
 		//전체태그선택
 		if(data.get("tagId").equals("전체")) {
-			System.out.println(data.get("tagId"));
 			List<CorpTagDto> corpTagList = corpTagService.selectAll();
 			
-			System.out.println("전체실행완료");
 			map.put("data", corpTagList);
 			return map;
 		}else {
@@ -48,7 +45,6 @@ public class CorpRestController {
 		System.out.println(tagId);
 		List<CorpTagDto> corpTagList= corpTagService.selectListByTagId(tagId);
 		
-		System.out.println("태그선택실행완료");
 		map.put("data", corpTagList);
 		return map;
 		}

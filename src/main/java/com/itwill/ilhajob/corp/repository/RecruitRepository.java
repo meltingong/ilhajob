@@ -19,6 +19,7 @@ public interface RecruitRepository extends JpaRepository<Recruit, Long>{
 	
 	//paging 기능 구현
 	Page<Recruit> findAll(Pageable pageable);
+
 	
 	
 }

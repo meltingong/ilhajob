@@ -230,7 +230,7 @@ public class RecruitController {
 	@RequestMapping("/recruit-modify-form")
 	public String recruit_modify_form(HttpServletRequest request,@ModelAttribute RecruitDto recruitDto, Model model) throws Exception {
 		// 일단 회사 정보가져와서 담기
-		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		
@@ -243,7 +243,7 @@ public class RecruitController {
 	
 	@RequestMapping("/recruit-modify-action")
 	public String recruit_modify_action(@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
-		Long sCorpId =(Long)request.getSession().getAttribute("sCorpId");
+		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		recruitDto.setRcDate(LocalDateTime.now());

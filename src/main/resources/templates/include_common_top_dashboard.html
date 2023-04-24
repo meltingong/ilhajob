@@ -138,10 +138,13 @@
               <span class="count">1</span>
               <span class="icon la la-heart-o"></span>
             </button>
-
-            <button class="menu-btn">
-              <span class="icon la la-bell"></span>
-            </button>
+			
+			<th:block th:if="${session.sUserId != null}">
+			  <button class="menu-btn">
+			    <span class="count" th:if="${session.msgList != null and session.msgList.size() != 0}" th:text="${session.msgList.size()}">1</span>
+			    <span class="icon la la-bell"></span>
+			  </button>
+			</th:block>
 
             <!-- Dashboard Option -->
             <div class="dropdown dashboard-option">
@@ -165,7 +168,7 @@
                 <li><a href="#" class="logout"><i class="la la-sign-out"></i>로그아웃</a></li>
               </th:block>
               <th:block th:if = "${session.sCorpId != null}">
-                <li class="active"><a href="candidate-dashboard"> <i class="la la-home"></i> Dashboard</a></li>
+                <li class="active"><a href="dashboard"> <i class="la la-home"></i> Dashboard</a></li>
                 <li><a href="dashboard"><i class="la la-user-tie"></i>My Profile</a></li>
          		<li><a href="dashboard-company-profile"><i class="la la-user-tie"></i>기업정보 등록/수정</a></li>
           		<li><a href="dashboard-post-job"><i class="la la-paper-plane"></i>공고 등록</a></li>
