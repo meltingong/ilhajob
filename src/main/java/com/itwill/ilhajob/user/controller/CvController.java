@@ -1,5 +1,8 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
@@ -207,7 +211,12 @@ public class CvController {
 	@PostMapping("cv-apply-action")
 	public String cv_apply_action(@RequestBody Map<String, Object> requestData ,HttpServletRequest request ) throws Exception {
 		System.out.println("지원 액션 json: "+requestData);
-		
+		//json파일 폴더에 저장
+		ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(requestData);
+        Path filePath = Paths.get("C://final-project-team1-ilhajob//testJsonData.json");
+        Files.write(filePath, json.getBytes());
+        
 		RecruitDto recruit = recruitService.findRecruit(Long.valueOf((Integer)requestData.get("recruitId"))); // null
 		System.out.println("공고 확인"+recruit);
 		

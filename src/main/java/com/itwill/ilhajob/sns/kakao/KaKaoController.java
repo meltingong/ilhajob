@@ -55,6 +55,8 @@ public class KaKaoController {
    			 session=request.getSession();
    			 
    			 session.setAttribute("sUserId", kakaoProfile.getKakao_account().email);
+   			 UserDto findUser = userService.findUser(kakaoProfile.getKakao_account().email);
+   			 session.setAttribute("id", findUser.getId());
    			 session.setAttribute("role", "user");
    			 request.setAttribute("kakaoProfile", kakaoProfile);
    			 

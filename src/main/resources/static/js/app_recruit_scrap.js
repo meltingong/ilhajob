@@ -19,19 +19,40 @@ $(document).on('click','#deleteScrap',function(e){
 								true);
 			e.preventDefault();	
 });
-var bookmark = $('.flaticon-bookmark')
 $(document).on('click','#check-bookmark',function(){
 	
 		console.log("펑션접근");
 		
-		var backColor = bookmark.css('color');
-		if(backColor==="white"){
-			bookmark.css("green");
-		}else if(backColor==="green"){
-			bookmark.css("white");
+		let img1 = $(this).find("#id1");//스크랩등록시 이미지
+		let img2 = $(this).find("#id2");//스크랩해지시 이미지
+		let jsonData = {
+			rId: $(this).val()
+		};
+		console.log(JSON.stringify(jsonData));
+	$.ajax({
+		url: "recruit_scrap_insert_delete",
+		type: "POST",
+		contentType: 'application/json;charset=UTF-8', // Content-Type 설정
+		data: jsonData,
+		success: function(response) {
+			console.log("컨트롤러 갔다옴");
+			if (response == 1) {    //스크랩성공시
+				img2.removeClass('show-img');
+				img2.addClass('hidden-img');
+				img1.removeClass('hidden-img');
+				img1.addClass('show-img');
+			} else {     //스크랩해지시
+				img1.removeClass('show-img');
+				img1.addClass('hidden-img');
+				img2.removeClass('hidden-img');
+				img2.addClass('show-img');
+			}
+			console.log(response);
+		}, error: function(error) {
+			console.log(error);	
 		}
-		console.log("적용완료");
-
+	});
+	console.log("적용완료");
 });
 
 

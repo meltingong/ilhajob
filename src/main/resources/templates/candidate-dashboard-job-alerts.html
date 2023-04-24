@@ -54,7 +54,7 @@
       <div class="dashboard-outer">
         <div class="upper-title-box">
           <h3>알림</h3>
-          <div class="text">Ready to jump back in?</div>
+          <div class="text">알림을 확인하세요.</div>
         </div>
 
         <div class="row">
@@ -96,7 +96,7 @@
                           <td th:text="${message.messageTitle}">
                           </td>
                            <td th:text="${message.messageContents}"></td>
-                          <td th:text="${message.messageDate}"></td>
+                          <td th:text="${#temporals.format(message.messageDate, 'yyyy-MM-dd')}"></td>
                           <td>
                             <div class="option-box">
                               <ul class="option-list">
