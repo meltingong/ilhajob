@@ -49,7 +49,7 @@ $('.changeTag').click(function(e){
 });
 
 //인서트
-$(document).on('click','#tag-insert',function(){
+$(document).on('click','#insertTag',function(){
 	
 		console.log("태그생성펑션접근");
 		
