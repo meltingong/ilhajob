@@ -321,8 +321,8 @@
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span><span th:text="${recruit.rcPosition}"></span></li>
                         <li><span class="icon flaticon-map-locator"></span> <span th:text="${recruit.corp.corpAddress}"></span></li>
-                        <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                        <li><span class="icon flaticon-money"></span> $35k - $45k</li>
+                        <li class="icon flaticon-clock-3"><span  th:text="|등록일: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></span></li>
+                        <li class="icon flaticon-money" ><spanth th:text="${recruit.rcSalary}"></span></li>
                       </ul>
                       <ul class="job-other-info">
                       	<th:block th:if="${recruit.rcStatus==0}">

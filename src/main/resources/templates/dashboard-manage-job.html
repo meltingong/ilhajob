@@ -109,11 +109,12 @@
                     <table class="default-table manage-job-table" id="recruitList-table">
                       <thead>
                         <tr>
-                          <th>Title</th>
-                          <th>Applications</th>
-                          <th>Created & Expired</th>
-                          <th>Status</th>
-                          <th>Action</th>
+                          <th>회사명</th>
+                          <th>공고명</th>
+                          <th>지원자 현황</th>
+                          <th>등록일/마감일</th>
+                          <th>진행상태</th>
+                          <th>기능</th>
                         </tr>
                       </thead>
 
@@ -121,6 +122,10 @@
                         <tr th:each="recruit:${recruitList}">
                         <form class="default-form" name="recruitForm" method="post">
                         <!-- form자리 버튼 포스트로 넘길용도 -->
+                         <td >
+                            <a th:text="${recruit.corp.corpName}" ><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
+                            <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
+                          </td>
                           <td >
                             <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
                             <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->

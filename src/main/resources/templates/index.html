@@ -44,12 +44,12 @@
 
           <!-- Job Search Form -->
           <div class="job-search-form wow fadeInUp" data-wow-delay="1000ms">
-            <form method="post" action="job-list-v10.html">
+            <form id="search-form" method="get" th:action="@{/search}">
               <div class="row justify-content-center justify-content-md-between">
                 <!-- Form Group -->
                 <div class="form-group col-lg-9">
                   <span class="icon flaticon-search-1"></span>
-                  <input type="text" name="field_name" placeholder="Job title, keywords, or company">
+                  <input type="text" name="corpName" placeholder="Job title, keywords, or company">
                 </div>
 
                 <!-- Form Group -->
@@ -309,8 +309,8 @@
         </div>
 
         <div class="btn-box">
-          <a href="#" class="theme-btn btn-one">공고검색</a>
-          <a href="#" class="theme-btn btn-two">지금 바로 지원하기</a>
+          <a href="#" th:href="@{/recruit-list}" class="theme-btn btn-one">공고 보러가기</a>
+          <!-- a href="#" class="theme-btn btn-one">지금 바로 지원하기</a-->
         </div>
       </div>
     </section>
