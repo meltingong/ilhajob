@@ -82,6 +82,7 @@ $(document).on('click','#detail-check-bookmark',function(){
 			console.log(response);
 		}, error: function(error) {
 			console.log(error);	
+			window.location.replace("http://localhost/final-project-team1-ilhajob/login");
 		}
 	});
 	console.log("적용완료");

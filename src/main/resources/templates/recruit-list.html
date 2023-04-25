@@ -323,14 +323,14 @@
                         -->
                       </ul>
                       <!-- 리크루트 스크랩 ajax로 -->
-                      <div th:if = "${loginUser}!=null">
-                      	<form action="recruit_scrap_insert_delete">
-							<button th:value="${recruit.id}" class="bookmark-btn" name = "id" id="check-bookmark" type="button">
-									<img id = "id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;"  th:classappend="${countList[recruit.id]==1} ? 'show-img' : 'hidden-img'">
-									<img id = "id2" src="images/bookmark-bin.png" th:classappend="${countList[recruit.id]==0} ? 'show-img' : 'hidden-img'" style="width: 17px; margin-left: 5px;"></img>
-							</button>
-						</form>
-					</div>
+	                      <div th:if = "${loginUser}!=null">
+	                      	<form action="recruit_scrap_insert_delete">
+								<button th:value="${recruit.id}" class="bookmark-btn" name = "id" id="check-bookmark" type="button">
+										<img id = "id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;"  th:class="${countList[recruit.id]}==1 ? 'show-img' : 'hidden-img'">
+										<img id = "id2" src="images/bookmark-bin.png" th:class="${countList[recruit.id]}==0 ? 'show-img' : 'hidden-img'" style="width: 17px; margin-left: 5px;"></img>
+								</button>
+							</form>
+						</div>
 
                   </div>
                 </div>

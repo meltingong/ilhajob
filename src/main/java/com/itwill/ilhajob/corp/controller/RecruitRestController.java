@@ -144,6 +144,7 @@ public class RecruitRestController {
 		}
 	}
 	
+	
 	//리쿠르트 태그 생성 (AJAX방식)
 	@PostMapping(value = "recruit-tag-insert-action", produces = "application/json;charset=UTF-8")
 	public Map<String, Object> recruit_tag_insert_action(HttpServletRequest request,@RequestBody Map<String,String> reMap) throws Exception {
