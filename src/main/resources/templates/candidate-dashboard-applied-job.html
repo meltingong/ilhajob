@@ -133,7 +133,7 @@ window.onload = function() {
                           <td>
                             <div class="option-box">
                               <ul class="option-list">
-                         		<input type="hidden" name="appId" th:value="${app.id}"/>  
+                         		<input type="hidden" id="appId" name="appId" th:value="${app.id}"/>  
                                 <li><button type="button" data-text="View Aplication" th:id="appliedCvBtn+${app.id}" th:onclick="'appliedCvView(' + ${app.id} + ')'"><span class="la la-eye"></span></button></li>
                                 <li><button data-text="Delete Aplication"><span class="la la-trash"></span></button></li>
                               </ul>
