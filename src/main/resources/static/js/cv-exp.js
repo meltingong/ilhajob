@@ -103,7 +103,7 @@ function editExp(expId) {
     console.log(">>>>>>>>>>>> " + expId);
     const expBlock = document.querySelector(`#expBlock${expId}`);
     const inputs = expBlock.querySelectorAll('input[type="text"]');
-    inputs.forEach(input => input.removeAttribute('readonly'));
+    inputs.forEach(input => input.removeAttribute('disabled'));
     expBlock.querySelectorAll('input[type="date"]').forEach(input => input.style.display = 'block');
     expBlock.querySelectorAll('.year-span').forEach(span => span.style.display = 'none');
 }

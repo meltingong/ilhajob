@@ -304,24 +304,21 @@
     );
  
      create table userinfo (
-       id number(19,0) not null,
-        job varchar2(255 char),
-        role NUMBER(1) DEFAULT 1,
+      id number(19,0) not null,
+        role number(10,0) not null,
         sns_id varchar2(255 char),
         sns_type varchar2(255 char),
-        user_post_code number(10),
+        state number(10,0) not null,
         user_address varchar2(600 char),
         user_address_detail varchar2(600 char),
         user_age number(10,0),
-        user_career varchar2(255 char),
         user_email varchar2(255 char) not null,
-        user_final_education varchar2(255 char),
         user_image varchar2(255 char),
         user_language varchar2(255 char),
         user_name varchar2(255 char),
         user_password varchar2(255 char) not null,
         user_phone varchar2(255 char),
-        user_create_date timestamp DEFAULT sysdate,
+        user_post_code number(10,0),
         user_sex varchar2(255 char),
         user_skills varchar2(300 char),
         primary key (id)

@@ -34,6 +34,7 @@ $('.changeTag').click(function(e){
 	
 		let sendData={
 			tagId:parseInt($(this).val())
+			
 		};
 	console.log(sendData);
 	Request.ajaxRequest('getRecruitTag',

@@ -153,7 +153,7 @@ public class RecruitRestController {
 		map.put("prePage", recruitTagPage.hasPrevious() ? recruitTagPage.previousPageable().getPageNumber() : 0);
 		map.put("nextPage", recruitTagPage.hasNext() ? recruitTagPage.nextPageable().getPageNumber() : recruitTagPage.getTotalPages() - 1);
 	    map.put("page", recruitTagPage);	
-	    map.put("url", "/getRecruitTag");
+	    map.put("url", "/final-project-team1-ilhajob/getRecruitTag");
 		return map;
 		
 		}

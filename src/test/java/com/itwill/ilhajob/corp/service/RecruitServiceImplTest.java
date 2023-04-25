@@ -22,6 +22,7 @@ import com.itwill.ilhajob.common.repository.AppRepository;
 import com.itwill.ilhajob.common.service.AppService;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Recruit;
+import com.itwill.ilhajob.corp.repository.RecruitRepository;
 
 class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 
@@ -33,6 +34,8 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 	private AppRepository appRepository;
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
+	private RecruitRepository recruitRepository;
 	
 //	@Test
 //	void testFindAllByCorpId() throws Exception {
@@ -55,6 +58,7 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 //		recruitService.update(2L, updateRecruit);
 //	}
 	
+	@Disabled
 	@Test
 	void testGetRecruitList() throws Exception{
 		int page=0;
@@ -63,6 +67,27 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 		List<RecruitDto> recruitDtoList=recruitDtoPage.getContent();
 		assertEquals(size, recruitDtoList.size());
 	}
+	
+	@Test
+	void testIncreaseReadCount()throws Exception {
+		RecruitDto recruit=new RecruitDto();
+		recruit=recruitService.findRecruit(1L);
+		System.out.println("recruit>>>>"+recruit);
+		
+		//recruitRepository.save(recruit);
+		
+		Long id=recruit.getId();
+		System.out.println("id보자>>>>"+id);//1뜸
+		System.out.println("증가전조회수>>>>"+recruit.getRcReadCount());
+		recruitService.increaseReadCount(id);
+	    System.out.println("증가후조회수>>>>>"+recruit.getRcReadCount());
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 	

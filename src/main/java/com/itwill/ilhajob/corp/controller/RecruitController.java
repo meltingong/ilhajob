@@ -86,8 +86,10 @@ public class RecruitController {
 		return forward_path;
 	}
 	
-	@GetMapping("increase-readCount-action")
-	public String increase_readCount(@PathVariable Long id) throws Exception {
+	//조회수 증가 기능
+	@RequestMapping("/increase-readCount-action")
+	public String increase_readCount(HttpServletRequest request) throws Exception {
+		Long id=Long.parseLong(request.getParameter("id"));
 		recruitService.increaseReadCount(id);
 		return "recruit-detail";
 	}
@@ -240,6 +242,7 @@ public class RecruitController {
 		System.out.println(recruitDto.getId());
 		recruitService.remove(recruitDto.getId());
 		System.out.println("삭제 후");
+		
 		return "redirect:dashboard-manage-job";
 	}
  

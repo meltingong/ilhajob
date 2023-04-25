@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,26 +64,40 @@ public class CvController {
 	/** cv write form */
 	@LoginCheck
 	@RequestMapping(value = "/cv-write-form")
-	public String cv_wirte_from(HttpServletRequest request, Model model) throws Exception {
+	public String cv_wirte_from(HttpServletRequest request, Model model,HttpSession session) throws Exception {
 		Long userId = (Long)request.getSession().getAttribute("id");
 		String userEmail = (String)request.getSession().getAttribute("sUserId");
-		UserDto user = userService.findUser(userEmail);		
-		model.addAttribute("userId" + userId);
-		model.addAttribute("user" + user);
-
-		/* eduList */
-		List<EduDto> eduList = eduService.findEduListByUserId(userId);
-		model.addAttribute("eduList", eduList);
-		
-		/* expList */
-		List<ExpDto> expList = expService.findExpListByUserId(userId);
-		model.addAttribute("expList", expList);
-		
-		/* awardsList */
-		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
-		model.addAttribute("awardsList", awardsList);
-		
-		String forwardpath = "candidate-dashboard-resume-write";
+		UserDto user = userService.findUser(userEmail);
+		String forwardpath = "";
+		//이름 , 연락처 , 성별, 어학능력, 주소, 나이 , 보유스킬
+		String name = user.getUserName();
+		String phone = user.getUserPhone();
+		String sex = user.getUserSex();
+		String lang = user.getUserLanguage();
+		String address = user.getUserAddress();
+		Integer age = user.getUserAge();
+		String skill = user.getUserSkills();
+		if(name == null || phone == null || sex == null || lang == null || address == null || age == null || skill == null) {
+			 return "redirect:candidate-dashboard-profile";
+			
+		}else {
+			model.addAttribute("userId" + userId);
+			model.addAttribute("user" + user);
+	
+			/* eduList */
+			List<EduDto> eduList = eduService.findEduListByUserId(userId);
+			model.addAttribute("eduList", eduList);
+			
+			/* expList */
+			List<ExpDto> expList = expService.findExpListByUserId(userId);
+			model.addAttribute("expList", expList);
+			
+			/* awardsList */
+			List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
+			model.addAttribute("awardsList", awardsList);
+			
+			forwardpath = "candidate-dashboard-resume-write";
+		}
 		return forwardpath;
 	}
 
