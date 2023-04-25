@@ -145,6 +145,34 @@ public class BlogController {
 	
 	//블로그 id가 있을때
 	@RequestMapping(value = "/blog-single", params = "id")
+	public String blog_view(@RequestParam("id") Long blogId , Model model, @ModelAttribute BlogCommentDto blogCommentDto,HttpServletRequest request) throws Exception{
+
+		//블로그 상세내용 불러오기
+		BlogDto blogDto = blogService.findBlog(blogId);
+		model.addAttribute("blog", blogDto);
+		
+		//블로그 조회수 업데이트
+		model.addAttribute("blogReadCount", blogService.updateViews(blogId));
+    
+		//댓글리스트 불러오기
+		List<BlogCommentDto> blogCommentList = blogCommentService.findByBlogComment(blogId);
+		model.addAttribute("blogCommentList", blogCommentList);
+		model.addAttribute("blogComment", blogCommentDto);
+		
+		
+		return "blog-single";
+	}
+
+/*블로그 상세
+	
+	//블로그 id가 없을 때
+	@RequestMapping(value = "/blog-single",params = "!id")
+	public String blog_view() {
+		return "redirect:blog-list";	
+	}
+	
+	//블로그 가 있을때
+	@RequestMapping(value = "/blog-single", params = "id")
 	public String blog_view(@RequestParam("id") Long blogId , Long userId, Model model, @ModelAttribute BlogCommentDto blogCommentDto,HttpServletRequest request) throws Exception{
 		// 세션에서 로그인된 사용자의 아이디 가져오기
 	    String sUserId = (String) request.getSession().getAttribute("sUserId");
@@ -169,8 +197,9 @@ public class BlogController {
 
 		return "blog-single";
 	}
-
-
+	------->이렇게하면로그인안하면 상세가 안보이니까..안됨*/
+		
+		
 	/*블로그 수정*/
 	
 	//블로그 id가 없을 때
