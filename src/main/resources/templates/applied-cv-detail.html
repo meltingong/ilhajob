@@ -68,30 +68,37 @@
                   </div>
                     
                   <div class="form-group col-lg-6 col-md-12">
-                    <label>연락처</label>
-                	<div class="text" th:text="${user.userPhone}"></div>
-                  </div>
-                    
-                  <div class="form-group col-lg-6 col-md-12">
-                    <label>나이</label>
-                	<div class="text" th:text="${user.userAge}"></div>
-                  </div>
-                    
-                  <div class="form-group col-lg-6 col-md-12">
                     <label>성별</label>
                 	<div class="text" th:text="${user.userSex}"></div>
+                  </div>
+                    
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>연락처</label>
+                	<div class="text" th:text="${user.userPhone}"></div>
                   </div>
                     
                   <div class="form-group col-lg-6 col-md-12">
                     <label>이메일</label>
                 	<div class="text" th:text="${user.userEmail}"></div>
                   </div>
+                    
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>나이</label>
+                	<div class="text" th:text="${user.userAge}"></div>
+                  </div>
                   
                   <div class="form-group col-lg-6 col-md-12">
                     <label>어학능력</label>
                 	<div class="text" th:text="${user.userLanguage}"></div>
 		           </div>
-                    
+		           
+                  <div>
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>보유기술</label>
+                    <div class="text" th:text="${user.userSkills}">
+		           </div>
+                  </div>
+                  
                   <div class="form-group col-lg-6 col-md-12">
                     <label>주소</label>
                     <div class="form-group">
