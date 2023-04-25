@@ -262,13 +262,12 @@ public class CvController {
 		// JSON 파싱 후 Map<k, v> 객체로 변환
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> map = mapper.readValue(jsonData, new TypeReference<Map<String, Object>>(){});
-		System.out.println(map.get("id"));
-		System.out.println(map.get("user"));
-		System.out.println(map.get("eduList"));
-		System.out.println(map.get("expList"));
-		System.out.println(map.get("awardsList"));
-		
-		/* 특정 cv detail */
+//		System.out.println(map.get("id"));
+//		System.out.println(map.get("user"));
+//		System.out.println(map.get("eduList"));
+//		System.out.println(map.get("expList"));
+//		System.out.println(map.get("awardsList"));
+		/* cv detail */
 		CvDto cvDetail = CvDto.builder()
 								.id(Long.valueOf((Integer)map.get("id")))
 								.cvName((String)map.get("cvName"))

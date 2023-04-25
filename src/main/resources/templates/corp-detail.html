@@ -20,6 +20,7 @@ function reviewDelete(){
 	document.d.submit();
 }
 
+
 </script>
 
 
@@ -87,7 +88,7 @@ function reviewDelete(){
               </div>
 
               <div class="btn-box">
-                <a  href="#" class="theme-btn btn-style-one">Apply For Job</a>
+                <a  href="#" class="theme-btn btn-style-one to-recruit">지원하기</a>
                 <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button>
               </div>
             </div>
@@ -406,5 +407,11 @@ function reviewDelete(){
   <script src="js/review.js"></script>
   
 </body>
-
+<script type="text/javascript">
+$('.to-recruit').on('click', function() {
+	  $('html, body').animate({
+	    scrollTop: $('.related-jobs').offset().top
+	  }, 100);
+	});
+</script>
 </html>
