@@ -129,14 +129,9 @@ public class RecruitServiceImpl implements RecruitService {
 	@Override
 	public void increaseReadCount(Long id) throws Exception {
 		//일단 recruit 찾아오기
-		Optional<Recruit> optionalRecruit = recruitRepository.findById(id);
-        if (optionalRecruit.isPresent()) {
-            Recruit existRecruit = optionalRecruit.get();
-            existRecruit.setRcReadCount(existRecruit.getRcReadCount() + 1);
-            recruitRepository.save(existRecruit);
-        } else {
-            throw new NotFoundException("Recruit not found with id: " + id);
-        }
+		Optional<Recruit> recruit = recruitRepository.findById(id);
+		System.out.println("recruit"+recruit);
+		
     }
 
 	

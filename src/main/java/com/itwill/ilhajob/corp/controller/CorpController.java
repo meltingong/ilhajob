@@ -394,7 +394,12 @@ public class CorpController {
 		    model.addAttribute("totalPage", corpPage.getTotalPages());
 		    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
 		    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
-	        // corpName만 알때
+			
+		    Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
+					corpPage.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
+			model.addAttribute("rcCountMap", rcCountMap);
+		    
+		    // corpName만 알때
 	        if (job.isEmpty()) {
 	            corpSearchList = corpService.searchByCorpName(corpName,pageable1);
 	        // job만 알 때
