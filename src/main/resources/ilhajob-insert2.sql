@@ -1,13 +1,13 @@
 /*******************************개인회원관련**************************************/
 /**********************userinfo insert************************/
-insert into userinfo(id, user_age, user_email, user_password, role)
-values(USER_ID_SEQ.nextval, 20, 'test1@test.com', '1111', 1);
-insert into userinfo(id, user_age, user_email, user_password, role)
-values(USER_ID_SEQ.nextval, 21, 'test2@test.com', '2222', 1);
-insert into userinfo(id, user_age, user_email, user_password, role)
-values(USER_ID_SEQ.nextval, 22, 'test3@test.com', '3333', 1);
-insert into userinfo(id, user_age, user_email, user_password, role)
-values(USER_ID_SEQ.nextval, 23, 'test4@test.com', '4444', 1);
+insert into userinfo(id, user_age, user_email, user_password, role,state)
+values(USER_ID_SEQ.nextval, 20, 'test1@test.com', '1111', 1,1);
+insert into userinfo(id, user_age, user_email, user_password, role,state)
+values(USER_ID_SEQ.nextval, 21, 'test2@test.com', '2222', 1,1);
+insert into userinfo(id, user_age, user_email, user_password, role,state)
+values(USER_ID_SEQ.nextval, 22, 'test3@test.com', '3333', 1,1);
+insert into userinfo(id, user_age, user_email, user_password, role,state)
+values(USER_ID_SEQ.nextval, 23, 'test4@test.com', '4444', 1,1);
 
 /**********************edu insert****************************/
 insert into edu(id, edu_content, edu_end_date, edu_major, edu_name, edu_score, edu_start_date, user_id)
