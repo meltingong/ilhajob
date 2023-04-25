@@ -53,10 +53,10 @@ public class RecruitRestController {
 	@Autowired
 	private CorpService corpService;
 	
-	@PostMapping(value="/getRecruitTag", produces = "application/json;charset=UTF-8")
+	@GetMapping(value="/getRecruitTag", produces = "application/json;charset=UTF-8")
 	public Map<String,Object> getRecruitTagData(@RequestParam(defaultValue = "0") int page,
 												@RequestParam(defaultValue = "6") int size,
-												@RequestBody Map<String,String> data,
+												@RequestParam long tagId,
 												Model model, HttpServletRequest request) throws Exception{
 		Map<String, Object> map = new HashMap<String,Object>();
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
@@ -95,9 +95,8 @@ public class RecruitRestController {
 			map.put("countList", countList);
 		}
 		//전체태그선택
-		if(data.get("tagId").equals("전체")) {
+		if(tagId==99999) {
 			List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
-			
 			for(RecruitDto recruit : recruitList) {
 				tagList=new ArrayList<TagDto>();
 				for(RecruitTagDto recruitTag:recruitTagList) {
@@ -115,12 +114,9 @@ public class RecruitRestController {
 			return map;
 		}else {
 		//일부태그선택시
-		map.put("data", recruitTagListDto);
 		Pageable pageable = PageRequest.of(page, size,Sort.Direction.ASC,"id");
-		Page<RecruitDto> recruitTagPage = recruitTagService.selectRecruitsByTagId(Long.parseLong(data.get("tagId")), pageable);
+		Page<RecruitDto> recruitTagPage = recruitTagService.selectRecruitsByTagId(tagId, pageable);
 		List<RecruitDto> recruitDtoList = recruitTagPage.getContent();
-		List<RecruitTagDto> recruitTagList = new ArrayList<>();
-
 		for (RecruitDto recruitDto : recruitDtoList) {
 		    Long rId = recruitDto.getId();
 		    List<RecruitTagDto> recruitTagListByRecruitId = recruitTagService.selectAllByRecruitId(rId);
@@ -133,20 +129,8 @@ public class RecruitRestController {
 		    }
 		    recruitTagListDto.add(RecruitTagListDto.builder().id(id).recruit(recruitDto).tagList(tagList1).build());
 		}
-//		
-//		for(RecruitTagDto recruitTag:recruitTagList) {
-//			tagList= new ArrayList<TagDto>();
-//			Long rId = recruitTag.getRecruit().getId();
-//			List<RecruitTagDto> recruitTagListByRecruitid = recruitTagService.selectAllByRecruitId(rId);
-//			for(RecruitTagDto recruitTagDto: recruitTagListByRecruitid) {
-//				tagList.add(recruitTagDto.getTag());
-//			}
-//			recruitTagListDto.add(RecruitTagListDto.builder().id(id).recruit(recruitTag.getRecruit()).tagList(tagList).build());
-//		}
 		map.put("data", recruitTagListDto);
 		
-		System.out.println(">>>>"+recruitTagListDto);
-		System.out.println(recruitTagPage.getContent().get(0).getId());
 		map.put("recruitList", recruitTagPage.getContent());
 		map.put("nowPage", recruitTagPage.getNumber());
 		map.put("totalPage", recruitTagPage.getTotalPages());
@@ -154,10 +138,12 @@ public class RecruitRestController {
 		map.put("nextPage", recruitTagPage.hasNext() ? recruitTagPage.nextPageable().getPageNumber() : recruitTagPage.getTotalPages() - 1);
 	    map.put("page", recruitTagPage);	
 	    map.put("url", "/final-project-team1-ilhajob/getRecruitTag");
+	    map.put("tagId", tagId);
 		return map;
 		
 		}
 	}
+	
 	
 	//리쿠르트 태그 생성 (AJAX방식)
 	@PostMapping(value = "recruit-tag-insert-action", produces = "application/json;charset=UTF-8")

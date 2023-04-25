@@ -162,7 +162,7 @@ public class RecruitController {
 			        countList.add(0); // 리크루트 스크랩이 없을 때
 			    }
 			}
-			
+			System.out.print("countList"+countList);
 			model.addAttribute("countList", countList);
 			model.addAttribute("recruitScrapList", recruitScrapList);
 		}
@@ -198,11 +198,23 @@ public class RecruitController {
 
 	//@LoginCheck
 	@RequestMapping(value = "/recruit-detail", params = "id")
-	public String recruit_detail(@RequestParam long id, Model model) throws Exception {
+	public String recruit_detail(@RequestParam long id, Model model,HttpServletRequest request) throws Exception {
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
 		List<ManagerDto> managerList = managerService.findManagerByCorpID(recruit.getCorp().getId());
 		model.addAttribute("managerList", managerList);
+		
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		if(sUserId!=null) {
+			UserDto user= userService.findUser(sUserId);
+			//공고스크랩
+			if(user!=null) {
+				RecruitScrapDto scrap = 
+						recruitScrapService.sellectByUserIdAndRecruitId(user.getId(), recruit.getId());
+				System.out.println("공고스크랩:"+scrap);
+				model.addAttribute("scrap", scrap);
+			}
+		}
 		
 		
 		//공고태그리스트 선별
@@ -213,6 +225,7 @@ public class RecruitController {
 			recruitTagNameList.add(tag.getTagName());
 		}
 		model.addAttribute("recruitTagNameList", recruitTagNameList);
+		model.addAttribute("scrap", null);
 		
 		
 		String forward_path = "recruit-detail";
