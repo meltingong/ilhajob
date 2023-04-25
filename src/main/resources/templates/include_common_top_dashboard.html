@@ -155,21 +155,18 @@
               <ul class="dropdown-menu">
               <th:block th:if = "${session.sUserId != null}">
                 <li class="active"><a href="candidate-dashboard"> <i class="la la-home"></i> Dashboard</a></li>
-                <li><a href="candidate-dashboard-profile"><i class="la la-user-tie"></i>My Profile</a></li>
-                <li><a href="candidate-dashboard-resume"><i class="la la-file-invoice"></i>My Resume</a></li>
-                <li><a href="candidate-dashboard-applied-job"><i class="la la-briefcase"></i> Applied Jobs </a></li>
-                <li><a href="candidate-dashboard-job-alerts"><i class="la la-bell"></i>Job Alerts</a></li>
-                <li><a href="candidate-dashboard-shortlisted-resume"><i class="la la-bookmark-o"></i>Shortlisted Jobs</a></li>
-                <li><a href="candidate-dashboard-cv-manager"><i class="la la-file-invoice"></i> CV manager</a></li>
-                <li><a href="dashboard-packages"><i class="la la-box"></i>Packages</a></li>
-                <li><a href="dashboard-messages"><i class="la la-comment-o"></i>Messages</a></li>
-                <li><a href="dashboard-change-password"><i class="la la-lock"></i>Change Password</a></li>
-                <li><a href="dashboard-profile"><i class="la la-user-alt"></i>View Profile</a></li>
+                <li><a href="candidate-dashboard-profile"><i class="la la-user-tie"></i>내 프로필</a></li>
+                <li><a href="candidate-dashboard-resume"><i class="la la-file-invoice"></i>이력서 작성</a></li>
+                <li><a href="candidate-dashboard-cv-manager"><i class="la la-file-invoice"></i>이력서 관리</a></li>
+                <li><a href="candidate-dashboard-applied-job"><i class="la la-briefcase"></i>지원내역</a></li>
+                <li><a href="candidate-dashboard-shortlisted-resume"><i class="la la-bookmark-o"></i>공고스크랩</a></li>
+                <li><a href="candidate-dashboard-job-alerts"><i class="la la-bell"></i>공고알림</a></li>
+                <li><a href="dashboard-change-password"><i class="la la-lock"></i>비밀번호변경</a></li>
+                <li><a href="dashboard-packages"><i class="la la-box"></i>구매내역</a></li>
                 <li><a href="#" class="logout"><i class="la la-sign-out"></i>로그아웃</a></li>
               </th:block>
               <th:block th:if = "${session.sCorpId != null}">
                 <li class="active"><a href="dashboard"> <i class="la la-home"></i> Dashboard</a></li>
-                <li><a href="dashboard"><i class="la la-user-tie"></i>My Profile</a></li>
          		<li><a href="dashboard-company-profile"><i class="la la-user-tie"></i>기업정보 등록/수정</a></li>
           		<li><a href="dashboard-post-job"><i class="la la-paper-plane"></i>공고 등록</a></li>
           		<li><a href="dashboard-manage-job"><i class="la la-briefcase"></i> 공고리스트 </a></li>

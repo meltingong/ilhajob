@@ -266,7 +266,7 @@
                   <button type="button" class="theme-btn toggle-filters"><span class="icon icon-filter"></span> Filter</button>
                   <div class="text">Showing <strong th:text="${recruitList.size()}">41-60</strong> of <strong></strong> Recruits</div>
                 </div>
-                <button class="changeTag" name="all" value="전체">전체</button>
+                <button class="changeTag" name="all" value="99999">전체</button>
                 <div th:each="tag: ${tagList}" th:if="${tag.tagId}<4">
 					<button class="changeTag" name="${tag.tagName}"
 					th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
@@ -367,14 +367,6 @@
 				  </ul>
 				</nav>
 <!-- Pagination 끝-->
-              <!-- Call To Action -->
-              <div class="call-to-action-four style-two">
-                <h5>Recruiting?</h5>
-                <p>Advertise your jobs to millions of monthly users and search 15.8 million <br>CVs in our database.</p>
-                <a href="#" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Start Recruiting Now</span></a>
-                <div class="image" style="background-image: url(images/resource/ads-bg-4.png);"></div>
-              </div>
-              <!-- End Call To Action -->
             </div>
           </div>
         </div>
@@ -387,7 +379,6 @@
     <!-- Main Footer -->
     <div th:include="include_main_bottom"></div>
     <!-- End Main Footer -->
-
 
   </div><!-- End Page Wrapper -->
 
@@ -409,7 +400,6 @@
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
                       <ul class="job-other-info">
-						
 						{{#each tagList}}
                         <li class="time" >{{tagName}}</li>
 						{{/each}}
@@ -439,12 +429,14 @@
               </div>
 				<nav class="ls-pagination mb-5">
 				  <ul>
+					<input class="tag-data" type="hidden" value="{{tagId}}">
 				    {{#unless (eq nowPage 0)}}
 				      <li class="prev">
-				        <a href="{{url}}?page={{prePage}}"><i class="fa fa-arrow-left"></i></a>
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link"><i class="fa fa-arrow-left"></i></a>
 				      </li>
 				      <li class="prev">
-				        <a href="{{url}}?page={{prePage}}" class="page-link">{{nowPage}}</a>
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link">{{nowPage}}</a>
+						<input class="prev-data" type="hidden" value="{{prePage}}">
 				      </li>
 				    {{/unless}}
 				    
@@ -454,17 +446,18 @@
 				
 				    {{#if (not (eq nowPage (subtract totalPage 1)))}}
 				      <li class="next">
-				        <a href="{{url}}?page={{nextPage}}">{{add nowPage 2}}</a>
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link">{{add nowPage 2}}</a>
 				      </li>
 				      <li class="next">
-				        <a href="{{url}}?page={{nextPage}}"><i class="fa fa-arrow-right"></i></a>
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link"><i class="fa fa-arrow-right"></i></a>
+						<input class="next-data" type="hidden" value="{{nextPage}}">
 				      </li>
 				    {{/if}}
 				
 					{{#each page}}
 				      {{#if (and (gte this (subtract nowPage 1)) (lte this (add nowPage 1)))}}
 				        <li>
-				          <a href="{{../url}}?page={{this}}"></a>
+				          <a href="{{../url}}?tagId={{tagId}}&page={{this}}"></a>
 				        </li>
 				      {{/if}}
 				    {{/each}}

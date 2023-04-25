@@ -124,15 +124,22 @@ public class RecruitServiceImpl implements RecruitService {
 		Page<Recruit> recruitList=recruitRepository.findAll(pageable);
 		return recruitList.map(recruit->modelMapper.map(recruit, RecruitDto.class));
 	}
-	
-	//readCount 증가 기능
+
+	//readCount 증가 기능-테스트 완료
 	@Override
 	public void increaseReadCount(Long id) throws Exception {
 		//일단 recruit 찾아오기
-		Optional<Recruit> recruit = recruitRepository.findById(id);
-		System.out.println("recruit"+recruit);
-		
-    }
+		   Optional<Recruit> recruitDto = recruitRepository.findById(id);
+	       if(recruitDto.isPresent()) {
+	    	   Recruit recruit=recruitDto.get(); 
+	    	   Long readCount = recruit.getRcReadCount();
+	    	   recruit.setRcReadCount(readCount + 1);
+	    	   recruitRepository.save(recruit);
+	       }else {
+	    	   throw new Exception("Recruit not found with id: " + id);
+	       }
+		   
+	    }
 
 	
 }

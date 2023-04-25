@@ -54,6 +54,7 @@
   </style>
 
 
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f247f5f61cc50440b7f98463c59221b6&libraries=services"></script>
 </head>
 
 <body>
@@ -225,7 +226,9 @@
                       <li>Founded in: <span th:text="${recruit.corp.corpEst}">2011</span></li>
                       <li>Phone: <span th:text="${recruit.corp.corpPhone}">123 456 7890</span></li>
                       <li>Email: <span th:text="${recruit.corp.corpWebsite}">info@joio.com</span></li>
-                      <li>Location: <span th:text="${recruit.corp.corpAddress}">London, UK</span></li>
+                      <li>Location: <span th:utext="${recruit.corp.corpAddress} + '<br>' + ${recruit.corp.corpAddressDetail}">London, UK</span>
+                      				<input type="hidden"  id="corp-location" th:value="${recruit.corp.corpAddress}">
+                      </li>
                       <li>Social media:
                         <div class="social-links">
                           <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -242,32 +245,17 @@
                   </div>
                 </div>
 
-                <div class="sidebar-widget contact-widget">
-                  <h4 class="widget-title">Contact Us</h4>
+                <div class="sidebar-widget">
+                  <!-- Map Widget -->
+                  <h4 class="widget-title">Job Location</h4>
                   <div class="widget-content">
-                    <!-- Comment Form -->
-                    <div class="default-form">
-                      <!--Comment Form-->
-                      <form>
-                        <div class="row clearfix">
-                          <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <input type="text" name="username" placeholder="Your Name" required>
-                          </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <input type="email" name="email" placeholder="Email Address" required>
-                          </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <textarea class="darma" name="message" placeholder="Message"></textarea>
-                          </div>
-                          <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <button class="theme-btn btn-style-one" type="submit" name="submit-form">Send Message</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
+                    <div class="map-outer mb-0">
+                      <div class="map-kakao" id="map-kakao" style="width:350px;height:400px;"></div>
+                   </div>
                   </div>
-                </div>
+                 </div>
               </aside>
+               </div>
             </div>
           </div>
 
@@ -334,7 +322,6 @@
             </div>
           </div>
         </div>
-      </div>
     </section>
     <!-- End Job Detail Section -->
 
@@ -342,7 +329,6 @@
     <!-- Main Footer -->
     <div th:include="include_main_bottom"></div>
     <!-- End Main Footer -->
-
 
   </div><!-- End Page Wrapper -->
 
@@ -368,6 +354,7 @@
   <script src="js/map-script.js"></script>
   <!--End Google Map APi-->
   <script src="js/app_recruit_scrap.js" type="module"> </script>
+  <script src="js/maps.js"></script>
 </body>
 
 </html>

@@ -350,28 +350,8 @@ public class CorpController {
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
 		
-		
-		
-
 		return "dashboard-applicants";
 	}
-
-	/*
-	 * // 검색기능
-	 * 
-	 * @GetMapping("/search") public String searchCorp() { return "search"; }
-	 * 
-	 * // 검색기능
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @PostMapping("/search") public Map<String, Object>
-	 * searchCorp(@RequestParam("query") String query, Model model) throws Exception
-	 * { Map<String, Object> resultMap = new HashMap<String, Object>(); // 상품 검색 서비스
-	 * 호출 List<CorpDto> searchResults = corpService.searchCorpList(query);
-	 * 
-	 * resultMap.put("corpList", searchResults); // 결과 페이지를 반환 return resultMap; }
-	 */
 
 	// corpName, job 둘 중 하나만 알아도 + 둘다 알때 검색할 수 있는 기능
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -395,9 +375,16 @@ public class CorpController {
 		    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
 		    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
 			
+		    //채용중 뿌리기
 		    Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
 					corpPage.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
 			model.addAttribute("rcCountMap", rcCountMap);
+			
+			//태그리스트 뿌리기
+			List<CorpTagDto> corpTagList = corpTagService.selectAll();
+			List<TagDto> tagList = tagService.selectAll();
+			model.addAttribute("tagList", tagList);
+			model.addAttribute("corpTagList", corpTagList);
 		    
 		    // corpName만 알때
 	        if (job.isEmpty()) {

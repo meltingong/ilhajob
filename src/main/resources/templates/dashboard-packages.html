@@ -98,6 +98,10 @@
                         </tr>                                                                                                                                                                                                               
                       </tbody>
                     </table>
+                    <div class="copyright-text" th:if="${orderList.size()==0}">
+	                <p>구매 내역이 없습니다.</p>
+	                <p><a href="product">상품 구매하러 가기</a></p>
+	                </div>
                   </div>
                 </div>
               </div>
