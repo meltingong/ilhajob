@@ -166,6 +166,14 @@
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                       </ul>
                       <ul class="job-other-info">
+                      	<th:block th:if="${recruit.rcStatus==0}">
+                      	<li class="count" style="background-color:#FDFD96;">공고진행중</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
+                      	<th:block th:if="${recruit.rcStatus==1}">
+                      	<li class="count" style="background-color:mistyrose; color: red;">마감</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
                         <div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
                         <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
@@ -197,6 +205,14 @@
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                       </ul>
                       <ul class="job-other-info">
+                      	<th:block th:if="${recruit.rcStatus==0}">
+                      	<li class="count" style="background-color:#FDFD96;">공고진행중</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
+                      	<th:block th:if="${recruit.rcStatus==1}">
+                      	<li class="count" style="background-color:mistyrose; color: red">마감</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
                         <div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
                         <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
@@ -228,6 +244,14 @@
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                       </ul>
                       <ul class="job-other-info">
+                      	<th:block th:if="${recruit.rcStatus==0}">
+                      	<li class="count" style="background-color:#FDFD96;">공고진행중</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
+                      	<th:block th:if="${recruit.rcStatus==1}">
+                      	<li class="count" style="background-color:mistyrose;color: red">마감</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
                         <div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
                         <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>

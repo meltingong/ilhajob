@@ -325,7 +325,14 @@
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
                       <ul class="job-other-info">
-                      	<!--img src="images/icons/smallbell.png" alt=""--><li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li>
+                      	<th:block th:if="${recruit.rcStatus==0}">
+                      	<li class="count" style="background-color:#FDFD96;">공고진행중</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
+                      	<th:block th:if="${recruit.rcStatus==1}">
+                      	<li class="count" style="background-color:mistyrose; color: red">마감</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
                       	<div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
                         <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>

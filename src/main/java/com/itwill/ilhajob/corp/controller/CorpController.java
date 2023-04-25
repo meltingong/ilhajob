@@ -362,19 +362,12 @@ public class CorpController {
 							  Pageable pageable,
 	                          Model model) {
 	    try {
+	    	//페이징 기능 추가->일단 12개씩 나오게 해놓음
+	    	Pageable pageable1 = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+	    	Page<CorpDto> corpPage = corpService.findAll(pageable1);
+	    	int nowPage = corpPage.getNumber();
 	        List<CorpDto> corpSearchList = new ArrayList<>();
-	      //페이징 기능 추가->일단 12개씩 나오게 해놓음
-		    Pageable pageable1 = PageRequest.of(page, size, Sort.Direction.ASC, "id");
-		    Page<CorpDto> corpPage = corpService.findAll(pageable1);
-		    int nowPage = corpPage.getNumber();
-		    
-		    //이전, 다음페이지 설정해야함...
-		    model.addAttribute("corpList", corpPage.getContent());
-		    model.addAttribute("nowPage", nowPage);
-		    model.addAttribute("totalPage", corpPage.getTotalPages());
-		    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
-		    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
-			
+	     
 		    //채용중 뿌리기
 		    Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
 					corpPage.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
@@ -385,20 +378,28 @@ public class CorpController {
 			List<TagDto> tagList = tagService.selectAll();
 			model.addAttribute("tagList", tagList);
 			model.addAttribute("corpTagList", corpTagList);
+			
 		    
+		    //이전, 다음페이지 설정해야함...
+		    model.addAttribute("corpList", corpPage.getContent());
+		    model.addAttribute("nowPage", nowPage);
+		    model.addAttribute("totalPage", corpPage.getTotalPages());
+		    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
+		    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
+			
 		    // corpName만 알때
 	        if (job.isEmpty()) {
-	           corpSearchList = corpService.searchByCorpName(corpName,pageable1);
+	           corpSearchList = corpService.searchByCorpName(corpName,pageable);
 	           
 	        // job만 알 때
 	        } else if(corpName.isEmpty()){
-	            corpSearchList = corpService.searchByjob(job,pageable1);
+	            corpSearchList = corpService.searchByjob(job,pageable);
 	        // 둘 다 알 때
 	        } else {
-	            corpSearchList = corpService.searchCorps(corpName, job,pageable1);
+	            corpSearchList = corpService.searchCorps(corpName, job,pageable);
 	        }
 	        //검색 결과 없을 때
-	        model.addAttribute("noResults", corpSearchList.isEmpty());
+
 	        model.addAttribute("corpList", corpSearchList);
 	    } catch (Exception e) {
 	        // 예외 처리
