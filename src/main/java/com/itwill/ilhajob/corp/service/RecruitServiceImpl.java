@@ -93,20 +93,6 @@ public class RecruitServiceImpl implements RecruitService {
 	public Long countByCorpId(Long id) throws Exception {
 		return recruitRepository.countByCorpId(id);
 	}
-	// 마감일 됐는지 여부 확인
-//	@Override
-//	public boolean isDeadLine(Date rcDeadline) throws Exception {
-//		Date now=new Date();
-//		return now.after(rcDeadline);
-//	}
-
-//	//마감일 설정
-//	@Override
-//	public Date addDay(Date date, int day) throws Exception {
-//		long time=date.getTime();
-//		time+=day*24*60*60*1000;
-//		return new Date(time);
-//	}
 
 	// 마감일
 	@Override
@@ -143,14 +129,9 @@ public class RecruitServiceImpl implements RecruitService {
 	@Override
 	public void increaseReadCount(Long id) throws Exception {
 		//일단 recruit 찾아오기
-		Optional<Recruit> optionalRecruit = recruitRepository.findById(id);
-        if (optionalRecruit.isPresent()) {
-            Recruit existRecruit = optionalRecruit.get();
-            existRecruit.setRcReadCount(existRecruit.getRcReadCount() + 1);
-            recruitRepository.save(existRecruit);
-        } else {
-            throw new NotFoundException("Recruit not found with id: " + id);
-        }
+		Optional<Recruit> recruit = recruitRepository.findById(id);
+		System.out.println("recruit"+recruit);
+		
     }
 
 	

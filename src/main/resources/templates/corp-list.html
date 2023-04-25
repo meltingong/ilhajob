@@ -28,8 +28,40 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
-<!-- corpName, job으로 검색하기 ajax-->
 <script>
+$(document).ready(function() {
+	  $('#searchInput').on('input', function() {
+	    var corpName = $('#searchInput').val();
+	    var job = $('select[name="job"]').val();
+	    $.ajax({
+	      url: '/search',
+	      method: 'GET',
+	      data: {
+	        corpName: corpName,
+	        job: job
+	      },
+	      success: function(data) {
+	        var results = data.results;
+	        var rcCountMap = data.rcCountMap;
+	        var template = Handlebars.compile($('#searchTemplate').html());
+	        if (results.length > 0) {
+	          $('#searchResults').html(template({ results: results, rcCountMap: rcCountMap }));
+	        } else {
+	          $('#searchResults').html('');
+	          $('#searchResults').append('<div class="alert alert-warning">검색 결과가 없습니다.</div>');
+	        }
+	      }
+	    });
+	  });
+	});
+
+</script>
+
+
+
+
+<!-- 원래 되는 것:corpName, job으로 검색하기 ajax-->
+<!-- script>
   $(document).ready(function() {
     $('#searchInput').on('input', function() {
       var corpName = $('#searchInput').val();
@@ -53,7 +85,7 @@
       });
     });
   });
-</script>
+</script-->
 <!--script>
 		$(function(){
 			$("#search-form").submit(function(event){
@@ -271,7 +303,11 @@
   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
     <div class="inner-box">
       <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-      <span class="featured">Featured</span>
+  {{#if rcCountMap}}
+        {{#if rcCountMap.[id]>0}}
+          <span class="featured" style="background-color:mistyrose; color: red">채용중</span>
+        {{/if}}
+      {{/if}}
       <span class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""></span>
       <h4><a href="/corp-detail?corpId={{id}}">{{corpName}}</a></h4>
       <ul class="job-info">
@@ -291,7 +327,6 @@
 				{{#each data}}
 			   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box" >
-                    <span class="featured">{{corp.rcCount}}</span>
                     <span class="company-logo"><img src="{{corp.corpStoredFileName}}" alt=""></span>
                     <h4><a href="corp-detail?corpId={{corp.id}}">{{corp.corpName}}</a></h4>
                     <ul class="job-info">
