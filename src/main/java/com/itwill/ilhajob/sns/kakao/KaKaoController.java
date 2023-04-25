@@ -70,6 +70,7 @@ public class KaKaoController {
 	        userDto.setSnsId(kakaoId);
 	        userDto.setUserEmail(email);
 	        userDto.setUserPassword(password);
+	        userDto.setSnsType("kakao");
 	        try {
 	            userService.create(userDto);
 	            HttpSession session=request.getSession();
