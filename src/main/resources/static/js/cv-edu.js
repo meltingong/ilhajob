@@ -156,7 +156,7 @@ function editEdu(eduId) {
     console.log(">>>>>>>>>>>> " + eduId);
     const EduBlock = document.querySelector(`#eduBlock${eduId}`);
     const inputs = EduBlock.querySelectorAll('input[type="text"]');
-    inputs.forEach(input => input.removeAttribute('readonly'));
+    inputs.forEach(input => input.removeAttribute('disabled'));
     EduBlock.querySelectorAll('input[type="date"]').forEach(input => input.style.display = 'block');
     EduBlock.querySelectorAll('.year-span').forEach(span => span.style.display = 'none');
 }
