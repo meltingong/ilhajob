@@ -78,8 +78,8 @@ $('#user-profile-upload-btn').click(function() {
 	}
 });
 
-//블로그 이미지 업로드
-$('#board-main-upload-btn').click(function() {
+//블로그+이미지 업로드
+$('#board-test').click(function() {
 	let formData = new FormData();
 	let files = $('input[name="images"]').get(0).files;
 	if (files.length > 0) {
