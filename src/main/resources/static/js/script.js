@@ -1142,6 +1142,8 @@ $(document).ready(function() {
 			}
 		})
 			.fail(function(xhr) {
+				
+				 $('#password-field').nextAll('p').remove();
 				// Ajax 요청 실패 시 처리
 				let errorMsg = document.createElement('p');
 				errorMsg.style.textAlign = 'center';
@@ -1316,10 +1318,8 @@ $(document).ready(function() {
         }
     })
     .fail(function(xhr, status, error) {
+	 	$('#password-field').nextAll('p').remove();
         // Ajax 요청 실패 시 처리
-        console.log(xhr);
-        console.log(status);
-        console.log(error);
         let errorMsg = document.createElement('p');
         errorMsg.style.textAlign = 'left';
         errorMsg.style.color = 'red';
