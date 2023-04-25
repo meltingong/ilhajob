@@ -148,7 +148,7 @@
                 <li><a href="candidate-dashboard-job-alerts"><i class="la la-bell"></i>공고알림</a></li>
                 <li><a href="dashboard-change-password"><i class="la la-lock"></i>비밀번호변경</a></li>
                 <li><a href="dashboard-packages"><i class="la la-box"></i>구매내역</a></li>
-                <li><a href="#" class="logout"><i class="la la-sign-out"></i>로그아웃</a></li>
+                <li><a href="#" class="logout" id="logout-btn"><i class="la la-sign-out"></i>로그아웃</a></li>
               </th:block>
               <th:block th:if = "${session.sCorpId != null}">
                 <li class="active"><a href="dashboard"> <i class="la la-home"></i> Dashboard</a></li>
@@ -164,7 +164,7 @@
         <!--  <li><a href="dashboard-resume-alerts"><i class="la la-bell"></i>Resume Alerts</a></li> -->
           		<li><a href="dashboard-change-password"><i class="la la-lock"></i>비밀번호 변경</a></li>
          <!-- <li><a href="dashboard-company-profile"><i class="la la-user-alt"></i>View Profile</a></li> -->
-          		<li><a href="corp_logout_action"><i class="la la-sign-out"></i>로그아웃</a></li>
+          		<li><a href="corp_logout_action" id="logout-btn"><i class="la la-sign-out"></i>로그아웃</a></li>
           		<li><a href="index"><i class="la la-trash"></i>회원탈퇴</a></li>
               </th:block>
               </ul>
