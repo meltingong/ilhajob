@@ -268,11 +268,6 @@ public class CvController {
 		System.out.println(map.get("expList"));
 		System.out.println(map.get("awardsList"));
 		
-		Long userId = (Long)request.getSession().getAttribute("id");
-		String userEmail = (String)request.getSession().getAttribute("sUserId");
-		UserDto user = userService.findUser(userEmail);		
-		model.addAttribute("user", map.get("user"));
-		
 		/* 특정 cv detail */
 		CvDto cvDetail = CvDto.builder()
 								.id(Long.valueOf((Integer)map.get("id")))
@@ -281,6 +276,7 @@ public class CvController {
 								.cvPortfolio((String)map.get("cvPortfolio"))
 								.build();
 		model.addAttribute("cvDetail", cvDetail);
+		model.addAttribute("user", map.get("user"));
 		model.addAttribute("eduList", map.get("eduList"));
 		model.addAttribute("expList", map.get("expList"));
 		model.addAttribute("awardsList", map.get("awardsList"));
