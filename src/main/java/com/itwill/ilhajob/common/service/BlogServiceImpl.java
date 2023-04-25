@@ -15,18 +15,26 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.ilhajob.common.dto.BlogDto;
 import com.itwill.ilhajob.common.entity.Blog;
+import com.itwill.ilhajob.common.entity.BlogHeart;
+import com.itwill.ilhajob.common.repository.BlogHeartRepository;
 import com.itwill.ilhajob.common.repository.BlogRepository;
+import com.itwill.ilhajob.user.entity.User;
+import com.itwill.ilhajob.user.repository.UserRepository;
 
 
 @Service
 public class BlogServiceImpl implements BlogService {
 	
 	private final BlogRepository blogRepository;
+	private final UserRepository userRepository;
+	private final BlogHeartRepository blogHeartRepository;
 	private final ModelMapper modelMapper;
 	
 	@Autowired
-	public BlogServiceImpl(BlogRepository blogRepository, ModelMapper modelMapper) {
+	public BlogServiceImpl(BlogRepository blogRepository, ModelMapper modelMapper, BlogHeartRepository blogHeartRepository, UserRepository userRepository ) {
 		this.blogRepository = blogRepository;
+		this.userRepository = userRepository;
+		this.blogHeartRepository = blogHeartRepository;
 		this.modelMapper = modelMapper;
 	}
 	
@@ -73,50 +81,40 @@ public class BlogServiceImpl implements BlogService {
 		Page<Blog> blogList = blogRepository.findAll(pageable);
 		return blogList.map(blog -> modelMapper.map(blog, BlogDto.class)); 
 	 }
-	/*
-	 * 	@Override
-	@Transactional
-	public CorpDto findCorp(String corpLoginId) throws Exception {
-		Optional<Corp> optionalCorp = corpRepository.findByCorpLoginId(corpLoginId);
-		Corp findCorp = optionalCorp.get();
-		return modelMapper.map(findCorp, CorpDto.class);
-	}
-	 */
+
+	 @Override
+	 public Page<BlogDto> findAllByBlogCateId(Long blogCateId, Pageable pageable) {
+		 Page<Blog> blogCateList = blogRepository.findAllByBlogCateId(blogCateId, pageable);
+		 return blogCateList.map(blog -> modelMapper.map(blog, BlogDto.class)); 
+	 }
 
 
 	@Override
 	@Transactional
 	public int updateViews(Long id) {
 		 return blogRepository.updateViews(id);
-	
-		
-}	
-	
-	/*
-		return modelMapper.map(blog, BlogDto.class);
-		 * <update id="updateBlogReadCount" parameterType="int">
-		update blog set blog_read_count = blog_read_count+1 where blog_seq=#{blogSeq}
-	</update>
-    
-	}
-		 */
-		
-	/*
+	}	
+
 	@Override
-	public int updateBlogLikeCount(int blogSeq) {
+	@Transactional
+	public int updateLike(Long blogId, Long userId) {
 
-		return 0;
-	}
-	
-	
-	@Override
-	public int updateBlogLikeDiscount(int blogSeq) {
-	
-		return 0;
-	}
-	 */
+		Blog blog = blogRepository.findById(blogId).orElseThrow(null);
+		User user = userRepository.findById(userId).orElseThrow(null);
+		
+		if(blogHeartRepository.findByBlogAndUser(blog, user)==null) {
+	            BlogHeart blogHeart = new BlogHeart(blog, user);
+	            blogHeartRepository.save(blogHeart);
+	            blogRepository.plusLike(blogId);         
+		
+	    return 1; // 좋아요 -->  1
+	            
+			}else {
 
+		blogHeartRepository.deleteByBlogIdAndUserId(blogId,userId);
+        blogRepository.minusLike(blogId);
 
-	
-	
+        return 0; // 좋아요 취소 --> 0
+     }
+	}	
 }

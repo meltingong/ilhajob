@@ -32,5 +32,6 @@ public class BlogCommentDto {
 	private LocalDateTime commentDate;
 	private UserDto user;
 	private Long blogId;
+	private LocalDateTime updatedAt;
 
 }

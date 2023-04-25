@@ -43,6 +43,7 @@ public class BlogDto {
 	private int blogLike;
 	private int blogCateSeq;
 	private UserDto user;
+	private LocalDateTime updatedAt;
 	
 	private List<BlogCommentDto> blogCommentList;
 	

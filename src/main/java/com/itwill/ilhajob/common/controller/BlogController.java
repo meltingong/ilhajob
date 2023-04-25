@@ -21,10 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.ilhajob.common.dto.BlogCateDto;
 import com.itwill.ilhajob.common.dto.BlogCommentDto;
 import com.itwill.ilhajob.common.dto.BlogDto;
+import com.itwill.ilhajob.common.dto.BlogHeartDto;
 import com.itwill.ilhajob.common.entity.Blog;
+import com.itwill.ilhajob.common.service.BlogCateService;
 import com.itwill.ilhajob.common.service.BlogCommentService;
+import com.itwill.ilhajob.common.service.BlogHeartService;
 import com.itwill.ilhajob.common.service.BlogService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.UserDto;
@@ -45,9 +49,15 @@ public class BlogController {
 	private BlogCommentService blogCommentService;
 	
 	@Autowired
+	private BlogCateService blogCateService;
+	
+	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private BlogHeartService blogHeartService;
 	
+	/*블로그 리스트 페이징*/
 	@GetMapping("/blog-list")
 	public String blog_list(@PageableDefault(page=0, size=9, sort="id", direction=Sort.Direction.DESC) Pageable pageable, Model model) {
 	    Page<BlogDto> blogList = blogService.findAll(pageable);
@@ -61,6 +71,23 @@ public class BlogController {
 
 	    return "blog-list";
 	}
+
+	
+	/*블로그 카테고리 리스트 페이징 -> blogCateid받기
+	@GetMapping("/blog-list")
+	public String blog_cate_list(@PageableDefault(page=0, size=3, sort="id", direction=Sort.Direction.DESC) Pageable pageable, Model model) {
+		Page<BlogDto> blogCateList = blogService.findAllByBlogCateId(2L,pageable);
+		int nowPage = blogCateList.getPageable().getPageNumber();
+		
+		model.addAttribute("blogCateList", blogCateList);
+		model.addAttribute("nowPage",nowPage);
+		model.addAttribute("totalPage", blogCateList.getTotalPages());
+		model.addAttribute("prePage", blogCateList.previousOrFirstPageable().getPageNumber());
+		model.addAttribute("nextPage", blogCateList.nextOrLastPageable().getPageNumber());
+		
+		return "blog-list";
+		}
+	*/
 	
 	/*블로그 전체 리스트
 	
@@ -74,6 +101,7 @@ public class BlogController {
 		return forwardPath;
 	}
 	*/
+	
 	
 	/*새 블로그 작성*/  
 	@LoginCheck
@@ -107,46 +135,134 @@ public class BlogController {
 //		return "redirect:blog-single";
 //		}
 	
+/*블로그 상세*/
 	
-	/*블로그 상세*/
-	//블로그 Seq가 없을 때
+	//블로그 id가 없을 때
 	@RequestMapping(value = "/blog-single",params = "!id")
 	public String blog_view() {
 		return "redirect:blog-list";	
 	}
-	//블로그 Seq가 있을때
+	
+	//블로그 id가 있을때
 	@RequestMapping(value = "/blog-single", params = "id")
-	public String blog_view(@RequestParam("id") Long blogId , Model model, @ModelAttribute BlogCommentDto blogCommentDto) throws Exception{
+	public String blog_view(@RequestParam("id") Long blogId , Long userId, Model model, @ModelAttribute BlogCommentDto blogCommentDto,HttpServletRequest request) throws Exception{
+		// 세션에서 로그인된 사용자의 아이디 가져오기
+	    String sUserId = (String) request.getSession().getAttribute("sUserId");
+	    UserDto loginUser = userService.findUser(sUserId);
+	    
 		//블로그 상세내용 불러오기
 		BlogDto blogDto = blogService.findBlog(blogId);
 		model.addAttribute("blog", blogDto);
 		
 		//블로그 조회수 업데이트
 		model.addAttribute("blogReadCount", blogService.updateViews(blogId));
-		
     
 		//댓글리스트 불러오기
 		List<BlogCommentDto> blogCommentList = blogCommentService.findByBlogComment(blogId);
 		model.addAttribute("blogCommentList", blogCommentList);
+		model.addAttribute("blogComment", blogCommentDto);
+		
+		
+		 BlogHeartDto blogHeartDto = blogHeartService.findBlogLikeState(blogId, loginUser.getId());
+		 int heartState = blogHeartDto != null ? blogHeartDto.getHeartState() : 0;
+		 model.addAttribute("heartState", heartState);
+
 		return "blog-single";
 	}
-	
 
+
+	/*블로그 수정*/
+	
+	//블로그 id가 없을 때
+	@LoginCheck
+	@PostMapping(value="/blog-modify-form",params = "!blogId")
+	public String blog_modify_form() {
+		return "redirect:blog_list";
+	}
+	
+	//블로그 id가 있을때
+	@LoginCheck
+	@PostMapping(value = "/blog-modify-form",params = "blogId")
+	public String blog_modify_form(@RequestParam Long blogId,Model model) throws Exception {
+		BlogDto blogDto = blogService.findBlog(blogId);
+		List<BlogCateDto> blogCateList = blogCateService.selectAll();
+		model.addAttribute("blog", blogDto);
+		model.addAttribute("blogCateList", blogCateList);
+		return "blog-modify-form";
+	}
+	
+	@PostMapping("/blog-modify-action")
+	public String blog_modify_action(@ModelAttribute("blogDto") BlogDto blogDto)throws Exception {
+		Long id = blogDto.getId();
+		blogService.updateBlog(id, blogDto);
+		return "blog-single";
+	}
+
+	/*블로그 삭제*/
+	@PostMapping(value = "/blog-remove-action", params = "blogId")
+	public String blog_remove_action(@RequestParam Long blogId) throws Exception{
+		blogService.deleteBlog(blogId);
+		return "redirect:blog-list";
+	}
+	
 
 	/*
 	 * 블로그 댓글 작성
 	 */
-
 	@LoginCheck
 	@PostMapping("/blogcomment_write_action")
 	public String blogcomment_write_action(@ModelAttribute BlogCommentDto blogCommentDto, HttpServletRequest request,
-									RedirectAttributes redirectAttributes)throws Exception {
+									RedirectAttributes redirectAttributes,@RequestParam("blogId") Long blogId)throws Exception {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		UserDto loginUser = userService.findUser(sUserId);
 		blogCommentDto.setUser(loginUser);
 		blogCommentService.insertBlogComment(blogCommentDto);
-		return "redirect:blog-single";
+		return "redirect:blog-single?id="+blogId;
 	
 	}
+	
+	/*블로그 댓글 삭제*/
+	@PostMapping(value ="/blogcomment_remove")
+	public String blogcomment_remove(@RequestParam Long id,Long blogId) throws Exception{
+		blogCommentService.deleteBlogComment(id);
+		return "redirect:blog-single?id="+blogId;
+	}
+	
+
+	/*블로그 댓글 수정*/
+	
+	
+	@PostMapping("/blogcomment_update")
+	public String blogcomment_update(@RequestParam Long id, @ModelAttribute BlogCommentDto blogCommentDto, Model model,
+	                                 RedirectAttributes redirectAttributes, Long blogId) throws Exception {
+	    BlogCommentDto blogComment = blogCommentService.findBlogComment(id);
+	    model.addAttribute("blogComment", blogComment);
+
+	    blogCommentService.updateComment(id, blogCommentDto);
+
+	    redirectAttributes.addAttribute("blogId", blogCommentDto.getBlogId());
+	    return "redirect:blog-single?id=" + blogCommentDto.getBlogId();
+	}
+	
+
+	/*블로그 좋아요*/
+    @RequestMapping("/blog_like")
+    public String blog_like(@RequestParam Long blogId, @RequestParam Long userId, HttpServletRequest request, Model model , 
+    						@ModelAttribute BlogHeartDto blogHeartDto) throws Exception{
+    	String sUserId = (String)request.getSession().getAttribute("sUserId");
+		UserDto loginUser = userService.findUser(sUserId);
+		if(loginUser == null) {
+			String msg="로그인이 필요합니다.";
+			 model.addAttribute("msg", msg);
+			 
+		}else {
+			int result = blogService.updateLike(blogId, userId);
+			model.addAttribute("blogLike", result);
+		}
+		
+		return "redirect:blog-single?id="+blogId;
+		
+    }
+	
 
 }
