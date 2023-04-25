@@ -34,10 +34,11 @@ $('.changeTag').click(function(e){
 	
 		let sendData={
 			tagId:parseInt($(this).val())
+			
 		};
 	console.log(sendData);
-	Request.ajaxRequest('recruitTags',
-					    'GET',
+	Request.ajaxRequest('getRecruitTag',
+					    'POST',
 						'application/json;charset=UTF-8',
 						JSON.stringify(sendData),
 						function(resultJson){
@@ -51,7 +52,7 @@ $('.changeTag').click(function(e){
 //인서트
 $(document).on('click','#tag-insert',function(){
 	
-		console.log("펑션접근");
+		console.log("태그생성펑션접근");
 		
 		let tagId = $('#tagId option:selected').val();//스크랩등록시 이미지
 		let reqId = $(this).val();
@@ -69,5 +70,27 @@ $(document).on('click','#tag-insert',function(){
 								View.render("#recruit-tag-insert-delete-template",resultJson,"#recruit-tag-zone");
 								},
 								true);
-			e.preventDefault();	
+		});
+		
+//삭제
+$(document).on('click','#tag-delete',function(){
+	
+		console.log("태그삭제펑션접근");
+		
+		let reqruitTagId = $(this).val(); //스크랩등록시 이미지
+		let reqId = $('#insertTag').val();
+		let jsonData = {
+			reqruitTagId: reqruitTagId,
+			reqId: reqId,
+		};
+		console.log(JSON.stringify(jsonData));
+			Request.ajaxRequest('recruit-tag-delete-action',
+								'POST',
+								'application/json;charset=UTF-8',
+								JSON.stringify(jsonData),
+								function(resultJson){
+								console.log("제이슨 받아오기 성공");
+								View.render("#recruit-tag-insert-delete-template",resultJson,"#recruit-tag-zone");
+								},
+								true);
 		});
