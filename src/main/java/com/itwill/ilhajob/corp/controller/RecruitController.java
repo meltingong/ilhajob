@@ -88,16 +88,10 @@ public class RecruitController {
 		return forward_path;
 	}
 	
-	//조회수 증가 기능
-//	@PostMapping("/increase-readCount-action")
-//	@ResponseBody
-//	public void increaseReadCount(@RequestBody Map<String, Object> body) throws Exception {
-//	    System.out.println("컨트롤러 도착");
-//		Long id = Long.parseLong(body.get("id").toString());
-//	    recruitService.increaseReadCount(id);
-//	}
+
 	
 	
+	//조회수 증가 기능->수정중...ㅠ
 	@RequestMapping("/increase-readCount-action")
 	public String increase_readCount(@RequestParam("id")Long id,@ModelAttribute RecruitDto recruitDto,HttpServletRequest request,Model model) throws Exception {
 		RecruitDto recruit=recruitService.findRecruit(id);
