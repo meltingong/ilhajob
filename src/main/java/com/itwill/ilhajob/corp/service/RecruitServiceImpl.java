@@ -93,20 +93,6 @@ public class RecruitServiceImpl implements RecruitService {
 	public Long countByCorpId(Long id) throws Exception {
 		return recruitRepository.countByCorpId(id);
 	}
-	// 마감일 됐는지 여부 확인
-//	@Override
-//	public boolean isDeadLine(Date rcDeadline) throws Exception {
-//		Date now=new Date();
-//		return now.after(rcDeadline);
-//	}
-
-//	//마감일 설정
-//	@Override
-//	public Date addDay(Date date, int day) throws Exception {
-//		long time=date.getTime();
-//		time+=day*24*60*60*1000;
-//		return new Date(time);
-//	}
 
 	// 마감일
 	@Override
