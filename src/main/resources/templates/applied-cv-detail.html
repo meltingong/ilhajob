@@ -41,9 +41,14 @@
     <!-- Sidebar Backdrop -->
     <div class="sidebar-backdrop"></div>
 
-    <!-- User Sidebar -->
-   <div class="user-sidebar" th:include="user-sidebar::user-sidebar"></div>
-    <!-- End User Sidebar -->
+    <!-- Sidebar -->
+   <th:block th:if = "${session.sUserId != null} and ${session.sCorpId == null}">
+   	 <div class="user-sidebar" th:include="user-sidebar::user-sidebar"></div>
+   </th:block>
+   <th:block th:if = "${session.sCorpId != null} and ${session.sUserId == null}">
+   	 <div class="corp-sidebar" th:include="corp-sidebar::corp-sidebar"></div>
+   </th:block>
+    <!-- Sidebar -->
 
     <!-- Dashboard -->
     <section class="user-dashboard">
