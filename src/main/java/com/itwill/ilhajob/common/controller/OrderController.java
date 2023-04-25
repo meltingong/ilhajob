@@ -99,7 +99,7 @@ public class OrderController {
 		
 		OrdersDto saveOrdersDto = ordersService.checkAndSaveOrder(role, id, productDto,paymentDataObject.get("paymentMethod").toString());
 		JsonObject orderDataObject = new JsonObject();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		orderDataObject.addProperty("id", saveOrdersDto.getId());
 		orderDataObject.addProperty("orderStartDate", saveOrdersDto.getOrderStartDate().format(formatter));
 		orderDataObject.addProperty("orderEndDate", saveOrdersDto.getOrderEndDate().format(formatter));

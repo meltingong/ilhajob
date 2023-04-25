@@ -1337,6 +1337,7 @@ $(document).ready(function() {
     	$('.jquery-modal.blocker.current a#corp-btn').toggleClass('btn-style-seven btn-style-four');
       	$('.jquery-modal.blocker.current input#id').attr('type','email');
       	$('.jquery-modal.blocker.current input#id').attr('name','email');
+      	
       	$('.jquery-modal.blocker.current input#id').attr('placeholder','Email Address');
       	$('.jquery-modal.blocker.current input#id').attr('id','email');
       	$('label[for="id"]').attr('for','email');
