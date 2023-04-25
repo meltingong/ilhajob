@@ -41,9 +41,8 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public BlogDto updateBlog(Long id,BlogDto blogDto) throws Exception {
 		Blog blog = blogRepository.findById(id).orElseThrow(null);
-		blogDto.setBlogTitle(blog.getBlogTitle());
-		blogDto.setBlogImage(blog.getBlogImage());
-		blogDto.setBlogContent(blog.getBlogContent());
+		blogDto.setId(blog.getId());
+		modelMapper.map(blogDto,blog);
 		blog = blogRepository.save(blog);
 		return modelMapper.map(blog, BlogDto.class);
 	}

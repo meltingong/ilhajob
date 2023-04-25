@@ -76,8 +76,27 @@ public class RecruitController {
 	//home에 recruitList 뿌리기
 	@RequestMapping(value = { "/", "/index" })
 	public String main(Model model) throws Exception {
+		// 전체 공고 리스트
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
 		model.addAttribute("recruitList", recruitList);
+		
+		// 마감 임박(Today+7 까지) 공고 리스트
+		List<RecruitDto> tempRecruitList = recruitService.findRecruitAll();
+		List<RecruitDto> deadLineRecruitList = new ArrayList<RecruitDto>();
+
+		LocalDateTime today = LocalDateTime.now();
+		LocalDateTime deadline = today.plusDays(7);
+		
+		for (RecruitDto recruit : tempRecruitList) {
+			if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
+				// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
+				// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
+				deadLineRecruitList.add(recruit);
+			}
+		}
+		System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
+		System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
+		model.addAttribute("deadLineRecruitList", deadLineRecruitList);
 		
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();

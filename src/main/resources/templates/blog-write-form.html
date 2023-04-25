@@ -94,7 +94,7 @@
         </div>
         <!-- Blog Write Form -->
         		  <!-- Select Category -->
-                  <form class="default-form" name="f" >
+                  <form class="default-form" name="f" id="board-form">
                     <div class="row">
                      
                       <!-- Input Title 
@@ -127,7 +127,7 @@
                   </div>
 					<div class="uploading-outer">
 				     <div class="uploadButton">
-				       <input class="uploadButton-input" type="file" name="images" accept="image/*" id="upload" multiple>
+				       <input class="uploadButton-input" type="file" name="blog-images" accept="image/*" id="upload" multiple>
 				       <label class="uploadButton-button ripple-effect" for="upload">
 				          <img id="preview" src="" alt="" style="width:300px" /></label>
 				       <span class="uploadButton-file-name"></span>
@@ -144,7 +144,7 @@
 
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12 text-right">
-                        <button type="button" class="theme-btn btn-style-one blog-test" style="float:right;" onclick="blogCreate();">작성완료</button>
+                        <button type="button" class="theme-btn btn-style-one blog-test" style="float:right;" >작성완료</button>
                       <span><button type="button" class="theme-btn btn-style-one" style="float:right; margin-right:5px;" onclick="blogList();" >목록보기</button></span>
                       </div>
                     </div>
