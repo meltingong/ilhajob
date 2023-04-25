@@ -79,32 +79,47 @@ $('#user-profile-upload-btn').click(function() {
 });
 
 //블로그+이미지 업로드
-$('#board-test').click(function() {
-	let formData = new FormData();
-	let files = $('input[name="images"]').get(0).files;
-	if (files.length > 0) {
-		for (let i = 0; i < files.length; i++) {
-			formData.append("images", files[i]);
-		}
-		let blogId = $(this).data('recruit-id');
-		$.ajax({
-			url: "board-main-upload-action",
-			type: "POST",
-			data: formData,
-			async: false,
-			processData: false,
-			contentType: false,
-			success: function(data) {
-				alert(data);
-				window.location.href="/final-project-team1-ilhajob/dashboard-company-profile"
-			},
-			error: function() {
-				alert("이미지 업로드 error");
+$('.blog-test').click(function(e) {
+	e.preventDefault();
+	let formData = {};
+	let files = $('input[name="blog-images"]').get(0).files;
+	$.each($('#board-form').serializeArray(), function() {
+		formData[this.name] = this.value;
+	});
+	console.log(formData);
+	$.ajax({
+		url: "blog_write_action",
+		type: "POST",
+		data: JSON.stringify(formData),
+		contentType: 'application/json',
+		dataType: 'json',
+		success: function(data) {
+			let blogId = data.id;
+			let imageData = new FormData();
+			if (files.length > 0) {
+				for (let i = 0; i < files.length; i++) {
+					imageData.append("images", files[i]);
+				}
+				imageData.append("id",blogId);
+				$.ajax({
+					url: "board-main-upload-action",
+					type: "POST",
+					data: imageData,
+					async: false,
+					processData: false,
+					contentType: false,
+					success: function(data) {
+						alert(data);
+						location.href="/final-project-team1-ilhajob/blog-single?id="+blogId;
+					},
+					error: function() {
+						alert("이미지 업로드 error");
+					}
+				});
 			}
-		});
-	} else {
-		alert("No images selected.");
-	}
+		},
+	 });
+
 });
 
 
