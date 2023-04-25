@@ -5,8 +5,21 @@
 		form.action="increase-readCount-action";
 		form.method='POST';
 		form.submit();
-		
 	}
+	
+	/*
+	function increaseReadCount(button) {
+	    var recruitId = button.getAttribute("data-recruit-id");
+	    var xhr = new XMLHttpRequest();
+	    xhr.onreadystatechange = function() {
+	        if (xhr.readyState === 4 && xhr.status === 200) {
+	            // 조회수 증가 성공한 경우 실행할 코드
+	        }
+	    }
+	    xhr.open("POST", "/increase-readCount-action?id=" + recruitId, true);
+	    xhr.send();
+	}
+	*/
 </script>
 
 <head>
@@ -300,7 +313,8 @@
                     <div class="content">
                       <span class="company-logo"><img src="images/resource/company-logo/1-2.png" alt=""></span>
                       <input type="hidden" name="id" th:value="${recruit.id}"/>
-                      <h4><a href="#"
+                      <h4>
+                      		<a href="#"
                       		 th:href="@{recruit-detail(id=${recruit.id})}" 
                       		 th:text="${recruit.rcTitle}" 
                       		 onClick="increaseReadCount(this.form);">Recruiting Coordinator</a></h4>
@@ -311,7 +325,7 @@
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
                       <ul class="job-other-info">
-                      	<img src="images/icons/smallbell.png" alt=""><li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li>
+                      	<!--img src="images/icons/smallbell.png" alt=""--><li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li>
                       	<div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
                         <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>

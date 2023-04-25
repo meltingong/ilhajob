@@ -358,7 +358,7 @@ public class CorpController {
 	public String searchCorps(@RequestParam("corpName") String corpName, 
 							  @RequestParam("job") String job,
 							  @RequestParam(defaultValue = "0") int page,
-		                      @RequestParam(defaultValue = "12") int size,
+		                      @RequestParam(defaultValue = "6") int size,
 							  Pageable pageable,
 	                          Model model) {
 	    try {
@@ -388,7 +388,8 @@ public class CorpController {
 		    
 		    // corpName만 알때
 	        if (job.isEmpty()) {
-	            corpSearchList = corpService.searchByCorpName(corpName,pageable1);
+	           corpSearchList = corpService.searchByCorpName(corpName,pageable1);
+	           
 	        // job만 알 때
 	        } else if(corpName.isEmpty()){
 	            corpSearchList = corpService.searchByjob(job,pageable1);
