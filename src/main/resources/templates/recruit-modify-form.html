@@ -208,7 +208,9 @@
                    <div id = "recruit-tag-zone" style="display: inline;">
                      <div class="form-group col-lg-6 col-md-12">
 					  <label>태그추가</label> 
-					  	<button type="button" id="tag-insert" th:value="${recruit.id}"class="la la-plus" style="margin-left: 450px;"></button>
+					  	<span>
+					  	<button type="button" id="insertTag" th:value="${recruit.id}"class="la la-plus" style="margin-left: 500px;"></button>
+					 	</span>
 					  <select class="chosen-select" name="rcPosition" id="tagId">
 					  	<div th:each="tag:${tagList}">
 					    <option th:text="${tag.tagName}" th:value="${tag.tagId}" th:selected="${tag.tagId == selectedTagId}">태그</option>
@@ -219,7 +221,7 @@
                         <label>보유태그</label>
                         <div th:each="recruitTag:${recruitTagList}">
                   		<span type="text" name="tag" th:text ="${recruitTag.tag.tagName}"></span>
-                  		<button class="la la-trash" type="button" id="tag-delete" style="margin-left: 350px;">삭제</button>
+                  		<button class="la la-trash" th:value="${recruitTag.id}" type="button" id="tag-delete" style="margin-left: 350px;">삭제</button>
                   		</div>
                       </div>
                       <div> </div><!-- 띄어쓰기 -->
@@ -296,13 +298,6 @@
                       </div>
                   -->
 
-                      <div class="form-group col-lg-12 col-md-12">
-                        <div class="map-outer">
-                          <div class="map-canvas map-height" data-zoom="12" data-lat="-37.817085" data-lng="144.955631" data-type="roadmap" data-hue="#ffc400" data-title="Envato" data-icon-path="images/resource/map-marker.png" data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
-                          </div>
-                        </div>
-                      </div>
-
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12 text-right">
                         <button class="theme-btn btn-style-one" type ="button" onClick="recruitModifyAction();">공고수정</button>
@@ -330,7 +325,7 @@
   <div class="form-group col-lg-6 col-md-12">
     <label>태그추가</label>
     <span>
-      <button type="button" id="tag-insert" class="la la-plus" style="margin-left: 450px;"></button>
+      <button type="button" id="tag-insert" class="la la-plus" style="margin-left: 450px;" {{recruit.id}}></button>
     </span>
     <select class="chosen-select" name="rcPosition" id="tagId">
       {{#each tagList}}
@@ -345,7 +340,7 @@
     {{#each recruitTagList}}
     <div>
       <span type="text" name="tag">{{tag.tagName}}</span>
-      <button class="la la-trash" type="button" id="tag-delete" style="margin-left: 350px;">제거</button>
+      <button class="la la-trash" type="button" id="tag-delete" style="margin-left: 350px;" value="{{id}}">제거</button>
     </div>
     {{/each}}
   </div>

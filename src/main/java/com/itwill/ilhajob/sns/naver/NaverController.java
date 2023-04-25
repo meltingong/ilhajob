@@ -78,6 +78,9 @@ public class NaverController {
         		session = request.getSession();
         		session.setAttribute("sUserId", naverLoginProfile.getEmail());
         		session.setAttribute("role", "user");
+        		
+        		session.setAttribute("snsType","naver");
+        		
         		request.setAttribute("naverProfile", naverLoginProfile);
         		
         		return "redirect:index";

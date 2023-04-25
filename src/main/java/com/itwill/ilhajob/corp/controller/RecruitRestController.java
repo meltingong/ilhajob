@@ -168,7 +168,6 @@ public class RecruitRestController {
 		System.out.println("태그아이디:"+id+"리크루트 아이디:"+rid);
 		
 		RecruitDto recruitDto = recruitService.findRecruit(rid);
-		System.out.println(id);
 		
 		//공고 태그생성
 		recruitTagService.insertRecruitTag(new RecruitTagDto(0, recruitDto, tagService.selectTag(id)));
@@ -184,6 +183,39 @@ public class RecruitRestController {
 				tagList.removeAll(rTagList);
 		
 				
+		map.put("tagList",tagList);
+		map.put("recruitTagList",recruitTagList);		
+		map.put("recruit",recruitDto);		
+		return map;
+		
+		
+		
+	}
+	//리쿠르트 태그 제거 (AJAX방식)
+	@PostMapping(value = "recruit-tag-delete-action", produces = "application/json;charset=UTF-8")
+	public Map<String, Object> recruit_tag_delete_action(HttpServletRequest request,@RequestBody Map<String,String> reMap) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Long id = Long.parseLong(reMap.get("reqruitTagId"));
+		Long rid = Long.parseLong(reMap.get("reqId"));
+		System.out.println("리크루트태그아이디:"+id);
+		
+		RecruitDto recruitDto = recruitService.findRecruit(rid);
+		
+		//공고 태그생성
+		recruitTagService.deleteRecruitTag(id);
+		System.out.println(id+"번 삭제성공");
+		
+		//태그리스트 - 공고태그 연산작업 
+		List<RecruitTagDto> recruitTagList = recruitTagService.selectAllByRecruitId(rid);
+		List<TagDto>rTagList = new ArrayList<TagDto>();
+		for (RecruitTagDto recruitTagDto : recruitTagList) {
+			rTagList.add(recruitTagDto.getTag());
+		}
+		
+		List<TagDto>tagList = tagService.selectAll().subList(0, 3); //태그 1~3번만 출력
+		tagList.removeAll(rTagList);
+		
+		
 		map.put("tagList",tagList);
 		map.put("recruitTagList",recruitTagList);		
 		map.put("recruit",recruitDto);		
