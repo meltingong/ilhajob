@@ -65,7 +65,7 @@ public class User {
 	
 	private String userPhone;
 	
-	private LocalDateTime userCreateDate;
+	//private LocalDateTime userCreateDate;
 	
 	private String userSex;
 	
@@ -78,11 +78,11 @@ public class User {
 	@Column(length = 600)
 	private String userAddressDetail;
 		
-	private String userCareer;
+	//private String userCareer;
 	
 	private Integer userAge;
 	
-	private String userFinalEducation;
+	//private String userFinalEducation;
 	
 	private String userLanguage;
 	
@@ -95,9 +95,11 @@ public class User {
 	
 	private String snsId;
 	
-	private String job;
+	//private String job;
 	
 	private int role;
+	
+	private int state;
 	
     @PrePersist
     public void prePersist() {

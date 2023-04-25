@@ -36,21 +36,22 @@ public class UserDto {
     private String userPassword;
     private String userName;
     private String userPhone;
-    private LocalDateTime userCreateDate;
+    //private LocalDateTime userCreateDate;
     private String userSex;
     private Integer userPostCode;
     private String userAddress;
     private String userAddressDetail;
-    private String userCareer;
+    //private String userCareer;
     private Integer userAge;
-    private String userFinalEducation;
+    //private String userFinalEducation;
     private String userLanguage;
     private String userSkills;
     private String userImage;
     private String snsType;
     private String snsId;
-    private String job;
+   // private String job;
     private int role;
+    private int state;
 	public UserDto(Long id, String userEmail, String userPassword) {
 		this.id = id;
 		this.userEmail = userEmail;
