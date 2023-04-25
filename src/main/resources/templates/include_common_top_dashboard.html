@@ -20,10 +20,6 @@
 
             <nav class="nav main-menu">
               <ul class="navigation" id="navbar">
-                <li class="current dropdown">
-                  <span>홈</span>
-                </li>
-
                 <li class="dropdown">
                   <span>공고</span>
                      <ul>
@@ -129,7 +125,7 @@
          
          	<div class="btn-box">
             <th:block th:if = "${session.sUserId == null} and ${session.sCorpId == null}">
-              <a href="login-popup" class="theme-btn btn-style-six call-modal">로그인 / 회원가입</a>
+              <a href="login-popup" class="theme-btn btn-style-three call-modal">로그인 / 회원가입</a>
             </th:block>
          
 			<th:block th:if = "${session.sUserId != null} or ${session.sCorpId != null}">
@@ -211,3 +207,4 @@
       <!-- Mobile Nav -->
       <div id="nav-mobile"></div>
     </div>
+</div>
