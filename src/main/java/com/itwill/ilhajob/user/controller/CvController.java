@@ -262,18 +262,12 @@ public class CvController {
 		// JSON 파싱 후 Map<k, v> 객체로 변환
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> map = mapper.readValue(jsonData, new TypeReference<Map<String, Object>>(){});
-		System.out.println(map.get("id"));
-		System.out.println(map.get("user"));
-		System.out.println(map.get("eduList"));
-		System.out.println(map.get("expList"));
-		System.out.println(map.get("awardsList"));
-		
-		Long userId = (Long)request.getSession().getAttribute("id");
-		String userEmail = (String)request.getSession().getAttribute("sUserId");
-		UserDto user = userService.findUser(userEmail);		
-		model.addAttribute("user", map.get("user"));
-		
-		/* 특정 cv detail */
+//		System.out.println(map.get("id"));
+//		System.out.println(map.get("user"));
+//		System.out.println(map.get("eduList"));
+//		System.out.println(map.get("expList"));
+//		System.out.println(map.get("awardsList"));
+		/* cv detail */
 		CvDto cvDetail = CvDto.builder()
 								.id(Long.valueOf((Integer)map.get("id")))
 								.cvName((String)map.get("cvName"))
@@ -281,6 +275,7 @@ public class CvController {
 								.cvPortfolio((String)map.get("cvPortfolio"))
 								.build();
 		model.addAttribute("cvDetail", cvDetail);
+		model.addAttribute("user", map.get("user"));
 		model.addAttribute("eduList", map.get("eduList"));
 		model.addAttribute("expList", map.get("expList"));
 		model.addAttribute("awardsList", map.get("awardsList"));

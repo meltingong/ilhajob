@@ -28,7 +28,7 @@
     <div class="preloader"></div>
 
     <!-- Main Header-->
-    <header class="main-header header-style-four -type-16">
+    <header class="main-header header-style-eight-type-16">
       <div id="main-header" th:include="include_common_top_dashboard::include_common_top_dashboard"></div>
     </header>
     <!--End Main Header -->
@@ -38,7 +38,7 @@
       <div class="auto-container">
         <div class="content-box">
           <div class="title-box wow fadeInUp" data-wow-delay="500ms">
-            <h3>당신에게 최적의 일자리를 찾아드립니다.</h3>
+            <h3>"당신에게 맞는 최적의 일자리를 찾아드립니다"</h3>
             <p></p>
           </div>
 
@@ -69,7 +69,9 @@
               </div>
 
               <div class="title">
-                Development
+              <a href="#" th:href="@{/search?corpName=&job=웹프로그래머}" style="color: white;">
+                웹프로그래머
+              </a>
               </div>
             </div>
 
@@ -79,50 +81,71 @@
               </div>
 
               <div class="title">
-                Human Resource
-              </div>
+                <a href="#" th:href="@{/search?corpName=&job=응용프로그램}" style="color: white;">
+                응용프로그램
+              </a>
             </div>
-
+		</div>
+		
             <div class="item">
               <div class="icon-wrap">
                 <div class="icon flaticon-vector"></div>
               </div>
 
               <div class="title">
-                Project Management
-              </div>
+                <a href="#" th:href="@{/search?corpName=&job=네트워크}" style="color: white;">
+                네트워크
+              </a>
             </div>
-
+			</div>
+			
             <div class="item">
               <div class="icon-wrap">
                 <div class="icon flaticon-money-1"></div>
               </div>
 
               <div class="title">
-                Customer Service
-              </div>
+                <a href="#" th:href="@{/search?corpName=&job=웹퍼블리싱}" style="color: white;">
+                웹퍼블리싱
+              </a>
             </div>
-
+			</div>
+			
             <div class="item">
               <div class="icon-wrap">
                 <div class="icon flaticon-headhunting"></div>
               </div>
 
               <div class="title">
-                Health and Care
-              </div>
+                <a href="#" th:href="@{/search?corpName=&job=게임}" style="color: white;">
+                게임
+              </a>
             </div>
-
+			</div>
+			
             <div class="item">
               <div class="icon-wrap">
                 <div class="icon flaticon-rocket-ship"></div>
               </div>
 
               <div class="title">
-                Automotive Jobs
-              </div>
+                <a href="#" th:href="@{/search?corpName=&job=빅데이터ai}" style="color: white;">
+                빅데이터ai
+              </a>
             </div>
-
+		</div>
+		 <div class="item">
+              <div class="icon-wrap">
+                <div class="icon flaticon-web-programming"></div>
+              </div>
+		
+		   <div class="title">
+                <a href="#" th:href="@{/search?corpName=&job=소프트웨어/하드웨어}" style="color: white;">
+                소프트웨어/하드웨어
+              </a>
+            </div>
+		</div>
+		
           </div>
         </div>
       </div>
@@ -278,231 +301,27 @@
     <!-- End Job Section -->
 
     <!-- Call To Action Two -->
-    <section class="call-to-action-two -type-4" style="background-image: url(images/index-16/cta/bg.png);">
+    <section class="call-to-action-two -type-4" style="background-image: url(images/index-16/header/배경3.jpg);">
       <div class="auto-container wow fadeInUp">
         <div class="sec-title light text-center">
-          <h2>Your Dream Jobs Are Waiting</h2>
-          <div class="text">Over 1 million interactions, 50,000 success stories Make yours now.</div>
+          <h1 style="color:white; background-color: darkseagreen;">"당신의 꿈에 도전하세요"</h1>
+          <div class="text" style="background-color: darksalmon;">1만개 이상의 기업이 당신을 기다립니다</div>
         </div>
 
         <div class="btn-box">
-          <a href="#" class="theme-btn btn-one">Search Job</a>
-          <a href="#" class="theme-btn btn-two">Apply Job Now</a>
+          <a href="#" class="theme-btn btn-one">공고검색</a>
+          <a href="#" class="theme-btn btn-two">지금 바로 지원하기</a>
         </div>
       </div>
     </section>
     <!-- End Call To Action -->
 
     <!-- Work Section -->
-    <section class="layout-pt-120 layout-pb-120">
-      <div class="auto-container">
-        <div class="sec-title text-center">
-          <h2>How It Works</h2>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</div>
-        </div>
-
-        <div class="row grid-base pt-50 wow fadeInUp">
-
-          <!-- Work Block -->
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="work-block -type-4">
-              <div class="icon-wrap">
-                <span class="icon icon-drawing"></span>
-              </div>
-
-              <h5 class="title">Register With Us</h5>
-              <p class="text">The latest design trends meet hand-crafted templates in Sassio Collection.</p>
-            </div>
-          </div>
-
-          <!-- Work Block -->
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="work-block -type-4">
-              <div class="icon-wrap">
-                <span class="icon icon-process"></span>
-              </div>
-
-              <h5 class="title">Create Your Profile</h5>
-              <p class="text">The latest design trends meet hand-crafted templates in Sassio Collection.</p>
-            </div>
-          </div>
-
-          <!-- Work Block -->
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="work-block -type-4">
-              <div class="icon-wrap">
-                <span class="icon icon-task"></span>
-              </div>
-
-              <h5 class="title">Upload Your Resume</h5>
-              <p class="text">The latest design trends meet hand-crafted templates in Sassio Collection.</p>
-            </div>
-          </div>
-
-          <!-- Work Block -->
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="work-block -type-4">
-              <div class="icon-wrap">
-                <span class="icon icon-one-finger-click"></span>
-              </div>
-
-              <h5 class="title">Now Take a Rest</h5>
-              <p class="text">The latest design trends meet hand-crafted templates in Sassio Collection.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
+    
     <!-- End Work Section -->
 
     <!-- Candidates Section -->
-    <section class="layout-pt-120 layout-pb-120 section-bg-color">
-      <div class="section-bg-color__item -full -very-light-blue"></div>
-
-      <div class="auto-container">
-        <div class="sec-title text-center">
-          <h2>Featured Candidates</h2>
-          <div class="text">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor</div>
-        </div>
-
-        <div class="carousel-outer wow fadeInUp">
-          <div class="candidates-carousel owl-carousel owl-theme default-dots">
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
-                <h4 class="name">Darlene Robertson</h4>
-                <span class="designation text-dark-3">UI Designer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-2.png" alt=""></figure>
-                <h4 class="name">Wade Warren</h4>
-                <span class="designation text-dark-3">Developer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-3.png" alt=""></figure>
-                <h4 class="name">Leslie Alexander</h4>
-                <span class="designation text-dark-3">Marketing Expert</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-4.png" alt=""></figure>
-                <h4 class="name">Floyd Miles</h4>
-                <span class="designation text-dark-3">Charted Accountant</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
-                <h4 class="name">Darlene Robertson</h4>
-                <span class="designation text-dark-3">UI Designer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-2.png" alt=""></figure>
-                <h4 class="name">Wade Warren</h4>
-                <span class="designation text-dark-3">Developer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-3.png" alt=""></figure>
-                <h4 class="name">Leslie Alexander</h4>
-                <span class="designation text-dark-3">Marketing Expert</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-4.png" alt=""></figure>
-                <h4 class="name">Floyd Miles</h4>
-                <span class="designation text-dark-3">Charted Accountant</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
-                <h4 class="name">Darlene Robertson</h4>
-                <span class="designation text-dark-3">UI Designer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-2.png" alt=""></figure>
-                <h4 class="name">Wade Warren</h4>
-                <span class="designation text-dark-3">Developer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-3.png" alt=""></figure>
-                <h4 class="name">Leslie Alexander</h4>
-                <span class="designation text-dark-3">Marketing Expert</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-4.png" alt=""></figure>
-                <h4 class="name">Floyd Miles</h4>
-                <span class="designation text-dark-3">Charted Accountant</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     <!-- End Candidates Section -->
 
     <!-- Testimonial Section -->
@@ -510,7 +329,7 @@
       <div class="container-fluid">
         <!-- Sec Title -->
         <div class="sec-title -type-3 text-center">
-          <h2>User Review & Feedback</h2>
+          <h2>경험자들의 생생한 리뷰를 한눈에!</h2>
           <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</div>
         </div>
 
@@ -569,37 +388,6 @@
     </section>
     <!-- End Testimonial Section -->
 
-    <section class="cta -type-2" style="background-image: url(images/index-16/cta-2/bg.png);">
-      <div class="auto-container">
-        <div class="row grid-base justify-content-between">
-          <div class="col-lg-5 col-md-6">
-            <div class="cta-item">
-              <div class="icon-wrap">
-                <div class="icon icon-case"></div>
-              </div>
-
-              <div class="content">
-                <div class="title">I'm an Employer</div>
-                <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry but also the leap into electronic typesetting</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-5 col-md-6">
-            <div class="cta-item -blue">
-              <div class="content">
-                <div class="title">I'm an Candidates</div>
-                <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry but also the leap into electronic typesetting</div>
-              </div>
-
-              <div class="icon-wrap">
-                <div class="icon icon-contact"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Main Footer -->
     <div th:include="include_main_bottom"></div>
