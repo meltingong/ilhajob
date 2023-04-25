@@ -140,11 +140,14 @@ window.onload = function() {
                             </div>
                           </td>
                         </tr>
-
-                       
                       </tbody>
                            <!-- form종료 --> </form>
+
                     </table>
+                        <div class="copyright-text" th:if="${appList.size()==0}">
+		                <p>아직 지원한 공고가 없습니다.</p>
+		                <p><a href="recruit-list">공고 둘러보기</a></p>
+		                </div>
                   </div>
                 </div>
               </div>
