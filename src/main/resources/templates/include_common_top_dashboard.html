@@ -129,8 +129,7 @@
          
          	<div class="btn-box">
             <th:block th:if = "${session.sUserId == null} and ${session.sCorpId == null}">
-              <a href="login-popup" class="theme-btn btn-style-six call-modal">로그인 / 회원가입</a>
-              <a href="dashboard-post-job" class="theme-btn btn-style-five">채용 공고</a>
+              <a href="login-popup" class="theme-btn btn-style-three call-modal">로그인 / 회원가입</a>
             </th:block>
          
 			<th:block th:if = "${session.sUserId != null} or ${session.sCorpId != null}">
