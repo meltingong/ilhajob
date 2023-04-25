@@ -117,6 +117,7 @@ public class RecruitController {
 		model.addAttribute("recruitTagList", recruitTagList);
 		model.addAttribute("tagList", tagList);
 		
+		
 		//스크랩리스트(로그인아이디가 있다면 북마크리스트 넣어줌)
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		UserDto loginUser = null;
