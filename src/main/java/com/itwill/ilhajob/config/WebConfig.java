@@ -47,7 +47,10 @@ public class WebConfig implements WebMvcConfigurer{
             .addResourceLocations("file:C://final-project-team1-ilhajob//upload//logo//")
             .setCachePeriod(0);
         registry.addResourceHandler("/upload/profile/**")
-        .addResourceLocations("file:C://final-project-team1-ilhajob//upload//profile//")
-        .setCachePeriod(0);
+	        .addResourceLocations("file:C://final-project-team1-ilhajob//upload//profile//")
+	        .setCachePeriod(0);
+        registry.addResourceHandler("/upload/blog/**")
+	        .addResourceLocations("file:C://final-project-team1-ilhajob//upload//blog//")
+	        .setCachePeriod(0);
     }
 }

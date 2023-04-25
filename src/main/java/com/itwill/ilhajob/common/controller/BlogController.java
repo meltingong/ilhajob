@@ -9,13 +9,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.common.dto.BlogCommentDto;
@@ -82,17 +85,27 @@ public class BlogController {
 		return "blog-write-form";
 	}
 
-	
+	@ResponseBody
 	@PostMapping("/blog_write_action")
-	public String blog_write_action(@ModelAttribute BlogDto blog,HttpServletRequest request,
+	public ResponseEntity<Object> blog_write_action(@RequestBody BlogDto blog,HttpServletRequest request,
 									RedirectAttributes redirectAttributes)throws Exception {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		UserDto loginUser = userService.findUser(sUserId);
 		blog.setUser(loginUser);
-		blogService.insertBlog(blog);
+		blog = blogService.insertBlog(blog);
 		//redirectAttributes.addAttribute("id",blog); 작성글로 가야됨...
-		return "redirect:blog-single";
-		}
+		return ResponseEntity.ok().body("{\"success\": true, \"id\": \"" + blog.getId() + "\", \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");
+	}
+//	@PostMapping("/blog_write_action")
+//	public String blog_write_action(@ModelAttribute BlogDto blog,HttpServletRequest request,
+//									RedirectAttributes redirectAttributes)throws Exception {
+//		String sUserId = (String)request.getSession().getAttribute("sUserId");
+//		UserDto loginUser = userService.findUser(sUserId);
+//		blog.setUser(loginUser);
+//		blogService.insertBlog(blog);
+//		//redirectAttributes.addAttribute("id",blog); 작성글로 가야됨...
+//		return "redirect:blog-single";
+//		}
 	
 	
 	/*블로그 상세*/
