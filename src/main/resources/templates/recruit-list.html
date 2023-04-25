@@ -47,8 +47,9 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 <script type="text/javascript">
-//Handlebars 커스텀 헬퍼: ifEqual
-
+	Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+	    return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
+	});
 </script>
 </head>
 
@@ -347,8 +348,8 @@
 	                      <div th:if = "${loginUser}!=null">
 	                      	<form action="recruit_scrap_insert_delete">
 								<button th:value="${recruit.id}" class="bookmark-btn" name = "id" id="check-bookmark" type="button">
-										<img id = "id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;"  th:class="${countList[recruit.id]}==1 ? 'show-img' : 'hidden-img'">
-										<img id = "id2" src="images/bookmark-bin.png" th:class="${countList[recruit.id]}==0 ? 'show-img' : 'hidden-img'" style="width: 17px; margin-left: 5px;"></img>
+										<img id = "id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;"  th:class="${status[recruit.id]}==1 ? 'show-img' : 'hidden-img'">
+										<img id = "id2" src="images/bookmark-bin.png" th:class="${status[recruit.id]}==0 ? 'show-img' : 'hidden-img'" style="width: 17px; margin-left: 5px;"></img>
 								</button>
 							</form>
 						</div>
@@ -432,17 +433,12 @@
                         <li class="required">Urgent</li>
                         -->
                       </ul>
-							
- 								 <form action="recruit_scrap_insert_delete">
-   									 <button class="bookmark-btn" name="id" id="check-bookmark" type="submit" value={{recruit.id}}>
-    									  {{#ifEqual countList.[recruitTag.recruit.id] 1}}
-     									   <img src="images/bookmark.png" style="width: 23px">
-    									  {{/ifEqual}}
-     									 {{#ifEqual countList.[recruitTag.recruit.id] 0}}
-     									   <span class="flaticon-bookmark"></span>
-    									  {{/ifEqual}}
-   									 </button>
- 								</form>
+   									 <form action="recruit_scrap_insert_delete">
+        								<button class="bookmark-btn" name="id" id="check-bookmark" type="button" value="{{recruit.id}}">
+    											<img id="id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;" {{#ifEqual status.[recruit.id] 1}}class="show-img" {{else}}class="hidden-img" {{/ifEqual}}>
+            									<img id="id2" src="images/bookmark-bin.png" style="width: 17px; margin-left: 5px;" {{#ifEqual status.[recruit.id] 0}}class="show-img" {{else}}class="hidden-img" {{/ifEqual}}>
+        								</button>
+    								</form>
                     </div>
                   </div>
                 </div>

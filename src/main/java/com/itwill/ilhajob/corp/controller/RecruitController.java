@@ -5,6 +5,7 @@ import java.io.Console;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -138,9 +139,8 @@ public class RecruitController {
 		if(loginUser!=null) {
 			List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
 			List<RecruitDto> recruitList = recruitService.findRecruitAll();
-			//스크랩확인 카운트 리스트
-			List<Integer> countList = new ArrayList<Integer>();
-			countList.add(0); //테이블은 1부터 id가 있으니 처음은 0
+			//스크랩상태확인 리스트
+			Map<Long,Integer> status = new HashMap<Long, Integer>();
 			
 			for(RecruitDto recruit :recruitList) {
 			    boolean hasRecruitScrap = false; // 리크루트 스크랩이 있는지 여부를 나타내는 변수
@@ -151,13 +151,13 @@ public class RecruitController {
 			        }
 			    }
 			    if(hasRecruitScrap) {
-			        countList.add(1); // 리크루트 스크랩이 있을 때
+			    	status.put(recruit.getId(), 1); // 리크루트 스크랩이 있을 때
 			    } else {
-			        countList.add(0); // 리크루트 스크랩이 없을 때
+			    	status.put(recruit.getId(), 0); // 리크루트 스크랩이 없을 때
 			    }
 			}
-			System.out.print("countList"+countList);
-			model.addAttribute("countList", countList);
+			System.out.print("status"+status);
+			model.addAttribute("status", status);
 			model.addAttribute("recruitScrapList", recruitScrapList);
 		}
 		

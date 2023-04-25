@@ -31,7 +31,7 @@ $('.changeTag').click(function(e){
 	/*
 		url,method,contentType,sendData,function,async
 	*/
-	
+		
 		let sendData={
 			tagId:parseInt($(this).val())
 			
@@ -42,6 +42,7 @@ $('.changeTag').click(function(e){
 						'application/json;charset=UTF-8',
 						sendData,
 						function(resultJson){
+							console.log(resultJson);
 							console.log("제이슨 받아오기 성공");
 								View.render("#recruit-tag-template",resultJson,"#recruit-main-list");
 						},
