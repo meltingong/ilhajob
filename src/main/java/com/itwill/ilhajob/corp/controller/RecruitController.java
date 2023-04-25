@@ -118,7 +118,6 @@ public class RecruitController {
 		//스크랩리스트(로그인아이디가 있다면 북마크리스트 넣어줌)
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		UserDto loginUser = null;
-		System.out.print("아이디"+sUserId);
 		if(sUserId!=null) {
 			loginUser = userService.findUser(sUserId);
 		}

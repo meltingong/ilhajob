@@ -236,7 +236,8 @@ public class CvController {
 	
 	/* 테스트 중 임의로 cvId 저장해 둠 */
 	@RequestMapping(value = "applied-cv-detail")
-	public String applied_cv_detail(HttpServletRequest request, @RequestParam(required = false) Long cvId, Model model) throws Exception {
+	public String applied_cv_detail(HttpServletRequest request, @RequestParam(required = false) Long appId, Model model) throws Exception {
+		System.out.println("@RequestParam appId : " + appId);
 		String forwardpath = "";
 		
 		Long userId = (Long)request.getSession().getAttribute("id");
@@ -267,7 +268,7 @@ public class CvController {
 		model.addAttribute("awardsList", awardsList);
 		
 		//절대경로 파일 불러오기
-		AppDto appDto = appService.findById(15L);
+		AppDto appDto = appService.findById(appId);
 		Path filePath = Paths.get(appDto.getAppCvName());
 		byte[] jsonData = Files.readAllBytes(filePath);
 		// JSON 파싱 후 Map<k, v> 객체로 변환

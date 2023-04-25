@@ -70,6 +70,8 @@ public class KaKaoController {
 	        userDto.setSnsId(kakaoId);
 	        userDto.setUserEmail(email);
 	        userDto.setUserPassword(password);
+	        userDto.setSnsType("kakao");
+	        
 	        try {
 	            userService.create(userDto);
 	            HttpSession session=request.getSession();
@@ -79,6 +81,9 @@ public class KaKaoController {
 	   			 
 	   			 session.setAttribute("sUserId", kakaoProfile.getKakao_account().email);
 	   			 session.setAttribute("role", "user");
+	   			 
+	   			 session.setAttribute("snsType","kakao");
+	   			 
 	   			 request.setAttribute("kakaoProfile", kakaoProfile);
 	   			 
 	   			 Cookie authorize_access_token=new Cookie("authorize-access-token", access_token);
