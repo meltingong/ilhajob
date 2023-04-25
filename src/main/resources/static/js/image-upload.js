@@ -78,5 +78,38 @@ $('#user-profile-upload-btn').click(function() {
 	}
 });
 
+//블로그 이미지 업로드
+$('#board-main-upload-btn').click(function() {
+	let formData = new FormData();
+	let files = $('input[name="images"]').get(0).files;
+	if (files.length > 0) {
+		for (let i = 0; i < files.length; i++) {
+			formData.append("images", files[i]);
+		}
+		let blogId = $(this).data('recruit-id');
+		$.ajax({
+			url: "board-main-upload-action",
+			type: "POST",
+			data: formData,
+			async: false,
+			processData: false,
+			contentType: false,
+			success: function(data) {
+				alert(data);
+				window.location.href="/final-project-team1-ilhajob/dashboard-company-profile"
+			},
+			error: function() {
+				alert("이미지 업로드 error");
+			}
+		});
+	} else {
+		alert("No images selected.");
+	}
+});
+
+
+
+
+
 
 
