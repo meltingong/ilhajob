@@ -19,6 +19,7 @@ $(document).on('click','#deleteScrap',function(e){
 								true);
 			e.preventDefault();	
 });
+//리스트에서 스크랩 등록/제거
 $(document).on('click','#check-bookmark',function(){
 	
 		console.log("펑션접근");
@@ -46,6 +47,37 @@ $(document).on('click','#check-bookmark',function(){
 				img1.addClass('hidden-img');
 				img2.removeClass('hidden-img');
 				img2.addClass('show-img');
+			}
+			console.log(response);
+		}, error: function(error) {
+			console.log(error);	
+		}
+	});
+	console.log("적용완료");
+});
+
+//디테일에서 스크랩 등록/제거
+$(document).on('click','#detail-check-bookmark',function(){
+	
+		console.log("펑션접근");
+		let button = $(this);
+		let jsonData = {
+			rId: $(this).val()
+		};
+		console.log(JSON.stringify(jsonData));
+	$.ajax({
+		url: "recruit_scrap_insert_delete",
+		type: "POST",
+		contentType: 'application/json;charset=UTF-8', // Content-Type 설정
+		data: jsonData,
+		success: function(response) {
+			console.log("컨트롤러 갔다옴");
+			if (response == 1) {    //스크랩성공시
+				button.removeClass('scrap-btn');
+				button.addClass('scrap-btn-click');
+			} else {     //스크랩해지시
+				button.removeClass('scrap-btn-click');
+				button.addClass('scrap-btn');
 			}
 			console.log(response);
 		}, error: function(error) {

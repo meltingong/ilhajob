@@ -75,4 +75,7 @@ public class RecruitScrapRestController {
 		
 		return ResponseEntity.ok(count);
 	}
+	
+	
+	
 }
