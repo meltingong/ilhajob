@@ -160,8 +160,8 @@
                                   <span th:text="${edu.eduName}">학교명</span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year year-span" th:text="${#temporals.format(edu.eduStartDate, 'yyyy-MM-dd')}">2012 - 2014</span>
-                                  <span class="year year-span" th:text="${#temporals.format(edu.eduEndDate, 'yyyy-MM-dd')}">2012 - 2014</span>
+                                  <span class="year year-span" th:text="${#strings.substring(edu.eduStartDate,0,10)}">2012 - 2014</span>
+                                  <span class="year year-span" th:text="${#strings.substring(edu.eduEndDate,0,10)}">2012 - 2014</span>
                                 </div>
                               </div>
                               <div class="text">
@@ -191,8 +191,8 @@
                                   <span th:text="${exp.expCorpName}">Inc.</span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year year-span" th:text="${#temporals.format(exp.expStartDate, 'yyyy-MM-dd')}">2012 - 2014</span>
-                                  <span class="year year-span" th:text="${#temporals.format(exp.expEndDate, 'yyyy-MM-dd')}">2012 - 2014</span>
+                                  <span class="year year-span" th:text="${#strings.substring(exp.expStartDate,0,10)}">2012 - 2014</span>
+                                  <span class="year year-span" th:text="${#strings.substring(exp.expEndDate,0,10)}">2012 - 2014</span>
                                 </div>
                               </div>
                               <div class="text" th:text="${exp.expContent}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
@@ -219,7 +219,7 @@
                                   <span></span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year" th:text="${#temporals.format(awards.awardsDate, 'yyyy-MM-dd')}">2012 - 2014</span>
+                                  <span class="year" th:text="${#strings.substring(awards.awardsDate,0,10)}">2012 - 2014</span>
                                 </div>
                               </div>
                               <div class="text" th:text="${awards.awardsContent}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
