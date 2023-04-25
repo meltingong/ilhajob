@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -68,19 +69,24 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 		assertEquals(size, recruitDtoList.size());
 	}
 	
+	//조회수 증가=테스트 완료
 	@Test
 	void testIncreaseReadCount()throws Exception {
+		Long id=3L;
 		RecruitDto recruit=new RecruitDto();
-		recruit=recruitService.findRecruit(1L);
-		System.out.println("recruit>>>>"+recruit);
+		recruit.setId(id);
+		System.out.println("recruit id빼고 null?>>>>"+recruit); //oo
+		recruit=recruitService.findRecruit(3L);
+		System.out.println("recruit 전부불러오기>>>>"+recruit); //recruit 전부 불러옴
 		
 		//recruitRepository.save(recruit);
 		
-		Long id=recruit.getId();
-		System.out.println("id보자>>>>"+id);//1뜸
-		System.out.println("증가전조회수>>>>"+recruit.getRcReadCount());
-		recruitService.increaseReadCount(id);
-	    System.out.println("증가후조회수>>>>>"+recruit.getRcReadCount());
+		//Long id=recruit.getId();
+		//System.out.println("id보자>>>>"+id);//1뜸
+		System.out.println("증가전조회수>>>>"+recruit.getRcReadCount()); //254
+		recruitService.increaseReadCount(3L);
+		RecruitDto updateRecruit=recruitService.findRecruit(3L);
+	    System.out.println("증가후조회수>>>>>"+updateRecruit.getRcReadCount());//255
 		
 	}
 	
