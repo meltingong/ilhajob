@@ -95,9 +95,8 @@ public class RecruitRestController {
 			map.put("countList", countList);
 		}
 		//전체태그선택
-		if(tagId==5) {
+		if(tagId==99999) {
 			List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
-			
 			for(RecruitDto recruit : recruitList) {
 				tagList=new ArrayList<TagDto>();
 				for(RecruitTagDto recruitTag:recruitTagList) {
@@ -118,8 +117,6 @@ public class RecruitRestController {
 		Pageable pageable = PageRequest.of(page, size,Sort.Direction.ASC,"id");
 		Page<RecruitDto> recruitTagPage = recruitTagService.selectRecruitsByTagId(tagId, pageable);
 		List<RecruitDto> recruitDtoList = recruitTagPage.getContent();
-		List<RecruitTagDto> recruitTagList = new ArrayList<>();
-
 		for (RecruitDto recruitDto : recruitDtoList) {
 		    Long rId = recruitDto.getId();
 		    List<RecruitTagDto> recruitTagListByRecruitId = recruitTagService.selectAllByRecruitId(rId);
@@ -132,20 +129,8 @@ public class RecruitRestController {
 		    }
 		    recruitTagListDto.add(RecruitTagListDto.builder().id(id).recruit(recruitDto).tagList(tagList1).build());
 		}
-//		
-//		for(RecruitTagDto recruitTag:recruitTagList) {
-//			tagList= new ArrayList<TagDto>();
-//			Long rId = recruitTag.getRecruit().getId();
-//			List<RecruitTagDto> recruitTagListByRecruitid = recruitTagService.selectAllByRecruitId(rId);
-//			for(RecruitTagDto recruitTagDto: recruitTagListByRecruitid) {
-//				tagList.add(recruitTagDto.getTag());
-//			}
-//			recruitTagListDto.add(RecruitTagListDto.builder().id(id).recruit(recruitTag.getRecruit()).tagList(tagList).build());
-//		}
 		map.put("data", recruitTagListDto);
 		
-		System.out.println(">>>>"+recruitTagListDto);
-		System.out.println(recruitTagPage.getContent().get(0).getId());
 		map.put("recruitList", recruitTagPage.getContent());
 		map.put("nowPage", recruitTagPage.getNumber());
 		map.put("totalPage", recruitTagPage.getTotalPages());

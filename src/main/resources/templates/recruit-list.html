@@ -266,7 +266,7 @@
                   <button type="button" class="theme-btn toggle-filters"><span class="icon icon-filter"></span> Filter</button>
                   <div class="text">Showing <strong th:text="${recruitList.size()}">41-60</strong> of <strong></strong> Recruits</div>
                 </div>
-                <button class="changeTag" name="all" value="전체">전체</button>
+                <button class="changeTag" name="all" value="99999">전체</button>
                 <div th:each="tag: ${tagList}" th:if="${tag.tagId}<4">
 					<button class="changeTag" name="${tag.tagName}"
 					th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
