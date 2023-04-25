@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,13 +69,29 @@ public class RecruitController {
 	private RecruitScrapService recruitScrapService;
 	@Autowired
 	private UserService userService;
-//	@RequestMapping(value = { "/", "/index" })
-//	public String main(Model model) throws Exception {
-//		List<RecruitDto> recruitList = recruitService.findRecruitAll();
-//		model.addAttribute("recruitList", recruitList);
-//		String forward_path = "index";
-//		return forward_path;
-//	}
+	
+	//home에 recruitList 뿌리기
+	@RequestMapping(value = { "/", "/index" })
+	public String main(Model model) throws Exception {
+		List<RecruitDto> recruitList = recruitService.findRecruitAll();
+		model.addAttribute("recruitList", recruitList);
+		
+		//태그리스트
+		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
+		List<TagDto> tagList = tagService.selectAll();
+		model.addAttribute("recruitTagList", recruitTagList);
+		model.addAttribute("tagList", tagList);
+		
+		String forward_path = "index";
+		return forward_path;
+	}
+	
+	@GetMapping("increase-readCount-action")
+	public String increase_readCount(@PathVariable Long id) throws Exception {
+		recruitService.increaseReadCount(id);
+		return "recruit-detail";
+	}
+	
 
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,
@@ -234,10 +251,25 @@ public class RecruitController {
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		
+		//태그리스트 - 공고태그 연산작업 
+		List<RecruitTagDto> recruitTagList = recruitTagService.selectAllByRecruitId(recruitDto.getId());
+		List<TagDto>rTagList = new ArrayList<TagDto>();
+		for (RecruitTagDto recruitTagDto : recruitTagList) {
+			rTagList.add(recruitTagDto.getTag());
+		}
+		
+		List<TagDto>tagList = tagService.selectAll().subList(0, 3); //태그 1~3번만 출력
+		tagList.removeAll(rTagList);
+		System.out.println(tagList);
+		
+		
 		RecruitDto setRecruit=recruitService.findRecruit(recruitDto.getId());
 		System.out.println("setRecruit>>>"+setRecruit);
 		model.addAttribute("recruit",setRecruit);
-
+		model.addAttribute("tagList",tagList);
+		model.addAttribute("recruitTagList",recruitTagList);
+		
+		
 		return "recruit-modify-form";
 	}
 	
@@ -253,6 +285,8 @@ public class RecruitController {
 		//System.out.println("pre modify action >>>>"+recruitDto);
 		
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
+		
+		
 		//System.out.println("update check>>>>"+checkRecruit);
 		model.addAttribute("id",recruitDto.getId());
 		return "redirect:recruit-detail?id=" + recruitDto.getId();

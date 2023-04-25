@@ -34,12 +34,12 @@
     <!--End Main Header -->
 
     <!-- Banner Section-->
-    <section class="banner-section-four -type-16" style="background-image: url(images/index-16/header/bg.png);">
+    <section class="banner-section-four -type-16" style="background-image: url(images/index-16/header/출근.jpg);">
       <div class="auto-container">
         <div class="content-box">
           <div class="title-box wow fadeInUp" data-wow-delay="500ms">
-            <h3>Find The Best Job</h3>
-            <p>Search from 45.200+ Jobs</p>
+            <h3>당신에게 최적의 일자리를 찾아드립니다.</h3>
+            <p></p>
           </div>
 
           <!-- Job Search Form -->
@@ -133,17 +133,17 @@
     <section class="layout-pt-120 layout-pb-120">
       <div class="auto-container">
         <div class="sec-title text-center">
-          <h2>Recommended Jobs</h2>
-          <div class="text">Know your worth and find the job that qualify your life 이력서 리스트 출력</div>
+          <h2>Recruit List</h2>
+          <div class="text">원하는 취업 공고에 도전하세요!</div>
         </div>
 
         <div class="default-tabs tabs-box">
           <!--Tabs Box-->
           <div class="tab-buttons-wrap">
             <ul class="tab-buttons -pills-condensed -blue">
-              <li class="tab-btn" data-tab="#tab1">Feature</li>
-              <li class="tab-btn active-btn" data-tab="#tab2">Urgent </li>
-              <li class="tab-btn" data-tab="#tab3">Private</li>
+              <li class="tab-btn" data-tab="#tab1">전체 공고</li>
+              <li class="tab-btn active-btn" data-tab="#tab2">진행중인 공고 </li>
+              <li class="tab-btn" data-tab="#tab3">마감된 공고</li>
             </ul>
           </div>
 
@@ -154,6 +154,7 @@
 
                 <!-- Job Block -->
                 <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
+     
                   <div class="inner-box">
                     <div class="content">
                       <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
@@ -165,23 +166,26 @@
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                       </ul>
                       <ul class="job-other-info">
-                        <li class="required">Urgent</li>
-                        <li class="time">Full Time</li>
+                        <div th:each="recruitTag : ${recruitTagList}">
+                      	<div th:each="tag:${tagList}">
+                        <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
+                        </div>
+                        </div>
                       </ul>
                       <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     </div>
                   </div>
+                  
                 </div>
 
               </div>
             </div>
-
             <!--Tab-->
             <div class="tab active-tab" id="tab2">
               <div class="row">
 
                 <!-- Job Block -->
-                <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
+                <div th:each="recruit:${recruitList}" th:if="${recruit.rcStatus==0}" class="job-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
                     <div class="content">
                       <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
@@ -193,8 +197,11 @@
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                       </ul>
                       <ul class="job-other-info">
-                        <li class="required">Urgent</li>
-                        <li class="time">Full Time</li>
+                        <div th:each="recruitTag : ${recruitTagList}">
+                      	<div th:each="tag:${tagList}">
+                        <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
+                        </div>
+                        </div>
                       </ul>
                       <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     </div>
@@ -209,7 +216,7 @@
               <div class="row">
 
                 <!-- Job Block -->
-                <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
+                <div th:each="recruit:${recruitList}" th:if="${recruit.rcStatus==1}" class="job-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
                     <div class="content">
                       <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
@@ -221,8 +228,11 @@
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                       </ul>
                       <ul class="job-other-info">
-                        <li class="required">Urgent</li>
-                        <li class="time">Full Time</li>
+                        <div th:each="recruitTag : ${recruitTagList}">
+                      	<div th:each="tag:${tagList}">
+                        <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
+                        </div>
+                        </div>
                       </ul>
                       <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     </div>
@@ -233,60 +243,10 @@
             </div>
 
             <!--Tab-->
-            <div class="tab" id="tab5">
-              <div class="row">
+            
 
-                <!-- Job Block -->
-                <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
-                  <div class="inner-box">
-                    <div class="content">
-                      <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
-                      <h4 ><a href="#"
-                      		  th:href="@{recruit-detail(id=${recruit.id})}" 
-                      		  th:text="${recruit.rcTitle}" >Software Engineer</a></h4>
-                      <ul class="job-info">
-                        <li th:text="${recruit.rcPosition}"><span class="icon flaticon-briefcase"></span> Segment</li>
-                        <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
-                      </ul>
-                      <ul class="job-other-info">
-                        <li class="required">Urgent</li>
-                        <li class="time">Full Time</li>
-                      </ul>
-                      <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                  </div>
-                </div>
 
-              </div>
-            </div>
-
-            <!--Tab-->
-            <div class="tab" id="tab4">
-              <div class="row">
-
-                <!-- Job Block -->
-                <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
-                  <div class="inner-box">
-                    <div class="content">
-                      <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
-                      <h4 ><a href="#"
-                      		  th:href="@{recruit-detail(id=${recruit.id})}" 
-                      		  th:text="${recruit.rcTitle}" >Software Engineer</a></h4>
-                      <ul class="job-info">
-                        <li th:text="${recruit.rcPosition}"><span class="icon flaticon-briefcase"></span> Segment</li>
-                        <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
-                      </ul>
-                      <ul class="job-other-info">
-                        <li class="required">Urgent</li>
-                        <li class="time">Full Time</li>
-                      </ul>
-                      <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
+         
           </div>
         </div>
       </div>

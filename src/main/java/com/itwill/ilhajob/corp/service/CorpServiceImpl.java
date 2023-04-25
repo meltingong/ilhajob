@@ -1,6 +1,8 @@
 package com.itwill.ilhajob.corp.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -13,10 +15,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Corp;
+import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.exception.ExistedCorpException;
 import com.itwill.ilhajob.corp.repository.CorpRepository;
+import com.itwill.ilhajob.corp.repository.RecruitRepository;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.entity.Review;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
@@ -30,13 +35,15 @@ public class CorpServiceImpl implements CorpService{
 	
 	private final CorpRepository corpRepository;
 	private final ReviewRepository reviewRepository;
+	private final RecruitRepository recruitRepository;
 	private final ModelMapper modelMapper;
 	
 	@Autowired
-	public CorpServiceImpl(CorpRepository corpRepository, ModelMapper modelMapper,ReviewRepository reviewRepository) {
+	public CorpServiceImpl(CorpRepository corpRepository, ModelMapper modelMapper,ReviewRepository reviewRepository, RecruitRepository recruitRepository) {
 		this.corpRepository = corpRepository;
 		this.modelMapper = modelMapper;
 		this.reviewRepository = reviewRepository;
+		this.recruitRepository=recruitRepository;
 	}
 
 	@Override
@@ -223,6 +230,24 @@ public class CorpServiceImpl implements CorpService{
 	public Page<CorpDto> findAll(Pageable pageable) {
 		Page<Corp> corpList=corpRepository.findAll(pageable);
 		return corpList.map(corp->modelMapper.map(corp, CorpDto.class));
+	}
+
+
+	
+	//corpId로 rcCount
+	@Override
+	public Long getRcCountByCorpId(Long corpId) throws Exception {
+		return recruitRepository.countByCorpId(corpId);
+	}
+
+	@Override
+	public Map<Long, Long> getRcCountByCorpIdList(List<Long> corpIdList) {
+		Map<Long, Long>rcCountMap=new HashMap<>();
+		for(Long corpId:corpIdList) {
+			Long rcCount=recruitRepository.countByCorpId(corpId);
+			rcCountMap.put(corpId, rcCount);
+		}
+		return rcCountMap;
 	}
 	
 	

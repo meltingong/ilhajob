@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<script type="text/javascript">
-	function increaseReadCount(form){
-		form.action="increase-readCount-action";
-		form.method='POST';
-		form.submit();
-		
-	}
-</script>
 
 <head>
   <meta charset="utf-8">
@@ -59,7 +51,7 @@
     <section class="page-titlFe">
       <div class="auto-container">
         <div class="title-outer">
-          <h1></h1><br><br>
+          <h1>Find Jobs</h1>
           <ul class="page-breadcrumb">
             <li>구직공고 목록입니다</li>
             <li><a href="index">메인으로 돌아가기</a></li>
@@ -295,15 +287,12 @@
               <div class="row">
                 <!-- Job Block -->
                 <div th:each="recruit:${recruitList}" class="job-block col-lg-6 col-md-12 col-sm-12">
-                 <form class="default-form" name="readCount" method="post">
                   <div class="inner-box">
                     <div class="content">
                       <span class="company-logo"><img src="images/resource/company-logo/1-2.png" alt=""></span>
-                      <input type="hidden" name="id" th:value="${recruit.id}"/>
                       <h4><a href="#"
                       		 th:href="@{recruit-detail(id=${recruit.id})}" 
-                      		 th:text="${recruit.rcTitle}" 
-                      		 onClick="increaseReadCount(this.form);">Recruiting Coordinator</a></h4>
+                      		 th:text="${recruit.rcTitle}" >Recruiting Coordinator</a></h4>
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span><span th:text="${recruit.rcPosition}"></span></li>
                         <li><span class="icon flaticon-map-locator"></span> <span th:text="${recruit.corp.corpAddress}"></span></li>
@@ -311,7 +300,6 @@
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
                       <ul class="job-other-info">
-                      	<img src="images/icons/smallbell.png" alt=""><li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li>
                       	<div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
                         <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
@@ -334,7 +322,6 @@
 
                   </div>
                 </div>
-                </form>
               </div>
             </div>
 

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Recruit;
 
 @Repository
@@ -19,6 +20,7 @@ public interface RecruitRepository extends JpaRepository<Recruit, Long>{
 	
 	//paging 기능 구현
 	Page<Recruit> findAll(Pageable pageable);
+
 
 	
 	

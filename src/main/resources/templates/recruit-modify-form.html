@@ -59,6 +59,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 </head>
 
 <body>
@@ -153,6 +155,7 @@
                           <option value="Management">Management</option>
                         </select>
                       </div>
+                    
                   <!--
                       <div class="form-group col-lg-6 col-md-12">
                         <label>Job Type</label>
@@ -201,6 +204,27 @@
                           <option>신입/경력</option>
                         </select>
                       </div>
+                      
+                   <div id = "recruit-tag-zone" style="display: inline;">
+                     <div class="form-group col-lg-6 col-md-12">
+					  <label>태그추가</label> 
+					  	<button type="button" id="tag-insert" th:value="${recruit.id}"class="la la-plus" style="margin-left: 450px;"></button>
+					  <select class="chosen-select" name="rcPosition" id="tagId">
+					  	<div th:each="tag:${tagList}">
+					    <option th:text="${tag.tagName}" th:value="${tag.tagId}" th:selected="${tag.tagId == selectedTagId}">태그</option>
+					 	</div>
+					  </select>
+					</div>
+					 <div class="form-group col-lg-6 col-md-12">
+                        <label>보유태그</label>
+                        <div th:each="recruitTag:${recruitTagList}">
+                  		<span type="text" name="tag" th:text ="${recruitTag.tag.tagName}"></span>
+                  		<button class="la la-trash" type="button" id="tag-delete" style="margin-left: 350px;">삭제</button>
+                  		</div>
+                      </div>
+                      <div> </div><!-- 띄어쓰기 -->
+                   </div>
+                   	
 					<!-- 					
                       <div class="form-group col-lg-6 col-md-12">
                         <label>모집시작일</label>
@@ -300,10 +324,37 @@
     <div class="copyright-text">
       <p>© 2021 Superio. All Right Reserved.</p>
     </div>
-
   </div><!-- End Page Wrapper -->
+	<script type="text/x-handlebars-template" id="recruit-tag-insert-delete-template">
 
+  <div class="form-group col-lg-6 col-md-12">
+    <label>태그추가</label>
+    <span>
+      <button type="button" id="tag-insert" class="la la-plus" style="margin-left: 450px;"></button>
+    </span>
+    <select class="chosen-select" name="rcPosition" id="tagId">
+      {{#each tagList}}
+      <option value={{tagId}}>
+        {{tagName}}
+      </option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group col-lg-6 col-md-12">
+    <label>보유태그</label>
+    {{#each recruitTagList}}
+    <div>
+      <span type="text" name="tag">{{tag.tagName}}</span>
+      <button class="la la-trash" type="button" id="tag-delete" style="margin-left: 350px;">제거</button>
+    </div>
+    {{/each}}
+  </div>
+  <div></div><!-- 띄어쓰기 -->
 
+   
+   </script>
+   
+   
   <script src="js/jquery.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/chosen.min.js"></script>
@@ -323,6 +374,8 @@
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDaaCBm4FEmgKs5cfVrh3JYue3Chj1kJMw&#038;ver=5.2.4"></script>
   <script src="js/map-script.js"></script>
   <!--End Google Map APi-->
+  <script src="js/app_recruit.js" type="module"></script>
+  
 </body>
 
 </html>

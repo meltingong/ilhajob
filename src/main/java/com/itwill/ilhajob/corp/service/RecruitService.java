@@ -30,12 +30,6 @@ public interface RecruitService {
 	
 	//corpId(Long id)로 현재활성화중인 공고갯수 불러오기
 	Long countByCorpId(Long id) throws Exception;
-		
-	//마감 지났는지 여부 확인
-	//boolean isDeadLine(Date rcDeadline) throws Exception;
-	
-	//마감일 설정
-	//Date addDay(Date date,int day) throws Exception;
 	
 	//마감일 상태변화
 	String getStatus(Date rcDeadLine)throws Exception;
@@ -46,6 +40,9 @@ public interface RecruitService {
 	//recruitList Paging 기능
 	Page<RecruitDto> getRecruitList(int Page, int size) throws Exception;
 	Page<RecruitDto> findAll(Pageable pageable)throws Exception;
+	
+	//readCount 증가
+	void increaseReadCount(Long id) throws Exception;
 	
 	
 }

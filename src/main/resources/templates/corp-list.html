@@ -78,7 +78,7 @@
 		<!-- Main Header-->
 		<header class="main-header">
 			<div id="main-header"
-				th:include="include_common_top::include_common_top"></div>
+				th:include="include_common_top_dashboard::include_common_top_dashboard"></div>
 		</header>
 		<!--End Main Header -->
 
@@ -101,7 +101,7 @@
 							<div class="form-group col-lg-5 col-md-12 col-sm-12 location">
 								<span class="icon flaticon-briefcase"></span> <select
 									class="chosen-select" name="job">
-									<option value="">카테고리</option>
+									<option value="">직군을 입력하세요.</option>
 									<option value="웹프로그래머">웹프로그래머</option>
 									<option value="응용프로그램">응용프로그램</option>
 									<option value="네트워크">네트워크</option>
@@ -178,7 +178,7 @@
 												<span class="flaticon-bookmark"></span>
 											</button-->
 											<tr>
-											<span class="featured" th:text="${corp.rcCount}">Featured</span> 
+											<span class="featured" th:if="${rcCountMap[corp.id]>0}" style="background-color:mistyrose; color: red">채용중</span> 
 											</tr>
 											<span class="company-logo"><img
 												th:src="${corp.corpStoredFileName}" style="width:80px"

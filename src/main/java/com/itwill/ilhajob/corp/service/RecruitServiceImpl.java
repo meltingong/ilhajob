@@ -25,6 +25,7 @@ import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Corp;
 import com.itwill.ilhajob.corp.entity.Recruit;
+import com.itwill.ilhajob.corp.exception.NotFoundException;
 import com.itwill.ilhajob.corp.repository.RecruitRepository;
 
 @Service
@@ -137,6 +138,20 @@ public class RecruitServiceImpl implements RecruitService {
 		Page<Recruit> recruitList=recruitRepository.findAll(pageable);
 		return recruitList.map(recruit->modelMapper.map(recruit, RecruitDto.class));
 	}
+	
+	//readCount 증가 기능
+	@Override
+	public void increaseReadCount(Long id) throws Exception {
+		//일단 recruit 찾아오기
+		Optional<Recruit> optionalRecruit = recruitRepository.findById(id);
+        if (optionalRecruit.isPresent()) {
+            Recruit existRecruit = optionalRecruit.get();
+            existRecruit.setRcReadCount(existRecruit.getRcReadCount() + 1);
+            recruitRepository.save(existRecruit);
+        } else {
+            throw new NotFoundException("Recruit not found with id: " + id);
+        }
+    }
 
 	
 }
