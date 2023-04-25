@@ -45,7 +45,20 @@
 <head>
   <meta charset="utf-8">
   <title>Superio | Just another HTML Template | Post New Job</title>
-
+ <style type="text/css">
+ .tag-name{
+ 	position: relative;
+	  background: #F0F5F7;
+	  border-radius: 10px;
+	  font-size: 15px;
+	  line-height: 20px;
+	  color: #696969;
+	  padding: 7px 20px;
+	  border-radius: 20px;
+	  margin-right: 20px;
+	  margin-top: 20px;}
+ 		
+ </style>
   <!-- Stylesheets -->
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -205,7 +218,7 @@
                         </select>
                       </div>
                       
-                   <div id = "recruit-tag-zone" style="display: inline;">
+                   <div id = "recruit-tag-zone" style="display: flex;">
                      <div class="form-group col-lg-6 col-md-12">
 					  <label>태그추가</label> 
 					  	<span>
@@ -217,11 +230,11 @@
 					 	</div>
 					  </select>
 					</div>
-					 <div class="form-group col-lg-6 col-md-12">
+					 <div class="form-group col-lg-6 col-md-12" style="margin-left: 50px;">
                         <label>보유태그</label>
                         <div th:each="recruitTag:${recruitTagList}">
-                  		<span type="text" name="tag" th:text ="${recruitTag.tag.tagName}"></span>
-                  		<button class="la la-trash" th:value="${recruitTag.id}" type="button" id="tag-delete" style="margin-left: 350px;">삭제</button>
+                  		<span class="tag-name" type="text" name="tag" th:text ="${recruitTag.tag.tagName}"></span>
+                  		<button class="la la-trash" th:value="${recruitTag.id}" type="button" id="tag-delete" style="margin-left: 5px;"></button>
                   		</div>
                       </div>
                       <div> </div><!-- 띄어쓰기 -->
@@ -325,7 +338,7 @@
   <div class="form-group col-lg-6 col-md-12">
     <label>태그추가</label>
     <span>
-      <button type="button" id="tag-insert" class="la la-plus" style="margin-left: 450px;" {{recruit.id}}></button>
+      <button type="button" id="insertTag" class="la la-plus" style="margin-left: 500px;" value ="{{recruit.id}}"></button>
     </span>
     <select class="chosen-select" name="rcPosition" id="tagId">
       {{#each tagList}}
@@ -335,12 +348,12 @@
       {{/each}}
     </select>
   </div>
-  <div class="form-group col-lg-6 col-md-12">
+  <div class="form-group col-lg-6 col-md-12" style="margin-left: 50px;">
     <label>보유태그</label>
     {{#each recruitTagList}}
     <div>
-      <span type="text" name="tag">{{tag.tagName}}</span>
-      <button class="la la-trash" type="button" id="tag-delete" style="margin-left: 350px;" value="{{id}}">제거</button>
+      <span class="tag-name" type="text" name="tag">{{tag.tagName}}</span>
+      <button class="la la-trash" type="button" id="tag-delete" style="margin-left: 5px;" value="{{id}}"></button>
     </div>
     {{/each}}
   </div>

@@ -54,7 +54,6 @@
         </div>
 
         <div class="row">
-          <div class="col-lg-12">
             <!-- Ls widget -->
             <div class="ls-widget">
             <div class="tabs-box">
@@ -91,18 +90,13 @@
                   </div>
                     
                   <div class="form-group col-lg-6 col-md-12">
-                    <label>연락처</label>
-                    <input type="text" th:value="${user.userPhone}" name="userPhone" disabled="disabled">
-                  </div>
-                    
-                  <div class="form-group col-lg-6 col-md-12">
-                    <label>나이</label>
-                    <input type="text" th:value="${user.userAge}" name="userAge" disabled="disabled">
-                  </div>
-                    
-                  <div class="form-group col-lg-6 col-md-12">
                     <label>성별</label>
                     <input type="text" th:value="${user.userSex}" name="userSex" disabled="disabled">
+                  </div>
+                    
+                  <div class="form-group col-lg-6 col-md-12">
+                    <label>연락처</label>
+                    <input type="text" th:value="${user.userPhone}" name="userPhone" disabled="disabled">
                   </div>
                     
                   <div class="form-group col-lg-6 col-md-12">
@@ -111,11 +105,23 @@
                   </div>
                   
                   <div class="form-group col-lg-6 col-md-12">
+                    <label>나이</label>
+                    <input type="text" th:value="${user.userAge}" name="userAge" disabled="disabled">
+                  </div>
+                    
+                  <div class="form-group col-lg-6 col-md-12">
                     <label>어학능력</label>
                     <input type="text" th:value="${user.userLanguage}" name="userLanguage" disabled="disabled">
 		           </div>
-                    
+		           
+                  <div>
                   <div class="form-group col-lg-6 col-md-12">
+                    <label>보유기술</label>
+                    <input type="text" th:value="${user.userSkills}" name="userLanguage" disabled="disabled">
+		           </div>
+                  </div>
+                    
+                  <div class="form-group col-lg-12 col-md-12">
                     <label>주소</label>
                     <div class="form-group col-lg-3 col-md-6" id="address-postcode-disable">
                           <input type="text" th:value="${user.userPostCode}" name="userPostCode" class="d_form mini" placeholder="우편번호" disabled="disabled">
@@ -133,7 +139,6 @@
                </div> <!-- widget content end -->
             </div> <!-- tabs-box end -->
             </div> <!-- ls-widget end(userinfo) -->
-            </div>
             
             
             <div class="ls-widget">
@@ -178,6 +183,15 @@
                       <!-- 포트폴리오 -->
                       </form>
 		 		<!-- ************ cv form end  ************ -->
+		 			
+		 			 <div class="default-form">
+                      <div class="form-group col-lg-12 col-md-12">
+                        <button class="theme-btn btn-style-one" onclick="updateCv()">저장하기</button>
+                        <button class="theme-btn btn-style-one" onclick="deleteCv()">삭제하기</button>
+                      </div>
+                      </div>
+                      
+		 		
 						
 					<!-- edu, exp, awards div -->
                       <div class="form-group col-lg-12 col-md-12">
@@ -207,19 +221,19 @@
                               <div class="row">
                               	<div class="col-lg-6 col-md-6 form-group">
                               	<label>학교명</label>
-                                <input type="text" class="text" name="eduName" th:id="eduName+${edu.id}" th:placeholder="${edu.eduName}" value="" readonly>
+                                <input type="text" class="text" name="eduName" th:id="eduName+${edu.id}" th:placeholder="${edu.eduName}" value="" disabled>
                                 </div>
                               	<div class="col-lg-6 col-md-6 form-group">
                                 <label>전공</label>
-                                <input type="text" class="text" name="eduMajor" th:id="eduMajor+${edu.id}" th:placeholder="${edu.eduMajor}" value="" readonly>
+                                <input type="text" class="text" name="eduMajor" th:id="eduMajor+${edu.id}" th:placeholder="${edu.eduMajor}" value="" disabled>
                                 </div>
                               	<div class="col-lg-6 col-md-6 form-group">
                               	<label>학점</label>
-                              	<input type="text" class="text" name="eduScore" th:id="eduScore+${edu.id}" th:placeholder="${edu.eduScore}" value="" readonly>
+                              	<input type="text" class="text" name="eduScore" th:id="eduScore+${edu.id}" th:placeholder="${edu.eduScore}" value="" disabled>
                               	</div>                                
                               	<div class="col-lg-6 col-md-6 form-group">
                               	<label>추가 정보 입력</label>
-                                <input type="text" class="text" name="eduContent" th:id="eduContent+${edu.id}" th:placeholder="${edu.eduContent}" value="" readonly>
+                                <input type="text" class="text" name="eduContent" th:id="eduContent+${edu.id}" th:placeholder="${edu.eduContent}" value="" disabled>
                               	</div>
                               	 
                                 <div class="edit-box">
@@ -268,18 +282,18 @@
                                 <div class="col-lg-6 col-md-6 form-group">
                                   <label>회사</label>
                                   <!-- <span th:text="${exp.expCorpName}" th:value="${exp.expCorpName}">Spotify Inc.</span> -->
-		                          <input type="text" class="text" name="expCorpName" th:id="expCorpName+${exp.id}" th:placeholder="${exp.expCorpName}" readonly>
+		                          <input type="text" class="text" name="expCorpName" th:id="expCorpName+${exp.id}" th:placeholder="${exp.expCorpName}" disabled>
                                   <!-- <h3 th:text="${exp.expPosition}" th:value="${exp.expPosition}">Product Designer</h3> -->
                                 </div>
                                 <div class="col-lg-6 col-md-6 form-group">
                                   <label>직무</label>
-		                        <input type="text" class="text" name="expPosition" th:id="expPosition+${exp.id}" th:placeholder="${exp.expPosition}" readonly>
+		                        <input type="text" class="text" name="expPosition" th:id="expPosition+${exp.id}" th:placeholder="${exp.expPosition}" disabled>
                                 </div>
                               </div> 
                            <!-- Input expContent -->
                               <div class="form-group col-lg-12 col-md-12">
 		                        <label>경력 상세</label>
-		                        <input type="text" class="text" name="expContent"  th:id="expContent+${exp.id}" th:placeholder="${exp.expContent}" readonly>
+		                        <input type="text" class="text" name="expContent"  th:id="expContent+${exp.id}" th:placeholder="${exp.expContent}" disabled>
 		                      </div>
 		                        <!-- <input type="text" name="name" placeholder="경력 관련 추가 정보를 입력하세요." th:value="${exp.expContent}"> -->
                                 <div class="edit-box">
@@ -326,12 +340,12 @@
                               <div class="row">
                               	<div class="col-lg-6 col-md-6 form-group">
                               	<label>수상명</label>
-                              	<input type="text" class="text" name="awardsName" th:id="awardsName+${awards.id}" th:placeholder="${awards.awardsName}" readonly>
+                              	<input type="text" class="text" name="awardsName" th:id="awardsName+${awards.id}" th:placeholder="${awards.awardsName}" disabled>
                                   <span></span>
                               	</div>
                               	<div class="col-lg-6 col-md-6 form-group">
                               	<label>수상 상세</label>
-                              	<input type="text" class="text" name="awardsContent" th:id="awardsContent+${awards.id}" th:placeholder="${awards.awardsContent}" readonly>
+                              	<input type="text" class="text" name="awardsContent" th:id="awardsContent+${awards.id}" th:placeholder="${awards.awardsContent}" disabled>
                               	</div>
                               	
                                 <div class="edit-box">
@@ -351,16 +365,7 @@
 				<!-- awardsForm End -->
                       
                      </div>
-
-                      <!-- Input -->
-                      <div class="form-group col-lg-12 col-md-12">
-                        <button class="theme-btn btn-style-one" onclick="updateCv()">저장하기</button>
-                        <button class="theme-btn btn-style-one" onclick="deleteCv()">삭제하기</button>
-                      </div>
                     </div>
-                  <!-- 
-                   </form>
-                   -->
  		<!-- ************ form end  ************ -->
                 </div>
               </div>

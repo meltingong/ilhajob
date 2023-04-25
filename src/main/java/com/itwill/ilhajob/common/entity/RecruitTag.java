@@ -32,7 +32,7 @@ public class RecruitTag {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "recruit_tag_id_SEQ_gen")
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "recruit_id")
 	@ToString.Exclude
 	private Recruit recruit;

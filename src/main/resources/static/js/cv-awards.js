@@ -82,7 +82,7 @@ function editAwards(awardsId) {
     console.log(">>>>>>>>>>>> " + awardsId);
     const awardsBlock = document.querySelector(`#awardsBlock${awardsId}`);
     const inputs = awardsBlock.querySelectorAll('input[type="text"]');
-    inputs.forEach(input => input.removeAttribute('readonly'));
+    inputs.forEach(input => input.removeAttribute('disabled'));
     awardsBlock.querySelectorAll('input[type="date"]').forEach(input => input.style.display = 'block');
     awardsBlock.querySelectorAll('.year-span').forEach(span => span.style.display = 'none');
 }
