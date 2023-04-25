@@ -232,7 +232,7 @@ public class CvController {
 		UserDto user = userService.findUser((String)request.getSession().getAttribute("sUserId"));
 		
 		Map<String, String> pathMap = ImageController.makeDir("cv");
-		String saveFileName = pathMap.get("absolutePath")+cv.getId()+"_cv"+user.getId()+"_user"+".json";
+		String saveFileName = pathMap.get("absolutePath")+recruit.getId()+"_rc"+cv.getId()+"_cv"+user.getId()+"_user"+".json";
 		try {
 			AppDto app = new AppDto(0, 0, LocalDateTime.now(), saveFileName,recruit, cv, user);
 			
