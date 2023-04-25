@@ -23,7 +23,6 @@ function reviewDelete(){
 
 </script>
 
-
 <head>
   <meta charset="utf-8">
   <title>Superio | Just another HTML Template | Employers Single v1</title>
@@ -44,6 +43,7 @@ function reviewDelete(){
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
   <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f247f5f61cc50440b7f98463c59221b6"></script> -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f247f5f61cc50440b7f98463c59221b6&libraries=services"></script>
+  
 </head>
 
 <body>
@@ -64,7 +64,18 @@ function reviewDelete(){
     <!-- Job Detail Section -->
     <section class="job-detail-section">
       <!-- Upper Box -->
-      <div class="upper-box">
+<!-- div th:if="${#strings.startsWith('dododo/corp' + corp.id + '.png', '/') and T(org.springframework.util.ResourceUtils).getFile('classpath:static/' + #strings.replace('dododo/corp' + corp.id + '.png', '/', System.getProperty('file.separator')))?.exists()}"
+     th:style="'background-image: url(dododo/corp' + ${corp.id} + '.png);'"
+     class="upper-box">
+</div>
+
+<!-- div th:unless="${#strings.startsWith('dododo/corp' + corp.id + '.png', '/') and T(org.springframework.util.ResourceUtils).getFile('classpath:static/' + #strings.replace('dododo/corp' + corp.id + '.png', '/', System.getProperty('file.separator')))?.exists()}"
+     th:style="'background-image: url(images/background/3.png);'"
+     class="upper-box">
+</div-->
+
+      
+        <div th:style="'background-image: url(dododo/corp' + ${corp.id} + '.png);'"  style="background-image: url(images/background/3.png)" class="upper-box"></div>
         <div class="auto-container">
           <!-- Job Block -->
           <div class="job-block-seven">
