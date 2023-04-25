@@ -53,10 +53,10 @@ public class RecruitRestController {
 	@Autowired
 	private CorpService corpService;
 	
-	@PostMapping(value="/getRecruitTag", produces = "application/json;charset=UTF-8")
+	@GetMapping(value="/getRecruitTag", produces = "application/json;charset=UTF-8")
 	public Map<String,Object> getRecruitTagData(@RequestParam(defaultValue = "0") int page,
 												@RequestParam(defaultValue = "6") int size,
-												@RequestBody Map<String,String> data,
+												@RequestParam long tagId,
 												Model model, HttpServletRequest request) throws Exception{
 		Map<String, Object> map = new HashMap<String,Object>();
 		List<RecruitDto> recruitList = recruitService.findRecruitAll();
@@ -95,7 +95,7 @@ public class RecruitRestController {
 			map.put("countList", countList);
 		}
 		//전체태그선택
-		if(data.get("tagId").equals("전체")) {
+		if(tagId==5) {
 			List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 			
 			for(RecruitDto recruit : recruitList) {
@@ -115,9 +115,8 @@ public class RecruitRestController {
 			return map;
 		}else {
 		//일부태그선택시
-		map.put("data", recruitTagListDto);
 		Pageable pageable = PageRequest.of(page, size,Sort.Direction.ASC,"id");
-		Page<RecruitDto> recruitTagPage = recruitTagService.selectRecruitsByTagId(Long.parseLong(data.get("tagId")), pageable);
+		Page<RecruitDto> recruitTagPage = recruitTagService.selectRecruitsByTagId(tagId, pageable);
 		List<RecruitDto> recruitDtoList = recruitTagPage.getContent();
 		List<RecruitTagDto> recruitTagList = new ArrayList<>();
 
@@ -154,6 +153,7 @@ public class RecruitRestController {
 		map.put("nextPage", recruitTagPage.hasNext() ? recruitTagPage.nextPageable().getPageNumber() : recruitTagPage.getTotalPages() - 1);
 	    map.put("page", recruitTagPage);	
 	    map.put("url", "/final-project-team1-ilhajob/getRecruitTag");
+	    map.put("tagId", tagId);
 		return map;
 		
 		}

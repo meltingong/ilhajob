@@ -38,9 +38,9 @@ $('.changeTag').click(function(e){
 		};
 	console.log(sendData);
 	Request.ajaxRequest('getRecruitTag',
-					    'POST',
+					    'GET',
 						'application/json;charset=UTF-8',
-						JSON.stringify(sendData),
+						sendData,
 						function(resultJson){
 							console.log("제이슨 받아오기 성공");
 								View.render("#recruit-tag-template",resultJson,"#recruit-main-list");
@@ -48,6 +48,45 @@ $('.changeTag').click(function(e){
 						true); //비동기
 	e.preventDefault();
 });
+
+$(document).on('click','.next-link',function(e){
+	e.preventDefault();
+	let sendData={
+		tagId:parseInt($(".tag-data").val()),
+		page:parseInt($(".next-data").val())
+	};
+	console.log(sendData);
+	Request.ajaxRequest('getRecruitTag',
+					    'GET',
+						'application/json;charset=UTF-8',
+						sendData,
+						function(resultJson){
+							View.render("#recruit-tag-template",resultJson,"#recruit-main-list");
+							window.scrollTo(0, 0);
+						},
+						true);
+
+});
+
+$(document).on('click','.prev-link',function(e){
+	e.preventDefault();
+	let sendData={
+		tagId:parseInt($(".tag-data").val()),
+		page:parseInt($(".prev-data").val())
+	};
+	console.log(sendData);
+	Request.ajaxRequest('getRecruitTag',
+					    'GET',
+						'application/json;charset=UTF-8',
+						sendData,
+						function(resultJson){
+							View.render("#recruit-tag-template",resultJson,"#recruit-main-list");
+							window.scrollTo(0, 0);
+						},
+						true);
+
+});
+
 
 //인서트
 $(document).on('click','#tag-insert',function(){

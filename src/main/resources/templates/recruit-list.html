@@ -388,7 +388,6 @@
     <div th:include="include_main_bottom"></div>
     <!-- End Main Footer -->
 
-
   </div><!-- End Page Wrapper -->
 
 	<!-- 리크루트 태그 선택시 ajax요청 -->
@@ -409,7 +408,6 @@
                         <li><span class="icon flaticon-money"></span> $35k - $45k</li>
                       </ul>
                       <ul class="job-other-info">
-						
 						{{#each tagList}}
                         <li class="time" >{{tagName}}</li>
 						{{/each}}
@@ -439,12 +437,14 @@
               </div>
 				<nav class="ls-pagination mb-5">
 				  <ul>
+					<input class="tag-data" type="hidden" value="{{tagId}}">
 				    {{#unless (eq nowPage 0)}}
 				      <li class="prev">
-				        <a href="{{url}}?page={{prePage}}"><i class="fa fa-arrow-left"></i></a>
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link"><i class="fa fa-arrow-left"></i></a>
 				      </li>
 				      <li class="prev">
-				        <a href="{{url}}?page={{prePage}}" class="page-link">{{nowPage}}</a>
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link">{{nowPage}}</a>
+						<input class="prev-data" type="hidden" value="{{prePage}}">
 				      </li>
 				    {{/unless}}
 				    
@@ -454,17 +454,18 @@
 				
 				    {{#if (not (eq nowPage (subtract totalPage 1)))}}
 				      <li class="next">
-				        <a href="{{url}}?page={{nextPage}}">{{add nowPage 2}}</a>
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link">{{add nowPage 2}}</a>
 				      </li>
 				      <li class="next">
-				        <a href="{{url}}?page={{nextPage}}"><i class="fa fa-arrow-right"></i></a>
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link"><i class="fa fa-arrow-right"></i></a>
+						<input class="next-data" type="hidden" value="{{nextPage}}">
 				      </li>
 				    {{/if}}
 				
 					{{#each page}}
 				      {{#if (and (gte this (subtract nowPage 1)) (lte this (add nowPage 1)))}}
 				        <li>
-				          <a href="{{../url}}?page={{this}}"></a>
+				          <a href="{{../url}}?tagId={{tagId}}&page={{this}}"></a>
 				        </li>
 				      {{/if}}
 				    {{/each}}
