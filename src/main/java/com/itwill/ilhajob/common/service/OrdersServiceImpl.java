@@ -57,7 +57,7 @@ public class OrdersServiceImpl implements OrdersService{
 	
 
 	@Override
-	public OrdersDto checkAndSaveOrder(String role, long id, ProductDto productDto, String paymentMethod) {
+	public OrdersDto checkAndSaveOrder(String role, long id, ProductDto productDto, String paymentMethod) throws Exception {
 		List<Orders> ordersList = new ArrayList<Orders>();
 		long period = 0;
 		if(role.equals("user")) {
@@ -67,6 +67,11 @@ public class OrdersServiceImpl implements OrdersService{
 				Orders saveOrder = saveOrder(role,id,productDto);
 				OrdersDto saveOrdersDto = modelMapper.map(saveOrder, OrdersDto.class);
 				savePayment(saveOrdersDto, productDto, paymentMethod);
+				User updateUser = userRepository.findById(id).orElseThrow(() 
+						-> new UserNotFoundException("존재하지 않는 사용자입니다."));
+				UserDto updateUserDto = modelMapper.map(updateUser, UserDto.class);
+				updateUserDto.setPaymentStatus(1);
+				userRepository.save(modelMapper.map(updateUserDto, User.class));
 				return saveOrdersDto;
 			}
 			//종료일이 현재시간보다 남아있을 때 order의 종료일 현재시간으로 업데이트 및 valid 변경 후 새로운 주문, 결제 생성
@@ -90,6 +95,11 @@ public class OrdersServiceImpl implements OrdersService{
 				Orders saveOrder = saveOrder(role,id,productDto);
 				OrdersDto saveOrdersDto = modelMapper.map(saveOrder, OrdersDto.class);
 				savePayment(saveOrdersDto, productDto, paymentMethod);
+				Corp updateCorp = corpRepository.findById(id).orElseThrow(() 
+						-> new UserNotFoundException("존재하지 않는 사용자입니다."));
+				CorpDto updateCorpDto = modelMapper.map(updateCorp, CorpDto.class);
+				updateCorpDto.setPaymentStatus(1);
+				corpRepository.save(modelMapper.map(updateCorpDto, Corp.class));
 				return saveOrdersDto;
 			}
 			OrdersDto findOrder = modelMapper.map(ordersList.get(ordersList.size()-1), OrdersDto.class);
