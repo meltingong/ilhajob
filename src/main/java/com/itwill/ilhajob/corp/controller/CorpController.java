@@ -114,25 +114,57 @@ public class CorpController {
 
 	
 	@GetMapping("/corp-list")
-	public String corp_list(@RequestParam(defaultValue = "0") int page,
-	                        @RequestParam(defaultValue = "12") int size,
-	                        @ModelAttribute CorpDto corpDto,
-	                        @ModelAttribute RecruitDto recruitDto,
+	public String corp_list(@RequestParam(defaultValue = "0", name = "page") int curPage,
+	                        @RequestParam(defaultValue = "4") int pageScale,
+	                        @RequestParam(defaultValue = "5") int blockScale,
 	                        HttpServletRequest request,
 	                        Model model) throws Exception {
 		String forward_path="";
 		
 		//페이징 기능 추가->일단 12개씩 나오게 해놓음
-	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
-	    Page<CorpDto> corpPage = corpService.findAll(pageable);
-	    int nowPage = corpPage.getNumber();
+	    Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
+	    Page<CorpDto> corpPageList = corpService.findAll(pageable);
 	    
 	    //이전, 다음페이지 설정해야함...
-	    model.addAttribute("corpList", corpPage.getContent());
-	    model.addAttribute("nowPage", nowPage);
-	    model.addAttribute("totalPage", corpPage.getTotalPages());
-	    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
-	    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
+	    model.addAttribute("corpList", corpPageList.getContent());
+	    
+	    System.out.println("*******************결과***********************");
+		System.out.println("페이지당 게시물 수:"+corpPageList.getSize());
+		System.out.println("요청페이지	 :"+corpPageList.getNumber());
+		System.out.println("총게시물수      :"+corpPageList.getTotalElements());
+		System.out.println("총페이지		 :"+corpPageList.getTotalPages());
+		
+		//페이지블록번호
+		int curBlock = (int) Math.ceil((corpPageList.getNumber()) / blockScale) + 1;
+	    System.out.println("페이지블록번호 :"+curBlock);
+	    //페이지 블록의 시작번호
+	 	int blockBegin = (curBlock - 1) * blockScale + 1;
+	 	//페이지 블록의 끝 번호
+	 	int	blockEnd = blockBegin + blockScale - 1;
+	 	System.out.println("페이지블록시작번호 :"+blockBegin);
+	 	System.out.println("페이지블록  끝번호 :"+blockEnd);
+	 	
+		boolean hasPrev = corpPageList.hasPrevious();
+        boolean hasNext = corpPageList.hasNext();
+        System.out.println("이전페이지존재여부 :"+hasPrev);
+	 	System.out.println("다음페이지존재여부 :"+hasNext);
+		/* 화면에는 원래 페이지 인덱스+1 로 출력됨을 주의 */		
+        int prevIndex = corpPageList.previousOrFirstPageable().getPageNumber()+1;
+        int nextIndex = corpPageList.nextOrLastPageable().getPageNumber()+1;
+        System.out.println("이전페이지번호 :"+prevIndex);
+	 	System.out.println("다음페이지번호 :"+nextIndex);
+	 	// 이전다음 화면그룹의 시작페이지와 끝페이지
+	 	int prevGroupStartPage = blockBegin - blockScale;
+	 	int nextGroupStartPage = blockBegin + blockScale;
+	 	System.out.println("이전그룹시작페이지번호 :"+prevGroupStartPage);
+	 	System.out.println("다음그룹시작페이지번호 :"+nextGroupStartPage);
+	 	
+	 	model.addAttribute("blockBegin", blockBegin);
+	 	model.addAttribute("blockEnd", blockEnd);
+	    model.addAttribute("curPage", corpPageList.getNumber());
+	    model.addAttribute("totalPage", corpPageList.getTotalPages());
+	    model.addAttribute("prePage", corpPageList.hasPrevious() ? corpPageList.previousPageable().getPageNumber() : 0);
+	    model.addAttribute("nextPage", corpPageList.hasNext() ? corpPageList.nextPageable().getPageNumber() : corpPageList.getTotalPages() - 1);
 	    
 		List<CorpTagDto> corpTagList = corpTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
@@ -141,7 +173,7 @@ public class CorpController {
 		
 		//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
 		Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
-				corpPage.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
+				corpPageList.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
 		model.addAttribute("rcCountMap", rcCountMap);
 		forward_path = "corp-list";
 	    
@@ -395,13 +427,13 @@ public class CorpController {
 	    try {
 	    	//페이징 기능 추가->일단 12개씩 나오게 해놓음
 	    	Pageable pageable1 = PageRequest.of(page, size, Sort.Direction.ASC, "id");
-	    	Page<CorpDto> corpPage = corpService.findAll(pageable1);
-	    	int nowPage = corpPage.getNumber();
+	    	Page<CorpDto> corpPageList = corpService.findAll(pageable1);
+	    	int nowPage = corpPageList.getNumber();
 	        List<CorpDto> corpSearchList = new ArrayList<>();
 	     
 		    //채용중 뿌리기
 		    Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
-					corpPage.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
+					corpPageList.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
 			model.addAttribute("rcCountMap", rcCountMap);
 			
 			//태그리스트 뿌리기
@@ -412,11 +444,11 @@ public class CorpController {
 			
 		    
 		    //이전, 다음페이지 설정해야함...
-		    model.addAttribute("corpList", corpPage.getContent());
+		    model.addAttribute("corpList", corpPageList.getContent());
 		    model.addAttribute("nowPage", nowPage);
-		    model.addAttribute("totalPage", corpPage.getTotalPages());
-		    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
-		    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
+		    model.addAttribute("totalPage", corpPageList.getTotalPages());
+		    model.addAttribute("prePage", corpPageList.hasPrevious() ? corpPageList.previousPageable().getPageNumber() : 0);
+		    model.addAttribute("nextPage", corpPageList.hasNext() ? corpPageList.nextPageable().getPageNumber() : corpPageList.getTotalPages() - 1);
 			
 		    // corpName만 알때
 	        if (job.isEmpty()) {
