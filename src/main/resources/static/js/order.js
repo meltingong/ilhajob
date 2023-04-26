@@ -156,6 +156,21 @@
 		// 입력값 갱신
 		this.value = formattedNumber.substr(0, 13);
 	});
+	
+	$(function() {
+		let validList = document.getElementsByName('orderVaild');
+		for (let i = 0; i < validList.length; i++) {
+			const valid = validList[i];
+			const validValue = parseInt(valid.getAttribute('value'));
+			if (validValue === 0) {
+				valid.textContent = 'End';
+				valid.style.color = 'red';
+			} else if (validValue === 1) {
+				valid.textContent = 'Active';
+				valid.style.color = 'green';
+			}
+		}
+	});
 
 
 })(window.jQuery);

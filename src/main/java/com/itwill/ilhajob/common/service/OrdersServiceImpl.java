@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.ilhajob.common.dto.OrdersDto;
+import com.itwill.ilhajob.common.dto.OrdersRequestDto;
 import com.itwill.ilhajob.common.dto.PaymentDto;
 import com.itwill.ilhajob.common.dto.ProductDto;
 import com.itwill.ilhajob.common.entity.Orders;
@@ -213,6 +214,15 @@ public class OrdersServiceImpl implements OrdersService{
 		return data;
 	}
 
+	@Override
+	public List<OrdersRequestDto> findOrderAndProductByUser(long id) {
+		List<Orders> findOrderList = ordersRepository.findByUserId(id);
+		List<OrdersRequestDto> orderList = findOrderList.stream()
+				.map(order -> modelMapper.map(order, OrdersRequestDto.class))
+				.collect(Collectors.toList());
+		return orderList;
+	}
+	
 	private Orders saveOrder(String role, long id, ProductDto productDto) {
 		OrdersDto createOrderDto = OrdersDto.builder().orderStartDate(LocalDateTime.now())
 				.orderEndDate(LocalDateTime.now().plusDays(productDto.getProductPeriod())).userId(id).orderValid(1)
@@ -228,6 +238,8 @@ public class OrdersServiceImpl implements OrdersService{
 				.paymentMethod(paymentMethod).build();
 		paymentRepository.save(modelMapper.map(paymentDto, Payment.class));
 	}
+
+
 		
 	
 }

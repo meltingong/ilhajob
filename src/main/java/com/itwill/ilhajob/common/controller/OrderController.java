@@ -31,6 +31,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.itwill.ilhajob.common.dto.LoginRequestDto;
 import com.itwill.ilhajob.common.dto.OrdersDto;
+import com.itwill.ilhajob.common.dto.OrdersRequestDto;
 import com.itwill.ilhajob.common.dto.PaymentDto;
 import com.itwill.ilhajob.common.dto.ProductDto;
 import com.itwill.ilhajob.common.service.OrdersService;
@@ -133,7 +134,7 @@ public class OrderController {
 		//System.out.println(">>>>>>>>"+sUserId);
 		String forwardPath = "";
 		Long id=(Long)request.getSession().getAttribute("id");
-		List<OrdersDto> orderList = ordersService.findOrderByUser(id);
+		List<OrdersRequestDto> orderList = ordersService.findOrderAndProductByUser(id);
 		request.setAttribute("orderList", orderList);
 		
 		forwardPath="dashboard-packages";		

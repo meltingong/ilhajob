@@ -325,7 +325,7 @@
     <section class="testimonial-section -type-2 layout-pt-120 layout-pb-120">
       <div class="container-fluid">
         <!-- Sec Title -->
-        <div class="sec-title -type-2 text-center">
+<!--         <div class="sec-title -type-2 text-center">
           <h2>경험자들의 생생한 리뷰를 한눈에!</h2>
           <div class="text"><p>지원한 기업에 대한 정보를 다른 구직자들과 공유해보세요.</p></div>
           <th:block th:if="${session.role== null || (#session.getAttribute('role') == 'user' && #session.getAttribute('paymentStatus') != 1)}">
@@ -334,14 +334,14 @@
           </th:block>
         </div>
 		
-		<!-- 무료 회원에게는 blur -->
+		무료 회원에게는 blur
 		<th:block th:if="${session.role== null || (#session.getAttribute('role') == 'user' && #session.getAttribute('paymentStatus') != 1)}">
         <div class="blur-content">
         <div class="carousel-outer wow fadeInUp">
         	 <div class="your-blurred-content">
-          <!-- Testimonial Carousel -->
+          Testimonial Carousel
           <div class="testimonial-carousel owl-carousel owl-theme" >
-	            <!--Testimonial Block -->
+	            Testimonial Block
 	            <div class="testimonial-block" th:each="review:${reviewList}">
 	              <div class="inner-box">
 	                <h5 th:text="${review.corp.corpName}">왜 안떠</h5><br>
@@ -364,13 +364,13 @@
         </div>
       </th:block>
       
-      <!-- 유료 회원에게는 리뷰 보이게 -->
+      유료 회원에게는 리뷰 보이게
 		<th:block th:if="${(#session.getAttribute('role') == 'user' and #session.getAttribute('paymentStatus') == 1) or #session.getAttribute('corp') == 'corp'}">
         <div class="carousel-outer wow fadeInUp">
-          <!-- Testimonial Carousel -->
+          Testimonial Carousel
           <div class="testimonial-carousel owl-carousel owl-theme" >
 
-            <!--Testimonial Block -->
+            Testimonial Block
             <div class="testimonial-block" th:each="review:${reviewList}">
               <div class="inner-box">
                 <h5 th:text="${review.corp.corpName}">왜 안떠</h5><br>
@@ -386,7 +386,7 @@
                 <p th:text="${review.reviewContent}">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</p>
               </div>
             </div>
-<!-- 
+
             Testimonial Block
             <div class="testimonial-block">
               <div class="inner-box">
@@ -416,11 +416,11 @@
                 <div class="text">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</div>
               </div>
             </div>
-  -->
+ 
           </div>
         </div>
       </div>
-      </th:block>
+      </th:block> -->
     </section>
     <!-- End Testimonial Section -->
 

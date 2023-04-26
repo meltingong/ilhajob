@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.itwill.ilhajob.common.dto.OrdersDto;
+import com.itwill.ilhajob.common.dto.OrdersRequestDto;
 import com.itwill.ilhajob.common.dto.PaymentDto;
 import com.itwill.ilhajob.common.dto.ProductDto;
 
@@ -12,6 +13,7 @@ public interface OrdersService {
 	OrdersDto checkAndSaveOrder(String role, long id, ProductDto productDto, String paymentMethod) throws Exception;
 	void removeOrder();
 	List<OrdersDto> findOrderByUser(long id);
+	List<OrdersRequestDto> findOrderAndProductByUser(long id);
 	List<OrdersDto> findOrderByCorp(long id);
 	void reorderingCheckUpdate(String role, long id);
 	List<PaymentDto> findPayment(String role, long id);
