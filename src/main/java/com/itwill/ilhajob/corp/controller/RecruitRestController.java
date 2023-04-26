@@ -70,12 +70,13 @@ public class RecruitRestController {
 			loginUser = userService.findUser(sUserId);
 		}
 		map.put("loginUser", loginUser);
+		System.out.println(loginUser);
 		
+		Map<Integer,Integer> status = new HashMap<Integer, Integer>();
 		if(loginUser!=null) {
 		//스크랩 (북마크)로고 출력
 			List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
 			//스크랩확인 카운트 리스트
-			Map<Long,Integer> status = new HashMap<Long, Integer>();
 			
 			for(RecruitDto recruit :recruitList) {
 			    boolean hasRecruitScrap = false; // 리크루트 스크랩이 있는지 여부를 나타내는 변수
@@ -86,13 +87,13 @@ public class RecruitRestController {
 			        }
 			    }
 			    if(hasRecruitScrap) {
-			    	status.put(recruit.getId(), 1); // 리크루트 스크랩이 있을 때
+			    	status.put( Integer.valueOf(recruit.getId().intValue()), 1); // 리크루트 스크랩이 있을 때
 			    } else {
-			    	status.put(recruit.getId(), 0); // 리크루트 스크랩이 없을 때
+			    	status.put(Integer.valueOf(recruit.getId().intValue()), 0); // 리크루트 스크랩이 없을 때
 			    }
 			}
 			System.out.print("status:"+status+"loginUser"+loginUser);
-			map.put("status", status);
+			
 		}
 		//전체태그선택
 		if(tagId==99999) {
@@ -130,7 +131,7 @@ public class RecruitRestController {
 		    recruitTagListDto.add(RecruitTagListDto.builder().id(id).recruit(recruitDto).tagList(tagList1).build());
 		}
 		map.put("data", recruitTagListDto);
-		
+		map.put("status", status);
 		map.put("recruitList", recruitTagPage.getContent());
 		map.put("nowPage", recruitTagPage.getNumber());
 		map.put("totalPage", recruitTagPage.getTotalPages());
