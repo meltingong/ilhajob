@@ -75,7 +75,7 @@
                       </thead>
                       <tbody>
                       	<!-- <div class = "message-block" th:each="message:${messageList}" th:id = "messageBlock+${message.id}"> -->
-                        <tr>
+                        <tr th:each="message:${messageList}" th:id = "messageBlock+${message.id}">
                           <td th:text="${message.messageTitle}">
                           </td>
                            <td th:text="${message.messageContents}"></td>
