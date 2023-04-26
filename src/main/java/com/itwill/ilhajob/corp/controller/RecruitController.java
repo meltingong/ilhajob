@@ -258,7 +258,8 @@ public class RecruitController {
 			throws Exception {
 		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
 		recruitDto.setRcDate(LocalDateTime.now());
-		recruitDto.setRcDeadline(LocalDateTime.now());
+		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		recruitDto.setRcStatus(0);
 		recruitDto.setCorp(loginCorp);
 		recruitDto = recruitService.create(recruitDto);
 		String forward_path = "redirect:recruit-detail?id=" + recruitDto.getId();
