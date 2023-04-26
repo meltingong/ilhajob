@@ -179,6 +179,7 @@ Global Settings
   border: none;
   outline: none;
   font-size: 100%;
+  font-family: 'TheJamsil', TheJamsil-Light;
 }
 
 body {
@@ -347,34 +348,6 @@ li {
   font-size: 44px;
   transform: translate(-50%, -50%);
 }
-
-.blur-content {
-  position: relative;
-  pointer-events: none;
-}
-
-.your-blurred-content {
-  filter: blur(3px);
-  user-select: none;
-}
-
-.hover-trigger {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: auto;
-  background-color: transparent;
-}
-
-.hover-trigger:hover ~ .your-blurred-content {
-  filter: blur(0);
-  cursor: pointer;
-}
-
-
-
 
 /*======================
 Checkbox 

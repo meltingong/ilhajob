@@ -1,6 +1,8 @@
 package com.itwill.ilhajob.user.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,13 @@ import com.itwill.ilhajob.user.repository.ReviewRepository;
 @Transactional
 public class ReviewServiceImpl implements ReviewService {
 	
-	@Autowired
-	ReviewRepository reviewRepository;
-
+	private final ReviewRepository reviewRepository;
+	private final ModelMapper modelMapper;
+	
+	public ReviewServiceImpl(ReviewRepository reviewRepository, ModelMapper modelMapper) {
+		this.reviewRepository = reviewRepository;
+		this.modelMapper = modelMapper;
+	}
 	@Override
 	public void remove(Long reviewId) throws Exception {
 		reviewRepository.deleteById(reviewId);
@@ -47,6 +53,12 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		Long count = reviewRepository.countByUserIdAndCorpId(id, Corpid);
 		return count;
+	}
+
+	@Override
+	public List<ReviewDto> findAll() {
+		List<Review> reviewList = reviewRepository.findAll();
+		return reviewList.stream().map(review -> modelMapper.map(review, ReviewDto.class)).collect(Collectors.toList());
 	}
 	
 	//update review

@@ -40,36 +40,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+	<script src="js/app_corp.js" type="module"></script>
 </head>
-<script>
-$(document).ready(function() {
-	  $('#searchInput').on('input', function() {
-	    var corpName = $('#searchInput').val();
-	    var job = $('select[name="job"]').val();
-	    $.ajax({
-	      url: '/search',
-	      method: 'GET',
-	      data: {
-	        corpName: corpName,
-	        job: job
-	      },
-	      success: function(data) {
-	        var results = data.results;
-	        var rcCountMap = data.rcCountMap;
-	        var template = Handlebars.compile($('#searchTemplate').html());
-	        if (results.length > 0) {
-	          $('#searchResults').html(template({ results: results, rcCountMap: rcCountMap }));
-	        } else {
-	          $('#searchResults').html('');
-	          $('#searchResults').append('<div class="alert alert-warning">검색 결과가 없습니다.</div>');
-	        }
-	      }
-	    });
-	  });
-	});
-
-</script>
 
 <!-- 원래 되는 것:corpName, job으로 검색하기 ajax-->
 <!-- script>
@@ -224,9 +196,14 @@ $(document).ready(function() {
 											<tr>
 											<span class="featured" th:if="${rcCountMap[corp.id]>0}" style="background-color:mistyrose; color: red">채용중</span> 
 											</tr>
-											<span class="company-logo"><img
-												th:src="${corp.corpStoredFileName}" style="width:80px"
-												src="images/resource/company-logo/6-1.png" alt=""></span>
+											<th:block th:if = "${corp.corpStoredFileName != null}">
+										        <span class="company-logo">
+											        <img th:src="${corp.corpStoredFileName}" alt="" style="width:80px; height:80px"/>
+										        </span>
+										    </th:block>
+										    <th:block th:if = "${corp.corpStoredFileName == null}">
+										        <figure class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""/></figure>
+										    </th:block>
 											<h4>
 												<a th:href="@{/corp-detail(corpId=${corp.id})}"
 													th:text="${corp.corpName}"></a>
@@ -315,7 +292,7 @@ $(document).ready(function() {
   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
     <div class="inner-box">
       <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-  {{#if rcCountMap}}
+  	  {{#if rcCountMap}}
         {{#if rcCountMap.[id]>0}}
           <span class="featured" style="background-color:mistyrose; color: red">채용중</span>
         {{/if}}
@@ -399,7 +376,6 @@ $(document).ready(function() {
 	<script src="js/wow.js"></script>
 	<script src="js/script.js"></script>
 
-	<script src="js/app_corp.js" type="module"></script>
 </body>
 
 </html>

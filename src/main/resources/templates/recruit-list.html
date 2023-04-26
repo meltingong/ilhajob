@@ -168,8 +168,8 @@
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span><span th:text="${recruit.rcPosition}"></span></li>
                         <li><span class="icon flaticon-map-locator"></span> <span th:text="${recruit.corp.corpAddress}"></span></li>
-                        <li class="icon flaticon-clock-3"><span  th:text="|마감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></span></li>
-                        <li class="icon flaticon-money" ><spanth th:text="${recruit.rcSalary}"></span></li>
+                        <li><span class="icon flaticon-clock-3"></span><span  th:text="|마감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></span></li>
+                        <li><span class="icon flaticon-money" ></span><span th:text="${#numbers.formatInteger(recruit.rcSalary,3,'COMMA')+' 	만원'}"></span></li>
                       </ul>
                       <ul class="job-other-info">
                       	<th:block th:if="${recruit.rcStatus==0}">

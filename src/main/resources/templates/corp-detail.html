@@ -64,18 +64,13 @@ function reviewDelete(){
     <!-- Job Detail Section -->
     <section class="job-detail-section">
       <!-- Upper Box -->
-<!-- div th:if="${#strings.startsWith('dododo/corp' + corp.id + '.png', '/') and T(org.springframework.util.ResourceUtils).getFile('classpath:static/' + #strings.replace('dododo/corp' + corp.id + '.png', '/', System.getProperty('file.separator')))?.exists()}"
-     th:style="'background-image: url(dododo/corp' + ${corp.id} + '.png);'"
-     class="upper-box">
-</div>
-
-<!-- div th:unless="${#strings.startsWith('dododo/corp' + corp.id + '.png', '/') and T(org.springframework.util.ResourceUtils).getFile('classpath:static/' + #strings.replace('dododo/corp' + corp.id + '.png', '/', System.getProperty('file.separator')))?.exists()}"
-     th:style="'background-image: url(images/background/3.png);'"
-     class="upper-box">
-</div-->
-
-      
-        <div th:style="'background-image: url(dododo/corp' + ${corp.id} + '.png);'"  style="background-image: url(images/background/3.png)" class="upper-box"></div>
+		<!-- 이렇게 되면 이미지 있는것도 기본으로 뜸
+		<div th:with="imagePath = 'dododo/corp' + ${corp.id ?: ''} + '.png'"
+     th:style="'background-image: url(' + ${#urls != null and #urls.exists(imagePath) ? imagePath : 'images/background/3.png'} + ')'"
+     class="upper-box"></div>
+      -->
+        <div th:style="'background-image: url(dododo/corp' + ${corp.id} + '.png);'"  
+            style="background-image: url(images/background/3.png)" class="upper-box"></div>
         <div class="auto-container">
           <!-- Job Block -->
           <div class="job-block-seven">
@@ -268,12 +263,6 @@ function reviewDelete(){
 		        <!--End Comment Form -->
 		        </div>
 		      
-		        
-		        
-		        
-		        
-		        
-           
 
             <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
               <aside class="sidebar">

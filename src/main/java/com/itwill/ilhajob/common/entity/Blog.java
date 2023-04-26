@@ -77,9 +77,9 @@ public class Blog extends BaseEntity {
 			   cascade = CascadeType.ALL)
 	private List<BlogComment> blogCommentList;
 	
-	@OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-	private Set<BlogHeart> blogHeart = new HashSet<>();
-	
+//	@OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
+//	private Set<BlogHeart> blogHeart = new HashSet<>();
+//	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "blog_cate_id")
 	@ToString.Exclude
