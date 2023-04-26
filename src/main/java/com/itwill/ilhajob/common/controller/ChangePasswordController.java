@@ -28,7 +28,7 @@ public class ChangePasswordController {
 		this.corpService = corpService;
 	}
 	
-	@PostMapping("dashboard-change-password")
+	@PostMapping("sessionAjax")
 	public ResponseEntity<Object> ajaxModifyPassword(@RequestBody LoginRequestDto loginRequest,HttpSession session ) throws Exception {
 		UserDto loginUser = null;
 		CorpDto loginCorp = null;
@@ -36,6 +36,7 @@ public class ChangePasswordController {
 		String oldPassword = "";
 		String newPassword = "";
 		String newPasswordConfirm = "";
+		
 		
 		if(session.getAttribute("role").equals("user")) {
 			String sUserId = (String)session.getAttribute("sUserId");

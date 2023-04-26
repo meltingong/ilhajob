@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Superio | Just another HTML Template | Job Single v3</title>
+  <title>ilhajob</title>
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -89,7 +89,7 @@
                         <li th:text="${recruit.rcTitle}"><span class="icon flaticon-briefcase"></span> Segment</li>
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                         <li class="icon flaticon-clock-3"><span  th:text="|등록일: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></span></li>
-                        <li class="icon flaticon-money" ><spanth th:text="${#numbers.formatInteger(recruit.rcSalary,3,'COMMA')+' 	만원'}"></span></li>
+                        <li class="icon flaticon-money" ><span th:text="${#numbers.formatInteger(recruit.rcSalary,3,'COMMA')+' 	만원'}"></span></li>
                       </ul>
                       <ul class="job-other-info" >
                       	<div th:each="str : ${recruitTagNameList}">

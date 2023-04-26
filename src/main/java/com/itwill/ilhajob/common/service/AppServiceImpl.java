@@ -142,6 +142,7 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public List<AppDto> findAllByRecruitId(long id) throws Exception {
 		List<App> appList = appRepository.findAppsByRecruitId(id);
+
 		return appList.stream()
 				.map(app ->modelMapper.map(app, AppDto.class))
 				.collect(Collectors.toList());

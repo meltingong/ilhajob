@@ -1,8 +1,9 @@
 package com.itwill.ilhajob.corp.controller;
 
 import java.io.Console;
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,10 +46,13 @@ import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.RecruitScrapDto;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.Review;
 import com.itwill.ilhajob.user.entity.User;
 import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.RecruitScrapService;
+import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
 
 
@@ -72,6 +76,8 @@ public class RecruitController {
 	private RecruitScrapService recruitScrapService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	//home에 recruitList 뿌리기
 	@RequestMapping(value = { "/", "/index" })
@@ -87,22 +93,29 @@ public class RecruitController {
 		LocalDateTime today = LocalDateTime.now();
 		LocalDateTime deadline = today.plusDays(7);
 		
-		try {
-			for (RecruitDto recruit : tempRecruitList) {
-				if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
-					// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
-					// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
-					deadLineRecruitList.add(recruit);
-				}
-				System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
-				System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
-				model.addAttribute("deadLineRecruitList", deadLineRecruitList);
+		for (RecruitDto recruit : tempRecruitList) {
+			if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
+				// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
+				// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
+				deadLineRecruitList.add(recruit);
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+		}
+		if (deadLineRecruitList.size() == 0) {
+			System.out.println("마감임박 공고 없음");
+		}
+		System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
+		System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
+		model.addAttribute("deadLineRecruitList", deadLineRecruitList);
+		
+		//리뷰 리스트
+		List<ReviewDto> reviewList = reviewService.findAll();
+		System.out.println(reviewList.size());
+		for (ReviewDto reviewDto : reviewList) {
+			System.out.println(reviewDto.getUser().getUserName());
+			System.out.println(reviewDto.getCorp().getCorpName());
 		}
 		
+		model.addAttribute("reviewList", reviewList);
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
@@ -233,7 +246,6 @@ public class RecruitController {
 		model.addAttribute("scrap", null);
 		
 		
-		
 		String forward_path = "recruit-detail";
 		return forward_path;
 	}
@@ -252,6 +264,7 @@ public class RecruitController {
 		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
 		System.out.println("가져온 recruitDto : " + recruitDto);
 		recruitDto.setRcDate(LocalDateTime.now());
+		//마감일 설정
 		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
 		recruitDto.setRcStatus(0);
 		recruitDto.setRcAppCount(0);
@@ -303,7 +316,7 @@ public class RecruitController {
 		
 		
 		RecruitDto setRecruit=recruitService.findRecruit(recruitDto.getId());
-		//System.out.println("setRecruit>>>"+setRecruit);
+		System.out.println("setRecruit>>>"+setRecruit);
 		model.addAttribute("recruit",setRecruit);
 		model.addAttribute("tagList",tagList);
 		model.addAttribute("recruitTagList",recruitTagList);
@@ -313,28 +326,29 @@ public class RecruitController {
 	}
 	
 	@RequestMapping("/recruit-modify-action")
-	public String recruit_modify_action(@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
+	public String recruit_modify_action(@RequestParam("date")String date,@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
 		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		recruitDto.setRcDate(LocalDateTime.now());
+		
+		//마감일 설정
+		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime time=LocalDate.parse(date,formatter).atStartOfDay();
+		recruitDto.setRcDeadline(time);
+		
 		//마감일=등록일+30일로 설정
 		//recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		
 		//공고 등록시 진행중으로 변경
 		recruitDto.setRcStatus(0);
-		//recruitDto.setRcPosition(recruitDto.getRcPosition());
-		//System.out.println("pre modify action >>>>"+recruitDto);
-		
+
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
-		
 		
 		//System.out.println("update check>>>>"+checkRecruit);
 		model.addAttribute("id",recruitDto.getId());
 		return "redirect:recruit-detail?id=" + recruitDto.getId();
 		
-		//RecruitDto updateRecruit= recruitService.update(recruitDto);
-		//System.out.println("updateRecruit>>>"+updateRecruit);
-		//model.addAttribute("updateRecruit", updateRecruit);
 	}
 	
 	//공고리스트-지원자 이력서보기-승인 버튼 클릭 시
