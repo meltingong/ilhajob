@@ -105,6 +105,19 @@
                   </div>
                 </div>
               </div>
+              
+                  <div class="job-block">
+	              <div class="message-box warning" th:if="${recruit.rcAppCount > 0}">
+	              	<p>지금 보는 공고에 
+            			<span style="color:red;" th:text="${appList.size()}"></span>
+            			명이 지원하고 있습니다. 서둘러 지원하세요!
+       				</p>
+	              </div>
+	              <div class="message-box warning" th:if="${recruit.rcAppCount == 0}">
+	              <p>지금 보고 있는 공고에 아직 지원자가 없습니다. 가장 먼저 지원해보세요!</p>
+	              </div>
+              </div>
+              
 
               <div class="job-overview-two">
                 <h4>< 공고 내용 요약 ></h4>
@@ -178,16 +191,7 @@
                    -->
                 </ul>
               </div>
-              
-              <div class="job-block">
-	              <div class="message-box warning" th:if="${recruit.rcAppCount > 0}">
-	              <p th:text="'지금 보는 공고에 ' + ${appList.size() + '명이 지원하고 있습니다. 서둘러 지원하세요!'}"></p>
-	              </div>
-	              <div class="message-box warning" th:if="${recruit.rcAppCount == 0}">
-	              <p>지금 보고 있는 공고에 아직 지원자가 없습니다. 가장 먼저 지원해보세요!</p>
-	              </div>
-              </div>
-              
+             
               <!-- 채용담당자 -->
               <div th:each="manager:${managerList}" class="job-block">
                   <div class="inner-box">
