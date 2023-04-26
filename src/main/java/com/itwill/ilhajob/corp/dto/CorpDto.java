@@ -31,6 +31,7 @@ public class CorpDto {
 	private String corpAddress;
 	private String corpAddressDetail;
 	private String job;
+	private Integer paymentStatus;
 	private Integer role;
 	private Integer rcCount;
 	

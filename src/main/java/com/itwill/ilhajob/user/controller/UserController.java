@@ -157,10 +157,23 @@ public class UserController {
 	@LoginCheck
 	@RequestMapping("/modify_action")
 	public ResponseEntity<UserDto> modify_action(@RequestBody UserDto userDto, HttpServletRequest request) throws Exception {
+		String email = (String)request.getSession().getAttribute("sUserId");
+		UserDto findUser = userService.findUser(email);
+		if(findUser.getSnsType() != null) {
+			userDto.setSnsId(findUser.getSnsId());
+			userDto.setSnsType(findUser.getSnsType());
+		}
+		userDto.setUserPassword(findUser.getUserPassword());
+		UserDto updateUser = userService.update(findUser.getId(), userDto);
+		
+		
+		/*
 		Long id = (Long)request.getSession().getAttribute("id");
 		UserDto findUser = userService.findUser((String)request.getSession().getAttribute("sUserId"));
 		userDto.setUserPassword(findUser.getUserPassword());
 	    UserDto updateUser = userService.update(id,userDto);
+	    */
+	    
 		return ResponseEntity.ok(updateUser);
 	}
 	
@@ -343,7 +356,7 @@ public class UserController {
 			
 		} */
 	
-		
+		// 리뷰 작성
 		@LoginCheck
 		@RequestMapping("/review_write_action")
 		public String review_write_action(@ModelAttribute ReviewDto reviewDto,@ModelAttribute UserDto userDto ,HttpServletRequest request,@RequestParam("corpId") Long corpId,Model model) throws Exception{
@@ -378,7 +391,7 @@ public class UserController {
 	
 	
 		
-		
+		// 리뷰 삭제
 		@LoginCheck
 		@RequestMapping("/review_delete")
 		public String review_delete(Long id,Long corpId) throws Exception{

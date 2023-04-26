@@ -3,8 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Superio | Just another HTML Template | Candidate
-	Dashboard Resume</title>
+<title>ilhajob</title>
 
 <!-- Stylesheets -->
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -80,10 +79,14 @@
 											</div>
 											<div class="table-content">
 												<ul>
-													<li><span>1 job posting</span></li>
-													<li><span>0 featured job</span></li>
 													<li><span th:text="${product.productPeriod+'일'}">Job displayed for 20 days</span></li>
-													<li><span>Premium Support 24/7 </span></li>
+													<th:block th:if="${session.sUserId != null}">
+													<li><span>기업리뷰 확인 </span></li>
+													</th:block>
+													<th:block th:if="${session.sCorpId != null}">
+													<li><span>공고등록</span></li>
+													<li><span>메인화면 공고노출</span></li>
+													</th:block>
 												</ul>
 											</div>
 											<div class="table-footer">

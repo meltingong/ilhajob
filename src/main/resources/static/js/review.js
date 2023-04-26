@@ -48,7 +48,7 @@
 			data: jsonData,
 			contentType: 'application/json',
 			dataType: 'json'
-		}); 
+		});
 		//promise 객체를 사용하여 Ajax 요청 처리 (resolve, reject)
 		promise.then(function(response) {
 			console.log(response);
@@ -66,9 +66,36 @@
 			console.log(status);
 			console.log(error);
 		});
-
-
+		
+	});
 	
+	$(document).on('click', '.hover-trigger', function(e) {
+		e.preventDefault();
+		let role = $('#session-role').data('session-role');
+		let paymentStatus = $('#session-paymentStatus').data('session-ps');
+		
+		if(role == null || role == undefined){
+			if (confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")) {
+				window.location.href = '/final-project-team1-ilhajob/login';
+			}
+			return false;
+		}
+		
+		if(role =='user' || paymentStatus != 1){
+			if (confirm("결제가 필요합니다. 결제 페이지로 이동하시겠습니까?")) {
+				window.location.href = '/final-project-team1-ilhajob/product';
+			}
+			return false;
+		}
 		
 	});
 
+	$(".blur-content").hover(
+		function() {
+			$(this).css("cursor", "pointer");
+		},
+		function() {
+			$(this).css("cursor", "default");
+		}
+	);
+		
