@@ -96,6 +96,8 @@ public class User {
 	private String snsId;
 	
 	//private String job;
+	@Column(columnDefinition = "NUMBER(1) DEFAULT 0")
+	private Integer paymentStatus;
 	
 	private int role;
 	
