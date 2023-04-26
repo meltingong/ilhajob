@@ -166,6 +166,9 @@ function reviewDelete(){
               </div>
               	 <h3>Review [리뷰]</h3><br>
 	             <div class="text">해당 기업의 리뷰 리스트를 제공합니다.</div>
+	             <th:block th:if="${session.role== null || (#session.getAttribute('role') == 'user' && #session.getAttribute('paymentStatus') != 1)}">
+	             <p>상품을 구매하고 리뷰를 확인해 보세요!</p><p><a href="product"> 바로 구매하러 가기</a></p>
+	             </th:block>
 	        
 		      <th:block th:if="${session.role== null || (#session.getAttribute('role') == 'user' && #session.getAttribute('paymentStatus') != 1)}">
 		      	<div id="blur-content" class="blur-content">
