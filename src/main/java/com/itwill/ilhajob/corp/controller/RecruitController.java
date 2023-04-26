@@ -1,8 +1,9 @@
 package com.itwill.ilhajob.corp.controller;
 
 import java.io.Console;
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -263,6 +264,7 @@ public class RecruitController {
 		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
 		System.out.println("가져온 recruitDto : " + recruitDto);
 		recruitDto.setRcDate(LocalDateTime.now());
+		//마감일 설정
 		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
 		recruitDto.setRcStatus(0);
 		recruitDto.setRcAppCount(0);
@@ -324,26 +326,29 @@ public class RecruitController {
 	}
 	
 	@RequestMapping("/recruit-modify-action")
-	public String recruit_modify_action(@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
+	public String recruit_modify_action(@RequestParam("date")String date,@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
 		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		recruitDto.setRcDate(LocalDateTime.now());
+		
+		//마감일 설정
+		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime time=LocalDate.parse(date,formatter).atStartOfDay();
+		recruitDto.setRcDeadline(time);
+		
 		//마감일=등록일+30일로 설정
-		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		//recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		
+		//공고 등록시 진행중으로 변경
 		recruitDto.setRcStatus(0);
-		//System.out.println("pre modify action >>>>"+recruitDto);
-		
+
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
-		
 		
 		//System.out.println("update check>>>>"+checkRecruit);
 		model.addAttribute("id",recruitDto.getId());
 		return "redirect:recruit-detail?id=" + recruitDto.getId();
 		
-		//RecruitDto updateRecruit= recruitService.update(recruitDto);
-		//System.out.println("updateRecruit>>>"+updateRecruit);
-		//model.addAttribute("updateRecruit", updateRecruit);
 	}
 	
 	//공고리스트-지원자 이력서보기-승인 버튼 클릭 시
