@@ -87,16 +87,21 @@ public class RecruitController {
 		LocalDateTime today = LocalDateTime.now();
 		LocalDateTime deadline = today.plusDays(7);
 		
-		for (RecruitDto recruit : tempRecruitList) {
-			if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
-				// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
-				// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
-				deadLineRecruitList.add(recruit);
+		try {
+			for (RecruitDto recruit : tempRecruitList) {
+				if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
+					// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
+					// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
+					deadLineRecruitList.add(recruit);
+				}
+				System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
+				System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
+				model.addAttribute("deadLineRecruitList", deadLineRecruitList);
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
-		System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
-		System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
-		model.addAttribute("deadLineRecruitList", deadLineRecruitList);
 		
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
@@ -195,6 +200,12 @@ public class RecruitController {
 	public String recruit_detail(@RequestParam long id, Model model,HttpServletRequest request) throws Exception {
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
+//		List<AppDto> appList = appService.findAllByRecruitId(id);
+		List<AppDto> appList = new ArrayList<AppDto>();
+		if (appService.findAllByRecruitId(id).size() != 0) {
+			appList = appService.findAllByRecruitId(id);
+			model.addAttribute("appList", appList);
+		}
 		List<ManagerDto> managerList = managerService.findManagerByCorpID(recruit.getCorp().getId());
 		model.addAttribute("managerList", managerList);
 		
