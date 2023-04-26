@@ -44,5 +44,8 @@ public interface RecruitService {
 	//readCount 증가
 	void increaseReadCount(Long id) throws Exception;
 	
+	//공고 asc, desc
+	public List<RecruitDto> getRecruitListOrderByDeadline(String order) throws Exception;
+	
 	
 }

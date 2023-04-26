@@ -327,9 +327,45 @@
         <!-- Sec Title -->
         <div class="sec-title -type-2 text-center">
           <h2>경험자들의 생생한 리뷰를 한눈에!</h2>
-          <div class="text">지원한 기업에 대한 정보를 다른 구직자들과 공유해보세요.</div>
+          <div class="text"><p>지원한 기업에 대한 정보를 다른 구직자들과 공유해보세요.</p></div>
+          <th:block th:if="${session.role== null || (#session.getAttribute('role') == 'user' && #session.getAttribute('paymentStatus') != 1)}">
+          <br>
+          <p>상품을 구매하고 리뷰를 확인해 보세요!</p><p><a href="product"> 바로 구매하러 가기</a></p>
+          </th:block>
         </div>
-
+		
+		<!-- 무료 회원에게는 blur -->
+		<th:block th:if="${session.role== null || (#session.getAttribute('role') == 'user' && #session.getAttribute('paymentStatus') != 1)}">
+        <div class="blur-content">
+        <div class="carousel-outer wow fadeInUp">
+        	 <div class="your-blurred-content">
+          <!-- Testimonial Carousel -->
+          <div class="testimonial-carousel owl-carousel owl-theme" >
+	            <!--Testimonial Block -->
+	            <div class="testimonial-block" th:each="review:${reviewList}">
+	              <div class="inner-box">
+	                <h5 th:text="${review.corp.corpName}">왜 안떠</h5><br>
+	                <div class="info-box">
+	                  <div class="thumb"><img src="images/resource/testi-thumb-1.png" alt=""></div>
+	                  <div class="content">
+	                    <p th:text="${review.reviewTitle}">Theresa Webb</p>
+	                    <span class="copyright-text" th:text="${review.user.userName} ?: ${review.user.userEmail}">Marketing Coordinator</span>
+	                  </div>
+	                </div>
+	                <div class="text">
+	                <span style="color: Gold" th:text="${#strings.repeat('★', review.reviewGrade)}"></span>
+	                <p th:text="${review.reviewContent}">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</p>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+        </div>
+        </div>
+      </th:block>
+      
+      <!-- 유료 회원에게는 리뷰 보이게 -->
+		<th:block th:if="${(#session.getAttribute('role') == 'user' and #session.getAttribute('paymentStatus') == 1) or #session.getAttribute('corp') == 'corp'}">
         <div class="carousel-outer wow fadeInUp">
           <!-- Testimonial Carousel -->
           <div class="testimonial-carousel owl-carousel owl-theme" >
@@ -347,7 +383,6 @@
                 </div>
                 <div class="text">
                 <span style="color: Gold" th:text="${#strings.repeat('★', review.reviewGrade)}"></span>
-                <!-- <span th:text="${review.reviewGrade} + '점'">평점</span> -->
                 <p th:text="${review.reviewContent}">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</p>
               </div>
             </div>
@@ -385,6 +420,7 @@
           </div>
         </div>
       </div>
+      </th:block>
     </section>
     <!-- End Testimonial Section -->
 

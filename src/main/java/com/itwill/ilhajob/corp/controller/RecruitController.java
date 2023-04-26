@@ -71,25 +71,28 @@ public class RecruitController {
 		model.addAttribute("recruitList", recruitList);
 		
 		// 마감 임박(Today+7 까지) 공고 리스트
-		List<RecruitDto> tempRecruitList = recruitService.findRecruitAll();
 		List<RecruitDto> deadLineRecruitList = new ArrayList<RecruitDto>();
 
-		LocalDateTime today = LocalDateTime.now();
-		LocalDateTime deadline = today.plusDays(7);
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime endToday = now.withHour(23).withMinute(59).withSecond(59);
+		System.out.println(">>>>>>>>>>>> : " + endToday);
 		
-		for (RecruitDto recruit : tempRecruitList) {
-			if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
-				// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
-				// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
-				deadLineRecruitList.add(recruit);
-			}
-		}
-		if (deadLineRecruitList.size() == 0) {
-			System.out.println("마감임박 공고 없음");
+		LocalDateTime deadline = endToday.plusDays(7);
+		System.out.println(">>>>>>>>>>>> deadline : " + deadline);
+		
+		for (RecruitDto recruit : recruitList) {
+			if (recruit.getRcDeadline().isAfter(now.minusDays(1).withHour(23).withMinute(59).withSecond(59)) && recruit.getRcDeadline().isBefore(deadline) && recruit.getRcDeadline().compareTo(deadline) <= 0) {
+					deadLineRecruitList.add(recruit);
+					System.out.println("공고 마감날짜  : " + recruit.getRcDeadline());
+					model.addAttribute("deadLineRecruitList", deadLineRecruitList);
+			} 
 		}
 		System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
 		System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
-		model.addAttribute("deadLineRecruitList", deadLineRecruitList);
+		
+		if (deadLineRecruitList.size() == 0) {
+			System.out.println("마감임박 공고 없음");
+		}
 		
 		//리뷰 리스트
 		List<ReviewDto> reviewList = reviewService.findAll();
@@ -119,8 +122,8 @@ public class RecruitController {
 
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,
-	                        @RequestParam(defaultValue = "8") int size,
-	                        Model model,HttpServletRequest request) throws Exception {
+	                           @RequestParam(defaultValue = "8") int size,
+	                           Model model,HttpServletRequest request) throws Exception {
 		//페이징 기능 추가->일단 6개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
 	    Page<RecruitDto> recruitPage = recruitService.findAll(pageable);

@@ -20,8 +20,10 @@ public interface RecruitRepository extends JpaRepository<Recruit, Long>{
 	
 	//paging 기능 구현
 	Page<Recruit> findAll(Pageable pageable);
-
-
+	
+	//공고 오름차순, 내림차순
+	List<Recruit> findAllByOrderByRcDeadlineAsc();
+	List<Recruit> findAllByOrderByRcDeadlineDesc();
 	
 	
 }
