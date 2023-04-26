@@ -118,6 +118,7 @@ $('.blog-upload-btn').click(function(e) {
 				});
 			}else{
 				alert("블로그 작성 완료");
+				location.href="/final-project-team1-ilhajob/blog-single?id="+blogId;
 			}
 		},
 	 });

@@ -92,8 +92,8 @@ function blogLike(){
   <span class="header-span"></span>
 
   <!-- Main Header-->
-  <header class="main-header">
-   <div id="main-header" th:include="include_common_top::include_common_top"></div>
+  <header class="main-header header-shaddow">
+    <div id="main-header" th:include="include_common_top_dashboard::include_common_top_dashboard"></div>
   </header>
   <!--End Main Header -->
 
@@ -123,7 +123,7 @@ function blogLike(){
         <figure class="main-image"><img th:src="${blog.blogImage}" src="images/resource/news-1.jpg" alt="" style="width:auto;display: block; margin: auto;"/></figure>
     </th:block>
     <th:block th:if = "${blog.blogImage == null}">
-        <figure class="main-image"><img src="images/resource/news-1.jpg" alt=""/></figure>
+        <figure class="main-image"><img src="images/resource/blog-single.jpg" alt=""/></figure>
     </th:block>
     <!-- <figure class="main-image"><img src="images/resource/blog-single.jpg" alt=""></figure> -->
     <div class="auto-container">
