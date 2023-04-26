@@ -60,7 +60,6 @@ public class ImageController {
 		String sUserId = (String)request.getSession().getAttribute("sUserId");
 		UserDto loginUser = userService.findUser(sUserId);
 		
-		//절대경로 profile은 config에서 경로등록
 		Map<String, String> pathMap = makeDir("blog");
 		// MultipartFile 배열로 받은 파일을 처리하는 로직
 	    for (MultipartFile image : images) {

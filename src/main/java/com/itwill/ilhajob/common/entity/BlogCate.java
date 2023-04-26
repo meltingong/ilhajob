@@ -36,7 +36,4 @@ public class BlogCate {
 	@Column(nullable = false, length = 1000)
 	private String blogCateName;
 	
-	@OneToMany(fetch = FetchType.LAZY , mappedBy="blogCate")
-	private List<Blog> blog = new ArrayList<>();
-	
 }

@@ -3,6 +3,7 @@ package com.itwill.ilhajob.common.dto;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.itwill.ilhajob.common.entity.Product;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.user.dto.UserDto;
 
@@ -24,6 +25,7 @@ public class OrdersDto {
 	//상품구매 목록 확인시 order_valid로 만료 표시
 	private int orderValid;
 	
+	private ProductDto product;
 	private Long productId;
 	private Long corpId;
 	private Long userId;

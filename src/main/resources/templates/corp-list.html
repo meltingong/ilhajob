@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Superio | Just another HTML Template | Employers List v3</title>
+<title>ilhajob</title>
 
 <!-- Stylesheets -->
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -22,6 +22,20 @@
 
 <!-- Handlebars -->
 <!-- script  defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script-->
+<style type="text/css">
+	.changeTag{
+	background: rgba(25, 103, 210, 0.15);
+					    color: #1967D2;
+					    padding-left: 20px;
+					    padding-right: 20px;
+					    padding-top: 8px;
+					    padding-bottom: 8px;
+					    margin-bottom: 10px;
+					    border-radius: 20px;
+					    font-size: 17px;
+	}
+</style>
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 <script
@@ -171,7 +185,7 @@ $(document).ready(function() {
 								Filters</button>
 
 							<!-- ls Switcher -->
-							<div class="ls-switcher">
+							<div class="ls-switcher" style="margin-bottom: 20px">
 								<div class="showing-result">
 									<div class="text">
 										Showing
@@ -179,7 +193,7 @@ $(document).ready(function() {
 										<strong th:text="${corpList.size()}"></strong> employer
 									</div>
 								</div>
-								<button class="changeTag" name="all" value="전체">전체</button>
+								<!--  <button class="changeTag" name="all" value="전체">전체</button>-->
 
 								<div th:each="tag: ${tagList}" th:if="${tag.tagId}>3">
 									<button class="changeTag" name="${tag.tagName}"
@@ -210,9 +224,14 @@ $(document).ready(function() {
 											<tr>
 											<span class="featured" th:if="${rcCountMap[corp.id]>0}" style="background-color:mistyrose; color: red">채용중</span> 
 											</tr>
-											<span class="company-logo"><img
-												th:src="${corp.corpStoredFileName}" style="width:80px"
-												src="images/resource/company-logo/6-1.png" alt=""></span>
+											<th:block th:if = "${corp.corpStoredFileName != null}">
+										        <span class="company-logo">
+											        <img th:src="${corp.corpStoredFileName}" alt="" style="width:80px; height:80px"/>
+										        </span>
+										    </th:block>
+										    <th:block th:if = "${corp.corpStoredFileName == null}">
+										        <figure class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""/></figure>
+										    </th:block>
 											<h4>
 												<a th:href="@{/corp-detail(corpId=${corp.id})}"
 													th:text="${corp.corpName}"></a>

@@ -24,11 +24,22 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Superio | Just another HTML Template | Job List v4</title>
+  <title>ilhajob</title>
   
   <style>
   		.hidden-img { display: none;}
   		.show-img { display: block;}
+		.changeTag{
+						background: rgba(25, 103, 210, 0.15);
+					    color: #1967D2;
+					    padding-left: 20px;
+					    padding-right: 20px;
+					    padding-top: 8px;
+					    padding-bottom: 8px;
+					    margin-bottom: 10px;
+					    border-radius: 20px;
+					    font-size: 17px;
+					}
   </style>
 
   <!-- Stylesheets -->
@@ -118,7 +129,7 @@
                 <div class="showing-result show-filters">
                   <div class="text">Showing <strong th:text="${recruitList.size()}">41-60</strong> of <strong></strong> Recruits</div>
                 </div>
-                <button class="changeTag" name="all" value="99999">전체</button>
+               <!--   <button class="changeTag" name="all" value="99999">전체</button>-->
                 <div th:each="tag: ${tagList}" th:if="${tag.tagId}<4">
 					<button class="changeTag" name="${tag.tagName}"
 					th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
@@ -157,8 +168,8 @@
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span><span th:text="${recruit.rcPosition}"></span></li>
                         <li><span class="icon flaticon-map-locator"></span> <span th:text="${recruit.corp.corpAddress}"></span></li>
-                        <li class="icon flaticon-clock-3"><span  th:text="|마감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></span></li>
-                        <li class="icon flaticon-money" ><spanth th:text="${recruit.rcSalary}"></span></li>
+                        <li><span class="icon flaticon-clock-3"></span><span  th:text="|마감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></span></li>
+                        <li><span class="icon flaticon-money" ></span><span th:text="${#numbers.formatInteger(recruit.rcSalary,3,'COMMA')+' 	만원'}"></span></li>
                       </ul>
                       <ul class="job-other-info">
                       	<th:block th:if="${recruit.rcStatus==0}">
@@ -248,15 +259,23 @@
                   <div class="inner-box">
                     <div class="content">
                       <span class="company-logo"><img src="images/resource/company-logo/1-2.png" alt=""></span>
-                      <h4><a href="recruit-detail?id={{recruit.id}}">
-						{{recruit.rcTitle}}</a></h4>
+                      <h4>
+							<a href="recruit-detail?id={{recruit.id}}" 
+							onClick="increaseReadCount(this.form);">
+							{{recruit.rcTitle}}</a></h4>
                       <ul class="job-info">
                         <li>{{recruit.rcPosition}}<span class="icon flaticon-briefcase"></span></li>
                         <li>{{recruit.corp.corpAddress}}<span class="icon flaticon-map-locator"></span></li>
-                        <li><span class="icon flaticon-clock-3"></span> 11 hours ago</li>
-                        <li><span class="icon flaticon-money"></span> $35k - $45k</li>
-                      </ul>
+                        <li><span class="icon flaticon-clock-3"></span>마감일: {{recruit.rcDeadline}}</li>
+                        <li><span class="icon flaticon-money"></span>{{recruit.rcSalary}}</li>
+                      </ul>	
                       <ul class="job-other-info">
+						{{#if (eq recruit.rcStatus 0)}}
+  							<li class="count" style="background-color:#FDFD96;">공고진행중</li>
+						{{/if}}
+						{{#if (eq recruit.rcStatus 1)}}
+  							<li class="count" style="background-color:mistyrose; color: red;">마감</li>
+						{{/if}}
 						{{#each tagList}}
                         <li class="time" >{{tagName}}</li>
 						{{/each}}
@@ -270,20 +289,22 @@
                       </ul>
    									 <form action="recruit_scrap_insert_delete">
         								<button class="bookmark-btn" name="id" id="check-bookmark" type="button" value="{{recruit.id}}">
-    											  <!-- 수정된 부분 -->
-         										   {{#ifEquals (lookup status recruit.id) 1}}
+											{{#with ../status}}
+        								  {{#ifEquals (lookup this ../recruit.id) 1}}
 													<img id="id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;" class="show-img">
 													<img id="id2" src="images/bookmark-bin.png" style="width: 17px; margin-left: 5px;" class="hidden-img">
 													{{else}}
 													<img id="id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;" class="hidden-img">
 													<img id="id2" src="images/bookmark-bin.png" style="width: 17px; margin-left: 5px;" class="show-img">
-												   {{/ifEqual}}
-        								</button>
+										 {{/ifEquals}}
+											{{/with}}
+										</button>
     								</form>
                     </div>
                   </div>
                 </div>
 				{{/each}}
+				
               </div>
 				<nav class="ls-pagination mb-5">
 				  <ul>

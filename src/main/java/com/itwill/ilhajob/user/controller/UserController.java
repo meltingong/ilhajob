@@ -163,6 +163,7 @@ public class UserController {
 			userDto.setSnsId(findUser.getSnsId());
 			userDto.setSnsType(findUser.getSnsType());
 		}
+		userDto.setRole(findUser.getRole());
 		userDto.setUserPassword(findUser.getUserPassword());
 		UserDto updateUser = userService.update(findUser.getId(), userDto);
 		

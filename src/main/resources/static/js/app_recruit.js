@@ -32,13 +32,19 @@ Handlebars.registerHelper('lte', function(a, b) {
 Handlebars.registerHelper('and', function(a, b) {
   return a && b;
 });
+Handlebars.registerHelper('formatDate', function(date, format) {
+	console.log("formatDate도착");
+  return temporals.format(date, format);
+});
 Handlebars.registerHelper('lookup', function (obj, key) {
-		console.log(obj,key);
 		 if (obj === undefined) {
 		        return ""; // 또는 적절한 기본값 또는 에러 처리 로직을 추가하세요
 		    }
-	        return obj.get(key);
+	        return obj[key];
 	 });
+Handlebars.registerHelper('with', function(context, options) {
+  return options.fn(context);
+});
 $('.changeTag').click(function(e){
 	console.log("펑션접근");
 	/*
