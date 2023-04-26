@@ -140,7 +140,7 @@
         corp_welfare varchar2(600 char),
         corp_stored_file_name varchar2(255 char),
         rc_count number(1) DEFAULT 0,
-        payment_status NUMBER(1) DEFAULT 0
+        payment_status NUMBER(1) DEFAULT 0,
         job varchar2(255 char),
         role NUMBER(1) DEFAULT 2,
         primary key (id)
@@ -322,7 +322,7 @@
         user_post_code number(10,0),
         user_sex varchar2(255 char),
         user_skills varchar2(300 char),
-        payment_status NUMBER(1) DEFAULT 0
+        payment_status NUMBER(1) DEFAULT 0,
         primary key (id)
     );
     
@@ -331,7 +331,7 @@
         recruit_id number(19,0),
         user_id number(19,0),
         primary key (id)
-    )
+    );
     
     alter table app 
        add constraint FKhaptmc50bdgwogvgkytx3b0h 
@@ -504,9 +504,4 @@
     alter table recruit_scrap 
        add constraint FK6jj2rpr54ffao7g8jxxs1uu2d 
        foreign key (recruit_id) 
-       references recruit
-       
-    alter table recruit_scrap 
-       add constraint FK8h4chxoe3bo4wkn8uxep3k2ia 
-       foreign key (user_id) 
-       references userinfo
+       references recruit;
