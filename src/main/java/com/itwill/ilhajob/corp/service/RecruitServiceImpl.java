@@ -141,5 +141,19 @@ public class RecruitServiceImpl implements RecruitService {
 		   
 	    }
 
+	//공고 asc, desc
+	@Override
+	public List<RecruitDto> getRecruitListOrderByDeadline(String order) throws Exception {
+		List<Recruit> recruitList;
+		if(order.equals("desc")) {
+			recruitList=recruitRepository.findAllByOrderByRcDeadlineDesc();
+		}else {
+			recruitList=recruitRepository.findAllByOrderByRcDeadlineAsc();
+		}
+		return recruitList.stream().map(recruit -> modelMapper.map(recruit, RecruitDto.class))
+				.collect(Collectors.toList());
+	}
+	
+	
 	
 }

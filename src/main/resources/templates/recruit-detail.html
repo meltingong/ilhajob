@@ -86,8 +86,8 @@
                     <div class="content">
                       <h4><a href="#" th:text="${recruit.rcTitle}">Product Designer / UI Designer</a></h4>
                       <ul class="job-info">
-                        <li th:text="${recruit.rcTitle}"><span class="icon flaticon-briefcase"></span> Segment</li>
-                        <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
+                        <li th:text="|회사명: ${recruit.corp.corpName}|"><span class="icon flaticon-map-locator"></span> London, UK</li>
+                        <li class="icon flaticon-map-locator" th:text="|위치: ${recruit.corp.corpAddress}|"><span class="icon flaticon-map-locator"></span> London, UK</li>
                         <li class="icon flaticon-clock-3"><span  th:text="|등록일: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></span></li>
                         <li class="icon flaticon-money" ><span th:text="${#numbers.formatInteger(recruit.rcSalary,3,'COMMA')+' 	만원'}"></span></li>
                       </ul>
@@ -106,7 +106,7 @@
               </div>
 
               <div class="job-overview-two">
-                <h4>공고 내용 요약</h4>
+                <h4>< 공고 내용 요약 ></h4>
                 <ul>
                   <li>
                     <i class="icon icon-calendar"></i>
@@ -122,7 +122,7 @@
                   <li>
                     <i class="icon icon-clock"></i>
                     <h5>근무 시간 :</h5>
-                    <span> 40h / 주</span>
+                    <span> 40시간 / 주</span>
                   </li>
                   <li>
                     <i class="icon icon-salary"></i>
@@ -242,7 +242,7 @@
 
                     <ul class="company-info">
                     
-                      <li>업종 : <span th:text="${recruit.corp.job}">Software</span></li>
+                      <li>직군 : <span th:text="${recruit.corp.job}">Software</span></li>
                       <li>기업규모 : <span th:text="${recruit.corp.corpSize}">501-1,000</span></li>
                       <li>설립일 : <span th:text="${#temporals.format(recruit.corp.corpEst, 'yyyy-MM-dd')}">2011</span></li>
                       <li>연락처 : <span th:text="${recruit.corp.corpPhone}">123 456 7890</span></li>
@@ -262,6 +262,7 @@
 
                     <div class="btn-box">
                     <a href="#" th:href="@{__${recruit.corp.corpWebsite}__}" class="theme-btn btn-style-three" th:text="${recruit.corp.corpWebsite}" target="_blank" th:if="${recruit.corp.corpWebsite != null}">
+                    
                     www.invisionapp.com</a></div>
                   </div>
                 </div>

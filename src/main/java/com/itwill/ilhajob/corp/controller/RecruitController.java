@@ -119,8 +119,8 @@ public class RecruitController {
 
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,
-	                        @RequestParam(defaultValue = "8") int size,
-	                        Model model,HttpServletRequest request) throws Exception {
+	                           @RequestParam(defaultValue = "8") int size,
+	                           Model model,HttpServletRequest request) throws Exception {
 		//페이징 기능 추가->일단 6개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
 	    Page<RecruitDto> recruitPage = recruitService.findAll(pageable);
