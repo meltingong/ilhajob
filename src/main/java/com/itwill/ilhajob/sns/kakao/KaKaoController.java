@@ -81,7 +81,6 @@ public class KaKaoController {
 	   			 
 	   			 session.setAttribute("sUserId", kakaoProfile.getKakao_account().email);
 	   			 session.setAttribute("role", "user");
-	   			 
 	   			 session.setAttribute("snsType","kakao");
 	   			 
 	   			 request.setAttribute("kakaoProfile", kakaoProfile);
