@@ -332,24 +332,26 @@
 
         <div class="carousel-outer wow fadeInUp">
           <!-- Testimonial Carousel -->
-          <div class="testimonial-carousel owl-carousel owl-theme">
+          <div class="testimonial-carousel owl-carousel owl-theme" >
 
             <!--Testimonial Block -->
-            <div class="testimonial-block">
+            <div class="testimonial-block" th:each="review:${reviewList}">
               <div class="inner-box">
+                <h5 th:text="${review.corp.corpName}">왜 안떠</h5><br>
                 <div class="info-box">
                   <div class="thumb"><img src="images/resource/testi-thumb-1.png" alt=""></div>
                   <div class="content">
-                    <h4 class="name">Theresa Webb</h4>
-                    <span class="designation">Marketing Coordinator</span>
+                    <p th:text="${review.reviewTitle}">Theresa Webb</p>
+                    <span class="copyright-text" th:text="${review.user.userName} ?: ${review.user.userEmail}">Marketing Coordinator</span>
                   </div>
                 </div>
-
-                <div class="text">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</div>
+                <div class="text">
+                <span th:text="${review.reviewGrade} + '점'">평점</span>
+                <p th:text="${review.reviewContent}">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</p>
               </div>
             </div>
-
-            <!--Testimonial Block -->
+<!-- 
+            Testimonial Block
             <div class="testimonial-block">
               <div class="inner-box">
                 <div class="info-box">
@@ -364,7 +366,7 @@
               </div>
             </div>
 
-            <!--Testimonial Block -->
+            Testimonial Block
             <div class="testimonial-block">
               <div class="inner-box">
                 <div class="info-box">
@@ -378,7 +380,7 @@
                 <div class="text">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</div>
               </div>
             </div>
-
+  -->
           </div>
         </div>
       </div>

@@ -45,10 +45,13 @@ import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.RecruitScrapDto;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.Review;
 import com.itwill.ilhajob.user.entity.User;
 import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.RecruitScrapService;
+import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
 
 
@@ -72,6 +75,8 @@ public class RecruitController {
 	private RecruitScrapService recruitScrapService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	//home에 recruitList 뿌리기
 	@RequestMapping(value = { "/", "/index" })
@@ -101,6 +106,15 @@ public class RecruitController {
 		System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
 		model.addAttribute("deadLineRecruitList", deadLineRecruitList);
 		
+		//리뷰 리스트
+		List<ReviewDto> reviewList = reviewService.findAll();
+		System.out.println(reviewList.size());
+		for (ReviewDto reviewDto : reviewList) {
+			System.out.println(reviewDto.getUser().getUserName());
+			System.out.println(reviewDto.getCorp().getCorpName());
+		}
+		
+		model.addAttribute("reviewList", reviewList);
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
