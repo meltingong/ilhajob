@@ -238,9 +238,12 @@ public class RecruitController {
 	public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto, HttpServletRequest request)
 			throws Exception {
 		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
+		System.out.println("가져온 recruitDto : " + recruitDto);
 		recruitDto.setRcDate(LocalDateTime.now());
 		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
 		recruitDto.setRcStatus(0);
+		recruitDto.setRcAppCount(0);
+		recruitDto.setRcReadCount(0);
 		recruitDto.setCorp(loginCorp);
 		recruitDto = recruitService.create(recruitDto);
 		String forward_path = "redirect:recruit-detail?id=" + recruitDto.getId();
