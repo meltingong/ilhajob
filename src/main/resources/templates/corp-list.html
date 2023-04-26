@@ -224,9 +224,14 @@ $(document).ready(function() {
 											<tr>
 											<span class="featured" th:if="${rcCountMap[corp.id]>0}" style="background-color:mistyrose; color: red">채용중</span> 
 											</tr>
-											<span class="company-logo"><img
-												th:src="${corp.corpStoredFileName}" style="width:80px"
-												src="images/resource/company-logo/6-1.png" alt=""></span>
+											<th:block th:if = "${corp.corpStoredFileName != null}">
+										        <span class="company-logo">
+											        <img th:src="${corp.corpStoredFileName}" alt="" style="width:80px; height:80px"/>
+										        </span>
+										    </th:block>
+										    <th:block th:if = "${corp.corpStoredFileName == null}">
+										        <figure class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""/></figure>
+										    </th:block>
 											<h4>
 												<a th:href="@{/corp-detail(corpId=${corp.id})}"
 													th:text="${corp.corpName}"></a>
