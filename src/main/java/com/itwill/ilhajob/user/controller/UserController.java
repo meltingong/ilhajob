@@ -157,10 +157,19 @@ public class UserController {
 	@LoginCheck
 	@RequestMapping("/modify_action")
 	public ResponseEntity<UserDto> modify_action(@RequestBody UserDto userDto, HttpServletRequest request) throws Exception {
+		String email = (String)request.getSession().getAttribute("sUserId");
+		UserDto findUser = userService.findUser(email);
+		userDto.setUserPassword(findUser.getUserPassword());
+		UserDto updateUser = userService.update(findUser.getId(), userDto);
+		
+		
+		/*
 		Long id = (Long)request.getSession().getAttribute("id");
 		UserDto findUser = userService.findUser((String)request.getSession().getAttribute("sUserId"));
 		userDto.setUserPassword(findUser.getUserPassword());
 	    UserDto updateUser = userService.update(id,userDto);
+	    */
+	    
 		return ResponseEntity.ok(updateUser);
 	}
 	
