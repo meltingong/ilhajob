@@ -1,6 +1,8 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -257,10 +259,12 @@ public class UserController {
 	
 	// 알림 선택삭제
 	@LoginCheck
-	@RequestMapping("/alerts-remove")
-	public String user_alerts_remove(HttpServletRequest request,Long messageId) throws Exception {
+	@RequestMapping( value = "/alerts-remove", method = RequestMethod.POST)
+	public String user_alerts_remove(HttpServletRequest request, @RequestParam(name = "messageId") String id) throws Exception {
 		String forwardPath="";
-
+		System.out.println(id);
+		Long messageId = Long.parseLong(id);
+		//System.out.println(">>>>>>"+messageId);
 		userService.removeMessageBySeq(messageId);
 
 		forwardPath="redirect:candidate-dashboard-job-alerts";

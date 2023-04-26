@@ -164,18 +164,18 @@
           <!--Tabs Box-->
           <div class="tab-buttons-wrap">
             <ul class="tab-buttons -pills-condensed -blue">
-              <li class="tab-btn" data-tab="#tab1">전체 공고</li>
+              <!--li class="tab-btn" data-tab="#tab1">전체 공고</li-->
               <li class="tab-btn active-btn" data-tab="#tab2">진행중인 공고 </li>
               <li class="tab-btn" data-tab="#tab3">마감 임박 공고</li>
             </ul>
           </div>
 
           <div class="tabs-content pt-50 wow fadeInUp">
-            <!--Tab-->
+            <!--Tab>
             <div class="tab" id="tab1">
               <div class="row">
 
-                <!-- Job Block -->
+                <!-- Job Block >
                 <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
      
                   <div class="inner-box">
@@ -191,11 +191,11 @@
                       <ul class="job-other-info">
                       	<th:block th:if="${recruit.rcStatus==0}">
                       	<li class="count" style="background-color:#FDFD96;">공고진행중</li>
-                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li>
                       	</th:block>
                       	<th:block th:if="${recruit.rcStatus==1}">
                       	<li class="count" style="background-color:mistyrose; color: red;">마감</li>
-                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li>
                       	</th:block>
                         <div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
@@ -210,7 +210,7 @@
                 </div>
 
               </div>
-            </div>
+            </div-->
             <!--Tab-->
             <div class="tab active-tab" id="tab2">
               <div class="row">

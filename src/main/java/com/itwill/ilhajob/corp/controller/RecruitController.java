@@ -87,16 +87,21 @@ public class RecruitController {
 		LocalDateTime today = LocalDateTime.now();
 		LocalDateTime deadline = today.plusDays(7);
 		
-		for (RecruitDto recruit : tempRecruitList) {
-			if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
-				// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
-				// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
-				deadLineRecruitList.add(recruit);
+		try {
+			for (RecruitDto recruit : tempRecruitList) {
+				if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
+					// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
+					// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
+					deadLineRecruitList.add(recruit);
+				}
+				System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
+				System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
+				model.addAttribute("deadLineRecruitList", deadLineRecruitList);
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
-		System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
-		System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
-		model.addAttribute("deadLineRecruitList", deadLineRecruitList);
 		
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
@@ -107,8 +112,6 @@ public class RecruitController {
 		String forward_path = "index";
 		return forward_path;
 	}
-	
-
 	
 	
 	//조회수 증가 기능->수정중...ㅠ
@@ -124,7 +127,7 @@ public class RecruitController {
 
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,
-	                        @RequestParam(defaultValue = "6") int size,
+	                        @RequestParam(defaultValue = "8") int size,
 	                        Model model,HttpServletRequest request) throws Exception {
 		//페이징 기능 추가->일단 6개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
@@ -185,24 +188,7 @@ public class RecruitController {
 		
 		
 	}
-	
-//	@RequestMapping("/recruit-list")
-//	public String recruit_list(Model model) throws Exception {
-//		//공고리스트
-//		List<RecruitDto> recruitList = recruitService.findRecruitAll();
-//		model.addAttribute("recruitList", recruitList);
-//		
-//		//태그리스트
-//		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
-//		List<TagDto> tagList = tagService.selectAll();
-//		model.addAttribute("recruitTagList", recruitTagList);
-//		model.addAttribute("tagList", tagList);
-//		
-//		String forward_path = "recruit-list";
-//		return forward_path;
-//		
-//		
-//	}
+
 
 	@RequestMapping(value = "/recruit-detail", params = "!id")
 	public String recruit_detail() {
@@ -214,6 +200,12 @@ public class RecruitController {
 	public String recruit_detail(@RequestParam long id, Model model,HttpServletRequest request) throws Exception {
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
+//		List<AppDto> appList = appService.findAllByRecruitId(id);
+		List<AppDto> appList = new ArrayList<AppDto>();
+		if (appService.findAllByRecruitId(id).size() != 0) {
+			appList = appService.findAllByRecruitId(id);
+			model.addAttribute("appList", appList);
+		}
 		List<ManagerDto> managerList = managerService.findManagerByCorpID(recruit.getCorp().getId());
 		model.addAttribute("managerList", managerList);
 		
@@ -241,6 +233,7 @@ public class RecruitController {
 		model.addAttribute("scrap", null);
 		
 		
+		
 		String forward_path = "recruit-detail";
 		return forward_path;
 	}
@@ -257,9 +250,12 @@ public class RecruitController {
 	public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto, HttpServletRequest request)
 			throws Exception {
 		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
+		System.out.println("가져온 recruitDto : " + recruitDto);
 		recruitDto.setRcDate(LocalDateTime.now());
 		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
 		recruitDto.setRcStatus(0);
+		recruitDto.setRcAppCount(0);
+		recruitDto.setRcReadCount(0);
 		recruitDto.setCorp(loginCorp);
 		recruitDto = recruitService.create(recruitDto);
 		String forward_path = "redirect:recruit-detail?id=" + recruitDto.getId();
@@ -307,7 +303,7 @@ public class RecruitController {
 		
 		
 		RecruitDto setRecruit=recruitService.findRecruit(recruitDto.getId());
-		System.out.println("setRecruit>>>"+setRecruit);
+		//System.out.println("setRecruit>>>"+setRecruit);
 		model.addAttribute("recruit",setRecruit);
 		model.addAttribute("tagList",tagList);
 		model.addAttribute("recruitTagList",recruitTagList);
@@ -323,8 +319,10 @@ public class RecruitController {
 		recruitDto.setCorp(corpDto);
 		recruitDto.setRcDate(LocalDateTime.now());
 		//마감일=등록일+30일로 설정
-		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		//recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		//공고 등록시 진행중으로 변경
 		recruitDto.setRcStatus(0);
+		//recruitDto.setRcPosition(recruitDto.getRcPosition());
 		//System.out.println("pre modify action >>>>"+recruitDto);
 		
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
