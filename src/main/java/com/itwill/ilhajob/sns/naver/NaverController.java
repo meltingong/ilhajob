@@ -72,6 +72,7 @@ public class NaverController {
         	userDto.setUserEmail(email);
         	userDto.setUserPassword(password);
         	userDto.setUserSex(gender);
+        	userDto.setPaymentStatus(0);
         	try {
         		userService.create(userDto);
         		HttpSession session = request.getSession();

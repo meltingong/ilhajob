@@ -250,7 +250,7 @@
 		<div class="row">
                 <!-- Job Block -->
 				{{#each data}}
-                <div class="job-block col-lg-6 col-md-12 col-sm-12">
+                <div class="job-block col-lg-6 col-md-12 col-sm-12" > 
                   <div class="inner-box">
                     <div class="content">
                       <span class="company-logo"><img src="images/resource/company-logo/1-2.png" alt=""></span>
@@ -282,6 +282,7 @@
                         <li class="required">Urgent</li>
                         -->
                       </ul>
+								{{#if loginUser}}
    									 <form action="recruit_scrap_insert_delete">
         								<button class="bookmark-btn" name="id" id="check-bookmark" type="button" value="{{recruit.id}}">
 											{{#with ../status}}
@@ -295,6 +296,7 @@
 											{{/with}}
 										</button>
     								</form>
+								{{/if}}
                     </div>
                   </div>
                 </div>
