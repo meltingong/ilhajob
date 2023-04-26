@@ -1,18 +1,14 @@
 package com.itwill.ilhajob.corp.controller;
 
-import java.io.Console;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,13 +19,9 @@ import org.springframework.ui.Model;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.dto.RecruitTagDto;
@@ -40,21 +32,15 @@ import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.ManagerDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
-import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
-import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.RecruitScrapDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
-import com.itwill.ilhajob.user.entity.Review;
-import com.itwill.ilhajob.user.entity.User;
-import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.RecruitScrapService;
 import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
-
 
 @Controller
 public class RecruitController {
@@ -70,8 +56,6 @@ public class RecruitController {
 	private RecruitTagService recruitTagService;
 	@Autowired
 	private AppService appService;
-	@Autowired
-	private CvService cvService;
 	@Autowired
 	private RecruitScrapService recruitScrapService;
 	@Autowired
@@ -109,13 +93,8 @@ public class RecruitController {
 		
 		//리뷰 리스트
 		List<ReviewDto> reviewList = reviewService.findAll();
-		System.out.println(reviewList.size());
-		for (ReviewDto reviewDto : reviewList) {
-			System.out.println(reviewDto.getUser().getUserName());
-			System.out.println(reviewDto.getCorp().getCorpName());
-		}
-		
 		model.addAttribute("reviewList", reviewList);
+		
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();

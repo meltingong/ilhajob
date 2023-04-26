@@ -325,9 +325,9 @@
     <section class="testimonial-section -type-2 layout-pt-120 layout-pb-120">
       <div class="container-fluid">
         <!-- Sec Title -->
-        <div class="sec-title -type-3 text-center">
+        <div class="sec-title -type-2 text-center">
           <h2>경험자들의 생생한 리뷰를 한눈에!</h2>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</div>
+          <div class="text">지원한 기업에 대한 정보를 다른 구직자들과 공유해보세요.</div>
         </div>
 
         <div class="carousel-outer wow fadeInUp">
@@ -346,7 +346,8 @@
                   </div>
                 </div>
                 <div class="text">
-                <span th:text="${review.reviewGrade} + '점'">평점</span>
+                <span style="color: Gold" th:text="${#strings.repeat('★', review.reviewGrade)}"></span>
+                <!-- <span th:text="${review.reviewGrade} + '점'">평점</span> -->
                 <p th:text="${review.reviewContent}">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</p>
               </div>
             </div>

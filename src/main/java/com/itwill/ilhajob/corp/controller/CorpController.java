@@ -67,9 +67,12 @@ import com.itwill.ilhajob.corp.service.CorpServiceImpl;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
+import com.itwill.ilhajob.user.dto.RecruitScrapDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.RecruitScrap;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.service.RecruitScrapService;
 import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
 
@@ -82,7 +85,10 @@ public class CorpController {
 	private CorpImageService corpImageService;
 	@Autowired
 	private RecruitService recruitService;
-
+	
+	@Autowired
+	private RecruitScrapService recruitScrapService;
+	
 	@Autowired
 	private UserService userService;
 
@@ -97,6 +103,9 @@ public class CorpController {
 
 	@Autowired
 	private TagService tagService;
+	
+	@Autowired
+	private ManagerService managerService;
 //
 //	@RequestMapping("/index")
 //	public String main() {
@@ -240,7 +249,7 @@ public class CorpController {
 	 ******************************************************************************/
 
 	@RequestMapping("/dashboard")
-	public String corp_dashboard_view(HttpServletRequest request) throws Exception {
+	public String corp_dashboard_view(HttpServletRequest request,Model model) throws Exception {
 		String forwardPath = "";
 
 		/************** login check **************/
@@ -254,8 +263,28 @@ public class CorpController {
 			// System.out.println(loginCorp);
 			CorpDto loginCorp = corpService.findByCorpId(sCorpId);
 			request.setAttribute("corp", loginCorp);
+			
+			//로그인한 회사의 공고리스트 뽑기
+			List<RecruitDto> recruitList = recruitService.findAllByCorpId(loginCorp.getId());
+			model.addAttribute("recruitList",recruitList);
+			
+			//로그인한 회사의 공고리스트 내 지원 전부출력
+			List<AppDto> appList = new ArrayList<AppDto>();
+			for(RecruitDto recruit:recruitList) {
+			appList.addAll(appService.findAllByRecruitId(recruit.getId())); 
+			}
+			model.addAttribute("appList",appList);
+			
+			//매니저리스트
+			List<ManagerDto> managerList = managerService.findManagerByCorpID(sCorpId);
+			model.addAttribute("managerList",managerList);
+			
 			forwardPath = "dashboard";
 		}
+		
+		
+		
+		
 		return forwardPath;
 	}
 

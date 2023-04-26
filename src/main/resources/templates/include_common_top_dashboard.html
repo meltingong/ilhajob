@@ -119,10 +119,12 @@
             </th:block>
          
 			<th:block th:if = "${session.sUserId != null} or ${session.sCorpId != null}">
+            <!-- 
             <button class="menu-btn">
               <span class="count">1</span>
               <span class="icon la la-heart"></span>
             </button>
+             -->
 			
 			<th:block th:if="${session.sUserId != null}">
 			  <button class="menu-btn" onclick="location.href='candidate-dashboard-job-alerts'">
