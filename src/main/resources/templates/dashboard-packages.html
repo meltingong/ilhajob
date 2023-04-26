@@ -40,7 +40,7 @@
     <div class="sidebar-backdrop"></div>
 
     <!-- User Sidebar -->
-    	q<div class="user-sidebar" th:include="user-sidebar::user-sidebar"></div>
+    	<div class="user-sidebar" th:include="user-sidebar::user-sidebar"></div>
     <!-- End User Sidebar -->
 
     <!-- Dashboard -->
@@ -76,13 +76,13 @@
 
                       <tbody>
                         <tr th:each="orders:${orderList}">
-                          <td>1</td>        
-                          <td>슈퍼 이력서 팩</td>
+                          <td th:text = ${orders.id}>1</td>       
+                         <td th:text ="${orders.product.productName}">슈퍼 이력서 팩</td>
                           <td th:text="${orders.orderStartDate}">Apr 21, 2023</td>
                           <td th:text="${orders.orderEndDate}">Apr 30, 2023</td>
                           <td th:text="${orders.orderValid}">Active</td>                          
                         </tr>                                                                                              
-                        <tr th:each="orders:${orderList}">
+                      <!--   <tr th:each="orders:${orderList}">
                           <td>2</td>        
                           <td>골드 채용 패키지</td>
                           <td th:text="${orders.orderStartDate}">Apr 21, 2023</td>
@@ -95,7 +95,7 @@
                           <td th:text="${orders.orderStartDate}">Apr 21, 2023</td>
                           <td th:text="${orders.orderEndDate}">Apr 30, 2023</td>
                           <td th:text="${orders.orderValid}">Active</td>                          
-                        </tr>                                                                                                                                                                                                               
+                        </tr> -->                                                                                                                                                                                                               
                       </tbody>
                     </table>
                     <div class="copyright-text" th:if="${orderList.size()==0}">
