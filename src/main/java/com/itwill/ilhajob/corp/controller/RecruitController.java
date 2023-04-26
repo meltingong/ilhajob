@@ -108,8 +108,6 @@ public class RecruitController {
 		return forward_path;
 	}
 	
-
-	
 	
 	//조회수 증가 기능->수정중...ㅠ
 	@RequestMapping("/increase-readCount-action")
@@ -124,7 +122,7 @@ public class RecruitController {
 
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,
-	                        @RequestParam(defaultValue = "6") int size,
+	                        @RequestParam(defaultValue = "8") int size,
 	                        Model model,HttpServletRequest request) throws Exception {
 		//페이징 기능 추가->일단 6개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
@@ -185,24 +183,7 @@ public class RecruitController {
 		
 		
 	}
-	
-//	@RequestMapping("/recruit-list")
-//	public String recruit_list(Model model) throws Exception {
-//		//공고리스트
-//		List<RecruitDto> recruitList = recruitService.findRecruitAll();
-//		model.addAttribute("recruitList", recruitList);
-//		
-//		//태그리스트
-//		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
-//		List<TagDto> tagList = tagService.selectAll();
-//		model.addAttribute("recruitTagList", recruitTagList);
-//		model.addAttribute("tagList", tagList);
-//		
-//		String forward_path = "recruit-list";
-//		return forward_path;
-//		
-//		
-//	}
+
 
 	@RequestMapping(value = "/recruit-detail", params = "!id")
 	public String recruit_detail() {
