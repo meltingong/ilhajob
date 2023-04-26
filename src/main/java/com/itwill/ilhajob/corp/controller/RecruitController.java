@@ -222,6 +222,7 @@ public class RecruitController {
 		model.addAttribute("scrap", null);
 		
 		
+		
 		String forward_path = "recruit-detail";
 		return forward_path;
 	}
@@ -291,7 +292,7 @@ public class RecruitController {
 		
 		
 		RecruitDto setRecruit=recruitService.findRecruit(recruitDto.getId());
-		System.out.println("setRecruit>>>"+setRecruit);
+		//System.out.println("setRecruit>>>"+setRecruit);
 		model.addAttribute("recruit",setRecruit);
 		model.addAttribute("tagList",tagList);
 		model.addAttribute("recruitTagList",recruitTagList);
@@ -307,8 +308,10 @@ public class RecruitController {
 		recruitDto.setCorp(corpDto);
 		recruitDto.setRcDate(LocalDateTime.now());
 		//마감일=등록일+30일로 설정
-		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		//recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		//공고 등록시 진행중으로 변경
 		recruitDto.setRcStatus(0);
+		//recruitDto.setRcPosition(recruitDto.getRcPosition());
 		//System.out.println("pre modify action >>>>"+recruitDto);
 		
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
