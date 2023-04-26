@@ -96,7 +96,6 @@ public class OrderController {
 		ProductDto productDto = gson.fromJson(productDataObject, ProductDto.class);
 		String role = (String)request.getSession().getAttribute("role");
 		long id = (long)request.getSession().getAttribute("id");
-		
 		OrdersDto saveOrdersDto = ordersService.checkAndSaveOrder(role, id, productDto,paymentDataObject.get("paymentMethod").toString());
 		request.getSession().setAttribute("paymentStatus", 1);
 		JsonObject orderDataObject = new JsonObject();

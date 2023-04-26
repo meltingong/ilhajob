@@ -6,6 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +42,5 @@ public class WebAppInitConf implements WebApplicationInitializer {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-	
 	
 }
