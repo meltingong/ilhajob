@@ -301,13 +301,17 @@ public class CorpController {
 
 		// 공고 정렬
 		// 마감일 내림차순
-		if ("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
-			recruitList.sort((o1, o2) -> o2.getRcDeadline().compareTo(o1.getRcDeadline()));
-		} else {
-			// 마감일 오름차순
-			recruitList.sort(Comparator.comparing(RecruitDto::getRcDeadline));
+		try {
+			if ("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
+				recruitList.sort((o1, o2) -> o2.getRcDeadline().compareTo(o1.getRcDeadline()));
+			} else {
+				// 마감일 오름차순
+				recruitList.sort(Comparator.comparing(RecruitDto::getRcDeadline));
+				model.addAttribute("recruitList", recruitList);      
+			}
+			
+		} catch (Exception e) {
 		}
-		model.addAttribute("recruitList", recruitList);
 
 		return "dashboard-manage-job";
 	}
