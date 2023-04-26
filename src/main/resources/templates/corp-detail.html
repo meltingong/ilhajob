@@ -155,9 +155,14 @@ function reviewDelete(){
                         <li><span class="icon flaticon-money"></span><span th:text="${#numbers.formatInteger(recruit.rcSalary,3,'COMMA')+' 	만원'}"></span></li>
                       </ul>
                       <ul class="job-other-info">
-                        <li class="time">Full Time</li>
-                        <li class="required">Urgent</li>
-                      </ul>
+                        <th:block th:if="${recruit.rcStatus==0}">
+                      	<li class="count" style="background-color:#FDFD96;">공고진행중</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
+                      	<th:block th:if="${recruit.rcStatus==1}">
+                      	<li class="count" style="background-color:mistyrose; color: red">마감</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
                       <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     </div>
                   </div>
@@ -284,7 +289,7 @@ function reviewDelete(){
                   <div class="widget-content">
 
                     <ul class="company-info mt-0">
-                      <li>업종 : <span th:text="${corp.job}">Software</span></li>
+                      <li>직군 : <span th:text="${corp.job}">Software</span></li>
                       <li>기업규모 : <span th:text="${corp.corpSize}">501-1,000</span></li>
                       <li>설립일 : <span th:text="${#temporals.format(corp.corpEst, 'yyyy-MM-dd')}">2011</span></li>
                       <li>연락처 : <span th:text="${corp.corpPhone}">123 456 7890</span></li>
