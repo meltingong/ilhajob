@@ -86,10 +86,10 @@
                     <div class="content">
                       <h4><a href="#" th:text="${recruit.rcTitle}">Product Designer / UI Designer</a></h4>
                       <ul class="job-info">
-                        <li th:text="${recruit.rcTitle}"><span class="icon flaticon-briefcase"></span> Segment</li>
-                        <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
-                        <li class="icon flaticon-clock-3"><span  th:text="|등록일: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></span></li>
-                        <li class="icon flaticon-money" ><span th:text="${#numbers.formatInteger(recruit.rcSalary,3,'COMMA')+' 	만원'}"></span></li>
+                        <!-- <li th:text="${recruit.rcTitle}"><span class="icon flaticon-briefcase"></span> Segment</li> -->
+                        <li class="icon flaticon-map-locator"><span th:text="' ' + ${recruit.corp.corpAddress}">></span> London, UK</li>
+                        <li class="icon flaticon-clock-3"><span  th:text="| 등록일 : ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></span></li>
+                        <li class="icon flaticon-money" ><span th:text="' '+ ${#numbers.formatInteger(recruit.rcSalary,3,'COMMA')+' 	만원'}"></span></li>
                       </ul>
                       <ul class="job-other-info" >
                       	<div th:each="str : ${recruitTagNameList}">
@@ -182,7 +182,7 @@
 	              <div class="message-box warning" th:if="${recruit.rcAppCount > 0}">
 	              <p th:text="'지금 보는 공고에 ' + ${appList.size() + '명이 지원하고 있습니다. 서둘러 지원하세요!'}"></p>
 	              </div>
-	              <div class="message-box warning" th:unless="${recruit.rcAppCount = 0}">
+	              <div class="message-box warning" th:if="${recruit.rcAppCount == 0}">
 	              <p>지금 보고 있는 공고에 아직 지원자가 없습니다. 가장 먼저 지원해보세요!</p>
 	              </div>
               </div>
@@ -195,9 +195,9 @@
                       <h4><a href="#">채용담당자</a></h4>
                       <ul class="job-info">
                       	
-                        <li class="icon flaticon-user"><span th:text="${manager.managerName}"></span></li>
-                        <li class="icon flaticon-telephone-1"><span th:text="${manager.managerPhone}"></span></li>
-                        <li class="icon flaticon-mail"><span th:text="${manager.managerEmail}"></span></li>
+                        <li><span class="icon flaticon-user"></span><span th:text="${manager.managerName}"></span></li>
+                        <li><span class="icon flaticon-telephone-1"></span><span th:text="${manager.managerPhone}"></span></li>
+                        <li><span class="icon flaticon-mail"></span><span th:text="${manager.managerEmail}"></span></li>
                       </ul>
                       <ul class="job-other-info">
                         <li class="time">09:00 ~ 18:00</li>
