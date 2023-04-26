@@ -142,8 +142,7 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public List<AppDto> findAllByRecruitId(long id) throws Exception {
 		List<App> appList = appRepository.findAppsByRecruitId(id);
-		
-		//이력서 없을 때 예외 메세지 띄우기
+
 		return appList.stream()
 				.map(app ->modelMapper.map(app, AppDto.class))
 				.collect(Collectors.toList());

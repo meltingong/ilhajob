@@ -47,7 +47,8 @@ public class LoginController {
 				UserDto loginUser = userService.login(id,password);
 				session.setAttribute("id", loginUser.getId());
 				session.setAttribute("role", "user");
-				session.setAttribute("sUserId", loginRequest.getEmail());
+				session.setAttribute("paymentStatus", loginUser.getPaymentStatus());
+				session.setAttribute("sUserId", id);
 				session.setAttribute("msgList", userService.findMessageList(loginUser.getId()));
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
 			}catch (UserNotFoundException e) {
@@ -63,6 +64,7 @@ public class LoginController {
 				
 				session.setAttribute("id", loginCorp.getId());
 				session.setAttribute("role", "corp");
+				session.setAttribute("paymentStatus", loginCorp.getPaymentStatus());
 				session.setAttribute("sCorpId", id);
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
 			} catch (CorpNotFoundException e) {

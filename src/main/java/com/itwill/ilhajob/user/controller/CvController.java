@@ -284,7 +284,7 @@ public class CvController {
 	}
 	
 	/************** Get 방식 요청 처리 */
-	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action", "cv-apply-action", "applied-cv-detail" })
+	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action", "cv-apply-action"})
 	public String cv_get() {
 		return "redirect:index";
 	}

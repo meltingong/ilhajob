@@ -46,11 +46,6 @@
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-<script type="text/javascript">
-	Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
-	    return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
-	});
-</script>
 </head>
 
 <body>
@@ -275,8 +270,14 @@
                       </ul>
    									 <form action="recruit_scrap_insert_delete">
         								<button class="bookmark-btn" name="id" id="check-bookmark" type="button" value="{{recruit.id}}">
-    											<img id="id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;" {{#ifEqual status.[recruit.id] 1}}class="show-img" {{else}}class="hidden-img" {{/ifEqual}}>
-            									<img id="id2" src="images/bookmark-bin.png" style="width: 17px; margin-left: 5px;" {{#ifEqual status.[recruit.id] 0}}class="show-img" {{else}}class="hidden-img" {{/ifEqual}}>
+    											  <!-- 수정된 부분 -->
+         										   {{#ifEquals (lookup status recruit.id) 1}}
+													<img id="id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;" class="show-img">
+													<img id="id2" src="images/bookmark-bin.png" style="width: 17px; margin-left: 5px;" class="hidden-img">
+													{{else}}
+													<img id="id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;" class="hidden-img">
+													<img id="id2" src="images/bookmark-bin.png" style="width: 17px; margin-left: 5px;" class="show-img">
+												   {{/ifEqual}}
         								</button>
     								</form>
                     </div>

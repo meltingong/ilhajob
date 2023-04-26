@@ -140,6 +140,7 @@
         corp_welfare varchar2(600 char),
         corp_stored_file_name varchar2(255 char),
         rc_count number(1) DEFAULT 0,
+        payment_status NUMBER(1) DEFAULT 0
         job varchar2(255 char),
         role NUMBER(1) DEFAULT 2,
         primary key (id)
@@ -321,6 +322,7 @@
         user_post_code number(10,0),
         user_sex varchar2(255 char),
         user_skills varchar2(300 char),
+        payment_status NUMBER(1) DEFAULT 0
         primary key (id)
     );
     

@@ -9,7 +9,7 @@ import com.itwill.ilhajob.common.dto.ProductDto;
 
 public interface OrdersService {
 	//Orders savaOrder(String role, long id, ProductDto productDto);
-	OrdersDto checkAndSaveOrder(String role, long id, ProductDto productDto, String paymentMethod);
+	OrdersDto checkAndSaveOrder(String role, long id, ProductDto productDto, String paymentMethod) throws Exception;
 	void removeOrder();
 	List<OrdersDto> findOrderByUser(long id);
 	List<OrdersDto> findOrderByCorp(long id);

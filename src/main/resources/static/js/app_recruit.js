@@ -4,6 +4,13 @@ import * as Request from "./request.js";
 Handlebars.registerHelper('ifEqual', function(v1, v2, options) {
   return (v1 === v2) ? options.fn(this) : options.inverse(this);
 });
+Handlebars.registerHelper('ifEquals', function(a, b, options) {
+	    if (a == b) {
+	        return options.fn(this);
+	    } else {
+	        return options.inverse(this);
+	    }
+	});
 Handlebars.registerHelper('eq', function(a, b) {
 	  return a === b;
 });
@@ -25,7 +32,13 @@ Handlebars.registerHelper('lte', function(a, b) {
 Handlebars.registerHelper('and', function(a, b) {
   return a && b;
 });
-
+Handlebars.registerHelper('lookup', function (obj, key) {
+		console.log(obj,key);
+		 if (obj === undefined) {
+		        return ""; // 또는 적절한 기본값 또는 에러 처리 로직을 추가하세요
+		    }
+	        return obj.get(key);
+	 });
 $('.changeTag').click(function(e){
 	console.log("펑션접근");
 	/*

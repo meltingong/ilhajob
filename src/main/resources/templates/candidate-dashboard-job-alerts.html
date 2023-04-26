@@ -74,7 +74,6 @@
                         </tr>
                       </thead>
                       <tbody>
-                      	<!-- <div class = "message-block" th:each="message:${messageList}" th:id = "messageBlock+${message.id}"> -->
                         <tr th:each="message:${messageList}" th:id = "messageBlock+${message.id}">
                           <td th:text="${message.messageTitle}">
                           </td>
@@ -83,15 +82,14 @@
                           <td>
                             <div class="option-box">
 			                <!-- <input type="hidden" th:id="messageId+${message.id}" name="messageId" th:value="${message.id}"/> -->
-                              <ul class="option-list">
-                             <input th:attr="id=${'messageId' + message.id}" type="hidden" name="messageId" th:value="${message.id}"/>
+                              <ul class="option-list" id="listId">
+                             <!-- <input th:id="messageId+${message.id}" type="hidden" name="messageId" th:value="${message.id}"/> -->
                                 <!-- <li><button data-text="Delete Aplication" onClick="remove()" th:value="${message.id}"><span class="la la-trash"></span></button></li> -->
                                 <li><button type="button" th:id="'deleteMessage('+${message.id}+')'" th:onclick="'deleteMessage('+${message.id}+')'" ><span class="la la-trash"></span></button></li>
                               </ul>
                             </div>
                           </td>
                        </tr> 
-                       <!-- </div> -->
                       </tbody>
                     </table>
                         <div class="copyright-text" th:if="${messageList.size()==0}">

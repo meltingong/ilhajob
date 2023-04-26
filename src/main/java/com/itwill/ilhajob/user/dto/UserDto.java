@@ -50,6 +50,7 @@ public class UserDto {
     private String snsType;
     private String snsId;
    // private String job;
+    private Integer paymentStatus;
     private int role;
     private int state;
 	public UserDto(Long id, String userEmail, String userPassword) {

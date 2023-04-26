@@ -146,9 +146,7 @@ public class CorpController {
 
 		// 공고 개수 불러오기
 		CorpDto corpDto1 = corpService.findByCorpId(corpId);
-		System.out.println("corpDto1>>>>>>" + corpDto1);
 		Long recruitCount = recruitService.countByCorpId(corpDto1.getId());
-		System.out.println("공고개수>>>>>>" + recruitCount);
 		model.addAttribute("recruitCount", recruitCount);
 
 		if (sUserId == null) {

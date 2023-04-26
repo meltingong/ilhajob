@@ -1,6 +1,8 @@
 package com.itwill.ilhajob.user.controller;
 
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -155,10 +157,23 @@ public class UserController {
 	@LoginCheck
 	@RequestMapping("/modify_action")
 	public ResponseEntity<UserDto> modify_action(@RequestBody UserDto userDto, HttpServletRequest request) throws Exception {
+		String email = (String)request.getSession().getAttribute("sUserId");
+		UserDto findUser = userService.findUser(email);
+		if(findUser.getSnsType() != null) {
+			userDto.setSnsId(findUser.getSnsId());
+			userDto.setSnsType(findUser.getSnsType());
+		}
+		userDto.setUserPassword(findUser.getUserPassword());
+		UserDto updateUser = userService.update(findUser.getId(), userDto);
+		
+		
+		/*
 		Long id = (Long)request.getSession().getAttribute("id");
 		UserDto findUser = userService.findUser((String)request.getSession().getAttribute("sUserId"));
 		userDto.setUserPassword(findUser.getUserPassword());
 	    UserDto updateUser = userService.update(id,userDto);
+	    */
+	    
 		return ResponseEntity.ok(updateUser);
 	}
 	
@@ -257,10 +272,12 @@ public class UserController {
 	
 	// 알림 선택삭제
 	@LoginCheck
-	@RequestMapping("/alerts-remove")
-	public String user_alerts_remove(HttpServletRequest request,Long messageId) throws Exception {
+	@RequestMapping( value = "/alerts-remove", method = RequestMethod.POST)
+	public String user_alerts_remove(HttpServletRequest request, @RequestParam(name = "messageId") String id) throws Exception {
 		String forwardPath="";
-
+		System.out.println(id);
+		Long messageId = Long.parseLong(id);
+		//System.out.println(">>>>>>"+messageId);
 		userService.removeMessageBySeq(messageId);
 
 		forwardPath="redirect:candidate-dashboard-job-alerts";
@@ -339,7 +356,7 @@ public class UserController {
 			
 		} */
 	
-		
+		// 리뷰 작성
 		@LoginCheck
 		@RequestMapping("/review_write_action")
 		public String review_write_action(@ModelAttribute ReviewDto reviewDto,@ModelAttribute UserDto userDto ,HttpServletRequest request,@RequestParam("corpId") Long corpId,Model model) throws Exception{
@@ -374,7 +391,7 @@ public class UserController {
 	
 	
 		
-		
+		// 리뷰 삭제
 		@LoginCheck
 		@RequestMapping("/review_delete")
 		public String review_delete(Long id,Long corpId) throws Exception{

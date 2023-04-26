@@ -88,21 +88,19 @@ public class RecruitController {
 		LocalDateTime today = LocalDateTime.now();
 		LocalDateTime deadline = today.plusDays(7);
 		
-		try {
-			for (RecruitDto recruit : tempRecruitList) {
-				if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
-					// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
-					// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
-					deadLineRecruitList.add(recruit);
-				}
-				System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
-				System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
-				model.addAttribute("deadLineRecruitList", deadLineRecruitList);
+		for (RecruitDto recruit : tempRecruitList) {
+			if (recruit.getRcDeadline().compareTo(deadline) <= 0) {
+				// status 문제 수정 되면 recruit.getRcStatus() == 0 으로 조건 추가
+				// LocalDateTime 이라서 현재 시간 기준임 수정 필요....
+				deadLineRecruitList.add(recruit);
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
 		}
+		if (deadLineRecruitList.size() == 0) {
+			System.out.println("마감임박 공고 없음");
+		}
+		System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
+		System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
+		model.addAttribute("deadLineRecruitList", deadLineRecruitList);
 		
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
@@ -234,7 +232,6 @@ public class RecruitController {
 		model.addAttribute("scrap", null);
 		
 		
-		
 		String forward_path = "recruit-detail";
 		return forward_path;
 	}
@@ -305,7 +302,7 @@ public class RecruitController {
 		
 		
 		RecruitDto setRecruit=recruitService.findRecruit(recruitDto.getId());
-		//System.out.println("setRecruit>>>"+setRecruit);
+		System.out.println("setRecruit>>>"+setRecruit);
 		model.addAttribute("recruit",setRecruit);
 		model.addAttribute("tagList",tagList);
 		model.addAttribute("recruitTagList",recruitTagList);
@@ -331,7 +328,7 @@ public class RecruitController {
 		
 		//공고 등록시 진행중으로 변경
 		recruitDto.setRcStatus(0);
-		
+
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
 		
 		//System.out.println("update check>>>>"+checkRecruit);
