@@ -95,17 +95,17 @@ function blogLike(){
   <header class="main-header">
    <div id="main-header" th:include="include_common_top::include_common_top"></div>
   </header>
-         <!-- 리스트 !-->
-        <div style="margin-bottom: 10px">
-        <button type="button" class="theme-btn btn-style-ten" style="float: right; margin-right:5px;"onclick="blogList();" >목록보기</button>
-        <span><button type="button" class="theme-btn btn-style-ten" th:if="${session.id == blog.user.id}" onclick="blogRemove();"  style="float: right; margin-right:5px;">삭제하기</button></span>
-        <span><button type="button" class="theme-btn btn-style-ten" th:if="${session.id == blog.user.id}" onclick="blogModifyForm();" style="float: right; margin-right:5px;">수정하기</button></span>
-        </div>
   <!--End Main Header -->
 
   <!-- Blog Single -->
   <form th:object="${blog}" name="f" method="post" >
   <section class="blog-single">
+  	<!-- 리스트 !-->
+      <div style="margin-bottom: 10px">
+       <button type="button" class="theme-btn btn-style-one" style="float: right; margin-right:5px;"onclick="blogList();" >목록보기</button>
+       <span><button type="button" class="theme-btn btn-style-one" th:if="${session.id == blog.user.id}" onclick="blogRemove();"  style="float: right; margin-right:5px;">삭제하기</button></span>
+       <span><button type="button" class="theme-btn btn-style-one" th:if="${session.id == blog.user.id}" onclick="blogModifyForm();" style="float: right; margin-right:5px;">수정하기</button></span>
+      </div>
     <div class="auto-container">
       <div class="upper-box">
         <h3 th:text=${blog.blogTitle}>Keep your face always toward the sunshine - and shadows will fall behind you.</h3>
@@ -119,7 +119,13 @@ function blogLike(){
         </ul>
       </div>
     </div>
-    <figure class="main-image"><img src="images/resource/blog-single.jpg" alt=""></figure>
+    <th:block th:if = "${blog.blogImage != null}">
+        <figure class="main-image"><img th:src="${blog.blogImage}" src="images/resource/news-1.jpg" alt="" style="width:auto;display: block; margin: auto;"/></figure>
+    </th:block>
+    <th:block th:if = "${blog.blogImage == null}">
+        <figure class="main-image"><img src="images/resource/news-1.jpg" alt=""/></figure>
+    </th:block>
+    <!-- <figure class="main-image"><img src="images/resource/blog-single.jpg" alt=""></figure> -->
     <div class="auto-container">
       <p th:text=${blog.blogContent} style="white-space: pre-wrap;">Aliquam hendrerit sollicitudin purus, 
       quis rutrum mi accumsan nec. Quisque bibendum orci ac nibh facilisis, 

@@ -79,7 +79,7 @@ $('#user-profile-upload-btn').click(function() {
 });
 
 //블로그+이미지 업로드
-$('.blog-test').click(function(e) {
+$('.blog-upload-btn').click(function(e) {
 	e.preventDefault();
 	let formData = {};
 	let files = $('input[name="blog-images"]').get(0).files;
@@ -116,6 +116,8 @@ $('.blog-test').click(function(e) {
 						alert("이미지 업로드 error");
 					}
 				});
+			}else{
+				alert("블로그 작성 완료");
 			}
 		},
 	 });

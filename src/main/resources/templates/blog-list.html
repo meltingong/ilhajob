@@ -75,7 +75,12 @@
                 <div class="news-block col-lg-4 col-md-6 col-sm-12" th:each="blog : ${blogList}">
                   <div class="inner-box">
                     <div class="image-box">
-                      <figure class="image"><img src="images/resource/news-1.jpg" alt="" /></figure>
+                      <th:block th:if = "${blog.blogImage != null}">
+                          <figure class="image"><img th:src="${blog.blogImage}" src="images/resource/news-1.jpg" alt="" style="width:455px; height:295px"/></figure>
+                      </th:block>
+                      <th:block th:if = "${blog.blogImage == null}">
+                          <figure class="image"><img src="images/resource/news-1.jpg" alt=""/></figure>
+                      </th:block>
                     </div>
                     <div class="lower-content">
                       <ul class="post-meta">
