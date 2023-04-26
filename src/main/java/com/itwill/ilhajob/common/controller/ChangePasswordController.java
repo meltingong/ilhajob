@@ -37,6 +37,7 @@ public class ChangePasswordController {
 		String newPassword = "";
 		String newPasswordConfirm = "";
 		
+		
 		if(session.getAttribute("role").equals("user")) {
 			String sUserId = (String)session.getAttribute("sUserId");
 			loginUser = userService.findUser(sUserId);
