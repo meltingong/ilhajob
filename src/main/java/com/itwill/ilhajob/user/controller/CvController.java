@@ -283,14 +283,8 @@ public class CvController {
 		return "applied-cv-detail";
 	}
 	
-	@RequestMapping("test")
-	public String applied_cv_detail_test() {
-		// 기존 템플릿 참고용 -> 완성 후 없애기
-		return "applied-cv-detail-test";
-	}
-	
 	/************** Get 방식 요청 처리 */
-	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action"})
+	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action", "cv-apply-action"})
 	public String cv_get() {
 		return "redirect:index";
 	}

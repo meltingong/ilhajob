@@ -46,11 +46,6 @@
   <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-<script type="text/javascript">
-	Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
-	    return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
-	});
-</script>
 </head>
 
 <body>
@@ -90,186 +85,30 @@
 
         <div class="row">
           <!-- Filters Column -->
-          <div class="filters-column hide-left">
-            <div class="inner-column">
-              <div class="filters-outer">
-                <button type="button" class="theme-btn close-filters">X</button>
+          
 
                 <!-- Filter Block -->
-                <div class="filter-block">
-                  <h4>Search by Keywords</h4>
-                  <div class="form-group">
-                    <input type="text" name="listing-search" placeholder="Job title, keywords, or company">
-                    <span class="icon flaticon-search-3"></span>
-                  </div>
-                </div>
+                
+                <!-- Filter Block -->
+        
 
                 <!-- Filter Block -->
-                <div class="filter-block">
-                  <h4>Location</h4>
-                  <div class="form-group">
-                    <input type="text" name="listing-search" placeholder="City or postcode">
-                    <span class="icon flaticon-map-locator"></span>
-                  </div>
-                  <p>Radius around selected destination</p>
-                  <div class="range-slider-one">
-                    <div class="area-range-slider"></div>
-                    <div class="input-outer">
-                      <div class="amount-outer"><span class="area-amount"></span>km</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Filter Block -->
-                <div class="filter-block">
-                  <h4>Category</h4>
-                  <div class="form-group">
-                    <select class="chosen-select">
-                      <option>Choose a category</option>
-                      <option>Residential</option>
-                      <option>Commercial</option>
-                      <option>Industrial</option>
-                      <option>Apartments</option>
-                    </select>
-                    <span class="icon flaticon-briefcase"></span>
-                  </div>
-                </div>
+             
 
                 <!-- Switchbox Outer -->
-                <div class="switchbox-outer">
-                  <h4>Job type</h4>
-                  <ul class="switchbox">
-                    <li>
-                      <label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider round"></span>
-                        <span class="title">Freelance</span>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                        <span class="title">Full Time</span>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                        <span class="title">Internship</span>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                        <span class="title">Part Time</span>
-                      </label>
-                    </li>
-                    <li>
-                      <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                        <span class="title">Temporary</span>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
+           
 
                 <!-- Checkboxes Ouer -->
-                <div class="checkbox-outer">
-                  <h4>Date Posted</h4>
-                  <ul class="checkboxes">
-                    <li>
-                      <input id="check-f" type="checkbox" name="check">
-                      <label for="check-f">All</label>
-                    </li>
-                    <li>
-                      <input id="check-a" type="checkbox" name="check">
-                      <label for="check-a">Last Hour</label>
-                    </li>
-                    <li>
-                      <input id="check-b" type="checkbox" name="check">
-                      <label for="check-b">Last 24 Hours</label>
-                    </li>
-                    <li>
-                      <input id="check-c" type="checkbox" name="check">
-                      <label for="check-c">Last 7 Days</label>
-                    </li>
-                    <li>
-                      <input id="check-d" type="checkbox" name="check">
-                      <label for="check-d">Last 14 Days</label>
-                    </li>
-                    <li>
-                      <input id="check-e" type="checkbox" name="check">
-                      <label for="check-e">Last 30 Days</label>
-                    </li>
-                  </ul>
-                </div>
+         
 
                 <!-- Checkboxes Ouer -->
-                <div class="checkbox-outer">
-                  <h4>Experience Level</h4>
-                  <ul class="checkboxes square">
-                    <li>
-                      <input id="check-ba" type="checkbox" name="check">
-                      <label for="check-ba">All</label>
-                    </li>
-                    <li>
-                      <input id="check-bb" type="checkbox" name="check">
-                      <label for="check-bb">Internship</label>
-                    </li>
-                    <li>
-                      <input id="check-bc" type="checkbox" name="check">
-                      <label for="check-bc">Entry level</label>
-                    </li>
-                    <li>
-                      <input id="check-bd" type="checkbox" name="check">
-                      <label for="check-bd">Associate</label>
-                    </li>
-                    <li>
-                      <input id="check-be" type="checkbox" name="check">
-                      <label for="check-be">Mid-Senior level4</label>
-                    </li>
-                    <li>
-                      <button class="view-more"><span class="icon flaticon-plus"></span> View More</button>
-                    </li>
-                  </ul>
-                </div>
+            
 
                 <!-- Filter Block -->
-                <div class="filter-block">
-                  <h4>Salary</h4>
-
-                  <div class="range-slider-one salary-range">
-                    <div class="salary-range-slider"></div>
-                    <div class="input-outer">
-                      <div class="amount-outer">
-                        <span class="amount salary-amount">
-                          $<span class="min">0</span>
-                          $<span class="max">0</span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          
 
                 <!-- Filter Block -->
-                <div class="filter-block">
-                  <h4>Tags</h4>
-                  <ul class="tags-style-one">
-                    <li><a href="#">app</a></li>
-                    <li><a href="#">administrative</a></li>
-                    <li><a href="#">android</a></li>
-                    <li><a href="#">wordpress</a></li>
-                    <li><a href="#">design</a></li>
-                    <li><a href="#">react</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+         
 
           <!-- Content Column -->
           <div class="content-column col-lg-12">
@@ -277,7 +116,6 @@
               <!-- ls Switcher -->
               <div class="ls-switcher">
                 <div class="showing-result show-filters">
-                  <button type="button" class="theme-btn toggle-filters"><span class="icon icon-filter"></span> Filter</button>
                   <div class="text">Showing <strong th:text="${recruitList.size()}">41-60</strong> of <strong></strong> Recruits</div>
                 </div>
                 <button class="changeTag" name="all" value="99999">전체</button>
@@ -286,7 +124,7 @@
 					th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
                 </div>
                 <div class="sort-by">
-                  <!-- select class="chosen-select">
+                  <!--select class="chosen-select">
                     <option>New Jobs</option>
                     <option>Freelance</option>
                     <option>Full Time</option>
@@ -295,20 +133,17 @@
                     <option>Temporary</option>
                   </select-->
 
-                  <!-- select class="chosen-select">
-                    <option>Show 10</option>
-                    <option>Show 20</option>
-                    <option>Show 30</option>
-                    <option>Show 40</option>
-                    <option>Show 50</option>
-                    <option>Show 60</option>
-                  </select-->
+                  <select class="chosen-select">
+                    <option>정렬선택</option>
+                    <option>마감일 내림차순</option>
+                    <option>마감일 오름차순</option>
+                  </select>
                 </div>
               </div>
 			<div id="recruit-main-list">
               <div class="row">
                 <!-- Job Block -->
-                <div th:each="recruit:${recruitList}" class="job-block col-lg-6 col-md-12 col-sm-12">
+                <div th:each="recruit:${recruitList}" th:if="${recruit.rcStatus==0}" class="job-block col-lg-6 col-md-12 col-sm-12">
                  <form class="default-form" name="readCount" method="post">
                   <div class="inner-box">
                     <div class="content">
@@ -322,7 +157,7 @@
                       <ul class="job-info">
                         <li><span class="icon flaticon-briefcase"></span><span th:text="${recruit.rcPosition}"></span></li>
                         <li><span class="icon flaticon-map-locator"></span> <span th:text="${recruit.corp.corpAddress}"></span></li>
-                        <li class="icon flaticon-clock-3"><span  th:text="|등록일: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></span></li>
+                        <li class="icon flaticon-clock-3"><span  th:text="|마감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></span></li>
                         <li class="icon flaticon-money" ><spanth th:text="${recruit.rcSalary}"></span></li>
                       </ul>
                       <ul class="job-other-info">
@@ -435,8 +270,14 @@
                       </ul>
    									 <form action="recruit_scrap_insert_delete">
         								<button class="bookmark-btn" name="id" id="check-bookmark" type="button" value="{{recruit.id}}">
-    											<img id="id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;" {{#ifEqual status.[recruit.id] 1}}class="show-img" {{else}}class="hidden-img" {{/ifEqual}}>
-            									<img id="id2" src="images/bookmark-bin.png" style="width: 17px; margin-left: 5px;" {{#ifEqual status.[recruit.id] 0}}class="show-img" {{else}}class="hidden-img" {{/ifEqual}}>
+    											  <!-- 수정된 부분 -->
+         										   {{#ifEquals (lookup status recruit.id) 1}}
+													<img id="id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;" class="show-img">
+													<img id="id2" src="images/bookmark-bin.png" style="width: 17px; margin-left: 5px;" class="hidden-img">
+													{{else}}
+													<img id="id1" src="images/bookmark.png" style="width: 23px; margin-left: 2px;" class="hidden-img">
+													<img id="id2" src="images/bookmark-bin.png" style="width: 17px; margin-left: 5px;" class="show-img">
+												   {{/ifEqual}}
         								</button>
     								</form>
                     </div>
