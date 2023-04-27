@@ -327,8 +327,18 @@ public class CorpController {
 		List<CorpImageDto> corpImageList = corpImageService.findAllByCorpId(sCorpId);
 		/*******************************************************************/
 		model.addAttribute("corp", corpDto);
+		
+		//업데이트 아직 안했을때 알림주기 위한 세션
+		int updateStatus = (Integer)request.getSession().getAttribute("updateStatus");
+		model.addAttribute("updateStatus", updateStatus);
+		//결제확인 
+		int paymentStatus = (Integer)request.getSession().getAttribute("paymentStatus");
+		if(paymentStatus!=1) {
+			return "redirect:product";
+		}
+		
+		
 		forwardPath = "dashboard-company-profile";
-
 		return forwardPath;
 	}
 

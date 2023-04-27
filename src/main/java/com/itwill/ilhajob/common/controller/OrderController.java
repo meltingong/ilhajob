@@ -58,6 +58,9 @@ public class OrderController {
 	
 	@GetMapping("/product")
 	public String pricing(HttpServletRequest request,Model model) throws Exception {
+		int paymentStatus = (Integer)request.getSession().getAttribute("paymentStatus");
+		System.out.println(paymentStatus);
+		model.addAttribute("paymentStatus",paymentStatus);
 		if(request.getSession().getAttribute("role").equals("user")) {
 			List<ProductDto> productList = productService.selectByDiv("user");
 			model.addAttribute("productList", productList);
@@ -65,6 +68,7 @@ public class OrderController {
 		if(request.getSession().getAttribute("role").equals("corp")) {
 			model.addAttribute("productList", productService.selectByDiv("corp"));
 		}
+		
 		String forwardPath = "product";
 		return forwardPath;
 	}

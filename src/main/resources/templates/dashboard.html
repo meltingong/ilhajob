@@ -78,7 +78,7 @@
                 <i class="icon flaticon-briefcase"></i>
               </div>
               <div class="right">
-                <h4 th:text="${recruitList.size()}" action="dashboard-manage-job"></h4>
+                <a th:text="${recruitList.size()}" href="dashboard-manage-job" style="font-size: 30px; color: #1967D2; font-weight: bold;"></a>
                 <p>공고</p>
               </div>
             </div>
@@ -100,7 +100,7 @@
                  <i class="icon la la-comment-o"></i>
               </div>
               <div class="right">
-                <h4 th:text="${managerList.size()}"></h4>
+              	<a th:text="${managerList.size()}" href="dashboard-manager-list" style="font-size: 30px; color: #f9ab00; font-weight: bold;"></a>
                 <p>매니저</p>
               </div>
             </div>
