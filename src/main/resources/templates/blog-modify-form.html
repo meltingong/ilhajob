@@ -141,6 +141,9 @@
                         <button type="button" class="theme-btn btn-style-one" style="float:right;" onclick="blogCreate();">수정완료</button>
                       <span><button type="button" class="theme-btn btn-style-one" style="float:right; margin-right:5px;" onclick="blogList();" >목록보기</button></span>
                       </div>
+                      <!-- 이전값 저장용.... -->
+                      	 <input type="hidden" th:value="${blog.blogReadCount}" name="blogReadCount">
+               			 <input type="hidden" th:value="${blog.blogLike}" name="blogLike">
      	             </form>
                     </div>
    			 </section>

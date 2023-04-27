@@ -94,9 +94,8 @@
 		<section class="pricing-section">
 			<div class="auto-container">
 				<div class="sec-title text-center">
-					<h2>Pricing Packages</h2>
-					<div class="text">Lorem ipsum dolor sit amet elit, sed do
-						eiusmod tempor.</div>
+					<h2>유료구매 패키지</h2>
+					<div class="text">패키지를 구매하고 일하잡의 다양한 서비스를 누려보세요.</div>
 				</div>
 				<!--Pricing Tabs-->
 				<div class="pricing-tabs tabs-box">
@@ -113,7 +112,7 @@
 									<div class="pricing-table col-lg-4 col-md-6 col-sm-12" th:each="product:${productList}">
 										<div class="inner-box">
 											<div class="title" th:text="${product.productName}">Basic</div>
-											<div class="price" th:text="${product.productPrice}">
+											<div class="price" th:text="${#numbers.formatInteger(product.productPrice, 3, 'COMMA')}">
 												$199 <span class="duration">/ monthly</span>
 											</div>
 											<div class="table-content">
