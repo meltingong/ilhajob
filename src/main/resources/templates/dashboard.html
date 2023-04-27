@@ -68,8 +68,8 @@
     <section class="user-dashboard">
       <div class="dashboard-outer">
         <div class="upper-title-box">
-          <h3>Howdy, Invision!</h3>
-          <div class="text">Ready to jump back in?</div>
+          <h3>회원님 안녕하세요!</h3>
+          <div class="text">귀하의 기업 및 공고 정보를 한눈에 제공해드립니다.</div>
         </div>
         <div class="row">
           <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
@@ -78,8 +78,8 @@
                 <i class="icon flaticon-briefcase"></i>
               </div>
               <div class="right">
-                <a th:text="${recruitList.size()}" href="dashboard-manage-job" style="font-size: 30px; color: #1967D2; font-weight: bold;"></a>
-                <p>공고</p>
+                <a th:text="|${recruitList.size()} 개|" href="dashboard-manage-job" style="font-size: 30px; color: #1967D2; font-weight: bold;"></a>
+                <p>등록된 공고</p>
               </div>
             </div>
           </div>
@@ -89,8 +89,8 @@
                 <i class="icon la la-file-invoice"></i>
               </div>
               <div class="right">
-                <h4 th:text="${appList.size()}"></h4>
-                <p>지원자</p>
+                <h4 th:text="|${appList.size()} 명|"></h4>
+                <p>지원자 수</p>
               </div>
             </div>
           </div>
@@ -100,8 +100,8 @@
                  <i class="icon la la-comment-o"></i>
               </div>
               <div class="right">
-              	<a th:text="${managerList.size()}" href="dashboard-manager-list" style="font-size: 30px; color: #f9ab00; font-weight: bold;"></a>
-                <p>매니저</p>
+              	<a th:text="|${managerList.size()} 명|" href="dashboard-manager-list" style="font-size: 30px; color: #f9ab00; font-weight: bold;"></a>
+                <p>매니저 수</p>
               </div>
             </div>
           </div>

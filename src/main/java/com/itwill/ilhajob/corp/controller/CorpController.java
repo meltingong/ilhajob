@@ -116,7 +116,7 @@ public class CorpController {
 	@GetMapping("/corp-list")
 	public String corp_list(@RequestParam(defaultValue = "0", name = "page") int curPage,
 	                        @RequestParam(defaultValue = "8") int pageScale,
-	                        @RequestParam(defaultValue = "3") int blockScale,
+	                        @RequestParam(defaultValue = "4") int blockScale,
 	                        HttpServletRequest request,
 	                        Model model) throws Exception {
 		String forward_path="";
@@ -343,12 +343,14 @@ public class CorpController {
 			throws Exception {
 		
 		//session 업데이트권한 변경
-		request.getSession().setAttribute("paymentStatus", 1);
+		request.getSession().setAttribute("updateStatus", 1);
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime time = LocalDate.parse(date, formatter).atStartOfDay();
 		corp.setCorpEst(time);
 		corp.setUpdateStatus(1);
+		corp.setPaymentStatus(corpService.findByCorpId((Long)request.getSession().getAttribute("id")).getPaymentStatus());
+		corp.setPaymentStatus(corpService.findByCorpId((Long)request.getSession().getAttribute("id")).getRcCount());
 		corpService.update(corp.getId(), corp);
 		request.setAttribute("corpId", corp.getId());
 		return "redirect:corp-detail?corpId="+corp.getId();
