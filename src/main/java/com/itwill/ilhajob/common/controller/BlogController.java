@@ -233,6 +233,7 @@ public class BlogController {
 		blogService.updateBlog(id, blogDto);
 		return "redirect:blog-single?id="+blogDto.getId();
 	}
+	
 
 	/*블로그 삭제*/
 	@PostMapping(value = "/blog-remove-action", params = "blogId")
