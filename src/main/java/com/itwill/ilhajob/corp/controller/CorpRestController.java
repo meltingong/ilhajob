@@ -35,6 +35,14 @@ public class CorpRestController {
 	public Map<String, Object> getTagData(@RequestBody Map<String,String> data,Model model) throws Exception{
 		Map<String, Object> map = new HashMap<String,Object>();
 		
+
+//		model.addAttribute("blockBegin", blockBegin);
+//	 	model.addAttribute("blockEnd", blockEnd);
+//	    model.addAttribute("curPage", corpPageList.getNumber());
+//	    model.addAttribute("totalPage", corpPageList.getTotalPages());
+//	    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
+//	    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
+
 		//코프아이디리스트 만들기
 		List<Long> corpIdlist = new ArrayList<Long>();
 		for(CorpDto corp:corpService.findCorpAll()) {

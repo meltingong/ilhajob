@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -128,6 +129,7 @@ public class RecruitController {
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,
 	                           @RequestParam(defaultValue = "8") int size,
+	                           @RequestParam(value = "sortType", required = false) String sortType,
 	                           Model model,HttpServletRequest request) throws Exception {
 		//페이징 기능 추가->일단 6개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
@@ -140,7 +142,38 @@ public class RecruitController {
 	    model.addAttribute("totalPage", recruitPage.getTotalPages());
 	    model.addAttribute("prePage", recruitPage.hasPrevious() ? recruitPage.previousPageable().getPageNumber() : 0);
 	    model.addAttribute("nextPage", recruitPage.hasNext() ? recruitPage.nextPageable().getPageNumber() : recruitPage.getTotalPages() - 1);
-	
+		
+		
+		List<RecruitDto>recruitList1=recruitService.findRecruitAll();
+		model.addAttribute("recriutList",recruitList1);
+		// 공고 정렬
+		// 마감일 내림차순
+		try {
+			if ("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
+				recruitList1.sort((o1, o2) -> o2.getRcDeadline().compareTo(o1.getRcDeadline()));
+			} else {
+				// 마감일 오름차순
+				recruitList1.sort(Comparator.comparing(RecruitDto::getRcDeadline));
+				model.addAttribute("recruitList", recruitList1);      
+			}
+			
+		} catch (Exception e) {
+		}
+		
+//		이렇게 해야하나??
+//		Pageable pageable;
+//		pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+//		if("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
+//			pageable = PageRequest.of(page, size, Sort.Direction.DESC, "rcDeadline");
+//			
+//		}else {
+//			pageable=PageRequest.of(page, size, Sort.Direction.ASC, "rcDeadline");
+//		}
+//		Page<RecruitDto> recruitPage = recruitService.findAll(pageable);
+//		int nowPage = recruitPage.getNumber()+1;
+//	}
+
+
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
