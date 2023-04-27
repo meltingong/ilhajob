@@ -103,8 +103,10 @@ function blogLike(){
   	<!-- 리스트 !-->
       <div style="margin-bottom: 10px">
        <button type="button" class="theme-btn btn-style-one" style="float: right; margin-right:5px;"onclick="blogList();" >목록보기</button>
-       <span><button type="button" class="theme-btn btn-style-one" th:if="${session.id == blog.user.id}" onclick="blogRemove();"  style="float: right; margin-right:5px;">삭제하기</button></span>
-       <span><button type="button" class="theme-btn btn-style-one" th:if="${session.id == blog.user.id}" onclick="blogModifyForm();" style="float: right; margin-right:5px;">수정하기</button></span>
+       <th:block th:if="${session.id == blog.user.id}">
+       <span><button type="button" class="theme-btn btn-style-one" onclick="blogRemove();"  style="float: right; margin-right:5px;">삭제하기</button></span>
+       <span><button type="button" class="theme-btn btn-style-one" onclick="blogModifyForm();" style="float: right; margin-right:5px;">수정하기</button></span>
+       </th:block>
       </div>
     <div class="auto-container">
       <div class="upper-box">

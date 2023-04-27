@@ -221,10 +221,17 @@ public class BlogController {
 	}
 	
 	@PostMapping("/blog-modify-action")
-	public String blog_modify_action(@ModelAttribute("blogDto") BlogDto blogDto)throws Exception {
+	public String blog_modify_action(@ModelAttribute BlogDto blogDto, HttpServletRequest request)throws Exception {
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		System.out.println(">>>>>>>>>"+sUserId);
+		UserDto loginUser = userService.findUser(sUserId);
 		Long id = blogDto.getId();
+		//System.out.println(">>>>>>>>"+id);
+		//BlogDto findBlog = blogService.findBlog(id);
+		blogDto.setUser(loginUser);
+		System.out.println(">>>>>>>>"+blogDto);
 		blogService.updateBlog(id, blogDto);
-		return "blog-single";
+		return "redirect:blog-single?id="+blogDto.getId();
 	}
 
 	/*블로그 삭제*/
