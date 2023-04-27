@@ -289,10 +289,10 @@ function reviewDelete(){
                   <div class="widget-content">
 
                     <ul class="company-info mt-0">
-                      <li>직군 : <span th:text="${corp.job}">Software</span></li>
-                      <li>기업규모 : <span th:text="${corp.corpSize}">501-1,000</span></li>
+                      <li>산업 : <span th:text="${corp.job}">Software</span></li>
+                      <li>직원수 : <span th:text="${corp.corpSize}">501-1,000</span></li>
                       <li>설립일 : <span th:text="${#temporals.format(corp.corpEst, 'yyyy-MM-dd')}">2011</span></li>
-                      <li>연락처 : <span th:text="${corp.corpPhone}">123 456 7890</span></li>
+                      <li>전화번호 : <span th:text="${corp.corpPhone}">123 456 7890</span></li>
                       <li>이메일 : <span th:text="${corp.corpWebsite}">info@joio.com</span></li>
                       <li>위치 : <span th:utext="${corp.corpAddress} + '<br>' + ${corp.corpAddressDetail}">London, UK</span>
                       				<input type="hidden"  id="corp-location" th:value="${corp.corpAddress}">
