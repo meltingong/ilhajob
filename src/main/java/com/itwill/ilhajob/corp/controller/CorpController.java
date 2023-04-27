@@ -163,8 +163,8 @@ public class CorpController {
 	 	model.addAttribute("blockEnd", blockEnd);
 	    model.addAttribute("curPage", corpPageList.getNumber());
 	    model.addAttribute("totalPage", corpPageList.getTotalPages());
-	    model.addAttribute("prePage", corpPageList.hasPrevious() ? corpPageList.previousPageable().getPageNumber() : 0);
-	    model.addAttribute("nextPage", corpPageList.hasNext() ? corpPageList.nextPageable().getPageNumber() : corpPageList.getTotalPages() - 1);
+	    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber()+1);
+	    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber()+1);
 	    
 		List<CorpTagDto> corpTagList = corpTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
