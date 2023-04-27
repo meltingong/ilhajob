@@ -124,15 +124,15 @@ $(document).on('click','#insertTag',function(){
 			reqId: reqId,
 		};
 		console.log(JSON.stringify(jsonData));
-			Request.ajaxRequest('recruit-tag-insert-action',
-								'POST',
-								'application/json;charset=UTF-8',
-								JSON.stringify(jsonData),
-								function(resultJson){
-								console.log("제이슨 받아오기 성공");
-								View.render("#recruit-tag-insert-delete-template",resultJson,"#recruit-tag-zone");
-								},
-								true);
+		Request.ajaxRequest('recruit-tag-insert-action',
+							'POST',
+							'application/json;charset=UTF-8',
+							JSON.stringify(jsonData),
+							function(resultJson){
+							console.log("제이슨 받아오기 성공");
+							View.render("#recruit-tag-insert-delete-template",resultJson,"#recruit-tag-zone");
+							},
+							true);
 		});
 		
 //삭제

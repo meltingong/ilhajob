@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,11 +22,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.dto.CorpTagDto;
+import com.itwill.ilhajob.common.dto.RecruitTagDto;
+import com.itwill.ilhajob.common.dto.RecruitTagListDto;
 import com.itwill.ilhajob.common.dto.TagDto;
 import com.itwill.ilhajob.common.service.CorpTagService;
 import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.service.CorpService;
+import com.itwill.ilhajob.user.dto.RecruitScrapDto;
+import com.itwill.ilhajob.user.dto.UserDto;
 
 @RestController
 public class CorpRestController {
@@ -35,51 +42,27 @@ public class CorpRestController {
 	@Autowired
 	private CorpService corpService;
 	
-	@PostMapping(value="/getTagData", produces = "application/json;charset=UTF-8")
-	public Map<String, Object> getTagData(@RequestBody Map<String,String> data,Model model) throws Exception{
+	@GetMapping(value="/getTagData", produces = "application/json;charset=UTF-8")
+	public Map<String, Object> getTagData(@RequestParam(defaultValue = "0") int page,
+										  @RequestParam(defaultValue = "8") int size,
+										  @RequestParam long tagId,
+										  Model model, HttpServletRequest request) throws Exception{
 		Map<String, Object> map = new HashMap<String,Object>();
 		
-
+		Pageable pageable = PageRequest.of(page, size,Sort.Direction.ASC,"id");
+		Page<CorpTagDto> corpTagPage = corpTagService.selectListByTagId(tagId, pageable);
+		List<CorpTagDto> corpTagDtoList = corpTagPage.getContent();
 		
-//		Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
-//	    Page<CorpDto> corpPageList = corpService.findAll(pageable);
-//	    
-//	    //이전, 다음페이지 설정해야함...
-//	    model.addAttribute("corpList", corpPageList.getContent());
-		//코프아이디리스트 만들기
-		List<Long> corpIdlist = new ArrayList<Long>();
-		for(CorpDto corp:corpService.findCorpAll()) {
-			corpIdlist.add(corp.getId()); 
-		};
-//		
-//		map.put("blockBegin", blockBegin);
-//		map.put("blockEnd", blockEnd);
-//		map.put("curPage", corpPageList.getNumber());
-//		map.put("totalPage", corpPageList.getTotalPages());
-//		map.put("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
-//		map.put("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
-		
-		//전체태그선택
-		if(data.get("tagId").equals("전체")) {
-			List<CorpTagDto> corpTagList = corpTagService.selectAll();
-			
-			map.put("data", corpTagList);
-			return map;
-		}else {
-			//일부태그선택
-			Long tagId = Long.parseLong(data.get("tagId"));
-			System.out.println(tagId);
-			List<CorpTagDto> corpTagList= corpTagService.selectListByTagId(tagId);
-			
-			//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
-			
-			//Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(corpIdlist);
-		//	map.put("rcCountMap", rcCountMap);
-			
-			map.put("data", corpTagList);
-			return map;
-		}
-		
+		map.put("data", corpTagDtoList);
+		map.put("recruitList", corpTagPage.getContent());
+		map.put("nowPage", corpTagPage.getNumber());
+		map.put("totalPage", corpTagPage.getTotalPages());
+		map.put("prePage", corpTagPage.hasPrevious() ? corpTagPage.previousPageable().getPageNumber() : 0);
+		map.put("nextPage", corpTagPage.hasNext() ? corpTagPage.nextPageable().getPageNumber() : corpTagPage.getTotalPages() - 1);
+	    map.put("page", corpTagPage);	
+	    map.put("url", "/final-project-team1-ilhajob/getTagData");
+	    map.put("tagId", tagId);
+		return map;
 		
 	}
 	

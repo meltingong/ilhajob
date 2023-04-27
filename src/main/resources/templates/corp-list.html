@@ -316,19 +316,42 @@
                 </div>
 				{{/each}}
 			</div>
-			<nav class="ls-pagination">
-				<ul>
-					<li th:unless="${curPage == blockBegin-1}" class="prev"><a th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
-								        
-					<li th:if="${i == blockBegin-1}"><a class="current-page" th:text="${curPage+1}" ></a></li>
-					<th:block th:each="i, index : ${#numbers.sequence(blockBegin-1, totalPage-1)}" >
-						<li th:if="${i == curPage}"><a class="current-page" th:text="${curPage+1}" ></a></li>
-						<li th:unless="${i == curPage}"><a th:text="${i+1}" th:href="@{corp-list?page=}+${i}"></a></li>
-					</th:block>
-								        
-						<li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
-				</ul>
-			</nav> 
+			<nav class="ls-pagination mb-5">
+				  <ul>
+					<input class="tag-data" type="hidden" value="{{tagId}}">
+				    {{#unless (eq nowPage 0)}}
+				      <li class="prev">
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link"><i class="fa fa-arrow-left"></i></a>
+				      </li>
+				      <li class="prev">
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link">{{nowPage}}</a>
+						<input class="prev-data" type="hidden" value="{{prePage}}">
+				      </li>
+				    {{/unless}}
+				    
+				    <li class="current-page">
+				      <a class="current-page">{{add nowPage 1}}</a>
+				    </li>
+				
+				    {{#if (not (eq nowPage (subtract totalPage 1)))}}
+				      <li class="next">
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link">{{add nowPage 2}}</a>
+				      </li>
+				      <li class="next">
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link"><i class="fa fa-arrow-right"></i></a>
+						<input class="next-data" type="hidden" value="{{nextPage}}">
+				      </li>
+				    {{/if}}
+				
+					{{#each page}}
+				      {{#if (and (gte this (subtract nowPage 1)) (lte this (add nowPage 1)))}}
+				        <li>
+				          <a href="{{../url}}?tagId={{tagId}}&page={{this}}"></a>
+				        </li>
+				      {{/if}}
+				    {{/each}}
+				  </ul>
+				</nav>
 	</script>
 
 	<script src="js/jquery-3.6.0.min.js"></script>

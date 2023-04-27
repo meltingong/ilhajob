@@ -6,12 +6,17 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.dto.CorpTagDto;
 import com.itwill.ilhajob.common.entity.CorpTag;
 import com.itwill.ilhajob.common.repository.CorpTagRepository;
+import com.itwill.ilhajob.corp.dto.CorpDto;
+import com.itwill.ilhajob.corp.dto.RecruitDto;
+import com.itwill.ilhajob.corp.entity.Corp;
 
 @Service
 public class CorpTagServiceImpl implements CorpTagService{
@@ -54,11 +59,9 @@ public class CorpTagServiceImpl implements CorpTagService{
 	}
 	
 	@Override
-	public List<CorpTagDto> selectListByTagId(Long tagId) {
-		List<CorpTag> corpTagList = corpTagRepository.findByTagId(tagId);
-		return corpTagList.stream()
-				.map(corpTag ->modelMapper.map(corpTag, CorpTagDto.class))
-				.collect(Collectors.toList());
+	public Page<CorpTagDto> selectListByTagId(Long tagId, Pageable pageable) {
+		Page<CorpTag> corpTagList = corpTagRepository.findByTagId(tagId, pageable);
+		return corpTagList.map(corpTag -> modelMapper.map(corpTag, CorpTagDto.class));
 	}
 
 	@Override
