@@ -35,7 +35,12 @@ public class CorpRestController {
 	public Map<String, Object> getTagData(@RequestBody Map<String,String> data,Model model){
 		Map<String, Object> map = new HashMap<String,Object>();
 		
-		
+//		model.addAttribute("blockBegin", blockBegin);
+//	 	model.addAttribute("blockEnd", blockEnd);
+//	    model.addAttribute("curPage", corpPageList.getNumber());
+//	    model.addAttribute("totalPage", corpPageList.getTotalPages());
+//	    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
+//	    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
 		//전체태그선택
 		if(data.get("tagId").equals("전체")) {
 			List<CorpTagDto> corpTagList = corpTagService.selectAll();
