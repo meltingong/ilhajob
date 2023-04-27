@@ -50,7 +50,7 @@ public class LoginController {
 				session.setAttribute("paymentStatus", loginUser.getPaymentStatus());
 				session.setAttribute("profileAvatar", loginUser.getUserImage());
 				session.setAttribute("sUserId", id);
-				session.setAttribute("msgList", userService.findMessageList(loginUser.getId()));
+				session.setAttribute("msgList", userService.findMessageList(loginUser.getId()).size());
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
 			}catch (UserNotFoundException e) {
 				return ResponseEntity.status(ResponseStatusCode.NOT_FOUND_USER).body(e.getMessage());

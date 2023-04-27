@@ -267,6 +267,7 @@ public class UserController {
 		//System.out.println(loginUser.getId());
 		//System.out.println(messageList);
 		model.addAttribute("messageList",messageList);
+		request.getSession().setAttribute("msgList", 0);
 		forwardPath = "candidate-dashboard-job-alerts";
 		return forwardPath;
 	}
