@@ -209,6 +209,7 @@ public class BlogController {
 		blogDto.setUser(loginUser);
 		System.out.println(">>>>>>>>"+blogDto);
 		blogService.updateBlog(id, blogDto);
+		
 		return "redirect:blog-single?id="+blogDto.getId();
 	}
 	
