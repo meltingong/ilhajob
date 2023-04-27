@@ -151,9 +151,11 @@ public class RecruitController {
 		try {
 			if ("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
 				recruitList1.sort((o1, o2) -> o2.getRcDeadline().compareTo(o1.getRcDeadline()));
+				System.out.println("recruitList 내림>>>>"+recruitList1);
 			} else {
 				// 마감일 오름차순
 				recruitList1.sort(Comparator.comparing(RecruitDto::getRcDeadline));
+				System.out.println("recruitList 올림>>>>"+recruitList1);
 				model.addAttribute("recruitList", recruitList1);      
 			}
 			

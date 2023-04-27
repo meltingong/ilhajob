@@ -225,7 +225,6 @@
 		<div class="row">
                 <!-- Job Block -->
 				{{#each data}}
-				{{#if (eq recruit.corp.paymentStatus 1)}}
                 <div class="job-block col-lg-6 col-md-12 col-sm-12" > 
                   <div class="inner-box">
                     <div class="content">
@@ -235,10 +234,10 @@
 							onClick="increaseReadCount(this.form);">
 							{{recruit.rcTitle}}</a></h4>
                       <ul class="job-info">
+                        <li><span class="icon flaticon-clock-3" style="color: lightcoral;"></span><span style="color: lightcoral;">마감일:</span><span style="color: lightcoral;">{{dateFormat "YYYY-MM-DD" recruit.rcDeadline}}</span></li>
                         <li>{{recruit.rcPosition}}<span class="icon flaticon-briefcase"></span></li>
                         <li>{{recruit.corp.corpAddress}}<span class="icon flaticon-map-locator"></span></li>
-                        <li><span class="icon flaticon-clock-3"></span>마감일: {{recruit.rcDeadline}}</li>
-                        <li><span class="icon flaticon-money"></span>{{recruit.rcSalary}}</li>
+                        <li><span class="icon flaticon-money"></span>{{recruit.rcSalary}}<span>만원</span></li>
                       </ul>	
                       <ul class="job-other-info">
 						{{#if (eq recruit.rcStatus 0)}}
@@ -276,7 +275,6 @@
                     </div>
                   </div>
                 </div>
-				{{/if}}
 				{{/each}}
 				
               </div>
@@ -334,7 +332,7 @@
   <script src="js/owl.js"></script>
   <script src="js/wow.js"></script>
   <script src="js/script.js"></script>
-	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 	<script src="js/app_recruit.js" type="module"></script>
 	<script src="js/app_recruit_scrap.js" type="module"></script>
 </body>
