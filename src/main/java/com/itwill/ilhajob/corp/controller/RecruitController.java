@@ -133,7 +133,9 @@ public class RecruitController {
 					           @RequestParam(defaultValue = "5") int blockScale,
 	                           @RequestParam(value = "sortType", required = false) String sortType,
 	                           Model model,HttpServletRequest request) throws Exception {
-		//페이징 기능 추가->pageScale 8개씩 나오게 해놓음
+		
+		//공고 정렬에 페이징 기능 추가->pageScale 8개씩 나오게 해놓음
+		
 		Page<RecruitDto> recruitPage;
 		if("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>내림");
