@@ -177,7 +177,7 @@
             </div>
 
  <!-- Pagination 시작-->
-                <nav class="ls-pagination mb-5">
+<!--                 <nav class="ls-pagination mb-5">
 				  <ul>
 				    <li th:each="page:${#numbers.sequence(0,totalPage -1)}" th:if="${page >= nowPage-1 and page <= nowPage+1}">
 				      <a th:href="@{recruit-list?page=}+${pageStat.index}"></a>
@@ -203,7 +203,20 @@
 				    <li></li>
 				    </th:block>
 				  </ul>
-				</nav>
+				</nav> -->
+				<nav class="ls-pagination">
+				    <ul>
+				        <li th:unless="${curPage == blockBegin-1}" class="prev"><a th:href="@{recruit-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+				        
+				       	<li th:if="${i == blockBegin-1}"><a class="current-page" th:text="${curPage+1}" ></a></li>
+				        <th:block th:each="i, index : ${#numbers.sequence(blockBegin-1, totalPage-1)}" >
+				            <li th:if="${i == curPage}"><a class="current-page" th:text="${curPage+1}" ></a></li>
+				            <li th:unless="${i == curPage}"><a th:text="${i+1}" th:href="@{recruit-list?page=}+${i}"></a></li>
+				        </th:block>
+				        
+				        <li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{recruit-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+				    </ul>
+				</nav> 
 <!-- Pagination 끝-->
             </div>
           </div>

@@ -12,6 +12,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -127,53 +128,56 @@ public class RecruitController {
 	}
 
 	@GetMapping("/recruit-list")
-	public String recruit_list(@RequestParam(defaultValue = "0") int page,
-	                           @RequestParam(defaultValue = "8") int size,
+	public String recruit_list(@RequestParam(defaultValue = "0", name = "page") int curPage,
+					           @RequestParam(defaultValue = "8") int pageScale,
+					           @RequestParam(defaultValue = "5") int blockScale,
 	                           @RequestParam(value = "sortType", required = false) String sortType,
 	                           Model model,HttpServletRequest request) throws Exception {
-		//페이징 기능 추가->일단 6개씩 나오게 해놓음
-	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
-	    Page<RecruitDto> recruitPage = recruitService.findAll(pageable);
-	    int nowPage = recruitPage.getNumber();
-	    
+		//페이징 기능 추가->pageScale 8개씩 나오게 해놓음
+		Page<RecruitDto> recruitPage;
+		if("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>내림");
+			Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.DESC, "rcDeadline");
+			recruitPage = recruitService.findAll(pageable);
+		}else if("rcDeadlineasc".equalsIgnoreCase(sortType)){
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>오름");
+			Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "rcDeadline");
+			recruitPage = recruitService.findAll(pageable);
+		}
+		else {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>일반");
+			Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
+			recruitPage = recruitService.findAll(pageable);
+		}
+	    System.out.println(recruitPage.getContent());
 	    //이전, 다음페이지 설정해야함...
 	    model.addAttribute("recruitList", recruitPage.getContent());
-	    model.addAttribute("nowPage", nowPage);
-	    model.addAttribute("totalPage", recruitPage.getTotalPages());
-	    model.addAttribute("prePage", recruitPage.hasPrevious() ? recruitPage.previousPageable().getPageNumber() : 0);
-	    model.addAttribute("nextPage", recruitPage.hasNext() ? recruitPage.nextPageable().getPageNumber() : recruitPage.getTotalPages() - 1);
+//	    model.addAttribute("nowPage", nowPage);
+//	    model.addAttribute("totalPage", recruitPage.getTotalPages());
+//	    model.addAttribute("prePage", recruitPage.hasPrevious() ? recruitPage.previousPageable().getPageNumber() : 0);
+//	    model.addAttribute("nextPage", recruitPage.hasNext() ? recruitPage.nextPageable().getPageNumber() : recruitPage.getTotalPages() - 1);
+	    
+	    //페이지블록번호
+  		int curBlock = (int) Math.ceil((recruitPage.getNumber()) / blockScale) + 1;
+  	    System.out.println("페이지블록번호 :"+curBlock);
+  	    //페이지 블록의 시작번호
+  	 	int blockBegin = (curBlock - 1) * blockScale + 1;
+  	 	//페이지 블록의 끝 번호
+  	 	int	blockEnd = blockBegin + blockScale - 1;
+  	 	System.out.println("페이지블록시작번호 :"+blockBegin);
+  	 	System.out.println("페이지블록  끝번호 :"+blockEnd);
+  	 	
+  	 	model.addAttribute("blockBegin", blockBegin);
+  	 	model.addAttribute("blockEnd", blockEnd);
+  	    model.addAttribute("curPage", recruitPage.getNumber());
+  	    model.addAttribute("totalPage", recruitPage.getTotalPages());
+  	    model.addAttribute("prePage", recruitPage.previousOrFirstPageable().getPageNumber());
+  	    model.addAttribute("nextPage", recruitPage.nextOrLastPageable().getPageNumber());
 		
 		
 		List<RecruitDto>recruitList1=recruitService.findRecruitAll();
 		model.addAttribute("recriutList",recruitList1);
-		// 공고 정렬
-		// 마감일 내림차순
-		try {
-			if ("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
-				recruitList1.sort((o1, o2) -> o2.getRcDeadline().compareTo(o1.getRcDeadline()));
-			} else {
-				// 마감일 오름차순
-				recruitList1.sort(Comparator.comparing(RecruitDto::getRcDeadline));
-				model.addAttribute("recruitList", recruitList1);      
-			}
-			
-		} catch (Exception e) {
-		}
 		
-//		이렇게 해야하나??
-//		Pageable pageable;
-//		pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
-//		if("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
-//			pageable = PageRequest.of(page, size, Sort.Direction.DESC, "rcDeadline");
-//			
-//		}else {
-//			pageable=PageRequest.of(page, size, Sort.Direction.ASC, "rcDeadline");
-//		}
-//		Page<RecruitDto> recruitPage = recruitService.findAll(pageable);
-//		int nowPage = recruitPage.getNumber()+1;
-//	}
-
-
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();

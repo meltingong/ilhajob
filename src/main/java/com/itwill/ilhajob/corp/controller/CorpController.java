@@ -115,7 +115,7 @@ public class CorpController {
 	
 	@GetMapping("/corp-list")
 	public String corp_list(@RequestParam(defaultValue = "0", name = "page") int curPage,
-	                        @RequestParam(defaultValue = "8") int pageScale,
+	                        @RequestParam(defaultValue = "6") int pageScale,
 	                        @RequestParam(defaultValue = "5") int blockScale,
 	                        HttpServletRequest request,
 	                        Model model) throws Exception {
