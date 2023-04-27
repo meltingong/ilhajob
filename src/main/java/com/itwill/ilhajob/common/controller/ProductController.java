@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.ilhajob.common.dto.ProductDto;
 import com.itwill.ilhajob.common.service.OrdersService;
@@ -27,7 +28,7 @@ public class ProductController {
 		this.productService = productService;
 	}
 	
-	@GetMapping("/shop")
+	@RequestMapping("/shop")
 	public String shop(HttpServletRequest request, Model model) throws Exception {
 		String forwardPath = "";
 		String pDiv=(String)request.getSession().getAttribute("pDiv");
@@ -37,5 +38,18 @@ public class ProductController {
 	    forwardPath = "shop";
 	    return forwardPath;
 	}
+	
+	@RequestMapping(value = "/shop-single", params = "!id")
+	public String shop_single() {
+		return "redirect:shop";
+	}
+	
+	@RequestMapping(value = "/shop-single", params = "id")
+	public String shop_single(@RequestParam("id") Long Id , Model model) throws Exception {
+		ProductDto productDto = productService.selectById(Id);
+		model.addAttribute("product", productDto);
+		return "shop-single";
+	}
+	
 		
 }
