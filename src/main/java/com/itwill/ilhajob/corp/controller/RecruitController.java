@@ -381,7 +381,12 @@ public class RecruitController {
 		
 		//공고 등록시 진행중으로 변경
 		recruitDto.setRcStatus(0);
-
+		
+		//폼에 없는 데이터 업데이트
+		recruitDto.setRcAppCount(recruitService.findRecruit(recruitDto.getId()).getRcAppCount());
+		recruitDto.setRcDate(recruitService.findRecruit(recruitDto.getId()).getRcDate());
+		recruitDto.setRcReadCount(recruitService.findRecruit(recruitDto.getId()).getRcReadCount());
+		
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
 		
 		//System.out.println("update check>>>>"+checkRecruit);
