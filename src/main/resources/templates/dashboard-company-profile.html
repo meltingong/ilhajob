@@ -98,8 +98,8 @@ function update(){
     <section class="user-dashboard">
       <div class="dashboard-outer">
         <div class="upper-title-box">
-          <h3>Company Profile!</h3>
-          <div class="text">Ready to jump back in?</div>
+          <h3>기업 프로필</h3>
+          <div class="text">귀사의 정보를 등록 및 수정할 수 있습니다.</div>
         </div>
 
         <div class="row">
@@ -108,13 +108,12 @@ function update(){
             <div class="ls-widget">
               <div class="tabs-box">
                 <div class="widget-title">
-                  <h4>My Profile</h4>
+                  <h4>기업 프로필</h4>
                 </div>
 
                 <div class="widget-content">
-				 
 				  <div class="form-group col-lg-6 col-md-12">
-                  	<label >로고</label>
+                  	<label>기업 대표 로고</label>
                   	<div>
 				     <img id="uploaded-logo" th:src="${corp.corpStoredFileName}" th:if="${corp.corpStoredFileName != null}" alt="" style="width:150px" />
 				    </div>
@@ -142,18 +141,18 @@ function update(){
                       
 
                       <div class="form-group col-lg-6 col-md-12">
-                        <label >회사 이름</label>
+                        <label>기업명</label>
                         <input type="text" name="corpName" th:value = "${corp.corpName}">
                       </div>
                       
                       <div class="form-group col-lg-6 col-md-12">
-                        <label >사업자 번호</label>
+                        <label>사업자 번호</label>
                         <input type="text" name="corpBusinessNo" th:value = "${corp.corpBusinessNo}">
                       </div>
 						
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12">
-                        <label>회사 주소</label>
+                        <label>위치</label>
                       	<div class="form-group col-lg-3 col-md-6" id="address-postcode">
                           <input type="text" th:value="${corp.corpPostCode}" id="postCode" name="corpPostCode" class="d_form mini" placeholder="우편번호">
                         </div>
@@ -173,13 +172,13 @@ function update(){
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
-                        <label>회사사이트</label>
+                        <label>홈페이지</label>
                         <input type="text" name="corpWebsite" th:value="${corp.corpWebsite}">
                       </div>
 
                       <!-- Input -->
                       <div class="form-group col-lg-6 col-md-12">
-                        <label>회사설립일</label>
+                        <label>설립일</label>
                         <input type="text" name = "date" th:value="${#temporals.format(corp.corpEst, 'yyyy-MM-dd')}">
                       </div>
 
@@ -283,86 +282,6 @@ function update(){
                 </div>
               </div>
             </div>
-
-            <!-- Ls widget -->
-            <div class="ls-widget">
-              <div class="tabs-box">
-                <div class="widget-title">
-                  <h4>연락처 정보</h4>
-                </div>
-
-                <div class="widget-content">
-                  <form class="default-form">
-                    <!-- <div class="row">
-                      Input
-                      <div class="form-group col-lg-6 col-md-12">
-                        <label>Country</label>
-                        <select class="chosen-select">
-                          <option>Australia</option>
-                          <option>Pakistan</option>
-                          <option>Chaina</option>
-                          <option>Japan</option>
-                          <option>India</option>
-                        </select>
-                      </div>
-
-                      Input
-                      <div class="form-group col-lg-6 col-md-12">
-                        <label>City</label>
-                        <select class="chosen-select">
-                          <option>Melbourne</option>
-                          <option>Pakistan</option>
-                          <option>Chaina</option>
-                          <option>Japan</option>
-                          <option>India</option>
-                        </select>
-                      </div>
-
-                      Input
-                      <div class="form-group col-lg-12 col-md-12">
-                        <label>Complete Address</label>
-                        <input type="text" name="name" placeholder="329 Queensberry Street, North Melbourne VIC 3051, Australia.">
-                      </div>
-
-                      Input
-                      <div class="form-group col-lg-6 col-md-12">
-                        <label>Find On Map</label>
-                        <input type="text" name="name" placeholder="329 Queensberry Street, North Melbourne VIC 3051, Australia.">
-                      </div>
-
-                      Input
-                      <div class="form-group col-lg-3 col-md-12">
-                        <label>Latitude</label>
-                        <input type="text" name="name" placeholder="Melbourne">
-                      </div>
-
-                      Input
-                      <div class="form-group col-lg-3 col-md-12">
-                        <label>Longitude</label>
-                        <input type="text" name="name" placeholder="Melbourne">
-                      </div>
-
-                      Input
-                      <div class="form-group col-lg-12 col-md-12">
-                        <button class="theme-btn btn-style-three">Search Location</button>
-                      </div> -->
-
-
-                      <div class="form-group col-lg-12 col-md-12">
-                        <div class="map-outer">
-                          <div class="map-canvas map-height" data-zoom="12" data-lat="-37.817085" data-lng="144.955631" data-type="roadmap" data-hue="#ffc400" data-title="Envato" data-icon-path="images/resource/map-marker.png" data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Input -->
-                      <div class="form-group col-lg-12 col-md-12">
-                        <button class="theme-btn btn-style-one">Save</button>
-                      </div>
-                  </form>
-                  </div>
-                </div>
-              </div>
             </div>
 
           </div>
