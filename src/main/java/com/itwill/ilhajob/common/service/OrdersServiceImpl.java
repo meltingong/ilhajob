@@ -81,7 +81,7 @@ public class OrdersServiceImpl implements OrdersService{
 			//남은기간 + 새로 주문하는 상품의 기간
 			period = productDto.getProductPeriod();
 			productDto.setProductPeriod(period+Duration.between(LocalDateTime.now(),findOrder.getOrderEndDate()).toDays()); 
-			findOrder.setOrderEndDate(LocalDateTime.now().plusDays(period));
+			findOrder.setOrderEndDate(LocalDateTime.now());
 			findOrder.setOrderValid(0);
 			Orders updateOrder = modelMapper.map(findOrder, Orders.class);
 			//마지막 주문의 종료일 현재시간으로 변경 후 상태 변경
@@ -107,7 +107,7 @@ public class OrdersServiceImpl implements OrdersService{
 			OrdersDto findOrder = modelMapper.map(ordersList.get(ordersList.size()-1), OrdersDto.class);
 			period = productDto.getProductPeriod();
 			productDto.setProductPeriod(period + Duration.between(LocalDateTime.now(), findOrder.getOrderEndDate()).toDays());
-			findOrder.setOrderEndDate(LocalDateTime.now().plusDays(period));
+			findOrder.setOrderEndDate(LocalDateTime.now());
 			findOrder.setOrderValid(0);
 			Orders updateOrder = modelMapper.map(findOrder, Orders.class);
 			ordersRepository.save(updateOrder);

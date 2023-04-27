@@ -417,20 +417,20 @@ insert into recruit_scrap(id, recruit_id, user_id) values(RECRUIT_SCRAP_ID_SEQ.n
 /**************************product insert************************/
 -- 개인회원 상품 insert => p_div : U
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'user', 30, '개인회원상품1', 5500);
+values(PRODUCT_ID_SEQ.nextval, 'user', 30, '실버패키지', 5500);
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'user', 60, '개인회원상품2', 9900);
+values(PRODUCT_ID_SEQ.nextval, 'user', 60, '골드패키지', 9900);
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'user', 90, '개인회원상품3', 12900);
+values(PRODUCT_ID_SEQ.nextval, 'user', 90, '플레티넘패키지', 12900);
 
 
 -- 개인회원 상품 insert => p_div : C
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'corp', 30, '개인회원상품5', 20000);
+values(PRODUCT_ID_SEQ.nextval, 'corp', 30, '실버기업패키지', 20000);
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'corp', 60, '개인회원상품6', 35000);
+values(PRODUCT_ID_SEQ.nextval, 'corp', 60, '골드기업패키지', 35000);
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'corp', 90, '개인회원상품7', 45000);
+values(PRODUCT_ID_SEQ.nextval, 'corp', 90, '플레티넘기업패키지', 45000);
 
 /**************************orders insert************************/
 -- 개인회원1 user_seq : 1로 개인상품 p_no 1주문하기

@@ -10,8 +10,6 @@
 		const timeDiff = orderEndDate.getTime() - currentDate.getTime(); // 두 날짜의 차이(밀리초)
 		const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)); // 차이를 일(day)로 변환
 		
-		
-		
 		$(".order-info #order-id").text(data.orderData.id);
 		$(".order-info #order-date").text(data.orderData.orderStartDate);
 		$(".order-info #order-total").text(productPrice.toLocaleString()+"원");

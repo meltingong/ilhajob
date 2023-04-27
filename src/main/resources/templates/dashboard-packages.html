@@ -79,7 +79,7 @@
                           <td th:text = ${orders.id}>1</td>       
                          <td th:text ="${orders.product.productName}">슈퍼 이력서 팩</td>
                           <td th:text="${#temporals.format(orders.orderStartDate, 'yyyy-MM-dd')}">Apr 21, 2023</td>
-                          <td th:text="${#temporals.format(orders.orderStartDate, 'yyyy-MM-dd')}">Apr 30, 2023</td>
+                          <td th:text="${#temporals.format(orders.orderEndDate, 'yyyy-MM-dd')}">Apr 30, 2023</td>
                           <td th:name="orderVaild" th:value="${orders.orderValid}">Active</td>                          
                         </tr>                                                                                              
                       <!--   <tr th:each="orders:${orderList}">
