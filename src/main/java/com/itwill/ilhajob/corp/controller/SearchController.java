@@ -23,6 +23,7 @@ import com.itwill.ilhajob.common.dto.CorpTagDto;
 import com.itwill.ilhajob.common.dto.RecruitTagDto;
 import com.itwill.ilhajob.common.dto.TagDto;
 import com.itwill.ilhajob.common.service.AppService;
+import com.itwill.ilhajob.common.service.CorpTagService;
 import com.itwill.ilhajob.common.service.RecruitTagService;
 import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
@@ -41,17 +42,15 @@ public class SearchController {
 	@Autowired
 	private CorpService corpService;
 	@Autowired
-	private ManagerService managerService;
-	@Autowired
 	private RecruitService recruitService;
 	@Autowired
 	private TagService tagService;
 	@Autowired
 	private RecruitTagService recruitTagService;
 	@Autowired
-	private AppService appService;
-	@Autowired
 	private RecruitScrapService recruitScrapService;
+	@Autowired
+	private CorpTagService corpTagService;
 	@Autowired
 	private UserService userService;
 	
@@ -64,72 +63,111 @@ public class SearchController {
 			                      @RequestParam(defaultValue = "5") int blockScale,
 								  Pageable pageable,
 		                          Model model, HttpServletRequest request) {
+		String forwardPath="";
 		    try {
-				pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
-				Page<RecruitDto> searchRecruitList = recruitService.searchRcTitle(searchSelect, curPage, pageScale);
-				
-				//페이지블록번호
-				int curBlock = (int) Math.ceil((searchRecruitList.getNumber()) / blockScale) + 1;
-			    System.out.println("페이지블록번호 :"+curBlock);
-			    //페이지 블록의 시작번호
-			 	int blockBegin = (curBlock - 1) * blockScale + 1;
-			 	//페이지 블록의 끝 번호
-			 	int	blockEnd = blockBegin + blockScale - 1;
-			 	System.out.println("페이지블록시작번호 :"+blockBegin);
-			 	System.out.println("페이지블록  끝번호 :"+blockEnd);
-		  	 	model.addAttribute("blockBegin", blockBegin);
-		  	 	model.addAttribute("blockEnd", blockEnd);
-		  	    model.addAttribute("curPage", searchRecruitList.getNumber());
-		  	    model.addAttribute("totalPage", searchRecruitList.getTotalPages());
-		  	    model.addAttribute("prePage", searchRecruitList.previousOrFirstPageable().getPageNumber());
-		  	    model.addAttribute("nextPage", searchRecruitList.nextOrLastPageable().getPageNumber());
-			 	
-			 	List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
-				List<TagDto> tagList = tagService.selectAll();
-				model.addAttribute("recruitTagList", recruitTagList);
-				model.addAttribute("tagList", tagList);
-				
-				//스크랩리스트(로그인아이디가 있다면 북마크리스트 넣어줌)
-				String sUserId = (String)request.getSession().getAttribute("sUserId");
-				UserDto loginUser = null;
-				if(sUserId!=null) {
-					loginUser = userService.findUser(sUserId);
-				}
-				model.addAttribute("loginUser", loginUser);
-				
-				
-				//로그인시에만 스크랩 (북마크)로고 출력
-				if(loginUser!=null) {
-					List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
-					List<RecruitDto> recruitList = recruitService.findRecruitAll();
-					//스크랩상태확인 리스트
-					Map<Long,Integer> status = new HashMap<Long, Integer>();
+		    	if(searchSelect.equals("recruit")) {
+		    		pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
+		    		Page<RecruitDto> searchRecruitList = recruitService.searchRcTitle(searchKeyword, curPage, pageScale);
+		    		
+		    		//페이지블록번호
+		    		int curBlock = (int) Math.ceil((searchRecruitList.getNumber()) / blockScale) + 1;
+		    		System.out.println("페이지블록번호 :"+curBlock);
+		    		//페이지 블록의 시작번호
+		    		int blockBegin = (curBlock - 1) * blockScale + 1;
+		    		//페이지 블록의 끝 번호
+		    		int	blockEnd = blockBegin + blockScale - 1;
+		    		
+		    		model.addAttribute("recruitList", searchRecruitList.getContent());
+		    		model.addAttribute("blockBegin", blockBegin);
+		    		model.addAttribute("blockEnd", blockEnd);
+		    		model.addAttribute("curPage", searchRecruitList.getNumber());
+		    		model.addAttribute("totalPage", searchRecruitList.getTotalPages());
+		    		model.addAttribute("prePage", searchRecruitList.previousOrFirstPageable().getPageNumber());
+		    		model.addAttribute("nextPage", searchRecruitList.nextOrLastPageable().getPageNumber());
+		    		
+		    		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
+		    		List<TagDto> tagList = tagService.selectAll();
+		    		model.addAttribute("recruitTagList", recruitTagList);
+		    		model.addAttribute("tagList", tagList);
+		    		
+		    		//스크랩리스트(로그인아이디가 있다면 북마크리스트 넣어줌)
+		    		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		    		UserDto loginUser = null;
+		    		if(sUserId!=null) {
+		    			loginUser = userService.findUser(sUserId);
+		    		}
+		    		model.addAttribute("loginUser", loginUser);
+		    		
+		    		
+		    		//로그인시에만 스크랩 (북마크)로고 출력
+		    		if(loginUser!=null) {
+		    			List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
+		    			List<RecruitDto> recruitList = recruitService.findRecruitAll();
+		    			//스크랩상태확인 리스트
+		    			Map<Long,Integer> status = new HashMap<Long, Integer>();
+		    			
+		    			for(RecruitDto recruit :recruitList) {
+		    				boolean hasRecruitScrap = false; // 리크루트 스크랩이 있는지 여부를 나타내는 변수
+		    				for(RecruitScrapDto recruitscrap:recruitScrapList) {
+		    					if(recruit.getId() == recruitscrap.getRecruit().getId()) {
+		    						hasRecruitScrap = true; // 리크루트 스크랩이 있을 때
+		    						break; // 리크루트 스크랩이 있으면 반복문 종료
+		    					}
+		    				}
+		    				if(hasRecruitScrap) {
+		    					status.put(recruit.getId(), 1); // 리크루트 스크랩이 있을 때
+		    				} else {
+		    					status.put(recruit.getId(), 0); // 리크루트 스크랩이 없을 때
+		    				}
+		    			}
+		    			System.out.print("status"+status);
+		    			model.addAttribute("status", status);
+		    			model.addAttribute("recruitScrapList", recruitScrapList);
+		    		}
+		    	forwardPath = "recruit-list";
+		    	}else if(searchSelect.equals("corp")) {
+		    		Pageable pageable1 = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
+			    	Page<CorpDto> corpPageList = corpService.findAll(pageable1);
+			    	int nowPage = corpPageList.getNumber();
+			        List<CorpDto> corpSearchList = new ArrayList<>();
+			     
+				    //채용중 뿌리기
+				    Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
+							corpPageList.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
+					model.addAttribute("rcCountMap", rcCountMap);
 					
-					for(RecruitDto recruit :recruitList) {
-					    boolean hasRecruitScrap = false; // 리크루트 스크랩이 있는지 여부를 나타내는 변수
-					    for(RecruitScrapDto recruitscrap:recruitScrapList) {
-					        if(recruit.getId() == recruitscrap.getRecruit().getId()) {
-					            hasRecruitScrap = true; // 리크루트 스크랩이 있을 때
-					            break; // 리크루트 스크랩이 있으면 반복문 종료
-					        }
-					    }
-					    if(hasRecruitScrap) {
-					    	status.put(recruit.getId(), 1); // 리크루트 스크랩이 있을 때
-					    } else {
-					    	status.put(recruit.getId(), 0); // 리크루트 스크랩이 없을 때
-					    }
-					}
-					System.out.print("status"+status);
-					model.addAttribute("status", status);
-					model.addAttribute("recruitScrapList", recruitScrapList);
-				}
-			 	
+					//태그리스트 뿌리기
+					List<CorpTagDto> corpTagList = corpTagService.selectAll();
+					List<TagDto> tagList = tagService.selectAll();
+					model.addAttribute("tagList", tagList);
+					model.addAttribute("corpTagList", corpTagList);
+					
+				    
+					//페이지블록번호
+					int curBlock = (int) Math.ceil((corpPageList.getNumber()) / blockScale) + 1;
+				    System.out.println("페이지블록번호 :"+curBlock);
+				    //페이지 블록의 시작번호
+				 	int blockBegin = (curBlock - 1) * blockScale + 1;
+				 	//페이지 블록의 끝 번호
+				 	int	blockEnd = blockBegin + blockScale - 1;
+				 	
+				 	model.addAttribute("blockBegin", blockBegin);
+				 	model.addAttribute("blockEnd", blockEnd);
+				    model.addAttribute("curPage", corpPageList.getNumber());
+				    model.addAttribute("totalPage", corpPageList.getTotalPages());
+				    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
+				    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
+				    corpSearchList = corpService.searchByCorpName(searchKeyword,pageable);
+			        model.addAttribute("corpList", corpSearchList);
+		    		forwardPath = "corp-list";
+		    	}
+		    	
 		    } catch (Exception e) {
 		        // 예외 처리
 		        e.printStackTrace();
 		        model.addAttribute("errorMsg", "검색어를 찾을 수 없습니다!");
 		    }
-		    return "recruitList";
+		    return forwardPath;
 		}
 
 }
