@@ -215,12 +215,20 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 
 	@Override
-	public List<OrdersRequestDto> findOrderAndProductByUser(long id) {
-		List<Orders> findOrderList = ordersRepository.findByUserId(id);
-		List<OrdersRequestDto> orderList = findOrderList.stream()
-				.map(order -> modelMapper.map(order, OrdersRequestDto.class))
-				.collect(Collectors.toList());
-		return orderList;
+	public List<OrdersRequestDto> findOrder(String role, long id) {
+		 if (role.equals("user")) {
+			 List<Orders> findOrderList = ordersRepository.findByUserId(id);
+			 List<OrdersRequestDto> orderList = findOrderList.stream()
+					 .map(order -> modelMapper.map(order, OrdersRequestDto.class))
+					 .collect(Collectors.toList());
+			 return orderList;
+		    } else {
+		    	List<Orders> findOrderList = ordersRepository.findByCorpId(id);
+		    	List<OrdersRequestDto> orderList = findOrderList.stream()
+		    			.map(order -> modelMapper.map(order, OrdersRequestDto.class))
+		    			.collect(Collectors.toList());
+		    	return orderList;
+		    }
 	}
 	
 	private Orders saveOrder(String role, long id, ProductDto productDto) {
