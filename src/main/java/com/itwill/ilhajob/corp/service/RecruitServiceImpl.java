@@ -113,8 +113,8 @@ public class RecruitServiceImpl implements RecruitService {
 	
 	// recruitList 페이징 기능
 	@Override
-	public Page<RecruitDto> getRecruitList(int Page, int size) throws Exception {
-		PageRequest pageable=PageRequest.of(Page, size);
+	public Page<RecruitDto> getRecruitList(int page, int size) throws Exception {
+		PageRequest pageable=PageRequest.of(page, size);
 		Page<Recruit> recruitPage=recruitRepository.findAll(pageable);
 		return recruitPage.map(recruit->modelMapper.map(recruit, RecruitDto.class));
 	}
@@ -152,6 +152,13 @@ public class RecruitServiceImpl implements RecruitService {
 		}
 		return recruitList.stream().map(recruit -> modelMapper.map(recruit, RecruitDto.class))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Page<RecruitDto> searchRcTitle(String rcTitle, int page, int size) throws Exception {
+		PageRequest pageable=PageRequest.of(page, size);
+		Page<Recruit> recruitPage=recruitRepository.findByRcTitleContaining(rcTitle, pageable);
+		return recruitPage.map(recruit->modelMapper.map(recruit, RecruitDto.class));
 	}
 	
 	

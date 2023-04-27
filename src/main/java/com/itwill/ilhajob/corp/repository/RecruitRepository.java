@@ -25,6 +25,8 @@ public interface RecruitRepository extends JpaRepository<Recruit, Long>{
 	List<Recruit> findAllByOrderByRcDeadlineAsc();
 	List<Recruit> findAllByOrderByRcDeadlineDesc();
 	
+	Page<Recruit> findByRcTitleContaining(String rcTitle, Pageable pageable);
+	
 	
 }
 
