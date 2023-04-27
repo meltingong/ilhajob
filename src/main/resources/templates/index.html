@@ -44,41 +44,52 @@
 
           <!-- Job Search Form -->
           <div class="job-search-form wow fadeInUp" data-wow-delay="1000ms">
-            <form id="search-form" method="get" th:action="@{/search}">
+            <form id="search-form" method="get" th:action="@{/searchRecruit}">
               <div class="row justify-content-center justify-content-md-between">
                 <!-- Form Group -->
-                <div class="form-group col-lg-9">
+                <div class="form-group col-lg-2 position-relative">
+                 <span>
+                  <select class="search-select" name="searchSelect" style="width: 100px; padding-left:0;">
+					<option value="recruit">공고명</option>
+					<option value="corp">회사명</option>
+				  </select>
+				  </span>
+				  </div>
+				  <div class="form-group col-lg-7 position-relative">
                   <span class="icon flaticon-search-1"></span>
-                  <input type="text" name="corpName" placeholder="Job title, keywords, or company">
+                  <input type="text" id="searchInput" name="searchKeyword" placeholder="Job title, keywords, or company">
+
                 </div>
+                
 
                 <!-- Form Group -->
                 <div class="form-group col-auto">
-                  <button type="submit" class="theme-btn btn-style-two">Find Jobs</button>
+                  <button type="button" id="main-search" class="theme-btn btn-style-two">Find Jobs</button>
                 </div>
               </div>
             </form>
+            <ul class="search-results" id="searchResults">
+  			</ul>
           </div>
           <!-- Job Search Form -->
 
           <div class="features-icons">
 
             <div class="item">
-              <div class="icon-wrap" style="background-color:cornflowerblue;">
-                <a href="#" th:href="@{/search?corpName=&job=웹프로그래머}" style="color: white;"><div class="icon flaticon-web-programming"></div>
-              </a>
+              <div class="icon-wrap">
+                <div class="icon flaticon-web-programming"></div>
               </div>
+
               <div class="title">
               <a href="#" th:href="@{/search?corpName=&job=웹프로그래머}" style="color: white;">
-                웹프로그램
+                웹프로그래머
               </a>
               </div>
             </div>
 
             <div class="item">
-              <div class="icon-wrap" style="background-color:cornflowerblue;">
-                <a href="#" th:href="@{/search?corpName=&job=응용프로그램}" style="color: white;"><div class="icon flaticon-promotion"></div>
-              </a>
+              <div class="icon-wrap">
+                <div class="icon flaticon-promotion"></div>
               </div>
 
               <div class="title">
@@ -89,9 +100,8 @@
 		</div>
 		
             <div class="item">
-              <div class="icon-wrap" style="background-color:cornflowerblue;">
-                <a href="#" th:href="@{/search?corpName=&job=네트워크}" style="color: white;"><div class="icon flaticon-vector"></div>
-              </a>
+              <div class="icon-wrap">
+                <div class="icon flaticon-vector"></div>
               </div>
 
               <div class="title">
@@ -102,10 +112,8 @@
 			</div>
 			
             <div class="item">
-            <div class="icon-wrap" style="background-color:cornflowerblue;">
-              <a href="#" th:href="@{/search?corpName=&job=웹퍼블리싱}" style="color: white;">
+              <div class="icon-wrap">
                 <div class="icon flaticon-money-1"></div>
-                 </a>
               </div>
 
               <div class="title">
@@ -116,10 +124,8 @@
 			</div>
 			
             <div class="item">
-            <div class="icon-wrap" style="background-color:cornflowerblue;">
-              <a href="#" th:href="@{/search?corpName=&job=게임}" style="color: white;">
+              <div class="icon-wrap">
                 <div class="icon flaticon-headhunting"></div>
-                </a>
               </div>
 
               <div class="title">
@@ -130,28 +136,24 @@
 			</div>
 			
             <div class="item">
-            <div class="icon-wrap" style="background-color:cornflowerblue;">
-              <a href="#" th:href="@{/search?corpName=&job=빅데이터ai}" style="color: white;">
+              <div class="icon-wrap">
                 <div class="icon flaticon-rocket-ship"></div>
-                </a>
               </div>
 
               <div class="title">
                 <a href="#" th:href="@{/search?corpName=&job=빅데이터ai}" style="color: white;">
-                빅데이터AI
+                빅데이터ai
               </a>
             </div>
 		</div>
 		 <div class="item">
-              <div class="icon-wrap" style="background-color:cornflowerblue;">
-		 <a href="#" th:href="@{/search?corpName=&job=소프트웨어/하드웨어}" style="color: white;">
+              <div class="icon-wrap">
                 <div class="icon flaticon-web-programming"></div>
-                </a>
               </div>
 		
 		   <div class="title">
                 <a href="#" th:href="@{/search?corpName=&job=소프트웨어/하드웨어}" style="color: white;">
-                소프트/하드웨어
+                소프트웨어/하드웨어
               </a>
             </div>
 		</div>
@@ -161,7 +163,7 @@
       </div>
     </section>
     <!-- End Banner Section-->
-
+    
     <!-- Job Section -->
     <section class="layout-pt-120 layout-pb-120">
       <div class="auto-container">
@@ -175,7 +177,7 @@
           <div class="tab-buttons-wrap">
             <ul class="tab-buttons -pills-condensed -blue">
               <!--li class="tab-btn" data-tab="#tab1">전체 공고</li-->
-              <li class="tab-btn active-btn" data-tab="#tab2">추천 공고 </li>
+              <li class="tab-btn active-btn" data-tab="#tab2">진행중인 공고 </li>
               <li class="tab-btn" data-tab="#tab3">마감 임박 공고</li>
             </ul>
           </div>
@@ -450,6 +452,7 @@
   <script src="js/rellax.min.js"></script>
   <script src="js/owl.js"></script>
   <script src="js/wow.js"></script>
+  <script src="js/search.js"></script>
   <script src="js/script.js"></script>
 
 </body>

@@ -232,11 +232,19 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 	
 	private Orders saveOrder(String role, long id, ProductDto productDto) {
-		OrdersDto createOrderDto = OrdersDto.builder().orderStartDate(LocalDateTime.now())
-				.orderEndDate(LocalDateTime.now().plusDays(productDto.getProductPeriod())).userId(id).orderValid(1)
-				.productId(productDto.getId()).build();
-		Orders createOrder = modelMapper.map(createOrderDto, Orders.class);
-		return ordersRepository.save(createOrder);
+		if(role.equals("user")) {
+			OrdersDto createOrderDto = OrdersDto.builder().orderStartDate(LocalDateTime.now())
+					.orderEndDate(LocalDateTime.now().plusDays(productDto.getProductPeriod())).userId(id).orderValid(1)
+					.productId(productDto.getId()).build();
+			Orders createOrder = modelMapper.map(createOrderDto, Orders.class);
+			return ordersRepository.save(createOrder);
+		}else {
+			OrdersDto createOrderDto = OrdersDto.builder().orderStartDate(LocalDateTime.now())
+					.orderEndDate(LocalDateTime.now().plusDays(productDto.getProductPeriod())).corpId(id).orderValid(1)
+					.productId(productDto.getId()).build();
+			Orders createOrder = modelMapper.map(createOrderDto, Orders.class);
+			return ordersRepository.save(createOrder);
+		}
 	}
 	
 	private void savePayment(OrdersDto ordersDto, ProductDto productDto , String paymentMethod) {

@@ -114,7 +114,7 @@ function blogLike(){
         <input type="hidden" th:value="${blog.id}" name="blogId"  />
         <input type="hidden" th:value="${session.id}" name="userId"  />
         <ul class="post-info">
-          <li ><span class="thumb"><img src="images/resource/thumb-1.png" alt=""></span><span th:text="${#strings.substringBefore(blog.user.userEmail,'@')}"></span></li>
+          <li ><span class="thumb"><img src="images/default.jpg" alt=""></span><span th:text="${#strings.substringBefore(blog.user.userEmail,'@')}"></span></li>
           <li th:text="${#temporals.format(blog.updatedAt,'yyyy-MM-dd HH:mm')}" > August 31, 2021</li>
           <li th:text="|${#lists.size(blogCommentList)} Comment|"> Comment</li>
           <li th:text="|${blog.blogReadCount+1} views|">

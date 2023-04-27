@@ -174,10 +174,6 @@ public class RecruitController {
   	    model.addAttribute("prePage", recruitPage.previousOrFirstPageable().getPageNumber());
   	    model.addAttribute("nextPage", recruitPage.nextOrLastPageable().getPageNumber());
 		
-		
-		List<RecruitDto>recruitList1=recruitService.findRecruitAll();
-		model.addAttribute("recriutList",recruitList1);
-		
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();

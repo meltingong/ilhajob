@@ -374,6 +374,35 @@ li {
   cursor: pointer;
 }
 
+.search-results {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  max-height: 270px;
+  overflow-y: hidden;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.search-results li {
+  padding: 8px 72px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.search-results li:hover {
+  background-color: #f0f0f0;
+}
+
+.sar {
+  border-radius: 0;
+}
+
 /*======================
 Checkbox 
 =======================*/
@@ -872,6 +901,9 @@ typography
   font-family: 'Font Awesome 5 Free';
 }
 
+.search-select {
+	width:50px;
+}
 /*** 
 
 ====================================================================
@@ -18645,7 +18677,7 @@ Product Tabs
   margin: 0 !important;
   margin: 56px auto 0 !important;
   border-radius: 150px;
-  max-width: 740px;
+  max-width: 840px;
   margin: 0 auto 20px;
 }
 

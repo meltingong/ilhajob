@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -208,9 +210,62 @@ public class RecruitRestController {
 		map.put("recruit",recruitDto);		
 		return map;
 		
-		
-		
 	}
+	
+//	@RequestMapping(value = "/searchRecruit", method = RequestMethod.GET)
+//	public String searchCorps(@RequestParam("corpName") String searchKeyword, 
+//							  @RequestParam("job") String job,
+//							  @RequestParam(defaultValue = "0") int page,
+//		                      @RequestParam(defaultValue = "6") int size,
+//							  Pageable pageable,
+//	                          Model model) {
+//	    try {
+//	    	//페이징 기능 추가->일단 12개씩 나오게 해놓음
+//	    	Pageable pageable1 = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+//	    	Page<CorpDto> corpPageList = corpService.findAll(pageable1);
+//	    	int nowPage = corpPageList.getNumber();
+//	        List<CorpDto> corpSearchList = new ArrayList<>();
+//	     
+//		    //채용중 뿌리기
+//		    Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
+//					corpPageList.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
+//			model.addAttribute("rcCountMap", rcCountMap);
+//			
+//			//태그리스트 뿌리기
+//			List<CorpTagDto> corpTagList = corpTagService.selectAll();
+//			List<TagDto> tagList = tagService.selectAll();
+//			model.addAttribute("tagList", tagList);
+//			model.addAttribute("corpTagList", corpTagList);
+//			
+//		    
+//		    //이전, 다음페이지 설정해야함...
+//		    model.addAttribute("corpList", corpPageList.getContent());
+//		    model.addAttribute("nowPage", nowPage);
+//		    model.addAttribute("totalPage", corpPageList.getTotalPages());
+//		    model.addAttribute("prePage", corpPageList.hasPrevious() ? corpPageList.previousPageable().getPageNumber() : 0);
+//		    model.addAttribute("nextPage", corpPageList.hasNext() ? corpPageList.nextPageable().getPageNumber() : corpPageList.getTotalPages() - 1);
+//			
+//		    // corpName만 알때
+//	        if (job.isEmpty()) {
+//	           corpSearchList = corpService.searchByCorpName(corpName,pageable);
+//	           
+//	        // job만 알 때
+//	        } else if(corpName.isEmpty()){
+//	            corpSearchList = corpService.searchByjob(job,pageable);
+//	        // 둘 다 알 때
+//	        } else {
+//	            corpSearchList = corpService.searchCorps(corpName, job,pageable);
+//	        }
+//	        //검색 결과 없을 때
+//
+//	        model.addAttribute("corpList", corpSearchList);
+//	    } catch (Exception e) {
+//	        // 예외 처리
+//	        e.printStackTrace();
+//	        model.addAttribute("errorMsg", "검색어를 찾을 수 없습니다!");
+//	    }
+//	    return "corp-list";
+//	}
 	
 }
 

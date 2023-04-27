@@ -329,7 +329,7 @@ public class CorpController {
 		corp.setCorpEst(time);
 		corp.setUpdateStatus(1);
 		corp.setPaymentStatus(corpService.findByCorpId((Long)request.getSession().getAttribute("id")).getPaymentStatus());
-		corp.setPaymentStatus(corpService.findByCorpId((Long)request.getSession().getAttribute("id")).getRcCount());
+		corp.setRcCount(corpService.findByCorpId((Long)request.getSession().getAttribute("id")).getRcCount());
 		corpService.update(corp.getId(), corp);
 		request.setAttribute("corpId", corp.getId());
 		return "redirect:corp-detail?corpId="+corp.getId();
