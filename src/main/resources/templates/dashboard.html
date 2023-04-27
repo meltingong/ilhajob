@@ -68,7 +68,7 @@
     <section class="user-dashboard">
       <div class="dashboard-outer">
         <div class="upper-title-box">
-          <h3>회원님 안녕하세요!</h3>
+          <h3 th:text="|${corp.corpName} 님 안녕하세요!|">회원님 안녕하세요!</h3>
           <div class="text">귀하의 기업 및 공고 정보를 한눈에 제공해드립니다.</div>
         </div>
         <div class="row">
@@ -204,7 +204,7 @@
                           <td>
 						      <ul>
 						        <li th:text="|등록일: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></li>
-						        <li th:text="|미감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></li>
+						        <li th:text="|마감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></li>
 						      </ul>
 						  </td>
 						  
