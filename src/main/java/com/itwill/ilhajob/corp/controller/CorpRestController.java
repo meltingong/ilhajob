@@ -46,11 +46,11 @@ public class CorpRestController {
 //	    
 //	    //이전, 다음페이지 설정해야함...
 //	    model.addAttribute("corpList", corpPageList.getContent());
-//		//코프아이디리스트 만들기
-//		List<Long> corpIdlist = new ArrayList<Long>();
-//		for(CorpDto corp:corpService.findCorpAll()) {
-//			corpIdlist.add(corp.getId()); 
-//		};
+		//코프아이디리스트 만들기
+		List<Long> corpIdlist = new ArrayList<Long>();
+		for(CorpDto corp:corpService.findCorpAll()) {
+			corpIdlist.add(corp.getId()); 
+		};
 //		
 //		map.put("blockBegin", blockBegin);
 //		map.put("blockEnd", blockEnd);
