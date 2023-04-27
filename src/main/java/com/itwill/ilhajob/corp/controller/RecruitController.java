@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -65,7 +67,17 @@ public class RecruitController {
 	@RequestMapping(value = { "/", "/index" })
 	public String main(Model model) throws Exception {
 		// 전체 공고 리스트
-		List<RecruitDto> recruitList = recruitService.findRecruitAll();
+		List<RecruitDto> recruitListAll = recruitService.findRecruitAll();
+		List<RecruitDto> recruitList = new ArrayList<RecruitDto>();
+		Random random = new Random();
+		while (recruitList.size() < 10) {
+		    int randomIndex = random.nextInt(recruitListAll.size());
+		    RecruitDto randomRecruit = recruitListAll.get(randomIndex);
+		    if (randomRecruit.getRcDeadline().isAfter(LocalDateTime.now().minusDays(1).withHour(0).withMinute(0).withSecond(0))) {
+		        recruitList.add(randomRecruit);
+		    }
+		}
+		
 		model.addAttribute("recruitList", recruitList);
 		
 		// 마감 임박(Today+7 까지) 공고 리스트
@@ -73,12 +85,12 @@ public class RecruitController {
 
 		LocalDateTime now = LocalDateTime.now();
 		LocalDateTime endToday = now.withHour(23).withMinute(59).withSecond(59);
-		System.out.println(">>>>>>>>>>>> : " + endToday);
+		System.out.println(">>>>>>>>>>>> 오늘의 끝 : " + endToday);
 		
 		LocalDateTime deadline = endToday.plusDays(7);
 		System.out.println(">>>>>>>>>>>> deadline : " + deadline);
 		
-		for (RecruitDto recruit : recruitList) {
+		for (RecruitDto recruit : recruitListAll) {
 			if (recruit.getRcDeadline().isAfter(now.minusDays(1).withHour(23).withMinute(59).withSecond(59)) && recruit.getRcDeadline().isBefore(deadline) && recruit.getRcDeadline().compareTo(deadline) <= 0) {
 					deadLineRecruitList.add(recruit);
 					System.out.println("공고 마감날짜  : " + recruit.getRcDeadline());
@@ -117,6 +129,7 @@ public class RecruitController {
 	@GetMapping("/recruit-list")
 	public String recruit_list(@RequestParam(defaultValue = "0") int page,
 	                           @RequestParam(defaultValue = "8") int size,
+	                           @RequestParam(value = "sortType", required = false) String sortType,
 	                           Model model,HttpServletRequest request) throws Exception {
 		//페이징 기능 추가->일단 6개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
@@ -129,7 +142,38 @@ public class RecruitController {
 	    model.addAttribute("totalPage", recruitPage.getTotalPages());
 	    model.addAttribute("prePage", recruitPage.hasPrevious() ? recruitPage.previousPageable().getPageNumber() : 0);
 	    model.addAttribute("nextPage", recruitPage.hasNext() ? recruitPage.nextPageable().getPageNumber() : recruitPage.getTotalPages() - 1);
-	
+		
+		
+		List<RecruitDto>recruitList1=recruitService.findRecruitAll();
+		model.addAttribute("recriutList",recruitList1);
+		// 공고 정렬
+		// 마감일 내림차순
+		try {
+			if ("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
+				recruitList1.sort((o1, o2) -> o2.getRcDeadline().compareTo(o1.getRcDeadline()));
+			} else {
+				// 마감일 오름차순
+				recruitList1.sort(Comparator.comparing(RecruitDto::getRcDeadline));
+				model.addAttribute("recruitList", recruitList1);      
+			}
+			
+		} catch (Exception e) {
+		}
+		
+//		이렇게 해야하나??
+//		Pageable pageable;
+//		pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+//		if("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
+//			pageable = PageRequest.of(page, size, Sort.Direction.DESC, "rcDeadline");
+//			
+//		}else {
+//			pageable=PageRequest.of(page, size, Sort.Direction.ASC, "rcDeadline");
+//		}
+//		Page<RecruitDto> recruitPage = recruitService.findAll(pageable);
+//		int nowPage = recruitPage.getNumber()+1;
+//	}
+
+
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
@@ -228,10 +272,23 @@ public class RecruitController {
 
 	@RequestMapping("/dashboard-post-job")
 	public String dashboard_post_job_form(HttpServletRequest request, Model model) throws Exception {
+		
 		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
 		model.addAttribute("corp", loginCorp);
+		
+		
+		//결제확인 및 업데이트상태확인
+		int paymentStatus = (Integer)request.getSession().getAttribute("paymentStatus");
+		int updateStatus = (Integer)request.getSession().getAttribute("updateStatus");
+		System.out.println("결제상태:"+paymentStatus+"업데이트상태:"+updateStatus);
+		if(updateStatus!=1) {
+			return "redirect:dashboard-company-profile";
+		}else if(paymentStatus!=1) {
+			return "redirect:product";
+		}
 		String forward_path = "dashboard-post-job";
 		return forward_path;
+		
 	}
 
 	@PostMapping("/dashboard-post-job-action")
@@ -247,6 +304,10 @@ public class RecruitController {
 		recruitDto.setRcReadCount(0);
 		recruitDto.setCorp(loginCorp);
 		recruitDto = recruitService.create(recruitDto);
+		
+		//수정시에만 권한부여
+		request.getSession().setAttribute("updateStatus", 1);
+		
 		String forward_path = "redirect:recruit-detail?id=" + recruitDto.getId();
 		return forward_path;
 	}

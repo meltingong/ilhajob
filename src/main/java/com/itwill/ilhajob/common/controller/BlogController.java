@@ -112,8 +112,7 @@ public class BlogController {
 		request.setAttribute("loginUser", loginUser);
 		return "blog-write-form";
 	}
-	
-	@LoginCheck
+
 	@ResponseBody
 	@PostMapping("/blog_write_action")
 	public ResponseEntity<Object> blog_write_action(@RequestBody BlogDto blog,HttpServletRequest request,
@@ -147,37 +146,12 @@ public class BlogController {
 	//블로그 id가 있을때
 	@RequestMapping(value = "/blog-single", params = "id")
 	public String blog_view(@RequestParam("id") Long blogId , Model model, @ModelAttribute BlogCommentDto blogCommentDto,HttpServletRequest request) throws Exception{
-
-		//블로그 상세내용 불러오기
-		BlogDto blogDto = blogService.findBlog(blogId);
-		model.addAttribute("blog", blogDto);
-		
-		//블로그 조회수 업데이트
-		model.addAttribute("blogReadCount", blogService.updateViews(blogId));
-    
-		//댓글리스트 불러오기
-		List<BlogCommentDto> blogCommentList = blogCommentService.findByBlogComment(blogId);
-		model.addAttribute("blogCommentList", blogCommentList);
-		model.addAttribute("blogComment", blogCommentDto);
-		
-		
-		return "blog-single";
-	}
-
-/*블로그 상세
-	
-	//블로그 id가 없을 때
-	@RequestMapping(value = "/blog-single",params = "!id")
-	public String blog_view() {
-		return "redirect:blog-list";	
-	}
-	
-	//블로그 가 있을때
-	@RequestMapping(value = "/blog-single", params = "id")
-	public String blog_view(@RequestParam("id") Long blogId , Long userId, Model model, @ModelAttribute BlogCommentDto blogCommentDto,HttpServletRequest request) throws Exception{
-		// 세션에서 로그인된 사용자의 아이디 가져오기
+		  
 	    String sUserId = (String) request.getSession().getAttribute("sUserId");
-	    UserDto loginUser = userService.findUser(sUserId);
+	    UserDto loginUser = null;
+	    if(sUserId != null) {
+	        loginUser = userService.findUser(sUserId);
+	    }
 	    
 		//블로그 상세내용 불러오기
 		BlogDto blogDto = blogService.findBlog(blogId);
@@ -191,14 +165,17 @@ public class BlogController {
 		model.addAttribute("blogCommentList", blogCommentList);
 		model.addAttribute("blogComment", blogCommentDto);
 		
-		
-		 BlogHeartDto blogHeartDto = blogHeartService.findBlogLikeState(blogId, loginUser.getId());
-		 int heartState = blogHeartDto != null ? blogHeartDto.getHeartState() : 0;
-		 model.addAttribute("heartState", heartState);
+	    
+	    // 로그인 안했을땐 heartState값 0으로 넣기
+	    int heartState = 0;
+	    if(loginUser != null) {
+	        BlogHeartDto blogHeartDto = blogHeartService.findBlogLikeState(blogId, loginUser.getId());
+	        heartState = blogHeartDto != null ? blogHeartDto.getHeartState() : 0;
+	    }
+	    model.addAttribute("heartState", heartState);
 
-		return "blog-single";
+	    return "blog-single";
 	}
-	------->이렇게하면로그인안하면 상세가 안보이니까..안됨*/
 		
 		
 	/*블로그 수정*/
@@ -222,11 +199,20 @@ public class BlogController {
 	}
 	
 	@PostMapping("/blog-modify-action")
-	public String blog_modify_action(@ModelAttribute("blogDto") BlogDto blogDto)throws Exception {
+	public String blog_modify_action(@ModelAttribute BlogDto blogDto, HttpServletRequest request)throws Exception {
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		System.out.println(">>>>>>>>>"+sUserId);
+		UserDto loginUser = userService.findUser(sUserId);
 		Long id = blogDto.getId();
+		//System.out.println(">>>>>>>>"+id);
+		//BlogDto findBlog = blogService.findBlog(id);
+		blogDto.setUser(loginUser);
+		System.out.println(">>>>>>>>"+blogDto);
 		blogService.updateBlog(id, blogDto);
-		return "blog-single";
+		
+		return "redirect:blog-single?id="+blogDto.getId();
 	}
+	
 
 	/*블로그 삭제*/
 	@PostMapping(value = "/blog-remove-action", params = "blogId")
@@ -276,23 +262,25 @@ public class BlogController {
 	
 
 	/*블로그 좋아요*/
-    @RequestMapping("/blog_like")
-    public String blog_like(@RequestParam Long blogId, @RequestParam Long userId, HttpServletRequest request, Model model , 
-    						@ModelAttribute BlogHeartDto blogHeartDto) throws Exception{
-    	String sUserId = (String)request.getSession().getAttribute("sUserId");
-		UserDto loginUser = userService.findUser(sUserId);
-		if(loginUser == null) {
-			String msg="로그인이 필요합니다.";
-			 model.addAttribute("msg", msg);
-			 
-		}else {
-			int result = blogService.updateLike(blogId, userId);
-			model.addAttribute("blogLike", result);
-		}
-		
-		return "redirect:blog-single?id="+blogId;
-		
-    }
-	
+	@LoginCheck
+	@RequestMapping("/blog_like")
+	public String blog_like(@RequestParam Long blogId, HttpServletRequest request, Model model) throws Exception{
+	    String sUserId = (String)request.getSession().getAttribute("sUserId");
+	    UserDto loginUser = userService.findUser(sUserId);
+	    if(loginUser == null) {
+	        String msg="로그인이 필요합니다.";
+	        model.addAttribute("msg", msg);}
+	    else {
+	        int result = blogService.updateLike(blogId, loginUser.getId());
+	        model.addAttribute("blogLike", result);
+	    }
+
+	    BlogHeartDto blogHeart = blogHeartService.findBlogLikeState(blogId, loginUser.getId());
+	    int heartState = blogHeart != null ? blogHeart.getHeartState() : 0;
+	    model.addAttribute("heartState", heartState);
+
+	    return "redirect:blog-single?id=" + blogId;
+	}
+
 
 }

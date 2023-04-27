@@ -54,7 +54,7 @@
       </div>
     </section>
     <!--End Page Title-->
-</div>
+
     <!-- Sidebar Page Container -->
     <div class="sidebar-page-container">
       <div class="auto-container">
@@ -63,7 +63,7 @@
           <div style="margin-bottom: 10px">
           <button type="button" class="theme-btn btn-style-one" style="float: right;" onclick="blogCreateForm();">작성하기</button>
           </div>
-	 </div>
+		 </div>
     
           <!--Content Side-->
           <div class="content-side col-lg-12 col-md-12 col-sm-12">
@@ -90,7 +90,7 @@
                         <li><p th:text="|${blog.blogLike} likes |"></p>
                       </ul>
                       <h3><a th:text="${blog.blogTitle}" th:href="@{blog-single(id=${blog.id})}">Attract Sales And Profits</a></h3>
-                      <p class="text" th:text="|${#strings.substring(blog.blogContent,0,3)}...|"></p>
+                      <p class="text" th:text="|${#strings.substring(blog.blogContent,0,1)}...|"></p>
                       <a th:href="@{blog-single(id=${blog.id})}" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
                     </div>
                   </div>
@@ -123,7 +123,7 @@
     <div th:include="include_main_bottom"></div>
     <!-- End Main Footer -->
 
-
+</div>
   </div><!-- End Page Wrapper -->
 
 

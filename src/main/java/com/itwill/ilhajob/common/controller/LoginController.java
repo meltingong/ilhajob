@@ -48,6 +48,7 @@ public class LoginController {
 				session.setAttribute("id", loginUser.getId());
 				session.setAttribute("role", "user");
 				session.setAttribute("paymentStatus", loginUser.getPaymentStatus());
+				session.setAttribute("profileAvatar", loginUser.getUserImage());
 				session.setAttribute("sUserId", id);
 				session.setAttribute("msgList", userService.findMessageList(loginUser.getId()));
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
@@ -65,6 +66,8 @@ public class LoginController {
 				session.setAttribute("id", loginCorp.getId());
 				session.setAttribute("role", "corp");
 				session.setAttribute("paymentStatus", loginCorp.getPaymentStatus());
+				session.setAttribute("updateStatus", loginCorp.getUpdateStatus());
+				session.setAttribute("profileAvatar", loginCorp.getCorpStoredFileName());
 				session.setAttribute("sCorpId", id);
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
 			} catch (CorpNotFoundException e) {

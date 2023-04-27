@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <script type="text/javascript">
   
-
+ 
+  
   function blogList() {
   	window.location.href='blog-list';
   }
@@ -144,7 +145,7 @@
 
                       <!-- Input -->
                       <div class="form-group col-lg-12 col-md-12 text-right">
-                        <button type="button" class="theme-btn btn-style-one blog-upload-btn" style="float:right;" >작성완료</button>
+                        <button type="button" class="theme-btn btn-style-one blog-upload-btn" style="float:right;" onClick="blogCreate();" >작성완료</button>
                       <span><button type="button" class="theme-btn btn-style-one" style="float:right; margin-right:5px;" onclick="blogList();" >목록보기</button></span>
                       </div>
                     </div>

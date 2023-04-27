@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +32,22 @@ public class CorpRestController {
 	private CorpService corpService;
 	
 	@PostMapping(value="/getTagData", produces = "application/json;charset=UTF-8")
-	public Map<String, Object> getTagData(@RequestBody Map<String,String> data){
+	public Map<String, Object> getTagData(@RequestBody Map<String,String> data,Model model) throws Exception{
 		Map<String, Object> map = new HashMap<String,Object>();
+		
+
+//		model.addAttribute("blockBegin", blockBegin);
+//	 	model.addAttribute("blockEnd", blockEnd);
+//	    model.addAttribute("curPage", corpPageList.getNumber());
+//	    model.addAttribute("totalPage", corpPageList.getTotalPages());
+//	    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
+//	    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
+
+		//코프아이디리스트 만들기
+		List<Long> corpIdlist = new ArrayList<Long>();
+		for(CorpDto corp:corpService.findCorpAll()) {
+			corpIdlist.add(corp.getId()); 
+		};
 		
 		//전체태그선택
 		if(data.get("tagId").equals("전체")) {
@@ -45,9 +61,15 @@ public class CorpRestController {
 		System.out.println(tagId);
 		List<CorpTagDto> corpTagList= corpTagService.selectListByTagId(tagId);
 		
+		//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
+		
+		Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(corpIdlist);
+		map.put("rcCountMap", rcCountMap);
+		
 		map.put("data", corpTagList);
 		return map;
 		}
+		
 		
 	}
 	

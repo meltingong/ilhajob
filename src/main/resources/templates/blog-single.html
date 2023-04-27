@@ -103,8 +103,10 @@ function blogLike(){
   	<!-- 리스트 !-->
       <div style="margin-bottom: 10px">
        <button type="button" class="theme-btn btn-style-one" style="float: right; margin-right:5px;"onclick="blogList();" >목록보기</button>
-       <span><button type="button" class="theme-btn btn-style-one" th:if="${session.id == blog.user.id}" onclick="blogRemove();"  style="float: right; margin-right:5px;">삭제하기</button></span>
-       <span><button type="button" class="theme-btn btn-style-one" th:if="${session.id == blog.user.id}" onclick="blogModifyForm();" style="float: right; margin-right:5px;">수정하기</button></span>
+       <th:block th:if="${session.id == blog.user.id}">
+       <span><button type="button" class="theme-btn btn-style-one" onclick="blogRemove();"  style="float: right; margin-right:5px;">삭제하기</button></span>
+       <span><button type="button" class="theme-btn btn-style-one" onclick="blogModifyForm();" style="float: right; margin-right:5px;">수정하기</button></span>
+       </th:block>
       </div>
     <div class="auto-container">
       <div class="upper-box">
@@ -158,7 +160,7 @@ function blogLike(){
             <button th:if="${session.id == blogComment.user.id}" type="button" class="theme-btn btn-style-nine" style="float: right; margin-right:5px;" onclick="blogcommentRemove();">삭제</button>
 			<button th:if="${session.id == blogComment.user.id}" class="theme-btn btn-style-nine" type="button" style="float: right; margin-right:10px;" 
             data-toggle="collapse"  aria-expanded="false" aria-controls="collapseExample" th:attr="data-target='#collapseExample'+${blogComment.id}" >수정</button> <!-- th:attr="data-target='#collapseExample'+${blogComment.id}" -->
-            <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
+            <div class="user-thumb"><img src="images/default.jpg" alt=""></div>
             <div class="comment-info">
                <input type="hidden" th:value="${blogComment.id}" name="id" id="id">
                 <input type="hidden" th:value="${blog.Id}" name="blogId">
