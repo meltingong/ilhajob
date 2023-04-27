@@ -166,7 +166,8 @@
                         <ul class="candidate-info">
                           <li class="designation" th:text="${app.recruit.rcPosition}">UI Designer</li>
                           <li><span class="icon flaticon-map-locator"></span><span th:text="${app.recruit.corp.corpAddress}"></span></li>
-                          <li><span class="icon flaticon-money"></span><span th:text="${app.recruit.rcSalary}"></span></li>
+                          <li><span class="icon flaticon-money"></span><span th:text="${app.recruit.rcSalary} + ' 만원'"></span></li>
+                          
                         </ul>
                         <!-- 
                         <ul class="post-tags">
