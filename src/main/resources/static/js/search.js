@@ -50,22 +50,46 @@ $(function() {
 
 	// input 이벤트 리스너
 	$("#searchInput").on("input", function() {
-		const query = $(this).val();
-		if (query.trim() === "") {
-			// searchInput의 값이 없을 경우, search-results 내의 모든 li를 삭제
-			$(".search-results").empty();
-			$('.job-search-form form, .banner-section-four .job-search-form form').css({
-			'border-bottom-left-radius': '50px',
-			'border-bottom-right-radius': '50px'
-		});
-		} else {
-			const results = search(query);
-			updateSearchResults(results);
-			$('.job-search-form form, .banner-section-four .job-search-form form').css({
-				'border-bottom-left-radius': '0',
-				'border-bottom-right-radius': '0'
-			});
+		if($(".search-select").val()==='recruit'){
+			const query = $(this).val();
+			if (query.trim() === "") {
+				// searchInput의 값이 없을 경우, search-results 내의 모든 li를 삭제
+				$(".search-results").empty();
+				$('.job-search-form form, .banner-section-four .job-search-form form').css({
+					'border-bottom-left-radius': '50px',
+					'border-bottom-right-radius': '50px'
+				});
+			} else {
+				const jsonData = {
+					keyword: query
+				}
+				console.log(JSON.stringify(jsonData))
+				let promise = $.ajax({
+					type: 'POST',
+					url: 'keywordSearch',
+					data: JSON.stringify(jsonData),
+					contentType: 'application/json',
+					dataType: 'json'
+				});
+
+				// Promise 객체를 사용하여 Ajax 요청 처리
+				promise.then(function(response) {
+					console.log(response.message);	
+				})
+				.fail(function(xhr) {
+						console.log(xhr);
+				});
+				const results = search(query);
+				updateSearchResults(results);
+				$('.job-search-form form, .banner-section-four .job-search-form form').css({
+					'border-bottom-left-radius': '0',
+					'border-bottom-right-radius': '0'
+				});
+			}
+		}else if($(".search-select").val()==='corp'){
+			
 		}
+		
 	});
 	
 	$("#searchInput").on("click focus", function() {
