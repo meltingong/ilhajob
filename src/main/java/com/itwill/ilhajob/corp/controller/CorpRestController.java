@@ -54,7 +54,7 @@ public class CorpRestController {
 		List<CorpTagDto> corpTagDtoList = corpTagPage.getContent();
 		
 		map.put("data", corpTagDtoList);
-		map.put("recruitList", corpTagPage.getContent());
+		map.put("corpList", corpTagPage.getContent());
 		map.put("nowPage", corpTagPage.getNumber());
 		map.put("totalPage", corpTagPage.getTotalPages());
 		map.put("prePage", corpTagPage.hasPrevious() ? corpTagPage.previousPageable().getPageNumber() : 0);
@@ -67,13 +67,30 @@ public class CorpRestController {
 	}
 	
 	//corpName으로 검색
-//	@GetMapping("/search")	
-//	public List<CorpDto> searchByCorpName(@RequestParam("corpName")String corpName) throws Exception{
-//		System.out.println("검색 컨트롤러");
-//		List<CorpDto> corpSearchList=corpService.searchByCorpName(corpName);
-//		System.out.println("searchList>>>>>>>>>"+corpSearchList);
-//		return corpSearchList;
-//	}
+	@GetMapping(value="/search-corpName", produces = "application/json;charset=UTF-8")
+	public Map<String, Object> searchByCorpName(@RequestParam(defaultValue = "0") int page,
+										  @RequestParam(defaultValue = "8") int size,
+										  @RequestParam String corpName,
+										  Model model, HttpServletRequest request) throws Exception{
+		
+		Map<String, Object> map = new HashMap<String,Object>();
+		Pageable pageable = PageRequest.of(page, size,Sort.Direction.ASC,"id");
+		Page<CorpDto> corpPage = corpService.searchByCorpName(corpName, pageable);
+		List<CorpDto> corpDtoList = corpPage.getContent();
+		
+		map.put("data", corpDtoList);
+		map.put("corpList", corpPage.getContent());
+		map.put("nowPage", corpPage.getNumber());
+		map.put("totalPage", corpPage.getTotalPages());
+		map.put("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
+		map.put("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
+	    map.put("page", corpPage);	
+	    map.put("url", "/final-project-team1-ilhajob/search-corpName");
+	    //map.put("tagId", tagId);
+	    map.put("corpName", corpName);
+		
+		return map;
+	}
 	
 	
 }

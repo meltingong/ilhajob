@@ -450,7 +450,8 @@ public class CorpController {
 			
 		    // corpName만 알때
 	        if (job.isEmpty()) {
-	           corpSearchList = corpService.searchByCorpName(corpName,pageable);
+	           Page<CorpDto> corpPage = corpService.searchByCorpName(corpName,pageable);
+	           corpSearchList = corpPage.getContent();
 	           
 	        // job만 알 때
 	        } else if(corpName.isEmpty()){

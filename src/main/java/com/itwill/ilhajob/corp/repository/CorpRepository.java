@@ -19,7 +19,7 @@ public interface CorpRepository extends JpaRepository<Corp, Long> {
     boolean existsByCorpLoginId(String corpLoginId);
     
     //corpName으로 검색기능
-    List<Corp> findByCorpNameContaining(String corpName, Pageable pageable);
+    Page<Corp> findByCorpNameContaining(String corpName, Pageable pageable);
     
     //job으로만 검색기능
     List<Corp> findByJobContaining(String job,Pageable pageable);
