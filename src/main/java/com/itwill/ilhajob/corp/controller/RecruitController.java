@@ -228,10 +228,23 @@ public class RecruitController {
 
 	@RequestMapping("/dashboard-post-job")
 	public String dashboard_post_job_form(HttpServletRequest request, Model model) throws Exception {
+		
 		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
 		model.addAttribute("corp", loginCorp);
+		
+		
+		//결제확인 및 업데이트상태확인
+		int paymentStatus = (Integer)request.getSession().getAttribute("paymentStatus");
+		int updateStatus = (Integer)request.getSession().getAttribute("updateStatus");
+		System.out.println("결제상태:"+paymentStatus+"업데이트상태:"+updateStatus);
+		if(updateStatus!=1) {
+			return "redirect:dashboard-company-profile";
+		}else if(paymentStatus!=1) {
+			return "redirect:product";
+		}
 		String forward_path = "dashboard-post-job";
 		return forward_path;
+		
 	}
 
 	@PostMapping("/dashboard-post-job-action")
@@ -247,6 +260,10 @@ public class RecruitController {
 		recruitDto.setRcReadCount(0);
 		recruitDto.setCorp(loginCorp);
 		recruitDto = recruitService.create(recruitDto);
+		
+		//수정시에만 권한부여
+		request.getSession().setAttribute("updateStatus", 1);
+		
 		String forward_path = "redirect:recruit-detail?id=" + recruitDto.getId();
 		return forward_path;
 	}

@@ -72,6 +72,9 @@ public class Corp {
 	@Column(columnDefinition = "NUMBER(1) DEFAULT 0")
 	private Integer paymentStatus;
 	
+	@Column(columnDefinition = "NUMBER(1) DEFAULT 0")
+	private Integer updateStatus;
+	
 	@Column(columnDefinition = "NUMBER(1) DEFAULT 2")
 	private Integer role;
 	

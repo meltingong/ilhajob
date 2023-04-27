@@ -42,7 +42,6 @@ public class BlogDto {
 	private LocalDateTime blogDate;
 	private int blogReadCount;
 	private int blogLike;
-	private int blogCateSeq;
 	private UserDto user;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;

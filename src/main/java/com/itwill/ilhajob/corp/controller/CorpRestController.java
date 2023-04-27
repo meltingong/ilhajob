@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +32,9 @@ public class CorpRestController {
 	private CorpService corpService;
 	
 	@PostMapping(value="/getTagData", produces = "application/json;charset=UTF-8")
-	public Map<String, Object> getTagData(@RequestBody Map<String,String> data){
+	public Map<String, Object> getTagData(@RequestBody Map<String,String> data,Model model){
 		Map<String, Object> map = new HashMap<String,Object>();
+		
 		
 		//전체태그선택
 		if(data.get("tagId").equals("전체")) {
