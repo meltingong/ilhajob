@@ -90,7 +90,7 @@
                         <li><p th:text="|${blog.blogLike} likes |"></p>
                       </ul>
                       <h3><a th:text="${blog.blogTitle}" th:href="@{blog-single(id=${blog.id})}">Attract Sales And Profits</a></h3>
-                      <p class="text" th:text="|${#strings.substring(blog.blogContent,0,3)}...|"></p>
+                      <p class="text" th:text="|${#strings.substring(blog.blogContent,0,1)}...|"></p>
                       <a th:href="@{blog-single(id=${blog.id})}" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
                     </div>
                   </div>

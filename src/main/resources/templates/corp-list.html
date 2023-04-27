@@ -221,66 +221,25 @@
 										</div>
 									</div>
 								</div>
-							
+							</div>
 							<!-- 검색어 없을 때 표시할 영역 -->
 							<!--  div class="alert alert-warning" style="color: white;"></div-->
-<!-- Pagination 시작 -->
-<!-- <li th:each="page:${#numbers.sequence(0,totalPage -1)}">
-                	 <a th:href="@{corp-list?page=}+${pageStat.index}"></a></li> -->
-        		<nav class="ls-pagination">
-		           <ul>
-		           	 <li th:unless="${curPage == 0}" class="prev"><a th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
-		             <li class="prev"><a th:unless="${curPage == 0}" th:text="${curPage}" th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
-		     			  <li><a class="current-page" th:text="${curPage+1}" ></a></li>
-		             <li class="next"><a th:if="${curPage != totalPage-1}" th:text="${nextPage+1}" th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
-		             <li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
-		           </ul>
-          		</nav>
-          		</div>
-<!-- <nav class="ls-pagination">
-    <ul>
-        <li th:unless="${curPage == 0}" class="prev"><a th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
-        5개씩 페이지 인덱스를 보여주도록 수정
-       	<li th:if="${i == blockBegin-1}"><a class="current-page" th:text="${curPage+1}" ></a></li>
-        <th:block th:each="i, index : ${#numbers.sequence(blockBegin-1, blockEnd)}" th:if="${i % blockEnd != 0}">
-            <li th:if="${i == curPage}"><a class="current-page" th:text="${curPage+1}" ></a></li>
-            <li th:unless="${i == curPage}"><a th:text="${i+1}" th:href="@{corp-list?page=}+${i}"></a></li>
-        </th:block>
-
-        <li th:if="${curPage != blockScale}" class="next"><a th:text="${nextPage+1}" th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
-        <li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
-    </ul>
-</nav> -->
-							<!-- nav class="ls-pagination">
-								<ul>
-									<li class="prev"><a href="#"><i
-											class="fa fa-arrow-left"></i></a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#" class="current-page">2</a></li>
-									<li><a href="#">3</a></li>
-									<li class="next"><a href="#"><i
-											class="fa fa-arrow-right"></i></a></li>
-								</ul>
-							</nav-->
-					<!-- pagination 수정전 : 페이지는 넘어가는데 동그라미, 화살표 인식 못함-->
-						<!--nav class="ls-pagination" th:if="${page.totalPages > 1}">
-							    <ul>
-							        <li class="prev" th:classappend="${page.first ? 'disabled' : ''}">
-							            <a th:href="@{${#httpServletRequest.requestURI.replace('/final-project-team1-ilhajob', '')}(page=${page.number - 1},size=${page.size})},size=${page.size})}">
-							                <i class="fa fa-arrow-left"></i>
-							            </a>
-							        </li>
-							        <li th:each="i : ${#numbers.sequence(1, page.totalPages)}" th:class="${page.number == i ? 'active' : ''}">
-							            <a th:href="@{${#httpServletRequest.requestURI.replace('/final-project-team1-ilhajob', '')}(page=${i},size=${page.size})}" th:text="${i}"></a>
-							        </li>
-							        <li class="next" th:classappend="${page.last ? 'disabled' : ''}">
-							            <a th:href="@{${#httpServletRequest.requestURI.replace('/final-project-team1-ilhajob', '')}(page=${page.number + 1},size=${page.size})}">
-							                <i class="fa fa-arrow-right"></i>
-							            </a>
-							        </li>
-							    </ul>
-							</nav-->	
-<!-- Pagination 끝 -->
+							
+							<!-- Pagination 시작 -->
+								<nav class="ls-pagination">
+								    <ul>
+								        <li th:unless="${curPage == blockBegin-1}" class="prev"><a th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+								        
+								       	<li th:if="${i == blockBegin-1}"><a class="current-page" th:text="${curPage+1}" ></a></li>
+								        <th:block th:each="i, index : ${#numbers.sequence(blockBegin-1, totalPage-1)}" >
+								            <li th:if="${i == curPage}"><a class="current-page" th:text="${curPage+1}" ></a></li>
+								            <li th:unless="${i == curPage}"><a th:text="${i+1}" th:href="@{corp-list?page=}+${i}"></a></li>
+								        </th:block>
+								        
+								        <li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+								    </ul>
+								</nav> 
+							<!-- Pagination 끝 -->
 							
 						</div>
 					</div>

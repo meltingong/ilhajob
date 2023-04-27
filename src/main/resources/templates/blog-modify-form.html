@@ -73,7 +73,7 @@
 
     <!-- Main Header-->
     <header class="main-header header-shaddow">
-      <div id="main-header" th:include="include_common_top::include_common_top"></div>
+      <div id="main-header" th:include="include_common_top_dashboard::include_common_top_dashboard"></div>
     </header>
     <!--End Main Header -->
 	<!-- Sidebar Backdrop -->
@@ -106,8 +106,7 @@
                        <div class="form-group col-lg-6 col-md-12">
                        <select name="blogCateId"  id="blogCateId" class="chosen-select">
                         <option value="">카테고리를 선택하세요.</option>
-                        <option th:each="blogCate : ${blogCateList}" th:text="${blogCate.blogCateName}" th:value="${blogCate.id}"
-                         th:selected="${blogCate.id}==${blog.blogCateId}">
+                        <option th:each="blogCate : ${blogCateList}" th:text="${blogCate.blogCateName}" th:value="${blogCate.id}">
                         </option>
                         </select>
                       </div>
