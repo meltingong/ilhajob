@@ -95,13 +95,13 @@
     
     create table blog (
        id number(19,0) not null,
-        blog_cate number(10,0) not null,
         blog_content varchar2(1000 char) not null,
         blog_date timestamp,
         blog_image varchar2(255 char),
         blog_like number(10,0) not null,
         blog_read_count number(10,0) not null,
         blog_title varchar2(500 char) not null,
+        blog_cate_id number(19,0),
         user_id number(19,0),
         primary key (id)
     );

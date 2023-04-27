@@ -112,8 +112,7 @@ public class BlogController {
 		request.setAttribute("loginUser", loginUser);
 		return "blog-write-form";
 	}
-	
-	@LoginCheck
+
 	@ResponseBody
 	@PostMapping("/blog_write_action")
 	public ResponseEntity<Object> blog_write_action(@RequestBody BlogDto blog,HttpServletRequest request,
