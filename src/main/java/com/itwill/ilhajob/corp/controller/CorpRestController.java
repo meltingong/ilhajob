@@ -56,18 +56,18 @@ public class CorpRestController {
 			map.put("data", corpTagList);
 			return map;
 		}else {
-		//일부태그선택
-		Long tagId = Long.parseLong(data.get("tagId"));
-		System.out.println(tagId);
-		List<CorpTagDto> corpTagList= corpTagService.selectListByTagId(tagId);
-		
-		//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
-		
-		Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(corpIdlist);
-		map.put("rcCountMap", rcCountMap);
-		
-		map.put("data", corpTagList);
-		return map;
+			//일부태그선택
+			Long tagId = Long.parseLong(data.get("tagId"));
+			System.out.println(tagId);
+			List<CorpTagDto> corpTagList= corpTagService.selectListByTagId(tagId);
+			
+			//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
+			
+			Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(corpIdlist);
+			map.put("rcCountMap", rcCountMap);
+			
+			map.put("data", corpTagList);
+			return map;
 		}
 		
 		
