@@ -277,19 +277,29 @@ public class CorpController {
 			
 			//로그인한 회사의 공고리스트 뽑기
 			List<RecruitDto> recruitList = recruitService.findAllByCorpId(loginCorp.getId());
-			model.addAttribute("recruitList",recruitList);
 			
 			//로그인한 회사의 공고리스트 내 지원 전부출력
 			List<AppDto> appList = new ArrayList<AppDto>();
 			for(RecruitDto recruit:recruitList) {
 			appList.addAll(appService.findAllByRecruitId(recruit.getId())); 
 			}
-			model.addAttribute("appList",appList);
 			
 			//매니저리스트
 			List<ManagerDto> managerList = managerService.findManagerByCorpID(sCorpId);
-			model.addAttribute("managerList",managerList);
 			
+			//차트필요한 리스트
+			List<String>nameList = new ArrayList<String>();
+			List<Integer>rcCountList = new ArrayList<Integer>();
+			for(RecruitDto recruit :recruitList) {
+				nameList.add(recruit.getCorp().getCorpName());
+				rcCountList.add(recruit.getRcAppCount());
+			}
+			
+			model.addAttribute("recruitList",recruitList);
+			model.addAttribute("appList",appList);
+			model.addAttribute("managerList",managerList);
+			model.addAttribute("nameList",nameList);
+			model.addAttribute("rcCountList",rcCountList);
 			forwardPath = "dashboard";
 		}
 		
