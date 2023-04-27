@@ -325,102 +325,95 @@
     <section class="testimonial-section -type-2 layout-pt-120 layout-pb-120">
       <div class="container-fluid">
         <!-- Sec Title -->
-<!--         <div class="sec-title -type-2 text-center">
+         <div class="sec-title -type-2 text-center">
           <h2>경험자들의 생생한 리뷰를 한눈에!</h2>
           <div class="text"><p>지원한 기업에 대한 정보를 다른 구직자들과 공유해보세요.</p></div>
-          <th:block th:if="${session.role== null || (#session.getAttribute('role') == 'user' && #session.getAttribute('paymentStatus') != 1)}">
           <br>
           <p>상품을 구매하고 리뷰를 확인해 보세요!</p><p><a href="product"> 바로 구매하러 가기</a></p>
-          </th:block>
         </div>
-		
-		무료 회원에게는 blur
-		<th:block th:if="${session.role== null || (#session.getAttribute('role') == 'user' && #session.getAttribute('paymentStatus') != 1)}">
-        <div class="blur-content">
+        
         <div class="carousel-outer wow fadeInUp">
-        	 <div class="your-blurred-content">
-          Testimonial Carousel
+          <!-- Testimonial Carousel -->
           <div class="testimonial-carousel owl-carousel owl-theme" >
-	            Testimonial Block
-	            <div class="testimonial-block" th:each="review:${reviewList}">
-	              <div class="inner-box">
-	                <h5 th:text="${review.corp.corpName}">왜 안떠</h5><br>
-	                <div class="info-box">
-	                  <div class="thumb"><img src="images/resource/testi-thumb-1.png" alt=""></div>
-	                  <div class="content">
-	                    <p th:text="${review.reviewTitle}">Theresa Webb</p>
-	                    <span class="copyright-text" th:text="${review.user.userName} ?: ${review.user.userEmail}">Marketing Coordinator</span>
-	                  </div>
-	                </div>
-	                <div class="text">
-	                <span style="color: Gold" th:text="${#strings.repeat('★', review.reviewGrade)}"></span>
-	                <p th:text="${review.reviewContent}">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</p>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-        </div>
-        </div>
-      </th:block>
-      
-      유료 회원에게는 리뷰 보이게
-		<th:block th:if="${(#session.getAttribute('role') == 'user' and #session.getAttribute('paymentStatus') == 1) or #session.getAttribute('corp') == 'corp'}">
-        <div class="carousel-outer wow fadeInUp">
-          Testimonial Carousel
-          <div class="testimonial-carousel owl-carousel owl-theme" >
-
-            Testimonial Block
-            <div class="testimonial-block" th:each="review:${reviewList}">
-              <div class="inner-box">
-                <h5 th:text="${review.corp.corpName}">왜 안떠</h5><br>
-                <div class="info-box">
-                  <div class="thumb"><img src="images/resource/testi-thumb-1.png" alt=""></div>
-                  <div class="content">
-                    <p th:text="${review.reviewTitle}">Theresa Webb</p>
-                    <span class="copyright-text" th:text="${review.user.userName} ?: ${review.user.userEmail}">Marketing Coordinator</span>
-                  </div>
-                </div>
-                <div class="text">
-                <span style="color: Gold" th:text="${#strings.repeat('★', review.reviewGrade)}"></span>
-                <p th:text="${review.reviewContent}">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</p>
-              </div>
-            </div>
-
-            Testimonial Block
+             <!-- Testimonial Block -->
             <div class="testimonial-block">
               <div class="inner-box">
                 <div class="info-box">
                   <div class="thumb"><img src="images/resource/testi-thumb-2.png" alt=""></div>
                   <div class="content">
-                    <h4 class="name">Cameron Williamson</h4>
-                    <span class="designation">Web Designer</span>
+                    <h4 class="name">기업 A</h4>
+                    <span class="designation">프론트엔드 개발자</span>
                   </div>
                 </div>
-
-                <div class="text">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</div>
+				<span style="color: Gold">★★★★★</span>
+                <div class="text">사옥이 있어서 쾌적하고 역과 가까워 출퇴근이 편리합니다. 주 2일 재택근무가 정착되었고 연봉과 복지도 만족스럽습니다!</div>
               </div>
             </div>
 
-            Testimonial Block
+            <!-- Testimonial Block -->
             <div class="testimonial-block">
               <div class="inner-box">
                 <div class="info-box">
                   <div class="thumb"><img src="images/resource/testi-thumb-3.png" alt=""></div>
                   <div class="content">
-                    <h4 class="name">Marvin McKinney</h4>
-                    <span class="designation">Nursing Assistant</span>
+                    <h4 class="name">기업 B</h4>
+                    <span class="designation">프론트엔드 개발자</span>
                   </div>
                 </div>
+				<span style="color: Gold">★★★★</span>
+                <div class="text">작년에 시작한 스타트업이고 현재 대규모 투자 유치 예정이라 개발자 채용도 늘어날 예정입니다. 회사에서 개인공부 비용 지원에 적극적입니다. 성장하고 싶은 개발자에게 추천합니다.</div>
+              </div>
+            </div>
 
-                <div class="text">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</div>
+            <!-- Testimonial Block -->
+            <div class="testimonial-block">
+              <div class="inner-box">
+                <div class="info-box">
+                  <div class="thumb"><img src="images/resource/testi-thumb-3.png" alt=""></div>
+                  <div class="content">
+                    <h4 class="name">기업 C</h4>
+                    <span class="designation">백엔드 개발자</span>
+                  </div>
+                </div>
+				<span style="color: Gold">★★★</span>
+                <div class="text">재무구조가 탄탄한 중견기업으로 오래다닐 수 있는 분위기입니다. 다만 새로운 기술 도입에 보수적인 편이라 신입으로 들어오려는 개발자에게는 추천하지 않습니다.</div>
+              </div>
+            </div>
+
+            <!-- Testimonial Block -->
+            <div class="testimonial-block">
+              <div class="inner-box">
+                <div class="info-box">
+                  <div class="thumb"><img src="images/resource/testi-thumb-3.png" alt=""></div>
+                  <div class="content">
+                    <h4 class="name">기업 D</h4>
+                    <span class="designation">네트워크 엔지니어</span>
+                  </div>
+                </div>
+				<span style="color: Gold">★★★★</span>
+                <div class="text">연봉은 높지 않지만 당일 자유로운 연차 사용이 가능합니다. 또 다양한 기술 도입에 적극적인 팀 분위기라 개개인의 성장 가능성이 높습니다.</div>
+              </div>
+            </div>
+
+            <!-- Testimonial Block -->
+            <div class="testimonial-block">
+              <div class="inner-box">
+                <div class="info-box">
+                  <div class="thumb"><img src="images/resource/testi-thumb-3.png" alt=""></div>
+                  <div class="content">
+                    <h4 class="name">기업 E</h4>
+                    <span class="designation">DB 엔지니어</span>
+                  </div>
+                </div>
+				<span style="color: Gold">★★★</span>
+                <div class="text">수직적인 구조로 딱딱한 분위기입니다. 회식이 잦은 편이라 이런 분위기가 맞지 않는 사람들은 다른 기업을 알아보세요. 연봉은 동종업계 대비 높은 편입니다.</div>
               </div>
             </div>
  
           </div>
         </div>
       </div>
-      </th:block> -->
+      </th:block>
     </section>
     <!-- End Testimonial Section -->
 
