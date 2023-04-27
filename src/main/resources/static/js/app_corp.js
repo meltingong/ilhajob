@@ -48,6 +48,7 @@ Handlebars.registerHelper('lookup', function (obj, key) {
 Handlebars.registerHelper('with', function(context, options) {
   return options.fn(context);
 });
+
 $('.changeTag').click(function(e){
 	/*
 		url,method,contentType,sendData,function,async
@@ -68,6 +69,44 @@ $('.changeTag').click(function(e){
 						true); //비동기
 	e.preventDefault();
 });
+$(document).on('click','.next-link',function(e){
+	e.preventDefault();
+	let sendData={
+		tagId:parseInt($(".tag-data").val()),
+		page:parseInt($(".next-data").val())
+	};
+	console.log(sendData);
+	Request.ajaxRequest('getTagData',
+					    'GET',
+						'application/json;charset=UTF-8',
+						sendData,
+						function(resultJson){
+							View.render("#recruit-tag-template",resultJson,"#recruit-main-list");
+							window.scrollTo(0, 0);
+						},
+						true);
+
+});
+
+$(document).on('click','.prev-link',function(e){
+	e.preventDefault();
+	let sendData={
+		tagId:parseInt($(".tag-data").val()),
+		page:parseInt($(".prev-data").val())
+	};
+	console.log(sendData);
+	Request.ajaxRequest('getTagData',
+					    'GET',
+						'application/json;charset=UTF-8',
+						sendData,
+						function(resultJson){
+							View.render("#recruit-tag-template",resultJson,"#recruit-main-list");
+							window.scrollTo(0, 0);
+						},
+						true);
+
+});
+
 
 $(document).ready(function() {
 	  $('#searchInput').on('input', function() {
