@@ -116,7 +116,7 @@ public class CorpController {
 	@GetMapping("/corp-list")
 	public String corp_list(@RequestParam(defaultValue = "0", name = "page") int curPage,
 	                        @RequestParam(defaultValue = "8") int pageScale,
-	                        @RequestParam(defaultValue = "3") int blockScale,
+	                        @RequestParam(defaultValue = "4") int blockScale,
 	                        HttpServletRequest request,
 	                        Model model) throws Exception {
 		String forward_path="";
