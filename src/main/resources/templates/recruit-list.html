@@ -128,7 +128,7 @@
                  <form class="default-form" name="readCount" method="post">
                   <div class="inner-box">
                     <div class="content">
-                      <span class="company-logo"><img src="images/resource/company-logo/1-2.png" alt=""></span>
+                      <span class="company-logo"><img src="images/icons/smallplant.png" alt=""></span>
                       <input type="hidden" name="id" th:value="${recruit.id}"/>
                       <h4>
                       		<a href="#"
@@ -147,7 +147,7 @@
                       	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
                       	</th:block>
                       	<th:block th:if="${recruit.rcStatus==1}">
-                      	<li class="count" style="background-color:mistyrose; color: red">마감</li>
+                      	<li class="count" style="background-color:mistyrose; color: red">★ 마감 ★</li>
                       	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
                       	</th:block>
                       	<div th:each="recruitTag : ${recruitTagList}">
@@ -241,7 +241,7 @@
                 <div class="job-block col-lg-6 col-md-12 col-sm-12" > 
                   <div class="inner-box">
                     <div class="content">
-                      <span class="company-logo"><img src="images/resource/company-logo/1-2.png" alt=""></span>
+                      <span class="company-logo"><img src="images/icons/smallplant.png" alt=""></span>
                       <h4>
 							<a href="recruit-detail?id={{recruit.id}}" 
 							onClick="increaseReadCount(this.form);">
@@ -257,7 +257,7 @@
   							<li class="count" style="background-color:#FDFD96;">공고진행중</li>
 						{{/if}}
 						{{#if (eq recruit.rcStatus 1)}}
-  							<li class="count" style="background-color:mistyrose; color: red;">마감</li>
+  							<li class="count" style="background-color:mistyrose; color: red;">★ 마감 ★</li>
 						{{/if}}
 						{{#each tagList}}
                         <li class="time" >{{tagName}}</li>
