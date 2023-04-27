@@ -50,18 +50,15 @@ Handlebars.registerHelper('with', function(context, options) {
 });
 
 $('.changeTag').click(function(e){
-	/*
-		url,method,contentType,sendData,function,async
-	*/
-	
-		let sendData={
-			tagId:$(this).val()
-		};
-	console.log("요청데이터",sendData);
+	let sendData={
+		tagId:parseInt($(this).val())
+		
+	};
+	console.log(sendData);
 	Request.ajaxRequest('getTagData',
-					    'POST',
+					    'GET',
 						'application/json;charset=UTF-8',
-						JSON.stringify(sendData),
+						sendData,
 						function(resultJson){
 							console.log("최종 결과 데이터",resultJson);
 							View.render("#tag-filter-template",resultJson,"#corp-main-list");
@@ -81,7 +78,7 @@ $(document).on('click','.next-link',function(e){
 						'application/json;charset=UTF-8',
 						sendData,
 						function(resultJson){
-							View.render("#recruit-tag-template",resultJson,"#recruit-main-list");
+							View.render("#tag-filter-template",resultJson,"#corp-main-list");
 							window.scrollTo(0, 0);
 						},
 						true);
@@ -100,7 +97,7 @@ $(document).on('click','.prev-link',function(e){
 						'application/json;charset=UTF-8',
 						sendData,
 						function(resultJson){
-							View.render("#recruit-tag-template",resultJson,"#recruit-main-list");
+							View.render("#tag-filter-template",resultJson,"#corp-main-list");
 							window.scrollTo(0, 0);
 						},
 						true);
