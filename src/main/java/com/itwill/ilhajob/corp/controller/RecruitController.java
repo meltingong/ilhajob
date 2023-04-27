@@ -60,8 +60,6 @@ public class RecruitController {
 	private RecruitScrapService recruitScrapService;
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private ReviewService reviewService;
 	
 	//home에 recruitList 뿌리기
 	@RequestMapping(value = { "/", "/index" })
@@ -93,10 +91,6 @@ public class RecruitController {
 		if (deadLineRecruitList.size() == 0) {
 			System.out.println("마감임박 공고 없음");
 		}
-		
-		//리뷰 리스트
-		List<ReviewDto> reviewList = reviewService.findAll();
-		model.addAttribute("reviewList", reviewList);
 		
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
