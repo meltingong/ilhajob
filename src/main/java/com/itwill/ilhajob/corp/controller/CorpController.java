@@ -121,7 +121,7 @@ public class CorpController {
 	                        Model model) throws Exception {
 		String forward_path="";
 		
-		//페이징 기능 추가->일단 12개씩 나오게 해놓음
+		//페이징 기능 추가->일단 8개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
 	    Page<CorpDto> corpPageList = corpService.findAll(pageable);
 	    
