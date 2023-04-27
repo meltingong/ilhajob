@@ -46,11 +46,11 @@ public class BlogHeart {
 	@ToString.Exclude
 	private Blog blog;
 	
-	  public BlogHeart(Blog blog, User user) {
-	        this.blog = blog;
-	        this.user = user;
-	        this.heartState = 1;
-	    }
+	public BlogHeart(Blog blog, User user) {
+		this.blog = blog;
+		this.user = user;
+		this.heartState = 1;
+	}
 
 	
 }

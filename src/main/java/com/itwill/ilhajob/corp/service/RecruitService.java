@@ -43,6 +43,8 @@ public interface RecruitService {
 	
 	Page<RecruitDto> searchRcTitle(String rcTitle, int Page, int Size) throws Exception;
 	
+	List<RecruitDto> searchRcTitle(String rcTitle);
+	
 	//readCount 증가
 	void increaseReadCount(Long id) throws Exception;
 	

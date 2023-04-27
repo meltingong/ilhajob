@@ -160,6 +160,13 @@ public class RecruitServiceImpl implements RecruitService {
 		Page<Recruit> recruitPage=recruitRepository.findByRcTitleContaining(rcTitle, pageable);
 		return recruitPage.map(recruit->modelMapper.map(recruit, RecruitDto.class));
 	}
+
+	@Override
+	public List<RecruitDto> searchRcTitle(String rcTitle) {
+		List<Recruit> searchRcList = recruitRepository.findByRcTitleContainingIgnoreCase(rcTitle);
+		return searchRcList.stream().map(recruit -> modelMapper.map(recruit, RecruitDto.class))
+				.collect(Collectors.toList());
+	}
 	
 	
 	

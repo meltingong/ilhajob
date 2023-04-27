@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.ilhajob.corp.dto.RecruitDto;
@@ -26,6 +28,9 @@ public interface RecruitRepository extends JpaRepository<Recruit, Long>{
 	List<Recruit> findAllByOrderByRcDeadlineDesc();
 	
 	Page<Recruit> findByRcTitleContaining(String rcTitle, Pageable pageable);
+	
+	@Query("SELECT r FROM Recruit r WHERE lower(replace(r.rcTitle, ' ', '')) like lower(concat('%', replace(:keyword, ' ', ''), '%'))")
+	List<Recruit> findByRcTitleContainingIgnoreCase(@Param("keyword") String rcTitle);
 	
 	
 }

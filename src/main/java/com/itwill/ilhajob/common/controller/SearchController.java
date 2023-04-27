@@ -23,6 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.itwill.ilhajob.common.dto.CorpTagDto;
 import com.itwill.ilhajob.common.dto.RecruitTagDto;
 import com.itwill.ilhajob.common.dto.TagDto;
@@ -130,7 +134,7 @@ public class SearchController {
 				forwardPath = "recruit-list";
 			} else if (searchSelect.equals("corp")) {
 				Pageable pageable1 = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
-				Page<CorpDto> corpPageList = corpService.findAll(pageable1);
+				Page<CorpDto> corpPageList = corpService.searchByCorpName(searchKeyword, pageable);
 				int nowPage = corpPageList.getNumber();
 				List<CorpDto> corpSearchList = new ArrayList<>();
 
@@ -159,8 +163,7 @@ public class SearchController {
 				model.addAttribute("totalPage", corpPageList.getTotalPages());
 				model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
 				model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
-				corpSearchList = corpService.searchByCorpName(searchKeyword, pageable);
-				model.addAttribute("corpList", corpSearchList);
+				model.addAttribute("corpList", corpPageList.getContent());
 				forwardPath = "corp-list";
 			}
 
@@ -174,9 +177,35 @@ public class SearchController {
 
 	@ResponseBody
 	@PostMapping("/keywordSearch")
-	public ResponseEntity<String> keywordSearch(@RequestBody String RequestData) {
-		System.out.println(RequestData);
-		return ResponseEntity.ok("{\"success\": false, \\\"message\\\": \\\"잘못된 형식입니다.\\\", \\\"location\\\": \\\"/final-project-team1-ilhajob\\\"}");
+	public ResponseEntity<String> keywordSearch(@RequestBody String requestData) {
+		Gson gson = new Gson();
+	    JsonObject jsonObject = gson.fromJson(requestData, JsonObject.class);
+	    String searchSelect = jsonObject.get("searchSelect").getAsString();
+	    String keyword = jsonObject.get("keyword").getAsString();
+	    JsonObject jsonResult = null;
+	    if(searchSelect.equals("recruit")) {
+	    	List<RecruitDto> resultList = recruitService.searchRcTitle(keyword);
+	    	JsonArray jsonArray = new JsonArray();
+	        for (RecruitDto recruitDto : resultList) {
+	            JsonObject rcTitleObject = new JsonObject();
+	            rcTitleObject.addProperty("searchData", recruitDto.getRcTitle());
+	            jsonArray.add(rcTitleObject);
+	        }
+	        jsonResult = new JsonObject();
+	        jsonResult.add("results", jsonArray);
+	    }else if(searchSelect.equals("corp")) {
+	    	List<CorpDto> resultList = corpService.searchByCorpName(keyword);
+	    	JsonArray jsonArray = new JsonArray();
+	        for (CorpDto corpDto : resultList) {
+	            JsonObject corpNameObject = new JsonObject();
+	            corpNameObject.addProperty("searchData", corpDto.getCorpName());
+	            jsonArray.add(corpNameObject);
+	        }
+	        jsonResult = new JsonObject();
+	        jsonResult.add("results", jsonArray);
+	    }
+	    
+		return ResponseEntity.ok(jsonResult.toString());
 	}
 	
 

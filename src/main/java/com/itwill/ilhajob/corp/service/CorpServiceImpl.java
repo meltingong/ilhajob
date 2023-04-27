@@ -248,11 +248,12 @@ public class CorpServiceImpl implements CorpService{
 		}
 		return rcCountMap;
 	}
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public List<CorpDto> searchByCorpName(String corpName) {
+		List<Corp> searchCorpList = corpRepository.findByCorpNameContainingIgnoreCase(corpName);
+		return searchCorpList.stream().map(corp->modelMapper.map(corp, CorpDto.class))
+		        .collect(Collectors.toList());
+	}
 
 }

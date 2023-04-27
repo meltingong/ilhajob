@@ -74,7 +74,7 @@ public class Blog extends BaseEntity {
 	private User user;
 	
 	@OneToMany(mappedBy = "blog",
-			   cascade = CascadeType.ALL)
+			   cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BlogComment> blogCommentList;
 	
 //	@OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
