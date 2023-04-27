@@ -115,8 +115,8 @@ public class CorpController {
 	
 	@GetMapping("/corp-list")
 	public String corp_list(@RequestParam(defaultValue = "0", name = "page") int curPage,
-	                        @RequestParam(defaultValue = "4") int pageScale,
-	                        @RequestParam(defaultValue = "5") int blockScale,
+	                        @RequestParam(defaultValue = "8") int pageScale,
+	                        @RequestParam(defaultValue = "3") int blockScale,
 	                        HttpServletRequest request,
 	                        Model model) throws Exception {
 		String forward_path="";
@@ -331,11 +331,6 @@ public class CorpController {
 		//업데이트 아직 안했을때 알림주기 위한 세션
 		int updateStatus = (Integer)request.getSession().getAttribute("updateStatus");
 		model.addAttribute("updateStatus", updateStatus);
-		//결제확인 
-		int paymentStatus = (Integer)request.getSession().getAttribute("paymentStatus");
-		if(paymentStatus!=1) {
-			return "redirect:product";
-		}
 		
 		
 		forwardPath = "dashboard-company-profile";
@@ -347,9 +342,13 @@ public class CorpController {
 			HttpServletRequest request)
 			throws Exception {
 		
+		//session 업데이트권한 변경
+		request.getSession().setAttribute("paymentStatus", 1);
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime time = LocalDate.parse(date, formatter).atStartOfDay();
 		corp.setCorpEst(time);
+		corp.setUpdateStatus(1);
 		corpService.update(corp.getId(), corp);
 		request.setAttribute("corpId", corp.getId());
 		return "redirect:corp-detail?corpId="+corp.getId();

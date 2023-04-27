@@ -221,7 +221,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							
 							<!-- 검색어 없을 때 표시할 영역 -->
 							<!--  div class="alert alert-warning" style="color: white;"></div-->
 <!-- Pagination 시작 -->
@@ -236,6 +236,7 @@
 		             <li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
 		           </ul>
           		</nav>
+          		</div>
 <!-- <nav class="ls-pagination">
     <ul>
         <li th:unless="${curPage == 0}" class="prev"><a th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
@@ -328,7 +329,15 @@
 				{{#each data}}
 			   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box" >
-                    <span class="company-logo"><img src="{{corp.corpStoredFileName}}" alt=""></span>
+					{{#if corp.corpStoredFileName}}
+						<span class="company-logo">
+						<img src="{{corp.corpStoredFileName}}" alt="" style="width:80px; height:80px"/>
+						</span>
+					{{else}}
+						<figure class="company-logo">
+						<img src="images/resource/company-logo/6-1.png" alt=""/>
+						</figure>
+					{{/if}}
                     <h4><a href="corp-detail?corpId={{corp.id}}">{{corp.corpName}}</a></h4>
                     <ul class="job-info">
                       <li><span class="icon flaticon-map-locator" style="margin-top:23px"></span>

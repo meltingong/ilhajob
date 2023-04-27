@@ -141,6 +141,7 @@
         corp_stored_file_name varchar2(255 char),
         rc_count number(1) DEFAULT 0,
         payment_status NUMBER(1) DEFAULT 0,
+        update_status NUMBER(1) DEFAULT 0,
         job varchar2(255 char),
         role NUMBER(1) DEFAULT 2,
         primary key (id)
