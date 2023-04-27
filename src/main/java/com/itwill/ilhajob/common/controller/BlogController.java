@@ -260,8 +260,8 @@ public class BlogController {
 	    UserDto loginUser = userService.findUser(sUserId);
 	    if(loginUser == null) {
 	        String msg="로그인이 필요합니다.";
-	         model.addAttribute("msg", msg);
-	    } else {
+	        model.addAttribute("msg", msg);}
+	    else {
 	        int result = blogService.updateLike(blogId, loginUser.getId());
 	        model.addAttribute("blogLike", result);
 	    }
