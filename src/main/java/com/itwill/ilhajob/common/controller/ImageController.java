@@ -104,6 +104,7 @@ public class ImageController {
 	                Files.write(path, bytes);
 	                loginUser.setUserImage(pathMap.get("urlPath") + saveFileName);
 	                userService.update(loginUser.getId(), loginUser);
+	                request.getSession().setAttribute("profileAvatar", loginUser.getUserImage());
 	                //return ResponseEntity.ok().body("{\"success\": true, \"imagePath\": \"" + corp.getCorpStoredFileName() + "\", \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");
 	            } catch (IOException e) {
 	            	//return ResponseEntity.status(5101).body("{\"success\": false, \"message\": \"이미지 업로드 실패.\"}");
@@ -136,6 +137,7 @@ public class ImageController {
 	                Files.write(path, bytes);
 	                corp.setCorpStoredFileName(pathMap.get("urlPath") + saveFileName);
 	                corpService.update(corp.getId(), corp);
+	                request.getSession().setAttribute("profileAvatar", corp.getCorpStoredFileName());
 	                //return ResponseEntity.ok().body("{\"success\": true, \"imagePath\": \"" + corp.getCorpStoredFileName() + "\", \"message\": \"리뷰가 성공적으로 작성되었습니다.\"}");
 	            } catch (IOException e) {
 	            	//return ResponseEntity.status(5101).body("{\"success\": false, \"message\": \"이미지 업로드 실패.\"}");
