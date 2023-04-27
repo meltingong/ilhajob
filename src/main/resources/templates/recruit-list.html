@@ -149,7 +149,7 @@
 			<div id="recruit-main-list">
               <div class="row">
                 <!-- Job Block -->
-                <div th:each="recruit:${recruitList}"  class="job-block col-lg-6 col-md-12 col-sm-12"><!-- th:if="${recruit.rcStatus==0}" 마감 제외 -->
+                <div th:each="recruit:${recruitList}"  class="job-block col-lg-6 col-md-12 col-sm-12" th:if="${recruit.corp.paymentStatus}==1"><!-- th:if="${recruit.rcStatus==0}" 마감 제외 -->
                  <form class="default-form" name="readCount" method="post">
                   <div class="inner-box">
                     <div class="content">
@@ -250,6 +250,7 @@
 		<div class="row">
                 <!-- Job Block -->
 				{{#each data}}
+				{{#if (eq recruit.corp.paymentStatus 1)}}
                 <div class="job-block col-lg-6 col-md-12 col-sm-12" > 
                   <div class="inner-box">
                     <div class="content">
@@ -282,7 +283,7 @@
                         <li class="required">Urgent</li>
                         -->
                       </ul>
-								{{#if loginUser}}
+								{{#if ../loginUser}}
    									 <form action="recruit_scrap_insert_delete">
         								<button class="bookmark-btn" name="id" id="check-bookmark" type="button" value="{{recruit.id}}">
 											{{#with ../status}}
@@ -300,6 +301,7 @@
                     </div>
                   </div>
                 </div>
+				{{/if}}
 				{{/each}}
 				
               </div>
