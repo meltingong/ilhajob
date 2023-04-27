@@ -11,6 +11,10 @@ Handlebars.registerHelper('ifEquals', function(a, b, options) {
 	        return options.inverse(this);
 	    }
 	});
+Handlebars.registerHelper('dateFormat', function(format, date) {
+  var momentDate = moment(date);
+  return momentDate.format(format);
+});
 Handlebars.registerHelper('eq', function(a, b) {
 	  return a === b;
 });

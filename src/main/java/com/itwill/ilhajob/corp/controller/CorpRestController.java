@@ -7,6 +7,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,18 +40,24 @@ public class CorpRestController {
 		Map<String, Object> map = new HashMap<String,Object>();
 		
 
-//		model.addAttribute("blockBegin", blockBegin);
-//	 	model.addAttribute("blockEnd", blockEnd);
-//	    model.addAttribute("curPage", corpPageList.getNumber());
-//	    model.addAttribute("totalPage", corpPageList.getTotalPages());
-//	    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
-//	    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
-
-		//코프아이디리스트 만들기
-		List<Long> corpIdlist = new ArrayList<Long>();
-		for(CorpDto corp:corpService.findCorpAll()) {
-			corpIdlist.add(corp.getId()); 
-		};
+		
+//		Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
+//	    Page<CorpDto> corpPageList = corpService.findAll(pageable);
+//	    
+//	    //이전, 다음페이지 설정해야함...
+//	    model.addAttribute("corpList", corpPageList.getContent());
+//		//코프아이디리스트 만들기
+//		List<Long> corpIdlist = new ArrayList<Long>();
+//		for(CorpDto corp:corpService.findCorpAll()) {
+//			corpIdlist.add(corp.getId()); 
+//		};
+//		
+//		map.put("blockBegin", blockBegin);
+//		map.put("blockEnd", blockEnd);
+//		map.put("curPage", corpPageList.getNumber());
+//		map.put("totalPage", corpPageList.getTotalPages());
+//		map.put("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
+//		map.put("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
 		
 		//전체태그선택
 		if(data.get("tagId").equals("전체")) {
@@ -56,18 +66,18 @@ public class CorpRestController {
 			map.put("data", corpTagList);
 			return map;
 		}else {
-		//일부태그선택
-		Long tagId = Long.parseLong(data.get("tagId"));
-		System.out.println(tagId);
-		List<CorpTagDto> corpTagList= corpTagService.selectListByTagId(tagId);
-		
-		//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
-		
-		Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(corpIdlist);
-		map.put("rcCountMap", rcCountMap);
-		
-		map.put("data", corpTagList);
-		return map;
+			//일부태그선택
+			Long tagId = Long.parseLong(data.get("tagId"));
+			System.out.println(tagId);
+			List<CorpTagDto> corpTagList= corpTagService.selectListByTagId(tagId);
+			
+			//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
+			
+			Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(corpIdlist);
+			map.put("rcCountMap", rcCountMap);
+			
+			map.put("data", corpTagList);
+			return map;
 		}
 		
 		

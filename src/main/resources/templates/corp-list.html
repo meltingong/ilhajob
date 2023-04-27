@@ -98,8 +98,6 @@
 		<!--Page Title-->
 		<section class="page-title">
 			<div class="auto-container">
-
-
 				<!-- Job Search Form -->
 				<div class="job-search-form">
 					<form id="search-form" th:action="@{/search}" method="get">
@@ -191,9 +189,7 @@
 											<!-- button class="bookmark-btn">
 												<span class="flaticon-bookmark"></span>
 											</button-->
-											<tr>
 											<span class="featured" th:if="${rcCountMap[corp.id]>0}" style="background-color:mistyrose; color: red">채용중</span> 
-											</tr>
 											<th:block th:if = "${corp.corpStoredFileName != null}">
 										        <span class="company-logo">
 											        <img th:src="${corp.corpStoredFileName}" alt="" style="width:80px; height:80px"/>
@@ -236,6 +232,7 @@
 								    </ul>
 								</nav> 
 							<!-- Pagination 끝 -->
+							
 							</div>
 							<!-- 검색어 없을 때 표시할 영역 -->
 							<!--  div class="alert alert-warning" style="color: white;"></div-->
@@ -351,7 +348,6 @@
 	<script src="js/wow.js"></script>
 	<script src="js/script.js"></script>
 	
-	<script src="js/app_recruit.js" type="module"></script>
 
 </body>
 

@@ -177,7 +177,7 @@
             </div>
 
  <!-- Pagination 시작-->
-                <nav class="ls-pagination mb-5">
+<!--                 <nav class="ls-pagination mb-5">
 				  <ul>
 				    <li th:each="page:${#numbers.sequence(0,totalPage -1)}" th:if="${page >= nowPage-1 and page <= nowPage+1}">
 				      <a th:href="@{recruit-list?page=}+${pageStat.index}"></a>
@@ -203,7 +203,20 @@
 				    <li></li>
 				    </th:block>
 				  </ul>
-				</nav>
+				</nav> -->
+				<nav class="ls-pagination">
+				    <ul>
+				        <li th:unless="${curPage == blockBegin-1}" class="prev"><a th:href="@{recruit-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+				        
+				       	<li th:if="${i == blockBegin-1}"><a class="current-page" th:text="${curPage+1}" ></a></li>
+				        <th:block th:each="i, index : ${#numbers.sequence(blockBegin-1, totalPage-1)}" >
+				            <li th:if="${i == curPage}"><a class="current-page" th:text="${curPage+1}" ></a></li>
+				            <li th:unless="${i == curPage}"><a th:text="${i+1}" th:href="@{recruit-list?page=}+${i}"></a></li>
+				        </th:block>
+				        
+				        <li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{recruit-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+				    </ul>
+				</nav> 
 <!-- Pagination 끝-->
             </div>
           </div>
@@ -225,7 +238,6 @@
 		<div class="row">
                 <!-- Job Block -->
 				{{#each data}}
-				{{#if (eq recruit.corp.paymentStatus 1)}}
                 <div class="job-block col-lg-6 col-md-12 col-sm-12" > 
                   <div class="inner-box">
                     <div class="content">
@@ -235,10 +247,10 @@
 							onClick="increaseReadCount(this.form);">
 							{{recruit.rcTitle}}</a></h4>
                       <ul class="job-info">
+                        <li><span class="icon flaticon-clock-3" style="color: lightcoral;"></span><span style="color: lightcoral;">마감일:</span><span style="color: lightcoral;">{{dateFormat "YYYY-MM-DD" recruit.rcDeadline}}</span></li>
                         <li>{{recruit.rcPosition}}<span class="icon flaticon-briefcase"></span></li>
                         <li>{{recruit.corp.corpAddress}}<span class="icon flaticon-map-locator"></span></li>
-                        <li><span class="icon flaticon-clock-3"></span>마감일: {{recruit.rcDeadline}}</li>
-                        <li><span class="icon flaticon-money"></span>{{recruit.rcSalary}}</li>
+                        <li><span class="icon flaticon-money"></span>{{recruit.rcSalary}}<span>만원</span></li>
                       </ul>	
                       <ul class="job-other-info">
 						{{#if (eq recruit.rcStatus 0)}}
@@ -276,7 +288,6 @@
                     </div>
                   </div>
                 </div>
-				{{/if}}
 				{{/each}}
 				
               </div>
@@ -334,7 +345,7 @@
   <script src="js/owl.js"></script>
   <script src="js/wow.js"></script>
   <script src="js/script.js"></script>
-	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 	<script src="js/app_recruit.js" type="module"></script>
 	<script src="js/app_recruit_scrap.js" type="module"></script>
 </body>
