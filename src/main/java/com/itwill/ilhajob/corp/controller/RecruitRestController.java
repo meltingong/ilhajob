@@ -59,7 +59,7 @@ public class RecruitRestController {
 	
 	@GetMapping(value="/getRecruitTag", produces = "application/json;charset=UTF-8")
 	public Map<String,Object> getRecruitTagData(@RequestParam(defaultValue = "0") int page,
-												@RequestParam(defaultValue = "6") int size,
+												@RequestParam(defaultValue = "8") int size,
 												@RequestParam long tagId,
 												Model model, HttpServletRequest request) throws Exception{
 		Map<String, Object> map = new HashMap<String,Object>();

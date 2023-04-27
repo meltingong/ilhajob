@@ -154,7 +154,7 @@ public class AppServiceImpl implements AppService {
 	@Transactional
 	@Override
 	public List<AppDto> findAllByUserId(long id) {
-		List<App> appList = appRepository.findAppsByUserId(id);
+		List<App> appList = appRepository.findAppsByUserIdOrderByAppCreateDateDesc(id);
 		return appList.stream()
 				.map(app ->modelMapper.map(app, AppDto.class))
 				.collect(Collectors.toList());
