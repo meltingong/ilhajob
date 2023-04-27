@@ -185,7 +185,7 @@ function reviewDelete(){
 			            <br><h4>Comment</h4>
 			            <!-- Comment -->
 			            <div class="comment">
-			              <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
+			              <div class="user-thumb"><img src="images/icons/smallplane.png" alt=""></div>
 			              <div class="comment-info">
 			                <div class="review-title">좋은회사예요</div>
 			                <div class="review-grade">★★★★</div>
@@ -193,7 +193,7 @@ function reviewDelete(){
 			              <div class="review-content">복지최고!</div>
 		               </div>
 			            <div class="comment">
-			              <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
+			              <div class="user-thumb"><img src="images/icons/smallplane.png" alt=""></div>
 			              <div class="comment-info">
 			                <div class="review-title">연봉상승률 높은 회사예요</div>
 			                <div class="review-grade">★★★</div>
@@ -218,7 +218,7 @@ function reviewDelete(){
 			            <br><h4>Comment</h4>
 			            <!-- Comment -->
 			            <div th:each="review:${reviewList}" class="comment">
-			              <div class="user-thumb"><img src="images/resource/avatar-1.jpg" alt=""></div>
+			              <div class="user-thumb"><img src="images/icons/smallplane.png" alt=""></div>
 			              <div class="comment-info">
 			                <div th:text="${review.reviewTitle}" class="review-title">Oscar Cafeo</div>
 			                <div class="review-grade" style="color: Gold" th:text="${#strings.repeat('★', review.reviewGrade)}">Beautiful courses</div>
