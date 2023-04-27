@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -65,7 +66,17 @@ public class RecruitController {
 	@RequestMapping(value = { "/", "/index" })
 	public String main(Model model) throws Exception {
 		// 전체 공고 리스트
-		List<RecruitDto> recruitList = recruitService.findRecruitAll();
+		List<RecruitDto> recruitListAll = recruitService.findRecruitAll();
+		List<RecruitDto> recruitList = new ArrayList<RecruitDto>();
+		Random random = new Random();
+		while (recruitList.size() < 10) {
+		    int randomIndex = random.nextInt(recruitListAll.size());
+		    RecruitDto randomRecruit = recruitListAll.get(randomIndex);
+		    if (randomRecruit.getRcDeadline().isAfter(LocalDateTime.now().minusDays(1).withHour(0).withMinute(0).withSecond(0))) {
+		        recruitList.add(randomRecruit);
+		    }
+		}
+		
 		model.addAttribute("recruitList", recruitList);
 		
 		// 마감 임박(Today+7 까지) 공고 리스트
