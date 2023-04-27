@@ -59,12 +59,12 @@ public class App {
 	@JoinColumn(name = "recruit_id")
 	private Recruit recruit;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cv_id")
 	@ToString.Exclude
 	private Cv cv;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	@ToString.Exclude
 	private User user;

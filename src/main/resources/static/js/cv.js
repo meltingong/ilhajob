@@ -119,7 +119,7 @@ function appliedCvView(appId){
 function applyCancle(appId){
   console.log(">>> applyCancle(appId) : " + appId);
   console.log("input" + $('#appId').val(appId));
-  //document.f.action = "candidate-dashboard-applied-job";
-  //document.f.method='POST';
-  //document.f.submit();
+  document.f.action = "apply-delete";
+  document.f.method='POST';
+  document.f.submit();
 }

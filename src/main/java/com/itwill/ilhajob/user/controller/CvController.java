@@ -283,8 +283,16 @@ public class CvController {
 		return "applied-cv-detail";
 	}
 	
+	@PostMapping(value = "apply-delete")
+	public String apply_delete(@RequestParam(name = "appId") Long appId) {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> appId : " + appId);
+		System.out.println("appId로 찾은 app : " + appService.findById(appId));
+		appService.deleteApp(appId);
+		return "redirect:candidate-dashboard-applied-job";
+	}
+	
 	/************** Get 방식 요청 처리 */
-	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action", "cv-apply-action"})
+	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action", "cv-apply-action", "apply-delete"})
 	public String cv_get() {
 		return "redirect:index";
 	}

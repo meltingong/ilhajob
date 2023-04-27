@@ -84,12 +84,12 @@ public class RecruitController {
 
 		LocalDateTime now = LocalDateTime.now();
 		LocalDateTime endToday = now.withHour(23).withMinute(59).withSecond(59);
-		System.out.println(">>>>>>>>>>>> : " + endToday);
+		System.out.println(">>>>>>>>>>>> 오늘의 끝 : " + endToday);
 		
 		LocalDateTime deadline = endToday.plusDays(7);
 		System.out.println(">>>>>>>>>>>> deadline : " + deadline);
 		
-		for (RecruitDto recruit : recruitList) {
+		for (RecruitDto recruit : recruitListAll) {
 			if (recruit.getRcDeadline().isAfter(now.minusDays(1).withHour(23).withMinute(59).withSecond(59)) && recruit.getRcDeadline().isBefore(deadline) && recruit.getRcDeadline().compareTo(deadline) <= 0) {
 					deadLineRecruitList.add(recruit);
 					System.out.println("공고 마감날짜  : " + recruit.getRcDeadline());
