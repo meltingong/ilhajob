@@ -44,9 +44,13 @@
 
           <!-- Job Search Form -->
           <div class="job-search-form wow fadeInUp" data-wow-delay="1000ms">
-            <form id="search-form" method="get" th:action="@{/searchRecruit}">
+            <form id="search-form" method="get" th:action="@{/searchMain}">
               <div class="row justify-content-center justify-content-md-between">
                 <!-- Form Group -->
+				 <div class="form-group col-lg-7 position-relative">
+                  <span class="icon flaticon-search-1"></span>
+                  <input type="text" id="searchInput" name="searchKeyword" placeholder="Job title, keywords, or company">
+                </div>
                 <div class="form-group col-lg-2 position-relative">
                  <span>
                   <select class="search-select" name="searchSelect" style="width: 100px; padding-left:0;">
@@ -54,17 +58,12 @@
 					<option value="corp">회사명</option>
 				  </select>
 				  </span>
-				  </div>
-				  <div class="form-group col-lg-7 position-relative">
-                  <span class="icon flaticon-search-1"></span>
-                  <input type="text" id="searchInput" name="searchKeyword" placeholder="Job title, keywords, or company">
-
-                </div>
+				 </div>
                 
 
                 <!-- Form Group -->
                 <div class="form-group col-auto">
-                  <button type="button" id="main-search" class="theme-btn btn-style-two">Find Jobs</button>
+                  <button type="submit" id="main-search" class="theme-btn btn-style-two">Find Jobs</button>
                 </div>
               </div>
             </form>

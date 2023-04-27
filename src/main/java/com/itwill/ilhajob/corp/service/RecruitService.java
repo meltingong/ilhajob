@@ -41,6 +41,8 @@ public interface RecruitService {
 	Page<RecruitDto> getRecruitList(int Page, int size) throws Exception;
 	Page<RecruitDto> findAll(Pageable pageable)throws Exception;
 	
+	Page<RecruitDto> searchRcTitle(String rcTitle, int Page, int Size) throws Exception;
+	
 	//readCount 증가
 	void increaseReadCount(Long id) throws Exception;
 	
