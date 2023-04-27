@@ -233,27 +233,18 @@ public class RecruitController {
 		model.addAttribute("corp", loginCorp);
 		
 		
-		//업데이트 상태 확인후 권환부여
-		if((loginCorp.getCorpAddress())!=null&&loginCorp.getCorpBusinessNo()!=null) {
-			request.getSession().setAttribute("updateStatus", 0);
-		}else {
-			request.getSession().setAttribute("updateStatus", 1);
-		}
-		
-		
 		//결제확인 및 업데이트상태확인
 		int paymentStatus = (Integer)request.getSession().getAttribute("paymentStatus");
 		int updateStatus = (Integer)request.getSession().getAttribute("updateStatus");
 		System.out.println("결제상태:"+paymentStatus+"업데이트상태:"+updateStatus);
-		if(paymentStatus!=1) {
-			return "redirect:product";
-		}else if(updateStatus!=1) {
+		if(updateStatus!=1) {
 			return "redirect:dashboard-company-profile";
+		}else if(paymentStatus!=1) {
+			return "redirect:product";
 		}
-		
-		
 		String forward_path = "dashboard-post-job";
 		return forward_path;
+		
 	}
 
 	@PostMapping("/dashboard-post-job-action")
