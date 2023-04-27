@@ -407,13 +407,14 @@ public class CorpController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String searchCorps(@RequestParam("corpName") String corpName, 
 							  @RequestParam("job") String job,
-							  @RequestParam(defaultValue = "0") int page,
-		                      @RequestParam(defaultValue = "6") int size,
+							  @RequestParam(defaultValue = "0", name = "page") int curPage,
+							  @RequestParam(defaultValue = "8") int pageScale,
+		                      @RequestParam(defaultValue = "5") int blockScale,
 							  Pageable pageable,
 	                          Model model) {
 	    try {
 	    	//페이징 기능 추가->일단 12개씩 나오게 해놓음
-	    	Pageable pageable1 = PageRequest.of(page, size, Sort.Direction.ASC, "id");
+	    	Pageable pageable1 = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
 	    	Page<CorpDto> corpPageList = corpService.findAll(pageable1);
 	    	int nowPage = corpPageList.getNumber();
 	        List<CorpDto> corpSearchList = new ArrayList<>();
@@ -430,12 +431,22 @@ public class CorpController {
 			model.addAttribute("corpTagList", corpTagList);
 			
 		    
-		    //이전, 다음페이지 설정해야함...
-		    model.addAttribute("corpList", corpPageList.getContent());
-		    model.addAttribute("nowPage", nowPage);
+			//페이지블록번호
+			int curBlock = (int) Math.ceil((corpPageList.getNumber()) / blockScale) + 1;
+		    System.out.println("페이지블록번호 :"+curBlock);
+		    //페이지 블록의 시작번호
+		 	int blockBegin = (curBlock - 1) * blockScale + 1;
+		 	//페이지 블록의 끝 번호
+		 	int	blockEnd = blockBegin + blockScale - 1;
+		 	System.out.println("페이지블록시작번호 :"+blockBegin);
+		 	System.out.println("페이지블록  끝번호 :"+blockEnd);
+		 	
+		 	model.addAttribute("blockBegin", blockBegin);
+		 	model.addAttribute("blockEnd", blockEnd);
+		    model.addAttribute("curPage", corpPageList.getNumber());
 		    model.addAttribute("totalPage", corpPageList.getTotalPages());
-		    model.addAttribute("prePage", corpPageList.hasPrevious() ? corpPageList.previousPageable().getPageNumber() : 0);
-		    model.addAttribute("nextPage", corpPageList.hasNext() ? corpPageList.nextPageable().getPageNumber() : corpPageList.getTotalPages() - 1);
+		    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
+		    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
 			
 		    // corpName만 알때
 	        if (job.isEmpty()) {
