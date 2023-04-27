@@ -44,20 +44,32 @@
 
           <!-- Job Search Form -->
           <div class="job-search-form wow fadeInUp" data-wow-delay="1000ms">
-            <form id="search-form" method="get" th:action="@{/search}">
+            <form id="search-form" method="get" th:action="@{/searchRecruit}">
               <div class="row justify-content-center justify-content-md-between">
                 <!-- Form Group -->
-                <div class="form-group col-lg-9">
+                <div class="form-group col-lg-9 position-relative">
+                <div class="row">
+                 <span>
+                  <select class="search-select" name="searchSelect" style="width: 50px">
+					<option value="recruit">공고명</option>
+					<option value="corp">회사명</option>
+				  </select>
+				  </span>
                   <span class="icon flaticon-search-1"></span>
-                  <input type="text" name="corpName" placeholder="Job title, keywords, or company">
+                  <input type="text" id="searchInput" name="searchKeyword" placeholder="Job title, keywords, or company">
+
                 </div>
+                </div>
+                
 
                 <!-- Form Group -->
                 <div class="form-group col-auto">
-                  <button type="submit" class="theme-btn btn-style-two">Find Jobs</button>
+                  <button type="button" id="main-search" class="theme-btn btn-style-two">Find Jobs</button>
                 </div>
               </div>
             </form>
+            <ul class="search-results" id="searchResults">
+  			</ul>
           </div>
           <!-- Job Search Form -->
 
@@ -151,7 +163,7 @@
       </div>
     </section>
     <!-- End Banner Section-->
-
+    
     <!-- Job Section -->
     <section class="layout-pt-120 layout-pb-120">
       <div class="auto-container">
@@ -440,6 +452,7 @@
   <script src="js/rellax.min.js"></script>
   <script src="js/owl.js"></script>
   <script src="js/wow.js"></script>
+  <script src="js/search.js"></script>
   <script src="js/script.js"></script>
 
 </body>
