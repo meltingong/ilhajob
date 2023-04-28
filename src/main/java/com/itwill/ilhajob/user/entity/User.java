@@ -99,6 +99,9 @@ public class User {
 	@Column(columnDefinition = "NUMBER(1) DEFAULT 0")
 	private Integer paymentStatus;
 	
+	@Column(columnDefinition = "NUMBER(1) DEFAULT 0")
+	private Integer writeStatus;
+	
 	private int role;
 	
 	private int state;

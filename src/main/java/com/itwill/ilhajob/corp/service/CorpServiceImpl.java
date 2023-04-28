@@ -179,40 +179,35 @@ public class CorpServiceImpl implements CorpService{
 	}
 	//job으로만 검색 기능
 	@Override
-	public List<CorpDto> searchByjob(String job, Pageable pageable) throws Exception {
-		List<Corp> jobList=corpRepository.findByJobContaining(job, pageable);
-		return jobList.stream()
-		        .map(corp->modelMapper.map(corp, CorpDto.class))
-		        .collect(Collectors.toList());
+	public Page<CorpDto> searchByjob(String job, Pageable pageable) throws Exception {
+		Page<Corp> jobList=corpRepository.findByJobContaining(job, pageable);
+		return jobList
+		        .map(corp->modelMapper.map(corp, CorpDto.class));
 	}
 
 	//corpName이랑 job으로 검색 기능
 	@Override
-	public List<CorpDto> searchCorps(String corpName, String job, Pageable pageable) throws Exception {
+	public Page<CorpDto> searchCorps(String corpName, String job, Pageable pageable) throws Exception {
 		//corpName, job 둘 다 알 때
 		if (corpName != null && !corpName.isEmpty() && job != null && !job.isEmpty()) {
-		    List<Corp> corpNameJobList=corpRepository.findByCorpNameContainingAndJobContaining(corpName, job, pageable);  
-			return corpNameJobList.stream()
-			        .map(corp->modelMapper.map(corp, CorpDto.class))
-			        .collect(Collectors.toList());
+		    Page<Corp> corpNameJobList=corpRepository.findByCorpNameContainingAndJobContaining(corpName, job, pageable);  
+			return corpNameJobList
+			        .map(corp->modelMapper.map(corp, CorpDto.class));
 			//corpName만 알 때
 		    } else if (corpName != null && !corpName.isEmpty()) {
 		    	Page<Corp> corpNameList=corpRepository.findByCorpNameContaining(corpName, pageable);
-		      return corpNameList.stream()
-				        .map(corp->modelMapper.map(corp, CorpDto.class))
-				        .collect(Collectors.toList());
+		      return corpNameList
+				        .map(corp->modelMapper.map(corp, CorpDto.class));
 		    //job만 알 때
 		    } else if (job != null && !job.isEmpty()) {
-		    	List<Corp> corpJobList=corpRepository.findByJobContaining(job, pageable);
-		    	return corpJobList.stream()
-				        .map(corp->modelMapper.map(corp, CorpDto.class))
-				        .collect(Collectors.toList());
+		    	Page<Corp> corpJobList=corpRepository.findByJobContaining(job, pageable);
+		    	return corpJobList
+				        .map(corp->modelMapper.map(corp, CorpDto.class));
 		    //corpName이랑 job 둘 다 모를 때->전체 리스트 띄우기
 		    } else {
-		    	List<Corp> corpAllList=corpRepository.findAll();
-		      return corpAllList.stream()
-				        .map(corp->modelMapper.map(corp, CorpDto.class))
-				        .collect(Collectors.toList());
+		    	Page<Corp> corpAllList=corpRepository.findAll(pageable);
+		      return corpAllList
+				        .map(corp->modelMapper.map(corp, CorpDto.class));
 		    }
 		  }
 

@@ -72,7 +72,7 @@ public class CorpRestController {
 										  @RequestParam(defaultValue = "8") int size,
 										  @RequestParam String corpName,
 										  Model model, HttpServletRequest request) throws Exception{
-		
+
 		Map<String, Object> map = new HashMap<String,Object>();
 		Pageable pageable = PageRequest.of(page, size,Sort.Direction.ASC,"id");
 		Page<CorpDto> corpPage = corpService.searchByCorpName(corpName, pageable);

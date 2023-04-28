@@ -72,6 +72,18 @@ public class SearchController {
 								  Pageable pageable,
 		                          Model model, HttpServletRequest request) {
 		String forwardPath = "";
+		//url queryString 잘라내기
+		String queryString = request.getQueryString();
+		if (queryString != null) {
+		    int pageIndex = queryString.indexOf("&page=");
+		    if (pageIndex != -1) {
+		        queryString = queryString.substring(0, pageIndex) + queryString.substring(pageIndex + "&page=".length()+1);
+		    }
+		} else {
+		    queryString = "";
+		}
+		queryString += "&page=";
+		model.addAttribute("queryString","searchMain?"+queryString);
 		try {
 			if (searchSelect.equals("recruit")) {
 				pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
@@ -85,6 +97,7 @@ public class SearchController {
 				// 페이지 블록의 끝 번호
 				int blockEnd = blockBegin + blockScale - 1;
 
+			    
 				model.addAttribute("recruitList", searchRecruitList.getContent());
 				model.addAttribute("blockBegin", blockBegin);
 				model.addAttribute("blockEnd", blockEnd);
@@ -133,8 +146,8 @@ public class SearchController {
 				}
 				forwardPath = "recruit-list";
 			} else if (searchSelect.equals("corp")) {
-				Pageable pageable1 = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
-				Page<CorpDto> corpPageList = corpService.searchByCorpName(searchKeyword, pageable);
+				Pageable pageable1 = PageRequest.of(curPage, 8, Sort.Direction.ASC, "id");
+				Page<CorpDto> corpPageList = corpService.searchByCorpName(searchKeyword, pageable1);
 				int nowPage = corpPageList.getNumber();
 				List<CorpDto> corpSearchList = new ArrayList<>();
 
@@ -178,20 +191,6 @@ public class SearchController {
 	@ResponseBody
 	@PostMapping("/keywordSearch")
 	public ResponseEntity<String> keywordSearch(@RequestBody String requestData, HttpServletRequest request, Model model) {
-		String queryString = request.getQueryString();
-		if (queryString != null) {
-		    int pageIndex = queryString.indexOf("&page=");
-		    System.out.println(">>1>>"+pageIndex);
-		    if (pageIndex != -1) {
-		        queryString = queryString.substring(0, pageIndex) + queryString.substring(pageIndex + "&page=".length()+1);
-		        System.out.println(">>2>>"+queryString);
-		    }
-		    System.out.println(">>3>>"+queryString+'&');
-		} else {
-		    queryString = "";
-		    System.out.println(">>4>>"+queryString);
-		}
-		queryString += "&page=";
 		
 		Gson gson = new Gson();
 	    JsonObject jsonObject = gson.fromJson(requestData, JsonObject.class);
@@ -219,8 +218,6 @@ public class SearchController {
 	        jsonResult = new JsonObject();
 	        jsonResult.add("results", jsonArray);
 	    }
-	    
-	    model.addAttribute("qeuryString",queryString);
 	    
 		return ResponseEntity.ok(jsonResult.toString());
 	}

@@ -1,7 +1,6 @@
 $(function() {
 	$(document).on("click", ".search-results, .search-results li", function(event) {
 		// 이벤트가 발생한 대상이 ul이나 li가 아닌 경우
-		console.log(">>>>");
 		$(".search-results").empty();
 		$('.job-search-form form, .banner-section-four .job-search-form form').css({
 			'border-bottom-left-radius': '50px',

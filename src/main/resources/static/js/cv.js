@@ -97,7 +97,7 @@ $('.call-modal-apply').on('click', function(event) {
 				location.href="/final-project-team1-ilhajob/recruit-detail?id="+recruitId;
 			},
 			error: function(data) {
-				alert("이력서 지원실패",data);
+				//alert("이력서 지원실패",data);
 				$('.jquery-modal.blocker.current').css('display', 'none');
 				location.href="/final-project-team1-ilhajob/recruit-detail?id="+recruitId;
 			}
