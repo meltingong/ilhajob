@@ -243,6 +243,7 @@ public class CvController {
 	        String json = mapper.writeValueAsString(requestData);
 	        Path filePath = Paths.get(saveFileName);
 	        Files.write(filePath, json.getBytes());
+	        request.getSession().setAttribute("msgList", (Integer)request.getSession().getAttribute("msgList")+1);
 		}catch (Exception e) {
 			return "이력서 지원 실패";
 		}
@@ -280,7 +281,6 @@ public class CvController {
 		model.addAttribute("expList", map.get("expList"));
 		model.addAttribute("awardsList", map.get("awardsList"));
 		
-		request.getSession().setAttribute("msgList", (Integer)request.getSession().getAttribute("msgList")+1);
 		return "applied-cv-detail";
 	}
 	
