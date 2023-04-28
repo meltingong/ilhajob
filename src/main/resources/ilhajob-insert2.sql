@@ -404,22 +404,31 @@ values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/28', '메세지 제목', 2);
 /**********************review insert***************************/
 /************user_id=1인 회원의 모든 기업 리뷰************/
 insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
-values(REVIEW_ID_SEQ.nextval, '리뷰 내용1', '1', '리뷰 제목1', 1,1);
+values(REVIEW_ID_SEQ.nextval, '회사 분위기랑 복지, 둘다 너무 마음에 들어요ㅎㅎㅎ 뼈를 묻고 싶을 많큼 일적인 동기부여가 마구마구 되는 회사입니다!', '4', '사랑해요 우리회사!', 1,1);
 insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
-values(REVIEW_ID_SEQ.nextval, '리뷰 내용2', '2', '리뷰 제목2', 2,1);
+values(REVIEW_ID_SEQ.nextval, '팀장과 팀원간의 수평적인 커뮤니케이션으로 소통이 원활하게 되는 기업입니다. 연차 쓰기도 자유롭고 탕비실에 간식도 많아요ㅎㅎ', '4', '추천합니다^!^', 1,2);
 insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
-values(REVIEW_ID_SEQ.nextval, '리뷰 내용3', '3', '리뷰 제목3', 3,1);
+values(REVIEW_ID_SEQ.nextval, '뉴스와 기사에도 복지가 좋다는 글을 많이 봤었는데 다녀보니 정말 좋습니다...왜 안다니세요 여기? 다들 어서 지원하세요..!', '3', '신입들도 다니기 좋은 회사', 1,3);
 insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
-values(REVIEW_ID_SEQ.nextval, '리뷰 내용4', '4', '리뷰 제목4', 4,1);
+values(REVIEW_ID_SEQ.nextval, '기업의 가치와 목표를 달성하기 위해 열정적으로 노력하는 것을 보면서 항상 동기부여를 얻습니다. 이런 분위기속에서 계속 일하면서 자신감을 얻는 것 같아요@-@', '5', '일하는만큼 보답하는 회사같아요~', 1,4);
 
 insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
-values(REVIEW_ID_SEQ.nextval, '리뷰 내용1-1', '1', '리뷰 제목1-1', 1,2);
+values(REVIEW_ID_SEQ.nextval, '시키는 일은 엄청 많으면서 월급은 안올라요. 물가가 높은건지 월급이 적은건지...간식도, 비품도 텅텅 비어있어요. 그래서 항상 월루합니다.', '1', '원수가 간대도 말릴 회사', 6,3);
 insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
-values(REVIEW_ID_SEQ.nextval, '리뷰 내용2-1', '2', '리뷰 제목2-1', 2,2);
+values(REVIEW_ID_SEQ.nextval, '개발자로 막 입사한 한달차 신입입니다. 제자리에 컴퓨터가 없어요...사오래요...절대 가지마세요. 여기 탈출은 지능순이에요.저도 나갈겁니다.', '4', '컴퓨터를 사오래요...', 6,1);
 insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
-values(REVIEW_ID_SEQ.nextval, '리뷰 내용3-1', '3', '리뷰 제목3-1', 3,2);
+values(REVIEW_ID_SEQ.nextval, '뻥이에요. 컴퓨터가 없는게 말이 됩니까? 컴퓨터가 제 월급보다 비쌌어요. 절대 가지마세요ㅠㅠㅠ', '5', '사랑해요 우리회사', 6,2);
+
+
 insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
-values(REVIEW_ID_SEQ.nextval, '리뷰 내용4-1', '4', '리뷰 제목4-1', 4,2);
+values(REVIEW_ID_SEQ.nextval, '같이 일하는 팀장님과 팀원들을 보면서 많이 배워요. 직접 공부해보는 시간도 많고 설계도 스스로 생각해보며 점점 성장해나가는 저 자신을 느낍니다. 항상 감사하며 다녀요', '4', '좋은 회사 입니다!!', 2,2);
+insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
+values(REVIEW_ID_SEQ.nextval, '회사 다니는 하루하루가 꿈만 같아요. 힘들땐 다같이 고민해주고 코드가 잘풀리면 또 다같이 기뻐해줍니다ㅋㅋㅋ너무 행복해서 다닐 맛 나요!!', '5', '추천 박고 갑니다아아', 3,2);
+insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
+values(REVIEW_ID_SEQ.nextval, '일단 연차를 제대로 못씁니다. 눈치 보면서 쓰는 게 너무 짜증나요. 그리고 쓰더라도 계속 카톡이 옵니다. 제 개인시간이 보장이 안되는 회사...비추해요', '2', '절대 절대 입사하지마세요. 도망가세요', 4,2);
+insert into review(id, review_content, review_grade, review_title, corp_id, user_id)
+values(REVIEW_ID_SEQ.nextval, '소규모 회사지만 다들 친밀하고 서로서로 도와가며 일하는 중입니다. 여기서 많이 발전하고 싶어요. 앞으로도 잘 다닐 회사입니다~', '3', '너무 가족같은 분위기의 회사에요', 5,2);
+
 
 /*******************************태그**************************************/
 /**************************tag insert***************************/
