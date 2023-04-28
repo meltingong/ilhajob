@@ -71,7 +71,7 @@ public class RecruitController {
 		List<RecruitDto> recruitListAll = recruitService.findRecruitAll();
 		List<RecruitDto> recruitList = new ArrayList<RecruitDto>();
 		Random random = new Random();
-		while (recruitList.size() < 10) {
+		while (recruitList.size() < 9) {
 		    int randomIndex = random.nextInt(recruitListAll.size());
 		    RecruitDto randomRecruit = recruitListAll.get(randomIndex);
 		    if (randomRecruit.getRcDeadline().isAfter(LocalDateTime.now().minusDays(1).withHour(0).withMinute(0).withSecond(0))) {
