@@ -72,10 +72,10 @@ public interface CorpService {
 	List<CorpDto> searchByCorpName(String corpName);
 	
 	//job으로만 검색 기능
-	List<CorpDto> searchByjob(String job, Pageable pageable) throws Exception;
+	Page<CorpDto> searchByjob(String job, Pageable pageable) throws Exception;
 	
 	//corpName이랑 job으로 검색 기능
-	List<CorpDto> searchCorps(String corpName, String job, Pageable pageable) throws Exception;
+	Page<CorpDto> searchCorps(String corpName, String job, Pageable pageable) throws Exception;
 	
 	//corpList paging 기능...수정해야할 듯
 	Page<CorpDto> getCorpList(int page, int size) throws Exception;

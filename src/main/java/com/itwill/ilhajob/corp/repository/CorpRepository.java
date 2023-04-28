@@ -27,10 +27,10 @@ public interface CorpRepository extends JpaRepository<Corp, Long> {
 	List<Corp> findByCorpNameContainingIgnoreCase(@Param("keyword") String corpName);
     
     //job으로만 검색기능
-    List<Corp> findByJobContaining(String job,Pageable pageable);
+    Page<Corp> findByJobContaining(String job,Pageable pageable);
     
     //corpName이랑 job으로 검색하기
-    List<Corp> findByCorpNameContainingAndJobContaining(String corpName, String job,Pageable pageable);
+    Page<Corp> findByCorpNameContainingAndJobContaining(String corpName, String job,Pageable pageable);
     
     //paging 기능 구현
     Page<Corp> findAll(Pageable pageable);

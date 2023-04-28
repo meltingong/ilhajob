@@ -451,18 +451,16 @@ public class CorpController {
 	    	//페이징 기능 추가->일단 12개씩 나오게 해놓음
 	    	Pageable pageable1 = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
 	    	Page<CorpDto> corpPage = null;
-	        List<CorpDto> corpSearchList = new ArrayList<>();
 	        // corpName만 알때
 	        if (job.isEmpty()) {
 	        	corpPage = corpService.searchByCorpName(corpName, pageable1);
-	        	corpSearchList = corpPage.getContent();
 	        	
 	        	// job만 알 때
 	        } else if(corpName.isEmpty()){
-	        	corpSearchList = corpService.searchByjob(job, pageable1);
+	        	corpPage = corpService.searchByjob(job, pageable1);
 	        	// 둘 다 알 때
 	        } else {
-	        	corpSearchList = corpService.searchCorps(corpName, job, pageable1);
+	        	corpPage = corpService.searchCorps(corpName, job, pageable1);
 	        }
 	        //검색 결과 없을 때
 	     
@@ -497,7 +495,7 @@ public class CorpController {
 		    model.addAttribute("nextPage", corpPage.nextOrLastPageable().getPageNumber());
 			
 
-	        model.addAttribute("corpList", corpSearchList);
+	        model.addAttribute("corpList", corpPage.getContent());
 	    } catch (Exception e) {
 	        // 예외 처리
 	        e.printStackTrace();
