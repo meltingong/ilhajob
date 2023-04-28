@@ -135,6 +135,22 @@ public class RecruitController {
 	                           Model model,HttpServletRequest request) throws Exception {
 		
 		//공고 정렬에 페이징 기능 추가->pageScale 8개씩 나오게 해놓음
+		String queryString = request.getQueryString();
+		if (queryString != null) {
+		    int pageIndex = queryString.indexOf("&page=");
+		    System.out.println(">>1>>"+pageIndex);
+		    if (pageIndex != -1) {
+		        queryString = queryString.substring(0, pageIndex) + queryString.substring(pageIndex + "&page=".length()+1);
+		        System.out.println(">>2>>"+queryString);
+		    }
+		    System.out.println(">>3>>"+queryString+'&');
+		} else {
+		    queryString = "";
+		    System.out.println(">>4>>"+queryString);
+		}
+		queryString += "&page=";
+
+		// 새로운 &page= 추가
 		
 		Page<RecruitDto> recruitPage;
 		if("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
@@ -151,7 +167,6 @@ public class RecruitController {
 			Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
 			recruitPage = recruitService.findAll(pageable);
 		}
-	    System.out.println(recruitPage.getContent());
 	    //이전, 다음페이지 설정해야함...
 	    model.addAttribute("recruitList", recruitPage.getContent());
 //	    model.addAttribute("nowPage", nowPage);
@@ -169,6 +184,7 @@ public class RecruitController {
   	 	System.out.println("페이지블록시작번호 :"+blockBegin);
   	 	System.out.println("페이지블록  끝번호 :"+blockEnd);
   	 	
+  	 	model.addAttribute("queryString",queryString);
   	 	model.addAttribute("blockBegin", blockBegin);
   	 	model.addAttribute("blockEnd", blockEnd);
   	    model.addAttribute("curPage", recruitPage.getNumber());

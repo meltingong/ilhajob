@@ -65,7 +65,7 @@ $(function() {
 								
 			})
 			.fail(function(xhr) {
-				console.log(xhr);
+				window.location.href="/final-project-ilhajob/errorPage";
 			});
 		}
 		

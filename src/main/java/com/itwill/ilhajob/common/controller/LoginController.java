@@ -76,7 +76,7 @@ public class LoginController {
 				return ResponseEntity.status(ResponseStatusCode.PASSWORD_MISMATCH_CORP).body(e.getMessage());
 			}
 	    }
-	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"잘못된 형식입니다.\", \"location\": \"/final-project-team1-ilhajob\"}");
+	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"success\": false, \"message\": \"잘못된 형식입니다.\", \"location\": \"/final-project-team1-ilhajob/dashboard\"}");
 	}
 	
 	@PostMapping("logout")
