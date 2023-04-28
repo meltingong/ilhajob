@@ -325,6 +325,7 @@
         user_sex varchar2(255 char),
         user_skills varchar2(300 char),
         payment_status NUMBER(1) DEFAULT 0,
+        write_status NUMBER(1) DEFAULT 0,
         primary key (id)
     );
     

@@ -51,6 +51,7 @@ public class UserDto {
     private String snsId;
    // private String job;
     private Integer paymentStatus;
+    private Integer writeStatus;
     private int role;
     private int state;
 	public UserDto(Long id, String userEmail, String userPassword) {
