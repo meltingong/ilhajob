@@ -120,6 +120,17 @@ public class CorpController {
 	                        HttpServletRequest request,
 	                        Model model) throws Exception {
 		String forward_path="";
+		String queryString = request.getQueryString();
+		if (queryString != null) {
+		    int pageIndex = queryString.indexOf("&page=");
+		    if (pageIndex != -1) {
+		        queryString = queryString.substring(0, pageIndex) + queryString.substring(pageIndex + "&page=".length()+1);
+		    }
+		} else {
+		    queryString = "";
+		}
+		queryString += "&page=";
+		
 		
 		//페이징 기능 추가->일단 8개씩 나오게 해놓음
 	    Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
@@ -138,6 +149,7 @@ public class CorpController {
 	 	System.out.println("페이지블록시작번호 :"+blockBegin);
 	 	System.out.println("페이지블록  끝번호 :"+blockEnd);
 	 	
+	 	model.addAttribute("queryString", "corp-list?"+queryString);
 	 	model.addAttribute("blockBegin", blockBegin);
 	 	model.addAttribute("blockEnd", blockEnd);
 	    model.addAttribute("curPage", corpPageList.getNumber());
@@ -421,17 +433,42 @@ public class CorpController {
 							  @RequestParam(defaultValue = "8") int pageScale,
 		                      @RequestParam(defaultValue = "5") int blockScale,
 							  Pageable pageable,
-	                          Model model) {
+	                          Model model, HttpServletRequest request) {
+		System.out.println(curPage);
+		System.out.println();
+		System.out.println();
+		String queryString = request.getQueryString();
+		if (queryString != null) {
+		    int pageIndex = queryString.indexOf("&page=");
+		    if (pageIndex != -1) {
+		        queryString = queryString.substring(0, pageIndex) + queryString.substring(pageIndex + "&page=".length()+1);
+		    }
+		} else {
+		    queryString = "";
+		}
+		queryString += "&page=";
 	    try {
 	    	//페이징 기능 추가->일단 12개씩 나오게 해놓음
 	    	Pageable pageable1 = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
-	    	Page<CorpDto> corpPageList = corpService.findAll(pageable1);
-	    	int nowPage = corpPageList.getNumber();
+	    	Page<CorpDto> corpPage = null;
 	        List<CorpDto> corpSearchList = new ArrayList<>();
+	        // corpName만 알때
+	        if (job.isEmpty()) {
+	        	corpPage = corpService.searchByCorpName(corpName, pageable1);
+	        	corpSearchList = corpPage.getContent();
+	        	
+	        	// job만 알 때
+	        } else if(corpName.isEmpty()){
+	        	corpSearchList = corpService.searchByjob(job, pageable1);
+	        	// 둘 다 알 때
+	        } else {
+	        	corpSearchList = corpService.searchCorps(corpName, job, pageable1);
+	        }
+	        //검색 결과 없을 때
 	     
 		    //채용중 뿌리기
 		    Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
-					corpPageList.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
+					corpPage.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
 			model.addAttribute("rcCountMap", rcCountMap);
 			
 			//태그리스트 뿌리기
@@ -442,7 +479,7 @@ public class CorpController {
 			
 		    
 			//페이지블록번호
-			int curBlock = (int) Math.ceil((corpPageList.getNumber()) / blockScale) + 1;
+			int curBlock = (int) Math.ceil((corpPage.getNumber()) / blockScale) + 1;
 		    System.out.println("페이지블록번호 :"+curBlock);
 		    //페이지 블록의 시작번호
 		 	int blockBegin = (curBlock - 1) * blockScale + 1;
@@ -451,26 +488,14 @@ public class CorpController {
 		 	System.out.println("페이지블록시작번호 :"+blockBegin);
 		 	System.out.println("페이지블록  끝번호 :"+blockEnd);
 		 	
+		 	model.addAttribute("queryString", "search?"+queryString);
 		 	model.addAttribute("blockBegin", blockBegin);
 		 	model.addAttribute("blockEnd", blockEnd);
-		    model.addAttribute("curPage", corpPageList.getNumber());
-		    model.addAttribute("totalPage", corpPageList.getTotalPages());
-		    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
-		    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
+		    model.addAttribute("curPage", corpPage.getNumber());
+		    model.addAttribute("totalPage", corpPage.getTotalPages());
+		    model.addAttribute("prePage", corpPage.previousOrFirstPageable().getPageNumber());
+		    model.addAttribute("nextPage", corpPage.nextOrLastPageable().getPageNumber());
 			
-		    // corpName만 알때
-	        if (job.isEmpty()) {
-	           Page<CorpDto> corpPage = corpService.searchByCorpName(corpName,pageable);
-	           corpSearchList = corpPage.getContent();
-	           
-	        // job만 알 때
-	        } else if(corpName.isEmpty()){
-	            corpSearchList = corpService.searchByjob(job,pageable);
-	        // 둘 다 알 때
-	        } else {
-	            corpSearchList = corpService.searchCorps(corpName, job,pageable);
-	        }
-	        //검색 결과 없을 때
 
 	        model.addAttribute("corpList", corpSearchList);
 	    } catch (Exception e) {
