@@ -388,6 +388,10 @@ insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 3, 4, sysdate,3);
 update recruit set rc_app_count=rc_app_count+1 where id=4;
 
+insert into app(id, app_status, cv_id, recruit_id, app_cv_name, app_create_date, user_id)
+values(APP_ID_SEQ.nextval, '0', 5, 4, 'c:/final-project-team1-ilhajob/upload/cv/4_rc5_cv3_user.json', sysdate, 3);
+update recruit set rc_app_count=rc_app_count+1 where id=4;
+
 /**********************massage insert***************************/
 insert into message(id, message_contents, message_date, message_title, user_id)
 values(MESSAGE_ID_SEQ.nextval, '내용', '2023/03/31', '메세지 제목', 2);
