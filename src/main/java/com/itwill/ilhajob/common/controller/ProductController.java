@@ -28,28 +28,15 @@ public class ProductController {
 		this.productService = productService;
 	}
 	
-	@RequestMapping("/shop")
-	public String shop(HttpServletRequest request, Model model) throws Exception {
+	@RequestMapping("/product")
+	public String product(HttpServletRequest request, Model model) throws Exception {
 		String forwardPath = "";
 		String pDiv=(String)request.getSession().getAttribute("pDiv");
 		List<ProductDto> productList = productService.selectByDiv(pDiv);
 		model.addAttribute("productList", productList);
 		
-	    forwardPath = "shop";
+	    forwardPath = "product";
 	    return forwardPath;
 	}
-	
-	@RequestMapping(value = "/shop-single", params = "!id")
-	public String shop_single() {
-		return "redirect:shop";
-	}
-	
-	@RequestMapping(value = "/shop-single", params = "id")
-	public String shop_single(@RequestParam("id") Long Id , Model model) throws Exception {
-		ProductDto productDto = productService.selectById(Id);
-		model.addAttribute("product", productDto);
-		return "shop-single";
-	}
-	
 		
 }
