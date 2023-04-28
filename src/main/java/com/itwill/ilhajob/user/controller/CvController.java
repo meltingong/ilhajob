@@ -280,6 +280,7 @@ public class CvController {
 		model.addAttribute("expList", map.get("expList"));
 		model.addAttribute("awardsList", map.get("awardsList"));
 		
+		request.getSession().setAttribute("msgList", (Integer)request.getSession().getAttribute("msgList")+1);
 		return "applied-cv-detail";
 	}
 	
