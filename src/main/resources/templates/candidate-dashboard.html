@@ -57,7 +57,7 @@
                 <i class="icon flaticon-briefcase"></i>
               </div>
               <div class="right">
-                <h4 th:text="${appList.size()}">22</h4>
+                <h4 th:text="|${appList.size()} 개|">22</h4>
                 <p>지원한 공고</p>
               </div>
             </div>
@@ -68,7 +68,7 @@
                 <i class="icon la la-file-invoice"></i>
               </div>
               <div class="right">
-                <h4 th:text="${cvList.size()}">9382</h4>
+                <h4 th:text="|${cvList.size()} 개|">9382</h4>
                 <p>작성한 이력서</p>
               </div>
             </div>
@@ -79,7 +79,7 @@
                 <i class="icon la la-comment-o"></i>
               </div>
               <div class="right">
-                <h4 th:text="${messageList.size()}">74</h4>
+                <h4 th:text="|${messageList.size()} 개|">74</h4>
                 <p>알림</p>
               </div>
             </div>
@@ -90,7 +90,7 @@
                 <i class="icon la la-bookmark-o"></i>
               </div>
               <div class="right">
-                <h4 th:text="${recruitScrapList.size()}">32</h4>
+                <h4 th:text="|${recruitScrapList.size()} 개|">32</h4>
                 <p>스크랩한 공고</p>
               </div>
             </div>
@@ -161,7 +161,7 @@
                   <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12" th:each="app:${appList}">
                     <div class="inner-box">
                       <div class="content">
-                        <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
+                        <figure class="image"><img src="images/icons/smallplant.png" alt=""></figure>
                         <h4 class="name" th:text="${app.recruit.rcTitle}"><a href="#">Darlene Robertson</a></h4>
                         <ul class="candidate-info">
                           <li class="designation" th:text="${app.recruit.rcPosition}">UI Designer</li>
