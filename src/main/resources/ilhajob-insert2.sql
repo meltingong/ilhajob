@@ -189,6 +189,43 @@ insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, COR
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
 '1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
+
 
 /**********************manage insert***************************/
 /************기업 1에 속한 매니저************/
@@ -202,66 +239,139 @@ insert into manager(id, manager_email, manager_name, manager_phone, manager_posi
 values(MANAGER_ID_SEQ.nextval, 'email@기업1-4.com', '매니저1-4', '010-5326-6477', '인사팀장', 1); 
 
 insert into manager(id, manager_email, manager_name, manager_phone, manager_position, corp_id)
-values(MANAGER_ID_SEQ.nextval, 'email@기업2.com', '늬늬늬', '010-5326-6477', '인사팀장', 2); 
+values(MANAGER_ID_SEQ.nextval, 'email@기업2.com', '매니저2-1', '010-5326-6477', '인사팀장', 2); 
 insert into manager(id, manager_email, manager_name, manager_phone, manager_position, corp_id)
-values(MANAGER_ID_SEQ.nextval, 'email@기업3.com', '아아아', '010-5326-6477', '인사팀장', 3); 
+values(MANAGER_ID_SEQ.nextval, 'email@기업2.com', '매니저2-2', '010-5326-6477', '인사팀장', 2); 
+
 insert into manager(id, manager_email, manager_name, manager_phone, manager_position, corp_id)
-values(MANAGER_ID_SEQ.nextval, 'email@기업4.com', '댜댜댜', '010-5326-6477', '인사팀장', 4); 
+values(MANAGER_ID_SEQ.nextval, 'email@기업3.com', '매니저3-1', '010-5326-6477', '인사팀장', 3); 
+insert into manager(id, manager_email, manager_name, manager_phone, manager_position, corp_id)
+values(MANAGER_ID_SEQ.nextval, 'email@기업3.com', '매니저3-3', '010-5326-6477', '인사팀장', 3); 
+
+insert into manager(id, manager_email, manager_name, manager_phone, manager_position, corp_id)
+values(MANAGER_ID_SEQ.nextval, 'email@기업4.com', '매니저4-1', '010-5326-6477', '인사팀장', 4); 
+insert into manager(id, manager_email, manager_name, manager_phone, manager_position, corp_id)
+values(MANAGER_ID_SEQ.nextval, 'email@기업4.com', '매니저4-2', '010-5326-6477', '인사팀장', 4); 
 
 /**********************recruit insert***************************/
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, '2023-04-05',  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 100, 1,4500, 'SW개발/보안 경력직 모집', 1);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+1,  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 200, 3500, '청소부', 2);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+2,  '우아한 청년들에서 귀한 분을 모십니다.', '2023-07-05', '신입/경력', '무', 250, 4000, '부분별 경력/신입 인재영입', 3);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+3,  '메타넷그룹의 사업 확장과 비즈니스 성장에 함께할 IT 전문성을 가진 인재들을 모십니다.', '2023-07-05', '경력직', '무', 200, 3600, '메타넷 그룹 경력직 공개채용', 4);
+values(RECRUIT_ID_SEQ.nextval, '2023-01-01',  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.경영진과 구성원이 관심과 애정으로 챙기는 저희 기업에 지원해주세요!', '2023-05-01', '경력(1년 이상)', '프로젝트 PM 경험을 보유하신 분, 백엔드 개발에 대한 전반적인 이해와 지식을 보유하신 분', 100, 0 ,5000, 'SW개발/보안 경력직 모집', 1);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-01-02',  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.경영진과 구성원이 관심과 애정으로 챙기는 저희 기업에 지원해주세요!', '2023-06-06', '경력무관', '백엔드 개발에 대한 전반적인 이해와 지식을 보유하신 분', 100, 0 ,4500, '2023년 상반기 인재 채용', 1);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-01-03',  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.경영진과 구성원이 관심과 애정으로 챙기는 저희 기업에 지원해주세요!', '2023-06-15', '경력(1년 이상)', '프로젝트 PM 경험을 보유하신 분, 백엔드 개발에 대한 전반적인 이해와 지식을 보유하신 분', 100, 0 ,5000, '개발자 대규모 채용', 1);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-01-04',  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.경영진과 구성원이 관심과 애정으로 챙기는 저희 기업에 지원해주세요!', '2023-06-09', '신입/경력', '백엔드 개발에 대한 전반적인 이해와 지식을 보유하신 분', 100, 0 ,3600, '2023년 인재 채용', 1);
+
+
 
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, '2023-02-05',  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 1000, 1,3000, 'DB개발자 모집합니다', 1);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+8,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 150, 3000, 'DB개발자 모집합니다', 2);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+7,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 400, 3000, 'DB개발자 모집합니다', 3);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+6,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 500, 3000, 'DB개발자 모집합니다', 4);
+values(RECRUIT_ID_SEQ.nextval, '2023-02-01',  '우아한 청년들에서 귀한분을 모십니다! 즐겁게 개발할 자신이 있는 분들에게 저희 우아한 청년들의 문을 활짝 열려있습니다.', '2023-04-01', '신입/경력', '밝고 긍정적이며 아이디어가 넘치는 분, 여러 개발 언어를 다룰 줄 아시는 분', 200, 1 ,5000,'시스템 개발자 채용', 2);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-02',  '우아한 청년들에서 귀한분을 모십니다! 즐겁게 개발할 자신이 있는 분들에게 저희 우아한 청년들의 문을 활짝 열려있습니다.', '2023-04-29', '신입', '업무적 성장을 향한 소명의식을 가지고 계시는 분', 200, 0 ,4500, '부분별 신입 인재 영입', 2);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-04',  '우아한 청년들에서 귀한분을 모십니다! 즐겁게 개발할 자신이 있는 분들에게 저희 우아한 청년들의 문을 활짝 열려있습니다.', '2023-04-06', '신입/경력', '밝고 긍정적이며 아이디어가 넘치는 분, 여러 개발 언어를 다룰 줄 아시는 분', 200, 1 ,4000, 'WEB개발자(서울지사) 채용', 2);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-05',  '우아한 청년들에서 귀한분을 모십니다! 즐겁게 개발할 자신이 있는 분들에게 저희 우아한 청년들의 문을 활짝 열려있습니다.', '2023-04-20', '신입', '업무적 성장을 향한 소명의식을 가지고 계시는 분', 200, 1 ,4500, 'IT지원팀 인재 영입', 2);
+
+
 
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, '2023-03-05',  '다큐브팀과 함께 국내 최초 기업용 음성비서를 만들어갈 동료를 찾고 있습니다.', sysdate+30, '경력', 'Springboot경험이 있는 분', 600, 1,5300, '다큐브- 시니어 백엔드 개발자', 1);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+3,  '구성원의 성장을 테이블링의 성장이라 생각하고 구성원분들에게 긍정적인 동기부여를 할 수 있도록 노력하고 있습니다.', sysdate+30, '신입', '무', 700, 0, '개발자 구인[백엔드,프론트엔드,Android,iOS]', 2);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+5,  '메타넷그룹의 사업 확장과 비즈니스 성장에 함께할 IT 전문성을 가진 인재들을 모십니다.', sysdate+30, '신입/경력', '무', 2000, 3600, '프론트엔드 개발자 채용[테이블링]', 3);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+20,  '무신사와 함께 한국을 넘어 글로벌 무대에서 경쟁력 있는 서비스를 만들어갈 인재를 찾고 있습니다.', sysdate+30, '경력', '3년 이상의 개발 경력', 750, 0, 'Backend Engineer (플랫폼서비스본부)', 4);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+20,  '무신사와 함께 한국을 넘어 글로벌 무대에서 경쟁력 있는 서비스를 만들어갈 인재를 찾고 있습니다.', sysdate+30, '경력', '3년 이상의 개발 경력', 800, 0, 'Backend Engineer (플랫폼서비스본부)', 5);
+values(RECRUIT_ID_SEQ.nextval, '2023-03-01',  '새로운 가족을 모십니다. 여러 계열사와 협력하여 개발 시너지를 이끌어내고 있는 저희 회사에 도전하세요.', '2023-05-05', '경력(5년 이상)', '대졸(4년제 이상), 소프트웨어 공학 관련 학과 출신 우대, spring Boot FrameWork를 사용한 프로젝트 개발 경험 5년 이상', 300, 0 ,3600, '백엔드 개발자 채용 모집', 3);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-03-02',  '새로운 가족을 모십니다. 여러 계열사와 협력하여 개발 시너지를 이끌어내고 있는 저희 회사에 도전하세요.', '2023-04-15', '신입', '스스로 성장하고자 하는 욕구가 있으신 분, 팀 업무에 익숙하신 분', 350, 1 ,4500, '프로그램 관련 새로운 가족을 모십니다!', 3);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-03-04',  '새로운 가족을 모십니다. 여러 계열사와 협력하여 개발 시너지를 이끌어내고 있는 저희 회사에 도전하세요.', '2023-04-30', '경력(5년 이상)', 'Rest API 사용해보신 분, spring Boot FrameWork를 사용한 프로젝트 개발 경험 5년 이상', 300, 0 ,4000, '백엔드 개발자 채용 모집', 3);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-03-05',  '새로운 가족을 모십니다. 여러 계열사와 협력하여 개발 시너지를 이끌어내고 있는 저희 회사에 도전하세요.', '2023-04-30', '신입', '스스로 성장하고자 하는 욕구가 있으신 분, 팀 업무에 익숙하신 분', 350, 0 ,3500, '프로그램 관련 새로운 가족을 모십니다!', 3);
 
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id,rc_status)
-values(RECRUIT_ID_SEQ.nextval, '2023-01-05',  '신입 네트워크 관리자 채용합니다.', sysdate-10, '신입', '관련 지식 보유자, 커뮤니케이션 스킬', 800, 3000, '네트워크 관리자 채용', 1,1);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate+10,  '계열사 시스템 운영 업무. IT인프라 기획 및 운영', sysdate+60, '경력무관', 'IT시스템 관련 기본 지식 보유', 900, 3800, '인프라 구축 엔지니어 채용', 2);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate,  '보안 정책 수립 및 보안 아키텍쳐 구축', sysdate+90, '경력(1년 이상)', '정보보안 관련 경험 및 자격사항 우대', 550, 3200, '정보보안 부문 채용', 3);
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, sysdate,  '데이터센터 네트워크 설계, 구축 및 운영', sysdate+90, '경력(5년 이상)', '네트워크 관련 다수의 프로젝트 경험', 870, 5000, '네트워크 구축 엔지니어 채용', 4);
 
-/**********************corp_image insert***************************/
-insert into corp_image(id, original_file_name, stored_file_name, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 1);
-insert into corp_image(id, original_file_name, stored_file_name, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 1);
-insert into corp_image(id, original_file_name, stored_file_name, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 1);
 
-insert into corp_image(id, original_file_name, stored_file_name, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 2);
-insert into corp_image(id, original_file_name, stored_file_name, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 3);
-insert into corp_image(id, original_file_name, stored_file_name, corp_id)
-values(CORP_IMAGE_ID_SEQ.nextval, 'default.jpg','c://final-project-team1-ilhajob//', 4);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-01', '올해로 창립 20주년을 맞아 전 세계 110여개국에 서비스를 제공하고 있는 든든한 저희 기업에서 새가족을 영입합니다.', '2023-08-02', '신입/경력(1년 이상)', '웹 전반에 대한 이해가 있으신 분, git/svn을 사용한 프로젝트 경험이 있으신 분', 400, 0 ,4000, '웹개발팀 개발자 모집', 4);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-02',  '올해로 창립 20주년을 맞아 전 세계 110여개국에 서비스를 제공하고 있는 든든한 저희 기업에서 새가족을 영입합니다.', '2023-04-30', '경력직', 'ASPNET MNC 개발 경력 3년 이상이신 분, 유관 부서 및 협업 담당자들과 원활한 커뮤니케이션이 가능한 분', 450, 0 ,4000, 'IT 엔지니어 경력직 채용', 4);
 
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-01-11', '즐겁게 일하며 함께 성장해 나갈 여러분을 기다립니다.', '2023-07-07', '경력(5년 이상)', '5년 이상 Spring 기반의 개발 실무경험을 하신 분, Rest API에 대한 이해도가 높으신 분', 500, 0 ,5500, 'Java웹개발자 및 PM/PL채용', 5);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-01-12',  '즐겁게 일하며 함께 성장해 나갈 여러분을 기다립니다.', '2023-07-08', '신입/경력', '요구사항 분석, 설계에 능숙하신 분, 유관 부서 및 협업 담당자들과 원활한 커뮤니케이션이 가능한 분', 550, 0 ,5000, '2023년 웹개발자 상시채용', 5);
+
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-15', '개발 및 서비스 발전에 함께하실 열정적인 여러분을 기다립니다.', '2023-07-07', '경력(1년 이상)', 'Rest API 사용 경험이 있으신 분, 매사에 열정적인 분', 600, 0 ,5000, '스마트 기술센터 IT 정규직 인재영입', 6);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-16',  '개발 및 서비스 발전에 함께하실 열정적인 여러분을 기다립니다.', '2023-07-08', '신입/경력', '유관 부서 및 협업 담당자들과 원활한 커뮤니케이션이 가능한 분', 650, 0 ,4500, '정규직 IT인재 채용', 6);
+
+
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-03-21', '고객 만족을 위해 끊임없이 달리는 기업에서 함께할 소중한 가족분들을 모십니다.', '2023-06-01', '신입 채용', '고객 소리를 귀기울여 들을 줄 아는 분, 자기 동기부여를 통해 끊임없이 성장하고자 하는 분', 700, 0 ,3600, '홈페이지 개발 및 운영 인력 모집', 7);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-03-25',  '고객 만족을 위해 끊임없이 달리는 기업에서 함께할 소중한 가족분들을 모십니다.', '2023-06-14', '경력(3년 이상)', 'java 웹 개발 경력 4-8년 이상인 분', 750, 0 ,5500, '개발직 모집(Backend,Frontend)', 7);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-09', '반세기 역사와 함께한 더문랩스에서 새로운 도전으로 당신의 꿈을 실현하세요!', '2023-04-05', '신입/경력 상시채용', '매사에 열정적인 분, 웹 개발 지식이 있으신 분', 700, 1 ,4000, '홈페이지 개발 및 운영 인력 모집', 8);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-10',  '반세기 역사와 함께한 더문랩스에서 새로운 도전으로 당신의 꿈을 실현하세요!', '2023-04-15', '경력(3년 이상)', 'java, Spring, Spring Boot, Mybatis 등 사용 경험자, PM 업무 경력(4년 이상)있으신 분', 750, 1 ,5500, '개발직 모집(Backend,Frontend)', 8);
+
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-10', '개발자 가족 여러분을 모십니다! 개발자 구성은 특급, 고급, 중급, 신입이 고르게 분포되어 있어 입사하시는 여러분들의 멘토를 지정하여 개발을 시작합니다. 주저하지말고 도전하세요!', '2023-04-05', '[IT개발팀]신입/경력 상시채용', '매사에 열정적인 분, 웹 개발 지식이 있으신 분', 900, 1 ,5000, '홈페이지 개발 및 운영 인력 모집', 9);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-20',  '개발자 가족 여러분을 모십니다! 개발자 구성은 특급, 고급, 중급, 신입이 고르게 분포되어 있어 입사하시는 여러분들의 멘토를 지정하여 개발을 시작합니다. 주저하지말고 도전하세요!', '2023-04-15', '경력(3년 이상)', 'Node.js, Phython,Spark 경험자, 문서 작성 우수자', 950, 1 ,4500, '[IT]개발직 모집(Backend,Frontend)', 9);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '대보정보통신의 새로운 가족이 되어주세요.', '2023-09-05', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 0 ,3000, '[상시채용]신입/경력직 모집', 10);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '저희 다큐브 기업은 직원들의 만족도를 최상으로 따지는 기업입니다. 열정적인 여러분들과 함께 개발 미래를 만들어나가고 싶습니다.', '2023-09-11', '경력(3년 이상)', '우대 스킬)JSP,워드,BootStrap,Docker, Hadoop, Kubernetes, Maria DB 우대합니다. 학력)초대졸 이상', 112, 0 ,5500, '[게임/IT개발]직원채용', 10);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '대보정보통신의 새로운 가족이 되어주세요.', '2023-09-05', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 0 ,3000, '[IT관련]신입/경력직 모집', 11);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '저희 다큐브 기업은 직원들의 만족도를 최상으로 따지는 기업입니다. 열정적인 여러분들과 함께 개발 미래를 만들어나가고 싶습니다.', '2023-09-11', '경력(3년 이상)', '우대 스킬)JSP,워드,BootStrap,Docker, Hadoop, Kubernetes, Maria DB 우대합니다. 학력)초대졸 이상', 112, 0 ,5500, '[IT]직원채용 모집(언어 무관)', 11);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '대보정보통신의 새로운 가족이 되어주세요.', '2023-09-05', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 0 ,3000, '[IT관련]신입/경력직 모집', 12);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '대보정보통신의 새로운 가족이 되어주세요.', '2023-09-11', '경력(3년 이상)', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 112, 0 ,5500, '[IT]직원채용 모집(언어 무관)', 12);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '새로운 가족이 되어주세요.', '2023-12-05', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 0 ,3000, '[IT관련]신입/경력직 모집', 13);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '새로운 가족이 되어주세요.', '2023-12-11', '경력(3년 이상)', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 112, 0 ,5500, '[IT]직원채용 모집', 13);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '새로운 가족이 되어주세요.', '2023-11-05', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 0 ,3000, '[IT관련]신입/경력직 모집', 14);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '새로운 가족이 되어주세요.', '2023-11-11', '경력(3년 이상)', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 112, 0 ,5500, '[IT]개발자 모집', 14);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '새로운 가족이 되어주세요.', '2023-10-05', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 0 ,3000, '[IT관련]신입/경력직 모집', 15);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '새로운 가족이 되어주세요.', '2023-10-11', '경력(3년 이상)', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 112, 0 ,5500, '[IT]개발자 모집', 15);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '새로운 가족이 되어주세요.', '2023-07-05', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 0 ,3000, '[IT관련]신입/경력직 모집', 16);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '새로운 가족이 되어주세요.', '2023-07-11', '경력(3년 이상)', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 112, 0 ,5500, '[IT]개발자 모집', 16);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '새로운 가족이 되어주세요.', '2023-04-05', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 1 ,3000, '[IT관련]신입/경력직 모집', 17);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '새로운 가족이 되어주세요.', '2023-04-11', '경력(3년 이상)', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 112, 1 ,5500, '[IT]개발자 모집', 17);
+
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '새로운 가족이 되어주세요.', '2023-04-05', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 1 ,3000, '[웹퍼블리싱]공개채용', 18);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '새로운 가족이 되어주세요.', '2023-04-11', '경력(3년 이상)', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 112, 1 ,5500, '[IT]부문별 신규 상시모집', 18);
+
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-10', '새로운 가족이 되어주세요.', '2023-08-25', '신입/경력직', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 111, 0 ,3000, '[빅데이터]관리자 경력직 채용', 19);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-20',  '새로운 가족이 되어주세요.', '2023-08-11', '경력(3년 이상)', '공공프로젝트 유경험자, 유관업무 경력자(2년 이상), 제안서 작성 경험자', 112, 0 ,5500, '[상시모집중]부문별 신규/경력직', 19);
 
 /**********************recruit_scrap insert*************************/
 /*
