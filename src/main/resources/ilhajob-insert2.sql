@@ -91,11 +91,11 @@ values(CORP_ID_SEQ.nextval, '서울 송파구 올림픽로35다길 32 (신천동
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB,CORP_ADDRESS_DETAIL, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서서울 강남구 테헤란로 231 ', '000-00-11111', '크래프톤은 특정 장르에서 경쟁력 있는 제작 능력을 갖춘 독립스튜디오들로 구성되어 있습니다. 현재는 펍지 스튜디오, 블루홀스튜디오, 라이징윙스, 스트라이킹 디스턴스 스튜디오, 드림모션과 여러 제작팀이 전 세계 게이머들에게 최고의 게임 경험을 제공하기 위해 개발에 임하고 있습니다. 배틀로얄 장르의 PUBG: 배틀그라운드(PUBG: BATTLEGROUNDS)와 배틀그라운드: NEW STATE(PUBG: NEW STATE), MMORPG 테라(TERA), 엘리온(ELYON)과 캐주얼 게임을 PC, 모바일, 콘솔 등 다양한 플랫폼에서 즐길 수 있게 제작하고 있습니다. 게임 개발뿐만 아니라 딥러닝과 엔터테인먼트 등 새로운 분야의 사업을 발굴하며 기술 기업으로서 강점도 발휘하고 있습니다', '2007-03-02', 'corp_17', '크래프톤',
-'1111', '070-4352-5581', '1조 8,863억 ', '2510명', 'http://krafton.com', '연금,보험,사내시설,헬스비,인센티브', '게임','(역삼동, 센터필드) EAST타워', null, 'upload/logo/3_logo.png');
+'1111', '070-4352-5581', '1조 8,863억 ', '2510명', 'http://krafton.com', '연금,보험,사내시설,헬스비,인센티브', '게임','(역삼동, 센터필드) EAST타워', null, 'upload/logo/3_logo.gif');
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB,CORP_ADDRESS_DETAIL, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 강서구 공항대로 396 (화곡동) ', '787-25-64251', '[경영이념]소비자를 먼저 생각하는 고객감동의 기업 다양한 소비자의 요구를 충족하고 고객 만족(Customer Satisfaction)을 실현하기 위해 항상 고객의 입장에서 생각하고, 고객이 원하는 바를 상품 제조에 반영하는 "소비자 제일주의" 사상. 새로운 기술에 과감히 투자하는 미래지향적 기업 신제품 개발, 새로운 첨단 기술개발, 국제인 양성, 브랜드 이미지 제고 등과 같은 미래 씨앗을 심는 뭔가 새로운 일에 대한 지속적인 재투자. 오직 보일러 만들기 외길을 걸어온 정직한 기업 외길로 걸어온 전문 보일러 업체, 최고의 정직한 기술력보유, 따라서 제품 하나하나가 저마다 "브랜드 파워"의 경쟁력있는 제품으로 자리잡을 수 있다는 믿음', '1962-06-08', 'corp_18', '귀뚜라미',
-'1111', '070-1245-5581', '28억 7700만원', '1500명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '네트워크',', 13층(귀뚜라미보일러사옥빌딩)',  null ,'upload/logo/4_logo.png');
+'1111', '070-1245-5581', '28억 7700만원', '1500명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '네트워크',', 13층(귀뚜라미보일러사옥빌딩)',  null ,'upload/logo/4_logo.jpg');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB,CORP_ADDRESS_DETAIL, ROLE,CORP_STORED_FILE_NAME)
