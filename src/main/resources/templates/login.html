@@ -46,15 +46,15 @@
           <!--Nav Outer -->
           <div class="nav-outer">
             <div class="logo-box">
-              <div class="logo"><a href="index"><img src="images/logo-2.svg" alt="" title=""></a></div>
+              <div class="logo"><a href="index"><img src="images/일하잡1111.png" alt="" title=""></a></div>
             </div>
           </div>
 
           <div class="outer-box">
             <!-- Login/Register -->
             <div class="btn-box">
-              <a href="login-popup" class="theme-btn btn-style-three call-modal">Login / Register</a>
-              <a href="dashboard-post-job" class="theme-btn btn-style-one"><span class="btn-title">Job Post</span></a>
+              <a href="login-popup" class="theme-btn btn-style-three call-modal">로그인 / 회원가입</a>
+              <!-- <a href="dashboard-post-job" class="theme-btn btn-style-one"><span class="btn-title">Job Post</span></a> -->
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
 
       <!-- Mobile Header -->
       <div class="mobile-header">
-        <div class="logo"><a href="index"><img src="images/logo.svg" alt="" title=""></a></div>
+        <div class="logo"><a href="index"><img src="images/일하잡1111.png" alt="" title=""></a></div>
       </div>
 
       <!-- Mobile Nav -->
@@ -72,16 +72,16 @@
 
     <!-- Info Section -->
     <div class="login-section">
-      <div class="image-layer" style="background-image: url(images/background/12.jpg);"></div>
+      <div class="image-layer" style="background-image: url(images/index-16/header/배경4.jpg);"></div>
       <div class="outer-box">
         <!-- Login Form -->
         <div class="login-form default-form">
           <div class="form-inner">
-            <h3>Login to Superio</h3>
+            <h3>Login to ilhajob</h3>
             <!--Login Form-->
             <form name="f" th:object="${fuser}" method="post">
               <div class="form-group">
-                <label>Username</label>
+                <label>User Email</label>
                 <input type="text" th:value="${fuser?.userEmail}" name="userEmail" placeholder="Username" required><br>
 	                <font color="red" th:text="${msg1}"></font>
               </div>
