@@ -206,15 +206,15 @@
 				</nav> -->
 				<nav class="ls-pagination">
 				    <ul>
-				        <li th:unless="${curPage == blockBegin-1}" class="prev"><a th:href="@{recruit-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+				        <li th:unless="${curPage == blockBegin-1}" class="prev"><a th:href="@{recruit-list?}+${queryString}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
 				        
 				       	<li th:if="${i == blockBegin-1}"><a class="current-page" th:text="${curPage+1}" ></a></li>
 				        <th:block th:each="i, index : ${#numbers.sequence(blockBegin-1, totalPage-1)}" >
 				            <li th:if="${i == curPage}"><a class="current-page" th:text="${curPage+1}" ></a></li>
-				            <li th:unless="${i == curPage}"><a th:text="${i+1}" th:href="@{recruit-list?page=}+${i}"></a></li>
+				            <li th:unless="${i == curPage}"><a th:text="${i+1}" th:href="@{recruit-list?}+${queryString}+${i}"></a></li>
 				        </th:block>
 				        
-				        <li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{recruit-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+				        <li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{recruit-list?}+${queryString}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
 				    </ul>
 				</nav> 
 <!-- Pagination 끝-->
@@ -230,6 +230,7 @@
     <!-- Main Footer -->
     <div th:include="include_main_bottom"></div>
     <!-- End Main Footer -->
+    <input type="text" th:value="${queryString}">
 
   </div><!-- End Page Wrapper -->
 
