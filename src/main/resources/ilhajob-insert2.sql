@@ -356,8 +356,8 @@ insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 2, 2, sysdate,1);
 update recruit set rc_app_count=rc_app_count+1 where id=2;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
-values(APP_ID_SEQ.nextval, '0', 3, 3, sysdate,1);
-update recruit set rc_app_count=rc_app_count+1 where id=3;
+--values(APP_ID_SEQ.nextval, '0', 3, 3, sysdate,1);
+--update recruit set rc_app_count=rc_app_count+1 where id=3;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '1', 4, 4, sysdate,1);
 update recruit set rc_app_count=rc_app_count+1 where id=4;
@@ -376,17 +376,14 @@ values(APP_ID_SEQ.nextval, '1', 2, 4, sysdate,2);
 update recruit set rc_app_count=rc_app_count+1 where id=4;
 
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
-values(APP_ID_SEQ.nextval, '0', 3, 1, sysdate,3);
+values(APP_ID_SEQ.nextval, '1', 3, 1, sysdate-3,3);
 update recruit set rc_app_count=rc_app_count+1 where id=1;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
-values(APP_ID_SEQ.nextval, '0', 3, 2, sysdate,3);
+values(APP_ID_SEQ.nextval, '2', 3, 2, sysdate-2,3);
 update recruit set rc_app_count=rc_app_count+1 where id=2;
 insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
-values(APP_ID_SEQ.nextval, '0', 3, 3, sysdate,3);
+values(APP_ID_SEQ.nextval, '3', 3, 3, sysdate-1,3);
 update recruit set rc_app_count=rc_app_count+1 where id=3;
-insert into app(id, app_status, cv_id, recruit_id, app_create_date, user_id)
-values(APP_ID_SEQ.nextval, '0', 3, 4, sysdate,3);
-update recruit set rc_app_count=rc_app_count+1 where id=4;
 
 insert into app(id, app_status, cv_id, recruit_id, app_cv_name, app_create_date, user_id)
 values(APP_ID_SEQ.nextval, '0', 5, 4, 'c:/final-project-team1-ilhajob/upload/cv/4_rc5_cv3_user.json', sysdate, 3);
