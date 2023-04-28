@@ -3,8 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Superio | Just another HTML Template | Candidate
-	Dashboard Shorlisted Jobs</title>
+<title>ilhajob</title>
 
 <!-- Stylesheets -->
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -137,8 +136,8 @@
 														<td th:text="${recruitScrap.recruit.corp.corpName}">Active</td>
 														<td>
 															<ul>
-																<li th:text="|시작일:${#temporals.format(recruitScrap.recruit.rcDate,'yyyy-MM-dd')}|"></li>
-																<li th:text="|마감일:${#temporals.format(recruitScrap.recruit.rcDeadline,'yyyy-MM-dd')}|"></li>
+																<li th:text="|시작일 : ${#temporals.format(recruitScrap.recruit.rcDate,'yyyy-MM-dd')}|"></li>
+																<li th:text="|마감일 : ${#temporals.format(recruitScrap.recruit.rcDeadline,'yyyy-MM-dd')}|"></li>
 															</ul>
 														</td>
 														<td>
@@ -186,7 +185,7 @@
 
 		<!-- Copyright -->
 		<div class="copyright-text">
-			<p>© 2021 Superio. All Right Reserved.</p>
+			<div th:include="include_copyright_bottom::include_copyright_bottom"></div>
 		</div>
 
 	</div>

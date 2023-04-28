@@ -179,6 +179,7 @@ Global Settings
   border: none;
   outline: none;
   font-size: 100%;
+  font-family: 'TheJamsil', TheJamsil-Light;
 }
 
 body {
@@ -258,7 +259,7 @@ p,
 .auto-container {
   position: static;
   max-width: 1310px;
-  padding: 0px 15px;
+  padding: 35px 0px 0px 0px;
   margin: 0 auto;
   width: 100%;
 }
@@ -346,6 +347,60 @@ li {
   color: #000000;
   font-size: 44px;
   transform: translate(-50%, -50%);
+}
+
+.blur-content {
+  position: relative;
+  pointer-events: none;
+}
+
+.your-blurred-content {
+  filter: blur(3px);
+  user-select: none;
+}
+
+.hover-trigger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: auto;
+  background-color: transparent;
+}
+
+.hover-trigger:hover ~ .your-blurred-content {
+  filter: blur(0);
+  cursor: pointer;
+}
+
+.search-results {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  max-height: 270px;
+  overflow-y: hidden;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.search-results li {
+  padding: 8px 72px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.search-results li:hover {
+  background-color: #f0f0f0;
+}
+
+.sar {
+  border-radius: 0;
 }
 
 /*======================
@@ -846,6 +901,9 @@ typography
   font-family: 'Font Awesome 5 Free';
 }
 
+.search-select {
+	width:50px;
+}
 /*** 
 
 ====================================================================
@@ -7302,7 +7360,7 @@ Job Detail Section
   background-position: center;
   background-size: cover;
   background-size: cover;
-  padding: 80px 0 70px;
+  padding: 80px 0 150px;
 }
 
 .job-detail-section.style-three .upper-box {
@@ -12243,6 +12301,7 @@ Call To Action Two
 
 .call-to-action-two .sec-title {
   margin-bottom: 33px;
+  background-size: 50%;
 }
 
 .call-to-action-two .btn-box {
@@ -12250,12 +12309,12 @@ Call To Action Two
   display: inline-block;
 }
 
-.call-to-action-two .theme-btn {
+.call-to-action-two .theme-btn{
   margin: 0 10px 10px;
+   background-color: #1967D2;
 }
 
 .call-to-action-two .btn-style-two {
-  color: #ffffff;
 }
 
 .call-to-action-two.style-two {
@@ -12268,7 +12327,6 @@ Call To Action Two
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #1967D2;
   content: "";
   opacity: .85;
 }
@@ -18619,7 +18677,7 @@ Product Tabs
   margin: 0 !important;
   margin: 56px auto 0 !important;
   border-radius: 150px;
-  max-width: 740px;
+  max-width: 840px;
   margin: 0 auto 20px;
 }
 

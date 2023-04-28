@@ -31,6 +31,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.itwill.ilhajob.common.dto.LoginRequestDto;
 import com.itwill.ilhajob.common.dto.OrdersDto;
+import com.itwill.ilhajob.common.dto.OrdersRequestDto;
 import com.itwill.ilhajob.common.dto.PaymentDto;
 import com.itwill.ilhajob.common.dto.ProductDto;
 import com.itwill.ilhajob.common.service.OrdersService;
@@ -57,6 +58,9 @@ public class OrderController {
 	
 	@GetMapping("/product")
 	public String pricing(HttpServletRequest request,Model model) throws Exception {
+		int paymentStatus = (Integer)request.getSession().getAttribute("paymentStatus");
+		System.out.println(paymentStatus);
+		model.addAttribute("paymentStatus",paymentStatus);
 		if(request.getSession().getAttribute("role").equals("user")) {
 			List<ProductDto> productList = productService.selectByDiv("user");
 			model.addAttribute("productList", productList);
@@ -64,6 +68,7 @@ public class OrderController {
 		if(request.getSession().getAttribute("role").equals("corp")) {
 			model.addAttribute("productList", productService.selectByDiv("corp"));
 		}
+		
 		String forwardPath = "product";
 		return forwardPath;
 	}
@@ -96,10 +101,10 @@ public class OrderController {
 		ProductDto productDto = gson.fromJson(productDataObject, ProductDto.class);
 		String role = (String)request.getSession().getAttribute("role");
 		long id = (long)request.getSession().getAttribute("id");
-		
 		OrdersDto saveOrdersDto = ordersService.checkAndSaveOrder(role, id, productDto,paymentDataObject.get("paymentMethod").toString());
+		request.getSession().setAttribute("paymentStatus", 1);
 		JsonObject orderDataObject = new JsonObject();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		orderDataObject.addProperty("id", saveOrdersDto.getId());
 		orderDataObject.addProperty("orderStartDate", saveOrdersDto.getOrderStartDate().format(formatter));
 		orderDataObject.addProperty("orderEndDate", saveOrdersDto.getOrderEndDate().format(formatter));
@@ -130,10 +135,10 @@ public class OrderController {
 	
 	@GetMapping("/dashboard-packages")
 	public String packages(HttpServletRequest request) throws Exception {
-		//System.out.println(">>>>>>>>"+sUserId);
 		String forwardPath = "";
+		String role = (String)request.getSession().getAttribute("role");
 		Long id=(Long)request.getSession().getAttribute("id");
-		List<OrdersDto> orderList = ordersService.findOrderByUser(id);
+		List<OrdersRequestDto> orderList = ordersService.findOrder(role, id);
 		request.setAttribute("orderList", orderList);
 		
 		forwardPath="dashboard-packages";		

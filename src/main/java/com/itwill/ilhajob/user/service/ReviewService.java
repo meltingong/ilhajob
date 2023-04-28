@@ -1,5 +1,6 @@
 package com.itwill.ilhajob.user.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.itwill.ilhajob.user.dto.ReviewDto;
@@ -24,5 +25,5 @@ public interface ReviewService {
 	
 	Long isReviewDuplicate(Long id, Long Corpid) throws Exception;
 	
-	
+	List<ReviewDto> findAll();
 }

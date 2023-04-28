@@ -29,8 +29,8 @@
 			$('#order-email').val(responseData.user.userEmail);
 			$('#product-id').val(product.id);
 			$('.product-name').text(product.productName);
-			$('.product-total').text(product.productPrice);
-			$('.amount').text(product.productPrice);
+			$('.product-total').text(product.productPrice.toLocaleString()+'원');
+			$('.product-period').text('결제일로부터 '+product.productPeriod+'일');
 		})
 		.fail(function(xhr) {
 				// Ajax 요청 실패 시 처리
@@ -47,10 +47,9 @@
 		const productData = {
 			id: $('#product-id').val(),
 			productName: $('.product-name').text(),
-			productPrice: $('.product-total').text(),
-			orderTotal: $('.amount').text()
+			productPeriod: parseInt($('.product-period').text().match(/\d+/)[0]),
+			productPrice: parseInt($('.product-total').text().replace(',', '')),
 		};
-
 		const userData = {
 			userName: $('#order-name').val(),
 			userPhone: $('#order-phone').val(),
@@ -104,12 +103,11 @@
 			pay_method: paymentData.paymentMethod,
 			merchant_uid: orderData.orderId, //상점에서 생성한 고유 주문번호
 			name: '주문명:' + productData.productName,
-			amount: 100,
+			amount: productData.productPrice,
 			buyer_email: userData.userEmail,
 			buyer_name: userData.userName,
 			buyer_tel: userData.userPhone,
 		}, function(rsp) { // callback 로직
-			console.log(rsp);
 			if (rsp.success) {
 				alert('결제가 완료되었습니다.');
 				// 결제 성공 시 처리할 로직을 추가하세요.
@@ -157,6 +155,21 @@
 		}
 		// 입력값 갱신
 		this.value = formattedNumber.substr(0, 13);
+	});
+	
+	$(function() {
+		let validList = document.getElementsByName('orderVaild');
+		for (let i = 0; i < validList.length; i++) {
+			const valid = validList[i];
+			const validValue = parseInt(valid.getAttribute('value'));
+			if (validValue === 0) {
+				valid.textContent = 'End';
+				valid.style.color = 'red';
+			} else if (validValue === 1) {
+				valid.textContent = 'Active';
+				valid.style.color = 'green';
+			}
+		}
 	});
 
 

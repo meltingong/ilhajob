@@ -142,11 +142,7 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public List<AppDto> findAllByRecruitId(long id) throws Exception {
 		List<App> appList = appRepository.findAppsByRecruitId(id);
-		
-		//이력서 없을 때 예외 메세지 띄우기
-		if(appList.size()==0) {
-			throw new Exception("제출된 이력서가 없습니다!");
-		}
+
 		return appList.stream()
 				.map(app ->modelMapper.map(app, AppDto.class))
 				.collect(Collectors.toList());
@@ -158,7 +154,7 @@ public class AppServiceImpl implements AppService {
 	@Transactional
 	@Override
 	public List<AppDto> findAllByUserId(long id) {
-		List<App> appList = appRepository.findAppsByUserId(id);
+		List<App> appList = appRepository.findAppsByUserIdOrderByAppCreateDateDesc(id);
 		return appList.stream()
 				.map(app ->modelMapper.map(app, AppDto.class))
 				.collect(Collectors.toList());

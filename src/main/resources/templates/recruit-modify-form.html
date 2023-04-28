@@ -27,24 +27,21 @@
 			document.f.corpWelfare.focus();
 			return;
 		}
-		if (document.f.rcJob.value == "") {
-			alert("[업종]을 입력하세요.");
-			document.f.rcJob.focus();
-			return;
-		}
-		if (document.f.rcPosition.value == "") {
-			alert("[구인직급]을 입력하세요.");
-			document.f.rcPosition.focus();
-			return;
-		}
+		if (document.getElementsByName("rcPosition")[0].value == "") {
+			  alert("[구인직급]을 입력하세요.");
+			  document.getElementsByName("rcPosition")[0].focus();
+			  return;
+			}
+		
 		document.f.method='POST';
 		document.f.action = "recruit-modify-action";
 		document.f.submit();
 	}
 </script>
+
 <head>
   <meta charset="utf-8">
-  <title>Superio | Just another HTML Template | Post New Job</title>
+  <title>ilhajob</title>
  <style type="text/css">
  .tag-name{
  	position: relative;
@@ -118,23 +115,6 @@
 
                 <div class="widget-content">
 
-                  <div class="post-job-steps">
-                    <div class="step">
-                      <span class="icon flaticon-briefcase"></span>
-                      <h5>공고 상세정보</h5>
-                    </div>
-
-                    <div class="step">
-                      <span class="icon flaticon-money"></span>
-                      <h5>패키지 및 결제</h5>
-                    </div>
-
-                    <div class="step">
-                      <span class="icon flaticon-checked"></span>
-                      <h5>확인</h5>
-                    </div>
-                  </div>
-
                   <form name="f" class="default-form" method="post">
                     <div class="row">
                       <!-- Input -->
@@ -160,12 +140,15 @@
                       <!-- Search Select -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>업종 </label>
-                        <select data-placeholder="카테고리" class="chosen-select multiple" multiple tabindex="4" name="rcJob" >
-                          <option value="Banking"></option>
-                          <option value="Digital&Creative">Digital & Creative</option>
-                          <option value="Retail">Retail</option>
-                          <option value="Human Resources">Human Resources</option>
-                          <option value="Management">Management</option>
+                        <select data-placeholder="카테고리" class="chosen-select multiple" multiple tabindex="4" name="job">
+                          <option value="All">전체</option>
+                          <option value="웹프로그래머">웹프로그램</option>
+                          <option value="응용프로그램l">응용프로그램</option>
+                          <option value="네트워크">네트워크</option>
+                          <option value="웹퍼블리싱">웹퍼블리싱</option>
+                          <option value="게임">게임</option>
+                          <option value="빅데이터AI">빅데이터AI</option>
+                          <option value="소프트웨어/하드웨어">소프트웨어/하드웨어</option>
                         </select>
                       </div>
                     
@@ -209,14 +192,27 @@
                   		<input type="text" name="corpWelfare" th:value ="${recruit.corp.corpWelfare}">
                       </div>
 
-                      <div class="form-group col-lg-6 col-md-12">
-                        <label>구인직급</label>
-                        <select class="chosen-select" name = "rcPosition">
-                          <option>신입</option>
-                          <option>경력</option>
-                          <option>신입/경력</option>
+                     <div class="form-group col-lg-6 col-md-12">
+                        <label>구인직급 </label>
+                        <select data-placeholder="카테고리" class="chosen-select multiple" multiple tabindex="4" name="rcPosition" th:value="${recruit.rcPosition}">
+                          <option value="All">전체</option>
+                          <option value="신입">신입</option>
+                          <option value="경력 1년미만">경력 1년미만</option>
+                          <option value="경력 1이상-3년미만">경력 1이상-3년미만</option>
+                          <option value="경력 3년이상">경력 3년이상</option>
                         </select>
                       </div>
+                      
+                        <!-- div class="form-group col-lg-6 col-md-12">
+						  <label>공고마감일</label>
+						  <input name="rcDeadline" type="date" th:value="${recruit.rcDeadline}"/>
+						  <span class="year year-span"></span>
+						</div-->
+                        <div class="form-group col-lg-6 col-md-12">
+                        <label>공고마감일</label>
+                        <input type="text" name = "date" th:value="${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}" placeholder="마감일은 8자리로 입력하세요(예시: 2000-02-02)">
+                      </div>
+                     
                       
                    <div id = "recruit-tag-zone" style="display: flex;">
                      <div class="form-group col-lg-6 col-md-12">

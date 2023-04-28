@@ -32,7 +32,7 @@ import lombok.ToString;
 				   sequenceName = "BlogComment_id_SEQ",
 				   allocationSize = 1)
 @Table(name = "blog_comment")
-public class BlogComment {
+public class BlogComment extends BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "BlogComment_id_SEQ_gen")

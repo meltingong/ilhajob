@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwill.ilhajob.common.dto.CorpTagDto;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
 import com.itwill.ilhajob.corp.entity.Corp;
@@ -172,11 +173,9 @@ public class CorpServiceImpl implements CorpService{
 
 	//corpName으로 검색 기능 
 	@Override
-	public List<CorpDto> searchByCorpName(String corpName, Pageable pageable) throws Exception {
-		List<Corp> corpList=corpRepository.findByCorpNameContaining(corpName, pageable);
-		return corpList.stream()
-				        .map(corp->modelMapper.map(corp, CorpDto.class))
-				        .collect(Collectors.toList());
+	public Page<CorpDto> searchByCorpName(String corpName, Pageable pageable) throws Exception {
+		Page<Corp> corpList=corpRepository.findByCorpNameContaining(corpName, pageable);
+		return corpList.map(corp -> modelMapper.map(corp, CorpDto.class));
 	}
 	//job으로만 검색 기능
 	@Override
@@ -198,7 +197,7 @@ public class CorpServiceImpl implements CorpService{
 			        .collect(Collectors.toList());
 			//corpName만 알 때
 		    } else if (corpName != null && !corpName.isEmpty()) {
-		    	List<Corp> corpNameList=corpRepository.findByCorpNameContaining(corpName, pageable);
+		    	Page<Corp> corpNameList=corpRepository.findByCorpNameContaining(corpName, pageable);
 		      return corpNameList.stream()
 				        .map(corp->modelMapper.map(corp, CorpDto.class))
 				        .collect(Collectors.toList());
@@ -249,11 +248,12 @@ public class CorpServiceImpl implements CorpService{
 		}
 		return rcCountMap;
 	}
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public List<CorpDto> searchByCorpName(String corpName) {
+		List<Corp> searchCorpList = corpRepository.findByCorpNameContainingIgnoreCase(corpName);
+		return searchCorpList.stream().map(corp->modelMapper.map(corp, CorpDto.class))
+		        .collect(Collectors.toList());
+	}
 
 }

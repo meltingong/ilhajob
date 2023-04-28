@@ -68,23 +68,6 @@
 
                 <div class="widget-content">
 
-                  <div class="post-job-steps">
-                    <div class="step">
-                      <span class="icon flaticon-briefcase"></span>
-                      <h5>공고 상세정보</h5>
-                    </div>
-
-                    <div class="step">
-                      <span class="icon flaticon-money"></span>
-                      <h5>패키지 및 결제</h5>
-                    </div>
-
-                    <div class="step">
-                      <span class="icon flaticon-checked"></span>
-                      <h5>확인</h5>
-                    </div>
-                  </div>
-
                   <form name="f" class="default-form" method="post">
                     <div class="row">
                       <!-- Input -->
@@ -109,12 +92,15 @@
                       <!-- Search Select -->
                       <div class="form-group col-lg-6 col-md-12">
                         <label>업종 </label>
-                        <select data-placeholder="카테고리" class="chosen-select multiple" multiple tabindex="4" >
-                          <option value="Banking"></option>
-                          <option value="Digital&Creative">Digital & Creative</option>
-                          <option value="Retail">Retail</option>
-                          <option value="Human Resources">Human Resources</option>
-                          <option value="Management">Management</option>
+                        <select data-placeholder="카테고리" class="chosen-select multiple" multiple tabindex="4" name="job">
+                          <option value="All">전체</option>
+                          <option value="웹프로그래머">웹프로그램</option>
+                          <option value="응용프로그램l">응용프로그램</option>
+                          <option value="네트워크">네트워크</option>
+                          <option value="웹퍼블리싱">웹퍼블리싱</option>
+                          <option value="게임">게임</option>
+                          <option value="빅데이터AI">빅데이터AI</option>
+                          <option value="소프트웨어/하드웨어">소프트웨어/하드웨어</option>
                         </select>
                       </div>
                   <!--
@@ -156,15 +142,19 @@
                         <label>복리후생</label>
                   		<input type="text" name="corpWelfare" th:value="${corp.corpWelfare}">
                       </div>
-
-                      <div class="form-group col-lg-6 col-md-12">
-                        <label>구인직급</label>
-                        <select class="chosen-select" name = "rcPosition">
-                          <option>신입</option>
-                          <option>경력</option>
-                          <option>신입/경력</option>
+					
+					<div class="form-group col-lg-6 col-md-12">
+                        <label>구인직급 </label>
+                        <select data-placeholder="카테고리" class="chosen-select multiple" multiple tabindex="4" name="rcPosition">
+                         <option value="All">전체</option>
+                          <option value="신입">신입</option>
+                          <option value="경력 1년미만">경력 1년미만</option>
+                          <option value="경력 1이상-3년미만">경력 1이상-3년미만</option>
+                          <option value="경력 3년이상">경력 3년이상</option>
                         </select>
                       </div>
+                      
+                      
 					<!-- 					
                       <div class="form-group col-lg-6 col-md-12">
                         <label>모집시작일</label>
@@ -254,7 +244,7 @@
 
     <!-- Copyright -->
     <div class="copyright-text">
-      <p>© 2021 Superio. All Right Reserved.</p>
+      <div th:include="include_copyright_bottom::include_copyright_bottom"></div>
     </div>
 
   </div><!-- End Page Wrapper -->

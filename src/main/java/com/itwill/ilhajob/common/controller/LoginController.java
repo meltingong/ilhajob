@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.ilhajob.common.dto.LoginRequestDto;
+import com.itwill.ilhajob.common.service.OrdersService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.exception.CorpNotFoundException;
 import com.itwill.ilhajob.corp.service.CorpService;
@@ -27,11 +29,13 @@ public class LoginController {
 	
 	private final UserService userService;
 	private final CorpService corpService;
+	private final OrdersService ordersService;
 	
 	@Autowired
-	public LoginController(UserService userService, CorpService corpService) {
+	public LoginController(UserService userService, CorpService corpService, OrdersService ordersService) {
 		this.userService = userService;
 		this.corpService = corpService;
+		this.ordersService = ordersService;
 	}
 	
 	@PostMapping("ajaxLogin")
@@ -43,8 +47,10 @@ public class LoginController {
 				UserDto loginUser = userService.login(id,password);
 				session.setAttribute("id", loginUser.getId());
 				session.setAttribute("role", "user");
-				session.setAttribute("sUserId", loginRequest.getEmail());
-				session.setAttribute("msgList", userService.findMessageList(loginUser.getId()));
+				session.setAttribute("paymentStatus", loginUser.getPaymentStatus());
+				session.setAttribute("profileAvatar", loginUser.getUserImage());
+				session.setAttribute("sUserId", id);
+				session.setAttribute("msgList", userService.findMessageList(loginUser.getId()).size());
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
 			}catch (UserNotFoundException e) {
 				return ResponseEntity.status(ResponseStatusCode.NOT_FOUND_USER).body(e.getMessage());
@@ -56,8 +62,12 @@ public class LoginController {
 	    	String password = loginRequest.getPassword();
 	    	try {
 				CorpDto loginCorp =  corpService.login(id, password);
+				
 				session.setAttribute("id", loginCorp.getId());
 				session.setAttribute("role", "corp");
+				session.setAttribute("paymentStatus", loginCorp.getPaymentStatus());
+				session.setAttribute("updateStatus", loginCorp.getUpdateStatus());
+				session.setAttribute("profileAvatar", loginCorp.getCorpStoredFileName());
 				session.setAttribute("sCorpId", id);
 				return ResponseEntity.ok().body("{\"success\": true, \"message\": \"로그인 성공\"}");
 			} catch (CorpNotFoundException e) {

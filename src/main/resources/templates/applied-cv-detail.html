@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Superio | Just another HTML Template | Candidate Dashboard Resume</title>
+  <title>ilhajob</title>
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -41,9 +41,14 @@
     <!-- Sidebar Backdrop -->
     <div class="sidebar-backdrop"></div>
 
-    <!-- User Sidebar -->
-   <div class="user-sidebar" th:include="user-sidebar::user-sidebar"></div>
-    <!-- End User Sidebar -->
+    <!-- Sidebar -->
+   <th:block th:if = "${session.sUserId != null} and ${session.sCorpId == null}">
+   	 <div class="user-sidebar" th:include="user-sidebar::user-sidebar"></div>
+   </th:block>
+   <th:block th:if = "${session.sCorpId != null} and ${session.sUserId == null}">
+   	 <div class="corp-sidebar" th:include="corp-sidebar::corp-sidebar"></div>
+   </th:block>
+    <!-- Sidebar -->
 
     <!-- Dashboard -->
     <section class="user-dashboard">
@@ -160,8 +165,8 @@
                                   <span th:text="${edu.eduName}">학교명</span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year year-span" th:text="${#temporals.format(edu.eduStartDate, 'yyyy-MM-dd')}">2012 - 2014</span>
-                                  <span class="year year-span" th:text="${#temporals.format(edu.eduEndDate, 'yyyy-MM-dd')}">2012 - 2014</span>
+                                  <span class="year year-span" th:text="${#strings.substring(edu.eduStartDate,0,10)}">2012 - 2014</span>
+                                  <span class="year year-span" th:text="${#strings.substring(edu.eduEndDate,0,10)}">2012 - 2014</span>
                                 </div>
                               </div>
                               <div class="text">
@@ -191,8 +196,8 @@
                                   <span th:text="${exp.expCorpName}">Inc.</span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year year-span" th:text="${#temporals.format(exp.expStartDate, 'yyyy-MM-dd')}">2012 - 2014</span>
-                                  <span class="year year-span" th:text="${#temporals.format(exp.expEndDate, 'yyyy-MM-dd')}">2012 - 2014</span>
+                                  <span class="year year-span" th:text="${#strings.substring(exp.expStartDate,0,10)}">2012 - 2014</span>
+                                  <span class="year year-span" th:text="${#strings.substring(exp.expEndDate,0,10)}">2012 - 2014</span>
                                 </div>
                               </div>
                               <div class="text" th:text="${exp.expContent}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
@@ -219,7 +224,7 @@
                                   <span></span>
                                 </div>
                                 <div class="edit-box">
-                                  <span class="year" th:text="${#temporals.format(awards.awardsDate, 'yyyy-MM-dd')}">2012 - 2014</span>
+                                  <span class="year" th:text="${#strings.substring(awards.awardsDate,0,10)}">2012 - 2014</span>
                                 </div>
                               </div>
                               <div class="text" th:text="${awards.awardsContent}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante<br> ipsum primis in faucibus.</div>
@@ -242,7 +247,7 @@
 
     <!-- Copyright -->
     <div class="copyright-text">
-      <p>© 2021 Superio. All Right Reserved.</p>
+      <div th:include="include_copyright_bottom::include_copyright_bottom"></div>
     </div>
     
   </div><!-- End Page Wrapper -->

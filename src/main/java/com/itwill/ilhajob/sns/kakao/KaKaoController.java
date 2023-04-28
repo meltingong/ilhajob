@@ -58,6 +58,7 @@ public class KaKaoController {
    			 UserDto findUser = userService.findUser(kakaoProfile.getKakao_account().email);
    			 session.setAttribute("id", findUser.getId());
    			 session.setAttribute("role", "user");
+   			 session.setAttribute("paymentStatus", findUser.getPaymentStatus());
    			 request.setAttribute("kakaoProfile", kakaoProfile);
    			 
    			 Cookie authorize_access_token=new Cookie("authorize-access-token", access_token);
@@ -78,12 +79,12 @@ public class KaKaoController {
 	   			 session.invalidate();
 	   			 // 위 코드는 session객체에 담긴 정보를 초기화 하는 코드.
 	   			 session=request.getSession();
-	   			 
+	   		     UserDto findUser = userService.findUser(kakaoProfile.getKakao_account().email);
+        		 session.setAttribute("id", findUser.getId());
 	   			 session.setAttribute("sUserId", kakaoProfile.getKakao_account().email);
 	   			 session.setAttribute("role", "user");
-	   			 
 	   			 session.setAttribute("snsType","kakao");
-	   			 
+	   			 session.setAttribute("paymentStatus", findUser.getPaymentStatus());
 	   			 request.setAttribute("kakaoProfile", kakaoProfile);
 	   			 
 	   			 Cookie authorize_access_token=new Cookie("authorize-access-token", access_token);

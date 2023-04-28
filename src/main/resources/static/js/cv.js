@@ -98,7 +98,7 @@ $('.call-modal-apply').on('click', function(event) {
 			},
 			error: function(data) {
 				alert("이력서 지원실패",data);
-				$('.modal').remove();
+				$('.jquery-modal.blocker.current').css('display', 'none');
 				location.href="/final-project-team1-ilhajob/recruit-detail?id="+recruitId;
 			}
 		});
@@ -119,7 +119,7 @@ function appliedCvView(appId){
 function applyCancle(appId){
   console.log(">>> applyCancle(appId) : " + appId);
   console.log("input" + $('#appId').val(appId));
-  //document.f.action = "candidate-dashboard-applied-job";
-  //document.f.method='POST';
-  //document.f.submit();
+  document.f.action = "apply-delete";
+  document.f.method='POST';
+  document.f.submit();
 }

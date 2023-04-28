@@ -38,7 +38,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Superio | Just another HTML Template | Manage Jobs</title>
+  <title>ilhajob</title>
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -83,7 +83,7 @@
       <div class="dashboard-outer">
         <div class="upper-title-box">
           <h3>공고 리스트</h3>
-          <div class="text">귀사의 작성된 공고 목록입니다</div>
+          <div class="text">귀사의 작성된 공고 목록입니다.</div>
         </div>
 
         <div class="row">
@@ -92,12 +92,12 @@
             <div class="ls-widget">
               <div class="tabs-box">
                 <div class="widget-title">
-                  <h4>Recruit Listings</h4>
+                  <h4>공고 리스트</h4>
 
                   <div class="chosen-outer">
                     <!--Tabs Box-->
 		         <select class="chosen-select" onchange="location.href='dashboard-manage-job?sortType='+this.value;">
-				  <option value="">Select an Option</option>
+				  <option value="">정렬</option>
 				  <option value="rcDeadlineasc">마감일 오름차순</option>
 				  <option value="rcDeadlinedesc">마감일 내림차순</option>
 				</select>
@@ -109,11 +109,12 @@
                     <table class="default-table manage-job-table" id="recruitList-table">
                       <thead>
                         <tr>
-                          <th>Title</th>
-                          <th>Applications</th>
-                          <th>Created & Expired</th>
-                          <th>Status</th>
-                          <th>Action</th>
+                          <th>회사명</th>
+                          <th>공고명</th>
+                          <th>지원자 현황</th>
+                          <th>등록일/마감일</th>
+                          <th>진행상태</th>
+                          <th>기능</th>
                         </tr>
                       </thead>
 
@@ -121,6 +122,10 @@
                         <tr th:each="recruit:${recruitList}">
                         <form class="default-form" name="recruitForm" method="post">
                         <!-- form자리 버튼 포스트로 넘길용도 -->
+                         <td >
+                            <a th:text="${recruit.corp.corpName}" ><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
+                            <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
+                          </td>
                           <td >
                             <a th:text="${recruit.rcTitle}" th:href="@{recruit-detail(id=${recruit.id})}" href="#"><h6 >Senior Full Stack Engineer, Creator Success</h6></a>
                             <!-- span class="info"><i class="icon flaticon-map-locator"></i> London, UK</span-->
@@ -135,7 +140,7 @@
                           <td>
 						      <ul>
 						        <li th:text="|등록일: ${#temporals.format(recruit.rcDate, 'yyyy-MM-dd')}|"></li>
-						        <li th:text="|미감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></li>
+						        <li th:text="|마감일: ${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd')}|"></li>
 						      </ul>
 						  </td>
 						  
@@ -174,7 +179,7 @@
 
     <!-- Copyright -->
     <div class="copyright-text">
-      <p>© 2021 Superio. All Right Reserved.</p>
+      <div th:include="include_copyright_bottom::include_copyright_bottom"></div>
     </div>
 
   </div><!-- End Page Wrapper -->

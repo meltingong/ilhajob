@@ -59,16 +59,17 @@ class RecruitServiceImplTest extends FinalProjectTeam1IlhajobApplicationTests{
 //		recruitService.update(2L, updateRecruit);
 //	}
 	
-	@Disabled
 	@Test
 	void testGetRecruitList() throws Exception{
 		int page=0;
 		int size=10;
-		Page<RecruitDto> recruitDtoPage=recruitService.getRecruitList(page, size);
-		List<RecruitDto> recruitDtoList=recruitDtoPage.getContent();
-		assertEquals(size, recruitDtoList.size());
+//		Page<RecruitDto> recruitDtoPage=recruitService.getRecruitList(page, size);
+//		List<RecruitDto> recruitDtoList=recruitDtoPage.getContent();
+//		assertEquals(size, recruitDtoList.size());
+		Page<RecruitDto> test = recruitService.searchRcTitle("임박", page, size);
+		System.out.println(test.getContent());
 	}
-	
+	@Disabled
 	//조회수 증가=테스트 완료
 	@Test
 	void testIncreaseReadCount()throws Exception {

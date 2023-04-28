@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +40,8 @@ import com.itwill.ilhajob.user.dto.UserDto;
 import com.itwill.ilhajob.user.service.RecruitScrapService;
 import com.itwill.ilhajob.user.service.UserService;
 
+import io.netty.handler.codec.http.HttpRequest;
+
 @RestController
 public class RecruitRestController {
 	@Autowired
@@ -55,7 +59,7 @@ public class RecruitRestController {
 	
 	@GetMapping(value="/getRecruitTag", produces = "application/json;charset=UTF-8")
 	public Map<String,Object> getRecruitTagData(@RequestParam(defaultValue = "0") int page,
-												@RequestParam(defaultValue = "6") int size,
+												@RequestParam(defaultValue = "8") int size,
 												@RequestParam long tagId,
 												Model model, HttpServletRequest request) throws Exception{
 		Map<String, Object> map = new HashMap<String,Object>();
@@ -70,13 +74,13 @@ public class RecruitRestController {
 			loginUser = userService.findUser(sUserId);
 		}
 		map.put("loginUser", loginUser);
+		System.out.println(loginUser);
 		
+		Map<Integer,Integer> status = new HashMap<Integer, Integer>();
 		if(loginUser!=null) {
 		//스크랩 (북마크)로고 출력
 			List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
 			//스크랩확인 카운트 리스트
-			List<Integer> countList = new ArrayList<Integer>();
-			countList.add(0); //테이블은 1부터 id가 있으니 처음은 0
 			
 			for(RecruitDto recruit :recruitList) {
 			    boolean hasRecruitScrap = false; // 리크루트 스크랩이 있는지 여부를 나타내는 변수
@@ -87,12 +91,13 @@ public class RecruitRestController {
 			        }
 			    }
 			    if(hasRecruitScrap) {
-			        countList.add(1); // 리크루트 스크랩이 있을 때
+			    	status.put( Integer.valueOf(recruit.getId().intValue()), 1); // 리크루트 스크랩이 있을 때
 			    } else {
-			        countList.add(0); // 리크루트 스크랩이 없을 때
+			    	status.put(Integer.valueOf(recruit.getId().intValue()), 0); // 리크루트 스크랩이 없을 때
 			    }
 			}
-			map.put("countList", countList);
+			System.out.print("status:"+status+"loginUser"+loginUser);
+			
 		}
 		//전체태그선택
 		if(tagId==99999) {
@@ -130,7 +135,7 @@ public class RecruitRestController {
 		    recruitTagListDto.add(RecruitTagListDto.builder().id(id).recruit(recruitDto).tagList(tagList1).build());
 		}
 		map.put("data", recruitTagListDto);
-		
+		map.put("status", status);
 		map.put("recruitList", recruitTagPage.getContent());
 		map.put("nowPage", recruitTagPage.getNumber());
 		map.put("totalPage", recruitTagPage.getTotalPages());
@@ -143,6 +148,7 @@ public class RecruitRestController {
 		
 		}
 	}
+	
 	
 	//리쿠르트 태그 생성 (AJAX방식)
 	@PostMapping(value = "recruit-tag-insert-action", produces = "application/json;charset=UTF-8")
@@ -205,8 +211,6 @@ public class RecruitRestController {
 		map.put("recruitTagList",recruitTagList);		
 		map.put("recruit",recruitDto);		
 		return map;
-		
-		
 		
 	}
 	

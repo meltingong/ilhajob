@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Superio | Just another HTML Template | Candidate Dashboard Applied Jobs</title>
+  <title>ilhajob</title>
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -80,17 +80,6 @@ window.onload = function() {
               <div class="tabs-box">
                 <div class="widget-title">
                   <h4>지원한 공고</h4>
-
-                  <div class="chosen-outer">
-                    <!--Tabs Box-->
-                    <select class="chosen-select">
-                      <option>Last 6 Months</option>
-                      <option>Last 12 Months</option>
-                      <option>Last 16 Months</option>
-                      <option>Last 24 Months</option>
-                      <option>Last 5 year</option>
-                    </select>
-                  </div>
                 </div>
 
                 <div class="widget-content">
@@ -135,7 +124,7 @@ window.onload = function() {
                               <ul class="option-list">
                          		<input type="hidden" id="appId" name="appId" th:value="${app.id}"/>  
                                 <li><button type="button" data-text="이력서 보기" th:id="appliedCvBtn+${app.id}" th:onclick="'appliedCvView(' + ${app.id} + ')'"><span class="la la-eye"></span></button></li>
-                                <li><button type="button" data-text="지원 취소" th:id="applyCancleeBtn+${app.id}" th:onclick="'applyCancle(' + ${app.id} + ')'"><span class="la la-trash"></span></button></li>
+                                <li><button type="button" data-text="지원 취소" th:id="applyCancleBtn+${app.id}" th:onclick="'applyCancle(' + ${app.id} + ')'"><span class="la la-trash"></span></button></li>
                               </ul>
                             </div>
                           </td>
@@ -160,7 +149,7 @@ window.onload = function() {
 
     <!-- Copyright -->
     <div class="copyright-text">
-      <p>© 2021 Superio. All Right Reserved.</p>
+      <div th:include="include_copyright_bottom::include_copyright_bottom"></div>
     </div>
 
   </div><!-- End Page Wrapper -->

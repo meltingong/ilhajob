@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import com.itwill.ilhajob.common.entity.BlogCate;
 import com.itwill.ilhajob.user.dto.UserDto;
 
 import lombok.AllArgsConstructor;
@@ -41,10 +42,12 @@ public class BlogDto {
 	private LocalDateTime blogDate;
 	private int blogReadCount;
 	private int blogLike;
-	private int blogCateSeq;
 	private UserDto user;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 	
 	private List<BlogCommentDto> blogCommentList;
-	
+	@ToString.Exclude
+	private BlogCate blogCate;
 	
 }

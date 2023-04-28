@@ -41,8 +41,15 @@ public interface RecruitService {
 	Page<RecruitDto> getRecruitList(int Page, int size) throws Exception;
 	Page<RecruitDto> findAll(Pageable pageable)throws Exception;
 	
+	Page<RecruitDto> searchRcTitle(String rcTitle, int Page, int Size) throws Exception;
+	
+	List<RecruitDto> searchRcTitle(String rcTitle);
+	
 	//readCount 증가
 	void increaseReadCount(Long id) throws Exception;
+	
+	//공고 asc, desc
+	public List<RecruitDto> getRecruitListOrderByDeadline(String order) throws Exception;
 	
 	
 }

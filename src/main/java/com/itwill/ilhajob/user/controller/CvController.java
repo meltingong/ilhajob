@@ -232,7 +232,7 @@ public class CvController {
 		UserDto user = userService.findUser((String)request.getSession().getAttribute("sUserId"));
 		
 		Map<String, String> pathMap = ImageController.makeDir("cv");
-		String saveFileName = pathMap.get("absolutePath")+cv.getId()+"_cv"+user.getId()+"_user"+".json";
+		String saveFileName = pathMap.get("absolutePath")+recruit.getId()+"_rc"+cv.getId()+"_cv"+user.getId()+"_user"+".json";
 		try {
 			AppDto app = new AppDto(0, 0, LocalDateTime.now(), saveFileName,recruit, cv, user);
 			
@@ -255,33 +255,6 @@ public class CvController {
 		System.out.println("@RequestParam appId : " + appId);
 		String forwardpath = "";
 		
-		Long userId = (Long)request.getSession().getAttribute("id");
-		String userEmail = (String)request.getSession().getAttribute("sUserId");
-		UserDto user = userService.findUser(userEmail);		
-		model.addAttribute("userId", userId);
-		model.addAttribute("user", user);
-		
-		/* user cv list */
-		List<CvDto> cvList = cvService.findByUserId(userId);
-		model.addAttribute("cvList", cvList);
-		
-		/* 특정 cv detail */
-		Long testCvId = 3L;
-		CvDto cvDetail = cvService.findCvById(testCvId);
-		model.addAttribute("cvDetail", cvDetail);
-		
-		/* eduList */
-		List<EduDto> eduList = eduService.findEduListByUserId(userId);
-		model.addAttribute("eduList", eduList);
-		
-		/* expList */
-		List<ExpDto> expList = expService.findExpListByUserId(userId);
-		model.addAttribute("expList", expList);
-		
-		/* awardsList */
-		List<AwardsDto> awardsList = awardsService.findAwardsByUserId(userId);
-		model.addAttribute("awardsList", awardsList);
-		
 		//절대경로 파일 불러오기
 		AppDto appDto = appService.findById(appId);
 		Path filePath = Paths.get(appDto.getAppCvName());
@@ -289,19 +262,37 @@ public class CvController {
 		// JSON 파싱 후 Map<k, v> 객체로 변환
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> map = mapper.readValue(jsonData, new TypeReference<Map<String, Object>>(){});
-		System.out.println(map);
+//		System.out.println(map.get("id"));
+//		System.out.println(map.get("user"));
+//		System.out.println(map.get("eduList"));
+//		System.out.println(map.get("expList"));
+//		System.out.println(map.get("awardsList"));
+		/* cv detail */
+		CvDto cvDetail = CvDto.builder()
+								.id(Long.valueOf((Integer)map.get("id")))
+								.cvName((String)map.get("cvName"))
+								.cvDescription((String)map.get("cvDescription"))
+								.cvPortfolio((String)map.get("cvPortfolio"))
+								.build();
+		model.addAttribute("cvDetail", cvDetail);
+		model.addAttribute("user", map.get("user"));
+		model.addAttribute("eduList", map.get("eduList"));
+		model.addAttribute("expList", map.get("expList"));
+		model.addAttribute("awardsList", map.get("awardsList"));
 		
 		return "applied-cv-detail";
 	}
 	
-	@RequestMapping("test")
-	public String applied_cv_detail_test() {
-		// 기존 템플릿 참고용 -> 완성 후 없애기
-		return "applied-cv-detail-test";
+	@PostMapping(value = "apply-delete")
+	public String apply_delete(@RequestParam(name = "appId") Long appId) {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> appId : " + appId);
+		System.out.println("appId로 찾은 app : " + appService.findById(appId));
+		appService.deleteApp(appId);
+		return "redirect:candidate-dashboard-applied-job";
 	}
 	
 	/************** Get 방식 요청 처리 */
-	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action"})
+	@GetMapping(value = {"/cv-write-action", "/cv-update-action", "/cv-delete-action", "cv-apply-action", "apply-delete"})
 	public String cv_get() {
 		return "redirect:index";
 	}

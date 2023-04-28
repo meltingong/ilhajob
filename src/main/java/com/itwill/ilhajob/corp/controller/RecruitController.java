@@ -1,16 +1,18 @@
 package com.itwill.ilhajob.corp.controller;
 
-import java.io.Console;
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,12 +22,9 @@ import org.springframework.ui.Model;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.ilhajob.common.dto.AppDto;
 import com.itwill.ilhajob.common.dto.RecruitTagDto;
@@ -36,18 +35,15 @@ import com.itwill.ilhajob.common.service.TagService;
 import com.itwill.ilhajob.corp.dto.CorpDto;
 import com.itwill.ilhajob.corp.dto.ManagerDto;
 import com.itwill.ilhajob.corp.dto.RecruitDto;
-import com.itwill.ilhajob.corp.entity.Recruit;
 import com.itwill.ilhajob.corp.service.CorpService;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
-import com.itwill.ilhajob.user.controller.LoginCheck;
 import com.itwill.ilhajob.user.dto.RecruitScrapDto;
+import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
-import com.itwill.ilhajob.user.entity.User;
-import com.itwill.ilhajob.user.service.CvService;
 import com.itwill.ilhajob.user.service.RecruitScrapService;
+import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
-
 
 @Controller
 public class RecruitController {
@@ -64,8 +60,6 @@ public class RecruitController {
 	@Autowired
 	private AppService appService;
 	@Autowired
-	private CvService cvService;
-	@Autowired
 	private RecruitScrapService recruitScrapService;
 	@Autowired
 	private UserService userService;
@@ -73,8 +67,43 @@ public class RecruitController {
 	//home에 recruitList 뿌리기
 	@RequestMapping(value = { "/", "/index" })
 	public String main(Model model) throws Exception {
-		List<RecruitDto> recruitList = recruitService.findRecruitAll();
+		// 전체 공고 리스트
+		List<RecruitDto> recruitListAll = recruitService.findRecruitAll();
+		List<RecruitDto> recruitList = new ArrayList<RecruitDto>();
+		Random random = new Random();
+		while (recruitList.size() < 10) {
+		    int randomIndex = random.nextInt(recruitListAll.size());
+		    RecruitDto randomRecruit = recruitListAll.get(randomIndex);
+		    if (randomRecruit.getRcDeadline().isAfter(LocalDateTime.now().minusDays(1).withHour(0).withMinute(0).withSecond(0))) {
+		        recruitList.add(randomRecruit);
+		    }
+		}
+		
 		model.addAttribute("recruitList", recruitList);
+		
+		// 마감 임박(Today+7 까지) 공고 리스트
+		List<RecruitDto> deadLineRecruitList = new ArrayList<RecruitDto>();
+
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime endToday = now.withHour(23).withMinute(59).withSecond(59);
+		System.out.println(">>>>>>>>>>>> 오늘의 끝 : " + endToday);
+		
+		LocalDateTime deadline = endToday.plusDays(7);
+		System.out.println(">>>>>>>>>>>> deadline : " + deadline);
+		
+		for (RecruitDto recruit : recruitListAll) {
+			if (recruit.getRcDeadline().isAfter(now.minusDays(1).withHour(23).withMinute(59).withSecond(59)) && recruit.getRcDeadline().isBefore(deadline) && recruit.getRcDeadline().compareTo(deadline) <= 0) {
+					deadLineRecruitList.add(recruit);
+					System.out.println("공고 마감날짜  : " + recruit.getRcDeadline());
+					model.addAttribute("deadLineRecruitList", deadLineRecruitList);
+			} 
+		}
+		System.out.println("마감임박 공고리스트 : " + deadLineRecruitList);
+		System.out.println("마감임박 공고리스트 수 : " + deadLineRecruitList.size());
+		
+		if (deadLineRecruitList.size() == 0) {
+			System.out.println("마감임박 공고 없음");
+		}
 		
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
@@ -86,31 +115,67 @@ public class RecruitController {
 		return forward_path;
 	}
 	
-	//조회수 증가 기능
+	
+	//조회수 증가 기능->수정중...ㅠ
 	@RequestMapping("/increase-readCount-action")
-	public String increase_readCount(HttpServletRequest request) throws Exception {
-		Long id=Long.parseLong(request.getParameter("id"));
+	public String increase_readCount(@RequestParam("id")Long id,@ModelAttribute RecruitDto recruitDto,HttpServletRequest request,Model model) throws Exception {
+		RecruitDto recruit=recruitService.findRecruit(id);
 		recruitService.increaseReadCount(id);
+		//RecruitDto updateRecruit=recruitService.update(recruit.getId());
+		//System.out.println("update>>>"+updateRecruit);
+		model.addAttribute("updateRecruit",recruit);
 		return "recruit-detail";
 	}
-	
 
 	@GetMapping("/recruit-list")
-	public String recruit_list(@RequestParam(defaultValue = "0") int page,
-	                        @RequestParam(defaultValue = "6") int size,
-	                        Model model,HttpServletRequest request) throws Exception {
-		//페이징 기능 추가->일단 6개씩 나오게 해놓음
-	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
-	    Page<RecruitDto> recruitPage = recruitService.findAll(pageable);
-	    int nowPage = recruitPage.getNumber();
-	    
+	public String recruit_list(@RequestParam(defaultValue = "0", name = "page") int curPage,
+					           @RequestParam(defaultValue = "8") int pageScale,
+					           @RequestParam(defaultValue = "5") int blockScale,
+	                           @RequestParam(value = "sortType", required = false) String sortType,
+	                           Model model,HttpServletRequest request) throws Exception {
+		
+		//공고 정렬에 페이징 기능 추가->pageScale 8개씩 나오게 해놓음
+		
+		Page<RecruitDto> recruitPage;
+		if("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>내림");
+			Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.DESC, "rcDeadline");
+			recruitPage = recruitService.findAll(pageable);
+		}else if("rcDeadlineasc".equalsIgnoreCase(sortType)){
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>오름");
+			Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "rcDeadline");
+			recruitPage = recruitService.findAll(pageable);
+		}
+		else {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>일반");
+			Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
+			recruitPage = recruitService.findAll(pageable);
+		}
+	    System.out.println(recruitPage.getContent());
 	    //이전, 다음페이지 설정해야함...
 	    model.addAttribute("recruitList", recruitPage.getContent());
-	    model.addAttribute("nowPage", nowPage);
-	    model.addAttribute("totalPage", recruitPage.getTotalPages());
-	    model.addAttribute("prePage", recruitPage.hasPrevious() ? recruitPage.previousPageable().getPageNumber() : 0);
-	    model.addAttribute("nextPage", recruitPage.hasNext() ? recruitPage.nextPageable().getPageNumber() : recruitPage.getTotalPages() - 1);
-	
+//	    model.addAttribute("nowPage", nowPage);
+//	    model.addAttribute("totalPage", recruitPage.getTotalPages());
+//	    model.addAttribute("prePage", recruitPage.hasPrevious() ? recruitPage.previousPageable().getPageNumber() : 0);
+//	    model.addAttribute("nextPage", recruitPage.hasNext() ? recruitPage.nextPageable().getPageNumber() : recruitPage.getTotalPages() - 1);
+	    
+	    //페이지블록번호
+  		int curBlock = (int) Math.ceil((recruitPage.getNumber()) / blockScale) + 1;
+  	    System.out.println("페이지블록번호 :"+curBlock);
+  	    //페이지 블록의 시작번호
+  	 	int blockBegin = (curBlock - 1) * blockScale + 1;
+  	 	//페이지 블록의 끝 번호
+  	 	int	blockEnd = blockBegin + blockScale - 1;
+  	 	System.out.println("페이지블록시작번호 :"+blockBegin);
+  	 	System.out.println("페이지블록  끝번호 :"+blockEnd);
+  	 	
+  	 	model.addAttribute("blockBegin", blockBegin);
+  	 	model.addAttribute("blockEnd", blockEnd);
+  	    model.addAttribute("curPage", recruitPage.getNumber());
+  	    model.addAttribute("totalPage", recruitPage.getTotalPages());
+  	    model.addAttribute("prePage", recruitPage.previousOrFirstPageable().getPageNumber());
+  	    model.addAttribute("nextPage", recruitPage.nextOrLastPageable().getPageNumber());
+		
 		//태그리스트
 		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
@@ -131,9 +196,8 @@ public class RecruitController {
 		if(loginUser!=null) {
 			List<RecruitScrapDto> recruitScrapList = recruitScrapService.sellectByUserId(loginUser.getId());
 			List<RecruitDto> recruitList = recruitService.findRecruitAll();
-			//스크랩확인 카운트 리스트
-			List<Integer> countList = new ArrayList<Integer>();
-			countList.add(0); //테이블은 1부터 id가 있으니 처음은 0
+			//스크랩상태확인 리스트
+			Map<Long,Integer> status = new HashMap<Long, Integer>();
 			
 			for(RecruitDto recruit :recruitList) {
 			    boolean hasRecruitScrap = false; // 리크루트 스크랩이 있는지 여부를 나타내는 변수
@@ -144,13 +208,13 @@ public class RecruitController {
 			        }
 			    }
 			    if(hasRecruitScrap) {
-			        countList.add(1); // 리크루트 스크랩이 있을 때
+			    	status.put(recruit.getId(), 1); // 리크루트 스크랩이 있을 때
 			    } else {
-			        countList.add(0); // 리크루트 스크랩이 없을 때
+			    	status.put(recruit.getId(), 0); // 리크루트 스크랩이 없을 때
 			    }
 			}
-			
-			model.addAttribute("countList", countList);
+			System.out.print("status"+status);
+			model.addAttribute("status", status);
 			model.addAttribute("recruitScrapList", recruitScrapList);
 		}
 		
@@ -159,24 +223,7 @@ public class RecruitController {
 		
 		
 	}
-	
-//	@RequestMapping("/recruit-list")
-//	public String recruit_list(Model model) throws Exception {
-//		//공고리스트
-//		List<RecruitDto> recruitList = recruitService.findRecruitAll();
-//		model.addAttribute("recruitList", recruitList);
-//		
-//		//태그리스트
-//		List<RecruitTagDto> recruitTagList = recruitTagService.selectAll();
-//		List<TagDto> tagList = tagService.selectAll();
-//		model.addAttribute("recruitTagList", recruitTagList);
-//		model.addAttribute("tagList", tagList);
-//		
-//		String forward_path = "recruit-list";
-//		return forward_path;
-//		
-//		
-//	}
+
 
 	@RequestMapping(value = "/recruit-detail", params = "!id")
 	public String recruit_detail() {
@@ -185,11 +232,29 @@ public class RecruitController {
 
 	//@LoginCheck
 	@RequestMapping(value = "/recruit-detail", params = "id")
-	public String recruit_detail(@RequestParam long id, Model model) throws Exception {
+	public String recruit_detail(@RequestParam long id, Model model,HttpServletRequest request) throws Exception {
 		RecruitDto recruit = recruitService.findRecruit(id);
 		model.addAttribute("recruit", recruit);
+//		List<AppDto> appList = appService.findAllByRecruitId(id);
+		List<AppDto> appList = new ArrayList<AppDto>();
+		if (appService.findAllByRecruitId(id).size() != 0) {
+			appList = appService.findAllByRecruitId(id);
+			model.addAttribute("appList", appList);
+		}
 		List<ManagerDto> managerList = managerService.findManagerByCorpID(recruit.getCorp().getId());
 		model.addAttribute("managerList", managerList);
+		
+		String sUserId = (String)request.getSession().getAttribute("sUserId");
+		if(sUserId!=null) {
+			UserDto user= userService.findUser(sUserId);
+			//공고스크랩
+			if(user!=null) {
+				RecruitScrapDto scrap = 
+						recruitScrapService.sellectByUserIdAndRecruitId(user.getId(), recruit.getId());
+				System.out.println("공고스크랩:"+scrap);
+				model.addAttribute("scrap", scrap);
+			}
+		}
 		
 		
 		//공고태그리스트 선별
@@ -200,6 +265,7 @@ public class RecruitController {
 			recruitTagNameList.add(tag.getTagName());
 		}
 		model.addAttribute("recruitTagNameList", recruitTagNameList);
+		model.addAttribute("scrap", null);
 		
 		
 		String forward_path = "recruit-detail";
@@ -208,20 +274,42 @@ public class RecruitController {
 
 	@RequestMapping("/dashboard-post-job")
 	public String dashboard_post_job_form(HttpServletRequest request, Model model) throws Exception {
+		
 		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
 		model.addAttribute("corp", loginCorp);
+		
+		
+		//결제확인 및 업데이트상태확인
+		int paymentStatus = (Integer)request.getSession().getAttribute("paymentStatus");
+		int updateStatus = (Integer)request.getSession().getAttribute("updateStatus");
+		System.out.println("결제상태:"+paymentStatus+"업데이트상태:"+updateStatus);
+		if(updateStatus!=1) {
+			return "redirect:dashboard-company-profile";
+		}else if(paymentStatus!=1) {
+			return "redirect:product";
+		}
 		String forward_path = "dashboard-post-job";
 		return forward_path;
+		
 	}
 
 	@PostMapping("/dashboard-post-job-action")
 	public String dashboard_post_job_action(@ModelAttribute RecruitDto recruitDto, HttpServletRequest request)
 			throws Exception {
 		CorpDto loginCorp = corpService.findByCorpId((Long) request.getSession().getAttribute("id"));
+		System.out.println("가져온 recruitDto : " + recruitDto);
 		recruitDto.setRcDate(LocalDateTime.now());
-		recruitDto.setRcDeadline(LocalDateTime.now());
+		//마감일 설정
+		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		recruitDto.setRcStatus(0);
+		recruitDto.setRcAppCount(0);
+		recruitDto.setRcReadCount(0);
 		recruitDto.setCorp(loginCorp);
 		recruitDto = recruitService.create(recruitDto);
+		
+		//수정시에만 권한부여
+		request.getSession().setAttribute("updateStatus", 1);
+		
 		String forward_path = "redirect:recruit-detail?id=" + recruitDto.getId();
 		return forward_path;
 	}
@@ -277,26 +365,34 @@ public class RecruitController {
 	}
 	
 	@RequestMapping("/recruit-modify-action")
-	public String recruit_modify_action(@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
+	public String recruit_modify_action(@RequestParam("date")String date,@ModelAttribute RecruitDto recruitDto,Model model,HttpServletRequest request) throws Exception {
 		Long sCorpId =(Long)request.getSession().getAttribute("id");
 		CorpDto corpDto=corpService.findByCorpId(sCorpId);
 		recruitDto.setCorp(corpDto);
 		recruitDto.setRcDate(LocalDateTime.now());
+		
+		//마감일 설정
+		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime time=LocalDate.parse(date,formatter).atStartOfDay();
+		recruitDto.setRcDeadline(time);
+		
 		//마감일=등록일+30일로 설정
-		recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		//recruitDto.setRcDeadline(LocalDateTime.now().plusDays(30));
+		
+		//공고 등록시 진행중으로 변경
 		recruitDto.setRcStatus(0);
-		//System.out.println("pre modify action >>>>"+recruitDto);
+		
+		//폼에 없는 데이터 업데이트
+		recruitDto.setRcAppCount(recruitService.findRecruit(recruitDto.getId()).getRcAppCount());
+		recruitDto.setRcDate(recruitService.findRecruit(recruitDto.getId()).getRcDate());
+		recruitDto.setRcReadCount(recruitService.findRecruit(recruitDto.getId()).getRcReadCount());
 		
 		RecruitDto checkRecruit = recruitService.update(recruitDto);
-		
 		
 		//System.out.println("update check>>>>"+checkRecruit);
 		model.addAttribute("id",recruitDto.getId());
 		return "redirect:recruit-detail?id=" + recruitDto.getId();
 		
-		//RecruitDto updateRecruit= recruitService.update(recruitDto);
-		//System.out.println("updateRecruit>>>"+updateRecruit);
-		//model.addAttribute("updateRecruit", updateRecruit);
 	}
 	
 	//공고리스트-지원자 이력서보기-승인 버튼 클릭 시

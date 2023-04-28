@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Superio | Just another HTML Template | Employers List v3</title>
+<title>ilhajob</title>
 
 <!-- Stylesheets -->
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -22,43 +22,24 @@
 
 <!-- Handlebars -->
 <!-- script  defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script-->
+<style type="text/css">
+	.changeTag{
+	background: rgba(25, 103, 210, 0.15);
+					    color: #1967D2;
+					    padding-left: 20px;
+					    padding-right: 20px;
+					    padding-top: 8px;
+					    padding-bottom: 8px;
+					    margin-bottom: 10px;
+					    border-radius: 20px;
+					    font-size: 17px;
+	}
+</style>
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+	<script src="js/app_corp.js" type="module"></script>
 </head>
-<script>
-$(document).ready(function() {
-	  $('#searchInput').on('input', function() {
-	    var corpName = $('#searchInput').val();
-	    var job = $('select[name="job"]').val();
-	    $.ajax({
-	      url: '/search',
-	      method: 'GET',
-	      data: {
-	        corpName: corpName,
-	        job: job
-	      },
-	      success: function(data) {
-	        var results = data.results;
-	        var rcCountMap = data.rcCountMap;
-	        var template = Handlebars.compile($('#searchTemplate').html());
-	        if (results.length > 0) {
-	          $('#searchResults').html(template({ results: results, rcCountMap: rcCountMap }));
-	        } else {
-	          $('#searchResults').html('');
-	          $('#searchResults').append('<div class="alert alert-warning">검색 결과가 없습니다.</div>');
-	        }
-	      }
-	    });
-	  });
-	});
-
-</script>
-
-
-
 
 <!-- 원래 되는 것:corpName, job으로 검색하기 ajax-->
 <!-- script>
@@ -117,8 +98,6 @@ $(document).ready(function() {
 		<!--Page Title-->
 		<section class="page-title">
 			<div class="auto-container">
-
-
 				<!-- Job Search Form -->
 				<div class="job-search-form">
 					<form id="search-form" th:action="@{/search}" method="get">
@@ -139,13 +118,14 @@ $(document).ready(function() {
 									<option value="네트워크">네트워크</option>
 									<option value="웹퍼블리싱">웹퍼블리싱</option>
 									<option value="게임">게임</option>
-									<option value="디자인/컴퓨터강사">디자인/컴퓨터강사</option>
+									<!-- option value="디자인/컴퓨터강사">디자인/컴퓨터강사</option-->
 									<option value="빅데이터ai">빅데이터ai</option>
-									<option value="소프트웨어하드웨어">소프트웨어하드웨어</option>
+									<option value="소프트웨어/하드웨어">소프트웨어/하드웨어</option>
 								</select>
 							</div>
 
 							<div class="form-group col-lg-2 col-md-12 col-sm-12 text-right">
+							<!--input type="hidden" name="selectedJob" th:value="${selectedJob}"-->
 								<button type="submit" class="theme-btn btn-style-one">기업
 									찾기</button>
 							</div>
@@ -173,7 +153,7 @@ $(document).ready(function() {
 								Filters</button>
 
 							<!-- ls Switcher -->
-							<div class="ls-switcher">
+							<div class="ls-switcher" style="margin-bottom: 20px">
 								<div class="showing-result">
 									<div class="text">
 										Showing
@@ -181,20 +161,20 @@ $(document).ready(function() {
 										<strong th:text="${corpList.size()}"></strong> employer
 									</div>
 								</div>
-								<button class="changeTag" name="all" value="전체">전체</button>
+								<!--  <button class="changeTag" name="all" value="전체">전체</button>-->
 
 								<div th:each="tag: ${tagList}" th:if="${tag.tagId}>3">
 									<button class="changeTag" name="${tag.tagName}"
 										th:text="${tag.tagName}" th:value="${tag.tagId}">코프태그</button>
 								</div>
 								<div class="sort-by">
-									<select class="chosen-select">
+									<!-- select class="chosen-select">
 										<option>필터</option>
 										<option>회사원규모</option>
 										<option>신규등록순</option>
 										<option>회사명순</option>
 										<option>매출크기</option>
-									</select>
+									</select-->
 
 								</div>
 							</div>
@@ -209,12 +189,15 @@ $(document).ready(function() {
 											<!-- button class="bookmark-btn">
 												<span class="flaticon-bookmark"></span>
 											</button-->
-											<tr>
 											<span class="featured" th:if="${rcCountMap[corp.id]>0}" style="background-color:mistyrose; color: red">채용중</span> 
-											</tr>
-											<span class="company-logo"><img
-												th:src="${corp.corpStoredFileName}" style="width:80px"
-												src="images/resource/company-logo/6-1.png" alt=""></span>
+											<th:block th:if = "${corp.corpStoredFileName != null}">
+										        <span class="company-logo">
+											        <img th:src="${corp.corpStoredFileName}" alt="" style="width:80px; height:80px"/>
+										        </span>
+										    </th:block>
+										    <th:block th:if = "${corp.corpStoredFileName == null}">
+										        <figure class="company-logo"><img src="images/resource/company-logo/6-1.png" alt=""/></figure>
+										    </th:block>
 											<h4>
 												<a th:href="@{/corp-detail(corpId=${corp.id})}"
 													th:text="${corp.corpName}"></a>
@@ -234,53 +217,25 @@ $(document).ready(function() {
 										</div>
 									</div>
 								</div>
+								<!-- Pagination 시작 -->
+								<nav class="ls-pagination">
+								    <ul>
+								        <li th:unless="${curPage == blockBegin-1}" class="prev"><a th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
+								        
+								       	<li th:if="${i == blockBegin-1}"><a class="current-page" th:text="${curPage+1}" ></a></li>
+								        <th:block th:each="i, index : ${#numbers.sequence(blockBegin-1, totalPage-1)}" >
+								            <li th:if="${i == curPage}"><a class="current-page" th:text="${curPage+1}" ></a></li>
+								            <li th:unless="${i == curPage}"><a th:text="${i+1}" th:href="@{corp-list?page=}+${i}"></a></li>
+								        </th:block>
+								        
+								        <li th:unless="${curPage == totalPage-1}" class="next"><a th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
+								    </ul>
+								</nav> 
+							<!-- Pagination 끝 -->
+							
 							</div>
 							<!-- 검색어 없을 때 표시할 영역 -->
 							<!--  div class="alert alert-warning" style="color: white;"></div-->
-<!-- Pagination 시작 -->
-
-        		<nav class="ls-pagination">
-	                  <li th:each="page:${#numbers.sequence(0,totalPage -1)}" th:if="${page >= nowPage-1 and page <= nowPage+1}">
-	                 	 <a th:href="@{corp-list?page=}+${pageStat.index}"></a></li>
-			              <ul>
-			                <li th:unless="${nowPage == 0}" class="prev"><a th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
-			                <li class="prev"><a th:unless="${nowPage == 0}" th:text="${nowPage}" th:href="@{corp-list?page=}+${prePage}"><i class="fa fa-arrow-left"></i></a></li>
-			     			   <li><a class="current-page" th:text="${nowPage+1}" ></a></li>
-			                <li class="next"><a th:unless="${nowPage == totalPage-1}" th:text="${nowPage+2}" th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
-			             	<li th:unless="${nowPage == totalPage-1}" class="next"><a th:href="@{corp-list?page=}+${nextPage}"><i class="fa fa-arrow-right"></i></a></li>
-			              </ul>
-           			  </nav>
-							<!-- nav class="ls-pagination">
-								<ul>
-									<li class="prev"><a href="#"><i
-											class="fa fa-arrow-left"></i></a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#" class="current-page">2</a></li>
-									<li><a href="#">3</a></li>
-									<li class="next"><a href="#"><i
-											class="fa fa-arrow-right"></i></a></li>
-								</ul>
-							</nav-->
-					<!-- pagination 수정전 : 페이지는 넘어가는데 동그라미, 화살표 인식 못함-->
-						<!--nav class="ls-pagination" th:if="${page.totalPages > 1}">
-							    <ul>
-							        <li class="prev" th:classappend="${page.first ? 'disabled' : ''}">
-							            <a th:href="@{${#httpServletRequest.requestURI.replace('/final-project-team1-ilhajob', '')}(page=${page.number - 1},size=${page.size})},size=${page.size})}">
-							                <i class="fa fa-arrow-left"></i>
-							            </a>
-							        </li>
-							        <li th:each="i : ${#numbers.sequence(1, page.totalPages)}" th:class="${page.number == i ? 'active' : ''}">
-							            <a th:href="@{${#httpServletRequest.requestURI.replace('/final-project-team1-ilhajob', '')}(page=${i},size=${page.size})}" th:text="${i}"></a>
-							        </li>
-							        <li class="next" th:classappend="${page.last ? 'disabled' : ''}">
-							            <a th:href="@{${#httpServletRequest.requestURI.replace('/final-project-team1-ilhajob', '')}(page=${page.number + 1},size=${page.size})}">
-							                <i class="fa fa-arrow-right"></i>
-							            </a>
-							        </li>
-							    </ul>
-							</nav-->	
-<!-- Pagination 끝 -->
-							
 						</div>
 					</div>
 				</div>
@@ -299,11 +254,12 @@ $(document).ready(function() {
 
 	<!-- corp-search-template: handlebars -->
 	<script id="searchTemplate" type="text/x-handlebars-template">
+  <div class="row">
   {{#each results}}
   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
     <div class="inner-box">
       <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-  {{#if rcCountMap}}
+  	  {{#if rcCountMap}}
         {{#if rcCountMap.[id]>0}}
           <span class="featured" style="background-color:mistyrose; color: red">채용중</span>
         {{/if}}
@@ -319,7 +275,45 @@ $(document).ready(function() {
       {{/each}}
     </div>
   </div>
-  {{/each}}
+ </div>
+
+  			  {{/each}}
+  				<nav class="ls-pagination mb-5">
+				  <ul>
+					<input class="corpName-data" type="hidden" value="{{corpName}}">
+				    {{#unless (eq nowPage 0)}}
+				      <li class="prev">
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link"><i class="fa fa-arrow-left"></i></a>
+				      </li>
+				      <li class="prev">
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link">{{nowPage}}</a>
+						<input class="prev-data" type="hidden" value="{{prePage}}">
+				      </li>
+				    {{/unless}}
+				    
+				    <li class="current-page">
+				      <a class="current-page">{{add nowPage 1}}</a>
+				    </li>
+				
+				    {{#if (not (eq nowPage (subtract totalPage 1)))}}
+				      <li class="next">
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link">{{add nowPage 2}}</a>
+				      </li>
+				      <li class="next">
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link"><i class="fa fa-arrow-right"></i></a>
+						<input class="next-data" type="hidden" value="{{nextPage}}">
+				      </li>
+				    {{/if}}
+				
+					{{#each page}}
+				      {{#if (and (gte this (subtract nowPage 1)) (lte this (add nowPage 1)))}}
+				        <li>
+				          <a href="{{../url}}?corpName={{corpName}}&page={{this}}"></a>
+				        </li>
+				      {{/if}}
+				    {{/each}}
+				  </ul>
+				</nav>
 </script>
 
 	<script type="text/x-handlebars-template" id="tag-filter-template">
@@ -327,7 +321,20 @@ $(document).ready(function() {
 				{{#each data}}
 			   <div class="company-block-four col-xl-3 col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box" >
-                    <span class="company-logo"><img src="{{corp.corpStoredFileName}}" alt=""></span>
+					 {{#with ../rcCountMap}}
+       					 {{#if (lookup this ../corp.id)}}
+        					  <span class="featured" style="background-color:mistyrose; color: red">채용중</span>
+       					 {{/if}}
+      				{{/with}}
+					{{#if corp.corpStoredFileName}}
+						<span class="company-logo">
+						<img src="{{corp.corpStoredFileName}}" alt="" style="width:80px; height:80px"/>
+						</span>
+					{{else}}
+						<figure class="company-logo">
+						<img src="images/resource/company-logo/6-1.png" alt=""/>
+						</figure>
+					{{/if}}
                     <h4><a href="corp-detail?corpId={{corp.id}}">{{corp.corpName}}</a></h4>
                     <ul class="job-info">
                       <li><span class="icon flaticon-map-locator" style="margin-top:23px"></span>
@@ -347,28 +354,44 @@ $(document).ready(function() {
                 </div>
 				{{/each}}
 			</div>
+			<nav class="ls-pagination mb-5">
+				  <ul>
+					<input class="tag-data" type="hidden" value="{{tagId}}">
+				    {{#unless (eq nowPage 0)}}
+				      <li class="prev">
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link"><i class="fa fa-arrow-left"></i></a>
+				      </li>
+				      <li class="prev">
+				        <a href="{{url}}?tagId={{tagId}}&page={{prePage}}" class="prev-link">{{nowPage}}</a>
+						<input class="prev-data" type="hidden" value="{{prePage}}">
+				      </li>
+				    {{/unless}}
+				    
+				    <li class="current-page">
+				      <a class="current-page">{{add nowPage 1}}</a>
+				    </li>
+				
+				    {{#if (not (eq nowPage (subtract totalPage 1)))}}
+				      <li class="next">
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link">{{add nowPage 2}}</a>
+				      </li>
+				      <li class="next">
+				        <a href="{{url}}?tagId={{tagId}}&page={{nextPage}}" class="next-link"><i class="fa fa-arrow-right"></i></a>
+						<input class="next-data" type="hidden" value="{{nextPage}}">
+				      </li>
+				    {{/if}}
+				
+					{{#each page}}
+				      {{#if (and (gte this (subtract nowPage 1)) (lte this (add nowPage 1)))}}
+				        <li>
+				          <a href="{{../url}}?tagId={{tagId}}&page={{this}}"></a>
+				        </li>
+				      {{/if}}
+				    {{/each}}
+				  </ul>
+				</nav>
 	</script>
 
-	<!-- 오류 안나면 /ul 밑에 태그 추가하기 
-	      {{#each corpTags}}
-        {{#each ../tagList}}
-          {{#ifCond ../id '==' ../corpId}}
-            {{#ifCond tagId '==' tag.tagId}}
-              <span class="job-type" style="margin-right:1px; margin-bottom: 5px">{{tag.tagName}}</span>
-            {{/ifCond}}
-          {{/ifCond}}
-        {{/each}}
-      {{/each}}
-      
-      
-      
-							{{#each tagData}}
-								{{#ifCond corpTag.tagId '==' tag.tagId}}
-									<span class="job-type" style="margin-right:1px; margin-bottom: 5px">{{tagName}}</span>
-								{{/if}}		
-							{{/each}}
-      
-      -->
 	<script src="js/jquery-3.6.0.min.js"></script>
 	<script src="js/jquery.js"></script>
 	<script src="js/popper.min.js"></script>
@@ -385,8 +408,8 @@ $(document).ready(function() {
 	<script src="js/owl.js"></script>
 	<script src="js/wow.js"></script>
 	<script src="js/script.js"></script>
+	
 
-	<script src="js/app_corp.js" type="module"></script>
 </body>
 
 </html>

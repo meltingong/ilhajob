@@ -69,116 +69,116 @@ values(CV_ID_SEQ.nextval, '~~하드웨어용 자기소개~~', '하드개발이�
 --values(CORP_ID_SEQ.nextval, '기업4@corp.com', '테스트기업4', '4444', 4);
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
-values(CORP_ID_SEQ.nextval, '서울 중구 남대문시장10길 2 (회현동1가, MESA) 21층', '111-11-11111', '신세계아이앤씨는 디지털 기술로 새로운 영역에서 새로운 가치를 만들어내는 글로벌 리테일테크 전문기업입니다.', '1997-02-10', 'corp_01', '신세계아이앤씨',
-'1111', '02-3397-1234', '58억8100만원', '1,339명', 'http://shinsegae-inc.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null);
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, CORP_ADDRESS_DETAIL,ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 중구 남대문시장10길 2', '111-11-11111', '신세계아이앤씨는 디지털 기술로 새로운 영역에서 새로운 가치를 만들어내는 글로벌 리테일테크 전문기업입니다.', '1997-02-10', 'corp_01', '신세계아이앤씨',
+'1111', '02-3397-1234', '58억8100만원', '1,339명', 'http://shinsegae-inc.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', '(회현동1가, MESA) 21층', null,'upload/logo/1_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE, CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 송파구 올림픽로35다길 32 (신천동) , 9층(예전빌딩)', '222-22-22222', '새로운 배달 인프라, 당신과 우아한청년들이 함께합니다.', '2015-11-10', 'corp_02', '우아한청년들',
-'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null);
+'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null,'upload/logo/2_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 송파구 올림픽로35다길 32 (신천동) , 9층(예전빌딩)', '000-00-11111', '새로운 배달 인프라, 당신과 우아한청년들이 함께합니다.', '2015-11-10', 'corp_17', '우아한중년들',
-'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '응용프로그램', null);
+'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '응용프로그램', null, 'upload/logo/3_logo.png');
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 송파구 올림픽로35다길 32 (신천동) , 9층(예전빌딩)', '000-00-00000', '새로운 배달 인프라, 당신과 우아한청년들이 함께합니다.', '2015-11-10', 'corp_18', '우아한장년들',
-'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '네트워크', null);
+'2222', '070-4352-5581', '28억 7700만원', '250명', 'http://career.woowayouths.com', '연금,보험,휴무 상의 후 결정', '네트워크', null ,'upload/logo/4_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 종로구 종로33길 15 연강빌딩', '333-33-33333', '메타넷디지털은 국내 IT산업의 선두반열에서 첨단의 정보기술을 개발해온 종합정보 서비스 회사입니다.', '1989-01-21', 'corp_03', '메타넷디지털(주)',
-'3333', '02-3704-5114', '5억7000만원', '1200명', 'http://metanetglobal.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null);
+'3333', '02-3704-5114', '5억7000만원', '1200명', 'http://metanetglobal.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null, 'upload/logo/5_logo.jpg' );
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 강남구 테헤란로33길 5 (역삼동, JLK타워) JLK타워', '444-44-44444', '제이엘케이는 의료진단 분야, 원격의료분야, 데이터분야에서 세계를 선도하는 인공지능 플랫폼 기업입니다.', '2014-12-15', 'corp_04', '제이엘케이',
-'4444', '02-6925-6189', '40억 2000만원', '80명', 'http://jikgroup.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null);
+'4444', '02-6925-6189', '40억 2000만원', '80명', 'http://jikgroup.com', '연금,보험,휴무 상의 후 결정', '웹프로그래머', null, 'upload/logo/6_logo.jpg');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울시 강남구', '123-456-7890', 'DB회사입니다.1', '2021-01-01', 'corp_05', '더문랩스',
-'5555', '02-1111-1111', '1000000000', '45', 'http://www.DBtest1.com', '칼퇴', '응용프로그램', null);
+'5555', '02-1111-1111', '1000000000', '45', 'http://www.DBtest1.com', '칼퇴', '응용프로그램', null, 'upload/logo/7_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울시 서초구', '123-456-7899', 'DB회사입니다.2', '2021-01-02', 'corp_06', '마켓링크',
-'6666', '02-2222-2222', '2000000000', '20', 'http://www.DBtest2.com', '칼퇴', '응용프로그램', null);
+'6666', '02-2222-2222', '2000000000', '20', 'http://www.DBtest2.com', '칼퇴', '응용프로그램', null, 'upload/logo/8_logo.jpg');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울시 중랑구', '123-456-7898', 'DB회사입니다.3', '2021-01-03', 'corp_07', '디비에프아이에스',
-'7777', '02-3333-3333', '3000000000', '30', 'http://www.DBtest3.com', '칼퇴', '네트워크', null);
+'7777', '02-3333-3333', '3000000000', '30', 'http://www.DBtest3.com', '칼퇴', '네트워크', null, 'upload/logo/9_logo.jpg');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울시 도봉구', '123-456-7897', 'DB회사입니다.4', '2021-01-04', 'corp_08', '대보정보통신',
-'8888', '02-4444-4444', '4000000000', '40', 'http://www.DBtest4.com', '칼퇴', '네트워크', null);
+'8888', '02-4444-4444', '4000000000', '40', 'http://www.DBtest4.com', '칼퇴', '네트워크', null, 'upload/logo/10_logo.jpg');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울시 영등포구 여의나루로 67 신송빌딩 12 층', '763-87-02018', '다큐브는 국내 최초 기업 맞춤형 음성비서 서비스를 제공하는 B2B 전문기업 입니다.', '2021-01-19', 'corp_09', '다큐브(daquv)',
-'1313', '02-456-7891', '0', '20', 'http://daquv.com', '연금,보험,휴무,보상,주거비지원','게임', null);
+'1313', '02-456-7891', '0', '20', 'http://daquv.com', '연금,보험,휴무,보상,주거비지원','게임', null, 'upload/logo/11_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 강서구 공항대로 168 (마곡동) 마곡 747 타워 411~413', '206-81-84553', '(주)다이얼커뮤니케이션즈는 MaalTalk, VoIP Solutions, 화상회의솔루션 의 기술을 바탕으로 최적의 통합 커뮤니케이션 서비스를 제공하는 사업을 하고 있습니다.', '2003-09-06', 'corp_10', '(주)다이얼커뮤니케이션즈',
-'1414', '1577-7530', '12408000000', '18', 'http://www.maaltalk.com/', '연금,보험,휴무,보상', '게임', null);
+'1414', '1577-7530', '12408000000', '18', 'http://www.maaltalk.com/', '연금,보험,휴무,보상', '게임', null , 'upload/logo/12_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
-values(CORP_ID_SEQ.nextval, '서울 강남구 영동대로 502 (삼성동) 위메프', '842-86-00373', '테이블링은 스마트하게 예약과 대기가 가능한 서비스로 디지털 트렌스포메이션으로 탐색에서
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
+values(CORP_ID_SEQ.nextval, '서울 강남구 영동대로 502 (삼성동)', '842-86-00373', '테이블링은 스마트하게 예약과 대기가 가능한 서비스로 디지털 트렌스포메이션으로 탐색에서
 부터 식사 이후 까지의 모든 과정에서의 낭비가 없어진 세상 이라는 비전으로 전진 하고 있습니다.', '2016-04-14', 'corp_11', '(주) 테이블링',
-'1515', '02-1899-9195', '456300000000', '78', 'http://www.tabling.co.kr/', '연금,보험,휴무,보상,휴가', '게임', null);
+'1515', '02-1899-9195', '456300000000', '78', 'http://www.tabling.co.kr/', '연금,보험,휴무,보상,휴가', '게임', null, 'upload/logo/13_logo.jpg');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 13 길 11, 1 층', '211-88-79575', '무신사는 700 만 회원을 보유한 국내 1 위 온라인 패션 플랫폼입니다. 스트릿, 글로벌 명품, 디
 자이너 등 5 천여 개 브랜드가 입점한 「무신사 스토어」와 국내·외 최신 패션 트렌드와 정보를
 전달하는 패션 매거진 「무신사 매거진」을 운영하고 있습니다.', '2012-06-25', 'corp_12', '무신사',
-'1616', '1544-7199', '402400000000', '1329', 'https://www.musinsa.com', '연금,보험,휴무,보상,포인트지급', null, null);
+'1616', '1544-7199', '402400000000', '1329', 'https://www.musinsa.com', '연금,보험,휴무,보상,포인트지급', null, null, 'upload/logo/14_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '강원 춘천시 남산면 수동리 749번지 더존IT그룹 강촌캠퍼스', '112-222-3333', '기업, 금융, 커머스, 헬스케어, 공공 분야 등에서 Work''&''Life 토털 솔루션을 제공하는 대한민국 대표 ICT그룹입니다.',
-'1977-08-20', 'corp_13', '더존비즈온','2323', '1544-7199', '3031억', '1675명', 'http://www.douzone.com', '연금,보험,휴무,보상', null, null);
+'1977-08-20', 'corp_13', '더존비즈온','2323', '1544-7199', '3031억', '1675명', 'http://www.douzone.com', '연금,보험,휴무,보상', null, null, 'upload/logo/15_logo.jpg');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 마포구 매봉산로 75 (상암동, 디디엠씨(DDMC)) 12층', '112-333-3333', '비즈테크아이는 Global IT 서비스 전문기업인 LG CNS 자회사로 기술전문성을 가지고 SAP ERP와 Web Service 분야에서 차별화된 서비스를 제공합니다.',
-'2003-01-09', 'corp_14', '비즈테크아이','3434', '02-2084-6700', '1492억8천', '765명', 'http://www.biztechpartners.co.kr', '연금,보험,휴무,보상', null, null);
+'2003-01-09', 'corp_14', '비즈테크아이','3434', '02-2084-6700', '1492억8천', '765명', 'http://www.biztechpartners.co.kr', '연금,보험,휴무,보상', null, null, 'upload/logo/16_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 강남구 봉은사로57길 13 (삼성동, 프러스원) 2층', '112-444-3333', '코매퍼는 실제 현장 적용이 가능한 서비스를 제공하는 세계 최고수준의 3D Mapping/Modeling 솔루션 기업​입니다.',
-'2019-01-21', 'corp_15', '코매퍼','4545', '02-565-6713', '3억8천', '13명', 'http://ko-mapper.com', '연금,보험,휴무,보상', null, null);
+'2019-01-21', 'corp_15', '코매퍼','4545', '02-565-6713', '3억8천', '13명', 'http://ko-mapper.com', '연금,보험,휴무,보상', null, null, 'upload/logo/17_logo.jpg');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 서초구 사임당로10길 3 (서초동, 원진빌딩) 501호', '112-555-3333', '소프트웍스는 전사 비즈니스에 대한 정보자산의 가치, 위협과 취약점 관리 능력을 강화시켜 Compliance Risk 를 최소화 할 수 있도록 지원하는 기업입니다.',
-'2011-05-20', 'corp_16', '소프트웍스','5656', '02-6401-8937', '5억4천4백', '80명', 'http://www.softworks.co.kr', '연금,보험,휴무,보상', null, null);
+'2011-05-20', 'corp_16', '소프트웍스','5656', '02-6401-8937', '5억4천4백', '80명', 'http://www.softworks.co.kr', '연금,보험,휴무,보상', null, null, 'upload/logo/18_logo.gif');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 영등포구 선유로 70', 1000000001, '다양한 분야에서의 최고의 고객 서비스 제공을 위한 다양한 사업영역을 확대해 나가고 있습니다.',
-'2007-02-10', 'seoulnetwork@snt.com', '서울네트워크서비스','1111', 021231234, 4000, 700, 'http://www.snservice.com', '학자금대출, 육아휴직, 점심 식대지원', null, null);
+'2007-02-10', 'seoulnetwork@snt.com', '서울네트워크서비스','1111', 021231234, 4000, 700, 'http://www.snservice.com', '학자금대출, 육아휴직, 점심 식대지원', null, null, 'upload/logo/19_logo.jpg');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 금천구 벚꽃로 316', 1000000002, '그린네트워크는 2017년에 설립되어 다양한 네트워크 서비스를 제공합니다.',
-'2017-02-10', 'greennetwork@greennet.com', '그린네트워크','1111', 029876789, 9125, 2940, 'http://www.greennetwork.co.kr', '4대보험, 생일휴가, 재택근무', null, null);
+'2017-02-10', 'greennetwork@greennet.com', '그린네트워크','1111', 029876789, 9125, 2940, 'http://www.greennetwork.co.kr', '4대보험, 생일휴가, 재택근무', null, null, 'upload/logo/20_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE, CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 강남구 강남대로 476', 1000000003, '사과시스템 소개',
-'2010-02-20', 'apple@applesystem.com', '사과시스템','1111', 029890765, 8000, 2340, 'http://www.applesystem.com', '4대보험, 학자금대출, 직원 대출', null, null);
+'2010-02-20', 'apple@applesystem.com', '사과시스템','1111', 029890765, 8000, 2340, 'http://www.applesystem.com', '4대보험, 학자금대출, 직원 대출', null, null, 'upload/logo/21_logo.png');
 
 insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, CORP_LOGIN_ID, CORP_NAME,
-CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE)
+CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', 1000000004, '올리브네트웍스 소개',
-'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null);
+'1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', 023745558, 7000, 960, 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', null, null, 'upload/logo/22_logo.jpg');
 
 /**********************manage insert***************************/
 /************기업 1에 속한 매니저************/
@@ -199,8 +199,8 @@ insert into manager(id, manager_email, manager_name, manager_phone, manager_posi
 values(MANAGER_ID_SEQ.nextval, 'email@기업4.com', '댜댜댜', '010-5326-6477', '인사팀장', 4); 
 
 /**********************recruit insert***************************/
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, '2023-04-05',  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 100, 4500, 'SW개발/보안 경력직 모집', 1);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-04-05',  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 100, 1,4500, 'SW개발/보안 경력직 모집', 1);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+1,  '글로벌 리테일테크 전문기업 신세계아이앤씨에서 함께할 인재를 찾습니다.', '2023-07-05', '경력직', '무', 200, 3500, '청소부', 2);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
@@ -208,8 +208,8 @@ values(RECRUIT_ID_SEQ.nextval, sysdate+2,  '우아한 청년들에서 귀한 분
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+3,  '메타넷그룹의 사업 확장과 비즈니스 성장에 함께할 IT 전문성을 가진 인재들을 모십니다.', '2023-07-05', '경력직', '무', 200, 3600, '메타넷 그룹 경력직 공개채용', 4);
 
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, '2023-02-05',  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 1000, 3000, 'DB개발자 모집합니다', 1);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-02-05',  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 1000, 1,3000, 'DB개발자 모집합니다', 1);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+8,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 150, 3000, 'DB개발자 모집합니다', 2);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
@@ -217,8 +217,8 @@ values(RECRUIT_ID_SEQ.nextval, sysdate+7,  'DB개발자 신입모집합니다.',
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+6,  'DB개발자 신입모집합니다.', '2023-08-05', '신입', '없음', 500, 3000, 'DB개발자 모집합니다', 4);
 
-insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
-values(RECRUIT_ID_SEQ.nextval, '2023-03-05',  '다큐브팀과 함께 국내 최초 기업용 음성비서를 만들어갈 동료를 찾고 있습니다.', sysdate+30, '경력', 'Springboot경험이 있는 분', 600, 5300, '다큐브- 시니어 백엔드 개발자', 1);
+insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count,rc_status, rc_salary, rc_title, corp_id)
+values(RECRUIT_ID_SEQ.nextval, '2023-03-05',  '다큐브팀과 함께 국내 최초 기업용 음성비서를 만들어갈 동료를 찾고 있습니다.', sysdate+30, '경력', 'Springboot경험이 있는 분', 600, 1,5300, '다큐브- 시니어 백엔드 개발자', 1);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
 values(RECRUIT_ID_SEQ.nextval, sysdate+3,  '구성원의 성장을 테이블링의 성장이라 생각하고 구성원분들에게 긍정적인 동기부여를 할 수 있도록 노력하고 있습니다.', sysdate+30, '신입', '무', 700, 0, '개발자 구인[백엔드,프론트엔드,Android,iOS]', 2);
 insert into recruit(id, rc_date, rc_content, rc_deadline, rc_position, rc_qualification, rc_read_count, rc_salary, rc_title, corp_id)
@@ -348,7 +348,7 @@ insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '1','4
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '2','5');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '3','4');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '4','5');
-insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '5','3');
+insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '5','4');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '6','4');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '7','6');
 insert into corp_tag(id, corp_id, tag_id) values(CORP_TAG_ID_SEQ.nextval, '8','5');
@@ -417,20 +417,20 @@ insert into recruit_scrap(id, recruit_id, user_id) values(RECRUIT_SCRAP_ID_SEQ.n
 /**************************product insert************************/
 -- 개인회원 상품 insert => p_div : U
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'user', 30, '개인회원상품1', 5500);
+values(PRODUCT_ID_SEQ.nextval, 'user', 30, '실버패키지', 5500);
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'user', 60, '개인회원상품2', 9900);
+values(PRODUCT_ID_SEQ.nextval, 'user', 60, '골드패키지', 9900);
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'user', 90, '개인회원상품3', 12900);
+values(PRODUCT_ID_SEQ.nextval, 'user', 90, '플레티넘패키지', 12900);
 
 
 -- 개인회원 상품 insert => p_div : C
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'corp', 30, '개인회원상품5', 20000);
+values(PRODUCT_ID_SEQ.nextval, 'corp', 30, '실버기업패키지', 20000);
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'corp', 60, '개인회원상품6', 35000);
+values(PRODUCT_ID_SEQ.nextval, 'corp', 60, '골드기업패키지', 35000);
 insert into product(id, product_div, product_period, product_name, product_price)
-values(PRODUCT_ID_SEQ.nextval, 'corp', 90, '개인회원상품7', 45000);
+values(PRODUCT_ID_SEQ.nextval, 'corp', 90, '플레티넘기업패키지', 45000);
 
 /**************************orders insert************************/
 -- 개인회원1 user_seq : 1로 개인상품 p_no 1주문하기
@@ -464,46 +464,46 @@ insert into blog_cate(id, blog_cate_name) values(BLOG_CATE_ID_SEQ.nextval, '카�
 insert into blog_cate(id, blog_cate_name) values(BLOG_CATE_ID_SEQ.nextval, '카테고리4');
 
 /******************************blog insert*************************/
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 1, '블로그 내용1', '2023/03/01', '이미지1', 0, 0, '블로그 제목1', 1);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 2, '블로그 내용2', '2023/03/02', '이미지2', 0, 0, '블로그 제목2', 2);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 3, '블로그 내용3', '2023/03/03', '이미지3', 0, 0, '블로그 제목3', 3);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 4, '블로그 내용4', '2023/03/04', '이미지4', 0, 0, '블로그 제목4', 4);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 1, '블로그 내용5', '2023/03/01', '이미지1', 0, 0, '블로그 제목5', 1);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 2, '블로그 내용6', '2023/03/02', '이미지2' ,0, 0, '블로그 제목6', 2);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 3, '블로그 내용7', '2023/03/03', '이미지3', 0, 0, '블로그 제목7', 3);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 4, '블로그 내용8', '2023/03/04', '이미지4', 0, 0, '블로그 제목8', 4);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 1, '블로그 내용9', '2023/03/01', '이미지1', 0, 0, '블로그 제목9', 1);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 2, '블로그 내용10', '2023/03/02', '이미지2', 0, 0, '블로그 제목10', 2);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 3, '블로그 내용11', '2023/03/03', '이미지3', 0, 0, '블로그 제목11', 3);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 4, '블로그 내용12', '2023/03/04', '이미지4', 0, 0, '블로그 제목12', 4);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 1, '블로그 내용13', '2023/03/01', '이미지1', 0, 0, '블로그 제목13', 1);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 2, '블로그 내용14', '2023/03/02', '이미지2', 0, 0, '블로그 제목14', 2);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 3, '블로그 내용15', '2023/03/03', '이미지3', 0, 0, '블로그 제목15', 3);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 4, '블로그 내용16', '2023/03/04', '이미지4', 0, 0, '블로그 제목16', 4);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 1, '블로그 내용17', '2023/03/01', '이미지1', 0, 0, '블로그 제목17', 1);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 2, '블로그 내용18', '2023/03/02', '이미지2', 0, 0, '블로그 제목18', 2);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 3, '블로그 내용19', '2023/03/03', '이미지3', 0, 0, '블로그 제목19', 3);
-insert into blog(id, blog_cate, blog_content, blog_date, blog_image, blog_like, blog_read_count, blog_title, user_id)
-values(BLOG_ID_SEQ.nextval, 4, '블로그 내용20', '2023/03/04', '이미지4', 0, 0, '블로그 제목20', 4);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용1', '2023/03/01', 0, 0, '블로그 제목1', 1);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용2', '2023/03/02', 0, 0, '블로그 제목2', 2);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용3', '2023/03/03',  0, 0, '블로그 제목3', 3);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용4', '2023/03/04',  0, 0, '블로그 제목4', 4);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용5', '2023/03/01',  0, 0, '블로그 제목5', 1);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용6', '2023/03/02', 0, 0, '블로그 제목6', 2);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용7', '2023/03/03', 0, 0, '블로그 제목7', 3);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용8', '2023/03/04',  0, 0, '블로그 제목8', 4);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용9', '2023/03/01',  0, 0, '블로그 제목9', 1);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용10', '2023/03/02',  0, 0, '블로그 제목10', 2);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용11', '2023/03/03',  0, 0, '블로그 제목11', 3);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용12', '2023/03/04',  0, 0, '블로그 제목12', 4);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용13', '2023/03/01',  0, 0, '블로그 제목13', 1);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용14', '2023/03/02', 0, 0, '블로그 제목14', 2);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용15', '2023/03/03',  0, 0, '블로그 제목15', 3);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용16', '2023/03/04',  0, 0, '블로그 제목16', 4);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 1, '블로그 내용17', '2023/03/01',  0, 0, '블로그 제목17', 1);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 2, '블로그 내용18', '2023/03/02',  0, 0, '블로그 제목18', 2);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 3, '블로그 내용19', '2023/03/03',  0, 0, '블로그 제목19', 3);
+insert into blog(id, blog_cate_id, blog_content, blog_date, blog_like, blog_read_count, blog_title, user_id)
+values(BLOG_ID_SEQ.nextval, 4, '블로그 내용20', '2023/03/04', 0, 0, '블로그 제목20', 4);
 
 /******************************blog_comment insert*****************/
 insert into blog_comment(id, comment_content, comment_date, blog_id, user_id)

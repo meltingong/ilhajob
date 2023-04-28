@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
-  <title>Superio | Just another HTML Template | Home Page 11</title>
+  <title>ilhajob</title>
 
   <!-- Stylesheets -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -28,7 +28,7 @@
     <div class="preloader"></div>
 
     <!-- Main Header-->
-    <header class="main-header header-style-four -type-16">
+    <header class="main-header header-style-eight-type-16">
       <div id="main-header" th:include="include_common_top_dashboard::include_common_top_dashboard"></div>
     </header>
     <!--End Main Header -->
@@ -38,97 +38,139 @@
       <div class="auto-container">
         <div class="content-box">
           <div class="title-box wow fadeInUp" data-wow-delay="500ms">
-            <h3>당신에게 최적의 일자리를 찾아드립니다.</h3>
+            <h3>"당신에게 맞는 최적의 일자리를 찾아드립니다"</h3>
             <p></p>
           </div>
 
           <!-- Job Search Form -->
           <div class="job-search-form wow fadeInUp" data-wow-delay="1000ms">
-            <form method="post" action="job-list-v10.html">
+            <form id="search-form" method="get" th:action="@{/searchMain}">
               <div class="row justify-content-center justify-content-md-between">
                 <!-- Form Group -->
-                <div class="form-group col-lg-9">
+				 <div class="form-group col-lg-7 position-relative">
                   <span class="icon flaticon-search-1"></span>
-                  <input type="text" name="field_name" placeholder="Job title, keywords, or company">
+                  <input type="text" id="searchInput" name="searchKeyword" placeholder="Job title, keywords, or company">
                 </div>
+                <div class="form-group col-lg-2 position-relative">
+                 <span>
+                  <select class="search-select" name="searchSelect" style="width: 100px; padding-left:0;">
+					<option value="recruit">공고명</option>
+					<option value="corp">회사명</option>
+				  </select>
+				  </span>
+				 </div>
+                
 
                 <!-- Form Group -->
                 <div class="form-group col-auto">
-                  <button type="submit" class="theme-btn btn-style-two">Find Jobs</button>
+                  <button type="submit" id="main-search" class="theme-btn btn-style-two">Find Jobs</button>
                 </div>
               </div>
             </form>
+            <ul class="search-results" id="searchResults">
+  			</ul>
           </div>
           <!-- Job Search Form -->
 
           <div class="features-icons">
 
             <div class="item">
-              <div class="icon-wrap">
-                <div class="icon flaticon-web-programming"></div>
+              <div class="icon-wrap" style="background-color:cornflowerblue;">
+                <a href="#" th:href="@{/search?corpName=&job=웹프로그래머}" style="color: white;"><div class="icon flaticon-web-programming"></div>
+              </a>
               </div>
-
               <div class="title">
-                Development
+              <a href="#" th:href="@{/search?corpName=&job=웹프로그래머}" style="color: white;">
+                웹프로그램
+              </a>
               </div>
             </div>
 
             <div class="item">
-              <div class="icon-wrap">
-                <div class="icon flaticon-promotion"></div>
+              <div class="icon-wrap" style="background-color:cornflowerblue;">
+                <a href="#" th:href="@{/search?corpName=&job=응용프로그램}" style="color: white;"><div class="icon flaticon-promotion"></div>
+              </a>
+ 				</div>
+              <div class="title">
+                <a href="#" th:href="@{/search?corpName=&job=응용프로그램}" style="color: white;">
+                응용프로그램
+              </a>
+            </div>
+		</div>
+		
+            <div class="item">
+              <div class="icon-wrap" style="background-color:cornflowerblue;">
+                <a href="#" th:href="@{/search?corpName=&job=네트워크}" style="color: white;"><div class="icon flaticon-vector"></div>
+              </a>
               </div>
 
               <div class="title">
-                Human Resource
-              </div>
+                <a href="#" th:href="@{/search?corpName=&job=네트워크}" style="color: white;">
+                네트워크
+              </a>
             </div>
-
-            <div class="item">
-              <div class="icon-wrap">
-                <div class="icon flaticon-vector"></div>
-              </div>
-
-              <div class="title">
-                Project Management
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="icon-wrap">
+			</div>
+			
+           <div class="item">
+            <div class="icon-wrap" style="background-color:cornflowerblue;">
+              <a href="#" th:href="@{/search?corpName=&job=웹퍼블리싱}" style="color: white;">
                 <div class="icon flaticon-money-1"></div>
+                 </a>
               </div>
-
               <div class="title">
-                Customer Service
-              </div>
+                <a href="#" th:href="@{/search?corpName=&job=웹퍼블리싱}" style="color: white;">
+                웹퍼블리싱
+              </a>
             </div>
-
+			</div>
+			
             <div class="item">
-              <div class="icon-wrap">
+            <div class="icon-wrap" style="background-color:cornflowerblue;">
+              <a href="#" th:href="@{/search?corpName=&job=게임}" style="color: white;">
                 <div class="icon flaticon-headhunting"></div>
+                </a>
               </div>
 
               <div class="title">
-                Health and Care
-              </div>
+                <a href="#" th:href="@{/search?corpName=&job=게임}" style="color: white;">
+                게임
+              </a>
             </div>
-
-            <div class="item">
-              <div class="icon-wrap">
+			</div>
+			
+           <div class="item">
+            <div class="icon-wrap" style="background-color:cornflowerblue;">
+              <a href="#" th:href="@{/search?corpName=&job=빅데이터ai}" style="color: white;">
                 <div class="icon flaticon-rocket-ship"></div>
+                </a>
               </div>
 
               <div class="title">
-                Automotive Jobs
-              </div>
+                <a href="#" th:href="@{/search?corpName=&job=빅데이터ai}" style="color: white;">
+                빅데이터ai
+              </a>
             </div>
-
+		</div>
+		 <div class="item">
+              <div class="icon-wrap" style="background-color:cornflowerblue;">
+		 <a href="#" th:href="@{/search?corpName=&job=소프트웨어/하드웨어}" style="color: white;">
+                <div class="icon flaticon-web-programming"></div>
+                </a>
+              </div>
+		
+		   <div class="title">
+                <a href="#" th:href="@{/search?corpName=&job=소프트웨어/하드웨어}" style="color: white;">
+                소프트웨어/하드웨어
+              </a>
+            </div>
+		</div>
+		
           </div>
         </div>
       </div>
     </section>
     <!-- End Banner Section-->
-
+    
     <!-- Job Section -->
     <section class="layout-pt-120 layout-pb-120">
       <div class="auto-container">
@@ -141,18 +183,18 @@
           <!--Tabs Box-->
           <div class="tab-buttons-wrap">
             <ul class="tab-buttons -pills-condensed -blue">
-              <li class="tab-btn" data-tab="#tab1">전체 공고</li>
-              <li class="tab-btn active-btn" data-tab="#tab2">진행중인 공고 </li>
-              <li class="tab-btn" data-tab="#tab3">마감된 공고</li>
+              <!--li class="tab-btn" data-tab="#tab1">전체 공고</li-->
+              <li class="tab-btn active-btn" data-tab="#tab2">추천 공고 </li>
+              <li class="tab-btn" data-tab="#tab3">마감 임박 공고</li>
             </ul>
           </div>
 
           <div class="tabs-content pt-50 wow fadeInUp">
-            <!--Tab-->
+            <!--Tab>
             <div class="tab" id="tab1">
               <div class="row">
 
-                <!-- Job Block -->
+                <!-- Job Block >
                 <div th:each="recruit:${recruitList}" class="job-block col-lg-4 col-md-6 col-sm-12">
      
                   <div class="inner-box">
@@ -166,6 +208,14 @@
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                       </ul>
                       <ul class="job-other-info">
+                      	<th:block th:if="${recruit.rcStatus==0}">
+                      	<li class="count" style="background-color:#FDFD96;">공고진행중</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li>
+                      	</th:block>
+                      	<th:block th:if="${recruit.rcStatus==1}">
+                      	<li class="count" style="background-color:mistyrose; color: red;">마감</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li>
+                      	</th:block>
                         <div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
                         <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
@@ -179,7 +229,7 @@
                 </div>
 
               </div>
-            </div>
+            </div-->
             <!--Tab-->
             <div class="tab active-tab" id="tab2">
               <div class="row">
@@ -188,7 +238,7 @@
                 <div th:each="recruit:${recruitList}" th:if="${recruit.rcStatus==0}" class="job-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
                     <div class="content">
-                      <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
+                      <span class="company-logo"><img class="rounded-full" src="images/icons/smallplant.png" alt=""></span>
                       <h4 ><a href="#"
                       		  th:href="@{recruit-detail(id=${recruit.id})}" 
                       		  th:text="${recruit.rcTitle}" >Software Engineer</a></h4>
@@ -197,6 +247,14 @@
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                       </ul>
                       <ul class="job-other-info">
+                      	<th:block th:if="${recruit.rcStatus==0}">
+                      	<li class="count" style="background-color:#FDFD96;">공고진행중</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
+                      	<th:block th:if="${recruit.rcStatus==1}">
+                      	<li class="count" style="background-color:mistyrose; color: red">마감</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
                         <div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
                         <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
@@ -216,18 +274,23 @@
               <div class="row">
 
                 <!-- Job Block -->
-                <div th:each="recruit:${recruitList}" th:if="${recruit.rcStatus==1}" class="job-block col-lg-4 col-md-6 col-sm-12">
+                <div th:each="recruit:${deadLineRecruitList}" th:if="${recruit.rcStatus==0}" class="job-block col-lg-4 col-md-6 col-sm-12">
                   <div class="inner-box">
                     <div class="content">
-                      <span class="company-logo"><img class="rounded-full" src="images/resource/company-logo/1-1.png" alt=""></span>
+                      <span class="company-logo"><img class="rounded-full" src="images/icons/smallplant.png" alt=""></span>
                       <h4 ><a href="#"
                       		  th:href="@{recruit-detail(id=${recruit.id})}" 
                       		  th:text="${recruit.rcTitle}" >Software Engineer</a></h4>
                       <ul class="job-info">
                         <li th:text="${recruit.rcPosition}"><span class="icon flaticon-briefcase"></span> Segment</li>
                         <li th:text="${recruit.corp.corpAddress}"><span class="icon flaticon-map-locator"></span> London, UK</li>
+                        <li style="color: RoyalBlue" th:text="${#temporals.format(recruit.rcDeadline, 'yyyy-MM-dd') + ' 까지 지원 가능'}"><span class="icon flaticon-map-locator"></span> London, UK</li>
                       </ul>
                       <ul class="job-other-info">
+                      	<th:block th:if="${recruit.rcStatus==0}">
+                      	<li class="count" style="background-color:mistyrose;color: red">★ 마감 임박 ★</li>
+                      	<!--li class="count" th:text="|${recruit.rcReadCount}회 조회중|" style="background-color:#FDFD96;">Private</li-->
+                      	</th:block>
                         <div th:each="recruitTag : ${recruitTagList}">
                       	<div th:each="tag:${tagList}">
                         <li class="time" th:if = "${recruit.id}==${recruitTag.recruit.Id} and ${tag.tagId}==${recruitTag.tag.tagId}"  th:text ="${tag.tagName}">Full Time</li>
@@ -254,328 +317,125 @@
     <!-- End Job Section -->
 
     <!-- Call To Action Two -->
-    <section class="call-to-action-two -type-4" style="background-image: url(images/index-16/cta/bg.png);">
+    <section class="call-to-action-two -type-4" style="background-image: url(images/index-16/header/배경3.jpg);">
       <div class="auto-container wow fadeInUp">
         <div class="sec-title light text-center">
-          <h2>Your Dream Jobs Are Waiting</h2>
-          <div class="text">Over 1 million interactions, 50,000 success stories Make yours now.</div>
+          <h1 style="color:white; background-color: darkseagreen;">"당신의 꿈에 도전하세요"</h1>
+          <div class="text" style="background-color: darksalmon;">1만개 이상의 기업이 당신을 기다립니다</div>
         </div>
 
         <div class="btn-box">
-          <a href="#" class="theme-btn btn-one">Search Job</a>
-          <a href="#" class="theme-btn btn-two">Apply Job Now</a>
+          <a href="#" th:href="@{/recruit-list}" class="theme-btn btn-one">공고 보러가기</a>
+          <!-- a href="#" class="theme-btn btn-one">지금 바로 지원하기</a-->
         </div>
       </div>
     </section>
     <!-- End Call To Action -->
 
     <!-- Work Section -->
-    <section class="layout-pt-120 layout-pb-120">
-      <div class="auto-container">
-        <div class="sec-title text-center">
-          <h2>How It Works</h2>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</div>
-        </div>
-
-        <div class="row grid-base pt-50 wow fadeInUp">
-
-          <!-- Work Block -->
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="work-block -type-4">
-              <div class="icon-wrap">
-                <span class="icon icon-drawing"></span>
-              </div>
-
-              <h5 class="title">Register With Us</h5>
-              <p class="text">The latest design trends meet hand-crafted templates in Sassio Collection.</p>
-            </div>
-          </div>
-
-          <!-- Work Block -->
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="work-block -type-4">
-              <div class="icon-wrap">
-                <span class="icon icon-process"></span>
-              </div>
-
-              <h5 class="title">Create Your Profile</h5>
-              <p class="text">The latest design trends meet hand-crafted templates in Sassio Collection.</p>
-            </div>
-          </div>
-
-          <!-- Work Block -->
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="work-block -type-4">
-              <div class="icon-wrap">
-                <span class="icon icon-task"></span>
-              </div>
-
-              <h5 class="title">Upload Your Resume</h5>
-              <p class="text">The latest design trends meet hand-crafted templates in Sassio Collection.</p>
-            </div>
-          </div>
-
-          <!-- Work Block -->
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="work-block -type-4">
-              <div class="icon-wrap">
-                <span class="icon icon-one-finger-click"></span>
-              </div>
-
-              <h5 class="title">Now Take a Rest</h5>
-              <p class="text">The latest design trends meet hand-crafted templates in Sassio Collection.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
+    
     <!-- End Work Section -->
 
     <!-- Candidates Section -->
-    <section class="layout-pt-120 layout-pb-120 section-bg-color">
-      <div class="section-bg-color__item -full -very-light-blue"></div>
-
-      <div class="auto-container">
-        <div class="sec-title text-center">
-          <h2>Featured Candidates</h2>
-          <div class="text">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor</div>
-        </div>
-
-        <div class="carousel-outer wow fadeInUp">
-          <div class="candidates-carousel owl-carousel owl-theme default-dots">
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
-                <h4 class="name">Darlene Robertson</h4>
-                <span class="designation text-dark-3">UI Designer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-2.png" alt=""></figure>
-                <h4 class="name">Wade Warren</h4>
-                <span class="designation text-dark-3">Developer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-3.png" alt=""></figure>
-                <h4 class="name">Leslie Alexander</h4>
-                <span class="designation text-dark-3">Marketing Expert</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-4.png" alt=""></figure>
-                <h4 class="name">Floyd Miles</h4>
-                <span class="designation text-dark-3">Charted Accountant</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
-                <h4 class="name">Darlene Robertson</h4>
-                <span class="designation text-dark-3">UI Designer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-2.png" alt=""></figure>
-                <h4 class="name">Wade Warren</h4>
-                <span class="designation text-dark-3">Developer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-3.png" alt=""></figure>
-                <h4 class="name">Leslie Alexander</h4>
-                <span class="designation text-dark-3">Marketing Expert</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-4.png" alt=""></figure>
-                <h4 class="name">Floyd Miles</h4>
-                <span class="designation text-dark-3">Charted Accountant</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-1.png" alt=""></figure>
-                <h4 class="name">Darlene Robertson</h4>
-                <span class="designation text-dark-3">UI Designer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-2.png" alt=""></figure>
-                <h4 class="name">Wade Warren</h4>
-                <span class="designation text-dark-3">Developer</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-3.png" alt=""></figure>
-                <h4 class="name">Leslie Alexander</h4>
-                <span class="designation text-dark-3">Marketing Expert</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-
-            <!-- Candidate Block -->
-            <div class="candidate-block">
-              <div class="inner-box">
-                <figure class="image"><img src="images/resource/candidate-4.png" alt=""></figure>
-                <h4 class="name">Floyd Miles</h4>
-                <span class="designation text-dark-3">Charted Accountant</span>
-                <div class="location"><i class="flaticon-map-locator"></i> London, UK</div>
-                <a href="#" class="theme-btn btn-style-one"><span class="btn-title">View Profile</span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     <!-- End Candidates Section -->
 
     <!-- Testimonial Section -->
     <section class="testimonial-section -type-2 layout-pt-120 layout-pb-120">
       <div class="container-fluid">
         <!-- Sec Title -->
-        <div class="sec-title -type-3 text-center">
-          <h2>User Review & Feedback</h2>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</div>
+         <div class="sec-title -type-2 text-center">
+          <h2>경험자들의 생생한 리뷰를 한눈에!</h2>
+          <div class="text"><p>지원한 기업에 대한 정보를 다른 구직자들과 공유해보세요.</p></div>
+          <br>
+          <p>상품을 구매하고 리뷰를 확인해 보세요!</p><p><a href="product"> 바로 구매하러 가기</a></p>
         </div>
-
+        
         <div class="carousel-outer wow fadeInUp">
           <!-- Testimonial Carousel -->
-          <div class="testimonial-carousel owl-carousel owl-theme">
-
-            <!--Testimonial Block -->
+          <div class="testimonial-carousel owl-carousel owl-theme" >
+             <!-- Testimonial Block -->
             <div class="testimonial-block">
               <div class="inner-box">
                 <div class="info-box">
-                  <div class="thumb"><img src="images/resource/testi-thumb-1.png" alt=""></div>
+                  <div class="thumb" style="background-color: white;"><img src="images/icons/smalluser.png" alt=""></div>
                   <div class="content">
-                    <h4 class="name">Theresa Webb</h4>
-                    <span class="designation">Marketing Coordinator</span>
+                    <h4 class="name">기업 A</h4>
+                    <span class="designation">프론트엔드 개발자</span>
                   </div>
                 </div>
-
-                <div class="text">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</div>
+				<span style="color: Gold;">★★★★★</span>
+                <div class="text">사옥이 있어서 쾌적하고 역과 가까워 출퇴근이 편리합니다. 주 2일 재택근무가 정착되었고 연봉과 복지도 만족스럽습니다!</div>
               </div>
             </div>
 
-            <!--Testimonial Block -->
+            <!-- Testimonial Block -->
             <div class="testimonial-block">
               <div class="inner-box">
                 <div class="info-box">
-                  <div class="thumb"><img src="images/resource/testi-thumb-2.png" alt=""></div>
+                  <div class="thumb" style="background-color: white;"><img src="images/icons/smalluser.png" alt=""></div>
                   <div class="content">
-                    <h4 class="name">Cameron Williamson</h4>
-                    <span class="designation">Web Designer</span>
+                    <h4 class="name">기업 B</h4>
+                    <span class="designation">프론트엔드 개발자</span>
                   </div>
                 </div>
-
-                <div class="text">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</div>
+				<span style="color: Gold;">★★★★</span>
+                <div class="text">작년에 시작한 스타트업이고 현재 대규모 투자 유치 예정이라 개발자 채용도 늘어날 예정입니다. 회사에서 개인공부 비용 지원에 적극적입니다. 성장하고 싶은 개발자에게 추천합니다.</div>
               </div>
             </div>
 
-            <!--Testimonial Block -->
+            <!-- Testimonial Block -->
             <div class="testimonial-block">
               <div class="inner-box">
                 <div class="info-box">
-                  <div class="thumb"><img src="images/resource/testi-thumb-3.png" alt=""></div>
+                  <div class="thumb" style="background-color: white;"><img src="images/icons/smalluser.png" alt=""></div>
                   <div class="content">
-                    <h4 class="name">Marvin McKinney</h4>
-                    <span class="designation">Nursing Assistant</span>
+                    <h4 class="name">기업 C</h4>
+                    <span class="designation">백엔드 개발자</span>
                   </div>
                 </div>
-
-                <div class="text">The template is really nice and offers quite a large set of options. It’s beautiful and the coding is done quickly and seamlessly. Thank you!</div>
+				<span style="color: Gold">★★★</span>
+                <div class="text">재무구조가 탄탄한 중견기업으로 오래다닐 수 있는 분위기입니다. 다만 새로운 기술 도입에 보수적인 편이라 신입으로 들어오려는 개발자에게는 추천하지 않습니다.</div>
               </div>
             </div>
 
+            <!-- Testimonial Block -->
+            <div class="testimonial-block">
+              <div class="inner-box">
+                <div class="info-box">
+                  <div class="thumb" style="background-color: white;"><img src="images/icons/smalluser.png" alt=""></div>
+                  <div class="content">
+                    <h4 class="name">기업 D</h4>
+                    <span class="designation">네트워크 엔지니어</span>
+                  </div>
+                </div>
+				<span style="color: Gold">★★★★</span>
+                <div class="text">연봉은 높지 않지만 당일 자유로운 연차 사용이 가능합니다. 또 다양한 기술 도입에 적극적인 팀 분위기라 개개인의 성장 가능성이 높습니다.</div>
+              </div>
+            </div>
+
+            <!-- Testimonial Block -->
+            <div class="testimonial-block">
+              <div class="inner-box">
+                <div class="info-box">
+                  <div class="thumb" style="background-color: white;"><img src="images/icons/smalluser.png" alt=""></div>
+                  <div class="content">
+                    <h4 class="name">기업 E</h4>
+                    <span class="designation">DB 엔지니어</span>
+                  </div>
+                </div>
+				<span style="color: Gold">★★★</span>
+                <div class="text">수직적인 구조로 딱딱한 분위기입니다. 회식이 잦은 편이라 이런 분위기가 맞지 않는 사람들은 다른 기업을 알아보세요. 연봉은 동종업계 대비 높은 편입니다.</div>
+              </div>
+            </div>
+ 
           </div>
         </div>
       </div>
+      </th:block>
     </section>
     <!-- End Testimonial Section -->
 
-    <section class="cta -type-2" style="background-image: url(images/index-16/cta-2/bg.png);">
-      <div class="auto-container">
-        <div class="row grid-base justify-content-between">
-          <div class="col-lg-5 col-md-6">
-            <div class="cta-item">
-              <div class="icon-wrap">
-                <div class="icon icon-case"></div>
-              </div>
-
-              <div class="content">
-                <div class="title">I'm an Employer</div>
-                <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry but also the leap into electronic typesetting</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-5 col-md-6">
-            <div class="cta-item -blue">
-              <div class="content">
-                <div class="title">I'm an Candidates</div>
-                <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry but also the leap into electronic typesetting</div>
-              </div>
-
-              <div class="icon-wrap">
-                <div class="icon icon-contact"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Main Footer -->
     <div th:include="include_main_bottom"></div>
@@ -599,6 +459,7 @@
   <script src="js/rellax.min.js"></script>
   <script src="js/owl.js"></script>
   <script src="js/wow.js"></script>
+  <script src="js/search.js"></script>
   <script src="js/script.js"></script>
 
 </body>

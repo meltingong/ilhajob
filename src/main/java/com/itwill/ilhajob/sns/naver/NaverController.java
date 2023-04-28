@@ -57,6 +57,7 @@ public class NaverController {
         	UserDto findUser = userService.findUser(naverLoginProfile.getEmail());
         	session.setAttribute("id", findUser.getId());
         	session.setAttribute("role", "user");
+        	session.setAttribute("paymentStatus", findUser.getPaymentStatus());
         	request.setAttribute("naverProfile", naverLoginProfile);
         	
         	return "redirect:index";
@@ -71,14 +72,17 @@ public class NaverController {
         	userDto.setUserEmail(email);
         	userDto.setUserPassword(password);
         	userDto.setUserSex(gender);
+        	userDto.setPaymentStatus(0);
         	try {
         		userService.create(userDto);
         		HttpSession session = request.getSession();
         		session.invalidate();
         		session = request.getSession();
+        		UserDto findUser = userService.findUser(naverLoginProfile.getEmail());
+        		session.setAttribute("id", findUser.getId());
         		session.setAttribute("sUserId", naverLoginProfile.getEmail());
         		session.setAttribute("role", "user");
-        		
+        		session.setAttribute("paymentStatus", findUser.getPaymentStatus());
         		session.setAttribute("snsType","naver");
         		
         		request.setAttribute("naverProfile", naverLoginProfile);

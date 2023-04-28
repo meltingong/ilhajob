@@ -67,7 +67,9 @@ public interface CorpService {
 	//List<CorpDto> searchCorpList(String query) throws Exception;
 	
 	//corpName으로만 검색 기능
-	List<CorpDto> searchByCorpName(String corpName, Pageable pageable) throws Exception;
+	Page<CorpDto> searchByCorpName(String corpName, Pageable pageable) throws Exception;
+	
+	List<CorpDto> searchByCorpName(String corpName);
 	
 	//job으로만 검색 기능
 	List<CorpDto> searchByjob(String job, Pageable pageable) throws Exception;

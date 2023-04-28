@@ -67,9 +67,12 @@ import com.itwill.ilhajob.corp.service.CorpServiceImpl;
 import com.itwill.ilhajob.corp.service.ManagerService;
 import com.itwill.ilhajob.corp.service.RecruitService;
 import com.itwill.ilhajob.user.controller.LoginCheck;
+import com.itwill.ilhajob.user.dto.RecruitScrapDto;
 import com.itwill.ilhajob.user.dto.ReviewDto;
 import com.itwill.ilhajob.user.dto.UserDto;
+import com.itwill.ilhajob.user.entity.RecruitScrap;
 import com.itwill.ilhajob.user.exception.PasswordMismatchException;
+import com.itwill.ilhajob.user.service.RecruitScrapService;
 import com.itwill.ilhajob.user.service.ReviewService;
 import com.itwill.ilhajob.user.service.UserService;
 
@@ -82,7 +85,10 @@ public class CorpController {
 	private CorpImageService corpImageService;
 	@Autowired
 	private RecruitService recruitService;
-
+	
+	@Autowired
+	private RecruitScrapService recruitScrapService;
+	
 	@Autowired
 	private UserService userService;
 
@@ -97,6 +103,9 @@ public class CorpController {
 
 	@Autowired
 	private TagService tagService;
+	
+	@Autowired
+	private ManagerService managerService;
 //
 //	@RequestMapping("/index")
 //	public String main() {
@@ -105,25 +114,36 @@ public class CorpController {
 
 	
 	@GetMapping("/corp-list")
-	public String corp_list(@RequestParam(defaultValue = "0") int page,
-	                        @RequestParam(defaultValue = "12") int size,
-	                        @ModelAttribute CorpDto corpDto,
-	                        @ModelAttribute RecruitDto recruitDto,
+	public String corp_list(@RequestParam(defaultValue = "0", name = "page") int curPage,
+	                        @RequestParam(defaultValue = "8") int pageScale,
+	                        @RequestParam(defaultValue = "5") int blockScale,
 	                        HttpServletRequest request,
 	                        Model model) throws Exception {
 		String forward_path="";
 		
-		//페이징 기능 추가->일단 12개씩 나오게 해놓음
-	    Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "id");
-	    Page<CorpDto> corpPage = corpService.findAll(pageable);
-	    int nowPage = corpPage.getNumber();
+		//페이징 기능 추가->일단 8개씩 나오게 해놓음
+	    Pageable pageable = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
+	    Page<CorpDto> corpPageList = corpService.findAll(pageable);
 	    
 	    //이전, 다음페이지 설정해야함...
-	    model.addAttribute("corpList", corpPage.getContent());
-	    model.addAttribute("nowPage", nowPage);
-	    model.addAttribute("totalPage", corpPage.getTotalPages());
-	    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
-	    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
+	    model.addAttribute("corpList", corpPageList.getContent());
+	    
+		//페이지블록번호
+		int curBlock = (int) Math.ceil((corpPageList.getNumber()) / blockScale) + 1;
+	    System.out.println("페이지블록번호 :"+curBlock);
+	    //페이지 블록의 시작번호
+	 	int blockBegin = (curBlock - 1) * blockScale + 1;
+	 	//페이지 블록의 끝 번호
+	 	int	blockEnd = blockBegin + blockScale - 1;
+	 	System.out.println("페이지블록시작번호 :"+blockBegin);
+	 	System.out.println("페이지블록  끝번호 :"+blockEnd);
+	 	
+	 	model.addAttribute("blockBegin", blockBegin);
+	 	model.addAttribute("blockEnd", blockEnd);
+	    model.addAttribute("curPage", corpPageList.getNumber());
+	    model.addAttribute("totalPage", corpPageList.getTotalPages());
+	    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
+	    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
 	    
 		List<CorpTagDto> corpTagList = corpTagService.selectAll();
 		List<TagDto> tagList = tagService.selectAll();
@@ -132,7 +152,7 @@ public class CorpController {
 		
 		//채용중 띄우기->해당 corp의 recruit 개수가 0보다 클 때 띄우려고 함
 		Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
-				corpPage.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
+				corpPageList.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
 		model.addAttribute("rcCountMap", rcCountMap);
 		forward_path = "corp-list";
 	    
@@ -146,9 +166,7 @@ public class CorpController {
 
 		// 공고 개수 불러오기
 		CorpDto corpDto1 = corpService.findByCorpId(corpId);
-		System.out.println("corpDto1>>>>>>" + corpDto1);
 		Long recruitCount = recruitService.countByCorpId(corpDto1.getId());
-		System.out.println("공고개수>>>>>>" + recruitCount);
 		model.addAttribute("recruitCount", recruitCount);
 
 		if (sUserId == null) {
@@ -242,7 +260,7 @@ public class CorpController {
 	 ******************************************************************************/
 
 	@RequestMapping("/dashboard")
-	public String corp_dashboard_view(HttpServletRequest request) throws Exception {
+	public String corp_dashboard_view(HttpServletRequest request,Model model) throws Exception {
 		String forwardPath = "";
 
 		/************** login check **************/
@@ -256,8 +274,35 @@ public class CorpController {
 			// System.out.println(loginCorp);
 			CorpDto loginCorp = corpService.findByCorpId(sCorpId);
 			request.setAttribute("corp", loginCorp);
+			
+			//로그인한 회사의 공고리스트 뽑기
+			List<RecruitDto> recruitList = recruitService.findAllByCorpId(loginCorp.getId());
+			
+			//로그인한 회사의 공고리스트 내 지원 전부출력
+			List<AppDto> appList = new ArrayList<AppDto>();
+			for(RecruitDto recruit:recruitList) {
+			appList.addAll(appService.findAllByRecruitId(recruit.getId())); 
+			}
+			
+			//매니저리스트
+			List<ManagerDto> managerList = managerService.findManagerByCorpID(sCorpId);
+			
+			//차트필요한 리스트
+			List<String>nameList = new ArrayList<String>();
+			List<Integer>rcCountList = new ArrayList<Integer>();
+			for(RecruitDto recruit :recruitList) {
+				nameList.add(recruit.getCorp().getCorpName());
+				rcCountList.add(recruit.getRcAppCount());
+			}
+			
+			model.addAttribute("recruitList",recruitList);
+			model.addAttribute("appList",appList);
+			model.addAttribute("managerList",managerList);
+			model.addAttribute("nameList",nameList);
+			model.addAttribute("rcCountList",rcCountList);
 			forwardPath = "dashboard";
 		}
+		
 		return forwardPath;
 	}
 
@@ -271,8 +316,13 @@ public class CorpController {
 		List<CorpImageDto> corpImageList = corpImageService.findAllByCorpId(sCorpId);
 		/*******************************************************************/
 		model.addAttribute("corp", corpDto);
+		
+		//업데이트 아직 안했을때 알림주기 위한 세션
+		int updateStatus = (Integer)request.getSession().getAttribute("updateStatus");
+		model.addAttribute("updateStatus", updateStatus);
+		
+		
 		forwardPath = "dashboard-company-profile";
-
 		return forwardPath;
 	}
 
@@ -281,9 +331,15 @@ public class CorpController {
 			HttpServletRequest request)
 			throws Exception {
 		
+		//session 업데이트권한 변경
+		request.getSession().setAttribute("updateStatus", 1);
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime time = LocalDate.parse(date, formatter).atStartOfDay();
 		corp.setCorpEst(time);
+		corp.setUpdateStatus(1);
+		corp.setPaymentStatus(corpService.findByCorpId((Long)request.getSession().getAttribute("id")).getPaymentStatus());
+		corp.setRcCount(corpService.findByCorpId((Long)request.getSession().getAttribute("id")).getRcCount());
 		corpService.update(corp.getId(), corp);
 		request.setAttribute("corpId", corp.getId());
 		return "redirect:corp-detail?corpId="+corp.getId();
@@ -301,13 +357,17 @@ public class CorpController {
 
 		// 공고 정렬
 		// 마감일 내림차순
-		if ("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
-			recruitList.sort((o1, o2) -> o2.getRcDeadline().compareTo(o1.getRcDeadline()));
-		} else {
-			// 마감일 오름차순
-			recruitList.sort(Comparator.comparing(RecruitDto::getRcDeadline));
+		try {
+			if ("rcDeadlinedesc".equalsIgnoreCase(sortType)) {
+				recruitList.sort((o1, o2) -> o2.getRcDeadline().compareTo(o1.getRcDeadline()));
+			} else {
+				// 마감일 오름차순
+				recruitList.sort(Comparator.comparing(RecruitDto::getRcDeadline));
+				model.addAttribute("recruitList", recruitList);      
+			}
+			
+		} catch (Exception e) {
 		}
-		model.addAttribute("recruitList", recruitList);
 
 		return "dashboard-manage-job";
 	}
@@ -357,27 +417,21 @@ public class CorpController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String searchCorps(@RequestParam("corpName") String corpName, 
 							  @RequestParam("job") String job,
-							  @RequestParam(defaultValue = "0") int page,
-		                      @RequestParam(defaultValue = "12") int size,
+							  @RequestParam(defaultValue = "0", name = "page") int curPage,
+							  @RequestParam(defaultValue = "8") int pageScale,
+		                      @RequestParam(defaultValue = "5") int blockScale,
 							  Pageable pageable,
 	                          Model model) {
 	    try {
+	    	//페이징 기능 추가->일단 12개씩 나오게 해놓음
+	    	Pageable pageable1 = PageRequest.of(curPage, pageScale, Sort.Direction.ASC, "id");
+	    	Page<CorpDto> corpPageList = corpService.findAll(pageable1);
+	    	int nowPage = corpPageList.getNumber();
 	        List<CorpDto> corpSearchList = new ArrayList<>();
-	      //페이징 기능 추가->일단 12개씩 나오게 해놓음
-		    Pageable pageable1 = PageRequest.of(page, size, Sort.Direction.ASC, "id");
-		    Page<CorpDto> corpPage = corpService.findAll(pageable1);
-		    int nowPage = corpPage.getNumber();
-		    
-		    //이전, 다음페이지 설정해야함...
-		    model.addAttribute("corpList", corpPage.getContent());
-		    model.addAttribute("nowPage", nowPage);
-		    model.addAttribute("totalPage", corpPage.getTotalPages());
-		    model.addAttribute("prePage", corpPage.hasPrevious() ? corpPage.previousPageable().getPageNumber() : 0);
-		    model.addAttribute("nextPage", corpPage.hasNext() ? corpPage.nextPageable().getPageNumber() : corpPage.getTotalPages() - 1);
-			
+	     
 		    //채용중 뿌리기
 		    Map<Long, Long>rcCountMap=corpService.getRcCountByCorpIdList(
-					corpPage.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
+					corpPageList.getContent().stream().map(CorpDto::getId).collect(Collectors.toList()));
 			model.addAttribute("rcCountMap", rcCountMap);
 			
 			//태그리스트 뿌리기
@@ -385,19 +439,39 @@ public class CorpController {
 			List<TagDto> tagList = tagService.selectAll();
 			model.addAttribute("tagList", tagList);
 			model.addAttribute("corpTagList", corpTagList);
+			
 		    
+			//페이지블록번호
+			int curBlock = (int) Math.ceil((corpPageList.getNumber()) / blockScale) + 1;
+		    System.out.println("페이지블록번호 :"+curBlock);
+		    //페이지 블록의 시작번호
+		 	int blockBegin = (curBlock - 1) * blockScale + 1;
+		 	//페이지 블록의 끝 번호
+		 	int	blockEnd = blockBegin + blockScale - 1;
+		 	System.out.println("페이지블록시작번호 :"+blockBegin);
+		 	System.out.println("페이지블록  끝번호 :"+blockEnd);
+		 	
+		 	model.addAttribute("blockBegin", blockBegin);
+		 	model.addAttribute("blockEnd", blockEnd);
+		    model.addAttribute("curPage", corpPageList.getNumber());
+		    model.addAttribute("totalPage", corpPageList.getTotalPages());
+		    model.addAttribute("prePage", corpPageList.previousOrFirstPageable().getPageNumber());
+		    model.addAttribute("nextPage", corpPageList.nextOrLastPageable().getPageNumber());
+			
 		    // corpName만 알때
 	        if (job.isEmpty()) {
-	            corpSearchList = corpService.searchByCorpName(corpName,pageable1);
+	           Page<CorpDto> corpPage = corpService.searchByCorpName(corpName,pageable);
+	           corpSearchList = corpPage.getContent();
+	           
 	        // job만 알 때
 	        } else if(corpName.isEmpty()){
-	            corpSearchList = corpService.searchByjob(job,pageable1);
+	            corpSearchList = corpService.searchByjob(job,pageable);
 	        // 둘 다 알 때
 	        } else {
-	            corpSearchList = corpService.searchCorps(corpName, job,pageable1);
+	            corpSearchList = corpService.searchCorps(corpName, job,pageable);
 	        }
 	        //검색 결과 없을 때
-	        model.addAttribute("noResults", corpSearchList.isEmpty());
+
 	        model.addAttribute("corpList", corpSearchList);
 	    } catch (Exception e) {
 	        // 예외 처리
