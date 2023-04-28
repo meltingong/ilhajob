@@ -177,7 +177,22 @@ public class SearchController {
 
 	@ResponseBody
 	@PostMapping("/keywordSearch")
-	public ResponseEntity<String> keywordSearch(@RequestBody String requestData) {
+	public ResponseEntity<String> keywordSearch(@RequestBody String requestData, HttpServletRequest request, Model model) {
+		String queryString = request.getQueryString();
+		if (queryString != null) {
+		    int pageIndex = queryString.indexOf("&page=");
+		    System.out.println(">>1>>"+pageIndex);
+		    if (pageIndex != -1) {
+		        queryString = queryString.substring(0, pageIndex) + queryString.substring(pageIndex + "&page=".length()+1);
+		        System.out.println(">>2>>"+queryString);
+		    }
+		    System.out.println(">>3>>"+queryString+'&');
+		} else {
+		    queryString = "";
+		    System.out.println(">>4>>"+queryString);
+		}
+		queryString += "&page=";
+		
 		Gson gson = new Gson();
 	    JsonObject jsonObject = gson.fromJson(requestData, JsonObject.class);
 	    String searchSelect = jsonObject.get("searchSelect").getAsString();
@@ -204,6 +219,8 @@ public class SearchController {
 	        jsonResult = new JsonObject();
 	        jsonResult.add("results", jsonArray);
 	    }
+	    
+	    model.addAttribute("qeuryString",queryString);
 	    
 		return ResponseEntity.ok(jsonResult.toString());
 	}

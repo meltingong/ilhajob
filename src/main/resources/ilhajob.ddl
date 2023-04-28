@@ -178,6 +178,7 @@
         cv_description varchar2(1000 char) not null,
         cv_name VARCHAR2(90) DEFAULT 'my resume',
         cv_portfolio varchar2(255 char),
+        cv_image varchar2(255 char),
         user_id number(19,0),
         primary key (id)
     );

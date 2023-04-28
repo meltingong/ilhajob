@@ -11,21 +11,21 @@ values(USER_ID_SEQ.nextval, 23, 'test4@test.com', '4444', 1,1);
 
 /**********************edu insert****************************/
 insert into edu(id, edu_content, edu_end_date, edu_major, edu_name, edu_score, edu_start_date, user_id)
-values(EDU_ID_SEQ.nextval, '학점만점', sysdate-30, '없음', '고등학교1', 4.0, sysdate-90, 1);
+values(EDU_ID_SEQ.nextval, '수석졸업', '2021-02-08', '컴퓨터공학', '서울대학교', 4.3, '2017-03-02', 1);
 insert into edu(id, edu_content, edu_end_date, edu_major, edu_name, edu_score, edu_start_date, user_id)
-values(EDU_ID_SEQ.nextval, '학점만점', sysdate-30, '학과1', '대학교1', 4.0, sysdate-90, 1);
+values(EDU_ID_SEQ.nextval, '석사 졸업', '2023-02-16', '컴퓨터공학', '서울대학교 일반대학원', 4.2, '2021-09-05', 1);
 insert into edu(id, edu_content, edu_end_date, edu_major, edu_name, edu_score, edu_start_date, user_id)
-values(EDU_ID_SEQ.nextval, '학점만점', sysdate-30, '학과2', '대학교2', 4.1, sysdate-90, 2);
+values(EDU_ID_SEQ.nextval, '학과대표 역임', '2023-02-16', '데이터사이언스학부', '한양대학교', 4.5, '2019-03-05', 2);
 insert into edu(id, edu_content, edu_end_date, edu_major, edu_name, edu_score, edu_start_date, user_id)
-values(EDU_ID_SEQ.nextval, '학점만점', sysdate-30, '학과3', '대학교3', 4.2, sysdate-90, 3);
+values(EDU_ID_SEQ.nextval, '학생회 활동', '2023-02-16', '컴퓨터소프트웨어학부', '한양대학교', 4.2, '2019-03-05', 3);
 insert into edu(id, edu_content, edu_end_date, edu_major, edu_name, edu_score, edu_start_date, user_id)
-values(EDU_ID_SEQ.nextval, '학점만점', sysdate-30, '학과4', '대학교4', 4.3, sysdate-90, 4);
+values(EDU_ID_SEQ.nextval, '전액장학생', '2023-02-16', 'AI학과', '중앙대학교', 4.3, '2019-03-05', 4);
 
 /**********************awards insert**************************/
 insert into awards(id, awards_content, awards_date, awards_name, user_id)
 values(AWARDS_ID_SEQ.nextval, '국가상', '2023/01/10', '국가경진대회', 1);
 insert into awards(id, awards_content, awards_date, awards_name, user_id)
-values(AWARDS_ID_SEQ.nextval, '장관상', sysdate-500, '창의경진대회', 1);
+values(AWARDS_ID_SEQ.nextval, '장관상', '2023-08-26', '창의경진대회', 2);
 insert into awards(id, awards_content, awards_date, awards_name, user_id)
 values(AWARDS_ID_SEQ.nextval, '국무총리상', '2023/01/20', '과학경진대회', 3);
 insert into awards(id, awards_content, awards_date, awards_name, user_id)
@@ -45,15 +45,25 @@ values(EXP_ID_SEQ.nextval, '구글엔드센스 개발', '구글', sysdate, '웹�
 
 /**********************cv insert******************************/
 insert into cv(id, cv_description, cv_name, cv_portfolio, user_id)
-values(CV_ID_SEQ.nextval, '~~자기소개1~~', '테스트1이력서', 'https://github.com/테스트1/', 1);
+values(CV_ID_SEQ.nextval, 
+'[+α를 더하는 능력] OOO업계 내 경쟁이 치열한 요즘 대부분의 기업이 비슷한 고민들을 하고 있기에 +α를 더할 수 있는 능력이 어느 때보다 필요한 시점입니다. 저는 평소 고객의 행동이나 패턴을 관찰하기를 즐기고 이를 통해 다른 무엇인가를 이끌어내려는 습관으로 [플러스 알파]를 찾곤 합니다. 매출이 저조하던 카페 한 켠을 활용하여 [커피 뮤지엄] 이라는 아이디어를 내어 디스플레이 하였고, 원산지별 원두와 그에 관련된 이야기를 알기 쉽도록 정리 해놓았습니다. 그 결과 손님들은 해당 커피들을 맛보길 원하셨고, 커피원두와 더불어 소품을 판매하여 매출을 향상 시킬 수 있었습니다. 비록 업종은 다르지만 제 개인적인 생각으로는 업무를 바라보는 자세와 태도에서 차이를 일으킬 수 있다고 생각합니다. 업무에 대한 관심도와 개선하려는 적극적인 의지가 무엇보다도 중요하다고 생각하며, 이런 저의 경험을 바탕으로 귀사에서도 +α를 더할 수 있도록 노력 할 것입니다.',
+'백엔드_김일번', 'https://github.com/user1/my-project1', 1);
 insert into cv(id, cv_description, cv_name, cv_portfolio, user_id)
-values(CV_ID_SEQ.nextval, '~~자기소개2~~', '테스트2이력서', 'https://github.com/테스트2/', 2);
+values(CV_ID_SEQ.nextval, 
+'이런 저의 경험을 바탕으로 기업A에서도 +α를 더할 수 있도록 노력 할 것입니다.',
+'백엔드개발자_김일번', 'https://github.com/user1/my-project1', 1);
 insert into cv(id, cv_description, cv_name, cv_portfolio, user_id)
-values(CV_ID_SEQ.nextval, '~~자기소개3~~', '웹개발이력서', 'https://github.com/테스트3/', 3);
+values(CV_ID_SEQ.nextval, '저는 예전에 스타트업에서 실습을 한 적이 있습니다 그 때 처음으로 말은 업무가 팩스 보내기 였습니다. 보낸 문서와 보내지 않은 문서가 나중에 뒤섞일 것을 염려해 문서 위에 연필로 보냈다는 표시를 작게 해두었는 데 그때 제게 일을 가르쳐주시던 과장님이 그런 작은 행동이 직장생활에 큰 도움이 될 것"이라며 칭찬해주셨고 이후 실습생임에도 다양한 경험을 할 수 있도록 간단한 개발 업무 등을 믿고 맡겨주셨습니다. 꼼꼼한 성격이 빛을 발하는 순간이었습니다.', 
+'프론트엔드_김이번', 'https://github.com/user1/my-project1', 2);
 insert into cv(id, cv_description, cv_name, cv_portfolio, user_id)
-values(CV_ID_SEQ.nextval, '~~소개소개~~', '개발이력서', 'https://tttt3.com/', 3);
+values(CV_ID_SEQ.nextval, '단점을 꼽자면 첫인상이 강하다는 정인데. 이 때문에 사랑들이 쉽게 다가오지 못하고, 저 또한 쉽게 먼저 다가가지 못하게 되었습니다. 그래서 이러한 인상을 고치기 위해서 매일 웃는 연습을 하고 얼굴 만들기 체조를 하면서 긍정적인 사고방식이 얼굴에 드러날 수 있도록 노력해왔습니다.', 
+'웹개발_김삼번', 'https://github.com/user1/my-project1', 3);
 insert into cv(id, cv_description, cv_name, cv_portfolio, user_id)
-values(CV_ID_SEQ.nextval, '~~하드웨어용 자기소개~~', '하드개발이력서', 'https://github.com/테스트4/', 4);
+values(CV_ID_SEQ.nextval, '[프로그래밍 언어 학습을 위한 스터디] 대학 시절, 학습 스터디를 조직했습니다. 처음에는 프로그래밍 언어를 학습하기 위해서 관련 동아리에 가입할 생각이었지만 전공 과정에서 충분한 소모임이 이루어지고 있어서 따로 동아리가 개설되어 있지 않았습니다. 저는 동아리를 직접 만들까를 고민하다가 이후 학습 스터디를 조직하게 되었습니다. 이 스터디는 전공 과정은 물론이고 과제 수행, 미래에는 취업 준비까지 함께 할 조직이었기 때문에 조직원을 모으는 과정에서 굉장히 신중함을 기했습니다. 그래서 우리와 마인드가 비슷한 사람들을 모으기 위해서 프로그래밍 언어 학습에 대한 열정, 미래 포부, 입사를 원하는 기업 등에 대한 자기의 정보를 모아서 부원을 선별했습니다. 우리는 최종적으로 다섯 명의 인원이 함께 모여서 친목을 다지면서 스터디를 진행했을 뿐만 아니라, 말이 스터디지 실제로는 기업 내의 부서 조직처럼 움직였습니다. 각자의 역할은 따로 정해져 있었습니다. 팀장 역할, 스케줄 계획을 짜는 역할, 기획과 실행을 맡은 사람, 학습을 위한 자료 수집을 맡은 사람 등이 있었습니다. 물론 자기 역할 수행에 대한 브리핑은 각자 하는 것이고, 프레젠테이션에서는 공통 작업이 있었지만 결과적으로는 학습 스터디의 발전이 협력으로 가능했습니다. 우리는 제1의 가치를 협력으로 정했고, 프로그래밍 언어 실습을 위한 과정에서도 협력을 통해서 학습 결과가 성장하도록 정했습니다. 이후 취업 스터디로 이어졌을 때도 기본적인 프로그래밍 과정을 제외하지 않았고, 스케줄러와 기획자가 따로 있었기에 가능한 협력 과정이었다고 생각합니다.', 
+'소프트웨어_김사번', 'https://mydevportfoliosite.com/', 3);
+insert into cv(id, cv_description, cv_name, cv_portfolio, user_id)
+values(CV_ID_SEQ.nextval, '저는 빠르게 발전하는 통신기술에 매료되어 입학 후 컴퓨터 활용능력을 기르기 위해 컴퓨터 학술동아리에 가입했습니다. 그리고 1학년 때 누구보다 착실히 참여하고 배웠더니 2학년 때 제가 회장을 맡게 되었습니다. 저는 더욱 학술적인 특성의 활동을 구상해 재학 중인 선배들과 함께 스터디 그룹을 만들었습니다. 그리고 필요한 부분에 대해서는 후배들과 함께 워크숍을 통해 중요한 부분을 가르쳐주었습니다. 당시 도전했던 과제 중에 기억에 남는 것은 스마트폰의 직접회로에 해당하는 간단한 시스템을 동작시키는 내용이었습니다. 처음에 회로를 이해한다는 것이 어려웠지만, 밤을 새워가며 코딩에 심취해 있기도 했습니다. 이러한 경험으로 하드웨어 개발자로서 소프트웨어적 마인드도 겸비하여 넓고 다양한 시각으로 문제를 해석할 수 있었습니다.', 
+'하드웨어_김사번', 'https://github.com/테스트4/', 4);
 
 /**********************recruit_scrap insert******************************/
 
