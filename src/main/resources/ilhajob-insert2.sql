@@ -189,7 +189,6 @@ insert into corp(ID, CORP_ADDRESS, CORP_BUSINESS_NO, CORP_COMMENT, CORP_EST, COR
 CORP_PASSWORD, CORP_PHONE, CORP_SALES, CORP_SIZE,  CORP_WEBSITE, CORP_WELFARE, JOB, CORP_ADDRESS_DETAIL, ROLE,CORP_STORED_FILE_NAME)
 values(CORP_ID_SEQ.nextval, '서울 성동구 아차산로 92', '100-000-0004', 'CJ올리브네트웍스는 1995년 창립이래 생활?문화 기반의 종합 IT서비스를 성공적으로 제공함으로써 고객 만족과 가치를 실현하고 있으며, 고객의 신뢰와 지지를 바탕으로 견실하고 안정적인 성장을 지속해오고 있습니다.',
 '1999-12-07', 'olive@olivenetworks.com', '올리브네트웍스','1111', '02-374-5558', '7000억', '960명', 'http://www.olivenetworks.co.kr', '카페테리아, 육아휴직, 직장어린이집', '네트워크','5층', null, 'upload/logo/22_logo.jpg');
->>>>>>> branch 'master' of https://github.com/2022-11-JAVA-DEVELOPER/final-project-team1-xxx.git
 
 /**********************manage insert***************************/
 /************기업 1에 속한 매니저************/
