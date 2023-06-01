@@ -75,6 +75,7 @@ public class ModalController {
     	return new ResponseEntity<>(html, headers, HttpStatus.OK);
     }
     
+    
     @GetMapping("/register-popup")
     public ResponseEntity<String> showRegisterPopup() {
     	String html = "";
