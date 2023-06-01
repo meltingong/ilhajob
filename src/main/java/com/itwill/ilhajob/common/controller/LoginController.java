@@ -38,6 +38,7 @@ public class LoginController {
 		this.ordersService = ordersService;
 	}
 	
+	
 	@PostMapping("ajaxLogin")
 	public ResponseEntity<Object> ajaxLogin(@RequestBody LoginRequestDto loginRequest, @ApiIgnore HttpSession session) throws Exception {
 	    if(loginRequest.getSeparate().equals("user")) {
