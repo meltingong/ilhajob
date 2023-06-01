@@ -63,7 +63,7 @@ public class UserRestController {
 	}
 	
 	@PostMapping("ajaxRegister")
-	public ResponseEntity<Object> ajaxModfiy(@RequestBody LoginRequestDto loginRequest,@ApiIgnore HttpSession session) throws Exception {
+	public ResponseEntity<Object> ajaxRegister(@RequestBody LoginRequestDto loginRequest,@ApiIgnore HttpSession session) throws Exception {
 	   if(loginRequest.getSeparate().equals("user")) {
 		   String id = loginRequest.getEmail();
 		   String password = loginRequest.getPassword();
